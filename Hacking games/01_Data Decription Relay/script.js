@@ -271,10 +271,10 @@ function createGrid() {
 // Call createGrid when the page loads
 createGrid();
 
-// Check final layer passphrase
 function checkFinalLayer() {
     const input = document.getElementById("final-input").value.toUpperCase();
-    if (input === endResult) {
+    const finalPassphrase = "ZORBXSHIPSGLIDE";
+    if (input === finalPassphrase) {
         document.getElementById("final-result").innerText = "Congratulations! You've decrypted the data!";
     } else {
         document.getElementById("final-result").innerText = "Incorrect, try again!";
