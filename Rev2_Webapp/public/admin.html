@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>GM Control Panel</h1>
+    
+    <fieldset>
+        <legend>Tavolo (Proiettore)</legend>
+        <button onclick="triggerScene('hacking')">Lancia Scenario: Hacking</button>
+        <button onclick="triggerScene('reset')">Reset Tavolo</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Player (Telefoni)</legend>
+        <button onclick="triggerPlayer('hacking_keypad')">Attiva Keypad Hacking</button>
+        <button onclick="triggerPlayer('alert')">Allarme Rosso</button>
+        <button onclick="triggerPlayer('reset')">Reset Player</button>
+    </fieldset>
+
+    <div id="log" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll;">
+        <strong>Log Eventi:</strong><br>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        
+        // Identificati come GM
+        socket.emit('join', 'gm');
+
+        function triggerScene(type) {
+            socket.emit('gm_change_scene', { type: type });
+            log('Comando Tavolo: ' + type);
+        }
+
+        function triggerPlayer(type) {
+            socket.emit('gm_player_command', { type: type });
+            log('Comando Player: ' + type);
+        }
+
+        // Ascolta feedback dai player
+        socket.on('player_feedback', (data) => {
+            log('FEEDBACK PLAYER: ' + JSON.stringify(data));
+        });
+
+        function log(msg) {
+            const div = document.getElementById('log');
+            div.innerHTML += msg + '<br>';
+            div.scrollTop = div.scrollHeight;
+        }
+    </script>
+</body>
+</html>

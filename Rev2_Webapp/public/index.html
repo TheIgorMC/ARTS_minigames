@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Starfinder Table Interface</title>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background-color: #000; }
+        #container { width: 100vw; height: 100vh; }
+    </style>
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        // 1. Connessione al Server
+        const socket = io();
+
+        // Identificati come TAVOLO (Proiettore)
+        socket.emit('join', 'table');
+
+        // 2. Setup Canvas (Konva)
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: width,
+            height: height
+        });
+
+        var layer = new Konva.Layer();
+        stage.add(layer);
+
+        // Funzione per creare un oggetto trascinabile (es. un fusibile)
+        function spawnObject(x, y, color) {
+            var box = new Konva.Rect({
+                x: x,
+                y: y,
+                width: 100,
+                height: 100,
+                fill: color,
+                draggable: true, // Magia: permette il drag-and-drop
+                stroke: '#00D2FF', // Bordo neon sci-fi
+                strokeWidth: 4
+            });
+
+            // Effetti visivi durante il trascinamento
+            box.on('dragstart', function() {
+                this.shadowBlur(20);
+                this.shadowColor('#00D2FF');
+            });
+            
+            box.on('dragend', function() {
+                this.shadowBlur(0);
+                // Invia la nuova posizione al server (opzionale)
+                socket.emit('table_object_move', { x: this.x(), y: this.y() });
+            });
+
+            layer.add(box);
+        }
+
+        // 3. Ascolto comandi dal Server (GM)
+        socket.on('load_scene', (sceneData) => {
+            layer.destroyChildren(); // Pulisce il tavolo
+            
+            if (sceneData.type === 'hacking') {
+                // Esempio: crea 3 oggetti da hackerare
+                spawnObject(100, 100, 'red');
+                spawnObject(300, 100, 'blue');
+                spawnObject(500, 100, 'green');
+            }
+            layer.draw();
+        });
+
+        // Ascolto feedback dai player (es. un player preme un bottone)
+        socket.on('player_feedback', (data) => {
+            // Esempio: mostra un testo fluttuante quando un player agisce
+            var feedback = new Konva.Text({
+                x: width / 2,
+                y: height / 2,
+                text: 'PLAYER ACTION: ' + data.action,
+                fontSize: 30,
+                fill: 'yellow',
+                fontFamily: 'Courier New'
+            });
+            layer.add(feedback);
+            layer.draw();
+            
+            // Rimuovi dopo 2 secondi
+            setTimeout(() => {
+                feedback.destroy();
+                layer.draw();
+            }, 2000);
+        });
+
+        // Messaggio di benvenuto / Standby
+        var text = new Konva.Text({
+            x: 50, y: 50,
+            text: 'TERMINALE IN ATTESA DI INPUT...',
+            fontSize: 40,
+            fontFamily: 'Courier New',
+            fill: '#00D2FF'
+        });
+        layer.add(text);
+        layer.draw();
+
+    </script>
+</body>
+</html>

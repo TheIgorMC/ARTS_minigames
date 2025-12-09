@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Starfinder Player Terminal</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #111; 
+            color: #00D2FF; 
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 { font-size: 1.5rem; border-bottom: 2px solid #00D2FF; padding-bottom: 10px; }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            margin: 10px 0;
+            background: #002233;
+            border: 2px solid #00D2FF;
+            color: #00D2FF;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn:active { background: #00D2FF; color: #000; }
+        #status { margin-top: 20px; font-style: italic; color: #666; }
+        
+        /* Stati speciali */
+        .alert-red { background-color: #330000 !important; color: red !important; border-color: red !important; }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>TERMINALE PERSONALE</h1>
+    
+    <div id="controls">
+        <p>In attesa di sincronizzazione...</p>
+    </div>
+
+    <div id="status">Connesso come Player</div>
+
+    <script>
+        const socket = io();
+        
+        // Identificati come PLAYER
+        socket.emit('join', 'player');
+
+        const controlsDiv = document.getElementById('controls');
+
+        // Ascolta istruzioni dal GM
+        socket.on('player_instruction', (data) => {
+            console.log('Istruzione ricevuta:', data);
+            
+            if (data.type === 'hacking_keypad') {
+                renderKeypad();
+            } else if (data.type === 'alert') {
+                document.body.className = 'alert-red';
+                controlsDiv.innerHTML = '<h1>ALLARME ROSSO</h1><p>IMPATTO IMMINENTE</p>';
+            } else if (data.type === 'reset') {
+                document.body.className = '';
+                controlsDiv.innerHTML = '<p>Sistemi Nominali.</p>';
+            }
+        });
+
+        function renderKeypad() {
+            controlsDiv.innerHTML = '';
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = 'INVIA CODICE DI SBLOCCO';
+            btn.onclick = () => {
+                socket.emit('player_action', { action: 'unlock_attempt', code: '1234' });
+                btn.innerText = 'INVIATO...';
+                setTimeout(() => btn.innerText = 'INVIA CODICE DI SBLOCCO', 2000);
+            };
+            controlsDiv.appendChild(btn);
+        }
+    </script>
+</body>
+</html>
