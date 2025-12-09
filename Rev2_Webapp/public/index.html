@@ -33,45 +33,74 @@
         var layer = new Konva.Layer();
         stage.add(layer);
 
-        // Funzione per creare un oggetto trascinabile (es. un fusibile)
-        function spawnObject(x, y, color) {
+        // Funzione per creare un oggetto trascinabile
+        function spawnObject(objData) {
+            var group = new Konva.Group({
+                x: objData.x,
+                y: objData.y,
+                draggable: true,
+                id: objData.instanceId
+            });
+
             var box = new Konva.Rect({
-                x: x,
-                y: y,
                 width: 100,
                 height: 100,
-                fill: color,
-                draggable: true, // Magia: permette il drag-and-drop
-                stroke: '#00D2FF', // Bordo neon sci-fi
-                strokeWidth: 4
+                fill: '#222',
+                stroke: '#00D2FF',
+                strokeWidth: 2,
+                shadowColor: '#00D2FF',
+                shadowBlur: 10,
+                shadowOpacity: 0.5
             });
+
+            var text = new Konva.Text({
+                text: objData.name || 'Object',
+                fontSize: 14,
+                fontFamily: 'Courier New',
+                fill: '#00D2FF',
+                width: 100,
+                padding: 5,
+                align: 'center'
+            });
+            
+            // Center text vertically
+            text.y((100 - text.height()) / 2);
+
+            group.add(box);
+            group.add(text);
 
             // Effetti visivi durante il trascinamento
-            box.on('dragstart', function() {
-                this.shadowBlur(20);
-                this.shadowColor('#00D2FF');
+            group.on('dragstart', function() {
+                box.shadowBlur(20);
             });
             
-            box.on('dragend', function() {
-                this.shadowBlur(0);
-                // Invia la nuova posizione al server (opzionale)
-                socket.emit('table_object_move', { x: this.x(), y: this.y() });
+            group.on('dragend', function() {
+                box.shadowBlur(10);
+                // Invia la nuova posizione al server
+                socket.emit('table_object_move', { id: this.id(), x: this.x(), y: this.y() });
             });
 
-            layer.add(box);
+            layer.add(group);
         }
 
-        // 3. Ascolto comandi dal Server (GM)
-        socket.on('load_scene', (sceneData) => {
+        // 3. Ascolto comandi dal Server
+        socket.on('table_state_update', (state) => {
             layer.destroyChildren(); // Pulisce il tavolo
             
-            if (sceneData.type === 'hacking') {
-                // Esempio: crea 3 oggetti da hackerare
-                spawnObject(100, 100, 'red');
-                spawnObject(300, 100, 'blue');
-                spawnObject(500, 100, 'green');
+            // Renderizza oggetti attivi
+            if (state.activeObjects) {
+                state.activeObjects.forEach(obj => {
+                    spawnObject(obj);
+                });
             }
             layer.draw();
+        });
+
+        socket.on('load_scene', (sceneData) => {
+            // Legacy support or specific scene overrides
+            if (sceneData.type === 'hacking') {
+                // ...
+            }
         });
 
         // Ascolto feedback dai player (es. un player preme un bottone)

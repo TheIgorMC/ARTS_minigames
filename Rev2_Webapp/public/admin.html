@@ -1,51 +1,288 @@
 <!DOCTYPE html>
-<html>
-<body>
-    <h1>GM Control Panel</h1>
-    
-    <fieldset>
-        <legend>Tavolo (Proiettore)</legend>
-        <button onclick="triggerScene('hacking')">Lancia Scenario: Hacking</button>
-        <button onclick="triggerScene('reset')">Reset Tavolo</button>
-    </fieldset>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>GM Control Station</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --panel-bg: #0f0f15;
+            --border-color: #333;
+            --accent-color: #00d2ff;
+            --text-color: #eee;
+        }
 
-    <fieldset>
-        <legend>Player (Telefoni)</legend>
-        <button onclick="triggerPlayer('hacking_keypad')">Attiva Keypad Hacking</button>
-        <button onclick="triggerPlayer('alert')">Allarme Rosso</button>
-        <button onclick="triggerPlayer('reset')">Reset Player</button>
-    </fieldset>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Share Tech Mono', monospace;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 60px 1fr;
+            overflow: hidden;
+        }
 
-    <div id="log" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll;">
-        <strong>Log Eventi:</strong><br>
-    </div>
+        /* Header */
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
 
+        h1 { margin: 0; font-size: 1.5rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 10px; }
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: #888;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { color: var(--accent-color); border-color: var(--accent-color); }
+        .tab-btn.active {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+        }
+
+        /* Main Layout */
+        main {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+            gap: 20px;
+            height: calc(100vh - 100px);
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        h2 { margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--accent-color); }
+
+        /* Controls Grid */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        button.action-btn {
+            background: #1a1a24;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 15px;
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        button.action-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+        button.action-btn.danger { border-color: #ff3333; color: #ff3333; }
+        button.action-btn.danger:hover { background: #ff3333; color: #000; box-shadow: 0 0 15px #ff3333; }
+
+        /* Log */
+        #log {
+            font-size: 0.9rem;
+            color: #aaa;
+            height: 100%;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        .log-entry { margin-bottom: 5px; border-bottom: 1px solid #222; padding-bottom: 2px; }
+        .log-time { color: #555; margin-right: 5px; }
+
+        /* Database Editors */
+        .db-editor {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            color: #0f0;
+            border: 1px solid #333;
+            font-family: monospace;
+            padding: 10px;
+            resize: none;
+        }
+
+        /* Utility classes */
+        .hidden { display: none !important; }
+        .full-width { grid-column: 1 / -1; }
+
+    </style>
     <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Starfinder GM Station</h1>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
+            <button class="tab-btn" onclick="switchTab('map')">Map</button>
+            <button class="tab-btn" onclick="switchTab('database')">Database</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- LEFT COLUMN: CONTENT -->
+        <div id="tab-live" class="panel">
+            <h2>Table Control (Projector)</h2>
+            <div class="controls-grid">
+                <button class="action-btn" onclick="triggerScene('hacking')">SCENARIO: HACKING</button>
+                <button class="action-btn" onclick="triggerScene('combat')">SCENARIO: COMBAT MAP</button>
+                <button class="action-btn danger" onclick="triggerScene('reset')">RESET TABLE</button>
+            </div>
+
+            <h2 style="margin-top: 30px;">Player Control (Mobile)</h2>
+            <div class="controls-grid">
+                <button class="action-btn" onclick="triggerPlayer('hacking_keypad')">DEPLOY: KEYPAD</button>
+                <button class="action-btn" onclick="triggerPlayer('info_dump')">DEPLOY: INTEL</button>
+                <button class="action-btn danger" onclick="triggerPlayer('alert')">ALERT: RED</button>
+                <button class="action-btn" onclick="triggerPlayer('reset')">RESET PLAYERS</button>
+            </div>
+        </div>
+
+        <div id="tab-map" class="panel hidden">
+            <h2>Map Management</h2>
+            <div style="margin-bottom: 20px;">
+                <h3>Spawn Object</h3>
+                <div style="display: flex; gap: 10px;">
+                    <select id="spawn-obj-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                        <option value="">Select Object...</option>
+                    </select>
+                    <button class="action-btn" onclick="spawnObject()">Spawn</button>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3>Table Actions</h3>
+                <button class="action-btn danger" onclick="clearTable()">Clear Table</button>
+            </div>
+        </div>
+
+        <div id="tab-database" class="panel hidden">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%;">
+                <div style="display: flex; flex-direction: column;">
+                    <h3>OBJECTS DB</h3>
+                    <textarea id="json-objects" class="db-editor"></textarea>
+                    <button class="action-btn" style="margin-top: 10px;" onclick="saveData('objects')">SAVE OBJECTS</button>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <h3>CHARACTERS DB</h3>
+                    <textarea id="json-characters" class="db-editor"></textarea>
+                    <button class="action-btn" style="margin-top: 10px;" onclick="saveData('characters')">SAVE CHARACTERS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: LOGS & STATUS -->
+        <div class="panel">
+            <h2>System Log</h2>
+            <div id="log"></div>
+        </div>
+    </main>
+
     <script>
         const socket = io();
         
         // Identificati come GM
         socket.emit('join', 'gm');
 
+        // --- TABS ---
+        function switchTab(tabName) {
+            document.querySelectorAll('.panel').forEach(p => {
+                if(p.id.startsWith('tab-')) p.classList.add('hidden');
+            });
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // --- COMMANDS ---
         function triggerScene(type) {
             socket.emit('gm_change_scene', { type: type });
-            log('Comando Tavolo: ' + type);
+            log('CMD TABLE: ' + type);
         }
 
         function triggerPlayer(type) {
             socket.emit('gm_player_command', { type: type });
-            log('Comando Player: ' + type);
+            log('CMD PLAYER: ' + type);
         }
 
-        // Ascolta feedback dai player
+        // --- LOGGING ---
         socket.on('player_feedback', (data) => {
-            log('FEEDBACK PLAYER: ' + JSON.stringify(data));
+            log(`FEEDBACK [${data.charId || 'UNK'}]: ${data.action}`);
         });
 
         function log(msg) {
             const div = document.getElementById('log');
-            div.innerHTML += msg + '<br>';
+            const time = new Date().toLocaleTimeString();
+            div.innerHTML += `<div class="log-entry"><span class="log-time">[${time}]</span> ${msg}</div>`;
             div.scrollTop = div.scrollHeight;
+        }
+
+        // --- DATABASE ---
+        socket.on('admin_data_update', (data) => {
+            document.getElementById('json-objects').value = JSON.stringify(data.objects, null, 2);
+            document.getElementById('json-characters').value = JSON.stringify(data.characters, null, 2);
+            
+            // Populate Spawn Select
+            const select = document.getElementById('spawn-obj-select');
+            select.innerHTML = '<option value="">Select Object...</option>';
+            data.objects.forEach(obj => {
+                const opt = document.createElement('option');
+                opt.value = obj.id;
+                opt.innerText = obj.name;
+                select.appendChild(opt);
+            });
+        });
+
+        function saveData(type) {
+            try {
+                let content;
+                if (type === 'objects') {
+                    content = JSON.parse(document.getElementById('json-objects').value);
+                } else {
+                    content = JSON.parse(document.getElementById('json-characters').value);
+                }
+                socket.emit('admin_update_data', { type: type, content: content });
+                log('DB SAVED: ' + type);
+            } catch (e) {
+                alert('JSON Error: ' + e.message);
+            }
+        }
+
+        // --- MAP MANAGEMENT ---
+        function spawnObject() {
+            const objId = document.getElementById('spawn-obj-select').value;
+            if (!objId) return;
+            socket.emit('admin_map_action', { type: 'spawn', objectId: objId });
+            log('SPAWN: ' + objId);
+        }
+
+        function clearTable() {
+            if(confirm('Clear all objects from table?')) {
+                socket.emit('admin_map_action', { type: 'clear' });
+                log('TABLE CLEARED');
+            }
         }
     </script>
 </body>

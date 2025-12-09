@@ -4,53 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Starfinder Player Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #00f3ff;
+            --bg-color: #0a0a12;
+            --panel-bg: rgba(0, 243, 255, 0.05);
+            --alert-color: #ff3333;
+        }
+        
         body { 
             margin: 0; 
-            padding: 20px; 
-            background-color: #111; 
-            color: #00D2FF; 
-            font-family: 'Courier New', Courier, monospace;
+            padding: 0; 
+            background-color: var(--bg-color); 
+            color: var(--primary-color); 
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Login Screen */
+        #login-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            border: 1px solid var(--primary-color);
+            padding: 40px;
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
             text-align: center;
         }
-        h1 { font-size: 1.5rem; border-bottom: 2px solid #00D2FF; padding-bottom: 10px; }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 20px;
+
+        .login-input {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px;
             margin: 10px 0;
-            background: #002233;
-            border: 2px solid #00D2FF;
-            color: #00D2FF;
-            font-size: 1.2rem;
             font-family: inherit;
-            cursor: pointer;
+            font-size: 1.2rem;
+            width: 200px;
+            text-align: center;
+        }
+        
+        .login-input:focus { outline: none; box-shadow: 0 0 10px var(--primary-color); }
+
+        /* User Menu */
+        #user-menu {
+            position: absolute;
+            top: 0; right: -100%; /* Hidden by default */
+            width: 85%;
+            height: 100%;
+            background: rgba(10, 10, 18, 0.95);
+            border-left: 2px solid var(--primary-color);
+            z-index: 50;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+        #user-menu.open { right: 0; }
+        
+        .menu-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 10px; margin-bottom: 20px;
+        }
+        .close-btn { font-size: 1.5rem; cursor: pointer; }
+        
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 5px; border-bottom: 1px solid #333; padding: 5px 0; }
+        .stat-label { color: #888; }
+        .stat-val { font-weight: bold; color: var(--primary-color); }
+        
+        .section-title { margin-top: 20px; color: var(--primary-color); border-bottom: 1px solid var(--primary-color); font-size: 1.1rem; margin-bottom: 10px; }
+
+        /* Scanline effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Header Futuristico */
+        header {
+            background: rgba(0, 243, 255, 0.1);
+            border-bottom: 1px solid var(--primary-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            z-index: 3;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
-        .btn:active { background: #00D2FF; color: #000; }
-        #status { margin-top: 20px; font-style: italic; color: #666; }
+
+        .connection-status {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--panel-bg);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .btn:hover {
+            background: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .btn:active {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        /* Alert State */
+        body.alert-red {
+            --primary-color: #ff3333;
+            --panel-bg: rgba(255, 51, 51, 0.1);
+        }
         
-        /* Stati speciali */
-        .alert-red { background-color: #330000 !important; color: red !important; border-color: red !important; }
+        body.alert-red .status-dot {
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        #controls {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .terminal-text {
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <h1>TERMINALE PERSONALE</h1>
-    
-    <div id="controls">
-        <p>In attesa di sincronizzazione...</p>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h1 class="header-title">S.I.T. ACCESS</h1>
+            <input type="text" id="username" class="login-input" placeholder="USERNAME">
+            <br>
+            <input type="password" id="password" class="login-input" placeholder="PASSWORD">
+            <br>
+            <button class="btn" onclick="attemptLogin()">LOGIN</button>
+            <p id="login-msg" style="color: red; margin-top: 10px;"></p>
+        </div>
     </div>
 
-    <div id="status">Connesso come Player</div>
+    <header>
+        <div class="header-title">S.I.T. LINK</div>
+        <div class="connection-status">
+            <span id="char-name-display">GUEST</span>
+            <div class="status-dot"></div>
+            <div style="margin-left: 15px; font-size: 1.5rem; cursor: pointer;" onclick="toggleMenu()">≡</div>
+        </div>
+    </header>
+
+    <!-- USER MENU SIDEBAR -->
+    <div id="user-menu">
+        <div class="menu-header">
+            <span id="menu-char-name">UNKNOWN</span>
+            <span class="close-btn" onclick="toggleMenu()">×</span>
+        </div>
+        
+        <div class="section-title">VITALS</div>
+        <div class="stat-row"><span class="stat-label">SP (Stamina)</span> <span class="stat-val" id="val-sp">--/--</span></div>
+        <div class="stat-row"><span class="stat-label">HP (Health)</span> <span class="stat-val" id="val-hp">--/--</span></div>
+        <div class="stat-row"><span class="stat-label">RP (Resolve)</span> <span class="stat-val" id="val-rp">--/--</span></div>
+
+        <div class="section-title">ABILITIES</div>
+        <div class="stat-row"><span class="stat-label">STR</span> <span class="stat-val" id="val-str">--</span></div>
+        <div class="stat-row"><span class="stat-label">DEX</span> <span class="stat-val" id="val-dex">--</span></div>
+        <div class="stat-row"><span class="stat-label">CON</span> <span class="stat-val" id="val-con">--</span></div>
+        <div class="stat-row"><span class="stat-label">INT</span> <span class="stat-val" id="val-int">--</span></div>
+        <div class="stat-row"><span class="stat-label">WIS</span> <span class="stat-val" id="val-wis">--</span></div>
+        <div class="stat-row"><span class="stat-label">CHA</span> <span class="stat-val" id="val-cha">--</span></div>
+
+        <div class="section-title">ASSETS</div>
+        <div class="stat-row"><span class="stat-label">CREDITS</span> <span class="stat-val" id="val-credits">--</span></div>
+    </div>
+
+    <main>
+        <div id="controls">
+            <div class="terminal-text">
+                > SYSTEM INITIALIZED<br>
+                > WAITING FOR COMMAND...
+            </div>
+        </div>
+    </main>
 
     <script>
         const socket = io();
+        let myCharacter = null;
+
+        // --- LOGIN LOGIC ---
+        function attemptLogin() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            socket.emit('player_login', { username: u, password: p });
+        }
+
+        socket.on('login_success', (charData) => {
+            myCharacter = charData;
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('char-name-display').innerText = charData.name.toUpperCase();
+            document.getElementById('menu-char-name').innerText = charData.name.toUpperCase();
+            
+            updateStats(charData);
+        });
+
+        socket.on('login_error', (msg) => {
+            document.getElementById('login-msg').innerText = msg;
+        });
+
+        function toggleMenu() {
+            document.getElementById('user-menu').classList.toggle('open');
+        }
+
+        function updateStats(char) {
+            // Vitals
+            document.getElementById('val-sp').innerText = (char.vitals?.sp || 0) + '/' + (char.vitals?.max_sp || 0);
+            document.getElementById('val-hp').innerText = (char.vitals?.hp || 0) + '/' + (char.vitals?.max_hp || 0);
+            document.getElementById('val-rp').innerText = (char.vitals?.rp || 0) + '/' + (char.vitals?.max_rp || 0);
+            
+            // Stats
+            document.getElementById('val-str').innerText = char.stats?.STR || 10;
+            document.getElementById('val-dex').innerText = char.stats?.DEX || 10;
+            document.getElementById('val-con').innerText = char.stats?.CON || 10;
+            document.getElementById('val-int').innerText = char.stats?.INT || 10;
+            document.getElementById('val-wis').innerText = char.stats?.WIS || 10;
+            document.getElementById('val-cha').innerText = char.stats?.CHA || 10;
+
+            // Assets
+            document.getElementById('val-credits').innerText = char.credits;
+        }
+
+        // --- GAME LOGIC ---
         
-        // Identificati come PLAYER
-        socket.emit('join', 'player');
+        // Identificati come PLAYER (Generico, poi il login fa il resto)
+        // socket.emit('join', 'player'); // Spostato nella logica di login lato server
 
         const controlsDiv = document.getElementById('controls');
+        const statusDot = document.querySelector('.status-dot');
+        const statusText = document.querySelector('.connection-status span');
 
         // Ascolta istruzioni dal GM
         socket.on('player_instruction', (data) => {
@@ -60,22 +331,27 @@
                 renderKeypad();
             } else if (data.type === 'alert') {
                 document.body.className = 'alert-red';
-                controlsDiv.innerHTML = '<h1>ALLARME ROSSO</h1><p>IMPATTO IMMINENTE</p>';
+                controlsDiv.innerHTML = '<h1 class="terminal-text" style="font-size: 2rem;">⚠ WARNING ⚠</h1><p class="terminal-text">IMMINENT COLLISION DETECTED</p>';
             } else if (data.type === 'reset') {
                 document.body.className = '';
-                controlsDiv.innerHTML = '<p>Sistemi Nominali.</p>';
+                controlsDiv.innerHTML = '<div class="terminal-text">> SYSTEM NORMAL<br>> STANDBY...</div>';
             }
         });
 
         function renderKeypad() {
-            controlsDiv.innerHTML = '';
+            controlsDiv.innerHTML = '<div class="terminal-text">> SECURITY OVERRIDE REQUIRED</div>';
+            
             const btn = document.createElement('button');
             btn.className = 'btn';
-            btn.innerText = 'INVIA CODICE DI SBLOCCO';
+            btn.innerText = 'INITIATE UNLOCK';
             btn.onclick = () => {
-                socket.emit('player_action', { action: 'unlock_attempt', code: '1234' });
-                btn.innerText = 'INVIATO...';
-                setTimeout(() => btn.innerText = 'INVIA CODICE DI SBLOCCO', 2000);
+                socket.emit('player_action', { action: 'unlock_attempt', code: '1234', charId: myCharacter ? myCharacter.id : 'unknown' });
+                btn.innerText = 'UPLOADING...';
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.innerText = 'INITIATE UNLOCK';
+                    btn.disabled = false;
+                }, 2000);
             };
             controlsDiv.appendChild(btn);
         }

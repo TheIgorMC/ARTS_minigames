@@ -1,0 +1,14 @@
+[
+  {
+    "id": "obj_01",
+    "name": "Fusibile Quantico",
+    "image": "assets/fuse.png",
+    "description": "Un fusibile instabile."
+  },
+  {
+    "id": "obj_02",
+    "name": "Datapad Criptato",
+    "image": "assets/datapad.png",
+    "description": "Contiene piani di volo."
+  }
+]
