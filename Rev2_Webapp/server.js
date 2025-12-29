@@ -1,9 +1,27 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors');
+
+app.use(cors());
+
+// Servi i file statici dalla cartella 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+// Servi i file media dalla cartella 'media'
+app.use('/media', express.static(path.join(__dirname, 'media')));
+
+// Redirects per comodità
+app.get('/mood', (req, res) => res.sendFile(path.join(__dirname, 'public/mood.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public/admin.html')));
+app.get('/player', (req, res) => res.sendFile(path.join(__dirname, 'public/player.html')));
 
 // Carica i dati JSON
 const DATA_DIR = path.join(__dirname, 'data');
@@ -48,14 +66,152 @@ setInterval(() => {
     }
 }, 60000);
 
+// Helper per leggere i file media (ricorsivo)
+function getMediaFiles(dir = '', fileList = []) {
+    const mediaDir = path.join(__dirname, 'media');
+    const currentDir = path.join(mediaDir, dir);
+    
+    if (!fs.existsSync(currentDir)) return [];
+    
+    const files = fs.readdirSync(currentDir);
+    
+    files.forEach(file => {
+        const filePath = path.join(currentDir, file);
+        const stat = fs.statSync(filePath);
+        
+        if (stat.isDirectory()) {
+            getMediaFiles(path.join(dir, file), fileList);
+        } else {
+            if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4'].includes(path.extname(file).toLowerCase())) {
+                // Usa path relativo normalizzato per URL (slash in avanti)
+                const relativePath = path.join(dir, file).replace(/\\/g, '/');
+                // Encode parts to ensure URL safety (especially for brackets)
+                const urlPath = relativePath.split('/').map(encodeURIComponent).join('/');
+                
+                const fileName = path.basename(file);
+                
+                // Determine type based on naming scheme
+                let type = 'item';
+                if (fileName.startsWith('[BG]')) type = 'background';
+                else if (fileName.startsWith('[MOOD]')) type = 'mood';
+                
+                fileList.push({
+                    path: urlPath, // Use encoded path for URL
+                    name: fileName,
+                    folder: dir.replace(/\\/g, '/'),
+                    type: type
+                });
+            }
+        }
+    });
+    
+    return fileList;
+}
+
+function loadScenes() {
+    const mediaDir = path.join(__dirname, 'media');
+    if (!fs.existsSync(mediaDir)) return [];
+    
+    const loadedScenes = [];
+    const dirs = fs.readdirSync(mediaDir);
+    
+    dirs.forEach(dir => {
+        const dirPath = path.join(mediaDir, dir);
+        if (fs.statSync(dirPath).isDirectory() && dir.startsWith('[')) {
+            const sceneFile = path.join(dirPath, 'scene.json');
+            if (fs.existsSync(sceneFile)) {
+                try {
+                    const sceneData = JSON.parse(fs.readFileSync(sceneFile));
+                    // Ensure ID matches folder name logic if needed, or trust file
+                    sceneData.id = dir; // Use folder name as ID for simplicity
+                    sceneData.name = dir.replace(/^\[.*?\]\s*/, ''); // Clean name
+                    loadedScenes.push(sceneData);
+                } catch (e) {
+                    console.error(`Error loading scene from ${dir}:`, e);
+                }
+            } else {
+                // Create empty scene entry for folder if no json exists
+                loadedScenes.push({
+                    id: dir,
+                    name: dir.replace(/^\[.*?\]\s*/, ''),
+                    objects: [],
+                    mood: ''
+                });
+            }
+        }
+    });
+    return loadedScenes;
+}
+
 function loadData() {
     try {
+        // Ensure [00]Global exists
+        const globalDir = path.join(DATA_DIR, '../media/[00]Global');
+        if (!fs.existsSync(globalDir)) {
+            fs.mkdirSync(globalDir, { recursive: true });
+        }
+
         objects = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'objects.json')));
         characters = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'characters.json')));
-        if (fs.existsSync(path.join(DATA_DIR, 'scenes.json'))) {
-            scenes = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'scenes.json')));
+        
+        // Load scenes from media folders
+        scenes = loadScenes();
+        
+        // Sync objects with media files
+        const allMedia = getMediaFiles();
+        let objectsChanged = false;
+        
+        allMedia.forEach(media => {
+            // Generate a stable ID based on the file path
+            const id = media.name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+            
+            // Check if object exists
+            const existing = objects.find(o => o.id === id);
+            
+            if (!existing) {
+                // Create new object
+                const newObj = {
+                    id: id,
+                    name: media.name.replace(/\[.*?\]\s*/g, '').replace(/\.[^/.]+$/, ""), // Remove tags and extension
+                    category: media.folder.includes('[00]Global') ? 'Global' : media.folder.replace(/^\[.*?\]\s*/, ''),
+                    sceneId: media.folder, // Link to folder
+                    type: media.type,
+                    image: '/media/' + media.path,
+                    width: (media.type === 'background' || media.type === 'mood') ? 1920 : 100,
+                    height: (media.type === 'background' || media.type === 'mood') ? 1080 : 100,
+                    draggable: (media.type !== 'background' && media.type !== 'mood'),
+                    description: ''
+                };
+                objects.push(newObj);
+                objectsChanged = true;
+                console.log(`Auto-added object: ${newObj.name} (${newObj.type})`);
+            } else {
+                // Update existing object path/category if changed (e.g. folder rename)
+                const newPath = '/media/' + media.path;
+                const newSceneId = media.folder;
+                const newCategory = media.folder.includes('[00]Global') ? 'Global' : media.folder.replace(/^\[.*?\]\s*/, '');
+                
+                if (existing.image !== newPath || existing.sceneId !== newSceneId) {
+                    existing.image = newPath;
+                    existing.sceneId = newSceneId;
+                    existing.category = newCategory;
+                    objectsChanged = true;
+                    console.log(`Updated object path: ${existing.name} -> ${newSceneId}`);
+                }
+            }
+        });
+        
+        if (objectsChanged) {
+            saveData();
         }
-        console.log('Dati caricati correttamente.');
+
+        // Set default mood if available
+        const idleMood = allMedia.find(m => m.folder.includes('[00]Global') && m.name.startsWith('[MOOD]Idle'));
+        if (idleMood) {
+            moodState.imageUrl = '/media/' + idleMood.path;
+        }
+
+        console.log('Dati caricati correttamente. Scene trovate:', scenes.length);
     } catch (e) {
         console.error('Errore caricamento dati:', e);
     }
@@ -66,25 +222,33 @@ function saveData() {
     try {
         fs.writeFileSync(path.join(DATA_DIR, 'objects.json'), JSON.stringify(objects, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'characters.json'), JSON.stringify(characters, null, 2));
-        fs.writeFileSync(path.join(DATA_DIR, 'scenes.json'), JSON.stringify(scenes, null, 2));
+        // Scenes are saved individually now
         console.log('Dati salvati.');
     } catch (e) {
         console.error('Errore salvataggio dati:', e);
     }
 }
 
-// Servi i file statici dalla cartella 'public'
-app.use(express.static(path.join(__dirname, 'public')));
-// Servi i file media dalla cartella 'media'
-app.use('/media', express.static(path.join(__dirname, 'media')));
-
-// Helper per leggere i file media
-function getMediaFiles() {
-    const mediaDir = path.join(__dirname, 'media');
-    if (!fs.existsSync(mediaDir)) return [];
-    return fs.readdirSync(mediaDir).filter(file => {
-        return ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4'].includes(path.extname(file).toLowerCase());
-    });
+function saveSceneData(sceneId, data) {
+    try {
+        const mediaDir = path.join(__dirname, 'media');
+        const sceneDir = path.join(mediaDir, sceneId);
+        
+        if (!fs.existsSync(sceneDir)) {
+            fs.mkdirSync(sceneDir, { recursive: true });
+        }
+        
+        fs.writeFileSync(path.join(sceneDir, 'scene.json'), JSON.stringify(data, null, 2));
+        console.log(`Scene ${sceneId} saved.`);
+        
+        // Update in-memory scenes
+        const idx = scenes.findIndex(s => s.id === sceneId);
+        if (idx >= 0) scenes[idx] = data;
+        else scenes.push(data);
+        
+    } catch (e) {
+        console.error(`Error saving scene ${sceneId}:`, e);
+    }
 }
 
 // Gestione connessioni Socket.io
@@ -125,6 +289,31 @@ io.on('connection', (socket) => {
     });
 
     // --- GESTIONE DATI (GM) ---
+    socket.on('admin_add_object', (newObj) => {
+        // Validazione base
+        if (!newObj.name || !newObj.image) return;
+
+        // Genera ID se manca
+        if (!newObj.id) {
+            newObj.id = newObj.name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        }
+
+        // Assicurati che l'ID sia unico
+        let originalId = newObj.id;
+        let counter = 1;
+        while (objects.find(o => o.id === newObj.id)) {
+            newObj.id = originalId + '_' + counter;
+            counter++;
+        }
+
+        objects.push(newObj);
+        saveData();
+        
+        socket.emit('admin_data_update', { objects, characters, scenes });
+        // Log per il GM
+        socket.emit('gm_hacking_log', 'Object Created: ' + newObj.name);
+    });
+
     socket.on('admin_update_data', (data) => {
         if (data.type === 'objects') objects = data.content;
         if (data.type === 'characters') characters = data.content;
@@ -137,43 +326,72 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('admin_refresh_db', () => {
+        console.log('Admin requested DB refresh...');
+        loadData();
+        socket.emit('admin_data_update', { objects, characters, scenes });
+        socket.emit('media_list_update', getMediaFiles());
+        socket.emit('gm_hacking_log', 'Database Refreshed (Rescanned Media)');
+    });
+
     // --- GESTIONE SCENE (GM) ---
     socket.on('admin_scene_action', (action) => {
         if (action.type === 'save') {
-            // Usa il nome come ID (slugified) per facilitare il linking
-            const id = action.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            // Use folder name as ID. If it's a new scene name, we might need to create a folder?
+            // For now, assume we are saving to the CURRENT loaded scene or a new one if specified
             
-            // Rimuovi se esiste già
-            scenes = scenes.filter(s => s.id !== id);
+            // If action.id is provided (existing scene), use it.
+            // If action.name is provided, try to find matching folder or create new?
+            // Simplified: We only save to existing folders/IDs for now or create new folder [XX] Name
+            
+            let sceneId = action.id;
+            if (!sceneId && action.name) {
+                // Try to find scene by name
+                const existing = scenes.find(s => s.name === action.name);
+                if (existing) sceneId = existing.id;
+                else {
+                    // Create new folder logic could go here, but let's stick to existing folders for safety first
+                    // Or create a generic one
+                    sceneId = `[99] ${action.name}`;
+                }
+            }
 
-            const newScene = {
-                id: id,
-                name: action.name,
-                objects: tableState.activeObjects,
-                mood: moodState.imageUrl // Save current mood
-            };
-            scenes.push(newScene);
-            saveData();
-            socket.emit('admin_data_update', { objects, characters, scenes });
+            if (sceneId) {
+                const newScene = {
+                    id: sceneId,
+                    name: action.name || sceneId,
+                    objects: tableState.activeObjects,
+                    mood: moodState.imageUrl
+                };
+                
+                saveSceneData(sceneId, newScene);
+                socket.emit('admin_data_update', { objects, characters, scenes });
+            }
         } else if (action.type === 'load') {
             const scene = scenes.find(s => s.id === action.id);
             if (scene) {
                 tableState.activeObjects = JSON.parse(JSON.stringify(scene.objects)); // Deep copy
                 io.to('table').emit('table_state_update', tableState);
                 
-                // Load mood if present
+                // Load mood if present, else default
                 if (scene.mood) {
                     moodState.imageUrl = scene.mood;
-                    io.emit('mood_state_update', moodState.imageUrl);
+                } else {
+                    // Default Mood Logic
+                    const allMedia = getMediaFiles();
+                    const idleMood = allMedia.find(m => m.folder.includes('[00]Global') && m.name.startsWith('[MOOD]Idle'));
+                    moodState.imageUrl = idleMood ? '/media/' + idleMood.path : '';
                 }
+                io.emit('mood_state_update', moodState.imageUrl);
                 
                 // Sync GM preview too
                 socket.emit('table_state_update', tableState); 
             }
         } else if (action.type === 'delete') {
-            scenes = scenes.filter(s => s.id !== action.id);
-            saveData();
-            socket.emit('admin_data_update', { objects, characters, scenes });
+            // We probably shouldn't delete the folder, just the json? Or do nothing for now to be safe.
+            // scenes = scenes.filter(s => s.id !== action.id);
+            // saveData();
+            // socket.emit('admin_data_update', { objects, characters, scenes });
         }
     });
 
@@ -336,8 +554,6 @@ io.on('connection', (socket) => {
             if (data.scaleX !== undefined) obj.scaleX = data.scaleX;
             if (data.scaleY !== undefined) obj.scaleY = data.scaleY;
             if (data.rotation !== undefined) obj.rotation = data.rotation;
-            
-            // Aggiorna il GM e gli altri tavoli
             
             // Aggiorna il GM e gli altri tavoli
             io.to('gm').emit('sync_object', data);

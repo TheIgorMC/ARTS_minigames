@@ -170,7 +170,8 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
             <button class="tab-btn" onclick="switchTab('map')">Map</button>
-            <button class="tab-btn" onclick="switchTab('database')">Database</button>
+            <button class="tab-btn" onclick="switchTab('database')">Objects</button>
+            <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
         </div>
     </header>
 
@@ -275,6 +276,7 @@
                     <select id="scene-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
                         <option value="">Select Scene...</option>
                     </select>
+                    <button class="action-btn" onclick="refreshDB()" title="Refresh List" style="padding: 0 15px;">↻</button>
                     <button class="action-btn" onclick="loadScene()">Load</button>
                     <button class="action-btn" onclick="resetSceneFilter()">Show All</button>
                     <button class="action-btn danger" onclick="deleteScene()">Del</button>
@@ -288,18 +290,47 @@
         </div>
 
         <div id="tab-database" class="panel hidden">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%;">
-                <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; flex-direction: column; height: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3>OBJECTS DB</h3>
-                    <textarea id="json-objects" class="db-editor"></textarea>
-                    <button class="action-btn" style="margin-top: 10px;" onclick="saveData('objects')">SAVE OBJECTS</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="refreshDB()">REFRESH DB</button>
+                        <input type="text" id="obj-filter-scene" placeholder="Filter by Scene..." onkeyup="renderObjectsTable()" style="padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                        <input type="text" id="obj-filter-name" placeholder="Filter by Name..." onkeyup="renderObjectsTable()" style="padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    </div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                    <h3>CHARACTERS DB</h3>
-                    <textarea id="json-characters" class="db-editor"></textarea>
-                    <button class="action-btn" style="margin-top: 10px;" onclick="saveData('characters')">SAVE CHARACTERS</button>
+                <div style="flex: 1; overflow-y: auto; border: 1px solid #333;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                        <thead style="background: #222; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 5px; text-align: left;">Img</th>
+                                <th style="padding: 5px; text-align: left;">Name</th>
+                                <th style="padding: 5px; text-align: left;">Type</th>
+                                <th style="padding: 5px; text-align: left;">Scene</th>
+                                <th style="padding: 5px; text-align: left;">Desc</th>
+                                <th style="padding: 5px; text-align: center;">Act</th>
+                            </tr>
+                        </thead>
+                        <tbody id="objects-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
+                <button class="action-btn" style="margin-top: 10px;" onclick="saveObjectsTable()">SAVE OBJECTS</button>
             </div>
+        </div>
+
+        <div id="tab-characters" class="panel hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0;">CHARACTERS</h2>
+                <button class="action-btn" onclick="addNewCharacter()">+ NEW CHARACTER</button>
+            </div>
+            
+            <div id="characters-grid" class="controls-grid">
+                <!-- Populated by JS -->
+            </div>
+            
+            <button class="action-btn" style="margin-top: 20px; width: 100%;" onclick="saveCharactersCards()">SAVE CHARACTERS</button>
         </div>
 
         <!-- RIGHT COLUMN: SIDEBAR -->
@@ -370,8 +401,8 @@
         // --- DATABASE ---
         socket.on('admin_data_update', (data) => {
             cachedData = data;
-            document.getElementById('json-objects').value = JSON.stringify(data.objects, null, 2);
-            document.getElementById('json-characters').value = JSON.stringify(data.characters, null, 2);
+            renderObjectsTable();
+            renderCharactersCards();
             
             updateSpawnSelect();
 
@@ -387,6 +418,54 @@
                 });
             }
         });
+
+        function renderObjectsTable() {
+            if (!cachedData || !cachedData.objects) return;
+            
+            const tbody = document.getElementById('objects-table-body');
+            tbody.innerHTML = '';
+            
+            const filterScene = document.getElementById('obj-filter-scene').value.toLowerCase();
+            const filterName = document.getElementById('obj-filter-name').value.toLowerCase();
+            
+            cachedData.objects.forEach((obj, index) => {
+                if (filterScene && (!obj.sceneId || !obj.sceneId.toLowerCase().includes(filterScene))) return;
+                if (filterName && !obj.name.toLowerCase().includes(filterName)) return;
+                
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #333';
+                
+                tr.innerHTML = `
+                    <td style="padding: 5px;"><img src="${obj.image}" style="width: 30px; height: 30px; object-fit: cover;"></td>
+                    <td style="padding: 5px;"><input type="text" value="${obj.name}" onchange="updateObject(${index}, 'name', this.value)" style="width: 100%; background: transparent; color: #fff; border: none;"></td>
+                    <td style="padding: 5px;">${obj.type}</td>
+                    <td style="padding: 5px;">${obj.sceneId || '-'}</td>
+                    <td style="padding: 5px;"><input type="text" value="${obj.description || ''}" onchange="updateObject(${index}, 'description', this.value)" style="width: 100%; background: transparent; color: #aaa; border: none;"></td>
+                    <td style="padding: 5px; text-align: center;">
+                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteObject(${index})">X</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateObject(index, field, value) {
+            if (cachedData && cachedData.objects[index]) {
+                cachedData.objects[index][field] = value;
+            }
+        }
+        
+        function deleteObject(index) {
+            if (confirm('Delete object?')) {
+                cachedData.objects.splice(index, 1);
+                renderObjectsTable();
+            }
+        }
+        
+        function saveObjectsTable() {
+            socket.emit('admin_update_data', { type: 'objects', content: cachedData.objects });
+            log('DB SAVED: objects');
+        }
 
         function updateSpawnSelect() {
             if (!cachedData) return;
@@ -418,18 +497,96 @@
             });
         }
 
+        // --- CHARACTERS MANAGEMENT ---
+        function renderCharactersCards() {
+            if (!cachedData || !cachedData.characters) return;
+            
+            const grid = document.getElementById('characters-grid');
+            grid.innerHTML = '';
+            
+            cachedData.characters.forEach((char, index) => {
+                const card = document.createElement('div');
+                card.style.background = '#111';
+                card.style.border = '1px solid #333';
+                card.style.padding = '15px';
+                card.style.display = 'flex';
+                card.style.flexDirection = 'column';
+                card.style.gap = '10px';
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                        <span style="color: var(--accent-color); font-weight: bold;">#${char.id || index}</span>
+                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #888;">Name</label>
+                        <input type="text" value="${char.name || ''}" onchange="updateCharacter(${index}, 'name', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                    </div>
+                    <div style="display: flex; gap: 5px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.7rem; color: #888;">Username</label>
+                            <input type="text" value="${char.username || ''}" onchange="updateCharacter(${index}, 'username', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.7rem; color: #888;">Password</label>
+                            <input type="text" value="${char.password || ''}" onchange="updateCharacter(${index}, 'password', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #888;">Class/Role</label>
+                        <input type="text" value="${char.class || ''}" onchange="updateCharacter(${index}, 'class', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateCharacter(index, field, value) {
+            if (cachedData && cachedData.characters[index]) {
+                cachedData.characters[index][field] = value;
+            }
+        }
+
+        function addNewCharacter() {
+            const newChar = {
+                id: Date.now().toString().substr(-6),
+                name: 'New Character',
+                username: 'user' + Math.floor(Math.random()*1000),
+                password: '123',
+                class: 'Unknown'
+            };
+            cachedData.characters.push(newChar);
+            renderCharactersCards();
+        }
+
+        function deleteCharacter(index) {
+            if (confirm('Delete character?')) {
+                cachedData.characters.splice(index, 1);
+                renderCharactersCards();
+            }
+        }
+
+        function saveCharactersCards() {
+            socket.emit('admin_update_data', { type: 'characters', content: cachedData.characters });
+            log('DB SAVED: characters');
+        }
+
         function saveData(type) {
             try {
-                let content;
                 if (type === 'objects') {
-                    content = JSON.parse(document.getElementById('json-objects').value);
-                } else {
-                    content = JSON.parse(document.getElementById('json-characters').value);
+                    saveObjectsTable();
+                } else if (type === 'characters') {
+                    saveCharactersCards();
                 }
-                socket.emit('admin_update_data', { type: type, content: content });
-                log('DB SAVED: ' + type);
             } catch (e) {
-                alert('JSON Error: ' + e.message);
+                alert('Error: ' + e.message);
+            }
+        }
+
+        function refreshDB() {
+            if (confirm('Reload database from disk? Unsaved changes might be lost.')) {
+                socket.emit('admin_refresh_db');
+                log('CMD: Refresh DB');
             }
         }
 
@@ -584,14 +741,86 @@
 
         socket.on('media_list_update', (files) => {
             const select = document.getElementById('mood-select');
-            select.innerHTML = '<option value="">Select Image...</option>';
-            files.forEach(file => {
-                const opt = document.createElement('option');
-                opt.value = file;
-                opt.innerText = file;
-                select.appendChild(opt);
-            });
+            const objSelect = document.getElementById('new-obj-image');
+            
+            // files is now an array of objects { path, name, folder, type }
+            // Filter for mood images for the mood selector
+            const moodFiles = files.filter(f => f.type === 'mood');
+            
+            const moodOptions = '<option value="">Select Image...</option>' + 
+                moodFiles.map(f => `<option value="${f.path}">${f.folder}/${f.name}</option>`).join('');
+            
+            select.innerHTML = moodOptions;
+
+            // For object creation, show all
+            if(objSelect) {
+                const allOptions = '<option value="">Select Image...</option>' + 
+                    files.map(f => `<option value="${f.path}" data-type="${f.type}" data-folder="${f.folder}">${f.folder}/${f.name}</option>`).join('');
+                objSelect.innerHTML = allOptions;
+            }
         });
+
+        function updateNewObjDefaults() {
+            const objSelect = document.getElementById('new-obj-image');
+            const selectedOpt = objSelect.options[objSelect.selectedIndex];
+            
+            if (selectedOpt && selectedOpt.dataset.type) {
+                const type = selectedOpt.dataset.type;
+                document.getElementById('new-obj-type').value = type;
+                
+                // Auto-set category based on type
+                const catInput = document.getElementById('new-obj-category');
+                if (type === 'background') catInput.value = 'Maps';
+                else if (type === 'mood') catInput.value = 'Mood';
+                else catInput.value = 'Mission Items';
+            }
+
+            const type = document.getElementById('new-obj-type').value;
+            const w = document.getElementById('new-obj-width');
+            const h = document.getElementById('new-obj-height');
+            
+            if (type === 'background' || type === 'mood') {
+                w.value = 1920;
+                h.value = 1080;
+            } else {
+                w.value = '';
+                h.value = '';
+            }
+        }
+
+        function addNewObject() {
+            const name = document.getElementById('new-obj-name').value;
+            const category = document.getElementById('new-obj-category').value;
+            const type = document.getElementById('new-obj-type').value;
+            const image = document.getElementById('new-obj-image').value;
+            const width = document.getElementById('new-obj-width').value;
+            const height = document.getElementById('new-obj-height').value;
+            const desc = document.getElementById('new-obj-desc').value;
+
+            if (!name || !image) {
+                alert('Name and Image are required!');
+                return;
+            }
+
+            const newObj = {
+                name: name,
+                category: category || 'Uncategorized',
+                type: type,
+                image: '/media/' + image, // Add prefix
+                description: desc
+            };
+
+            if (width) newObj.width = parseInt(width);
+            if (height) newObj.height = parseInt(height);
+            if (type === 'background' || type === 'mood') newObj.draggable = false;
+
+            socket.emit('admin_add_object', newObj);
+            
+            // Reset form
+            document.getElementById('new-obj-name').value = '';
+            document.getElementById('new-obj-desc').value = '';
+            log('REQ ADD OBJECT: ' + name);
+        }
 
         socket.on('gm_hacking_update', (state) => {
             // Visualizza lo stato attuale (lettere scoperte)

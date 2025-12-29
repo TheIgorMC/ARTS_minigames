@@ -773,6 +773,8 @@
             log.scrollTop = log.scrollHeight;
         });
 
+        let scrambleInterval = null;
+
         socket.on('time_update', (time) => {
             const display = document.getElementById('header-time');
             
@@ -780,12 +782,25 @@
                 // Glitch effect
                 display.style.color = 'red';
                 display.style.textShadow = '2px 0 red, -2px 0 blue';
-                // Random chars
-                const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-                let glitchText = '';
-                for(let i=0; i<12; i++) glitchText += chars.charAt(Math.floor(Math.random() * chars.length));
-                display.innerText = glitchText;
+                
+                // Start interval if not already running
+                if (!scrambleInterval) {
+                    scrambleInterval = setInterval(() => {
+                        const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        let glitchText = '';
+                        // Random length between 8 and 16
+                        const len = 8 + Math.floor(Math.random() * 8);
+                        for(let i=0; i<len; i++) glitchText += chars.charAt(Math.floor(Math.random() * chars.length));
+                        display.innerText = glitchText;
+                    }, 100); // Update every 100ms
+                }
             } else {
+                // Stop glitching
+                if (scrambleInterval) {
+                    clearInterval(scrambleInterval);
+                    scrambleInterval = null;
+                }
+                
                 display.style.color = 'var(--primary-color)';
                 display.style.textShadow = 'none';
                 // Format: YYY-DDD HH:MM

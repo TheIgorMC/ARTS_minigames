@@ -1,10 +1,10 @@
 [
   {
-    "id": "char_01",
-    "username": "keskodai",
+    "id": "pc_joe",
+    "username": "joe",
     "password": "123",
-    "name": "Keskodai",
-    "class": "Mystic",
+    "name": "Joe",
+    "class": "Mechanic",
     "credits": 1250,
     "stats": {
       "STR": 10,
@@ -21,30 +21,6 @@
       "MAX_HP": 24,
       "RP": 5,
       "MAX_RP": 5
-    }
-  },
-  {
-    "id": "char_02",
-    "username": "navasi",
-    "password": "123",
-    "name": "Navasi",
-    "class": "Envoy",
-    "credits": 450,
-    "stats": {
-      "STR": 10,
-      "DEX": 16,
-      "CON": 12,
-      "INT": 12,
-      "WIS": 10,
-      "CHA": 18
-    },
-    "vitals": {
-      "SP": 12,
-      "MAX_SP": 12,
-      "HP": 20,
-      "MAX_HP": 22,
-      "RP": 6,
-      "MAX_RP": 6
     }
   }
 ]
