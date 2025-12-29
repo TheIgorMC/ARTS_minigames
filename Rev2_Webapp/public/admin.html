@@ -61,7 +61,7 @@
         main {
             padding: 20px;
             display: grid;
-            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+            grid-template-columns: 1fr 350px; /* Main content + Sidebar */
             gap: 20px;
             height: calc(100vh - 100px);
         }
@@ -72,6 +72,34 @@
             padding: 20px;
             overflow-y: auto;
         }
+
+        /* Time & Chat */
+        .time-display {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-color);
+            padding: 10px;
+            background: #000;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .chat-log {
+            flex: 1;
+            border: 1px solid #333;
+            background: #000;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .chat-msg { margin-bottom: 5px; }
+        .chat-msg .sender { color: var(--accent-color); font-weight: bold; }
+        .chat-msg .time { color: #666; font-size: 0.8rem; margin-right: 5px; }
 
         h2 { margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--accent-color); }
 
@@ -127,6 +155,12 @@
         .hidden { display: none !important; }
         .full-width { grid-column: 1 / -1; }
 
+        /* Sidebar */
+        #sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -143,11 +177,63 @@
     <main>
         <!-- LEFT COLUMN: CONTENT -->
         <div id="tab-live" class="panel">
+            
+            <!-- TIME CONTROL -->
+            <div style="margin-bottom: 30px; border: 1px solid #333; padding: 15px;">
+                <h3 style="margin-top: 0;">System Time</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="number" id="time-year" placeholder="Year" style="width: 60px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-day" placeholder="Day" style="width: 50px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-hour" placeholder="HH" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-min" placeholder="MM" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <button class="action-btn" style="padding: 5px 10px;" onclick="setTime()">SET</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label><input type="checkbox" id="scramble-check" onchange="toggleScramble()"> SCRAMBLE (Disturbance)</label>
+                </div>
+            </div>
+
+            <h2>Hacking Control</h2>
+            <div style="margin-bottom: 20px; border: 1px solid var(--accent-color); padding: 10px;">
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="hack-pwd" placeholder="Secret Password" style="flex: 2; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                    <div style="display: flex; gap: 5px; flex: 1;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.8rem; color: #888;">DC</label>
+                            <input type="number" id="hack-dc" placeholder="DC" value="15" style="width: 100%; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.8rem; color: #888;">Complexity (Rings)</label>
+                            <input type="number" id="hack-complexity" placeholder="Complexity" value="3" style="width: 100%; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        </div>
+                    </div>
+                    <button class="action-btn" onclick="startHacking()" style="margin-top: 20px;">START</button>
+                    <button class="action-btn danger" onclick="stopHacking()" style="margin-top: 20px;">STOP</button>
+                </div>
+                
+                <div id="hack-active-controls" style="display: none;">
+                    <h3 style="color: #fff; margin: 10px 0;">Active Session</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <div id="hack-status" style="font-size: 1.2rem; letter-spacing: 3px; color: var(--accent-color); flex: 1;">******</div>
+                        <input type="number" id="hack-roll" placeholder="Roll Result" style="width: 80px; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        <button class="action-btn" onclick="processHackRoll()">CHECK</button>
+                    </div>
+                </div>
+            </div>
+
             <h2>Table Control (Projector)</h2>
             <div class="controls-grid">
                 <button class="action-btn" onclick="triggerScene('hacking')">SCENARIO: HACKING</button>
-                <button class="action-btn" onclick="triggerScene('combat')">SCENARIO: COMBAT MAP</button>
                 <button class="action-btn danger" onclick="triggerScene('reset')">RESET TABLE</button>
+            </div>
+
+            <h2 style="margin-top: 30px;">Mood Display (Tablet)</h2>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <select id="mood-select" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                    <option value="">Select Image...</option>
+                </select>
+                <button class="action-btn" onclick="setMood()">SET MOOD</button>
+                <button class="action-btn danger" onclick="clearMood()">CLEAR</button>
             </div>
 
             <h2 style="margin-top: 30px;">Player Control (Mobile)</h2>
@@ -161,6 +247,14 @@
 
         <div id="tab-map" class="panel hidden">
             <h2>Map Management</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <h3>Live Preview</h3>
+                <div style="border: 2px solid var(--accent-color); height: 300px; overflow: hidden; position: relative;">
+                    <iframe src="/" style="width: 1920px; height: 1080px; border: 0; transform: scale(0.25); transform-origin: 0 0;"></iframe>
+                </div>
+            </div>
+
             <div style="margin-bottom: 20px;">
                 <h3>Spawn Object</h3>
                 <div style="display: flex; gap: 10px;">
@@ -168,6 +262,22 @@
                         <option value="">Select Object...</option>
                     </select>
                     <button class="action-btn" onclick="spawnObject()">Spawn</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3>Scenes</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="scene-name" placeholder="Scene Name" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                    <button class="action-btn" onclick="saveScene()">Save Current</button>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <select id="scene-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                        <option value="">Select Scene...</option>
+                    </select>
+                    <button class="action-btn" onclick="loadScene()">Load</button>
+                    <button class="action-btn" onclick="resetSceneFilter()">Show All</button>
+                    <button class="action-btn danger" onclick="deleteScene()">Del</button>
                 </div>
             </div>
             
@@ -192,10 +302,25 @@
             </div>
         </div>
 
-        <!-- RIGHT COLUMN: LOGS & STATUS -->
-        <div class="panel">
-            <h2>System Log</h2>
-            <div id="log"></div>
+        <!-- RIGHT COLUMN: SIDEBAR -->
+        <div id="sidebar">
+            <div class="panel" style="flex: 1; display: flex; flex-direction: column;">
+                <h3>COMMS LOG</h3>
+                <div class="time-display" id="gm-time-display">--:--</div>
+                <div id="chat-log" class="chat-log"></div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <input type="text" id="chat-alias" placeholder="Sender (Default: GM)" value="GM" style="padding: 5px; background: #222; color: var(--accent-color); border: 1px solid #444; font-weight: bold;">
+                    <div style="display: flex; gap: 5px;">
+                        <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                        <button class="action-btn" style="padding: 5px 10px;" onclick="sendChat()">SEND</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel" style="height: 200px;">
+                <h3>System Log</h3>
+                <div id="log"></div>
+            </div>
         </div>
     </main>
 
@@ -239,21 +364,59 @@
             div.scrollTop = div.scrollHeight;
         }
 
+        let currentSceneId = null;
+        let cachedData = null;
+
         // --- DATABASE ---
         socket.on('admin_data_update', (data) => {
+            cachedData = data;
             document.getElementById('json-objects').value = JSON.stringify(data.objects, null, 2);
             document.getElementById('json-characters').value = JSON.stringify(data.characters, null, 2);
             
-            // Populate Spawn Select
+            updateSpawnSelect();
+
+            // Populate Scenes Select
+            const sceneSelect = document.getElementById('scene-select');
+            sceneSelect.innerHTML = '<option value="">Select Scene...</option>';
+            if (data.scenes) {
+                data.scenes.forEach(scene => {
+                    const opt = document.createElement('option');
+                    opt.value = scene.id;
+                    opt.innerText = scene.name + ' (' + scene.objects.length + ' objs)';
+                    sceneSelect.appendChild(opt);
+                });
+            }
+        });
+
+        function updateSpawnSelect() {
+            if (!cachedData) return;
+            
             const select = document.getElementById('spawn-obj-select');
             select.innerHTML = '<option value="">Select Object...</option>';
-            data.objects.forEach(obj => {
-                const opt = document.createElement('option');
-                opt.value = obj.id;
-                opt.innerText = obj.name;
-                select.appendChild(opt);
+            
+            // Group by Category
+            const categories = {};
+            cachedData.objects.forEach(obj => {
+                // Filter by Scene ID if active
+                if (currentSceneId && obj.sceneId && obj.sceneId !== currentSceneId) return;
+
+                const cat = obj.category || 'Uncategorized';
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push(obj);
             });
-        });
+
+            Object.keys(categories).sort().forEach(cat => {
+                const group = document.createElement('optgroup');
+                group.label = cat;
+                categories[cat].forEach(obj => {
+                    const opt = document.createElement('option');
+                    opt.value = obj.id;
+                    opt.innerText = obj.name;
+                    group.appendChild(opt);
+                });
+                select.appendChild(group);
+            });
+        }
 
         function saveData(type) {
             try {
@@ -278,12 +441,170 @@
             log('SPAWN: ' + objId);
         }
 
+        function saveScene() {
+            const name = document.getElementById('scene-name').value;
+            if (!name) return alert('Enter a scene name');
+            socket.emit('admin_scene_action', { type: 'save', name: name });
+            log('SCENE SAVED: ' + name);
+        }
+
+        function loadScene() {
+            const id = document.getElementById('scene-select').value;
+            if (!id) return;
+            if(confirm('Load scene? Current table will be overwritten.')) {
+                socket.emit('admin_scene_action', { type: 'load', id: id });
+                currentSceneId = id;
+                updateSpawnSelect();
+                log('SCENE LOADED: ' + id);
+            }
+        }
+
+        function resetSceneFilter() {
+            currentSceneId = null;
+            updateSpawnSelect();
+            log('FILTER RESET');
+        }
+
+        function deleteScene() {
+            const id = document.getElementById('scene-select').value;
+            if (!id) return;
+            if(confirm('Delete this scene permanently?')) {
+                socket.emit('admin_scene_action', { type: 'delete', id: id });
+                log('SCENE DELETED');
+            }
+        }
+
         function clearTable() {
             if(confirm('Clear all objects from table?')) {
                 socket.emit('admin_map_action', { type: 'clear' });
                 log('TABLE CLEARED');
             }
         }
+
+        // --- HACKING ---
+        function startHacking() {
+            const pwd = document.getElementById('hack-pwd').value;
+            const dc = document.getElementById('hack-dc').value;
+            const complexity = document.getElementById('hack-complexity').value;
+            if (!pwd) return alert('Enter password');
+            socket.emit('gm_hacking_action', { type: 'start', password: pwd, dc: dc, complexity: complexity });
+            document.getElementById('hack-active-controls').style.display = 'block';
+            log('HACK START: ' + pwd);
+        }
+
+        function stopHacking() {
+            socket.emit('gm_hacking_action', { type: 'stop' });
+            document.getElementById('hack-active-controls').style.display = 'none';
+            log('HACK STOP');
+        }
+
+        function processHackRoll() {
+            const roll = document.getElementById('hack-roll').value;
+            if (!roll) return;
+            socket.emit('gm_hacking_action', { type: 'check', roll: roll });
+            document.getElementById('hack-roll').value = '';
+            log('HACK CHECK: ' + roll);
+        }
+
+        // --- MOOD ---
+        function setMood() {
+            const filename = document.getElementById('mood-select').value;
+            if (filename) {
+                const url = '/media/' + filename;
+                socket.emit('admin_mood_action', { type: 'set', url: url });
+                log('MOOD SET: ' + filename);
+            }
+        }
+
+        function clearMood() {
+            socket.emit('admin_mood_action', { type: 'set', url: '' });
+            document.getElementById('mood-select').value = '';
+            log('MOOD CLEARED');
+        }
+
+        // --- TIME & CHAT ---
+        function setTime() {
+            const y = document.getElementById('time-year').value;
+            const d = document.getElementById('time-day').value;
+            const h = document.getElementById('time-hour').value;
+            const m = document.getElementById('time-min').value;
+            socket.emit('admin_time_action', { type: 'set', year: y, day: d, hour: h, minute: m });
+        }
+
+        function toggleScramble() {
+            const val = document.getElementById('scramble-check').checked;
+            socket.emit('admin_time_action', { type: 'scramble', value: val });
+        }
+
+        function sendChat() {
+            const input = document.getElementById('chat-input');
+            const aliasInput = document.getElementById('chat-alias');
+            const msg = input.value;
+            const sender = aliasInput.value || 'GM';
+            
+            if (msg) {
+                socket.emit('chat_message', { sender: sender, text: msg });
+                input.value = '';
+            }
+        }
+
+        socket.on('time_update', (time) => {
+            document.getElementById('time-year').value = time.year;
+            document.getElementById('time-day').value = time.day;
+            document.getElementById('time-hour').value = time.hour;
+            document.getElementById('time-min').value = time.minute;
+            document.getElementById('scramble-check').checked = time.scrambled;
+            
+            const display = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
+            document.getElementById('gm-time-display').innerText = display;
+        });
+
+        socket.on('chat_update', (msg) => {
+            const log = document.getElementById('chat-log');
+            const div = document.createElement('div');
+            div.className = 'chat-msg';
+            const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            div.innerHTML = `<span class="time">[${timeStr}]</span> <span class="sender">${msg.sender}:</span> ${msg.text}`;
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        });
+        
+        socket.on('chat_history', (history) => {
+            const log = document.getElementById('chat-log');
+            log.innerHTML = '';
+            history.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = 'chat-msg';
+                const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                div.innerHTML = `<span class="time">[${timeStr}]</span> <span class="sender">${msg.sender}:</span> ${msg.text}`;
+                log.appendChild(div);
+            });
+            log.scrollTop = log.scrollHeight;
+        });
+
+        socket.on('media_list_update', (files) => {
+            const select = document.getElementById('mood-select');
+            select.innerHTML = '<option value="">Select Image...</option>';
+            files.forEach(file => {
+                const opt = document.createElement('option');
+                opt.value = file;
+                opt.innerText = file;
+                select.appendChild(opt);
+            });
+        });
+
+        socket.on('gm_hacking_update', (state) => {
+            // Visualizza lo stato attuale (lettere scoperte)
+            let display = '';
+            for (let i = 0; i < state.password.length; i++) {
+                if (state.revealedIndices.includes(i) || state.password[i] === ' ') {
+                    display += state.password[i];
+                } else {
+                    display += '_';
+                }
+            }
+            document.getElementById('hack-status').innerText = display.split('').join(' ');
+        });
     </script>
 </body>
 </html>

@@ -1,14 +1,21 @@
 [
   {
-    "id": "obj_01",
-    "name": "Fusibile Quantico",
-    "image": "assets/fuse.png",
-    "description": "Un fusibile instabile."
+    "id": "datastick",
+    "name": "Datastick Danneggiato",
+    "category": "Mission Items",
+    "sceneId": "verros-lab",
+    "image": "/media/[01] Verros Table/datastick.png",
+    "description": "Un datastick danneggiato."
   },
   {
-    "id": "obj_02",
-    "name": "Datapad Criptato",
-    "image": "assets/datapad.png",
-    "description": "Contiene piani di volo."
+    "id": "bg_verros",
+    "name": "MAP: Verros Table",
+    "category": "Maps",
+    "sceneId": "verros-lab",
+    "type": "background",
+    "image": "/media/[01] Verros Table/[BG] Table.jpg",
+    "width": 1920,
+    "height": 1080,
+    "draggable": false
   }
 ]

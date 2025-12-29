@@ -116,11 +116,9 @@
             z-index: 3;
         }
 
-        .header-title {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .header-title { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
+        .header-time { font-size: 1rem; color: var(--primary-color); font-weight: bold; letter-spacing: 1px; }
 
         .connection-status {
             font-size: 0.8rem;
@@ -136,6 +134,34 @@
             border-radius: 50%;
             box-shadow: 0 0 5px var(--primary-color);
         }
+
+        /* Chat Overlay */
+        #chat-overlay {
+            position: absolute;
+            top: 60px; left: 0; width: 100%; height: calc(100% - 60px);
+            background: rgba(10, 10, 18, 0.95);
+            z-index: 40;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+        }
+        #chat-overlay.open { display: flex; }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid var(--primary-color);
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .chat-msg { margin-bottom: 10px; padding: 5px; border-left: 2px solid transparent; }
+        .chat-msg.gm { border-left-color: #ff3333; background: rgba(255, 51, 51, 0.1); }
+        .chat-msg.player { border-left-color: var(--primary-color); }
+        .chat-msg .sender { font-weight: bold; font-size: 0.8rem; margin-bottom: 2px; opacity: 0.8; }
+        .chat-msg .text { font-size: 1rem; }
 
         /* Main Content */
         main {
@@ -209,6 +235,89 @@
             text-shadow: 0 0 5px var(--primary-color);
         }
 
+        /* Cyber Effects */
+        .success-box {
+            border: 2px solid #0f0;
+            padding: 30px;
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .terminal-text {
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* Cyber Effects */
+        .success-box {
+            border: 2px solid #0f0;
+            padding: 30px;
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Chat Overlay */
+        #chat-overlay {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%; height: 60%;
+            background: rgba(10, 10, 18, 0.95);
+            border-top: 2px solid var(--primary-color);
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex; flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+        }
+        #chat-overlay.open { transform: translateY(0); }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        
+        .chat-msg {
+            padding: 8px 12px;
+            border-radius: 5px;
+            max-width: 80%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .chat-msg.player {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            align-self: flex-start;
+        }
+        
+        .chat-msg.gm {
+            background: rgba(255, 200, 0, 0.1);
+            border: 1px solid rgba(255, 200, 0, 0.5);
+            color: #ffcc00;
+            align-self: flex-start; /* GM messages always on left? Or maybe distinct? */
+            width: 90%;
+        }
+        
+        .chat-input-area {
+            display: flex; gap: 10px;
+        }
+        .chat-input {
+            flex: 1;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px;
+            font-family: inherit;
+        }
+
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -227,13 +336,30 @@
     </div>
 
     <header>
-        <div class="header-title">S.I.T. LINK</div>
+        <div class="header-left">
+            <div class="header-title">S.I.T. LINK</div>
+            <div class="header-time" id="header-time">--:--</div>
+        </div>
         <div class="connection-status">
             <span id="char-name-display">GUEST</span>
             <div class="status-dot"></div>
+            <div style="margin-left: 15px; font-size: 1.5rem; cursor: pointer;" onclick="toggleChat()">💬</div>
             <div style="margin-left: 15px; font-size: 1.5rem; cursor: pointer;" onclick="toggleMenu()">≡</div>
         </div>
     </header>
+
+    <!-- CHAT OVERLAY -->
+    <div id="chat-overlay">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--primary-color); padding-bottom: 5px;">
+            <span class="header-title">SECURE COMMS</span>
+            <span style="cursor: pointer; font-size: 1.5rem;" onclick="toggleChat()">×</span>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="chat-input" class="login-input" style="flex: 1; width: auto; margin: 0; text-align: left;" placeholder="Message...">
+            <button class="btn" style="width: auto; padding: 10px 20px; margin: 0;" onclick="sendChat()">SEND</button>
+        </div>
+    </div>
 
     <!-- USER MENU SIDEBAR -->
     <div id="user-menu">
@@ -296,6 +422,7 @@
             document.getElementById('user-menu').classList.toggle('open');
         }
 
+
         function updateStats(char) {
             // Vitals
             document.getElementById('val-sp').innerText = (char.vitals?.sp || 0) + '/' + (char.vitals?.max_sp || 0);
@@ -338,6 +465,226 @@
             }
         });
 
+        // Hacking Minigame Update
+        socket.on('player_hacking_update', (state) => {
+            if (!state.active) return;
+            
+            let html = `
+                <div style="text-align: center; width: 100%;">
+                    <h2 class="terminal-text" style="color: var(--primary-color); border-bottom: 1px solid var(--primary-color); padding-bottom: 10px;">>> DECRYPTION IN PROGRESS <<</h2>
+                    
+                    <div style="font-size: 3rem; letter-spacing: 10px; margin: 40px 0; font-family: monospace; text-shadow: 0 0 10px var(--primary-color);">
+                        ${state.maskedPassword.split('').join(' ')}
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+                        <div class="stat-box">
+                            <div class="stat-label">ATTEMPTS</div>
+                            <div class="stat-val" style="font-size: 2rem;">${state.attempts}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">STATUS</div>
+                            <div class="stat-val" style="font-size: 2rem; color: ${state.maskedPassword.includes('*') ? 'orange' : '#0f0'}">
+                                ${state.maskedPassword.includes('*') ? 'LOCKED' : 'UNLOCKED'}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-text" style="margin-top: 40px; font-size: 0.9rem; color: #888;">
+                        > WAITING FOR MANUAL OVERRIDE INPUT...<br>
+                        > SYNCING WITH EXTERNAL DEVICE (D20)...
+                    </div>
+                </div>
+            `;
+            controlsDiv.innerHTML = html;
+        });
+
+        socket.on('player_hacking_result', (res) => {
+            if (!res.success) {
+                controlsDiv.innerHTML = `<h1 style="color: red; font-size: 3rem;">${res.message}</h1>`;
+                setTimeout(() => {
+                    // Restore previous state if needed, or wait for GM
+                }, 2000);
+            }
+        });
+
+        // --- CIRCLE MINIGAME ---
+        socket.on('start_minigame', (config) => {
+            if (config.type === 'CIRCLE') {
+                startCircleMinigame(config.difficulty, config.margin, config.rings);
+            }
+        });
+
+        function startCircleMinigame(difficulty, margin, numRings = 3) {
+            // Difficulty: 0 (Easy) to 10 (Hard). Margin: Higher is better.
+            // Base speed: 0.02. Speed increases with difficulty.
+            // Gap size: 0.5 rad. Gap decreases with difficulty.
+            
+            // REDUCED SPEED: Multiplier changed from 0.005 to 0.002, base from 0.02 to 0.01
+            const speedBase = 0.01 + (difficulty * 0.002);
+            const gapSize = Math.max(0.2, 0.8 - (difficulty * 0.05));
+            
+            controlsDiv.innerHTML = `
+                <div style="position: relative; width: 300px; height: 300px; margin: 0 auto;">
+                    <canvas id="gameCanvas" width="300" height="300"></canvas>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; color: var(--primary-color); font-size: 1.5rem; text-shadow: 0 0 5px var(--primary-color);">TAP TO LOCK</div>
+                </div>
+                <div class="terminal-text" style="margin-top: 20px;">ALIGN THE GAPS TO BREACH FIREWALL</div>
+            `;
+
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            let rings = [];
+            // Adjust spacing if many rings to fit in 140px radius
+            const spacing = numRings > 4 ? 120 / numRings : 30;
+            
+            for (let i = 0; i < numRings; i++) {
+                rings.push({
+                    radius: 140 - (i * spacing), 
+                    speed: speedBase * (1 + i * 0.3) * (i % 2 === 0 ? 1 : -1), // Reduced speed multiplier from 0.5 to 0.3
+                    angle: Math.random() * Math.PI * 2,
+                    gap: gapSize * (1 + i * 0.2), // Inner rings might have slightly larger gaps to compensate for speed
+                    locked: false,
+                    color: '#00f3ff'
+                });
+            }
+            
+            let currentRing = 0;
+            let gameActive = true;
+            let animationId;
+
+            function draw() {
+                if (!gameActive) return;
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw Target Zone (Top) - IMPROVED VISIBILITY
+                ctx.beginPath();
+                // Draw a wedge or a clearer indicator at the top
+                ctx.moveTo(centerX, centerY);
+                // Arc from -PI/2 - 0.2 to -PI/2 + 0.2 (wider)
+                ctx.arc(centerX, centerY, 150, -Math.PI/2 - 0.15, -Math.PI/2 + 0.15);
+                ctx.fillStyle = 'rgba(255, 50, 50, 0.3)'; // Reddish tint for target zone
+                ctx.fill();
+                
+                // Add a bright line in the center of the target zone
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY - 40);
+                ctx.lineTo(centerX, centerY - 150);
+                ctx.strokeStyle = '#ff3333';
+                ctx.lineWidth = 4;
+                ctx.stroke();
+                
+                // Draw Rings
+                rings.forEach((ring, index) => {
+                    ctx.beginPath();
+                    // Draw the full circle except the gap
+                    // Gap is centered at ring.angle
+                    const start = ring.angle + ring.gap / 2;
+                    const end = ring.angle + Math.PI * 2 - ring.gap / 2;
+                    
+                    ctx.arc(centerX, centerY, ring.radius, start, end);
+                    
+                    // HIGHLIGHT ACTIVE RING
+                    if (ring.locked) {
+                        ctx.strokeStyle = '#0f0'; // Green if locked
+                    } else if (index === currentRing) {
+                        ctx.strokeStyle = '#ffff00'; // Yellow if active
+                    } else {
+                        ctx.strokeStyle = 'rgba(0, 243, 255, 0.3)'; // Dimmed cyan if waiting
+                    }
+                    
+                    ctx.lineWidth = 15;
+                    ctx.stroke();
+                    
+                    // Update angle if not locked
+                    if (!ring.locked) {
+                        ring.angle += ring.speed;
+                    }
+                });
+                
+                animationId = requestAnimationFrame(draw);
+            }
+            
+            draw();
+
+            // Interaction
+            canvas.addEventListener('click', () => {
+                if (!gameActive) return;
+                
+                const ring = rings[currentRing];
+                // Check alignment: Gap must be around -PI/2 (Top)
+                // Normalize angle to 0-2PI
+                let normAngle = ring.angle % (Math.PI * 2);
+                if (normAngle < 0) normAngle += Math.PI * 2;
+                
+                // The gap center is at normAngle. We want normAngle to be close to -PI/2 (which is 3PI/2 or 4.71)
+                // Actually, let's simplify. The gap is at `angle`. We draw from `angle + gap/2` to `angle - gap/2`.
+                // So the "hole" is at `angle`.
+                // We want the hole to be at the top (-PI/2).
+                
+                // Calculate distance from top
+                const target = 1.5 * Math.PI; // 270 degrees
+                const dist = Math.abs(normAngle - target);
+                const dist2 = Math.abs((normAngle - Math.PI*2) - target); // Wrap around check
+                
+                // Check if gap overlaps with top needle
+                // Gap width is `ring.gap`.
+                // We need the top needle (at 3PI/2) to be INSIDE the gap.
+                // Gap spans from [angle - gap/2] to [angle + gap/2].
+                
+                // Let's check if the "solid" part hits the needle.
+                // Solid part is drawn. Gap is empty.
+                // Wait, user said "align a hole". So we want the gap at the top.
+                
+                // Let's check if the angle is close to 3PI/2 (Top)
+                // Tolerance is half the gap size.
+                
+                let diff = Math.abs(normAngle - target);
+                if (diff > Math.PI) diff = Math.PI * 2 - diff; // Shortest path
+                
+                if (diff < ring.gap / 2) {
+                    // Success
+                    ring.locked = true;
+                    currentRing++;
+                    if (currentRing >= rings.length) {
+                        gameActive = false;
+                        cancelAnimationFrame(animationId);
+                        socket.emit('player_minigame_result', { success: true });
+                        
+                        // Sequence:
+                        // 1. Server sends 'player_hacking_update' (Password Revealed) -> Client renders it automatically.
+                        // 2. Wait 2s.
+                        // 3. Show ACCESS GRANTED (Cyber Style).
+                        // 4. Wait 2s.
+                        // 5. Reset to Home.
+                        
+                        setTimeout(() => {
+                            controlsDiv.innerHTML = `
+                                <div class="success-box">
+                                    <h1 style="color: #0f0; font-size: 3.5rem; text-shadow: 0 0 20px #0f0; margin: 0;">ACCESS GRANTED</h1>
+                                    <div style="font-size: 1.2rem; color: #0f0; margin-top: 20px; letter-spacing: 5px;">SYSTEM OVERRIDE COMPLETE</div>
+                                </div>
+                            `;
+                            
+                            setTimeout(() => {
+                                controlsDiv.innerHTML = '<div class="terminal-text">> SYSTEM NORMAL<br>> STANDBY...</div>';
+                            }, 2000);
+                        }, 2000);
+                    }
+                } else {
+                    // Fail
+                    gameActive = false;
+                    cancelAnimationFrame(animationId);
+                    socket.emit('player_minigame_result', { success: false });
+                    controlsDiv.innerHTML = '<h1 style="color: red; font-size: 3rem;">BREACH DETECTED</h1>';
+                }
+            });
+        }
+
         function renderKeypad() {
             controlsDiv.innerHTML = '<div class="terminal-text">> SECURITY OVERRIDE REQUIRED</div>';
             
@@ -355,6 +702,97 @@
             };
             controlsDiv.appendChild(btn);
         }
+
+        // --- CHAT & TIME LOGIC ---
+        function toggleChat() {
+            const overlay = document.getElementById('chat-overlay');
+            overlay.classList.toggle('open');
+            // Scroll to bottom when opening
+            if (overlay.classList.contains('open')) {
+                const log = document.getElementById('chat-messages');
+                log.scrollTop = log.scrollHeight;
+            }
+        }
+
+        function sendChat() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value;
+            if (msg) {
+                const senderName = myCharacter ? myCharacter.name : 'GUEST';
+                socket.emit('chat_message', { sender: senderName, text: msg });
+                input.value = '';
+            }
+        }
+
+        socket.on('chat_update', (msg) => {
+            const log = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            
+            // Determine style based on sender
+            // If sender is ME, use 'player' style but maybe align right?
+            // If sender is GM or Alias (not me), check if it looks like a player name?
+            // For now: If sender is NOT me, treat as incoming.
+            // If sender is 'GM', treat as GM.
+            
+            const isMe = myCharacter && msg.sender === myCharacter.name;
+            const isGM = msg.isAdmin;
+            
+            div.className = 'chat-msg ' + (isGM ? 'gm' : 'player');
+            if (isMe) div.style.textAlign = 'right';
+            
+            const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            div.innerHTML = `
+                <div class="sender">${msg.sender} <span style="font-weight:normal; font-size:0.7rem;">[${timeStr}]</span></div>
+                <div class="text">${msg.text}</div>
+            `;
+            
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        });
+
+        socket.on('chat_history', (history) => {
+            const log = document.getElementById('chat-messages');
+            log.innerHTML = '';
+            history.forEach(msg => {
+                const isMe = myCharacter && msg.sender === myCharacter.name;
+                const isGM = msg.isAdmin || msg.sender === 'GM';
+                
+                const div = document.createElement('div');
+                div.className = 'chat-msg ' + (isGM ? 'gm' : 'player');
+                if (isMe) div.style.textAlign = 'right';
+                
+                const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                
+                div.innerHTML = `
+                    <div class="sender">${msg.sender} <span style="font-weight:normal; font-size:0.7rem;">[${timeStr}]</span></div>
+                    <div class="text">${msg.text}</div>
+                `;
+                log.appendChild(div);
+            });
+            log.scrollTop = log.scrollHeight;
+        });
+
+        socket.on('time_update', (time) => {
+            const display = document.getElementById('header-time');
+            
+            if (time.scrambled) {
+                // Glitch effect
+                display.style.color = 'red';
+                display.style.textShadow = '2px 0 red, -2px 0 blue';
+                // Random chars
+                const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+                let glitchText = '';
+                for(let i=0; i<12; i++) glitchText += chars.charAt(Math.floor(Math.random() * chars.length));
+                display.innerText = glitchText;
+            } else {
+                display.style.color = 'var(--primary-color)';
+                display.style.textShadow = 'none';
+                // Format: YYY-DDD HH:MM
+                const dateStr = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
+                display.innerText = dateStr;
+            }
+        });
     </script>
 </body>
 </html>

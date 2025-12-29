@@ -21,8 +21,8 @@
         socket.emit('join', 'table');
 
         // 2. Setup Canvas (Konva)
-        var width = window.innerWidth;
-        var height = window.innerHeight;
+        var width = window.innerWidth || 1920;
+        var height = window.innerHeight || 1080;
 
         var stage = new Konva.Stage({
             container: 'container',
@@ -30,66 +30,217 @@
             height: height
         });
 
+        // Gestione Resize (per iframe e finestre)
+        window.addEventListener('resize', function() {
+            stage.width(window.innerWidth);
+            stage.height(window.innerHeight);
+        });
+
         var layer = new Konva.Layer();
         stage.add(layer);
 
         // Funzione per creare un oggetto trascinabile
         function spawnObject(objData) {
-            var group = new Konva.Group({
-                x: objData.x,
-                y: objData.y,
-                draggable: true,
-                id: objData.instanceId
-            });
+            if (objData.image) {
+                // Renderizza Immagine (o Sfondo)
+                var imageObj = new Image();
+                imageObj.onload = function() {
+                    // Calcola dimensioni mantenendo aspect ratio se non specificate
+                    let w = objData.width;
+                    let h = objData.height;
+                    
+                    if (!w && !h) {
+                        w = imageObj.width;
+                        h = imageObj.height;
+                    } else if (w && !h) {
+                        h = w * (imageObj.height / imageObj.width);
+                    } else if (!w && h) {
+                        w = h * (imageObj.width / imageObj.height);
+                    }
 
-            var box = new Konva.Rect({
-                width: 100,
-                height: 100,
-                fill: '#222',
-                stroke: '#00D2FF',
-                strokeWidth: 2,
-                shadowColor: '#00D2FF',
-                shadowBlur: 10,
-                shadowOpacity: 0.5
-            });
+                    var kImage = new Konva.Image({
+                        x: objData.x,
+                        y: objData.y,
+                        image: imageObj,
+                        width: w,
+                        height: h,
+                        scaleX: objData.scaleX || 1,
+                        scaleY: objData.scaleY || 1,
+                        rotation: objData.rotation || 0,
+                        draggable: objData.draggable !== false,
+                        id: objData.instanceId,
+                        name: 'object' // Per identificarlo
+                    });
 
-            var text = new Konva.Text({
-                text: objData.name || 'Object',
-                fontSize: 14,
-                fontFamily: 'Courier New',
-                fill: '#00D2FF',
-                width: 100,
-                padding: 5,
-                align: 'center'
-            });
-            
-            // Center text vertically
-            text.y((100 - text.height()) / 2);
+                    // Eventi Drag e Trasformazione
+                    if (objData.draggable !== false) {
+                        kImage.on('dragstart', function() { this.moveToTop(); });
+                        kImage.on('dragend', function() {
+                            socket.emit('table_object_update', { 
+                                id: this.id(), 
+                                x: this.x(), 
+                                y: this.y(),
+                                scaleX: this.scaleX(),
+                                scaleY: this.scaleY(),
+                                rotation: this.rotation()
+                            });
+                        });
 
-            group.add(box);
-            group.add(text);
+                        // Gestione Click per Transformer (Ridimensionamento)
+                        kImage.on('click tap', function(e) {
+                            // Evita propagazione se clicchiamo su un transformer
+                            e.cancelBubble = true;
 
-            // Effetti visivi durante il trascinamento
-            group.on('dragstart', function() {
-                box.shadowBlur(20);
-            });
-            
-            group.on('dragend', function() {
-                box.shadowBlur(10);
-                // Invia la nuova posizione al server
-                socket.emit('table_object_move', { id: this.id(), x: this.x(), y: this.y() });
-            });
+                            // Rimuovi vecchi transformer
+                            stage.find('Transformer').forEach(t => t.destroy());
+                            
+                            // Crea nuovo transformer
+                            var tr = new Konva.Transformer({
+                                nodes: [this],
+                                keepRatio: true,
+                                enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right']
+                            });
+                            layer.add(tr);
+                            layer.draw();
+                        });
 
-            layer.add(group);
+                        kImage.on('transformend', function() {
+                            socket.emit('table_object_update', { 
+                                id: this.id(), 
+                                x: this.x(), 
+                                y: this.y(),
+                                scaleX: this.scaleX(),
+                                scaleY: this.scaleY(),
+                                rotation: this.rotation()
+                            });
+                        });
+                    }
+
+                    // Deseleziona se clicco sul vuoto
+                    stage.on('click tap', function (e) {
+                        // Se il target è lo stage (sfondo vuoto), rimuovi transformer
+                        if (e.target === stage) {
+                            stage.find('Transformer').forEach(t => t.destroy());
+                            layer.draw();
+                        }
+                    });
+
+                    // Tooltip (Hover 2s)
+                    let tooltipTimeout;
+                    kImage.on('mouseenter', function() {
+                        const stage = this.getStage();
+                        tooltipTimeout = setTimeout(() => {
+                            var mousePos = stage.getPointerPosition();
+                            var tooltipGroup = new Konva.Group({
+                                x: mousePos.x + 10,
+                                y: mousePos.y + 10,
+                                id: 'tooltip'
+                            });
+
+                            var tooltipText = new Konva.Text({
+                                text: (objData.name || 'Object') + '\n' + (objData.description || ''),
+                                fontFamily: 'Courier New',
+                                fontSize: 16,
+                                padding: 10,
+                                fill: 'white'
+                            });
+
+                            var tooltipBox = new Konva.Rect({
+                                width: tooltipText.width(),
+                                height: tooltipText.height(),
+                                fill: 'rgba(0,0,0,0.8)',
+                                stroke: '#00D2FF',
+                                strokeWidth: 1,
+                                cornerRadius: 5
+                            });
+
+                            tooltipGroup.add(tooltipBox);
+                            tooltipGroup.add(tooltipText);
+                            layer.add(tooltipGroup);
+                            tooltipGroup.moveToTop();
+                            layer.draw();
+                        }, 2000);
+                    });
+
+                    kImage.on('mouseleave', function() {
+                        clearTimeout(tooltipTimeout);
+                        var tooltip = layer.findOne('#tooltip');
+                        if (tooltip) {
+                            tooltip.destroy();
+                            layer.draw();
+                        }
+                    });
+
+                    layer.add(kImage);
+                    
+                    // Se è uno sfondo, mandalo in fondo
+                    if (objData.type === 'background') {
+                        kImage.moveToBottom();
+                        kImage.listening(false); // Non interattivo
+                    }
+                    layer.draw();
+                };
+                imageObj.src = objData.image;
+
+            } else {
+                // Fallback: Renderizza Rettangolo (vecchio stile)
+                var group = new Konva.Group({
+                    x: objData.x,
+                    y: objData.y,
+                    draggable: true,
+                    id: objData.instanceId
+                });
+
+                var box = new Konva.Rect({
+                    width: 100,
+                    height: 100,
+                    fill: '#222',
+                    stroke: '#00D2FF',
+                    strokeWidth: 2,
+                    shadowColor: '#00D2FF',
+                    shadowBlur: 10,
+                    shadowOpacity: 0.5
+                });
+
+                var text = new Konva.Text({
+                    text: objData.name || 'Object',
+                    fontSize: 14,
+                    fontFamily: 'Courier New',
+                    fill: '#00D2FF',
+                    width: 100,
+                    padding: 5,
+                    align: 'center'
+                });
+                
+                text.y((100 - text.height()) / 2);
+
+                group.add(box);
+                group.add(text);
+
+                group.on('dragstart', function() { box.shadowBlur(20); this.moveToTop(); });
+                group.on('dragend', function() {
+                    box.shadowBlur(10);
+                    socket.emit('table_object_move', { id: this.id(), x: this.x(), y: this.y() });
+                });
+
+                layer.add(group);
+                layer.draw();
+            }
         }
 
         // 3. Ascolto comandi dal Server
         socket.on('table_state_update', (state) => {
             layer.destroyChildren(); // Pulisce il tavolo
             
+            // Rimuovi vecchio sfondo CSS se presente
+            document.getElementById('container').style.backgroundImage = 'none';
+
             // Renderizza oggetti attivi
             if (state.activeObjects) {
-                state.activeObjects.forEach(obj => {
+                // Ordina: prima gli sfondi, poi il resto (anche se moveToBottom aiuta)
+                const sorted = state.activeObjects.sort((a, b) => (a.type === 'background' ? -1 : 1));
+                
+                sorted.forEach(obj => {
                     spawnObject(obj);
                 });
             }
@@ -122,6 +273,26 @@
                 feedback.destroy();
                 layer.draw();
             }, 2000);
+        });
+
+        // 4. Sincronizzazione in tempo reale (Resize/Move da altri client)
+        socket.on('sync_object', (data) => {
+            var node = layer.findOne('#' + data.id);
+            if (node) {
+                // Se stiamo trascinando questo oggetto localmente, ignoriamo l'update remoto per evitare jitter
+                if (node.isDragging()) return;
+
+                // Animazione fluida verso la nuova posizione
+                new Konva.Tween({
+                    node: node,
+                    duration: 0.1,
+                    x: data.x !== undefined ? data.x : node.x(),
+                    y: data.y !== undefined ? data.y : node.y(),
+                    scaleX: data.scaleX !== undefined ? data.scaleX : node.scaleX(),
+                    scaleY: data.scaleY !== undefined ? data.scaleY : node.scaleY(),
+                    rotation: data.rotation !== undefined ? data.rotation : node.rotation()
+                }).play();
+            }
         });
 
         // Messaggio di benvenuto / Standby

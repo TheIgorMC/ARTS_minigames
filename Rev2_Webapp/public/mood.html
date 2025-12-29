@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Display</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+        }
+        #mood-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the screen, cropping if necessary */
+            display: none; /* Hidden by default until an image is set */
+        }
+        #placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-family: monospace;
+            font-size: 2rem;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="placeholder">WAITING FOR SIGNAL...</div>
+    <img id="mood-image" src="" alt="Mood Image">
+
+    <script>
+        const socket = io();
+        const imgElement = document.getElementById('mood-image');
+        const placeholder = document.getElementById('placeholder');
+
+        socket.on('connect', () => {
+            console.log('Connected to server as Mood Display');
+            socket.emit('join', 'mood'); // Identify as mood display if needed, though server broadcasts to all usually
+        });
+
+        socket.on('mood_state_update', (url) => {
+            console.log('Received mood update:', url);
+            if (url) {
+                imgElement.src = url;
+                imgElement.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                imgElement.style.display = 'none';
+                placeholder.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
