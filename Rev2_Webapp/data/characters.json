@@ -37,5 +37,15 @@
       "scientist",
       "mystic"
     ]
+  },
+  {
+    "id": "497961",
+    "name": "Jose Milly",
+    "isNPC": true,
+    "class": "Unknown",
+    "image": "",
+    "tokenImage": "",
+    "description": "",
+    "npcType": "rp"
   }
 ]

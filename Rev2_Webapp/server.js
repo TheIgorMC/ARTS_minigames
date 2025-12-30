@@ -51,6 +51,11 @@ let timeState = {
     scrambled: false,
     textScrambled: false
 };
+let roleplayState = {
+    active: false,
+    background: '',
+    characters: [] // Array of { id, name, image, x, y, scale }
+};
 let gmIdentities = ['GM']; // Default identity
 let currentSceneId = null; // Track currently loaded scene for autosave
 let conversations = []; // { id, name, type: 'group'|'dm', participants: [] }
@@ -63,6 +68,7 @@ function saveStatus() {
     const status = {
         time: timeState,
         mood: moodState,
+        roleplay: roleplayState,
         identities: gmIdentities,
         conversations: conversations
     };
@@ -75,6 +81,7 @@ function loadStatus() {
             const status = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8'));
             if (status.time) timeState = status.time;
             if (status.mood) moodState = status.mood;
+            if (status.roleplay) roleplayState = status.roleplay;
             if (status.identities) gmIdentities = status.identities;
             if (status.conversations) conversations = status.conversations;
             console.log('Status loaded:', status);
@@ -222,8 +229,16 @@ function loadData() {
         characters = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'characters.json')));
         if (fs.existsSync(path.join(DATA_DIR, 'items.json'))) {
             items = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'items.json')));
+        } else {
+            items = [];
         }
         
+        // Load ignored list
+        let ignored = [];
+        if (fs.existsSync(path.join(DATA_DIR, 'ignored.json'))) {
+            ignored = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'ignored.json')));
+        }
+
         // Load scenes from media folders
         scenes = loadScenes();
         
@@ -235,6 +250,9 @@ function loadData() {
             // Generate a stable ID based on the file path
             const id = media.name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
             
+            // Check if ignored
+            if (ignored.includes(id)) return;
+
             // Check if object exists
             const existing = objects.find(o => o.id === id);
             
@@ -346,6 +364,7 @@ io.on('connection', (socket) => {
     console.log('Un client si è connesso: ' + socket.id);
 
     // Send initial state to everyone
+    socket.emit('roleplay_state_update', roleplayState);
     socket.emit('time_update', timeState);
     socket.emit('chat_history', chatHistory);
 
@@ -364,6 +383,15 @@ io.on('connection', (socket) => {
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
             socket.emit('table_state_update', tableState);
+        }
+    });
+
+    // --- ROLEPLAY MODE ---
+    socket.on('admin_roleplay_action', (action) => {
+        if (action.type === 'update') {
+            roleplayState = action.state;
+            saveStatus();
+            io.emit('roleplay_state_update', roleplayState);
         }
     });
 
@@ -425,6 +453,17 @@ io.on('connection', (socket) => {
             socket.join('player'); // Unisciti al canale generico player
             socket.join('player_' + user.id); // Canale privato per questo player
             socket.emit('login_success', user);
+            
+            // Send safe character list for Roleplay Mode
+            const safeChars = characters.map(c => ({
+                id: c.id,
+                name: c.name,
+                username: c.username,
+                class: c.class,
+                roles: c.roles
+            }));
+            socket.emit('player_data_update', safeChars);
+            
             socket.emit('conversations_update', conversations);
         } else {
             socket.emit('login_error', 'Credenziali non valide');
@@ -455,6 +494,47 @@ io.on('connection', (socket) => {
         socket.emit('admin_data_update', { objects, characters, scenes, items });
         // Log per il GM
         socket.emit('gm_hacking_log', 'Object Created: ' + newObj.name);
+    });
+
+    socket.on('admin_delete_object', (id) => {
+        const index = objects.findIndex(o => o.id === id);
+        if (index !== -1) {
+            objects.splice(index, 1);
+            
+            // Add to ignored list
+            let ignored = [];
+            if (fs.existsSync(path.join(DATA_DIR, 'ignored.json'))) {
+                ignored = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'ignored.json')));
+            }
+            if (!ignored.includes(id)) {
+                ignored.push(id);
+                fs.writeFileSync(path.join(DATA_DIR, 'ignored.json'), JSON.stringify(ignored, null, 2));
+            }
+            
+            saveData();
+            socket.emit('admin_data_update', { objects, characters, scenes });
+            socket.emit('gm_hacking_log', 'Object Deleted & Ignored: ' + id);
+        }
+    });
+
+    socket.on('admin_project_character', (char) => {
+        if (!char.image) return;
+        
+        const instance = {
+            instanceId: 'char_' + Date.now(),
+            type: 'character',
+            image: char.image,
+            x: 500,
+            y: 200,
+            width: 400,
+            height: 600,
+            draggable: true,
+            name: char.name,
+            description: char.class || 'Character'
+        };
+        tableState.activeObjects.push(instance);
+        io.to('table').emit('table_state_update', tableState);
+        socket.emit('gm_hacking_log', 'Projected Character: ' + char.name);
     });
 
     socket.on('admin_add_item', (newItem) => {
@@ -512,7 +592,15 @@ io.on('connection', (socket) => {
         socket.emit('admin_data_update', { objects, characters, scenes, items });
         // Opzionale: Notifica i player se i loro dati sono cambiati
         if (data.type === 'characters') {
-            io.to('player').emit('player_data_update', characters);
+            const safeChars = characters.map(c => ({
+                id: c.id,
+                name: c.name,
+                username: c.username,
+                class: c.class,
+                roles: c.roles,
+                // Exclude password, inventory, stats if not needed
+            }));
+            io.to('player').emit('player_data_update', safeChars);
         }
     });
 

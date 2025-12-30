@@ -19,6 +19,8 @@
             --text-color: #eee;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
             padding: 0;
@@ -141,6 +143,26 @@
             gap: 15px;
         }
 
+        #pc-grid {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
+        #npc-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+        
+        .npc-card {
+            font-size: 0.75rem;
+        }
+        .npc-card input, .npc-card select, .npc-card button {
+            font-size: 0.75rem !important;
+            padding: 2px 5px !important;
+            height: auto !important;
+        }
+        .npc-card .action-btn {
+            padding: 5px !important;
+        }
+
         button.action-btn {
             background: #1a1a24;
             border: 1px solid var(--accent-color);
@@ -191,6 +213,16 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+
+        /* Hide Number Spinners */
+        input[type=number].no-spin::-webkit-inner-spin-button, 
+        input[type=number].no-spin::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number].no-spin {
+            -moz-appearance: textfield;
         }
 
         /* Map Layout */
@@ -268,7 +300,7 @@
         }
         .detail-row.visible { display: table-row; }
         .detail-content {
-            padding: 15px;
+            padding: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
@@ -307,6 +339,7 @@
             <button class="tab-btn" onclick="switchTab('items')">Items</button>
             <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
             <button class="tab-btn" onclick="switchTab('comms')">Comms</button>
+            <button class="tab-btn" onclick="switchTab('roleplay')">Roleplay</button>
             <button class="tab-btn" onclick="switchTab('logs')">Logs</button>
         </div>
 
@@ -598,8 +631,44 @@
                 <button class="action-btn" onclick="addNewCharacter()">+ NEW CHARACTER</button>
             </div>
             
-            <div id="characters-grid" class="controls-grid">
-                <!-- Populated by JS -->
+            <!-- Sub-tabs -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333;">
+                <button id="subtab-btn-pc" class="tab-btn active" onclick="switchCharSubTab('pc')">PCs (Active Party)</button>
+                <button id="subtab-btn-npc" class="tab-btn" onclick="switchCharSubTab('npc')">NPCs (Combat)</button>
+                <button id="subtab-btn-npc-rp" class="tab-btn" onclick="switchCharSubTab('npc-rp')">NPCs (Roleplay)</button>
+            </div>
+
+            <!-- PC View -->
+            <div id="char-view-pc">
+                <div id="pc-grid" class="controls-grid" style="margin-bottom: 30px;">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- NPC View -->
+            <div id="char-view-npc" class="hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px;">
+                    <h3 style="color: #ffaa00; margin: 0;">NPC List (Combat)</h3>
+                    <select id="npc-filter" onchange="renderCharactersCards()" style="padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                        <option value="all">Show All</option>
+                        <option value="rp">Roleplay Only</option>
+                        <option value="combat">Combat Only</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div id="npc-grid" class="controls-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- NPC RP View -->
+            <div id="char-view-npc-rp" class="hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px;">
+                    <h3 style="color: #00ffaa; margin: 0;">NPC List (Roleplay Only)</h3>
+                </div>
+                <div id="npc-rp-grid" class="controls-grid">
+                    <!-- Populated by JS -->
+                </div>
             </div>
             
             <button class="action-btn" style="margin-top: 20px; width: 100%;" onclick="saveCharactersCards()">SAVE CHARACTERS</button>
@@ -642,6 +711,49 @@
             </div>
         </div>
 
+        <div id="tab-roleplay" class="panel hidden">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%;">
+                <!-- LEFT: CONTROLS -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="control-group">
+                        <h3 style="margin-top: 0;">Background</h3>
+                        <select id="rp-bg-select" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                            <option value="">Select Background...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group" style="flex: 1; display: flex; flex-direction: column;">
+                        <h3>Characters</h3>
+                        <div id="rp-char-list" style="flex: 1; overflow-y: auto; border: 1px solid #333; padding: 10px; background: #000;">
+                            <!-- Checkboxes populated by JS -->
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button class="action-btn" onclick="applyRoleplayState()">APPLY TO PLAYERS</button>
+                        <button class="action-btn danger" onclick="clearRoleplayState()">CLEAR ALL</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT: PREVIEW -->
+                <div style="border: 1px solid #333; padding: 20px; background: #0f0f15;">
+                    <h3>Current State</h3>
+                    <div id="rp-preview-status" style="color: var(--accent-color); margin-bottom: 20px;">
+                        Inactive
+                    </div>
+                    <div>
+                        <strong>Background:</strong> <span id="rp-preview-bg">-</span>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <strong>Active Characters:</strong>
+                        <ul id="rp-preview-chars" style="padding-left: 20px; color: #aaa;">
+                            <li>None</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="tab-logs" class="panel hidden">
             <h2>System Logs</h2>
             <div id="log" style="height: calc(100vh - 200px); border: 1px solid #333; padding: 10px; background: #000;"></div>
@@ -677,6 +789,33 @@
             <div style="display: flex; gap: 10px;">
                 <button class="action-btn" onclick="submitGroupChat()" style="flex: 1;">CREATE</button>
                 <button class="action-btn danger" onclick="closeGroupModal()" style="flex: 1;">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW CHARACTER MODAL -->
+    <div id="new-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 300px; display: flex; flex-direction: column; gap: 15px;">
+            <h3 style="margin: 0; color: var(--accent-color);">New Character</h3>
+            
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Name</label>
+                <input type="text" id="new-char-name" placeholder="Character Name" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Type</label>
+                <div style="display: flex; gap: 10px;">
+                    <button id="btn-type-pc" class="action-btn" style="flex: 1; padding: 10px;" onclick="selectCharType('pc')">PC</button>
+                    <button id="btn-type-npc" class="action-btn" style="flex: 1; padding: 10px; opacity: 0.5;" onclick="selectCharType('npc')">NPC</button>
+                    <button id="btn-type-npc-rp" class="action-btn" style="flex: 1; padding: 10px; opacity: 0.5;" onclick="selectCharType('npc-rp')">RP Only</button>
+                </div>
+                <input type="hidden" id="new-char-type" value="pc">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="action-btn" style="flex: 1; border-color: #555; color: #aaa;" onclick="closeNewCharModal()">CANCEL</button>
+                <button class="action-btn" style="flex: 1;" onclick="confirmNewCharacter()">CREATE</button>
             </div>
         </div>
     </div>
@@ -830,6 +969,7 @@
             renderItemsTable();
             renderCharactersCards();
             if (typeof renderConversationList === 'function') renderConversationList();
+            if (typeof renderRoleplayCharList === 'function') renderRoleplayCharList();
             
             updateSpawnSelect();
 
@@ -924,9 +1064,11 @@
         }
         
         function deleteObject(index) {
-            if (confirm('Delete object?')) {
-                cachedData.objects.splice(index, 1);
-                renderObjectsTable();
+            if (confirm('Delete object PERMANENTLY? It will be added to ignore list.')) {
+                const obj = cachedData.objects[index];
+                if (obj && obj.id) {
+                    socket.emit('admin_delete_object', obj.id);
+                }
             }
         }
         
@@ -990,54 +1132,247 @@
         }
 
         // --- CHARACTERS MANAGEMENT ---
+        function switchCharSubTab(tab) {
+            document.getElementById('char-view-pc').classList.add('hidden');
+            document.getElementById('char-view-npc').classList.add('hidden');
+            document.getElementById('char-view-npc-rp').classList.add('hidden');
+            
+            document.getElementById('subtab-btn-pc').classList.remove('active');
+            document.getElementById('subtab-btn-npc').classList.remove('active');
+            document.getElementById('subtab-btn-npc-rp').classList.remove('active');
+
+            document.getElementById('char-view-' + tab).classList.remove('hidden');
+            document.getElementById('subtab-btn-' + tab).classList.add('active');
+        }
+
         function renderCharactersCards() {
             if (!cachedData || !cachedData.characters) return;
             
-            const grid = document.getElementById('characters-grid');
-            grid.innerHTML = '';
+            const pcGrid = document.getElementById('pc-grid');
+            const npcGrid = document.getElementById('npc-grid');
+            const npcRpGrid = document.getElementById('npc-rp-grid');
+            const npcFilter = document.getElementById('npc-filter').value;
+            
+            pcGrid.innerHTML = '';
+            npcGrid.innerHTML = '';
+            npcRpGrid.innerHTML = '';
             
             cachedData.characters.forEach((char, index) => {
-                const card = document.createElement('div');
-                card.style.background = '#111';
-                card.style.border = '1px solid #333';
-                card.style.padding = '15px';
-                card.style.display = 'flex';
-                card.style.flexDirection = 'column';
-                card.style.gap = '10px';
+                const isNPC = char.isNPC || false;
+                const npcType = char.npcType || 'both';
                 
-                card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
-                        <span style="color: var(--accent-color); font-weight: bold;">#${char.id || index}</span>
-                        <div>
-                            <button style="color: var(--accent-color); background: none; border: none; cursor: pointer; margin-right: 10px;" onclick="openCharacterEditor(${index})">EDIT</button>
-                            <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label style="font-size: 0.7rem; color: #888;">Name</label>
-                        <input type="text" value="${char.name || ''}" onchange="updateCharacter(${index}, 'name', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                    </div>
-                    <div style="display: flex; gap: 5px;">
-                        <div style="flex: 1;">
-                            <label style="font-size: 0.7rem; color: #888;">Username</label>
-                            <input type="text" value="${char.username || ''}" onchange="updateCharacter(${index}, 'username', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                        </div>
-                        <div style="flex: 1;">
-                            <label style="font-size: 0.7rem; color: #888;">Password</label>
-                            <input type="text" value="${char.password || ''}" onchange="updateCharacter(${index}, 'password', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                        </div>
-                    </div>
-                    <div>
-                        <label style="font-size: 0.7rem; color: #888;">Class</label>
-                        <input type="text" value="${char.class || ''}" onchange="updateCharacter(${index}, 'class', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.7rem; color: #888;">Game Roles (comma sep)</label>
-                        <input type="text" value="${(char.roles || []).join(', ')}" onchange="updateCharacterRoles(${index}, this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                if (isNPC) {
+                    if (npcType === 'rp') {
+                        // RP Only NPC
+                        const card = createCharacterCard(char, index, true, true);
+                        npcRpGrid.appendChild(card);
+                    } else {
+                        // Combat/Both NPC
+                        // Filter Logic for NPCs
+                        if (npcFilter !== 'all') {
+                            if (npcFilter === 'rp' && npcType === 'combat') return;
+                            if (npcFilter === 'combat' && npcType === 'rp') return;
+                        }
+                        const card = createCharacterCard(char, index, true, false);
+                        npcGrid.appendChild(card);
+                    }
+                } else {
+                    // PC
+                    const card = createCharacterCard(char, index, false, false);
+                    pcGrid.appendChild(card);
+                }
+            });
+        }
+
+        function createCharacterCard(char, index, isNPC, isRPOnly) {
+            const card = document.createElement('div');
+            card.className = isNPC ? 'npc-card' : '';
+            card.style.background = '#111';
+            card.style.border = '1px solid #333';
+            card.style.padding = isNPC ? '10px' : '15px';
+            card.style.display = 'flex';
+            card.style.flexDirection = 'column';
+            card.style.gap = isNPC ? '5px' : '10px';
+            
+            const borderColor = isRPOnly ? '#00ffaa' : (isNPC ? '#ffaa00' : '#00d2ff');
+            card.style.borderColor = borderColor;
+
+            let npcControls = '';
+            if (isNPC && !isRPOnly) {
+                npcControls = `
+                    <div style="display: flex; gap: 10px; align-items: center; background: #222; padding: 5px;">
+                        <label style="color: #fff; font-size: 0.8rem; flex: 1;">
+                            Type: 
+                            <select onchange="updateCharacter(${index}, 'npcType', this.value)" style="background: #000; color: #fff; border: 1px solid #444;">
+                                <option value="both" ${(!char.npcType || char.npcType === 'both') ? 'selected' : ''}>Both</option>
+                                <option value="rp" ${char.npcType === 'rp' ? 'selected' : ''}>Roleplay</option>
+                                <option value="combat" ${char.npcType === 'combat' ? 'selected' : ''}>Combat</option>
+                            </select>
+                        </label>
+                        <label style="color: #fff; font-size: 0.8rem;"><input type="checkbox" checked onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC</label>
                     </div>
                 `;
-                grid.appendChild(card);
-            });
+            } else if (isRPOnly) {
+                npcControls = `
+                    <div style="display: flex; gap: 10px; align-items: center; background: #222; padding: 5px;">
+                        <span style="color: #00ffaa; font-size: 0.8rem; font-weight: bold;">ROLEPLAY ONLY</span>
+                        <label style="color: #fff; font-size: 0.8rem; margin-left: auto;"><input type="checkbox" checked onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC</label>
+                    </div>
+                `;
+            } else {
+                npcControls = `
+                    <div style="display: flex; gap: 10px; align-items: center; background: #222; padding: 5px;">
+                        <label style="color: #fff; font-size: 0.8rem;"><input type="checkbox" onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC Mode</label>
+                    </div>
+                `;
+            }
+
+            // PC Specific Fields
+            let pcFields = '';
+            if (!isNPC) {
+                pcFields = `
+                <div style="display: flex; gap: 5px;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.7rem; color: #888;">Username</label>
+                        <input type="text" value="${char.username || ''}" onchange="updateCharacter(${index}, 'username', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.7rem; color: #888;">Password</label>
+                        <input type="text" value="${char.password || ''}" onchange="updateCharacter(${index}, 'password', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 5px;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.7rem; color: #ffd700;">Money</label>
+                        <input type="number" class="no-spin" value="${char.money || 0}" onchange="updateCharacter(${index}, 'money', this.value)" style="width: 100%; background: #000; color: #ffd700; border: 1px solid #333; padding: 5px;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.7rem; color: #00ff00;">XP</label>
+                        <input type="number" class="no-spin" value="${char.xp || 0}" onchange="updateCharacter(${index}, 'xp', this.value)" style="width: 100%; background: #000; color: #00ff00; border: 1px solid #333; padding: 5px;">
+                    </div>
+                </div>
+                `;
+            }
+
+            // Stats & Actions (Hide for RP Only)
+            let statsAndActions = '';
+            if (!isRPOnly) {
+                statsAndActions = `
+                <!-- Stats Quick Edit -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
+                    <div>
+                        <label style="font-size: 0.7rem; color: #f55;">HP / Max</label>
+                        <div style="display: flex;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.hp) || 0}" onchange="updateCharacterStat(${index}, 'hp', this.value)" style="width: 50%; background: #311; color: #fff; border: 1px solid #522;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxHp) || 0}" onchange="updateCharacterStat(${index}, 'maxHp', this.value)" style="width: 50%; background: #311; color: #888; border: 1px solid #522;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #55f;">SP / Max</label>
+                        <div style="display: flex;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.sp) || 0}" onchange="updateCharacterStat(${index}, 'sp', this.value)" style="width: 50%; background: #113; color: #fff; border: 1px solid #225;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxSp) || 0}" onchange="updateCharacterStat(${index}, 'maxSp', this.value)" style="width: 50%; background: #113; color: #888; border: 1px solid #225;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #5f5;">RP / Max</label>
+                        <div style="display: flex;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.rp) || 0}" onchange="updateCharacterStat(${index}, 'rp', this.value)" style="width: 50%; background: #131; color: #fff; border: 1px solid #252;">
+                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxRp) || 0}" onchange="updateCharacterStat(${index}, 'maxRp', this.value)" style="width: 50%; background: #131; color: #888; border: 1px solid #252;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div style="display: flex; gap: 5px;">
+                    <button class="action-btn" style="flex: 1; padding: 5px; font-size: 0.7rem;" onclick="quickAction(${index}, 'reload')">RELOAD</button>
+                    <button class="action-btn" style="flex: 1; padding: 5px; font-size: 0.7rem;" onclick="quickAction(${index}, 'rest_short')">SHORT REST</button>
+                    <button class="action-btn" style="flex: 1; padding: 5px; font-size: 0.7rem;" onclick="quickAction(${index}, 'rest_long')">LONG REST</button>
+                </div>
+                `;
+            }
+
+            // Extra Fields (Class/Roles) - Hide for RP Only
+            let extraFields = '';
+            if (!isRPOnly) {
+                extraFields = `
+                <div>
+                    <label style="font-size: 0.7rem; color: #888;">Class</label>
+                    <input type="text" value="${char.class || ''}" onchange="updateCharacter(${index}, 'class', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                </div>
+                <div>
+                    <label style="font-size: 0.7rem; color: #888;">Game Roles (comma sep)</label>
+                    <input type="text" value="${(char.roles || []).join(', ')}" onchange="updateCharacterRoles(${index}, this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                    <span style="color: ${borderColor}; font-weight: bold;">#${char.id || index} ${isNPC ? (isRPOnly ? '(RP)' : '(NPC)') : '(PC)'}</span>
+                    <div>
+                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
+                    </div>
+                </div>
+                
+                ${npcControls}
+
+                <div>
+                    <label style="font-size: 0.7rem; color: #888;">Name</label>
+                    <input type="text" value="${char.name || ''}" onchange="updateCharacter(${index}, 'name', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                </div>
+                
+                ${statsAndActions}
+                ${pcFields}
+                ${extraFields}
+
+                <div>
+                    <label style="font-size: 0.7rem; color: #888;">Mood/Portrait URL (Big)</label>
+                    <input type="text" value="${char.image || ''}" onchange="updateCharacter(${index}, 'image', this.value)" placeholder="/media/..." style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                </div>
+                <div>
+                    <label style="font-size: 0.7rem; color: #888;">Token URL (Small)</label>
+                    <input type="text" value="${char.tokenImage || ''}" onchange="updateCharacter(${index}, 'tokenImage', this.value)" placeholder="/media/..." style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                </div>
+                <button class="action-btn" style="width: 100%; margin-top: 5px;" onclick="projectCharacter(${index})">PROJECT TO TABLE</button>
+            `;
+            return card;
+        }
+
+        function projectCharacter(index) {
+            const char = cachedData.characters[index];
+            if (char) {
+                socket.emit('admin_project_character', char);
+                log('CMD: Project Character ' + char.name);
+            }
+        }
+
+        function updateCharacterStat(index, stat, value) {
+            if (!cachedData.characters[index].stats) cachedData.characters[index].stats = {};
+            cachedData.characters[index].stats[stat] = parseInt(value);
+        }
+
+        function quickAction(index, action) {
+            const char = cachedData.characters[index];
+            if (!char.stats) char.stats = { hp:0, maxHp:0, sp:0, maxSp:0, rp:0, maxRp:0 };
+            
+            if (action === 'rest_short') {
+                if (char.stats.sp < char.stats.maxSp && char.stats.rp > 0) {
+                    char.stats.sp = char.stats.maxSp;
+                    char.stats.rp--;
+                    log(`ACTION: ${char.name} Short Rest (-1 RP, Full SP)`);
+                } else {
+                    alert('Cannot Short Rest (No RP or Full SP)');
+                }
+            } else if (action === 'rest_long') {
+                char.stats.hp = char.stats.maxHp;
+                char.stats.sp = char.stats.maxSp;
+                char.stats.rp = char.stats.maxRp;
+                log(`ACTION: ${char.name} Long Rest (Full Restore)`);
+            } else if (action === 'reload') {
+                log(`ACTION: ${char.name} Reloaded`);
+            }
+            renderCharactersCards();
         }
 
         function updateCharacter(index, field, value) {
@@ -1054,16 +1389,80 @@
             }
         }
 
+        let selectedCharType = 'pc';
+
         function addNewCharacter() {
+            document.getElementById('new-char-modal').style.display = 'flex';
+            document.getElementById('new-char-name').value = '';
+            selectCharType('pc'); // Default
+        }
+
+        function closeNewCharModal() {
+            document.getElementById('new-char-modal').style.display = 'none';
+        }
+
+        function selectCharType(type) {
+            selectedCharType = type;
+            document.getElementById('new-char-type').value = type;
+            
+            const btnPc = document.getElementById('btn-type-pc');
+            const btnNpc = document.getElementById('btn-type-npc');
+            const btnNpcRp = document.getElementById('btn-type-npc-rp');
+            
+            // Reset all
+            [btnPc, btnNpc, btnNpcRp].forEach(btn => {
+                btn.style.opacity = '0.5';
+                btn.style.borderColor = '#555';
+            });
+
+            if (type === 'pc') {
+                btnPc.style.opacity = '1';
+                btnPc.style.borderColor = 'var(--accent-color)';
+            } else if (type === 'npc') {
+                btnNpc.style.opacity = '1';
+                btnNpc.style.borderColor = '#ffaa00';
+            } else if (type === 'npc-rp') {
+                btnNpcRp.style.opacity = '1';
+                btnNpcRp.style.borderColor = '#00ffaa';
+            }
+        }
+
+        function confirmNewCharacter() {
+            const name = document.getElementById('new-char-name').value || 'New Character';
+            const type = document.getElementById('new-char-type').value;
+            const isNPC = (type === 'npc' || type === 'npc-rp');
+            
             const newChar = {
                 id: Date.now().toString().substr(-6),
-                name: 'New Character',
-                username: 'user' + Math.floor(Math.random()*1000),
-                password: '123',
-                class: 'Unknown'
+                name: name,
+                isNPC: isNPC,
+                class: 'Unknown',
+                image: '',
+                tokenImage: '',
+                description: '' // Stored but hidden in card
             };
+
+            if (isNPC) {
+                if (type === 'npc-rp') {
+                    newChar.npcType = 'rp';
+                } else {
+                    newChar.npcType = 'both'; // Default for standard NPC
+                }
+            } else {
+                newChar.username = 'user' + Math.floor(Math.random()*1000);
+                newChar.password = '123';
+                newChar.money = 0;
+                newChar.xp = 0;
+            }
+
             cachedData.characters.push(newChar);
             renderCharactersCards();
+            closeNewCharModal();
+            
+            // Switch to appropriate tab
+            if (!isNPC) switchCharSubTab('pc');
+            else if (type === 'npc-rp') switchCharSubTab('npc-rp');
+            else switchCharSubTab('npc');
         }
 
         function deleteCharacter(index) {
@@ -1542,6 +1941,7 @@
             const select = document.getElementById('mood-select');
             const objSelect = document.getElementById('new-obj-image');
             const bgSelect = document.getElementById('bg-select');
+            const rpBgSelect = document.getElementById('rp-bg-select');
             
             // Helper to group by folder
             const createGroupedOptions = (fileList) => {
@@ -1579,6 +1979,12 @@
                     return false;
                 });
                 bgSelect.innerHTML = createGroupedOptions(bgFiles);
+            }
+
+            // 2b. Roleplay Backgrounds: All Backgrounds
+            if (rpBgSelect) {
+                const allBgFiles = files.filter(f => f.type === 'background');
+                rpBgSelect.innerHTML = createGroupedOptions(allBgFiles);
             }
 
             // 3. Object Creation: Show all (Admin needs to see everything to create DB entries)
@@ -2120,6 +2526,105 @@
             renderCharactersCards(); // Updates UI
             closeCharacterEditor();
         }
+
+        // --- ROLEPLAY MODE LOGIC ---
+        let currentRoleplayState = { active: false, background: '', characters: [] };
+
+        function renderRoleplayCharList() {
+            const list = document.getElementById('rp-char-list');
+            if (!list || !cachedData || !cachedData.characters) return;
+            
+            list.innerHTML = '';
+            cachedData.characters.forEach(char => {
+                const div = document.createElement('div');
+                div.style.marginBottom = '5px';
+                
+                const isChecked = currentRoleplayState.characters.includes(char.id);
+                
+                div.innerHTML = `
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" value="${char.id}" class="rp-char-check" ${isChecked ? 'checked' : ''}>
+                        <span style="color: #fff;">${char.name}</span>
+                        <span style="color: #888; font-size: 0.8rem;">(${char.class})</span>
+                    </label>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function applyRoleplayState() {
+            const bg = document.getElementById('rp-bg-select').value;
+            const checks = document.querySelectorAll('.rp-char-check:checked');
+            const charIds = Array.from(checks).map(c => c.value);
+            
+            const newState = {
+                active: true,
+                background: bg ? '/media/' + bg : '',
+                characters: charIds
+            };
+            
+            socket.emit('admin_roleplay_action', { type: 'update', state: newState });
+            log('ROLEPLAY: Applied state');
+        }
+
+        function clearRoleplayState() {
+            const newState = {
+                active: false,
+                background: '',
+                characters: []
+            };
+            socket.emit('admin_roleplay_action', { type: 'update', state: newState });
+            
+            // Reset UI
+            document.getElementById('rp-bg-select').value = '';
+            document.querySelectorAll('.rp-char-check').forEach(c => c.checked = false);
+            log('ROLEPLAY: Cleared');
+        }
+
+        socket.on('roleplay_state_update', (state) => {
+            currentRoleplayState = state;
+            
+            // Update Preview
+            const statusDiv = document.getElementById('rp-preview-status');
+            if (state.active) {
+                statusDiv.innerText = 'ACTIVE';
+                statusDiv.style.color = '#0f0';
+            } else {
+                statusDiv.innerText = 'INACTIVE';
+                statusDiv.style.color = '#888';
+            }
+            
+            document.getElementById('rp-preview-bg').innerText = state.background || 'None';
+            
+            const charList = document.getElementById('rp-preview-chars');
+            charList.innerHTML = '';
+            if (state.characters && state.characters.length > 0) {
+                state.characters.forEach(id => {
+                    const char = cachedData && cachedData.characters ? cachedData.characters.find(c => c.id === id) : null;
+                    const li = document.createElement('li');
+                    li.innerText = char ? char.name : id;
+                    charList.appendChild(li);
+                });
+            } else {
+                charList.innerHTML = '<li>None</li>';
+            }
+            
+            // Sync UI inputs if not currently editing (simple check: if tab is active?)
+            // For now, let's just sync checkboxes to match state
+            document.querySelectorAll('.rp-char-check').forEach(c => {
+                c.checked = state.characters.includes(c.value);
+            });
+            
+            if (state.background) {
+                // Try to set select value, stripping /media/ prefix if needed
+                const cleanPath = state.background.replace('/media/', '');
+                const select = document.getElementById('rp-bg-select');
+                // Only set if option exists
+                if (select.querySelector(`option[value="${cleanPath}"]`)) {
+                    select.value = cleanPath;
+                }
+            }
+        });
     </script>
 </body>
 </html>
