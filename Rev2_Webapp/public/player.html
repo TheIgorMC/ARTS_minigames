@@ -263,12 +263,19 @@
         .chat-msg {
             padding: 8px 12px;
             border-radius: 5px;
-            width: 100%;
+            width: auto;
+            max-width: 85%;
             box-sizing: border-box;
             font-size: 0.9rem;
             line-height: 1.4;
             clear: both;
             margin-bottom: 5px;
+        }
+        
+        .glitching {
+            text-shadow: 2px 0 red, -2px 0 blue;
+            color: #fff !important;
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .chat-msg.player {
@@ -449,13 +456,7 @@
             <div id="contact-list-view" style="flex:1; display:flex; flex-direction:column;">
                 <div class="section-title" style="padding: 10px 20px; margin: 0;">CHANNELS</div>
                 <div class="contact-list">
-                    <div class="contact-item" onclick="openChat('global')">
-                        <div style="flex: 1;">
-                            <div class="contact-name">GLOBAL FREQUENCY</div>
-                            <div class="last-msg" id="preview-global">System Ready</div>
-                        </div>
-                        <div class="unread-badge" id="badge-global"></div>
-                    </div>
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
@@ -928,11 +929,18 @@
 
         function renderMessages() {
             const log = document.getElementById('chat-messages');
+            console.log('Rendering messages for:', activeChat);
             log.innerHTML = '';
             
             // Filter by active channel
             const currentChannel = activeChat || 'global';
             const filtered = allMessages.filter(m => (m.channel || 'global') === currentChannel);
+            console.log('Found messages:', filtered.length);
+            
+            if (filtered.length === 0) {
+                log.innerHTML = '<div style="padding:10px; opacity:0.5; text-align:center;">No messages in this channel.</div>';
+                return;
+            }
             
             filtered.forEach(msg => {
                 const isMe = myCharacter && msg.sender === myCharacter.name;
@@ -964,25 +972,19 @@
         }
 
         function updateBadges() {
-            // Global Badge
-            const badge = document.getElementById('badge-global');
-            if (unreadCounts.global > 0) {
-                badge.innerText = unreadCounts.global;
-                badge.classList.add('visible');
-            } else {
-                badge.classList.remove('visible');
-            }
-
-            // Other Channels Badges
+            // Update all channel badges in the list
             document.querySelectorAll('.contact-item').forEach(item => {
                 const channelId = item.getAttribute('data-channel');
-                if (channelId && channelId !== 'global') {
+                if (channelId) {
                     const b = item.querySelector('.unread-badge');
-                    if (unreadCounts[channelId] > 0) {
-                        b.innerText = unreadCounts[channelId];
-                        b.classList.add('visible');
-                    } else {
-                        b.classList.remove('visible');
+                    if (b) {
+                        const count = unreadCounts[channelId] || 0;
+                        if (count > 0) {
+                            b.innerText = count;
+                            b.classList.add('visible');
+                        } else {
+                            b.classList.remove('visible');
+                        }
                     }
                 }
             });
@@ -1165,26 +1167,37 @@
         // --- TIME LOGIC ---
         let scrambleTimeout = null;
         let lastTimeState = null;
+        let currentDisplayTime = null; // Persistent drifting string
 
         function runScramble() {
             if (!lastTimeState || !lastTimeState.scrambled) return;
             
             const display = document.getElementById('header-time');
-            const dateStr = `${lastTimeState.year}-${String(lastTimeState.day).padStart(3, '0')} ${String(lastTimeState.hour).padStart(2, '0')}:${String(lastTimeState.minute).padStart(2, '0')}`;
             
-            let glitchText = '';
-            for (let char of dateStr) {
-                // Only scramble some digits (30% chance)
-                if (/[0-9]/.test(char) && Math.random() > 0.7) {
-                    glitchText += Math.floor(Math.random() * 10);
-                } else {
-                    glitchText += char;
+            // Initialize if empty
+            if (!currentDisplayTime) {
+                currentDisplayTime = `${lastTimeState.year}-${String(lastTimeState.day).padStart(3, '0')} ${String(lastTimeState.hour).padStart(2, '0')}:${String(lastTimeState.minute).padStart(2, '0')}`;
+            }
+
+            // Mutate currentDisplayTime (Drift Logic)
+            let chars = currentDisplayTime.split('');
+            // Pick 1-3 random indices to change
+            const numChanges = Math.floor(Math.random() * 3) + 1;
+            
+            for(let i=0; i<numChanges; i++) {
+                const idx = Math.floor(Math.random() * chars.length);
+                const char = chars[idx];
+                // Only change if it's a digit
+                if (/[0-9]/.test(char)) {
+                    chars[idx] = Math.floor(Math.random() * 10).toString();
                 }
             }
-            display.innerText = glitchText;
             
-            // Random delay between 50ms and 250ms
-            const delay = Math.random() * 200 + 50;
+            currentDisplayTime = chars.join('');
+            display.innerText = currentDisplayTime;
+            
+            // Random delay
+            const delay = Math.random() * 400 + 100;
             scrambleTimeout = setTimeout(runScramble, delay);
         }
 
@@ -1204,6 +1217,7 @@
                     clearTimeout(scrambleTimeout);
                     scrambleTimeout = null;
                 }
+                currentDisplayTime = null; // Reset drift
                 
                 display.style.color = 'var(--primary-color)';
                 display.style.textShadow = 'none';
@@ -1211,6 +1225,68 @@
                 display.innerText = dateStr;
             }
         });
+
+        // --- GLOBAL GLITCH EFFECT ---
+        const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+        
+        function randomGlitch() {
+            // 1. Find candidate elements (visible, text-only ideally)
+            const selectors = [
+                '.terminal-text', 
+                '.header-title', 
+                '.stat-label', 
+                '.stat-val', 
+                '.contact-name', 
+                '.chat-msg .text',
+                '.nav-btn'
+            ];
+            
+            const candidates = [];
+            selectors.forEach(sel => {
+                document.querySelectorAll(sel).forEach(el => {
+                    // Check if visible and has text content
+                    if(el.offsetParent !== null && el.innerText && el.innerText.trim().length > 0) {
+                        candidates.push(el);
+                    }
+                });
+            });
+            
+            if(candidates.length === 0) {
+                setTimeout(randomGlitch, 2000);
+                return;
+            }
+
+            // 2. Pick one
+            const target = candidates[Math.floor(Math.random() * candidates.length)];
+            const originalText = target.innerText;
+            
+            // 3. Glitch it
+            const glitchLen = Math.min(originalText.length, Math.floor(Math.random() * 5) + 2);
+            let glitchedArr = originalText.split('');
+            for(let i=0; i<glitchLen; i++) {
+                const idx = Math.floor(Math.random() * glitchedArr.length);
+                glitchedArr[idx] = GLITCH_CHARS.charAt(Math.floor(Math.random() * GLITCH_CHARS.length));
+            }
+            const glitchedText = glitchedArr.join('');
+            
+            target.innerText = glitchedText;
+            target.classList.add('glitching');
+
+            // 4. Restore it
+            setTimeout(() => {
+                // Only restore if the text hasn't changed externally (e.g. by an update)
+                if (target.innerText === glitchedText) {
+                    target.innerText = originalText;
+                }
+                target.classList.remove('glitching');
+                
+                // Schedule next
+                setTimeout(randomGlitch, Math.random() * 3000 + 500); // Random interval 0.5s - 3.5s
+            }, Math.random() * 200 + 100); // Duration 100ms - 300ms
+        }
+
+        // Start glitch loop
+        setTimeout(randomGlitch, 3000);
     </script>
 </body>
 </html>

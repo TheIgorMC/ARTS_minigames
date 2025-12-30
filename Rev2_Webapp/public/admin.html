@@ -1212,30 +1212,7 @@
         });
 
         // --- TIME LOGIC ---
-        let scrambleTimeout = null;
         let lastTimeState = null;
-
-        function runScramble() {
-            if (!lastTimeState || !lastTimeState.scrambled) return;
-            
-            const display = document.getElementById('gm-time-display');
-            const dateStr = `${lastTimeState.year}-${String(lastTimeState.day).padStart(3, '0')} ${String(lastTimeState.hour).padStart(2, '0')}:${String(lastTimeState.minute).padStart(2, '0')}`;
-            
-            let glitchText = '';
-            for (let char of dateStr) {
-                // Only scramble some digits (30% chance)
-                if (/[0-9]/.test(char) && Math.random() > 0.7) {
-                    glitchText += Math.floor(Math.random() * 10);
-                } else {
-                    glitchText += char;
-                }
-            }
-            display.innerText = glitchText;
-            
-            // Random delay between 50ms and 250ms
-            const delay = Math.random() * 200 + 50;
-            scrambleTimeout = setTimeout(runScramble, delay);
-        }
 
         socket.on('time_update', (time) => {
             lastTimeState = time;
@@ -1254,22 +1231,14 @@
             if (time.scrambled) {
                 btn.classList.add('danger'); // Red
                 btn.style.boxShadow = '0 0 10px #ff3333';
-                
-                if (!scrambleTimeout) {
-                    runScramble();
-                }
             } else {
                 btn.classList.remove('danger');
                 btn.style.boxShadow = 'none';
-                
-                if (scrambleTimeout) {
-                    clearTimeout(scrambleTimeout);
-                    scrambleTimeout = null;
-                }
-                
-                const display = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
-                document.getElementById('gm-time-display').innerText = display;
             }
+            
+            // Always show real time on Admin
+            const display = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
+            document.getElementById('gm-time-display').innerText = display;
         });
 
         socket.on('media_list_update', (files) => {
