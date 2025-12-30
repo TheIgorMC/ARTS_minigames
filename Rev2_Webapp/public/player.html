@@ -407,6 +407,48 @@
         }
         .back-btn { font-size: 1.5rem; cursor: pointer; padding: 0 10px; }
 
+        /* Notification Popup */
+        #notification-area {
+            position: absolute;
+            top: 70px; /* Below header */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            z-index: 1000;
+            pointer-events: none; /* Let clicks pass through */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .notification-popup {
+            background: rgba(0, 20, 20, 0.95);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            animation: slideDown 0.3s ease-out forwards;
+            pointer-events: auto; /* Enable clicking on the notification itself */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .notification-popup.hiding {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -434,6 +476,8 @@
             <div class="status-dot"></div>
         </div>
     </header>
+
+    <div id="notification-area"></div>
 
     <!-- APP CONTAINER -->
     <div id="app-container" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative;">
@@ -1095,6 +1139,35 @@
             renderContactList(channelData);
         }
 
+        function showNotification(title, body, onClick) {
+            const area = document.getElementById('notification-area');
+            const div = document.createElement('div');
+            div.className = 'notification-popup';
+            div.innerHTML = `
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem;">${title}</div>
+                    <div style="font-size:0.8rem; opacity:0.8;">${body}</div>
+                </div>
+                <div style="font-size:1.2rem;">✉</div>
+            `;
+            
+            div.onclick = () => {
+                if (onClick) onClick();
+                div.classList.add('hiding');
+                setTimeout(() => div.remove(), 300);
+            };
+            
+            area.appendChild(div);
+            
+            // Auto remove after 5s
+            setTimeout(() => {
+                if (div.parentNode) {
+                    div.classList.add('hiding');
+                    setTimeout(() => div.remove(), 300);
+                }
+            }, 5000);
+        }
+
         socket.on('chat_update', (msg) => {
             allMessages.push(msg);
             if (allMessages.length > 100) allMessages.shift();
@@ -1130,6 +1203,12 @@
                  if (!unreadCounts[msgChannel]) unreadCounts[msgChannel] = 0;
                  unreadCounts[msgChannel]++;
                  updateBadges();
+
+                 // Show Popup
+                 showNotification('NEW MESSAGE', `${msg.sender}: ${msg.text}`, () => {
+                     switchScreen('comms');
+                     openChat(msgChannel);
+                 });
             } else {
                 renderMessages();
             }
@@ -1230,29 +1309,41 @@
         const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
         
         function randomGlitch() {
+            // Check if text scramble is enabled
+            if (!lastTimeState || !lastTimeState.textScrambled) {
+                setTimeout(randomGlitch, 1000); // Check again in 1s
+                return;
+            }
+
             // 1. Find candidate elements (visible, text-only ideally)
+            // RESTRICTED to specific classes and leaf nodes to prevent UI destruction
             const selectors = [
                 '.terminal-text', 
                 '.header-title', 
                 '.stat-label', 
                 '.stat-val', 
                 '.contact-name', 
-                '.chat-msg .text',
-                '.nav-btn'
+                '.chat-msg', // Removed .text to be broader but safe with children check
+                '.nav-btn',
+                'h1', 'h2', 'h3', 'p', 'span', 'label', 'button'
             ];
             
             const candidates = [];
             selectors.forEach(sel => {
                 document.querySelectorAll(sel).forEach(el => {
+                    // SAFETY CHECK: Only glitch "leaf" nodes (elements with no child tags, only text)
+                    // This prevents wiping out container divs or complex UI structures
+                    if (el.children.length > 0) return;
+
                     // Check if visible and has text content
-                    if(el.offsetParent !== null && el.innerText && el.innerText.trim().length > 0) {
+                    if(el.offsetParent !== null && el.innerText && el.innerText.trim().length > 0 && !el.classList.contains('glitching')) {
                         candidates.push(el);
                     }
                 });
             });
             
             if(candidates.length === 0) {
-                setTimeout(randomGlitch, 2000);
+                setTimeout(randomGlitch, 500);
                 return;
             }
 
@@ -1280,9 +1371,9 @@
                 }
                 target.classList.remove('glitching');
                 
-                // Schedule next
-                setTimeout(randomGlitch, Math.random() * 3000 + 500); // Random interval 0.5s - 3.5s
-            }, Math.random() * 200 + 100); // Duration 100ms - 300ms
+                // Schedule next (More frequent: 50ms - 300ms for chaos)
+                setTimeout(randomGlitch, Math.random() * 250 + 50); 
+            }, Math.random() * 150 + 50); // Duration 50ms - 200ms
         }
 
         // Start glitch loop

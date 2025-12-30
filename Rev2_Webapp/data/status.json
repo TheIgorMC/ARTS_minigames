@@ -2,12 +2,13 @@
   "time": {
     "year": 2556,
     "day": 1,
-    "hour": 13,
-    "minute": 30,
-    "scrambled": false
+    "hour": 14,
+    "minute": 38,
+    "scrambled": false,
+    "textScrambled": false
   },
   "mood": {
-    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DIdle.jpg"
+    "imageUrl": ""
   },
   "identities": [
     "GM",

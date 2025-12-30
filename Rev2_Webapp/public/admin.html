@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>GM Control Station</title>
+    <script>
+        // Auth Check
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = '/admin_login.html';
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -61,7 +67,7 @@
         main {
             padding: 20px;
             display: grid;
-            grid-template-columns: 1fr 350px; /* Main content + Sidebar */
+            grid-template-columns: 1fr; /* Full width, no sidebar */
             gap: 20px;
             height: calc(100vh - 100px);
         }
@@ -187,6 +193,101 @@
             gap: 20px;
         }
 
+        /* Map Layout */
+        .map-layout {
+            display: grid;
+            grid-template-columns: 450px 1fr; /* Widened from 400px */
+            gap: 10px; /* Reduced gap */
+            height: 100%;
+            overflow: hidden;
+        }
+        .map-controls {
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Reduced gap */
+            padding-right: 10px;
+        }
+        .map-preview-container {
+            border: 2px solid var(--accent-color);
+            box-sizing: border-box; /* Ensure border is visible */
+            position: relative;
+            width: 100%;
+            height: 100%; /* Fill remaining height */
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* We will use a container for the iframe to handle aspect ratio scaling */
+        .iframe-wrapper {
+            width: 1920px;
+            height: 1080px;
+            transform-origin: center center;
+            /* Scale will be set by JS to fit container */
+        }
+
+        /* Item Sub-tabs */
+        .sub-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .sub-tab-btn {
+            background: #111;
+            border: 1px solid #333;
+            color: #888;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .sub-tab-btn:hover { color: #fff; border-color: #555; }
+        .sub-tab-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Item Table Styles */
+        .item-row {
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+        }
+        .item-row.odd { background: rgba(255, 255, 255, 0.02); }
+        .item-row.even { background: rgba(0, 0, 0, 0.2); }
+        .item-row:hover { background: rgba(0, 210, 255, 0.1) !important; }
+        
+        .detail-row {
+            display: none;
+            background: #080808;
+            border-bottom: 1px solid #333;
+        }
+        .detail-row.visible { display: table-row; }
+        .detail-content {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .detail-box {
+            background: #111;
+            padding: 10px;
+            border: 1px solid #333;
+        }
+        .detail-label { color: #888; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+        .detail-val { color: var(--accent-color); font-size: 0.9rem; }
+        
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+        th.sortable:hover { color: #fff; text-decoration: underline; }
+        th.sortable::after { content: ' ↕'; font-size: 0.7rem; opacity: 0.5; }
+
         /* Scrollbars */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
@@ -203,7 +304,9 @@
             <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
             <button class="tab-btn" onclick="switchTab('map')">Scene</button>
             <button class="tab-btn" onclick="switchTab('database')">Objects</button>
+            <button class="tab-btn" onclick="switchTab('items')">Items</button>
             <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
+            <button class="tab-btn" onclick="switchTab('comms')">Comms</button>
             <button class="tab-btn" onclick="switchTab('logs')">Logs</button>
         </div>
 
@@ -211,7 +314,8 @@
         <div style="display: flex; align-items: center; gap: 15px; position: relative;">
             <div id="gm-time-display" style="font-size: 1.2rem; color: var(--accent-color); font-weight: bold; letter-spacing: 1px;">--:--</div>
             <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleTimeControls()">EDIT</button>
-            <button class="action-btn" id="scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleScramble()">SCRAMBLE</button>
+            <button class="action-btn" id="scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleScramble()">TIME SCRAMBLE</button>
+            <button class="action-btn" id="text-scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleTextScramble()">TEXT SCRAMBLE</button>
             
             <div id="header-time-controls" style="display: none; position: absolute; top: 50px; right: 0; background: #0f0f15; border: 1px solid var(--accent-color); padding: 15px; z-index: 100; box-shadow: 0 0 20px rgba(0,0,0,0.8); width: 300px;">
                 <h3 style="margin-top: 0; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px;">System Time</h3>
@@ -270,72 +374,126 @@
             </div>
         </div>
 
-        <div id="tab-map" class="panel hidden">
-            <h2>Scene Management</h2>
+        <div id="tab-map" class="panel hidden" style="padding: 0; overflow: hidden;">
+            <div class="map-layout">
+                <!-- LEFT: CONTROLS -->
+                <div class="map-controls" style="padding: 10px;">
+                    <h2 style="margin-bottom: 10px;">Scene Management</h2>
 
-            <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 20px;">
-                <h3>Mood Display</h3>
-                <div style="display: flex; gap: 10px;">
-                    <select id="mood-select" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
-                        <option value="">Select Image...</option>
-                    </select>
-                    <button class="action-btn" onclick="setMood()">SET MOOD</button>
-                    <button class="action-btn danger" onclick="clearMood()">CLEAR</button>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h3>Live Preview</h3>
-                <div style="border: 2px solid var(--accent-color); height: 300px; overflow: hidden; position: relative;">
-                    <iframe src="/" style="width: 1920px; height: 1080px; border: 0; transform: scale(0.25); transform-origin: 0 0;"></iframe>
-                </div>
-            </div>
+                    <div style="margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                        <h3 style="margin: 0 0 5px 0;">Mood Display</h3>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <div style="display: flex; gap: 5px;">
+                                <select id="mood-select" style="flex: 1; padding: 5px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                                    <option value="">Select Image...</option>
+                                </select>
+                                <button class="action-btn" style="padding: 5px 10px;" onclick="setMood()">SET</button>
+                                <button class="action-btn danger" style="padding: 5px 10px;" onclick="clearMood()">CLR</button>
+                            </div>
+                            
+                            <!-- Mood Preview Mirror -->
+                            <div style="width: 100%; height: 253px; background: #000; border: 1px solid #333; overflow: hidden;">
+                                <iframe id="mood-preview-frame" src="/mood.html" style="width: 100%; height: 100%; border: none; pointer-events: none;"></iframe>
+                            </div>
+                        </div>
+                    </div>
 
-            <div style="margin-bottom: 20px;">
-                <h3>Set Background</h3>
-                <div style="display: flex; gap: 10px;">
-                    <select id="bg-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
-                        <option value="">Select Background...</option>
-                    </select>
-                    <button class="action-btn" onclick="setBackground()">Set BG</button>
-                </div>
-            </div>
+                    <div style="margin-bottom: 10px;">
+                        <h3 style="margin: 0 0 5px 0;">Set Background</h3>
+                        <div style="display: flex; gap: 5px;">
+                            <select id="bg-select" style="flex: 1; padding: 5px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                                <option value="">Select Background...</option>
+                            </select>
+                            <button class="action-btn" style="padding: 5px 10px;" onclick="setBackground()">SET</button>
+                        </div>
+                    </div>
 
-            <div style="margin-bottom: 20px;">
-                <h3>Spawn Object</h3>
-                <div style="display: flex; gap: 10px;">
-                    <select id="spawn-obj-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
-                        <option value="">Select Object...</option>
-                    </select>
-                    <button class="action-btn" onclick="spawnObject()">Spawn</button>
-                </div>
-            </div>
+                    <div style="margin-bottom: 10px;">
+                        <h3 style="margin: 0 0 5px 0;">Spawn Object</h3>
+                        <div style="display: flex; gap: 5px;">
+                            <select id="spawn-obj-select" style="flex: 1; padding: 5px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                                <option value="">Select Object...</option>
+                            </select>
+                            <button class="action-btn" style="padding: 5px 10px;" onclick="spawnObject()">SPAWN</button>
+                        </div>
+                    </div>
 
-            <div style="margin-bottom: 20px;">
-                <h3>Scenes</h3>
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                    <input type="text" id="scene-name" placeholder="Scene Name" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
-                    <button class="action-btn" onclick="saveScene()">Save Current</button>
+                    <div style="margin-bottom: 10px;">
+                        <h3 style="margin: 0 0 5px 0;">Scenes</h3>
+                        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                            <input type="text" id="scene-name" placeholder="Scene Name" style="flex: 1; padding: 5px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                            <button class="action-btn" style="padding: 5px 10px;" onclick="saveScene()">SAVE</button>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <div style="display: flex; gap: 5px;">
+                                <select id="scene-select" style="flex: 1; padding: 5px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                                    <option value="">Select Scene...</option>
+                                </select>
+                                <button class="action-btn" style="padding: 5px 10px;" onclick="loadScene()">LOAD</button>
+                                <button class="action-btn danger" style="padding: 5px 10px;" onclick="deleteScene()">X</button>
+                            </div>
+                            <button class="action-btn" style="padding: 5px;" onclick="refreshDB()" title="Refresh List">REFRESH LISTS</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <h3 style="margin: 0 0 5px 0;">Table Actions</h3>
+                        <button class="action-btn danger" style="width: 100%; padding: 5px;" onclick="clearTable()">CLEAR TABLE</button>
+                    </div>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <select id="scene-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
-                        <option value="">Select Scene...</option>
-                    </select>
-                    <button class="action-btn" onclick="refreshDB()" title="Refresh List" style="padding: 0 15px;">↻</button>
-                    <button class="action-btn" onclick="loadScene()">Load</button>
-                    <button class="action-btn" onclick="resetSceneFilter()">Show All</button>
-                    <button class="action-btn danger" onclick="deleteScene()">Del</button>
+
+                <!-- RIGHT: PREVIEW -->
+                <div class="map-preview-container" id="map-preview-container">
+                    <div class="iframe-wrapper" id="iframe-wrapper">
+                        <iframe src="/" style="width: 100%; height: 100%; border: 0;"></iframe>
+                    </div>
                 </div>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h3>Table Actions</h3>
-                <button class="action-btn danger" onclick="clearTable()">Clear Table</button>
             </div>
         </div>
 
         <div id="tab-database" class="panel hidden">
             <div style="display: flex; flex-direction: column; height: 100%;">
+                
+                <!-- ADD NEW OBJECT FORM -->
+                <div style="border: 1px solid #333; padding: 10px; margin-bottom: 10px; background: #111;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">Add New Object</h4>
+                    <div class="controls-grid">
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Name</label>
+                            <input type="text" id="new-obj-name" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Image</label>
+                            <select id="new-obj-image" onchange="updateNewObjDefaults()" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                                <option value="">Select Image...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Category</label>
+                            <input type="text" id="new-obj-category" placeholder="Weapon, Armor, etc." style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Type (Internal)</label>
+                            <input type="text" id="new-obj-type" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Width (px)</label>
+                            <input type="number" id="new-obj-width" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.7rem; color: #888;">Height (px)</label>
+                            <input type="number" id="new-obj-height" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div class="full-width">
+                            <label style="font-size: 0.7rem; color: #888;">Description</label>
+                            <input type="text" id="new-obj-desc" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #333;">
+                        </div>
+                        <div class="full-width">
+                            <button class="action-btn" onclick="addNewObject()" style="width: 100%; padding: 5px;">ADD OBJECT</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3>OBJECTS DB</h3>
                     <div style="display: flex; gap: 10px;">
@@ -365,6 +523,75 @@
             </div>
         </div>
 
+        <div id="tab-items" class="panel hidden">
+            <div style="display: flex; flex-direction: column; height: 100%;">
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; background: #111; padding: 10px; border: 1px solid #333;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0; color: var(--accent-color);">ITEMS DB</h3>
+                        <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="refreshItemsDB()">REFRESH DB</button>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <label style="font-size: 0.7rem; color: #888; display: block;">Search</label>
+                            <input type="text" id="item-filter-name" placeholder="Name..." onkeyup="renderItemsTable()" style="width: 100%; padding: 5px; background: #000; color: #fff; border: 1px solid #444;">
+                        </div>
+                        <div style="flex: 1; min-width: 120px;">
+                            <label style="font-size: 0.7rem; color: #888; display: block;">Level (Min-Max)</label>
+                            <div style="display: flex; gap: 5px;">
+                                <input type="number" id="item-filter-lvl-min" placeholder="0" onchange="renderItemsTable()" style="width: 50%; padding: 5px; background: #000; color: #fff; border: 1px solid #444;">
+                                <input type="number" id="item-filter-lvl-max" placeholder="20" onchange="renderItemsTable()" style="width: 50%; padding: 5px; background: #000; color: #fff; border: 1px solid #444;">
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: 120px;">
+                            <label style="font-size: 0.7rem; color: #888; display: block;">Price (Min-Max)</label>
+                            <div style="display: flex; gap: 5px;">
+                                <input type="number" id="item-filter-price-min" placeholder="0" onchange="renderItemsTable()" style="width: 50%; padding: 5px; background: #000; color: #fff; border: 1px solid #444;">
+                                <input type="number" id="item-filter-price-max" placeholder="Max" onchange="renderItemsTable()" style="width: 50%; padding: 5px; background: #000; color: #fff; border: 1px solid #444;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sub-tabs" id="item-category-tabs">
+                        <!-- Removed 'All' -->
+                        <button class="sub-tab-btn active" onclick="setItemCategory('Weapon')">Weapon</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Armor')">Armor</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Technological')">Tech</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Magic')">Magic</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Consumable')">Consumable</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Goods')">Goods</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Fusion')">Fusion</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Upgrade')">Upgrade</button>
+                        <button class="sub-tab-btn" onclick="setItemCategory('Augmentation')">Augment</button>
+                    </div>
+                </div>
+
+                <div style="flex: 1; overflow-y: auto; border: 1px solid #333;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                        <thead style="background: #222; position: sticky; top: 0;" id="items-table-head">
+                            <tr>
+                                <th style="padding: 5px; text-align: left;">Name</th>
+                                <th style="padding: 5px; text-align: left;">Category</th>
+                                <th style="padding: 5px; text-align: left;">Lvl</th>
+                                <th style="padding: 5px; text-align: left;">Price</th>
+                                <th style="padding: 5px; text-align: left;">Stats</th>
+                                <th style="padding: 5px; text-align: center;">Act</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
+                    <button class="action-btn" onclick="changeItemsPage(-1)">PREV</button>
+                    <span id="items-page-display">Page 1</span>
+                    <button class="action-btn" onclick="changeItemsPage(1)">NEXT</button>
+                </div>
+            </div>
+        </div>
+
         <div id="tab-characters" class="panel hidden">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2 style="margin: 0;">CHARACTERS</h2>
@@ -378,42 +605,49 @@
             <button class="action-btn" style="margin-top: 20px; width: 100%;" onclick="saveCharactersCards()">SAVE CHARACTERS</button>
         </div>
 
+        <div id="tab-comms" class="panel hidden">
+            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px; height: 100%;">
+                <!-- LEFT: LIST -->
+                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #0f0f15;">
+                    <!-- IDENTITY HEADER -->
+                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #1a1a24;">
+                        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                            <select id="identity-select" onchange="switchIdentity()" style="flex: 1; padding: 8px; background: #000; color: var(--accent-color); border: 1px solid var(--accent-color); font-weight: bold;">
+                                <option value="GM">GM</option>
+                            </select>
+                            <button onclick="addIdentity()" title="Add Identity" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">+</button>
+                            <button onclick="openGroupModal()" title="New Group Chat" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">👥</button>
+                        </div>
+                    </div>
+
+                    <!-- CONVERSATION LIST -->
+                    <div id="conversation-list" style="flex: 1; overflow-y: auto;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- RIGHT: CHAT -->
+                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #000;">
+                    <!-- CHAT LOG -->
+                    <div id="chat-log" class="chat-log" style="flex: 1; border: none; margin: 0;"></div>
+                    
+                    <!-- INPUT AREA -->
+                    <div style="padding: 10px; background: #1a1a24; border-top: 1px solid #333;">
+                        <div style="display: flex; gap: 5px;">
+                            <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                            <button class="action-btn" style="padding: 0 15px;" onclick="sendChat()">></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="tab-logs" class="panel hidden">
             <h2>System Logs</h2>
             <div id="log" style="height: calc(100vh - 200px); border: 1px solid #333; padding: 10px; background: #000;"></div>
         </div>
 
-        <!-- RIGHT COLUMN: SIDEBAR -->
-        <div id="sidebar">
-            <div class="panel" style="flex: 1; display: flex; flex-direction: column; padding: 0;">
-                <!-- IDENTITY HEADER -->
-                <div style="padding: 10px; border-bottom: 1px solid #333; background: #1a1a24;">
-                    <div style="display: flex; gap: 5px; margin-bottom: 5px;">
-                        <select id="identity-select" onchange="switchIdentity()" style="flex: 1; padding: 8px; background: #000; color: var(--accent-color); border: 1px solid var(--accent-color); font-weight: bold;">
-                            <option value="GM">GM</option>
-                        </select>
-                        <button onclick="addIdentity()" title="Add Identity" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">+</button>
-                        <button onclick="openGroupModal()" title="New Group Chat" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">👥</button>
-                    </div>
-                </div>
-
-                <!-- CONVERSATION LIST -->
-                <div id="conversation-list" style="height: 150px; overflow-y: auto; border-bottom: 1px solid #333; background: #0f0f15;">
-                    <!-- Populated by JS -->
-                </div>
-
-                <!-- CHAT LOG -->
-                <div id="chat-log" class="chat-log" style="flex: 1; border: none; margin: 0;"></div>
-                
-                <!-- INPUT AREA -->
-                <div style="padding: 10px; background: #1a1a24; border-top: 1px solid #333;">
-                    <div style="display: flex; gap: 5px;">
-                        <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
-                        <button class="action-btn" style="padding: 0 15px;" onclick="sendChat()">></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- RIGHT COLUMN: SIDEBAR REMOVED -->
     </main>
 
     <!-- GROUP CHAT MODAL -->
@@ -502,6 +736,23 @@
         </div>
     </div>
 
+    <!-- ITEM INSPECTOR MODAL -->
+    <div id="item-inspector-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 600px; max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
+                <div>
+                    <h3 id="inspector-title" style="margin: 0; color: var(--accent-color); font-size: 1.5rem;">Item Name</h3>
+                    <div id="inspector-subtitle" style="color: #888; font-size: 0.9rem;">Category | Level | Price</div>
+                </div>
+                <button onclick="closeInspector()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            
+            <div id="inspector-content">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
     <script>
         const socket = io();
         
@@ -517,7 +768,34 @@
             
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
+
+            if (tabName === 'map') {
+                setTimeout(resizeMapPreview, 100);
+            }
         }
+
+        // --- MAP RESIZE LOGIC ---
+        function resizeMapPreview() {
+            const container = document.getElementById('map-preview-container');
+            const wrapper = document.getElementById('iframe-wrapper');
+            if (!container || !wrapper) return;
+
+            const cw = container.clientWidth;
+            const ch = container.clientHeight;
+            const targetW = 1920;
+            const targetH = 1080;
+
+            // Calculate scale to fit
+            const scaleW = cw / targetW;
+            const scaleH = ch / targetH;
+            const scale = Math.min(scaleW, scaleH);
+
+            wrapper.style.transform = `scale(${scale})`;
+            
+            // Center it if needed (flexbox handles this mostly, but let's be sure)
+        }
+
+        window.addEventListener('resize', resizeMapPreview);
 
         // --- COMMANDS ---
         function triggerScene(type) {
@@ -549,6 +827,7 @@
         socket.on('admin_data_update', (data) => {
             cachedData = data;
             renderObjectsTable();
+            renderItemsTable();
             renderCharactersCards();
             if (typeof renderConversationList === 'function') renderConversationList();
             
@@ -968,6 +1247,12 @@
             socket.emit('admin_time_action', { type: 'scramble', value: !isScrambled });
         }
 
+        function toggleTextScramble() {
+            const btn = document.getElementById('text-scramble-btn');
+            const isScrambled = btn.classList.contains('danger');
+            socket.emit('admin_time_action', { type: 'text_scramble', value: !isScrambled });
+        }
+
         // --- CHAT & IDENTITY LOGIC ---
         let currentIdentity = 'GM';
         let currentConversation = 'global';
@@ -1173,6 +1458,8 @@
                 return false;
             });
             
+            console.log('Rendering Chat:', currentConversation, filtered.length, 'msgs');
+
             filtered.forEach(msg => {
                 log.appendChild(renderChatMessage(msg));
             });
@@ -1234,6 +1521,16 @@
             } else {
                 btn.classList.remove('danger');
                 btn.style.boxShadow = 'none';
+            }
+
+            // Update Text Scramble Button State
+            const txtBtn = document.getElementById('text-scramble-btn');
+            if (time.textScrambled) {
+                txtBtn.classList.add('danger');
+                txtBtn.style.boxShadow = '0 0 10px #ff3333';
+            } else {
+                txtBtn.classList.remove('danger');
+                txtBtn.style.boxShadow = 'none';
             }
             
             // Always show real time on Admin
@@ -1366,6 +1663,356 @@
             }
             document.getElementById('hack-status').innerText = display.split('').join(' ');
         });
+
+        // --- ITEMS LOGIC ---
+        let itemsCurrentPage = 1;
+        const itemsPerPage = 50;
+        let currentItemCategory = 'Weapon'; // Default to Weapon
+        let currentSort = 'level'; // Default sort
+        let sortDirection = 'asc';
+
+        function setItemCategory(cat) {
+            currentItemCategory = cat;
+            itemsCurrentPage = 1;
+            
+            // Update UI
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                if (btn.innerText === cat || (cat === 'All' && btn.innerText === 'All')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            renderItemsTable();
+        }
+
+        function sortBy(column) {
+            if (currentSort === column) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort = column;
+                sortDirection = 'asc';
+            }
+            renderItemsTable();
+        }
+
+        function toggleRow(id) {
+            const row = document.getElementById(`detail-${id}`);
+            if (row) {
+                if (row.style.display === 'none') {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+        function renderItemsTable() {
+            const tbody = document.getElementById('items-table-body');
+            const thead = document.getElementById('items-table-head');
+            tbody.innerHTML = '';
+            
+            if (!cachedData || !cachedData.items) return;
+
+            const filterName = document.getElementById('item-filter-name').value.toLowerCase();
+            const filterLvlMin = parseInt(document.getElementById('item-filter-lvl-min').value) || 0;
+            const filterLvlMax = document.getElementById('item-filter-lvl-max').value ? parseInt(document.getElementById('item-filter-lvl-max').value) : 100;
+            const filterPriceMin = parseInt(document.getElementById('item-filter-price-min').value) || 0;
+            const filterPriceMax = document.getElementById('item-filter-price-max').value ? parseInt(document.getElementById('item-filter-price-max').value) : 999999999;
+            
+            // Filter
+            let filteredItems = cachedData.items.filter(item => {
+                if (filterName && !item.name.toLowerCase().includes(filterName)) return false;
+                if (currentItemCategory !== 'All' && item.category !== currentItemCategory) return false;
+                
+                const lvl = item.level || 0;
+                if (lvl < filterLvlMin || lvl > filterLvlMax) return false;
+
+                const price = item.price || 0;
+                if (price < filterPriceMin || price > filterPriceMax) return false;
+
+                return true;
+            });
+
+            // Sort
+            filteredItems.sort((a, b) => {
+                let valA, valB;
+                
+                if (currentSort === 'name') {
+                    valA = a.name.toLowerCase();
+                    valB = b.name.toLowerCase();
+                } else if (currentSort === 'level') {
+                    valA = a.level || 0;
+                    valB = b.level || 0;
+                } else if (currentSort === 'price') {
+                    valA = a.price || 0;
+                    valB = b.price || 0;
+                } else {
+                    // Default fallback
+                    valA = a.name;
+                    valB = b.name;
+                }
+
+                if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
+                if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            // Update Headers based on Category
+            let columns = [];
+            // Format: [Label, SortKey (or null if not sortable)]
+            if (currentItemCategory === 'Weapon') {
+                columns = [
+                    ['Name', 'name'], ['Lvl', 'level'], ['Price', 'price'], 
+                    ['Dmg', null], ['Crit', null], ['Range', null], 
+                    ['Cap', null], ['Usage', null], ['Type', null], ['Special', null], ['Act', null]
+                ];
+            } else if (currentItemCategory === 'Armor') {
+                columns = [
+                    ['Name', 'name'], ['Lvl', 'level'], ['Price', 'price'], 
+                    ['EAC', null], ['KAC', null], ['Dex', null], 
+                    ['ACP', null], ['Slots', null], ['Act', null]
+                ];
+            } else if (currentItemCategory === 'Technological' || currentItemCategory === 'Magic' || currentItemCategory === 'Goods') {
+                columns = [
+                    ['Name', 'name'], ['Lvl', 'level'], ['Price', 'price'], 
+                    ['Bulk', null], ['Desc', null], ['Act', null]
+                ];
+            } else {
+                columns = [
+                    ['Name', 'name'], ['Category', null], ['Lvl', 'level'], 
+                    ['Price', 'price'], ['Stats', null], ['Act', null]
+                ];
+            }
+
+            let headerHTML = '<tr>';
+            columns.forEach(col => {
+                const label = col[0];
+                const sortKey = col[1];
+                if (sortKey) {
+                    let arrow = '';
+                    if (currentSort === sortKey) {
+                        arrow = sortDirection === 'asc' ? ' ▲' : ' ▼';
+                    }
+                    headerHTML += `<th class="sortable" onclick="sortBy('${sortKey}')">${label}${arrow}</th>`;
+                } else {
+                    headerHTML += `<th>${label}</th>`;
+                }
+            });
+            headerHTML += '</tr>';
+            thead.innerHTML = headerHTML;
+
+            // Update Page Display
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            if (itemsCurrentPage > totalPages) itemsCurrentPage = totalPages || 1;
+            if (itemsCurrentPage < 1) itemsCurrentPage = 1;
+            
+            document.getElementById('items-page-display').innerText = `Page ${itemsCurrentPage} of ${totalPages} (${filteredItems.length} items)`;
+
+            // Slice for pagination
+            const start = (itemsCurrentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredItems.slice(start, end);
+
+            pageItems.forEach((item, index) => {
+                const rowId = `item-${index}`;
+                const tr = document.createElement('tr');
+                tr.className = `item-row ${index % 2 === 0 ? 'even' : 'odd'}`;
+                tr.onclick = (e) => {
+                    if (e.target.tagName === 'BUTTON') return;
+                    toggleRow(rowId);
+                };
+                
+                const details = item.details || {};
+                let cells = '';
+
+                if (currentItemCategory === 'Weapon') {
+                    cells += `<td>${item.name}</td>`;
+                    cells += `<td>${item.level}</td>`;
+                    cells += `<td>${item.price}</td>`;
+                    
+                    // Handle complex objects for damage/critical
+                    let dmg = details.damage;
+                    if (typeof dmg === 'object' && dmg !== null) {
+                        dmg = Object.values(dmg).join(' + ');
+                    }
+                    cells += `<td>${dmg || '-'}</td>`;
+
+                    let crit = details.critical;
+                    if (typeof crit === 'object' && crit !== null) {
+                        crit = Object.values(crit).join(' / ');
+                    }
+                    cells += `<td>${crit || '-'}</td>`;
+
+                    cells += `<td>${details.range || '-'}</td>`;
+                    cells += `<td>${details.capacity || '-'}</td>`;
+                    cells += `<td>${details.usage || '-'}</td>`;
+                    cells += `<td>${details.weaponType || '-'}</td>`;
+                    cells += `<td>${details.special ? 'YES' : '-'}</td>`;
+                } else if (currentItemCategory === 'Armor') {
+                    cells += `<td>${item.name}</td>`;
+                    cells += `<td>${item.level}</td>`;
+                    cells += `<td>${item.price}</td>`;
+                    cells += `<td>${details.eac || '-'}</td>`;
+                    cells += `<td>${details.kac || '-'}</td>`;
+                    cells += `<td>${details.maxDex !== undefined ? details.maxDex : '-'}</td>`;
+                    cells += `<td>${details.acp || '-'}</td>`;
+                    cells += `<td>${details.upgradeSlots || '-'}</td>`;
+                } else if (currentItemCategory === 'Technological' || currentItemCategory === 'Magic' || currentItemCategory === 'Goods') {
+                    cells += `<td>${item.name}</td>`;
+                    cells += `<td>${item.level}</td>`;
+                    cells += `<td>${item.price}</td>`;
+                    cells += `<td>${details.bulk || '-'}</td>`;
+                    let desc = item.description || '';
+                    if (desc.length > 50) desc = desc.substring(0, 50) + '...';
+                    cells += `<td>${desc}</td>`;
+                } else {
+                    cells += `<td>${item.name}</td>`;
+                    cells += `<td>${item.category}</td>`;
+                    cells += `<td>${item.level}</td>`;
+                    cells += `<td>${item.price}</td>`;
+                    cells += `<td>${item.stats || ''}</td>`;
+                }
+
+                cells += `
+                    <td style="padding: 5px; text-align: center;">
+                        <button class="action-btn danger" style="padding: 2px 5px; font-size: 0.7rem;" onclick="deleteItem('${item.id || item.name}')">X</button>
+                    </td>
+                `;
+
+                tr.innerHTML = cells;
+                tbody.appendChild(tr);
+
+                // Detail Row
+                const detailTr = document.createElement('tr');
+                detailTr.id = `detail-${rowId}`;
+                detailTr.className = 'detail-row';
+                detailTr.style.display = 'none';
+                
+                // Calculate colspan based on columns length
+                const colSpan = columns.length;
+                
+                let detailContent = `
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+                        <div>
+                            <h4 style="color: var(--accent-color); margin-top: 0;">Details</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+                `;
+                
+                if (item.details) {
+                    for (const [key, val] of Object.entries(item.details)) {
+                        if (val === undefined || val === null || val === '') continue;
+                        let displayVal = val;
+                        if (typeof val === 'object') displayVal = JSON.stringify(val);
+                        
+                        detailContent += `
+                            <div><span style="color: #888;">${key}:</span> <span style="color: #fff;">${displayVal}</span></div>
+                        `;
+                    }
+                }
+                
+                detailContent += `
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-color); margin-top: 0;">Description</h4>
+                            <p style="color: #ccc; font-size: 0.9rem; line-height: 1.4;">${item.description || 'No description.'}</p>
+                        </div>
+                    </div>
+                `;
+
+                detailTr.innerHTML = `<td colspan="${colSpan}">${detailContent}</td>`;
+                tbody.appendChild(detailTr);
+            });
+        }
+
+        // --- ITEM INSPECTOR ---
+        function inspectItem(itemId) {
+            if (!cachedData || !cachedData.items) return;
+            const item = cachedData.items.find(i => i.id === itemId);
+            if (!item) return;
+
+            document.getElementById('inspector-title').innerText = item.name;
+            document.getElementById('inspector-subtitle').innerText = `${item.category} | Level ${item.level} | ${item.price} Credits`;
+            
+            // Format Details
+            let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">';
+            
+            // Common fields
+            if (item.details) {
+                for (const [key, val] of Object.entries(item.details)) {
+                    if (val === undefined || val === null || val === '') continue;
+                    html += `
+                        <div style="background: #000; padding: 10px; border: 1px solid #333;">
+                            <div style="color: #888; font-size: 0.8rem; text-transform: uppercase;">${key}</div>
+                            <div style="color: var(--accent-color); font-size: 1rem;">${val}</div>
+                        </div>
+                    `;
+                }
+            }
+            html += '</div>';
+
+            // Description
+            html += `
+                <div style="background: #000; padding: 15px; border: 1px solid #333;">
+                    <div style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px;">Description</div>
+                    <div style="color: #ccc; line-height: 1.5;">${item.description || 'No description.'}</div>
+                </div>
+            `;
+
+            document.getElementById('inspector-content').innerHTML = html;
+            document.getElementById('item-inspector-modal').style.display = 'flex';
+        }
+
+        function closeInspector() {
+            document.getElementById('item-inspector-modal').style.display = 'none';
+        }
+
+        function changeItemsPage(delta) {
+            itemsCurrentPage += delta;
+            renderItemsTable();
+        }
+
+        function addNewItem() {
+            const name = document.getElementById('new-item-name').value;
+            const category = document.getElementById('new-item-category').value;
+            const desc = document.getElementById('new-item-desc').value;
+
+            if (!name) {
+                alert('Name is required!');
+                return;
+            }
+
+            const newItem = {
+                name: name,
+                category: category,
+                description: desc
+            };
+
+            socket.emit('admin_add_item', newItem);
+            
+            // Reset form
+            document.getElementById('new-item-name').value = '';
+            document.getElementById('new-item-desc').value = '';
+            log('REQ ADD ITEM: ' + name);
+        }
+
+        function deleteItem(identifier) {
+            if (confirm('Delete this item?')) {
+                const index = cachedData.items.findIndex(i => (i.id === identifier) || (i.name === identifier));
+                if (index !== -1) {
+                    cachedData.items.splice(index, 1);
+                    renderItemsTable();
+                    socket.emit('admin_update_data', { type: 'items', content: cachedData.items });
+                    log('ITEM DELETED');
+                }
+            }
+        }
+
+        function refreshItemsDB() {
+            socket.emit('admin_refresh_db');
+        }
 
         // --- CHARACTER EDITOR ---
         let editingCharIndex = -1;

@@ -9,3 +9,5 @@
 {"sender":"Jose Milly","text":"Is the package safe?","channel":"group_1767086476444","timestamp":1767086491898,"gameTime":"320-001 13:01","isAdmin":true}
 {"sender":"Joe","text":"Affirm","channel":"group_1767086476444","timestamp":1767086509354,"gameTime":"320-001 13:01","isAdmin":false}
 {"sender":"GM","text":"test","channel":"dm_GM_joe","timestamp":1767092569230,"gameTime":"2556-001 13:26","isAdmin":true}
+{"sender":"GM","text":"always","channel":"global","timestamp":1767099661882,"gameTime":"2556-001 13:30","isAdmin":true}
+{"sender":"Joe","text":"test","channel":"global","timestamp":1767101630987,"gameTime":"2556-001 14:02","isAdmin":false}

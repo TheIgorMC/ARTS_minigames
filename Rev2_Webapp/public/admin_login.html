@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>S.I.T. Admin Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #00d2ff;
+            font-family: 'Share Tech Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            border: 1px solid #333;
+            padding: 40px;
+            background: #0f0f15;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+        }
+        input {
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            font-family: inherit;
+            text-align: center;
+        }
+        button {
+            background: #00d2ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+        }
+        button:hover {
+            box-shadow: 0 0 15px #00d2ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>ADMIN ACCESS</h1>
+        <input type="password" id="password" placeholder="ENTER PASSCODE">
+        <br>
+        <button onclick="login()">AUTHENTICATE</button>
+        <p id="error" style="color: red; display: none; margin-top: 10px;">ACCESS DENIED</p>
+    </div>
+
+    <script>
+        function login() {
+            const p = document.getElementById('password').value;
+            // Simple client-side check for now, as requested "login page for admin page"
+            // In a real app, this should be server-side.
+            // Hardcoded for this prototype phase.
+            if (p === 'admin123' || p === 'gm') {
+                localStorage.setItem('admin_token', 'granted');
+                window.location.href = '/admin.html';
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        document.getElementById('password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>

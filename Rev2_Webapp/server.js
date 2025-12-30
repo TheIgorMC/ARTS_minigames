@@ -27,6 +27,7 @@ app.get('/player', (req, res) => res.sendFile(path.join(__dirname, 'public/playe
 const DATA_DIR = path.join(__dirname, 'data');
 let objects = [];
 let characters = [];
+let items = [];
 let scenes = [];
 let tableState = {
     activeObjects: [] // { instanceId, ...objData, x, y }
@@ -47,7 +48,8 @@ let timeState = {
     day: 1,
     hour: 12,
     minute: 0,
-    scrambled: false
+    scrambled: false,
+    textScrambled: false
 };
 let gmIdentities = ['GM']; // Default identity
 let currentSceneId = null; // Track currently loaded scene for autosave
@@ -218,6 +220,9 @@ function loadData() {
 
         objects = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'objects.json')));
         characters = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'characters.json')));
+        if (fs.existsSync(path.join(DATA_DIR, 'items.json'))) {
+            items = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'items.json')));
+        }
         
         // Load scenes from media folders
         scenes = loadScenes();
@@ -287,6 +292,7 @@ function saveData() {
     try {
         fs.writeFileSync(path.join(DATA_DIR, 'objects.json'), JSON.stringify(objects, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'characters.json'), JSON.stringify(characters, null, 2));
+        fs.writeFileSync(path.join(DATA_DIR, 'items.json'), JSON.stringify(items, null, 2));
         // Scenes are saved individually now
         console.log('Dati salvati.');
     } catch (e) {
@@ -350,7 +356,7 @@ io.on('connection', (socket) => {
         
         // Se è il GM, inviagli subito i dati aggiornati
         if (role === 'gm') {
-            socket.emit('admin_data_update', { objects, characters, scenes });
+            socket.emit('admin_data_update', { objects, characters, scenes, items });
             socket.emit('media_list_update', getMediaFiles());
             socket.emit('admin_identities_update', gmIdentities);
             socket.emit('conversations_update', conversations);
@@ -446,17 +452,64 @@ io.on('connection', (socket) => {
         objects.push(newObj);
         saveData();
         
-        socket.emit('admin_data_update', { objects, characters, scenes });
+        socket.emit('admin_data_update', { objects, characters, scenes, items });
         // Log per il GM
         socket.emit('gm_hacking_log', 'Object Created: ' + newObj.name);
+    });
+
+    socket.on('admin_add_item', (newItem) => {
+        if (!newItem.name) return;
+
+        if (!newItem.id) {
+            newItem.id = newItem.name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        }
+
+        let originalId = newItem.id;
+        let counter = 1;
+        while (items.find(i => i.id === newItem.id)) {
+            newItem.id = originalId + '_' + counter;
+            counter++;
+        }
+
+        // --- STATS GENERATION BASED ON REFERENCE DATA ---
+        // Default: General Item (HP 6, Hardness 0, AC 5)
+        let stats = {
+            hp: 6,
+            max_hp: 6,
+            hardness: 0,
+            ac: 5
+        };
+
+        const cat = (newItem.category || '').toLowerCase();
+        const name = (newItem.name || '').toLowerCase();
+
+        // Combat Gear (Weapons, Armor) -> HP 18, Hardness 7, AC 5
+        const combatKeywords = ['weapon', 'gun', 'rifle', 'pistol', 'sword', 'blade', 'armor', 'suit', 'vest', 'shield', 'helm'];
+        
+        if (combatKeywords.some(k => cat.includes(k) || name.includes(k))) {
+            stats.hp = 18;
+            stats.max_hp = 18;
+            stats.hardness = 7;
+            stats.ac = 5;
+        }
+
+        newItem.stats = stats;
+        // ------------------------------------------------
+
+        items.push(newItem);
+        saveData();
+        
+        socket.emit('admin_data_update', { objects, characters, scenes, items });
+        socket.emit('gm_hacking_log', 'Item Created: ' + newItem.name);
     });
 
     socket.on('admin_update_data', (data) => {
         if (data.type === 'objects') objects = data.content;
         if (data.type === 'characters') characters = data.content;
+        if (data.type === 'items') items = data.content;
         saveData();
         // Notifica il GM che il salvataggio è avvenuto
-        socket.emit('admin_data_update', { objects, characters, scenes });
+        socket.emit('admin_data_update', { objects, characters, scenes, items });
         // Opzionale: Notifica i player se i loro dati sono cambiati
         if (data.type === 'characters') {
             io.to('player').emit('player_data_update', characters);
@@ -466,7 +519,7 @@ io.on('connection', (socket) => {
     socket.on('admin_refresh_db', () => {
         console.log('Admin requested DB refresh...');
         loadData();
-        socket.emit('admin_data_update', { objects, characters, scenes });
+        socket.emit('admin_data_update', { objects, characters, scenes, items });
         socket.emit('media_list_update', getMediaFiles());
         socket.emit('gm_hacking_log', 'Database Refreshed (Rescanned Media)');
     });
@@ -765,6 +818,8 @@ io.on('connection', (socket) => {
             saveStatus();
         } else if (action.type === 'scramble') {
             timeState.scrambled = action.value;
+        } else if (action.type === 'text_scramble') {
+            timeState.textScrambled = action.value;
         }
         io.emit('time_update', timeState);
     });
