@@ -1,0 +1,105 @@
+{
+  "_id": "emGD6wT4o7VbHx0O",
+  "name": "Healing Touch (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/healing_touch.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "heal",
+    "activation": {
+      "type": "min",
+      "condition": "",
+      "cost": 10
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "@classes.mystic.levels*5",
+          "group": null,
+          "isPrimarySection": true,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": true,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.bItuvukGHbObTApr]{Mystic}</p>\n<p>Once per day, you can spend 10 minutes to magically heal an ally up to 5 Hit Points per mystic level.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none",
+      "value": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "1st Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Mystic",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

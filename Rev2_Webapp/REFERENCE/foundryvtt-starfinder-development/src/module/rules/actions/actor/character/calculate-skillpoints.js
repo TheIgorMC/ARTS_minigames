@@ -1,0 +1,111 @@
+import { SFRPGEffectType, SFRPGModifierType } from "../../../../modifiers/types.js";
+
+export default function(engine) {
+    engine.closures.add("calculateSkillpoints", (fact, context) => {
+        const data = fact.data;
+        const skills = fact.data.skills;
+        const classes = fact.classes;
+        if (!data.skillpoints) data.skillpoints = {};
+
+        const addModifier = (bonus, data, item, localizationKey) => {
+            if (!item.rolledMods) item.rolledMods = [];
+            if (bonus.modifierType === SFRPGModifierType.FORMULA) {
+                item.rolledMods.push({mod: bonus.modifier, bonus: bonus});
+                return 0;
+            }
+
+            let computedBonus = 0;
+            try {
+                const roll = Roll.create(bonus.modifier.toString(), data).evaluateSync({strict: false});
+                computedBonus = roll.total;
+            } catch (e) {
+                console.error(e);
+            }
+
+            if (!item.tooltip) item.tooltip = [];
+            if (computedBonus !== 0 && localizationKey) {
+                item.tooltip.push(game.i18n.format(localizationKey, {
+                    type: game.i18n.format(`SFRPG.ModifierType${bonus.type.capitalize()}`),
+                    mod: computedBonus.signedString(),
+                    source: bonus.name
+                }));
+            }
+
+            return computedBonus;
+        };
+
+        const intModifier = data.abilities.int.mod;
+
+        // Iterate through any modifiers that grant the character additional skillpoints to distribute
+        // These only count towards skillpoint max
+        let skillPointModifiers = fact.modifiers.filter(mod => {
+            return (mod.enabled || mod.modifierType === "formula") && mod.effectType === SFRPGEffectType.SKILL_POINTS;
+        });
+        skillPointModifiers = context.parameters.stackModifiers.process(skillPointModifiers, context, {actor: fact.actor});
+
+        const skillPointModifierBonus = Object.entries(skillPointModifiers).reduce((sum, mod) => {
+            for (const bonus of mod[1]) {
+                sum += addModifier(bonus, data, data.skillpoints, "SFRPG.ActorSheet.Modifiers.Tooltips.BonusSkillpoints");
+            }
+            return sum;
+        }, 0);
+
+        // Iterate through any modifiers that grant the character additional skillranks distributed for them
+        // These always apply to a specific skill
+        const skillRankModifiers = fact.modifiers.filter(mod => {
+            return (mod.enabled || mod.modifierType === "formula") && mod.effectType === SFRPGEffectType.SKILL_RANKS;
+        });
+
+        for (const [key, skill] of Object.entries(skills)) {
+            skill.rolledMods = null;
+            const mods = context.parameters.stackModifiers.process(skillRankModifiers.filter(mod => {
+                if (mod.effectType !== SFRPGEffectType.SKILL_RANKS) return false;
+                else if (key !== mod.valueAffected) return false;
+
+                return true;
+            }), context, {actor: fact.actor});
+
+            const accumulator = Object.entries(mods).reduce((sum, mod) => {
+                for (const bonus of mod[1]) {
+                    sum += addModifier(bonus, fact.data, skill, "SFRPG.ActorSheet.Modifiers.Tooltips.SkillRank");
+                }
+                return sum;
+            }, 0);
+
+            skill.min = accumulator;
+        }
+
+        data.skillpoints.tooltip = [];
+        let skillpointsMax = 0;
+        let totalLevel = 0;
+        for (const cls of classes) {
+            const classData = cls.system;
+
+            const classBonus = classData.levels * (intModifier + classData.skillRanks.value);
+            skillpointsMax += classBonus;
+            totalLevel += classData.levels;
+
+            data.skillpoints.tooltip.push(game.i18n.format("SFRPG.ActorSheet.Modifiers.Tooltips.ClassSkillpoints", {
+                class: cls.name,
+                total: classBonus.signedString()
+            }));
+        }
+
+        let skillpointsUsed = 0;
+        for (const skill of Object.values(data.skills)) {
+            if (Number.isNaN(skill.min) || skill.min < 0) {
+                skill.min = 0;
+            }
+
+            skill.ranks = Math.max(skill.min, Math.min(skill.ranks, totalLevel));
+            skillpointsUsed += (skill.ranks - skill.min);
+        }
+
+        skillpointsMax += skillPointModifierBonus;
+
+        data.skillpoints.used = skillpointsUsed;
+        data.skillpoints.max = skillpointsMax;
+
+        return fact;
+    }, { required: ["stackModifiers"], closureParameters: ["stackModifiers"] });
+}

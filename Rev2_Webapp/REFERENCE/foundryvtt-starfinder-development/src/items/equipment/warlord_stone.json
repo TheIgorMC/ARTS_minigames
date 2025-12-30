@@ -1,0 +1,136 @@
+{
+  "_id": "IoaXjculNNls32Sq",
+  "name": "Warlord stone",
+  "type": "magic",
+  "img": "icons/commodities/stone/geode-raw-green.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 19
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p><strong><em>WARNING: This item contains spoilers for the Dead Sun Adventure Path.</em></strong></p>\n<p>This stone holds the collected memories, philosophies, and tactics of an ancient alien warlord, and is currently set in the palm of its original owner. This mk 3 ability crystal can increase any one ability score by 6 if you spend 1 hour communing with the item, as fragments of the ancient alien warlord’s psyche flood your mind and body. Its magic is then forever spent.</p>\n<p><em>Change and enable your selected Ability upgrade in the Modifiers tab.</em></p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 14,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "cc1681ef-4433-4865-82d8-1bb3b2e16409",
+        "name": "Warlord stone",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": 6,
+        "modifier": "6",
+        "modifierType": "constant",
+        "notes": "This mk 3 ability crystal can increase any one ability score by 6 if you spend 1 hour communing with the item, as fragments of the ancient alien warlord’s psyche flood your mind and body. Its magic is then forever spent.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "str"
+      }
+    ],
+    "price": 75000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #6 pg. 31",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

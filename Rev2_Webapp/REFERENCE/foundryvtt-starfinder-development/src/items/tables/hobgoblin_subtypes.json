@@ -1,0 +1,89 @@
+{
+  "_id": "j4CMRbX2Oa30qOMh",
+  "name": "Hobgoblin subtypes",
+  "description": "",
+  "displayRoll": true,
+  "formula": "1d3",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "ReMaFqlh5c4aV5kO",
+      "name": "Hobgoblin",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.k2q1xx8W9mXIRSyZ",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "gaEOWK2szDY85NPT",
+      "name": "Hobgoblin (Hardworlder)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.4OVRd8XiPBNCTHcU",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "zkXDjg5Xmq3XjAUf",
+      "name": "Hobgoblin (Warhob)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.ZrSldRlNG1Ql8a8G",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        3,
+        3
+      ],
+      "weight": 1
+    }
+  ]
+}

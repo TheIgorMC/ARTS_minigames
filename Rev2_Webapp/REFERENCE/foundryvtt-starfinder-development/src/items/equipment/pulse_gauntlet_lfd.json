@@ -1,0 +1,182 @@
+{
+  "_id": "cpDbebvqvseBli5I",
+  "name": "Pulse gauntlet, LFD",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/battleglove.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "19"
+      },
+      "hp": {
+        "max": "36",
+        "value": 36
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 20,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 7,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "goods"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Knockdown",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d6 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": true,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": true
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>When a pulse gauntlet strikes its target, it releases a surge of sonic energy that can knock the target down. Pulse gauntlets are made of heavy-duty nylon with reinforced pads over the items' knuckles.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 7,
+    "modifiers": [],
+    "price": 7340,
+    "proficient": false,
+    "properties": {
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "powered": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 171",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "minute",
+      "value": 1
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "sonic",
+    "weaponType": "advancedM"
+  }
+}

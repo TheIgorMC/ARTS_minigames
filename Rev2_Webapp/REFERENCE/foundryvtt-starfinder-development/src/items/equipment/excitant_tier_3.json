@@ -1,0 +1,99 @@
+{
+  "_id": "mGDpKstxS9sMFd2x",
+  "name": "Excitant, Tier 3",
+  "type": "consumable",
+  "img": "systems/sfrpg/icons/equipment/goods/analgesic-tier-3.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 15
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "medicne",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h1>Excitant</h1>\n<p>While stimulants provide a quick burst of energy, excitants provide a longer and more measured effect and are popular among soldiers on watch, though jitteriness is a common side effect. For a number of hours equal to the medicinal’s tier, you gain a bonus equal to the medicinal’s tier to saving throws to avoid becoming fatigued or @UUID[Compendium.sfrpg.conditions.Item.33ynSbmexuxC3cAQ]{Exhausted}, and you gain immunity to sleep effects. You take a –2 penalty to Dexterity-based skill checks for the duration of the medicinal. During this time, you do not need to attempt Fortitude saves to avoid the effects of sleep deprivation.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 10,
+    "modifiers": [],
+    "price": 2700,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 133",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

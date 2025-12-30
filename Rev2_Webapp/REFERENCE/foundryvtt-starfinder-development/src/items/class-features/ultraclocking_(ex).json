@@ -1,0 +1,84 @@
+{
+  "_id": "pKnTl3BS8kvcAZ6U",
+  "name": "Ultraclocking (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/ultraclocking.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.YMGOKoZtKgJqIsAD]{Mechanic Trick}</p>\n<p>If you have a @UUID[Compendium.sfrpg.class-features.Item.cA0NuGh484BwlDjX]{drone}, you can grant the effects of @UUID[Compendium.sfrpg.spells.Item.PecEOjojT15BJKi9]{haste} to your drone for 1 minute as a move action.</p>\n<p>If you have an @UUID[Compendium.sfrpg.class-features.Item.cM54UpNXExgDSbq4]{exocortex}, you can gain the effects of haste for 1 minute as a move action.</p>\n<p>Once you or your drone has used this ability, you cannot use it again until you spend 1 Resolve Point to regain Stamina Points from a 10-minute rest. You must have the @UUID[Compendium.sfrpg.class-features.Item.s8QuUMHbPDfYEJ1k]{overclocking} and @UUID[Compendium.sfrpg.class-features.Item.fCrvMgmCaALorrZW]{hyperclocking} mechanic tricks to learn this trick.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "minute",
+      "value": "1"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level (Mechanic)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, p. 74",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

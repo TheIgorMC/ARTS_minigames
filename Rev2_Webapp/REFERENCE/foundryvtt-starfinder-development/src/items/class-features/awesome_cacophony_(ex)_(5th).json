@@ -1,0 +1,85 @@
+{
+  "_id": "8xuQXuLUXDdTSTMj",
+  "name": "Awesome Cacophony (Ex) (5th)",
+  "type": "feat",
+  "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "full",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.tniq6wm0fQSzLbB0]{Shock and Awe}</p>\n<p>As a full action, you can make a single attack using a weapon that deals sonic damage or has the @UUID[Compendium.sfrpg.rules.JournalEntry.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#bright]{Bright} special property. After resolving the attack, as part of the full action you can attempt an @Check[type:intimidate] to @UUID[Compendium.sfrpg.rules.JournalEntry.GMkLZsN3a7YPvA03.JournalEntryPage.6fqgiVqlA7u9jS4i#demoralize]{Demoralize} any one creature within 60 feet of you that the attack hit or damaged. You can spend 1 Resolve Point to instead attempt an Intimidate check to demoralize every creature within 60 feet of you that the attack hit or damaged.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "60"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "5th Level Soldier",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 155",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

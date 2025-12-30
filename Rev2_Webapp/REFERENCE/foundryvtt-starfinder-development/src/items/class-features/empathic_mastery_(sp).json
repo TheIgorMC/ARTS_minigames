@@ -1,0 +1,84 @@
+{
+  "_id": "DsRf0jXOlFZFq9Yl",
+  "name": "Empathic Mastery (Sp)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/empathic_mastery.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.Hj7rGHmzQGP8rEGB]{Empath}</p>\n<p>You can spend 1 Resolve Point to use @UUID[Compendium.sfrpg.spells.Item.oeaAybyT4rKFPfIr]{Psychic Surgery}as a spell-like ability. If you are incapacitated by an effect that <em>psychic surgery</em> could remove and have at least 1 Resolve Point remaining, you can spend 1 Resolve Point to use this ability on yourself, even without being able to take any actions.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "sp"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "20th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Empathy Connection",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

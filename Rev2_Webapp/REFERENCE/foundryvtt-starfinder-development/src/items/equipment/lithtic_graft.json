@@ -1,0 +1,127 @@
+{
+  "_id": "eGSdlGeZSrTZwa6b",
+  "name": "Lithtic Graft",
+  "type": "augmentation",
+  "img": "icons/commodities/materials/material-feathers-violet.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "16"
+      },
+      "hp": {
+        "max": "13",
+        "value": 13
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>As silicon-based creatures, @UUID[Compendium.sfrpg.races.Item.0m7liVAP6VTXzqOF]{quorlus’} internal anatomy differs greatly from that of most carbon-based life-forms. This augmentation reinforces parts of your heart and lungs (or similar vital organs) with silicon plates and nets, making you immune to @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.gBhZDjh30JEyh7DY]{disease} and @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{poison}. However, you can never benefit from @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Drugs}, medicinals, or similar nonmagical substances. You also gain a +2 enhancement bonus to saving throws against @UUID[Compendium.sfrpg.conditions.Item.v9RNVTqyTyaPchvd]{Bleed} effects. You don’t need to breathe and you don’t suffer the normal effects of being in a @UUID[Compendium.sfrpg.rules.SfkuzH5kxSAmG4nv.JournalEntryPage.BWuAh3NeW0Dcnjon#vacuum]{vacuum}.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 8,
+    "modifiers": [
+      {
+        "_id": "d7fea4ea-a866-4555-81df-de9351be3e25",
+        "name": "Lithic Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You also gain a +2 enhancement bonus to saving throws against bleed effects.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 8500,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 145",
+    "system": "heart",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

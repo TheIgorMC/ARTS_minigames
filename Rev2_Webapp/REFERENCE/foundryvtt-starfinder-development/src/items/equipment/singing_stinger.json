@@ -1,0 +1,168 @@
+{
+  "_id": "nCXxUFXcPwEoElHj",
+  "name": "Singing stinger",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+  "system": {
+    "ability": "dex",
+    "actionTarget": "kac",
+    "actionType": "rwak",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "dart",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 18
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Injection DC +2",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>These weapons look and function like ordinary musical instruments when broken down, with a clip holding varying lengths of piping into the shape of an oboe. However, surreptitious rifling and threading in the pipes allows the instrument to function as a blowgun that fires darts when fully assembled.</p>\n<p><strong>Special:</strong> Professional (musician)</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 1,
+    "modifiers": [],
+    "price": 200,
+    "proficient": true,
+    "properties": {
+      "analog": {
+        "extension": "",
+        "value": true
+      },
+      "breakdown": {
+        "extension": "",
+        "value": true
+      },
+      "injection": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "professional": {
+        "extension": "",
+        "value": true
+      },
+      "subtle": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS, pg. 55",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "smallA"
+  }
+}

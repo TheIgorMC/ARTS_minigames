@@ -1,0 +1,154 @@
+{
+  "_id": "LAOouexBMV2MpZf8",
+  "name": "Exploratory Form (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "special",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.XrBOn1MueVB4u5sV]{Nanocyte Knack}</p>\n<p>You’re driven to explore diverse environments and worlds. While your @UUID[Compendium.sfrpg.class-features.Item.QoCQEVNtgMhsElwQ]{sheath array} is active, you can use a nanite surge to gain either a climb speed of 30 feet or a swim speed of 30 feet. If you already have the selected speed, you instead increase that speed by 15 feet. This lasts for a number of hours equal to your Constitution modifier. You lose this speed when your sheath array ends.</p>\n<p><em>Enable/Disable modifiers in the modifier tab, then activate feat.</em></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "hour",
+      "value": "@abilities.con.mod"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "d43ac134-4e8d-4f20-a3f2-3160dc17fe00",
+        "name": "Exploratory Form (Ex) - Climb Speed",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "specific-speed",
+        "enabled": false,
+        "limitTo": null,
+        "max": 30,
+        "modifier": "30",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "climbing"
+      },
+      {
+        "_id": "8e772133-bbac-424f-b3a1-bbeaea14caf9",
+        "name": "Exploratory Form (Ex) - Swim Speed",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "specific-speed",
+        "enabled": false,
+        "limitTo": null,
+        "max": 30,
+        "modifier": "30",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "swimming"
+      },
+      {
+        "_id": "21bee6e6-6297-47ba-addd-9dc9c12832e9",
+        "name": "Exploratory Form (Ex)  - Climb Speed Bonus",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "specific-speed",
+        "enabled": false,
+        "limitTo": null,
+        "max": 15,
+        "modifier": "15",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "climbing"
+      },
+      {
+        "_id": "acd088df-8b52-4ad4-9cca-d1c7e382f6d7",
+        "name": "Exploratory Form (Ex) - Swim Speed Bonus",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "specific-speed",
+        "enabled": false,
+        "limitTo": null,
+        "max": 15,
+        "modifier": "15",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "swimming"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none",
+      "value": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "10th Level - Nanocyte",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "PoC pg. 103",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

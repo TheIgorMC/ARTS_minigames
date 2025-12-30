@@ -1,0 +1,85 @@
+{
+  "_id": "TqoEKDXiRdDyBmp7",
+  "name": "Solar Acceleration (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/solar_acceleration.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.UVNOjH2ERlQjcGnU]{Zenith Revelation}</p>\n<p>@Icon[type:photon] Photon Revelation</p>\n<p>When you’re fully photon-attuned, you can make a full attack as a standard action. In addition, you and up to six allies within 30 feet are affected by @UUID[Compendium.sfrpg.spells.Item.PecEOjojT15BJKi9]{Haste} (see page 358) for 1 minute after you use this revelation. At 17th level, the extra speed from the haste effect increases to 60 feet (to a maximum of three times the creature’s normal speed).</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "30"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "9th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Solarian",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_id": "b3BfwyEDFQiFru0F",
+  "name": "Corpse recycler",
+  "type": "starshipExpansionBay",
+  "img": "icons/creatures/slimes/slime-face-skull-green.webp",
+  "system": {
+    "cost": 2,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A corpse recycler allows a starship crew to render bodies into parts for necrografts. In a process that takes 1 hour, a carcass fed into the recycler produces a number of necrograft UPBs equal to 10 × the CR of the creature from which the corpse originated. These UPBs can be used only to create necrografts.</p>"
+    },
+    "isPowered": true,
+    "modifiers": [],
+    "pcu": 2,
+    "slug": "",
+    "source": "SOM pg. 24"
+  }
+}

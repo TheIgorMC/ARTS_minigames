@@ -1,0 +1,120 @@
+{
+  "_id": "dAmIJLAIWhA1M9TN",
+  "name": "Siphoned Storm (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "reaction",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.SRkvq0GXYm3Wi6ze]{Spellbrawler}</p>\n<p>When you dismiss the bonus to AC granted by your @UUID[Compendium.sfrpg.class-features.Item.QopuFVX0mdGrmpSy]{Spell Siphon} to increase the damage dealt by your weapon attack, you instead add [[/r 1d8]] per level of the drained spell or spell-like ability. Until the end of your next turn, you gain a bonus to damage with any subsequent weapon attacks equal to the level of the drained spell or spell-like ability.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": "Until the end of your next turn"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "34eb1671-5143-46dd-adda-3426e82e9d18",
+        "name": "Spell Siphon (Su)",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "ac",
+        "enabled": true,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "both"
+      },
+      {
+        "_id": "ed8794ab-c790-46ef-aee8-b9766381c2d5",
+        "name": "Spell Siphon (Su)",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "constant",
+        "notes": "Activate only once the Arcane Armor (Su) feature has been acquired.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "30"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "17th Technique",
+    "rollNotes": "",
+    "save": {
+      "type": "will",
+      "dc": "10+floor(@classes.soldier.levels/2) + (@classes.soldier.keyAbilityMod)",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GM pg. 32",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

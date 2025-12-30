@@ -1,0 +1,96 @@
+{
+  "_id": "fRyhOlaxK5kQIzwR",
+  "name": "Logic Bomb",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/spells/logic_bomb.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": false,
+      "precog": false,
+      "tech": true,
+      "wysh": false
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You infuse one computer system or module with protective energy, inuring it against attempts to access it.</p>\n<p>As long as this spell is in effect, the first time a creature unsuccessfully attempts to access, destroy, or manipulate the affected computer system or module (using the Computers skill or otherwise), it takes 6d6 damage (either cold, electricity, or fire damage; you choose when casting the spell, and the spell gains the appropriate descriptor). The creature can attempt a Fortitude saving throw for half damage, and spell resistance applies. This damage is in addition to any negative effects the creature suffers due to the system’s other countermeasures.</p>"
+    },
+    "descriptors": {},
+    "dismissible": false,
+    "duration": {
+      "units": "instantaneous",
+      "value": "1 day/level or until triggered"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 2,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "",
+      "descriptor": "half"
+    },
+    "school": "abj",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 364",
+    "sr": true,
+    "target": {
+      "value": "one computer system or module"
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

@@ -1,0 +1,3391 @@
+{
+  "_id": "33udEssZ0Nk7jqtC",
+  "name": "Complete Species table",
+  "description": "This table can be used to create random species tables for locations, or to create custom species tables for the Reincarnate spell or Reincarnation ritual.\nSubtype species results are accepted at the GM's discretion.",
+  "displayRoll": true,
+  "formula": "1d130",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "s09oKL1PjszOkxD4",
+      "name": "Aasimar",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.YRCjLQcyNbvdt9sy",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "yyW2G6dZ3piSoES6",
+      "name": "Amrantah",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.90cMlX2gb9pKG42e",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ennevFkux6DUSUG9",
+      "name": "Anassanoi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.X5rY4zImiwrkqDd4",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        3,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "gKr7iG4EzUdwVScE",
+      "name": "Astrazoan",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.CIjMq6BdqpkADKbN",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        4,
+        4
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "XeqpZdtVRceFyJDu",
+      "name": "Astriapi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.74r6cvaQI6XzVHli",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        5,
+        5
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "zRu3oT79l3yigMkr",
+      "name": "Bantrid",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.CbLeU8p8kAMHaOI9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        6,
+        6
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "U5cKdJUXlknjGX7D",
+      "name": "Barathu, Early Stage",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.RXNBF1w6yXaB8P9O",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        7,
+        7
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "TFsygeDSCS5wh2vP",
+      "name": "Bear, Uplifted",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.tV6z1oIIxw2N0Pew",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        8,
+        8
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "PKxTtXcqz9lle40L",
+      "name": "Bolida",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.dUYsJ3BQ9C4ie6cX",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        9,
+        9
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "bMBvMmU32hsd12So",
+      "name": "Borai",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.xj4xjMconBN01Qzi",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        10,
+        10
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "wEQ3fFlfg4Huk6RU",
+      "name": "Brakim",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.x3LbQO4OoDaqHkFz",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        11,
+        11
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ZREVKmUpUQH7Wg1k",
+      "name": "Brenneri",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.O0HylsIOD5ABh1Mn",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        12,
+        12
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "K2ccIMQMnvvR73aJ",
+      "name": "Cephalume",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.5Hl70X2rB6D7glN5",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        13,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "sgVvmekdfUMLbrV5",
+      "name": "Contemplative",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.5AT4WDtXQH3ACvGj",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        14,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nY8nagLrPLowGESV",
+      "name": "Copaxi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.LvllRXB7dVM9W56Q",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        15,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "7ngZtbRMwMjdqi16",
+      "name": "Dirindi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.TdQ8QeDZ2hp4LRba",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        16,
+        16
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "JtAsXUnNWzINo5wI",
+      "name": "Draelik",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.IuYkmnGu3rqa3vZJ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        17,
+        17
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "DGsOGW4SsyhVu2hT",
+      "name": "Dragonkin",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.uzQCAyTR0KfOFRVA",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        18,
+        18
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "mBQrkScR3qJzo9g0",
+      "name": "Dromada",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.9cnt4R7vGTm797R9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        19,
+        19
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "j4XKIYbKHJnVqKwc",
+      "name": "Drow",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.3kLK4WKPqNvFTwIB",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        20,
+        20
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hcz1j8RBhpXgrC67",
+      "name": "Elebrian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.a4RceQR0XpPz3jIH",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        21,
+        21
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "1iC0wC10AoIuRKaf",
+      "name": "Endiffian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.ej0MtTHylZUy0arD",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        22,
+        22
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nEq2jRFTWAZtSw0R",
+      "name": "Entu Colony",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.7tXODp2L6dQDWXZm",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        23,
+        23
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "UWKWEsINGYq22yOD",
+      "name": "Entu Symbiote",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.VyVQ6qCDFJjz77yA",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        24,
+        24
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "l8pbHyYsucaX2d69",
+      "name": "Espraksa",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.8VTA8eQRqNZeFH30",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        25,
+        25
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Ki1tjj7oB0r1xsHQ",
+      "name": "Ferran",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.lU6k82q4HL0EoNUW",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        26,
+        26
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Jpr3zbHXm9n5Jx5b",
+      "name": "Formian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.pOnYi1vHP3bWMoWd",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        27,
+        27
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Q6EzQbhCuuHEmkPy",
+      "name": "Ganzi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.VFU5z75xP2IfKMJn",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        28,
+        28
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "XrriFzOaSLaHKcPQ",
+      "name": "Gathol",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.GIjacsUjBgYZeXc3",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        29,
+        29
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "bneLqhbj4ULpXBwO",
+      "name": "Gnoll",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.xsmnkY3rmCLp4Lje",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        30,
+        30
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "iC65Z95dpgx7Vwcv",
+      "name": "Goblin, Space",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.SvZm3xijwqis2qDS",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        31,
+        31
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "K5P7rQf4WXSDahkN",
+      "name": "Gosclaw",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.CxubBZlmiFOa8KcY",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        32,
+        32
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "MSBFvv3dEagg0GM5",
+      "name": "Gray",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.jr7JMsv2xalrkNHr",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        33,
+        33
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "9dj3EyicrXAqF94g",
+      "name": "Grippli",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.lHKSszComIFXLlz4",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        34,
+        34
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hdHX8FtxpKz8beyA",
+      "name": "Haan",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.QDI3ZpF3ml1s7t3n",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        35,
+        35
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "zUpDl6q0Abtgf2U8",
+      "name": "Hanakan",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.k41Cu7HJ7j6SZoxE",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        36,
+        36
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "qbkQARfhtQK9652w",
+      "name": "Hortus",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.350KU01L8W6C9Im9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        37,
+        37
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "7rJEfiUvcGo8eE7p",
+      "name": "Huitz'plina",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.5SsrcznQ8beV2oFP",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        38,
+        38
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "aooXoQM0SyezMiyV",
+      "name": "Ifrit",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.wLsPgp5ZIOliw9r3",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        39,
+        39
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "kl4dpXu9o7QQuyn6",
+      "name": "Ikeshti",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.dKcXjaxqAVCtaX5f",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        40,
+        40
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "uljVV7sZdplSl6OL",
+      "name": "Ilthisarian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.Jrd9l2NVUdt4RBRA",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        41,
+        41
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "0lNcNhJGCiSXKYRh",
+      "name": "Ixtangi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.atyWPNCbbcR0sMnV",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        42,
+        42
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "0eJvbna6oD5sMrAE",
+      "name": "Izalguun",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.bFHyF3GJDL97Eho7",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        43,
+        43
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "wG6XPq9m58wdK8kE",
+      "name": "Jububnan",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.ueEV7KH8K0U12UP7",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        44,
+        44
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "v1qqTTS3y3ay2HXr",
+      "name": "Kaa-leki",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.DxyASkiojQZIt0xE",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        45,
+        45
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "mFKCWO1hyQwFIppp",
+      "name": "Kalo",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.eMQUjYe9ERVWB6e2",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        46,
+        46
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nTWKF5J6Pq1tXLul",
+      "name": "Kanabo",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.RAS7TRqecvkXxA4u",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        47,
+        47
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ZyFUpIr04ys2c6gL",
+      "name": "Kayal",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.j0DA7tGNg4IsFlDq",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        48,
+        48
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hScqeZeY5opstvfs",
+      "name": "Khizar",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.TJj5oUhVLVzFiDwv",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        49,
+        49
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "BZ6zlELKTNFQcOzA",
+      "name": "Kiirinta",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.IwWjx93pgaiNX0L7",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        50,
+        50
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "4lvZdfiuMfByjAri",
+      "name": "Kish",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.za7sGVYjbYWKhClv",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        51,
+        51
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "PXVhCSsKAtkTShNx",
+      "name": "Kitsune",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.iLKJbVZheV0nq0NL",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        52,
+        52
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "B5rkQDaqkUUu8ptl",
+      "name": "Kobold",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.c8VADJaeZvhy7ah6",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        53,
+        53
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "pBUtBBmRcKFT78ET",
+      "name": "Maraquoi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.vBGA5tASjIErgZD2",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        54,
+        54
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ToXBTrOV3loODQFM",
+      "name": "Megalonyxa",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.6sYhdY93rK9RRib0",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        55,
+        55
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "DSzFiO4jgdf3Phry",
+      "name": "Morlamaw",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.2D9EHgKxk21qumNh",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        56,
+        56
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "uM2qW77jibyvPXPS",
+      "name": "Moyishuu",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.cJQgRM0rdSUO3oPF",
+      "drawn": false,
+      "flags": {},
+      "img": "https://assets.forge-vtt.com/bazaar/core/icons/svg/cowled.svg",
+      "range": [
+        57,
+        57
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "yeKgqysKZKjwgvzt",
+      "name": "Neskinti",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.rUJxgdSypAIhg7AA",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        58,
+        58
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "RijE1Auj4o9PgyXs",
+      "name": "Nuar",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.XbIjL8c0BwMi6Mo1",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        59,
+        59
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "XETVkkZWC1Uy4dLW",
+      "name": "Orc",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.hVg8LYZczcXuweX4",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        60,
+        60
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "AORMubBF3unGaCW3",
+      "name": "Oread",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.tITn6smDCFFiNpNn",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        61,
+        61
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nfVOsbzvG4azOUKS",
+      "name": "Phentomite",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.2fOpI6sjb01eYtEi",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        62,
+        62
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "jrBRjFyfghn7FV5n",
+      "name": "Psacynoid",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.luVYStId3CvCDUfY",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        63,
+        63
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "uJ0T0lIic2QUKP29",
+      "name": "Quorlu",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.0m7liVAP6VTXzqOF",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        64,
+        64
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "DoULkNhIOevIoy5c",
+      "name": "Ramiyel",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.AG3wfDh6IUVRRvam",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        65,
+        65
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "rnO7zEWhjTwVYm7K",
+      "name": "Raxilite",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.TcSyC9Z9PVP49ZLB",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        66,
+        66
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "UR1xhuZbUQus6smt",
+      "name": "Reptoid",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.JoHfa0f3PoRn9lqk",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        67,
+        67
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "4qdYd5YWmDu9IAap",
+      "name": "Ryphorian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.gNEpnjopGmc2veyT",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        68,
+        68
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "jvyZYwpuIVEAQw1a",
+      "name": "Samsaran",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.wGGGEm9Mkd1I21AJ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        69,
+        69
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "WCf0fWCPFKuTSBkj",
+      "name": "Sarcesian",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.RGi0BWrEIIXotbXr",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        70,
+        70
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "CkCtdwwLpHWx1zcS",
+      "name": "Sazaron",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.7EetTbgSJynB3LFB",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        71,
+        71
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "rfa6LEZzJRp9tt8G",
+      "name": "Screedreep",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.OhbrzMtft99DKBqw",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        72,
+        72
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "NtXxFSbjj3hsyXIA",
+      "name": "Scyphozoan",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.bV0hzG0pugUr5bl1",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        73,
+        73
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ddwmOD2UZ8xmsQ6F",
+      "name": "Selamid",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.r9Ry98pHBMUmG5Jr",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        74,
+        74
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "4JO3UU9qLenHoMCc",
+      "name": "Seprevoi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.UpnlUu9lwhnP4MZ3",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        75,
+        75
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hPfLYH0ILx7uruRd",
+      "name": "Shakalta",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.D7FOf49Aady7Znm1",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        76,
+        76
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "lJzSZg8AbvHcwJRy",
+      "name": "Shatori",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.9WH75r8HRLSHTD1T",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        77,
+        77
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "laVDULbUWkvsGuf7",
+      "name": "Shimreen",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.uGSKqjOj7OMtWZpf",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        78,
+        78
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "foKgRYYjo8VEeXrF",
+      "name": "Shobhad",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.tuLiDThwfB0yIFAH",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        79,
+        79
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "PcCeF0C5CNeX99e1",
+      "name": "Spathinae",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.X6AuKoighGVLs0ZL",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        80,
+        80
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xl8VADeEgxx4B2kE",
+      "name": "Stellifera",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.mnktnTInqj2RqHuQ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        81,
+        81
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "qDF8p10lAxq2xgL3",
+      "name": "Strix",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.GsSgAuHveQT559jc",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        82,
+        82
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "kXMQ2u9CZ6jTrYRK",
+      "name": "Suli",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.e0a9Fkv6sXygjkg9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        83,
+        83
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hZtBajdwmq7VWxXm",
+      "name": "Svartalfar",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.vW2rzvlPnRPosgln",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        84,
+        84
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "inUiHMeXK7zuxXKj",
+      "name": "Sylph",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.wdTSLqmQcNCxhxur",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        85,
+        85
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "vMkPITaw4ar5e8PK",
+      "name": "Telia",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.bUL7y4z1TS4kv5lo",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        86,
+        86
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "8pdU02poRDDrjVfP",
+      "name": "Tiefling",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.H3SvICAA95GIy6Au",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        87,
+        87
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "fgxP4ERPz6L4S7V0",
+      "name": "Trinir",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.WQt8RlWUpoY3zydQ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        88,
+        88
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xX5yITuawOnYBvmw",
+      "name": "Trox",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.QVkn89gpq7TZcBcC",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        89,
+        89
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Adb6lgWIiSM1fWxg",
+      "name": "Tryziarka",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.jHjmCKUf8ovn1qEn",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        90,
+        90
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "74pFy3u8gv1lm97Z",
+      "name": "Undine",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.KFxABg97BBDWT3Wo",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        91,
+        91
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "gYhuWtEewvE77Kcv",
+      "name": "Urog",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.Rolz9ZwZubqImcVZ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        92,
+        92
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "i9QrABvodon6SSBL",
+      "name": "Varculak",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.x6MY66wPIYnFwrDZ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        93,
+        93
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "EcmxTlAT68uNt7JB",
+      "name": "Varratana",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.3bzp7uV8sIz5jiC6",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        94,
+        94
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "v5KKrTlbyLs71wlg",
+      "name": "Verthani",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.nyQVqNvwCFL2YVO7",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        95,
+        95
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "JywT7LDaG275hk6r",
+      "name": "Vilderaro",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.YUOpQKNy4oWu6S7H",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        96,
+        96
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "vXRsKuKHiNYNzHHy",
+      "name": "Vlaka",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.6qGAoeERMRvuQjUw",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        97,
+        97
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "qKQPVcQ2dGeEqwNI",
+      "name": "Witchwyrd",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.a9yrbTAqxnoG300p",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        98,
+        98
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "jWD6fn2XgggAt54T",
+      "name": "Worlanisi",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.6WSlVka8IFJPVVv9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        99,
+        99
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Bqi9yq6ftOqPEWb0",
+      "name": "Wrikreechee",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.LRpavsPbn3mpJbYg",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        100,
+        100
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "c71Ebacpso1lDmhF",
+      "name": "Android subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.b1QbeXZGdHFIe460",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        101,
+        101
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Qis54gEixMl11qTN",
+      "name": "Damai subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.EizDcxAQ0ZBu4Lc9",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        102,
+        102
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "6HvMPKRpbSMVbsFf",
+      "name": "Dessamar subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.tfZqbPtSU3NuwG01",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        103,
+        103
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "0yOJi2rkThMpBHwW",
+      "name": "Dwarf subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.bMUZkmhtns9RGI03",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        104,
+        104
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "mYTPB4Z787eliavy",
+      "name": "Elf subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.mRztBWni0XC3IVYj",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        105,
+        105
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "gWz6UK8ZopeqamEI",
+      "name": "Embri subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.ZftST4fj63AXU5dk",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        106,
+        106
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "AooOlZMR7wfJhy0T",
+      "name": "Ghibrani subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.z0YLg5QlVvzrqTet",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        107,
+        107
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "shgQ07qCSyffbZfE",
+      "name": "Ghoran subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.sm9afJah7OpSmJio",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        108,
+        108
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "5emUIqqCpGbDDkfP",
+      "name": "Gnome subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.tjF51OpVWoSELEzM",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        109,
+        109
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Yce7QyjPv2kjoobn",
+      "name": "Hadrogaan subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.IhRO5sXVcspQQEfd",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        110,
+        110
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "dvzq2CD4CgvRUbfO",
+      "name": "Half-elf subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.lRJIusfT9bwWpZob",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        111,
+        111
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "x651Wc7uZN4kndan",
+      "name": "Half-orc subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.jjyrWAmqccwpUskB",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        112,
+        112
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "o70gxJgcQLwcNaKw",
+      "name": "Halfling subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.HqI4VZIU0HZKW4TF",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        113,
+        113
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "4qcLfq0L1UM6DKzI",
+      "name": "Hobgoblin subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.j4CMRbX2Oa30qOMh",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        114,
+        114
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "UI4ri3aSEA0tmaVk",
+      "name": "Human subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.hxAtXAZYEXyUdLI3",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        115,
+        115
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "5Z5H7BWdCBcDyDVT",
+      "name": "Ijtikri subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.2hK14TqRfcIgglPd",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        116,
+        116
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ZmigE7I71wZ1HaQx",
+      "name": "Kasatha subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.U7d9BttndsDDj318",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        117,
+        117
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "vqEEK2p1FOf2px1O",
+      "name": "Lashunta subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.hxuYR1KmD2xn4f1p",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        118,
+        118
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "XPjof71A2yPqyqdr",
+      "name": "Osharu subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.fNgWtqzVLrDQtzoG",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        119,
+        119
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "017CnxlhIeRKNPqf",
+      "name": "Pahtra subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.pTyLFRCJOUbRJ7B6",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        120,
+        120
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "LsTruEiXDQvkJoc3",
+      "name": "Shirren subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.j27APynBEIWWTkhy",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        121,
+        121
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xrqelSQfItZt1CUK",
+      "name": "Skittermander subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.tdiZkZXEz9c80lSD",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        122,
+        122
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "yD9XM7fggLUnDfX0",
+      "name": "SRO subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.xuLr7HA7MdX0Gtv3",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        123,
+        123
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "TlB0jw1eNKWl8kI8",
+      "name": "Vesk subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.oFSIihDbEgJNCKeG",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        124,
+        124
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "pvE23HR7z4UlAsfC",
+      "name": "Woioko subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.twi3aqrcZUWwvZns",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        125,
+        125
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "2p1sYc98nlOfOpx4",
+      "name": "Ysoki subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.r9Hy3ediMVm5SQh1",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        126,
+        126
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "uCKXLdX5udF4klg0",
+      "name": "Tromlin subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.tO4zJfQ1dgOLJQvL",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        127,
+        127
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "M8j4XqC2yQYBO0ug",
+      "name": "Giant subtypes",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.tables.RollTable.J3qFVHnVfcYOsH1s",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        128,
+        128
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xXKJ6kHL4rwuJPxC",
+      "name": "Thyr",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.ekqI6e8gXP3FBXBh",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        129,
+        129
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "K5kmevElfWZnEy9u",
+      "name": "Xulgath",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.sv3NFb1ZSNDCdxtJ",
+      "drawn": false,
+      "flags": {},
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "range": [
+        130,
+        130
+      ],
+      "weight": 1
+    }
+  ]
+}

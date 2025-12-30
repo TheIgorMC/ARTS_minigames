@@ -1,0 +1,77 @@
+@import "variables.less";
+
+#token-hud {
+    &.modified {
+        .status-effects {
+            width: 550px;
+            grid-template-columns: auto;
+            grid-template-rows: repeat(9, auto);
+            grid-auto-flow: column;
+            font-size: var(--font-size-16);
+
+            .effect-control {
+                width: 100%;
+                height: 24px;
+                margin: 0;
+                margin-top: -1px;
+                border-radius: 4px;
+                border: 1px solid transparent;
+                padding: 0;
+                opacity: 0.8;
+                padding-right: calc(100% - 24px);
+                cursor: pointer;
+                display: flex;
+
+                .name-label {
+                    cursor: pointer;
+                    position: relative;
+                    padding: 1px;
+                    vertical-align: top;
+                    padding-left: 4px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    display: flex;
+                    flex-grow: 1;
+                    flex-shrink: 0;
+                    flex-basis: fit-content;
+                    color: white;
+                    line-height: 18px;
+                }
+
+                &.active {
+                    border: 1px solid #ff6400;
+                    opacity: 1;
+                }
+
+                &:hover {
+                    text-shadow: 0 0 3px @sfrpgRed;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    button.remove-all {
+        position: absolute;
+        bottom: 100%;
+        right: 5px;
+        cursor: pointer;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 8px;
+        font-size: var(--font-size-16);
+        line-height: 24px;
+        color: white;
+        width: 25%;
+
+        &:hover {
+            text-shadow: 0 0 3px @sfrpgRed;
+
+            i {
+                text-shadow: none;
+            }
+        }
+    }
+}

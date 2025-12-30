@@ -1,0 +1,102 @@
+{
+  "_id": "EB8MSdWbHrOTr2Dt",
+  "name": "Gravitic Reinforcement (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/graviton.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:graviton] Graviton Revelation</p>\n<p>You can shore up your most frustrating weaknesses with balancing gravity. As a move action, you can gain a +1 enhancement bonus to your lowest saving throw for 1 minute, which persists even if you become unattuned, but not if you leave combat or a similar high-stress situation. If multiple saving throws are tied for lowest saving throw, choose one to benefit from this revelation. If you are in graviton mode while benefiting from this revelation, this bonus instead applies to all of your saving throws for as long as you are in graviton mode. This bonus increases by 1 at 8th level, and again every 6 levels thereafter.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "e2a86103-7cfb-4330-8df4-f79110b291b6",
+        "name": "Gravitic Reinforcement (Su)",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "(lookupRange(@classes.solarian.levels, 0, 2, 1, 8, 2, 14, 3, 20, 4))",
+        "modifierType": "formula",
+        "notes": "you can gain a +1 enhancement bonus to your lowest saving throw for 1 minute, which persists even if you become unattuned, but not if you leave combat or a similar high-stress situation. If multiple saving throws are tied for lowest saving throw, choose one to benefit from this revelation. If you are in graviton mode while benefiting from this revelation, this bonus instead applies to all of your saving throws for as long as you are in graviton mode.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "lowest"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Solarian",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

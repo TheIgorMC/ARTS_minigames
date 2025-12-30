@@ -1,0 +1,189 @@
+{
+  "_id": "ms9jeNiBK1Qb9dxu",
+  "name": "Meduza grenade III",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/incendiary-grenade.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "ac5",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "burst",
+      "shapable": false,
+      "shape": "sphere",
+      "units": "ft",
+      "value": "15"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 54
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "Base damage",
+          "formula": "5d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": true,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": true,
+            "sonic": false
+          }
+        },
+        {
+          "name": "Corrode",
+          "formula": "3d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": true,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Despite having established planetwide peace, scyphozoan manufacturers like Meduza Industries continue to develop weapons for ceremonial, recreational, and security purposes.</p><hr /><p>Once armed, this grenade rapidly unfolds into a hand-sized, glowing jellyfish. On impact, the grenade hurls tendrils of stinging cells throughout its area. When thrown underwater, the jellyfish contracts its bell and jets toward its target.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 13,
+    "modifiers": [],
+    "price": 7200,
+    "proficient": false,
+    "properties": {
+      "explode": {
+        "extension": "",
+        "value": true
+      },
+      "hydrodynamic": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "10+floor(@item.level/2)+@abilities.dex.mod",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS, pg. 119",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "grenade"
+  }
+}

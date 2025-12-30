@@ -1,0 +1,127 @@
+{
+  "_id": "ZECx9x25d2X8esKS",
+  "name": "Psychic Shunt Graft",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/spells/charm_monster.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "16"
+      },
+      "hp": {
+        "max": "13",
+        "value": 13
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>As two coherent souls bonded as one, @UUID[Compendium.sfrpg.races.Item.D7FOf49Aady7Znm1]{shakaltas} can suppress certain effects by diverting them to the non-dominant soul. With an arcane contrivance in your brain (or similar organ), you can accomplish a similar feat. Once per day as a reaction when you fail a saving throw against a mind-affecting effect, you can divert the effect into the recesses of your mind. You are unaffected by the effect, but for the duration of that effect, you have the @UUID[Compendium.sfrpg.conditions.Item.yUtkoIshf4dPruNd]{off-target} condition and take a –2 penalty to skill checks. However, spells can still be cast on you to remove the mind-affecting effect.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 8,
+    "modifiers": [
+      {
+        "_id": "4c5159f1-c748-4036-b1c8-e80bc44b077b",
+        "name": "Psychic Shunt Graft",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "You are unaffected by the effect, but for the duration of that effect, you have the off-target condition and take a –2 penalty to skill checks.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 9000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 146",
+    "system": "brain",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

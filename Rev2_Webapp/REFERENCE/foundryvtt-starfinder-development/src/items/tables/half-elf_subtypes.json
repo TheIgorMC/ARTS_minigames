@@ -1,0 +1,63 @@
+{
+  "_id": "lRJIusfT9bwWpZob",
+  "name": "Half-elf subtypes",
+  "description": "",
+  "displayRoll": true,
+  "formula": "1d2",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "TAb2attto5FXjObU",
+      "name": "Half-elf",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.5WhPSrWQWwWNLvtj",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "TrBnXrDNvEa0PGTh",
+      "name": "Half-elf (Elven-inclined)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.LwOcJUOSXXBB3gFn",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    }
+  ]
+}

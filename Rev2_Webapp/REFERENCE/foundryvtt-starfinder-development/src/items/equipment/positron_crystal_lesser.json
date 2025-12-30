@@ -1,0 +1,162 @@
+{
+  "_id": "RCM5w0qISEqXoMyK",
+  "name": "Positron Crystal, Lesser",
+  "type": "weapon",
+  "img": "icons/commodities/gems/gem-faceted-round-white.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 102
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "-",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 19,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Irradiate",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A positron crystal’s interactions with matter release both heat and radiation, causing a solar weapon it enhances to roar with flame as it strikes enemies. This adds fire damage to the weapon’s strikes and adds the irradiate critical hit effect to critical hits scored with the weapon. Unlike many radioactive weapons, a solar weapon enhanced by a positron crystal does not pose any particular risk to its user, although the reason behind this remains unknown. Research into precisely how to preserve these crystals is ongoing; currently only least, minor, and lesser versions remain stable for more than a few seconds, though these are quite powerful.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 19,
+    "modifiers": [
+      {
+        "_id": "461133e0-5b20-4762-bffd-622199b54905",
+        "name": "Positron Crystal, Lesser",
+        "type": "untyped",
+        "condition": "",
+        "damage": {
+          "damageGroup": null,
+          "damageTypes": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": true,
+            "piercing": false,
+            "slashing": false,
+            "sonic": false
+          }
+        },
+        "effectType": "all-damage",
+        "enabled": true,
+        "limitTo": "container",
+        "max": 30,
+        "modifier": "5d6",
+        "modifierType": "damageSection",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 528000,
+    "proficient": true,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 49",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "solarian"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "_id": "wczRE07uSyIW5aU1",
+  "name": "Perfect Insult (Ex)",
+  "type": "feat",
+  "img": "icons/skills/social/intimidation-impressing.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "skill",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>@Icon[type:language-dependent] @Icon[type:mind-affecting] @Icon[type:sense-dependent]</p>\n<p>As a standard action, you study a creature to cultivate the perfect insult. Attempt a Culture check with a DC equal to 10 + your opponent’s total Bluff skill bonus, or 15 + 1-1/2 × the opponent’s CR, whichever is greater. If you succeed, you gain a +2 circumstance bonus to Bluff and Intimidate checks against that opponent for 1 minute. If you spend 1 Resolve Point, allies within 60 feet also gain this bonus for the same duration. Once you’ve attempted to craft a perfect insult against a creature, you can’t target that creature again with this ability for 24 hours.</p>"
+    },
+    "descriptors": {
+      "language-dependent": true,
+      "mind-affecting": true,
+      "sense-dependent": true
+    },
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "615d0139-1f05-45bb-9885-bb8f6aea9139",
+        "name": "Perfect Insult",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "+2 circumstance bonus to Bluff and Intimidate checks against that opponent for 1 minute.",
+        "source": "Perfect Insult",
+        "subtab": "misc",
+        "valueAffected": "blu"
+      },
+      {
+        "_id": "622921f4-785b-4281-bb14-21894f24c854",
+        "name": "Perfect Insult",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "+2 circumstance bonus to Bluff and Intimidate checks against that opponent for 1 minute.",
+        "source": "Perfect Insult",
+        "subtab": "misc",
+        "valueAffected": "int"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "4th Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "cul",
+      "dc": "10 + your opponent’s total Bluff skill bonus, or 15 + 1-1/2 × the opponent’s CR",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 16",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

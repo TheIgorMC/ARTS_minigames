@@ -1,0 +1,148 @@
+{
+  "_id": "XiAMGxIQfoCOAw7U",
+  "name": "Herbicidal glands",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "biotech",
+    "ability": "dex",
+    "actionTarget": "eac",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 15
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "5d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": true,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>These small tubes implanted into the sublingual salivary glands recreate a zernivian’s natural herbicide, mixing it with saliva to coat the inside of the mouth and esophagus with antifungal properties. You have a +2 circumstance bonus to saving throws against plant-related effects that are inhaled or ingested, such as corpseflower pollen (Armory 132), hyperleaf, id moss, or a ksarik’s carrion spores (Alien Archive 70). In addition, once per day as a standard action, you can make a ranged spit attack that deals 5d6 acid damage against a creature within 15 feet.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 10,
+    "modifiers": [
+      {
+        "_id": "59b34512-23fe-41b6-a0b4-8e83638a939d",
+        "name": "Herbicidal glands",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "save",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You have a +2 circumstance bonus to saving throws against plant-related effects that are inhaled or ingested.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "fort"
+      }
+    ],
+    "price": 19000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "15"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #28 pg. 53",
+    "system": "throat",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

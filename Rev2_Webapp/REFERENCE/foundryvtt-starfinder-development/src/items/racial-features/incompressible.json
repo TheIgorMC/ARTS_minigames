@@ -1,0 +1,119 @@
+{
+  "_id": "S7nq8WW47aXewukS",
+  "name": "Incompressible",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Water’s nearly incompressible nature makes the liquid a useful component in starship cushioning and safety systems, and certain undines are similarly incompressible. An undine with this trait gains DR 5/piercing or slashing.</p>\n<p><strong>This replaces an undine’s spell-like ability.</strong></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "speciesFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "1b0155e3-2685-45f1-b067-fc0ddc5c7147",
+        "name": "Incompressible",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "damage-reduction",
+        "enabled": true,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "piercing"
+      },
+      {
+        "_id": "1d294378-ccf8-4550-ba98-a295bd561b07",
+        "name": "Incompressible",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "damage-reduction",
+        "enabled": true,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "slashing"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "Undine",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #46 pg. 53",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

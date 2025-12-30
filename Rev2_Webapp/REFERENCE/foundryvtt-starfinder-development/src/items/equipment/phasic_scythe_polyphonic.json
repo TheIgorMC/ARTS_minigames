@@ -1,0 +1,186 @@
+{
+  "_id": "OS1g7lMlpOcCQ9qX",
+  "name": "Phasic scythe, polyphonic",
+  "type": "weapon",
+  "img": "icons/weapons/sickles/scythe-bone-green.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "eac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "35"
+      },
+      "hp": {
+        "max": "90",
+        "value": 90
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "2",
+    "capacity": {
+      "max": 80,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 15,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "goods"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Wound",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "6d8 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": true
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>With these phasic scythes, weaponsmiths harnessed the nyssholora’s ability to oscillate its upper appendages to produce a deadly sonic effect. Using a complex array of internal energy conductors powered by Pact Worlds high-, super-, and ultra-capacity batteries, the technological components of phasic scythes can replicate the nyssholora’s nervous system by causing an authentic nyssholora claw to vibrate at similar frequencies to their natural counterparts. These weapons slice through solid matter with wicked efficiency, sometimes leaving their living targets with lasting wounds. These powered blades keep the market for nyssholora hunting lucrative despite the dangers inherent in recovering the raw materials.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 15,
+    "modifiers": [],
+    "price": 112500,
+    "proficient": false,
+    "properties": {
+      "penetrating": {
+        "extension": "",
+        "value": true
+      },
+      "powered": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2 pg. 87",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "minute",
+      "value": 8
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "advancedM"
+  }
+}

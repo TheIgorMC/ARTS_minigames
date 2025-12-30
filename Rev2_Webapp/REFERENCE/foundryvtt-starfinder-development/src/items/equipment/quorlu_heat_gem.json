@@ -1,0 +1,117 @@
+{
+  "_id": "kB4qZinxnQ6xmgEN",
+  "name": "Quorlu heat gem",
+  "type": "consumable",
+  "img": "icons/commodities/gems/gem-rough-navette-red.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "",
+    "chatFlavor": "",
+    "consumableType": "foodDrink",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Magic item</h2>\n<p>Quorlus can find temperatures that are comfortable for most humanoids to be intolerably cold. Lower temperatures than that are even less to their liking. To remain comfortable in such environments, quorlus developed fieryhearted gems using magic harnessed from the Plane of Fire to provide themselves with temporary resistance to cold. As a standard action, you can swallow a quorlu heat gem. Quorlus find them tasty. However, most carbon-based species find the experience unpleasant but harmless. For 24 hours after swallowing a quorlu heat gem, you gain cold resistance 5. If any lethal cold damage penetrates this cold resistance, the effect ends.</p>\n<p><em>Enable/Disable modifiers in the Modifiers tab.</em></p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 2,
+    "modifiers": [
+      {
+        "_id": "be11e2f7-6126-4741-91b4-98c53896677f",
+        "name": "Quorlu heat gem",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": false,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "For 24 hours after swallowing a quorlu heat gem, you gain cold resistance 5. If any lethal cold damage penetrates this cold resistance, the effect ends.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "cold"
+      }
+    ],
+    "price": 125,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #21 pg. 43",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

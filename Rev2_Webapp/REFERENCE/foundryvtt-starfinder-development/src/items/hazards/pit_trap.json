@@ -1,0 +1,170 @@
+{
+  "_id": "POz4KtITEwp0YR5a",
+  "name": "Pit Trap",
+  "type": "hazard",
+  "img": "systems/sfrpg/icons/default/mantrap.svg",
+  "items": [],
+  "prototypeToken": {
+    "name": "Pit Trap",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/mantrap.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "attributes": {
+      "baseAttackBonus": {
+        "value": 0
+      },
+      "bypass": {
+        "value": ""
+      },
+      "damage": {
+        "value": "2d6"
+      },
+      "duration": {
+        "value": null
+      },
+      "eac": {
+        "value": 0
+      },
+      "effect": {
+        "value": "20-ft.-deep pit (2d6 falling damage); Reflex DC 11 avoids; multiple targets (all targets in a 10-ft.-square area)"
+      },
+      "fort": {
+        "value": 0
+      },
+      "hardness": {
+        "value": 0
+      },
+      "hp": {
+        "max": 10,
+        "value": 10
+      },
+      "init": {
+        "value": "manual"
+      },
+      "kac": {
+        "value": 0
+      },
+      "reflex": {
+        "value": 0
+      },
+      "reset": {
+        "value": ""
+      },
+      "trigger": {
+        "value": "location"
+      },
+      "will": {
+        "value": 0
+      }
+    },
+    "dcs": {
+      "disable": {
+        "value": "Engineering DC 12 (open trap door) or DC 18 (jam trap door shut)"
+      },
+      "notice": {
+        "value": "Perception DC 17"
+      }
+    },
+    "details": {
+      "type": "CRB PG. 411",
+      "cr": {
+        "value": "1/2"
+      },
+      "description": {
+        "value": "<p>A 10-foot-square trapdoor opens when a creature walks on top of it, dumping victims into a 20-foot-deep pit.</p>"
+      },
+      "source": "Analog"
+    },
+    "modifiers": [],
+    "slug": ""
+  }
+}

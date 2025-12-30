@@ -1,0 +1,102 @@
+{
+  "_id": "IHElfv0Xwj3yCfVH",
+  "name": "Opening Volley (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/opening_volley.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Your ranged assault leaves your foe disoriented and vulnerable to your next melee attack.</p>\n<hr />\n<p><strong>Benefit</strong>: Whenever you deal damage to an opponent with a ranged attack on your first turn in a combat, you gain a +2 circumstance bonus to your next melee attack roll against that opponent. This melee attack must occur before the end of your next turn.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "ad5373cb-dc36-4bfa-87de-137a04833872",
+        "name": "Opening Volley",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "Whenever you deal damage to an opponent with a ranged attack on your first turn in a combat, you gain a circumstance bonus to your next melee attack roll against that opponent.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

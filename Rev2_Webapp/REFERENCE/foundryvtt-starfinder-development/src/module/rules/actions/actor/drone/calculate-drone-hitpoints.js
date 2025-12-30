@@ -1,0 +1,59 @@
+import { SFRPGEffectType, SFRPGModifierType } from "../../../../modifiers/types.js";
+
+export default function(engine) {
+    engine.closures.add("calculateDroneHitpoints", (fact, context) => {
+        const data = fact.data;
+        if (!data.attributes.hp.tooltip) data.attributes.hp.tooltip = [];
+
+        const addModifier = (bonus, data, item, localizationKey) => {
+            if (bonus.modifierType === SFRPGModifierType.FORMULA) {
+                if (item.rolledMods) {
+                    item.rolledMods.push({mod: bonus.modifier, bonus: bonus});
+                } else {
+                    item.rolledMods = [{mod: bonus.modifier, bonus: bonus}];
+                }
+
+                return 0;
+            }
+
+            let computedBonus = 0;
+            try {
+                const roll = Roll.create(bonus.modifier.toString(), data).evaluateSync({strict: false});
+                computedBonus = roll.total;
+            } catch (e) {
+                console.error(e);
+            }
+
+            if (computedBonus !== 0 && localizationKey) {
+                item.tooltip.push(game.i18n.format(localizationKey, {
+                    type: game.i18n.format(`SFRPG.ModifierType${bonus.type.capitalize()}`),
+                    mod: computedBonus.signedString(),
+                    source: bonus.name
+                }));
+            }
+
+            return computedBonus;
+        };
+
+        let hpMax = data.attributes.hp.max;
+
+        // Iterate through any modifiers that affect HP
+        let filteredModifiers = fact.modifiers.filter(mod => {
+            return (mod.enabled || mod.modifierType === "formula") && mod.effectType === SFRPGEffectType.HIT_POINTS;
+        });
+        filteredModifiers = context.parameters.stackModifiers.process(filteredModifiers, context, {actor: fact.actor});
+
+        const bonus = Object.entries(filteredModifiers).reduce((sum, mod) => {
+            for (const bonus of mod[1]) {
+                sum += addModifier(bonus, data, data.attributes.hp, "SFRPG.AbilityScoreBonusTooltip");
+            }
+            return sum;
+        }, 0);
+
+        hpMax += bonus;
+
+        data.attributes.hp.max = hpMax;
+
+        return fact;
+    }, { required: ["stackModifiers"], closureParameters: ["stackModifiers"] });
+}

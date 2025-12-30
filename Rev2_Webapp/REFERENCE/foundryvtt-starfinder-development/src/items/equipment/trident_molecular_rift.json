@@ -1,0 +1,166 @@
+{
+  "_id": "OT2Ai4SY2cPMFe5U",
+  "name": "Trident, molecular rift",
+  "type": "weapon",
+  "img": "icons/weapons/polearms/trident-silver-blue.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "39"
+      },
+      "hp": {
+        "max": "96",
+        "value": 96
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": null,
+      "value": null
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 17,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "10d8 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": true,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Levalochs study weapon technology of the mortal realm with&nbsp;keen interest. The devils have wielded trident-like weapons for&nbsp;millennia, but using fiendish ingenuity and information gained&nbsp;via infernal pacts with mortal weapon researchers, levalochs&nbsp;have developed ways to integrate modern technology into&nbsp;their tridents, combining cutting-edge science with ancient&nbsp;tradition. The tridents included in the table above are examples&nbsp;of levaloch successes in this area and are now common in the&nbsp;hands of levalochs throughout the planes.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 17,
+    "modifiers": [],
+    "price": 219600,
+    "proficient": false,
+    "properties": {
+      "analog": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2 pg. 37",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "",
+      "value": null
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "advancedM"
+  }
+}

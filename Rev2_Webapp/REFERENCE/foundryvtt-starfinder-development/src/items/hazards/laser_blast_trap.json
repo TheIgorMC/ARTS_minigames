@@ -1,0 +1,170 @@
+{
+  "_id": "Zu9blLHdURNIVcY8",
+  "name": "Laser Blast Trap",
+  "type": "hazard",
+  "img": "systems/sfrpg/icons/default/mantrap.svg",
+  "items": [],
+  "prototypeToken": {
+    "name": "Laser Blast Trap",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/mantrap.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "attributes": {
+      "baseAttackBonus": {
+        "value": 11
+      },
+      "bypass": {
+        "value": ""
+      },
+      "damage": {
+        "value": "3d6+1"
+      },
+      "duration": {
+        "value": null
+      },
+      "eac": {
+        "value": 0
+      },
+      "effect": {
+        "value": "laser +11 ranged (3d6+1 F)"
+      },
+      "fort": {
+        "value": 0
+      },
+      "hardness": {
+        "value": 0
+      },
+      "hp": {
+        "max": 10,
+        "value": 10
+      },
+      "init": {
+        "value": ""
+      },
+      "kac": {
+        "value": 0
+      },
+      "reflex": {
+        "value": 0
+      },
+      "reset": {
+        "value": "1 minute"
+      },
+      "trigger": {
+        "value": "location"
+      },
+      "will": {
+        "value": 0
+      }
+    },
+    "dcs": {
+      "disable": {
+        "value": "Engineering DC 15 (disable motion sensors)"
+      },
+      "notice": {
+        "value": "Perception DC 21"
+      }
+    },
+    "details": {
+      "type": "CRB pg. 412",
+      "cr": {
+        "value": "1"
+      },
+      "description": {
+        "value": "<p>When sensors detect movement in the trapped room, a wall panel opens and a mounted laser rifle opens fire on the triggering creature.</p>"
+      },
+      "source": "Technological"
+    },
+    "modifiers": [],
+    "slug": ""
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_id": "cpZ5J31ND4ORKhTC",
+  "name": "Selective",
+  "type": "fusion",
+  "img": "systems/sfrpg/icons/equipment/weapons/weapon-fusions-5.webp",
+  "system": {
+    "bulk": "L",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>With the <em>selective</em> weapon fusion, you can exclude a single target from a weapon’s area of effect. When using a <em>selective</em> weapon to make an automatic, blast, explode, line, or other form of area attack that affects multiple targets, you can choose a single target to leave out of the area of effect.</p>"
+    },
+    "level": 5,
+    "modifiers": [],
+    "price": 0,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 65"
+  }
+}

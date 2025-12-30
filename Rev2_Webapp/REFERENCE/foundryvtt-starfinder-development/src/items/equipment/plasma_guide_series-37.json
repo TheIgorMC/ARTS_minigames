@@ -1,0 +1,204 @@
+{
+  "_id": "x1nkvVHZq0xYQckr",
+  "name": "Plasma guide, series-37",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+  "system": {
+    "ability": "dex",
+    "actionTarget": "eac",
+    "actionType": "rwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "2",
+    "capacity": {
+      "max": 40,
+      "value": 0
+    },
+    "chatFlavor": "Guided, sniper (500 ft.), unwieldy",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 8,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Wound",
+      "parts": [
+        {
+          "name": "",
+          "formula": "",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ]
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d8",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A plasma guide maintains a magnetic guidance system around its plasma discharge, which continues guiding the shot after it is fired. This increases accuracy at ranges far beyond those of typical plasma weapons and bypasses the advantage of partial cover as the magnetic guidance directs the plasma toward its target. Vesk snipers are believed to be the earliest users of the plasma guide during the Silent War, but it’s become a standard in many military and mercenary arsenals since then. This weapon has been continually refined since its invention; series-21, series-28, series-37, series-42, series-62, and series-73 plasma guides have proven generally stable and thus remain in production.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 8,
+    "modifiers": [],
+    "price": 10800,
+    "proficient": false,
+    "properties": {
+      "amm": {
+        "extension": "",
+        "value": true
+      },
+      "guided": {
+        "extension": "",
+        "value": true
+      },
+      "sniper": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      },
+      "unwieldy": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "70"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 8
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 8
+    },
+    "weaponCategory": "plasma",
+    "weaponType": "sniper"
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "_id": "MkLBTzY4XDaDNPla",
+  "name": "Thasteron grenade V",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/holo-grenade.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "ac5",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "sphere",
+      "units": "ft",
+      "value": "30"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 99
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 18,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "<p>Nicknamed the “hole-maker,” this raw thasteron-packed&nbsp;explosive is a favored room-clearing device for special&nbsp;forces.</p>",
+      "unidentified": "",
+      "value": "<p>Nicknamed the “hole-maker,” this raw thasteron-packed explosive is a favored room-clearing device for special forces.</p>\n<p>Explode (staggered, 30 ft.)</p>\n<p>Propel (15 feet)</p><hr style=\"border-top:1px solid var(--color-border-light-primary);border-bottom:1px solid var(--color-border-light-highlight)\"><p><strong>Thasteron Weapons:</strong>&nbsp;While Sanjaval Spaceflight mostly&nbsp;abandoned its thasteron mines and related manufacturing&nbsp;when Drift travel superseded its industry, it continued to&nbsp;produce sublight starship&nbsp;engines using the dirty fuel.&nbsp;It now enjoys a resurgence&nbsp;in popularity as more people&nbsp;steer away from a reliance on the Drift for&nbsp;intersystem travel. Some of the technological&nbsp;cottage industries that sprung up around thasteron&nbsp;during the collapse of its market have likewise gained&nbsp;popularity.</p>\n<p>Beyond the propulsive properties of thasteron, tactical uses for its nuisance emission, thasteronic asphalt (or thasphalt), have been developed by ysoki engineers. Thasphalt produces force energy and steam when bombarded with strong electromagnetic fields. These fields are too much for internal electronics, so most thasteron weapons are bulky copper, brass, and even leather-and-wood contraptions utilizing clockwork.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 18,
+    "modifiers": [],
+    "price": 110000,
+    "proficient": false,
+    "properties": {
+      "explode": {
+        "extension": "",
+        "value": true
+      },
+      "force": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "(10 + floor(@item.level / 2) + @abilities.dex.mod)",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 51",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": "Staggered"
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    },
+    "weaponCategory": "shock",
+    "weaponType": "grenade"
+  }
+}

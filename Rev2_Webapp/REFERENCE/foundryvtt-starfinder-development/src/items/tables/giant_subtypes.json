@@ -1,0 +1,141 @@
+{
+  "_id": "J3qFVHnVfcYOsH1s",
+  "name": "Giant subtypes",
+  "description": "",
+  "displayRoll": true,
+  "formula": "1d4",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "joErSWyLAh98Tuvv",
+      "name": "Giant",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.zLmTtNg0Mc4XRHfm",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        4
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "dLJmXBSvYuhZGbZq",
+      "name": "Fire Giant",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.racial-features.Item.hUmxQJtU0bFVSvQQ",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nNi1TuH1kamQfXSq",
+      "name": "Hill Giant",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.racial-features.Item.6Hkxe9THcyi9K2oz",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "UVKdX5OzfQSUdCVa",
+      "name": "Slag Giant",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.racial-features.Item.Bqo6LHw6Q1QlWVsH",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        3,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "iUex9lRPleuWci2x",
+      "name": "Stone Giant",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.racial-features.Item.zzCYvbd213SjwD5C",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        4,
+        4
+      ],
+      "weight": 1
+    }
+  ]
+}

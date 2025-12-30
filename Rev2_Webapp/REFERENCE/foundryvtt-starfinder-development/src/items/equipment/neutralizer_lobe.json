@@ -1,0 +1,127 @@
+{
+  "_id": "rogacxdwcL0MEHNC",
+  "name": "Neutralizer lobe",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "biotech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 13
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A lobe grafted onto your throat processes toxins your body would normally struggle to remove. Whenever you attempt a saving throw against a drug or poison, your neutralizer lobe automatically attempts a @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.d4fcGwOcrsuYrwGH]{Medicine} check to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.d4fcGwOcrsuYrwGH#treat-drugs-or-poison]{treat drugs or poison}, using a modifier equal to your level + 2. If this Medicine check is successful, the neutralizer lobe grants you a +4 bonus to your subsequent saving throw.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 8,
+    "modifiers": [
+      {
+        "_id": "1b06ec20-6520-4d65-8a71-33ee8a8821ca",
+        "name": "Neutralizer lobe",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "Whenever you attempt a saving throw against a drug or poison, your neutralizer lobe automatically attempts a Medicine check to treat drugs or poison, using a modifier equal to your level + 2. If this Medicine check is successful, the neutralizer lobe grants you a +4 bonus to your subsequent saving throw.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      }
+    ],
+    "price": 9900,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "TR pg. 56, AP #29 pg. 51",
+    "system": "throat",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

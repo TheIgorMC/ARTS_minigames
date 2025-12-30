@@ -1,0 +1,96 @@
+{
+  "_id": "XcZbNgTkxj0zFFb7",
+  "name": "Omnitool",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/classes/quick_repair.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": false,
+      "precog": false,
+      "tech": true,
+      "wysh": false
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>While you hold the touched object, it transmutes into tools you need for Engineering checks. This tool provides no bonuses to Engineering checks, but it prevents you from taking a penalty for lacking a tool. If the transmuted object leaves your grasp, it reverts to normal.</p>"
+    },
+    "descriptors": {},
+    "dismissible": false,
+    "duration": {
+      "units": "round",
+      "value": "@details.cl.value"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 0,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "",
+      "descriptor": "object"
+    },
+    "school": "trs",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GM pg. 78",
+    "sr": true,
+    "target": {
+      "value": "one object of negligible bulk, or 5 UPBs"
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

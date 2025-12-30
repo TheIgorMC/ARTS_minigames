@@ -1,0 +1,134 @@
+{
+  "_id": "0EHdBrkl5k9l2eXW",
+  "name": "Serum of enhancement, sensate",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The creature gains a +2 insight bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.tVUA3IPcOfyU1g19]{Life Science} and @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.HXcmgteT2OegqFrB]{Mysticism} checks and can attempt checks with both skills untrained.</p>\n<p>This vial of performance-enhancing serum unlocks or enhances aspects of your body and mind. Imbibing this serum grants a living creature bonuses based upon the type of serum imbibed, as described below. The effects of a serum of enhancement last 1 hour.</p>\n<p><em>Enable/Disable modifiers in the Modifiers tab.</em></p>\n<p><em>&nbsp;</em></p>\n<h3>Serums</h3>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 5,
+    "modifiers": [
+      {
+        "_id": "dbc1a579-5851-4b17-95d8-6700f6394461",
+        "name": "Serum of enhancement, sensate",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "The creature gains a +2 insight bonus to  Life Science and  Mysticism checks and can attempt checks with both skills untrained.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "lsc"
+      },
+      {
+        "_id": "1000b3d3-17e1-4e81-a4b1-903ad6fc645e",
+        "name": "Serum of enhancement, sensate",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "The creature gains a +2 insight bonus to  Life Science and  Mysticism checks and can attempt checks with both skills untrained.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "mys"
+      }
+    ],
+    "price": 475,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, p. 222",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

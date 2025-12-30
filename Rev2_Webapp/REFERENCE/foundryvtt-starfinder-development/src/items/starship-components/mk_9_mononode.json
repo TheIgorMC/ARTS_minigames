@@ -1,0 +1,24 @@
+{
+  "_id": "MKMmfpoRX08RAHHO",
+  "name": "Mk 9 mononode",
+  "type": "starshipComputer",
+  "img": "systems/sfrpg/icons/default/server-rack.svg",
+  "system": {
+    "cost": 81,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "isPowered": true,
+    "modifier": 9,
+    "modifiers": [],
+    "nodes": 1,
+    "pcu": 50,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

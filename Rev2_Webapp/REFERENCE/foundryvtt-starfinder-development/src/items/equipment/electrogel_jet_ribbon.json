@@ -1,0 +1,196 @@
+{
+  "_id": "ToapI5aYteBge7rS",
+  "name": "Electrogel Jet, Ribbon",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+  "system": {
+    "ability": "dex",
+    "actionTarget": "eac",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "caustrol",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 40,
+      "value": 0
+    },
+    "chatFlavor": "mire 1 round",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 7,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Staggered",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d8",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": true,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": true,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Lethal Innovations developed this weapon with assistance from a barathu consulting firm. An electrogel jet is a bulbous, blue creature with pulsing veins and soft tentacles that grasp the wielder’s arm to help support the weapon’s heavy weight. The creature’s bulbous sacs synthesize an electrical gel that shocks and burns targets before falling to the ground, where it forms a sticky layer. Owners who wish to refill an electrogel jet without waiting for the weapon to grow its own fuel can substitute caustrol, a synthetic acid with the same price and container size as petrol.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": "mire 1 round"
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 7,
+    "modifiers": [],
+    "price": 6500,
+    "proficient": false,
+    "properties": {
+      "amm": {
+        "extension": "",
+        "value": true
+      },
+      "line": {
+        "extension": "",
+        "value": true
+      },
+      "living": {
+        "extension": "",
+        "value": true
+      },
+      "mire": {
+        "extension": "",
+        "value": true
+      },
+      "regrowth": {
+        "extension": "",
+        "value": true
+      },
+      "stun": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      },
+      "unwieldy": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "40"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 4
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 2
+    },
+    "weaponCategory": "shock",
+    "weaponType": "heavy"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "_id": "5bxHKqgjIe760h0J",
+  "name": "Lance, paragon",
+  "type": "weapon",
+  "img": "icons/weapons/polearms/pike-flared-red.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "41"
+      },
+      "hp": {
+        "max": "99",
+        "value": 99
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 18,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "11d6 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": true,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A lance is a long, heavy spear designed for use while riding a mount. While mounted or riding a cycle, you can wield a lance with one hand. This weapon is common across the Pact Worlds. Traditionally used by shotalashu warriors riding saurian mounts in the jungles of Castrovel and bonded ryphorian and dragonkin partners of @UUID[Compendium.sfrpg.setting.Item.sRunEYMfbrHeHcl7]{Triaxus}, lances are also known to have been common weapons on lost Golarion. Modern wielders use lances while mounted or driving open vehicles, such as cycle-riding raiders like the Vercite Rustrunners. Tactical lances are straightforward and widely available, while advanced lances are made of strong composites and have fine points to deal more damage. Elite lances have superfine points, and each has a particularly dense core for a more powerful strike. Paragon lances have been entirely redesigned using dense, flexible materials and an ultrathin point to achieve incomparable performance.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 18,
+    "modifiers": [],
+    "price": 365000,
+    "proficient": true,
+    "properties": {
+      "analog": {
+        "extension": "",
+        "value": true
+      },
+      "reach": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "10"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 9",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "basicM"
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "_id": "wlyxCkrd5GWGLIAt",
+  "name": "Drift Crisis Treasure: 25,000 Credits",
+  "description": "You can use the following table with Table 11–4: Wealth Gains per Encounter (Core Rulebook 391) to provide interesting and varied level-appropriate treasure for PCs. Use the results (or your own variations) to make treasure more exciting than another dropped credstick. Each of these items might even spur further adventure!",
+  "displayRoll": true,
+  "formula": "1d20",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "z4BSPWlztzQJsIvZ",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "An old-fashioned datapad containing grainy video of an unidentified kasatha telling a story of a planet where stormy skies wept liquid horacalcum and time flowed backward while showing the vial of liquid skymetal he collected there",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        1,
+        2
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "hPjpLg4N4AB3egKi",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A hard drive containing a copy of the canceled AbadarCorp product The Aleatoracle, an advanced AI that uses machine learning and statistics to predict the future to varying success",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        3,
+        4
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "bZRjUoV2vgEccp9j",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "Half of an ancient tapestry, seemingly sheared in a Drift incident, that seems to show an unidentifiable tentacled creature resting upon a massive hoard of precious stones and metals; the background features precisely placed stars",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        5,
+        6
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "XGMD2Xt9sduOEXdO",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A dusty case of fine Aucturn spirits, labeled as predating the Gap; the bottles are made of a dark blue glass and the liquid inside glows faintly through the bottle",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        7,
+        8
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "3FFMxY3SEQ9xIS0J",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A jet pack with a fuel tank filled with the starmetal djezet",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        9,
+        10
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "C7At6aN9oo6tHk5h",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A hovering throne decorated in baroque ornamentations, sized for a Tiny creature and made of translucent, glittering, metallic material",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        11,
+        12
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "b2HSgyCModwm9Jls",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A technomagical scepter that, when activated, uses movements of nearby carbon-based life-forms to generate dance club music and a laser light show of notable quality",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        13,
+        14
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "GnhEvJ2FzipPSsDf",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A case of 50 ultra-capacity batteries without any manufacturing or shipping information; minute imperfections imply these batteries were handmade by a skilled engineer",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        15,
+        16
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "trptP8dJIer4UCaa",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A large glass jar that appears empty but has notable weight when picked up; shaking the jar creates a dense tinkling sound. Inspection under magnification reveals a large number of microscopic floating crystals inside",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        17,
+        18
+      ],
+      "weight": 2
+    },
+    {
+      "_id": "7SGrO4vlJ7AB4BUe",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "A mundane-looking datapad encasing a highly sophisticated computer that automatically runs complex data analysis on a geographical survey from Triaxus’s Uchorae Jungle",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        19,
+        20
+      ],
+      "weight": 2
+    }
+  ]
+}

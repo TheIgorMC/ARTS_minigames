@@ -1,0 +1,104 @@
+{
+  "_id": "nywSVEeDvp1bk7L3",
+  "name": "Shaken",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/shaken.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You take a –2 penalty to attack rolls, saving throws, skill checks, and ability checks while you have the shaken condition.</p>\n<p>If you are already shaken and then become subject to an additional effect that would cause you to be shaken, the duration of the shaken condition increases by the duration of the second effect.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "05a1ec53-c4b6-4699-b4a9-8dc0ef0aac8f",
+        "name": "Shaken",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      },
+      {
+        "_id": "36603808-e34d-4337-972c-8272fa926420",
+        "name": "Shaken",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "saves",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "15405124-f002-4c28-a0a6-1a1fe740eec9",
+        "name": "Shaken",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-skills",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "96edfe69-69a8-48e6-a618-c0ae4902b26f",
+        "name": "Shaken",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-checks",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Shaken",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "shaken",
+    "source": "CRB.277",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

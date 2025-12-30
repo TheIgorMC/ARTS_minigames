@@ -1,0 +1,207 @@
+{
+  "_id": "sN8TmpCKVYhwTZB3",
+  "name": "Polarity rifle, storm",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+  "system": {
+    "ability": "dex",
+    "actionTarget": "eac",
+    "actionType": "rwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 40,
+      "value": 0
+    },
+    "chatFlavor": "Polarize 2d8",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 15,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "weaponAccessory"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 4,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": [
+        {
+          "name": "",
+          "formula": "",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ]
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "4d8",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": true,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The polarity rifle was designed by Vercite engineers using the conceptual model that underpins polarity gauntlets. This rifle’s prongs are separately polarized, and it alternates between them as it fires to create a circuit of lightning between the gun and target, causing subsequent attacks to deal additional damage. Static, aurora, storm, and tempest polarity rifles are favored by sharpshooters in many fields, though they are often scorned by kasathas who view them as a vulgarized appropriation of an honorable weapon.</p><h3>Shock Weapons</h3><p>Shock weapons emit powerful electrical blasts that can damage and potentially stun enemies. Ranged versions use a low-power laser to direct these weapons’ electrical arcs. Electrical blasts can also leap to adjacent targets, making the weapons well suited for stunning groups of enemies. In general, tempest shock weapons are the most powerful, followed in descending order by storm, aurora, and static shock weapons.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 15,
+    "modifiers": [],
+    "price": 137000,
+    "proficient": false,
+    "properties": {
+      "amm": {
+        "extension": "",
+        "value": true
+      },
+      "polarize": {
+        "extension": "",
+        "value": true
+      },
+      "two": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "80"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 48",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 2
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 2
+    },
+    "weaponCategory": "shock",
+    "weaponType": "longA"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "_id": "pP6mWMarTgtFKtCS",
+  "name": "Bolt Graft",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/classes/speed.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "4"
+      },
+      "hp": {
+        "max": "7",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>@UUID[Compendium.sfrpg.races.Item.9cnt4R7vGTm797R9]{Dromadas} have developed significant natural adaptions from spending years as prey, giving them the ability to run at high speeds. Mechanisms within your legs (or similar locomotive appendages) stimulate your muscles to allow you similar movement. When you take the @UUID[Compendium.sfrpg.rules.U37n5tY5hn1ctzQL.JournalEntryPage.Fu5eDR99bGo9WdUU#run]{run} full action, you can move up to five times your speed, change direction once during the movement, and cross difficult terrain (though such terrain requires extra movement as normal).</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 2,
+    "modifiers": [],
+    "price": 750,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 142",
+    "system": "allLegsAndFeet",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

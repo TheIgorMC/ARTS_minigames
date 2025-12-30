@@ -1,0 +1,84 @@
+{
+  "_id": "ANnBCC8Rx1u5qyDS",
+  "name": "Emotionsense (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/emotionsense.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.Hj7rGHmzQGP8rEGB]{Empath}</p>\n<p>You can detect and locate creatures within 60 feet that have emotions, as if you had blindsense (emotion); see page 262. A creature can keep its emotions calm to avoid detection by this ability by succeeding at a Bluff check with a DC equal to 10 + your Sense Motive modifier, but a creature under the influence of an emotion effect cannot try to avoid detection. Creatures under the effects of <em>nondetection</em> or similar effects automatically avoid detection by this ability. Unless otherwise stated, constructs and creatures with Intelligence scores of 2 or lower don’t have emotions and can’t be sensed this way.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "6th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Empathy Connection",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

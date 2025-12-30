@@ -1,0 +1,102 @@
+{
+  "_id": "ngjFxry6MF6KzARY",
+  "name": "Instinct (Eldritch Niche)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.yZovkmDKDVGekc71]{Eldritch (Niche)}</p>\n<p>When you have 1 or more Mutation Points you gain spell resistance equal to 5 + your MP + your evolutionist level. If you’re hit by or fail a saving throw against an enemy’s spell, you can take a reaction to gain a +2 bonus to saving throws of the same type (Reflex, for example) until the end of your next turn. In addition, you can voluntarily lower your spell resistance until the beginning of your next turn as a standard action or as a reaction.</p>\n<p><em>Spell resistance must me manually calculated and entered in to the Spell Resistance field on the Attributes tab</em></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "b0fcc1bc-9f45-4d86-a06a-e8d60e79c374",
+        "name": "Instinct (Eldritch Niche)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "If you’re hit by or fail a saving throw against an enemy’s spell, you can take a reaction to gain a +2 bonus to saving throws of the same type (Reflex, for example) until the end of your next turn.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "1st Level (Evolutionist)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS, pg. 14",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

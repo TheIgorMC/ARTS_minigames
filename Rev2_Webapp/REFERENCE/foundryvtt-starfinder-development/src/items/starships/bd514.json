@@ -1,0 +1,713 @@
+{
+  "_id": "aqRL8ky6TzbXTfMf",
+  "name": "BD514",
+  "type": "starship",
+  "img": "systems/sfrpg/icons/default/starfighter.svg",
+  "items": [
+    {
+      "_id": "PeRedSZjCbuYPCDw",
+      "name": "New StarshipFrame",
+      "type": "starshipFrame",
+      "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+      "system": {
+        "cost": null,
+        "crew": {
+          "maximum": 6,
+          "minimum": 1
+        },
+        "damageThreshold": {
+          "base": 0
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "expansionBays": 3,
+        "hitpoints": {
+          "base": 40,
+          "increment": 8
+        },
+        "isPowered": true,
+        "maneuverability": "good",
+        "modifiers": [],
+        "pcu": null,
+        "size": "small",
+        "slug": "",
+        "source": "",
+        "weaponMounts": {
+          "aft": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 0,
+            "spinalSlots": 0
+          },
+          "forward": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 0,
+            "spinalSlots": 0
+          },
+          "port": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 0,
+            "spinalSlots": 0
+          },
+          "starboard": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 0,
+            "spinalSlots": 0
+          },
+          "turret": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 0,
+            "spinalSlots": 0
+          }
+        }
+      }
+    },
+    {
+      "_id": "8QEcH5MyUvWxfbzj",
+      "name": "S8 thrusters",
+      "type": "starshipThruster",
+      "img": "systems/sfrpg/icons/default/rocket-thruster.svg",
+      "system": {
+        "cost": 4,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isBooster": false,
+        "isEnabled": true,
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 40,
+        "pilotingModifier": 0,
+        "slug": "",
+        "source": "CRB pg. 296",
+        "specialMaterials": {},
+        "speed": 8,
+        "supportedSize": "small"
+      }
+    },
+    {
+      "_id": "T9kgZR32XPAFCGAP",
+      "name": "Micron Ultra",
+      "type": "starshipPowerCore",
+      "img": "systems/sfrpg/icons/default/power-generator.svg",
+      "system": {
+        "cost": 8,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifiers": [],
+        "pcu": 80,
+        "slug": "",
+        "source": "CRB pg. 296",
+        "specialMaterials": {},
+        "supportedSizes": [
+          "tiny"
+        ]
+      }
+    },
+    {
+      "_id": "KJ53fgyF61P2K7Uu",
+      "name": "Basic Shields 40",
+      "type": "starshipShield",
+      "img": "systems/sfrpg/icons/default/forward-field.svg",
+      "system": {
+        "armorBonus": 0,
+        "cost": 5,
+        "costMultipliedBySize": false,
+        "defenseValue": 0,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isDeflector": false,
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 15,
+        "regeneration": 1,
+        "shieldPoints": 40,
+        "slug": "",
+        "source": "CRB pg. 302",
+        "targetLockBonus": 0
+      }
+    },
+    {
+      "_id": "zkXT4KAVk2ucCC2H",
+      "name": "Signal Basic",
+      "type": "starshipDriftEngine",
+      "img": "systems/sfrpg/icons/default/star-gate.svg",
+      "system": {
+        "cost": 2,
+        "costMultipliedBySize": true,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "engineRating": 1,
+        "isPowered": true,
+        "maxSize": "supercolossal",
+        "modifiers": [],
+        "pcu": 75,
+        "slug": "",
+        "source": "CRB pg. 298"
+      }
+    },
+    {
+      "_id": "Wcy3lGUwahpefmig",
+      "name": "Basic medium-range sensors",
+      "type": "starshipSensor",
+      "img": "systems/sfrpg/icons/default/radar-dish.svg",
+      "system": {
+        "cost": 5,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifier": 2,
+        "modifiers": [],
+        "range": "medium",
+        "slug": "",
+        "source": "CRB pg. 301",
+        "specialMaterials": {}
+      }
+    },
+    {
+      "_id": "A9F0qnFyyu4E8QwH",
+      "name": "Common crew quarters",
+      "type": "starshipCrewQuarter",
+      "img": "systems/sfrpg/icons/default/bunk-beds.svg",
+      "system": {
+        "cost": null,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Common crew quarters are the most basic type. They consist of simple bunks (sometimes folding out from the side of a hallway) or other similarly austere places to rest. Crew members who sleep in common quarters usually keep their personal possessions in a footlocker. Common crew quarters also include a communal bathroom (which includes a military-style shower) and a tiny galley (big enough to prepare only the most basic of meals). Starships with crews numbering in the dozens or hundreds often have massive barracks where crew members sleep in shifts .</p>"
+        },
+        "modifiers": [],
+        "slug": "",
+        "source": "CRB pg. 298"
+      }
+    },
+    {
+      "_id": "ChJwkRESPcobLIbu",
+      "name": "Mk 1 trinode",
+      "type": "starshipComputer",
+      "img": "systems/sfrpg/icons/default/server-rack.svg",
+      "system": {
+        "cost": 3,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifier": 1,
+        "modifiers": [],
+        "nodes": 3,
+        "pcu": 10,
+        "slug": "",
+        "source": "CRB pg. 297"
+      }
+    },
+    {
+      "_id": "bOs0ayrRjQvio9Zn",
+      "name": "Mk 3 defenses",
+      "type": "starshipDefensiveCountermeasure",
+      "img": "systems/sfrpg/icons/default/bubble-field.svg",
+      "system": {
+        "cost": 4,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 2,
+        "slug": "",
+        "source": "CRB pg. 297",
+        "specialMaterials": {},
+        "targetLockBonus": 3
+      }
+    },
+    {
+      "_id": "R05pbX6yh63ogd7e",
+      "name": "Mk 4 armor",
+      "type": "starshipArmor",
+      "img": "systems/sfrpg/icons/default/metal-scales.svg",
+      "system": {
+        "armorBonus": 4,
+        "cost": 5,
+        "costMultipliedBySize": true,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifiers": [],
+        "slug": "",
+        "source": "CRB pg. 297",
+        "specialMaterials": {},
+        "targetLockPenalty": 0,
+        "turnDistancePenalty": 0
+      }
+    },
+    {
+      "_id": "W1XTOdKZSwo5dI4h",
+      "name": "Cargo hold",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 0,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Unconverted expansion bays count as cargo holds. A cargo hold can contain approximately 25 tons of goods, with no item being larger than Large. A starship with multiple cargo holds can hold larger objects; usually 4 contiguous cargo holds are required to hold Huge objects and 8 for Gargantuan objects. These size restrictions can be overridden at the GM’s discretion.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 0,
+        "slug": "",
+        "source": "CRB pg. 300"
+      }
+    },
+    {
+      "_id": "ztgqI5Cf0KwvRjfU",
+      "name": "Cargo hold",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 0,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Unconverted expansion bays count as cargo holds. A cargo hold can contain approximately 25 tons of goods, with no item being larger than Large. A starship with multiple cargo holds can hold larger objects; usually 4 contiguous cargo holds are required to hold Huge objects and 8 for Gargantuan objects. These size restrictions can be overridden at the GM’s discretion.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 0,
+        "slug": "",
+        "source": "CRB pg. 300"
+      }
+    },
+    {
+      "_id": "70gefQHXVp96f64Q",
+      "name": "Smuggler compartment",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 2,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>ASmuggler compartments are cargo holds hidden behind false bulkheads and are shielded from most scanning, allowing a starship equipped with them to haul illegal goods without detection. A smuggler compartment can contain 10 tons of goods, with no item being larger than Medium. A creature on the starship must succeed at a DC 20 Perception check to detect a basic smuggler compartment on the starship. A creature scanning the starship must succeed at a DC 20 Computers check to detect one (this additional check is part of the science officer’s scan action in starship combat; see page 325). For each Build Point spent over the base cost, these DCs increase by 5 (maximum DC 50), though the amount of power the compartment uses also increases by 1.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 4,
+        "slug": "",
+        "source": "CRB pg. 300"
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "BD514",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.shields"
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": 0,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/starfighter.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "attributes": {
+      "hp": {
+        "value": 40
+      },
+      "systems": {
+        "engines": {
+          "affectedRoles": {
+            "pilot": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "lifeSupport": {
+          "affectedRoles": {
+            "captain": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "powerCore": {
+          "affectedRoles": {
+            "captain": true,
+            "chiefMate": true,
+            "engineer": true,
+            "gunner": true,
+            "magicOfficer": true,
+            "minorCrew": true,
+            "openCrew": true,
+            "pilot": true,
+            "scienceOfficer": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "sensors": {
+          "affectedRoles": {
+            "scienceOfficer": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayAft": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayForward": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayPort": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayStarboard": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        }
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "crew": {
+      "captain": {
+        "actorIds": [],
+        "limit": 1
+      },
+      "chiefMate": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "engineer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "gunner": {
+        "actorIds": [],
+        "limit": 0
+      },
+      "magicOfficer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "npcData": {
+        "captain": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "chiefMate": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "engineer": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "gunner": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "magicOfficer": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "pilot": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "scienceOfficer": {
+          "numberOfUses": null,
+          "skills": {}
+        }
+      },
+      "passenger": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "pilot": {
+        "actorIds": [],
+        "limit": 1
+      },
+      "scienceOfficer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "useNPCCrew": false
+    },
+    "currency": {
+      "bp": 0,
+      "upb": 0
+    },
+    "details": {
+      "frame": "",
+      "model": "",
+      "notes": "",
+      "size": "",
+      "tier": 1
+    },
+    "modifiers": [],
+    "quadrants": {
+      "aft": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 10
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "forward": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 10
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "port": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 10
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "starboard": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 10
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      }
+    },
+    "slug": ""
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "U5dLaIc5mkcukiQ4",
+  "name": "Inferno Core",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": null,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 400,
+    "slug": "",
+    "source": "",
+    "specialMaterials": {},
+    "supportedSizes": []
+  }
+}

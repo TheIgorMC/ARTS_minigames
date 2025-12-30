@@ -1,0 +1,84 @@
+{
+  "_id": "ve0FjwKBNY8k4p0X",
+  "name": "Harm Undead",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/harm_undead.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can use your healing channel to harm undead.</p>\n<p><strong>Prerequisites</strong>: @UUID[Compendium.sfrpg.class-features.Item.6N4Us1JeYDGqeWf9]{Healing Channel (Su)} connection power, @UUID[Compendium.sfrpg.classes.Item.bItuvukGHbObTApr]{Mystic} level 1st.</p>\n<hr />\n<p><strong>Benefit</strong>: When you use your @UUID[Compendium.sfrpg.class-features.Item.6N4Us1JeYDGqeWf9]{Healing Channel (Su)} as a full action, you can expend a mystic spell slot of the highest level you can cast to also deal damage equal to the amount you heal to all undead foes in the area. The undead can attempt a Will save for half damage, at your usual connection power DC.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

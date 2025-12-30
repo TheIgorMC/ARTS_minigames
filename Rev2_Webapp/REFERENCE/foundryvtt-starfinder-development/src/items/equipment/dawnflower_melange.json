@@ -1,0 +1,151 @@
+{
+  "_id": "8iI9RbzOe79g6Nxu",
+  "name": "Dawnflower melange",
+  "type": "consumable",
+  "img": "icons/tools/laboratory/powder-red.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "0",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Magic item</h2>\n<p>This warm tea infused with magical spices functions like a serum (Starfinder Core Rulebook 225) and fortifies the mind and spirit when imbibed. Cafes near the Radiant Cathedral are often filled daily with Sarenite clerics enjoying this beverage while talking about the confluence of science and religion. Drinking this brew grants you a +2 insight bonus to Diplomacy, Mysticism, and Physical Science checks for 1 hour, and during that time you can attempt checks to recall knowledge with Mysticism and Physical Science untrained.</p>\n<p><em>Enable/Disable modifiers in the Modifiers tab.</em></p>\n<h3>Serums</h3>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 5,
+    "modifiers": [
+      {
+        "_id": "ed8f2760-fe20-4936-a063-71625927badf",
+        "name": "Dawnflower melange",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Drinking this brew grants you a +2 insight bonus to Diplomacy, Mysticism, and Physical Science checks for 1 hour, and during that time you can attempt checks to recall knowledge with Mysticism and Physical Science untrained.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "dip"
+      },
+      {
+        "_id": "bcbdf1ed-529a-430f-8676-5d95b8a07e00",
+        "name": "Dawnflower melange",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Drinking this brew grants you a +2 insight bonus to Diplomacy, Mysticism, and Physical Science checks for 1 hour, and during that time you can attempt checks to recall knowledge with Mysticism and Physical Science untrained.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "mys"
+      },
+      {
+        "_id": "aa3f7e6d-32c6-47c0-922a-c4c838fbd700",
+        "name": "Dawnflower melange",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Drinking this brew grants you a +2 insight bonus to Diplomacy, Mysticism, and Physical Science checks for 1 hour, and during that time you can attempt checks to recall knowledge with Mysticism and Physical Science untrained.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "phs"
+      }
+    ],
+    "price": 475,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #13 pg. 53",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

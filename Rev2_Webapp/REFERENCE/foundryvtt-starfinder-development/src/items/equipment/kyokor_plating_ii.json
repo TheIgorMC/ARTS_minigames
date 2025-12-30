@@ -1,0 +1,140 @@
+{
+  "_id": "pGK9e40KS7PYrM62",
+  "name": "Kyokor plating II",
+  "type": "equipment",
+  "img": "systems/sfrpg/icons/equipment/armor/kyokor-plating-2.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "armor": {
+      "type": "heavy",
+      "acp": -1,
+      "dex": 4,
+      "eac": 8,
+      "kac": 10,
+      "speedAdjust": -5
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "17"
+      },
+      "hp": {
+        "max": "33",
+        "value": 33
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "upgrade"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "armorUpgrade",
+          "weightProperty": "slots"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Scavengers on Daimalko dare to brave the wastes of their world to gather the enamel-like hulls that kyokors occasionally shed from their crowns. These toothy moltings are enormous, and once they’re retrieved, they require a great deal of effort to grind into plates that can be used to craft armor. Despite this and the dangers of gathering the requisite moltings, suits of kyokor plating are in demand throughout the universe, making collection of the raw materials and subsequent forging into lucrative careers.</p>\n<p>Suits of kyokor plating are tough and surprisingly lightweight for their size, and the moltings’ porous nature makes this armor perfect for the installation of various upgrades and other methods of personalization. Lower-quality suits are fashioned from numerous pieced-together blasted fragments, sacrificing durability for lower cost. High-quality suits are fashioned entirely from sleek, fitted enamel plates, which offer practically unparalleled protection but can be restrictive when it comes to a wearer’s range of motion.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 6,
+    "modifiers": [],
+    "price": 4820,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "reach": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA1 pg. 73",
+    "specialMaterials": {},
+    "speed": "",
+    "strength": 0,
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

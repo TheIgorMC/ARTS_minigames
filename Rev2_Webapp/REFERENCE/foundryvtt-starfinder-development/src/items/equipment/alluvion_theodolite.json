@@ -1,0 +1,136 @@
+{
+  "_id": "pbaCUWdYlqWLeAe1",
+  "name": "Alluvion theodolite",
+  "type": "hybrid",
+  "img": "systems/sfrpg/icons/default/energise.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 8
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "2",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This clockwork precision instrument, often mounted on the bridge of a starship, allows you to glean the distance and direction of Alluvion, the itinerant city in the Drift. While you’re in the Drift, thetheodolitegives you a +4 insight bonus to astrogate to Alluvion (though you must still have received coordinates from some other source).</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 3,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "d1b1c5e3-7af8-4c4a-a33c-9f8550302830",
+        "name": "Alluvion theodolite",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "While you’re in the Drift, the theodolite gives you a +4 insight bonus to astrogate to Alluvion",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "pil"
+      }
+    ],
+    "price": 1750,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 55",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

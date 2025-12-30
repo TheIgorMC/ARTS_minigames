@@ -1,0 +1,1458 @@
+{
+  "_id": "HD5XeafAGoYiyczK",
+  "name": "UC Arkship",
+  "type": "starship",
+  "img": "systems/sfrpg/icons/default/starfighter.svg",
+  "items": [
+    {
+      "_id": "f5fDEgk8GeP4CHcS",
+      "name": "New StarshipFrame",
+      "type": "starshipFrame",
+      "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+      "system": {
+        "cost": null,
+        "crew": {
+          "maximum": 10,
+          "minimum": 10
+        },
+        "damageThreshold": {
+          "base": 0
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "expansionBays": 4,
+        "hitpoints": {
+          "base": 114,
+          "increment": 38
+        },
+        "isPowered": true,
+        "maneuverability": "average",
+        "modifiers": [],
+        "pcu": null,
+        "size": "large",
+        "slug": "",
+        "source": "Paxt Worlds, p.162",
+        "weaponMounts": {
+          "aft": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 1,
+            "spinalSlots": 0
+          },
+          "forward": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 1,
+            "spinalSlots": 0
+          },
+          "port": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 1,
+            "spinalSlots": 0
+          },
+          "starboard": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 1,
+            "spinalSlots": 0
+          },
+          "turret": {
+            "capitalSlots": 0,
+            "heavySlots": 0,
+            "lightSlots": 1,
+            "spinalSlots": 0
+          }
+        }
+      }
+    },
+    {
+      "_id": "hjgauecBwIBzbRwM",
+      "name": "L8 thrusters",
+      "type": "starshipThruster",
+      "img": "systems/sfrpg/icons/default/rocket-thruster.svg",
+      "system": {
+        "cost": 8,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isBooster": false,
+        "isEnabled": true,
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 100,
+        "pilotingModifier": 0,
+        "slug": "",
+        "source": "CRB pg. 297",
+        "specialMaterials": {},
+        "speed": 8,
+        "supportedSize": "large"
+      }
+    },
+    {
+      "_id": "n2TOvsjVBAkk7YdL",
+      "name": "Medium Shields 100",
+      "type": "starshipShield",
+      "img": "systems/sfrpg/icons/default/forward-field.svg",
+      "system": {
+        "armorBonus": 0,
+        "cost": 15,
+        "costMultipliedBySize": false,
+        "defenseValue": 0,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isDeflector": false,
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 30,
+        "regeneration": 4,
+        "shieldPoints": 100,
+        "slug": "",
+        "source": "CRB pg. 302",
+        "targetLockBonus": 0
+      }
+    },
+    {
+      "_id": "EInb7r48Ulytxx1s",
+      "name": "Heavy laser array",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "ac",
+        "attackBonus": 0,
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "class": "heavy",
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "6d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "forward",
+          "mounted": true
+        },
+        "pcu": 15,
+        "range": "short",
+        "slug": "",
+        "source": "CRB pg. 302",
+        "special": {
+          "anchoring": false,
+          "array": true,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": false,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": false,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": false,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 0,
+        "weaponType": "direct"
+      }
+    },
+    {
+      "_id": "YqNxArj7aHj29UKe",
+      "name": "Heavy spore torpedo launcher",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "tl",
+        "attackBonus": 0,
+        "capacity": {
+          "max": 5,
+          "value": 5
+        },
+        "class": "heavy",
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "5d8",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "forward",
+          "mounted": true
+        },
+        "pcu": 10,
+        "range": "medium",
+        "slug": "",
+        "source": "PW pg. 153",
+        "special": {
+          "anchoring": false,
+          "array": false,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": true,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": false,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": true,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 12,
+        "weaponType": "tracking"
+      }
+    },
+    {
+      "_id": "KRSsoq4hAnm68JZR",
+      "name": "Coilgun",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "ac",
+        "attackBonus": 0,
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "class": "light",
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "4d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "port",
+          "mounted": true
+        },
+        "pcu": 10,
+        "range": "long",
+        "slug": "",
+        "source": "CRB pg. 302",
+        "special": {
+          "anchoring": false,
+          "array": false,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": false,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": false,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": false,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 0,
+        "weaponType": "direct"
+      }
+    },
+    {
+      "_id": "O5pJQayqCLDY7vQm",
+      "name": "Coilgun",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "ac",
+        "attackBonus": 0,
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "class": "light",
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "4d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "starboard",
+          "mounted": true
+        },
+        "pcu": 10,
+        "range": "long",
+        "slug": "",
+        "source": "CRB pg. 302",
+        "special": {
+          "anchoring": false,
+          "array": false,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": false,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": false,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": false,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 0,
+        "weaponType": "direct"
+      }
+    },
+    {
+      "_id": "60yKFL9dp5IkCm5G",
+      "name": "Coilgun",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "ac",
+        "attackBonus": 0,
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "class": "light",
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "4d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "aft",
+          "mounted": true
+        },
+        "pcu": 10,
+        "range": "long",
+        "slug": "",
+        "source": "CRB pg. 302",
+        "special": {
+          "anchoring": false,
+          "array": false,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": false,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": false,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": false,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 0,
+        "weaponType": "direct"
+      }
+    },
+    {
+      "_id": "iSzYowgeX1Qw8PDu",
+      "name": "Laser net (+10)",
+      "type": "starshipWeapon",
+      "img": "systems/sfrpg/icons/default/strafe.svg",
+      "system": {
+        "actionTarget": "ac",
+        "attackBonus": 0,
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "class": "light",
+        "cost": 9,
+        "costMultipliedBySize": false,
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "2d6",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "mount": {
+          "arc": "turret",
+          "mounted": true
+        },
+        "pcu": 10,
+        "range": "short",
+        "slug": "",
+        "source": "CRB pg. 302",
+        "special": {
+          "anchoring": false,
+          "array": false,
+          "automated": false,
+          "broad": false,
+          "bugging": false,
+          "burrowing": false,
+          "buster": false,
+          "connecting": false,
+          "deathField": false,
+          "deployed": false,
+          "drone": false,
+          "emp": false,
+          "flakArea": false,
+          "forceField": false,
+          "gravityTether": false,
+          "gravityWell": false,
+          "hacking": false,
+          "immobilize": false,
+          "intimidating": false,
+          "irradiateH": false,
+          "irradiateL": false,
+          "irradiateM": false,
+          "jamming": false,
+          "limited": false,
+          "line": false,
+          "mine": false,
+          "mystical": false,
+          "navScram": false,
+          "numbing": false,
+          "orbital": false,
+          "pod": false,
+          "point": true,
+          "quantum": false,
+          "radiant": false,
+          "rail": false,
+          "ramming": false,
+          "redirect": false,
+          "restricted": false,
+          "ripper": false,
+          "scatterscan": false,
+          "smart": false,
+          "smoldering": false,
+          "spore": false,
+          "suspending": false,
+          "sustained": false,
+          "teleportation": false,
+          "tractor": false,
+          "transposition": false,
+          "vandalDrones": false,
+          "volatile": false,
+          "vortex": false
+        },
+        "specialMaterials": {},
+        "speed": 0,
+        "weaponType": "direct"
+      }
+    },
+    {
+      "_id": "DpkwkMLIywB0VPF2",
+      "name": "Pulse Orange",
+      "type": "starshipPowerCore",
+      "img": "systems/sfrpg/icons/default/power-generator.svg",
+      "system": {
+        "cost": 25,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifiers": [],
+        "pcu": 250,
+        "slug": "",
+        "source": "CRB pg. 296",
+        "specialMaterials": {},
+        "supportedSizes": [
+          "small",
+          "medium",
+          "large"
+        ]
+      }
+    },
+    {
+      "_id": "qZsAU5MYjeJK70t1",
+      "name": "Signal Booster",
+      "type": "starshipDriftEngine",
+      "img": "systems/sfrpg/icons/default/star-gate.svg",
+      "system": {
+        "cost": 5,
+        "costMultipliedBySize": true,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "engineRating": 2,
+        "isPowered": true,
+        "maxSize": "huge",
+        "modifiers": [],
+        "pcu": 100,
+        "slug": "",
+        "source": "CRB pg. 298"
+      }
+    },
+    {
+      "_id": "i2H2ryZICyYrc7UN",
+      "name": "Advanced medium-range sensors",
+      "type": "starshipSensor",
+      "img": "systems/sfrpg/icons/default/radar-dish.svg",
+      "system": {
+        "cost": 8,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifier": 4,
+        "modifiers": [],
+        "range": "medium",
+        "slug": "",
+        "source": "CRB pg. 301",
+        "specialMaterials": {}
+      }
+    },
+    {
+      "_id": "F10tPFj5Utf7OJmH",
+      "name": "Common crew quarters",
+      "type": "starshipCrewQuarter",
+      "img": "systems/sfrpg/icons/default/bunk-beds.svg",
+      "system": {
+        "cost": null,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Common crew quarters are the most basic type. They consist of simple bunks (sometimes folding out from the side of a hallway) or other similarly austere places to rest. Crew members who sleep in common quarters usually keep their personal possessions in a footlocker. Common crew quarters also include a communal bathroom (which includes a military-style shower) and a tiny galley (big enough to prepare only the most basic of meals). Starships with crews numbering in the dozens or hundreds often have massive barracks where crew members sleep in shifts .</p>"
+        },
+        "modifiers": [],
+        "slug": "",
+        "source": "CRB pg. 298"
+      }
+    },
+    {
+      "_id": "prbQ7LgI3PSGcPED",
+      "name": "Mk 2 tetranode",
+      "type": "starshipComputer",
+      "img": "systems/sfrpg/icons/default/server-rack.svg",
+      "system": {
+        "cost": 16,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifier": 2,
+        "modifiers": [],
+        "nodes": 4,
+        "pcu": 15,
+        "slug": "",
+        "source": "CRB pg. 297"
+      }
+    },
+    {
+      "_id": "j8qviqKqq8U3EO5m",
+      "name": "Mk 6 defenses",
+      "type": "starshipDefensiveCountermeasure",
+      "img": "systems/sfrpg/icons/default/bubble-field.svg",
+      "system": {
+        "cost": 11,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 5,
+        "slug": "",
+        "source": "CRB pg. 297",
+        "specialMaterials": {},
+        "targetLockBonus": 6
+      }
+    },
+    {
+      "_id": "dLwbgNzQBeRpQAtT",
+      "name": "Mk 9 armor",
+      "type": "starshipArmor",
+      "img": "systems/sfrpg/icons/default/metal-scales.svg",
+      "system": {
+        "armorBonus": 9,
+        "cost": 18,
+        "costMultipliedBySize": true,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "modifiers": [],
+        "slug": "",
+        "source": "CRB pg. 297",
+        "specialMaterials": {},
+        "targetLockPenalty": 0,
+        "turnDistancePenalty": 1
+      }
+    },
+    {
+      "_id": "fvluQ3E1DW5daQc7",
+      "name": "Cargo hold",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 0,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Unconverted expansion bays count as cargo holds. A cargo hold can contain approximately 25 tons of goods, with no item being larger than Large. A starship with multiple cargo holds can hold larger objects; usually 4 contiguous cargo holds are required to hold Huge objects and 8 for Gargantuan objects. These size restrictions can be overridden at the GM’s discretion.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 0,
+        "slug": "",
+        "source": "CRB pg. 300"
+      }
+    },
+    {
+      "_id": "OwpdxLYn0ztLCVZT",
+      "name": "Cargo hold",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 0,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Unconverted expansion bays count as cargo holds. A cargo hold can contain approximately 25 tons of goods, with no item being larger than Large. A starship with multiple cargo holds can hold larger objects; usually 4 contiguous cargo holds are required to hold Huge objects and 8 for Gargantuan objects. These size restrictions can be overridden at the GM’s discretion.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 0,
+        "slug": "",
+        "source": "CRB pg. 300"
+      }
+    },
+    {
+      "_id": "zPNQgm15lrGU3Rxs",
+      "name": "Hive Bay",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Xenowarden capital ships have the ability to launch pod ships to use as shuttles or other short-range vessels. A hive bay can launch up to two pod ships. For each pod launched in this way, the arkship loses 15 Hull Points and takes a –2 penalty to its AC and TL, and all crew actions take a –2 penalty. As long as the capital ship has an unoccupied slot in a hive bay, it can reabsorb a pod ship to regain these Hull Points and negate the penalties. If the pod returns damaged, the capital vessel regains 1 fewer Hull Point for every 2 points of Hull Point damage taken by the pod ship. The penalties are negated regardless of the pod ship’s condition.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 5,
+        "slug": "",
+        "source": "PW pg. 153"
+      }
+    },
+    {
+      "_id": "YjDfO2eCLFf4O2nQ",
+      "name": "Hive Bay",
+      "type": "starshipExpansionBay",
+      "img": "systems/sfrpg/icons/default/cardboard-box-closed.svg",
+      "system": {
+        "cost": 10,
+        "costMultipliedBySize": false,
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Xenowarden capital ships have the ability to launch pod ships to use as shuttles or other short-range vessels. A hive bay can launch up to two pod ships. For each pod launched in this way, the arkship loses 15 Hull Points and takes a –2 penalty to its AC and TL, and all crew actions take a –2 penalty. As long as the capital ship has an unoccupied slot in a hive bay, it can reabsorb a pod ship to regain these Hull Points and negate the penalties. If the pod returns damaged, the capital vessel regains 1 fewer Hull Point for every 2 points of Hull Point damage taken by the pod ship. The penalties are negated regardless of the pod ship’s condition.</p>"
+        },
+        "isPowered": true,
+        "modifiers": [],
+        "pcu": 5,
+        "slug": "",
+        "source": "PW pg. 153"
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "UC Arkship",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.shields"
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": 0,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/starfighter.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "attributes": {
+      "hp": {
+        "value": 190
+      },
+      "systems": {
+        "engines": {
+          "affectedRoles": {
+            "pilot": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "lifeSupport": {
+          "affectedRoles": {
+            "captain": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "powerCore": {
+          "affectedRoles": {
+            "captain": true,
+            "chiefMate": true,
+            "engineer": true,
+            "gunner": true,
+            "magicOfficer": true,
+            "minorCrew": true,
+            "openCrew": true,
+            "pilot": true,
+            "scienceOfficer": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "sensors": {
+          "affectedRoles": {
+            "scienceOfficer": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayAft": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayForward": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayPort": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        },
+        "weaponsArrayStarboard": {
+          "affectedRoles": {
+            "gunner": true
+          },
+          "patch": "unpatched",
+          "value": "nominal"
+        }
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "crew": {
+      "captain": {
+        "actorIds": [],
+        "limit": 1
+      },
+      "chiefMate": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "engineer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "gunner": {
+        "actorIds": [],
+        "limit": 5
+      },
+      "magicOfficer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "npcData": {
+        "captain": {
+          "numberOfUses": 1,
+          "skills": {
+            "com": {
+              "mod": 23,
+              "ranks": 10
+            },
+            "dip": {
+              "mod": 24,
+              "ranks": 10
+            },
+            "int": {
+              "mod": 19,
+              "ranks": 10
+            },
+            "pil": {
+              "mod": 19,
+              "ranks": 10
+            }
+          }
+        },
+        "chiefMate": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "engineer": {
+          "numberOfUses": 1,
+          "skills": {
+            "eng": {
+              "mod": 24,
+              "ranks": 10
+            }
+          }
+        },
+        "gunner": {
+          "numberOfUses": 3,
+          "skills": {
+            "gun": {
+              "mod": 21,
+              "ranks": 10
+            }
+          }
+        },
+        "magicOfficer": {
+          "numberOfUses": null,
+          "skills": {}
+        },
+        "pilot": {
+          "numberOfUses": 1,
+          "skills": {
+            "pil": {
+              "mod": 24,
+              "ranks": 10
+            }
+          }
+        },
+        "scienceOfficer": {
+          "numberOfUses": 1,
+          "skills": {
+            "com": {
+              "mod": 28,
+              "ranks": 10
+            }
+          }
+        }
+      },
+      "passenger": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "pilot": {
+        "actorIds": [],
+        "limit": 1
+      },
+      "scienceOfficer": {
+        "actorIds": [],
+        "limit": -1
+      },
+      "useNPCCrew": true
+    },
+    "currency": {
+      "bp": 0,
+      "upb": 0
+    },
+    "details": {
+      "frame": "",
+      "model": "",
+      "notes": "",
+      "size": "",
+      "tier": 10
+    },
+    "modifiers": [],
+    "quadrants": {
+      "aft": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 25
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "forward": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 25
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "port": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 25
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      },
+      "starboard": {
+        "ablative": {
+          "max": null,
+          "value": null
+        },
+        "ac": {
+          "misc": 0,
+          "value": 10
+        },
+        "shields": {
+          "value": 25
+        },
+        "targetLock": {
+          "misc": 0,
+          "value": 10
+        }
+      }
+    },
+    "slug": ""
+  }
+}

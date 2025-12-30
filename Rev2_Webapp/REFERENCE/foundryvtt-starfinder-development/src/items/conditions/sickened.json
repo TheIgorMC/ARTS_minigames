@@ -1,0 +1,132 @@
+{
+  "_id": "ZacF0l6IwqBwToTJ",
+  "name": "Sickened",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/sickened.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": "turn",
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You take a –2 penalty to attack rolls, weapon damage rolls, saving throws, skill checks, and ability checks.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "2fc698d6-583b-4b2c-8a0a-8b010e5693b9",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      },
+      {
+        "_id": "d166bec9-923e-4f17-a003-c95bb250ab9f",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "melee-damage",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Sickened",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "286f24d9-87a4-4f71-b5a5-24ad173dfff5",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ranged-damage",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "1352632d-7757-42f3-a617-07c71c7f1085",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-skills",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "216669b5-ea43-45df-8abf-51f8695ebbd3",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "saves",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "454009d9-f668-4fef-ab5c-bce54271cc6e",
+        "name": "Sickened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-checks",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Sickened",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "sickened",
+    "source": "CRB.277",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

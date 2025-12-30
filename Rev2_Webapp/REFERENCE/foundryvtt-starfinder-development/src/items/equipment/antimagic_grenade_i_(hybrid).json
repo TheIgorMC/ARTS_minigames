@@ -1,0 +1,161 @@
+{
+  "_id": "qPdHTVcuu9HE0vpc",
+  "name": "Antimagic grenade I (Hybrid)",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/smoke-grenade.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "ac5",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "sphere",
+      "units": "ft",
+      "value": "20"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 90
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 15,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "<p>Nicknamed the “hole-maker,” this raw thasteron-packed&nbsp;explosive is a favored room-clearing device for special&nbsp;forces.</p>",
+      "unidentified": "",
+      "value": "<p>An antimagic grenade creates a temporary field that inhibits magic in its radius. Upon detonation, everything in the grenade’s radius is affected by an area dispel as @UUID[Compendium.sfrpg.spells.Item.1FfFraWlxCu1L4rL]{Dispel Magic, Greater}, using the grenade’s item level as the caster level. Second, each creature in the explosion radius must make a Will save each time they attempt to cast a spell or use a spell-like ability for a number of rounds equal to the grenade’s model number, or lose the spell or spell-like ability. A creature, object, or area can be affected by only one antimagic grenade every 24 hours.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 15,
+    "modifiers": [],
+    "price": 27500,
+    "proficient": false,
+    "properties": {
+      "explode": {
+        "extension": "",
+        "value": true
+      },
+      "hybrid": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "will",
+      "dc": "(10 + floor(@item.level / 2) + @abilities.dex.mod)",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 51",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": "Staggered"
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    },
+    "weaponCategory": "shock",
+    "weaponType": "grenade"
+  }
+}

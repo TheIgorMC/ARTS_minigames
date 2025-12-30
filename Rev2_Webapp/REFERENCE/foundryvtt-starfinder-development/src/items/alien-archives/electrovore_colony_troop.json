@@ -1,0 +1,884 @@
+{
+  "_id": "Lt9vH1WlPGvv7I64",
+  "name": "Electrovore Colony Troop",
+  "type": "npc2",
+  "folder": "i7hAUZpyngSltKPf",
+  "img": "systems/sfrpg/icons/default/alien-stare.svg",
+  "items": [
+    {
+      "_id": "mjFzr9kbXxKWFFeG",
+      "name": "Electrical Field (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "util",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>On its turn, an electrovore colony can spend 1 Resolve Point to energize its troop attack with electricity. When it does, its reach increases to 10 feet for 1 round and its troop attack deals bludgeoning and electricity damage. A creature that takes electricity damage from this attack must succeed at a DC 16 Reflex save or be @UUID[Compendium.sfrpg.conditions.Item.aAQ6SW6iK0EVq8Ce]{staggered} for 1 round.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "reflex",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "V0xJLcnTtpzUH0QK",
+      "name": "Troop Defenses (Ex)",
+      "type": "feat",
+      "img": "icons/environment/people/infantry-army.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Troops take damage from attacks differently depending on how the attack targets them.</p>\n<p>A troop takes half damage from attacks that effect a single target (such as shot from a semi-auto pistol). A troop is immune to effects that target a specific number of creatures (including single-target spells and multiple-target spells such as <em>haste</em>).</p>\n<p>A troop takes half again as much damage (+50%) from effects that affect all targets in an area, such as grenades, blast and explode weapons, and many evocation spells.</p>\n<p>A troop takes normal damage from an attack or effect that affects multiple targets (including lines and fully automatic mode attacks). For the purposes of the automatic weapon special property, a troop counts as five targets. For example, if an automatic attack is made using 12 rounds of ammunition, the attack affects a maximum of six targets, so it can damage a troop normally. However, if two other targets are closer to the attacker than the troop, they must be attacked first, leaving only four attacks to target the troop, so the troop takes no damage.</p>\n<p><em>Format</em>:<strong>Defensive Abilities</strong> troop defenses.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "universalCreatureRule",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "AP #21 pg. 61",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "IRvILLvtPQ7F0vXM",
+      "name": "Troop Immunities (Ex)",
+      "type": "feat",
+      "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Troops are immune to the following effects, unless the effect specifies it works against swarms or troops.</p>\n<ul>\n<li>@UUID[Compendium.sfrpg.conditions.XgK4EdO5D3Fj3iWz]{Pinned}, @UUID[Compendium.sfrpg.conditions.XeRGqHVtcZ7vsgJ0]{Prone}, @UUID[Compendium.sfrpg.conditions.aAQ6SW6iK0EVq8Ce]{Staggered}, and @UUID[Compendium.sfrpg.conditions.CvsDp0GvojxiF2jz]{Stunned}.</li>\n<li>Combat maneuvers—a troop can’t be subject to combat maneuvers, unless it’s affected by area effects that include such effects or the troop’s description says otherwise.</li>\n<li>Flanking—troops are unflankable.</li>\n<li>Dying—a troop reduced to 0 Hit Points breaks up and is effectively destroyed, though individual members of it might survive.</li>\n</ul>\n<p><em>Format</em>: <strong>Immunities</strong> troop immunities.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "universalCreatureRule",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "AP #21 pg. 61",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "fm4HziJ4N5ryUwvA",
+      "name": "Troop Attack (Ex)",
+      "type": "feat",
+      "img": "icons/environment/people/charge.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d10+13",
+              "group": 0,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            },
+            {
+              "name": "",
+              "formula": "1d10+13",
+              "group": 0,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": true,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>The creature doesn’t make standard melee attacks. Instead, it deals automatic damage to any creature within its reach or whose space it occupies at the end of its turn, with no attack roll needed. A troop threatens all creatures within its reach or within its area and resolves attacks of opportunity by dealing automatic troop damage to any foe in reach that provokes an attack of opportunity. A troop is still limited to making one such attack per round unless stated otherwise. A troop can perform grapple and sunder combat maneuvers, but no other combat maneuvers, unless the troop’s description states otherwise.</p>\n<p><em>Format</em>:<strong>Melee</strong> troop attack (1d4+10 P).</p>\n<p><em>Guidelines</em>: To determine the amount of damage a troop of CR 6 or lower deals with its troop attack, use the dice value listed for CR 6 in the Melee Damage, Three Attacks column on its appropriate array table (see pages 129–132 of Alien Archive), lowering the additional damage added to the dice value to match the additional damage of its actual CR and adding its Strength modifier as normal. For creatures of all other CRs, use the damage listed in the Melee Damage, Four Attacks entry for its CR in the corresponding array table.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "universalCreatureRule",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "AP #21 pg. 61",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "Electrovore Colony Troop",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.rp"
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 0.75,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 60,
+      "saturation": -1,
+      "visionMode": "lowLightVisionDarkvision"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/alien-stare.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": -1
+      },
+      "con": {
+        "base": 3
+      },
+      "dex": {
+        "base": 6
+      },
+      "int": {
+        "base": -4
+      },
+      "str": {
+        "base": 4
+      },
+      "wis": {
+        "base": 2
+      }
+    },
+    "attributes": {
+      "abilityDC": {
+        "base": 16
+      },
+      "arms": 2,
+      "baseSpellDC": {
+        "base": 0
+      },
+      "eac": {
+        "base": 22
+      },
+      "fort": {
+        "base": 13
+      },
+      "hp": {
+        "max": 165,
+        "temp": null,
+        "value": 165
+      },
+      "init": {
+        "value": 8
+      },
+      "kac": {
+        "base": 24
+      },
+      "reach": "5 ft.",
+      "reflex": {
+        "base": 13
+      },
+      "rp": {
+        "max": 4,
+        "value": 4
+      },
+      "space": "20 ft.",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 30,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 30
+        },
+        "mainMovement": "land",
+        "special": "",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "base": 8
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 0,
+      "upb": 0
+    },
+    "details": {
+      "type": "Magical Beast",
+      "alignment": "N",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<h2>Description</h2>\n<p>Electrovores breed rapidly, quickly overwhelming starships or space stations if left unchecked. Ordinarily these skittish creatures hide in a starship’s crawlspaces and fight only in self-defense, but a colony that lives without harassment for a prolonged time may eventually come to think of its regular feeding area as its territory. Because starship power cores and maintenance areas are often close, confined spaces, colonies discovered there often fill all available space, defending their home in a single, writhing unit.</p>\n<h2>Electrovores</h2>\n<p>Native to the wild planet of Verlorr, electrovores were on the verge of extinction as increased volcanic activity led to their swampy habitat’s disappearance, and along with it the three-headed electric eels that provided them sustenance. When explorers from the Pact Worlds first arrived on Verlorr 2 decades ago, however, electrovores were given a new lease on life, as the travelers came on massive metal vessels coursing with the very nourishment the beasts sought. A few crept on board the various ships, and since then, “conduit rats” (as some spacefarers refer to them) have quickly multiplied, forming colonies of varying sizes everywhere from @UUID[Compendium.sfrpg.setting.Item.hepqXl6gFvs5sDQu]{Absalom Station} to the farthest reaches of the Vast.</p>\n<p>An electrovore gains sustenance not from ingesting biological material but from the electrical currents that pulse through both mechanical devices and organic creatures. Xenobiologists have shown evidence that an electrovore’s internal organs are unlike those of a normal animal-it has no stomach, no intestines, and no liver. Instead, every cell of the creature acts as a tiny battery, providing the necessary impulses to move its muscles and power brain functions. In essence, an electrovore is composed almost entirely of nervous system. The creatures have quickly adapted to the artificial habitats of starships and space stations that course with their nourishment.</p>\n<p>With a serpentine body covered in sparking spines and sprouting a pair of leathery wings, a typical electrovore is 3 feet long and weighs 25 pounds. An electrovore has three bright-blue visual sensors: two flanking its head and one situated on the bridge of its snout. Its wide mouth is full of sharp teeth, but it rarely uses them in combat, instead employing them to chew through wire casings. An electrovore prefers to slap and sting with its barbed tail when on the hunt.</p>\n<p>A single electrovore poses little immediate threat to a starship or space station, but two or more reproduce at an alarming rate and can quickly overrun even the most experienced and best-equipped engineering team. The first signs of an electrovore infestation are usually power fluctuations in a remote, rarely traveled portion of a ship or decks already under repair or construction, but such deviations can be the result of anything from cosmic rays to a loose coupling or power being diverted to other systems. A gnawed cable or severed connector is generally the next indication of an electrovore’s presence, but by then there are likely dozens and dozens of the creatures throughout the ship’s crawlways, in its walls, and beneath its floors out of sight.</p>\n<p>In their new habitats, electrovores are incredibly fecund, doubling in number in 1d6+5 weeks (assuming there are two or more to begin with). If left unchecked, a handful of the creatures on a space station or large ship can eventually overwhelm the crew’s capacity to deal with them. As such, malicious space pirates and saboteurs sometimes release a pair of electrovores into a closed environment to disable their enemies’ vessels, distract from other threats or operations, or sink the economic or resale value of commercial operations or salvaged ships. However, the electrovores just as often disable the ships of these pirates and saboteurs, making this a risky and unreliable tactic.</p>\n<p>In addition to the direct damage an electrovore colony can deal to a ship’s infrastructure, it can also wreak havoc on the vessel’s systems when threatened. Full of siphoned electrical energy, a startled or cornered electrovore discharges this stored potential, often resulting in even more damage to computer systems and organic matter than the creature could normally manage in twice the time. Luckily, it takes some time for an electrovore to gather enough energy to perform this devastating attack.</p>\n<p>Larger starships generally have enough redundancies built into their construction that it takes much longer for electrovore infestations to disable their key systems, though a sizable enough colony of the creatures can unleash incredible destruction in a surprisingly short amount of time in the right conditions. Even a starship with one electrovore on it is in danger of eventually being incapacitated. For each period of time for each size of starship listed in the table below, one of the vessel’s systems (determined randomly) takes critical damage (Starfinder Core Rulebook 321). Of course, the more electrovores infesting a vessel, the faster they disable its systems, though it takes a minimum of 1 day for a starship to take a critical damage effect in this way.</p>\n<table style=\"width:98.7097%;margin-left:auto;margin-right:auto\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:31.9367%;text-align:center\"><strong>Starship Size</strong></td>\n<td style=\"width:66.974%;text-align:center\"><strong>Time</strong></td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Tiny</td>\n<td style=\"width:66.974%;text-align:center\">1d6 days - 1 day/2 electrovores</td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Small</td>\n<td style=\"width:66.974%;text-align:center\"><span style=\"background-color:rgba(255, 255, 255, 0.2)\">2d6 days - 1 day/3 electrovores</span></td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Medium</td>\n<td style=\"width:66.974%;text-align:center\">2d10 days - 1 day/6 electrovores</td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Large</td>\n<td style=\"width:66.974%;text-align:center\"><span style=\"background-color:rgba(255, 255, 255, 0.2)\">4d8 days - 1 day/12 electrovores</span></td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Huge</td>\n<td style=\"width:66.974%;text-align:center\">6d10 days - 1 day/30 electrovores</td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Gargantuan</td>\n<td style=\"width:66.974%;text-align:center\"><span style=\"background-color:rgba(255, 255, 255, 0.2)\">3d12 weeks - 1 week/50 electrovores</span></td>\n</tr>\n<tr>\n<td style=\"width:31.9367%;text-align:center\">Colossal</td>\n<td style=\"width:66.974%;text-align:center\">4d6 months - 1 month/100 electrovores</td>\n</tr>\n</tbody>\n</table>",
+        "weight": ""
+      },
+      "combatRole": "combatant",
+      "cr": 9,
+      "environment": "any",
+      "organization": "solitary",
+      "organizationSize": {
+        "max": null,
+        "min": 1
+      },
+      "raceAndGrafts": "",
+      "source": "AP #38 pg. 61",
+      "subtype": "Troop"
+    },
+    "modifiers": [],
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "com": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "traits": {
+      "ci": {
+        "custom": "Troop Immunities",
+        "value": []
+      },
+      "di": {
+        "custom": "Troop Immunities",
+        "value": [
+          "electricity"
+        ]
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "",
+        "value": []
+      },
+      "senses": "darkvision 60 ft., low-light vision",
+      "size": "small",
+      "sr": 0
+    }
+  }
+}

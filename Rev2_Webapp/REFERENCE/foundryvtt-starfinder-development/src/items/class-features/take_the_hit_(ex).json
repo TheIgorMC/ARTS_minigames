@@ -1,0 +1,85 @@
+{
+  "_id": "gtTcle04s9rpo3ow",
+  "name": "Take The Hit (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>Not only are you ready to risk yourself to protect others—your sacrifice also inspires your companion. You gain @UUID[Compendium.sfrpg.feats.Item.1auTCZ8OB64XqXcZ]{Bodyguard} as a bonus feat. If you already have Bodyguard, you instead gain @UUID[Compendium.sfrpg.feats.Item.zOvuXKOIFXBJIMT6]{In Harm’s Way} as a bonus feat. If you use In Harm’s Way to intercept an attack that then reduces you to 0 Hit Points, you grant the attack’s original target a +1 morale bonus to AC, attack rolls, saving throws, and skill checks, as well as a number of temporary Hit Points equal to your envoy level + your Charisma modifier ([[@classes.envoy.levels+@abilities.cha.mod]]). These benefits last for a number of rounds equal to your Charisma modifier or until you regain consciousness, whichever happens first.</p>\n<p>@UUID[Compendium.sfrpg.effects.Item.ws6vs3mekUtLZ1Ny]{Effect: Take the Hit (Ex)}</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "round",
+      "value": "@abilities.cha.mod"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "5"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "1st Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS pg. 22",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

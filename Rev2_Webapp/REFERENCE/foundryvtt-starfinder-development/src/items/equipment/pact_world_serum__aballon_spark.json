@@ -1,0 +1,117 @@
+{
+  "_id": "9EAsxi1qfE9Ff8rc",
+  "name": "Pact World Serum,  Aballon Spark",
+  "type": "consumable",
+  "img": "systems/sfrpg/icons/equipment/magic%20items/serum-lingo.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "475",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This cool, sparkling fluid grants you a +2 insight bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.IqOCYDKd9NgBwowp]{Computers} checks, and you can attempt checks with this skill untrained. Once while this serum is in effect, you can be healed by make whole or mending as though you were a construct.</p>\n<p><em>Enable/Disable modifiers in the Modifiers tab.</em></p>\n<h2><strong>Serums</strong></h2>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "6e35f832-2cbf-4902-98ad-4af7acbb0a60",
+        "name": "Pact World Serum,  Aballon Spark",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "This cool, sparkling fluid grants you a +2 insight bonus to Computers checks, and you can attempt checks with this skill untrained. Once while this serum is in effect, you can be healed by make whole or mending as though you were a construct.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "com"
+      }
+    ],
+    "price": 5,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "PW, p. 201",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

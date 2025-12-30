@@ -1,0 +1,135 @@
+{
+  "_id": "c56EXdD7rpsumTr5",
+  "name": "Geckopad Gloves",
+  "type": "technological",
+  "img": "systems/sfrpg/icons/equipment/magic%20items/reckless-gloves.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>These subtle yet stylish black gloves have fingers tipped in a complex microscopic texture that mimics the setae of a gecko’s foot pads, allowing you to adhere to most small objects with ease. When you wear a pair of geckopad gloves, you gain a +2 circumstance bonus to Sleight of Hand checks to palm an object, and you reduce the DC of Sleight of Hand checks to pick pockets by 5.</p>\n<p>You must be wearing both gloves to gain their benefits, but they don’t prevent you from holding other objects or wielding weapons with those hands. Geckopad gloves don’t require a battery to function.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": false,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "74bc7b8b-a68f-46ee-a1cc-ecbf008aa3a5",
+        "name": "palm object check",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "When you wear a pair of geckopad gloves, you gain a +2 circumstance bonus to Sleight of Hand checks to palm an object, and you reduce the DC of Sleight of Hand checks to pick pockets by 5.\nYou must be wearing both gloves to gain their benefits, but they don’t prevent you from holding other objects or wielding weapons with those hands. Geckopad gloves don’t require a battery to function.",
+        "source": "Geckopad Gloves",
+        "subtab": "misc",
+        "valueAffected": "sle"
+      }
+    ],
+    "price": 325,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #15 pg. 52",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

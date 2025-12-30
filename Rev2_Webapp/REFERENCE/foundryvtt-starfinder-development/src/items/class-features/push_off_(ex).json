@@ -1,0 +1,102 @@
+{
+  "_id": "FhZUlEJI298tVkQh",
+  "name": "Push Off (Ex)",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-winged-sandals-tan.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.Dysu4F8licjEb2FY]{Vanguard Discipline}</p>\n<p>When you use Athletics to jump, you are always treated as having a 10-foot running start. You gain a bonus to Athletics checks to jump equal to any attack roll bonuses you have that specifically apply to resolving bull rush combat maneuvers. You must have @UUID[Compendium.sfrpg.feats.Item.0Pq35gvSI2JlD682]{Improved Combat Maneuver (Combat)} (bull rush) to select this vanguard discipline.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "39dde576-15c8-40a0-a889-6b8512d67e89",
+        "name": "Push Off - Jump",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "You gain a bonus to Athletics checks to jump equal to any attack roll bonuses you have that specifically apply to resolving bull rush combat maneuvers.",
+        "source": "Push Off",
+        "subtab": "misc",
+        "valueAffected": "ath"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "6th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 30",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

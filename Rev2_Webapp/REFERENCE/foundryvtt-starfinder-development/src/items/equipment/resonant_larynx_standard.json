@@ -1,0 +1,129 @@
+{
+  "_id": "JPUR31jeb0sSi7wR",
+  "name": "Resonant larynx, standard",
+  "type": "augmentation",
+  "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+  "system": {
+    "type": "magitech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "spread",
+      "shapable": false,
+      "shape": "cone",
+      "units": "ft",
+      "value": "30"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "5d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": true
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The resonant larynx augmentation is a small resonating crystal in your throat that can amplify your voice to deafening levels. As a standard action, you can activate the resonant larynx to unleash an ear-piercing shriek in a 30-foot cone-shaped spread that doesn’t harm you. Each creature in the area must attempt a Fortitude saving throw (DC = 10 + half your level + your Constitution modifier). On a failure, a creature takes 5d6 sonic damage (or 10d6 for the advanced model) and is @UUID[Compendium.sfrpg.conditions.Item.D8JvCEmOiWKe2UDx]{deafened} for [[/r 2d4]]{2d4 rounds}. If a creature succeeds at the saving throw, it takes half the damage and is deafened for only 1 round. Once you have used your resonant larynx, you can’t use it again until you’ve taken a 10-minute rest that would allow you to regain Stamina Points. However, you can spend 1 Resolve Point at any time to recharge the augmentation immediately.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "modifiers": [],
+    "price": 4400,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "10 + floor(@details.level.value / 2) + @abilities.con.mod",
+      "descriptor": "partial"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #8 pg. 45",
+    "system": "throat",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

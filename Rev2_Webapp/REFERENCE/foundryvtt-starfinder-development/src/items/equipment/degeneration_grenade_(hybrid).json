@@ -1,0 +1,194 @@
+{
+  "_id": "0dQZq8Eu9bFkpfwK",
+  "name": "Degeneration grenade (Hybrid)",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+  "system": {
+    "ability": "str",
+    "actionTarget": "ac5",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "burst",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": "5"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "see text",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 18,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": [
+        {
+          "name": "",
+          "formula": "",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ]
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "11d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": true,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": true,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Degeneration grenades were standard equipment among sivv soldiers. They create a powerful degeneration wave that affects creatures and objects at the subatomic level. Creatures caught in the explosion of a degeneration grenade must attempt a Fortitude saving throw as their cells begin to collapse; on a failure, the creature takes 5d6 fire damage at the beginning of each of their turns and is fatigued. At the end of each of their turns, the creature can attempt a new Fortitude save to end this effect with a cumulative +1 bonus.</p>"
+    },
+    "duration": {
+      "units": "round",
+      "value": "3"
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "+5d6 Fire",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 17,
+    "modifiers": [],
+    "price": 40000,
+    "proficient": true,
+    "properties": {
+      "analog": {
+        "extension": "",
+        "value": true
+      },
+      "explode": {
+        "extension": "",
+        "value": true
+      },
+      "hybrid": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #33 pg. 48",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "grenade"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "_id": "AapfntgNZhHczxoh",
+  "name": "Transplanar gluon blade, ethereal",
+  "type": "hybrid",
+  "img": "systems/sfrpg/icons/default/energise.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 50
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Occasionally, abductees manage to escape from grays with atransplanar gluon blade. It resembles a standard box cutter consisting of a plump, hard plastic handle with a short blade that extends out the top while depressing a button, retracted rapidly by a simple spring. Once per day, you can spend 1 minute concentrating with the blade to subtly work it between the seams of reality and cut open a portal to its linked transitive plane. Atransplanar gluon bladedoesn’t function if not on the Material Plane or its linked transitive plane. Portals created with the blade close after 1d4 rounds.</p>\n<p><strong>Ethereal (Level 15):</strong> You cut open a portal between the Material Plane and the Ethereal Plane.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 15,
+    "limitedWear": false,
+    "modifiers": [],
+    "price": 135000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 55",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "day",
+      "value": 1
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

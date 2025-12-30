@@ -1,0 +1,136 @@
+{
+  "_id": "8RDTclpkGA71gvHA",
+  "name": "Starstone Compass",
+  "type": "hybrid",
+  "img": "systems/sfrpg/icons/default/energise.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This small, clockwork navigational device hones in on mystical signals emitted by the&nbsp;Starstone&nbsp;resting at the heart of @UUID[Compendium.sfrpg.setting.Item.hepqXl6gFvs5sDQu]{Absalom Station}, calculating the compass’s precise distance from and direction relative to the enigmatic font. While you are in the Pact Worlds system, this device lets you automatically know which direction @UUID[Compendium.sfrpg.setting.Item.hepqXl6gFvs5sDQu]{Absalom Station} is in relation to your current location, and it grants you a +2 insight bonus to Piloting checks when astrogating throughout the Pact Worlds system.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": false,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 1,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "8bb6301b-d60f-4aac-8128-53a54d121573",
+        "name": "Starstone Compass",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "While you are in the Pact Worlds system, this device lets you automatically know which direction  Absalom Station is in relation to your current location, and it grants you a +2 insight bonus to Piloting checks when astrogating throughout the Pact Worlds system.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "pil"
+      }
+    ],
+    "price": 3,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 226",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

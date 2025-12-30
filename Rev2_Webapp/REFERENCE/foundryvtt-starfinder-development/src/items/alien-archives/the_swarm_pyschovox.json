@@ -1,0 +1,931 @@
+{
+  "_id": "DfYwQzHDgZFoGQLv",
+  "name": "The Swarm, Pyschovox",
+  "type": "npc2",
+  "folder": "6ND7QPXmoGl6zL0n",
+  "img": "systems/sfrpg/icons/default/alien-stare.svg",
+  "items": [
+    {
+      "_id": "0a6yfvUn5sYUE80A",
+      "name": "Psychic Grumbling (Su)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A psychovox emits a constant psychic rumble. Swarm creatures in this aura, including the psychovox, increase the range of their Swarm mind ability to 100 feet. Non-Swarm creatures with limited telepathy, telepathy, or similar abilities halve the range of these abilities and take a -2 penalty to saving throws against spells and effects with the emotion, @UUID[Compendium.sfrpg.rules.Item.PqV3OCbUTyk2upPD]{Fear}, mind-affecting, or pain descriptor for as long as they remain in the aura.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "b4Mu1XVThZNMXPDR",
+      "name": "Swarm Mind (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Members of the Swarm are bound together into a singular hive mind by a blend of exuded pheromones, imperceptible movements of antennae and limbs, electrostatic fields, and telepathic communication. All Swarm creatures within 30 feet of each other are in constant communication; if one is aware of a threat, all are. (Such awareness can spread along a “chain” of Swarm creatures under appropriate circumstances, potentially alerting distant Swarm creatures.) In addition, once per round when within 30 feet of another Swarm creature, a Swarm creature can roll twice and take the better result on a saving throw against a mind-affecting effect.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "dXWmKBlkF9UhypmN",
+      "name": "Bite",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 26,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": false,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "stunned",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "6d4+20",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "rQYVrAlhQIS7rxfr",
+      "name": "Synaptic Shriek (Su)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "sphere",
+          "units": "ft",
+          "value": "30"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "save negates confusion",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "12d6",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>As a standard action, a psychovox can emit a shriek of psychic gibberish. Each non-Swarm creature within 30 feet of the psychovox takes an amount of damage equal to 1d6 × the psychovox’s CR (12d6 damage for most psychovoxes) and are @UUID[Compendium.sfrpg.conditions.Item.8rIj0ewW4bL8Uph5]{Confused} for 1 round. A successful DC 19 Will saving throw halves the damage and negates the @UUID[Compendium.sfrpg.conditions.Item.8rIj0ewW4bL8Uph5]{Confusion} effect. The psychic shriek draws power from the Swarm hive mind; if another Swarm creature is within 30 feet of a psychovox when it issues a synaptic shriek, the damage dice increases to d10s; however, the Swarm mind ability of all Swarm creatures in the area (other than the psychovox) is suppressed for the next minute. Once a psychovox has issued a synaptic shriek, it cannot do so again for 1d4 rounds. This is a mind-affecting effect.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": "personal"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "19",
+          "descriptor": "half"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "The Swarm, Pyschovox",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 3,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/alien-stare.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 3
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": -3
+      },
+      "con": {
+        "base": 5
+      },
+      "dex": {
+        "base": 2
+      },
+      "int": {
+        "base": -2
+      },
+      "str": {
+        "base": 8
+      },
+      "wis": {
+        "base": 4
+      }
+    },
+    "attributes": {
+      "abilityDC": {
+        "base": 0
+      },
+      "arms": 2,
+      "baseSpellDC": {
+        "base": 0
+      },
+      "eac": {
+        "base": 26
+      },
+      "fort": {
+        "base": 14
+      },
+      "hp": {
+        "max": 220,
+        "temp": null,
+        "value": 220
+      },
+      "init": {
+        "value": 2
+      },
+      "kac": {
+        "base": 28
+      },
+      "reach": "15 ft.",
+      "reflex": {
+        "base": 16
+      },
+      "space": "15 ft.",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 0,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 50
+        },
+        "mainMovement": "land",
+        "special": "original base: 50 ft.; original special: fly 20 ft. (clumsy)",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "base": 13
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 0,
+      "upb": 0
+    },
+    "details": {
+      "type": "Monstrous Humanoid",
+      "alignment": "CE",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<h2>Description</h2>\n<p>Resembling massive, four-legged cockroaches with black and green carapaces, psychovoxes are Swarm components designed to serve as psychic hive-mind relays. A psychovox is about 13 feet tall (and almost as wide) and weighs 8 tons.</p>\n<section>\n<h2>The Swarm</h2>\n<p>Originally an insectile race called the kucharn, the Swarm is now a single-minded collective with a desire to consume all things and absorb their best qualities into itself. The Swarm moves from planet to planet in tremendous organic hive-ships, reducing each so-called “feeder world” to a barren husk incapable of supporting life, and occasionally altering its own DNA in the process to take on qualities from that world’s species. Once it has consumed everything of use on a planet, the Swarm moves on, not bothering to hold territory.</p>\n<p>Ironically, one of the most violent races in the galaxy also birthed one of the most peaceful, as a mutation within a sub-hive gave life to the shirrens, who broke away to form a new species. The Swarm is notorious not just because of the invasion that finally ended hostilities between the Pact Worlds and the Veskarium, but also thanks to the warnings of shirrens, who understand the Swarm’s might and its hunger as no other race can.</p>\n<p>While individual components of the Swarm have some form of intelligence—or at least a set of complex programmed behaviors that resembles intellect—they cannot generally be reasoned with in any fashion. Swarm components rarely communicate with other creatures, as they see every alien entity as either a food source or a threat. The Swarm’s morale is unbreakable, and while individual components might retreat for tactical reasons, fear is utterly unknown to the Swarm and its components.</p>\n<p>The Swarm rarely wields manufactured weapons, instead integrating biotechnology grown or grafted onto component creatures. Because of its constant genetic upgrading and experimentation, the Swarm encompasses components with a wide variety of shapes, sizes, and capabilities, from the mighty dreadlancers to the microscopic, bloodstream-infesting toxicytes.</p>\n<h2>Ecology</h2>\n<h3>Environment</h3>\n<p>any</p>\n<h3>Organization</h3>\n<p>solitary, pair, or relay (3-6)</p>\n</section>",
+        "weight": ""
+      },
+      "combatRole": "",
+      "cr": 12,
+      "environment": "",
+      "organization": "",
+      "organizationSize": {
+        "max": null,
+        "min": 1
+      },
+      "raceAndGrafts": "",
+      "source": "AP #24 pg. 59",
+      "subtype": ""
+    },
+    "modifiers": [],
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "com": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 27,
+        "subname": "",
+        "value": 0
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "traits": {
+      "ci": {
+        "custom": "Fear Effects",
+        "value": []
+      },
+      "di": {
+        "custom": "Fear Effects",
+        "value": [
+          "acid"
+        ]
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "can't speak any language; telepathy 100 ft.",
+        "value": [
+          "shirren"
+        ]
+      },
+      "senses": "blindsense (vibration) 60 ft., darkvision 60 ft.",
+      "size": "huge",
+      "sr": 0
+    }
+  }
+}

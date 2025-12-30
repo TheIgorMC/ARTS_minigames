@@ -1,0 +1,84 @@
+{
+  "_id": "M3QaVPIanQYlY8Hs",
+  "name": "Frightful Display",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/frightful_display.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "Creature fails a saving throw against a spell you cast this round.",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You unnerve your spell’s victim with odd gestures, cackling laughter, or other effects.</p>\n<p><strong>Prerequisites</strong>: Cha 15, Intimidate 5 ranks, ability to cast spells.</p>\n<hr />\n<p><strong>Benefit</strong>: As a reaction when a creature fails a saving throw against a spell you cast this round, you can attempt an Intimidate check to demoralize that creature. You can target only one creature regardless of how many creatures your spell affected, and a given creature can’t be targeted by this ability more than once per day.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": "1 target"
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

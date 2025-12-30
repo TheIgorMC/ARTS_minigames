@@ -1,0 +1,67 @@
+{
+  "_id": "kQolIpBtaO6yfIKq",
+  "name": "Racer",
+  "type": "starshipFrame",
+  "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+  "system": {
+    "cost": 4,
+    "crew": {
+      "maximum": 1,
+      "minimum": 1
+    },
+    "damageThreshold": {
+      "base": 0
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "expansionBays": 0,
+    "hitpoints": {
+      "base": 20,
+      "increment": 5
+    },
+    "isPowered": true,
+    "maneuverability": "perfect",
+    "modifiers": [],
+    "pcu": null,
+    "size": "tiny",
+    "slug": "",
+    "source": "CRB pg. 295",
+    "weaponMounts": {
+      "aft": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "forward": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "port": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "starboard": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "turret": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      }
+    }
+  }
+}

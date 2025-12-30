@@ -1,0 +1,88 @@
+{
+  "_id": "253ZePtrnHc65U8C",
+  "name": "You've Got This (Ex)",
+  "type": "feat",
+  "img": "icons/skills/social/thumbsup-approval-like.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "Ally fails Acrobatics or Athletics skill check",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>@Icon[type:language-dependent] @Icon[type:sense-dependent]</p>\n<p>When an ally within 60 feet fails an Acrobatics or Athletics check, as a reaction, you allow that ally to reroll the check, using your modifier for the skill if it’s better than theirs. They must use the second result. A creature can’t benefit from this ability again until they take a 10-minute rest to recover Stamina Points.</p>"
+    },
+    "descriptors": {
+      "language-dependent": true,
+      "sense-dependent": true
+    },
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "60"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "4th Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 16",
+    "target": {
+      "value": "Ally"
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

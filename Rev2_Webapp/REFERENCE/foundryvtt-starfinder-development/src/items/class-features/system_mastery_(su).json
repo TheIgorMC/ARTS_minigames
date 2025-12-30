@@ -1,0 +1,102 @@
+{
+  "_id": "OBdl6Ykt6EfpLeNV",
+  "name": "System Mastery (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.ECFCA3sfWbEzr1St]{Geneturge}</p>\n<p>Through your manipulation of recombinant DNA, you gain control over your immune-response system, making your body more resistant to harm. You gain a +4 enhancement bonus to saving throws against diseases, and any time you are affected by a disease, you can spend 1 Resolve Point as a standard action to attempt 1 additional saving throw against the disease. If you fail this save, you do not suffer any additional effects, but if you succeed, you are cured of the disease, even if it typically requires more than one successful saving throw to cure.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "9ae7b15a-bc07-4c3c-8621-570fb0b67924",
+        "name": "New Modifier",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": true,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "+4",
+        "modifierType": "formula",
+        "notes": "Through your manipulation of recombinant DNA, you gain control over your immune-response system, making your body more resistant to harm. You gain a +4 enhancement bonus to saving throws against diseases, and any time you are affected by a disease, you can spend 1 Resolve Point as a standard action to attempt 1 additional saving throw against the disease. If you fail this save, you do not suffer any additional effects, but if you succeed, you are cured of the disease, even if it typically requires more than one successful saving throw to cure.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "18th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 148",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -178,5 +178,17 @@
     "height": 1080,
     "draggable": false,
     "description": ""
+  },
+  {
+    "id": "_mood_gemini_jpg",
+    "name": "Gemini",
+    "category": "Global",
+    "sceneId": "[00]Global",
+    "type": "mood",
+    "image": "/media/%5B00%5DGlobal/%5BMOOD%5DGemini.jpg",
+    "width": 1920,
+    "height": 1080,
+    "draggable": false,
+    "description": ""
   }
 ]

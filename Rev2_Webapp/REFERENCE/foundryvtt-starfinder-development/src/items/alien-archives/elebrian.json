@@ -1,0 +1,1640 @@
+{
+  "_id": "eNlcUdrndQRAp4hN",
+  "name": "Elebrian",
+  "type": "npc2",
+  "folder": "EnqryaZYMw8p30UF",
+  "img": "systems/sfrpg/icons/default/alien-stare.svg",
+  "items": [
+    {
+      "_id": "A4dw0RqTfBjLdRca",
+      "name": "Baton, tactical",
+      "type": "weapon",
+      "img": "icons/weapons/staves/staff-simple.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A baton is a thin, solid metal shaft, usually with a textured rubber grip. A tactical baton can be used to inflict precise bludgeoning blows. An advanced baton, used by elite mercenary and security companies, often has an additional shaft, as well as a weighted end that can be powered to connect with substantially more force than a tactical baton.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 90,
+        "proficient": true,
+        "properties": {
+          "analog": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          },
+          "operative": {
+            "extension": "",
+            "value": true
+          },
+          "thrown": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "20"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 171",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "CPVCM9i4rrd7U4pT",
+      "name": "Find Weakness (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "full",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Elebrians can instinctively find and take advantage of other creatures’ weak points. An elebrian can make a single melee or ranged attack as a full action, and if she hits, she can add half her level to the damage dealt (minimum +1 damage). Whether successful or not, once an elebrian has used this ability on a creature, that creature is immune to it for 24 hours.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "5eaca7b6-6e00-48e7-9aa6-0295150244cf",
+            "name": "Find Weakness",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "all-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 1,
+            "modifier": "1",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": ""
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "0Y6KB2NpBshAxVhN",
+      "name": "Intellectual Knack (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Elebrians can easily comprehend complex issues and remember minutia. An elebrian can attempt a skill check to recall knowledge untrained, regardless of the DC, and can always take 20 to do so (though this takes 2 minutes), even without access to an information network or data set.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "eXG5OTzpeVrUEZBC",
+      "name": "Estex suit I",
+      "type": "equipment",
+      "img": "systems/sfrpg/icons/equipment/armor/estex-suit-1.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "armor": {
+          "type": "light",
+          "acp": -1,
+          "dex": 5,
+          "eac": 0,
+          "kac": 1,
+          "speedAdjust": 0
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "1",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "upgrade",
+                "weapon"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 2,
+              "subtype": "armorUpgrade",
+              "weightProperty": "slots"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Estex is a thick, durable fabric most often used to make flight suits and environmental suits. Estex suits cover the wearer from the neck down and can be modified with armor upgrades as needed. Higher-quality estex suits grant a better level of protection and allow for more upgrades, though they are often bulkier than comparable suits of light armor.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 410,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "none"
+        },
+        "reach": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 197",
+        "specialMaterials": {},
+        "speed": "",
+        "strength": 0,
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "oXMNgtIDC9AChFM5",
+      "name": "Laser pistol, azimuth",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/laser-pistol-azimuth.webp",
+      "system": {
+        "ability": "dex",
+        "actionTarget": "eac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Burn 1d4",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": true,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>The laser pistol is possibly the most common small arm used by explorers, guards, mercenaries, and traders. Laser pistols are light and reliable, yet they still deal a respectable amount of damage.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 350,
+        "proficient": true,
+        "properties": {
+          "one": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "80"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 173",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 1
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "laser",
+        "weaponType": "smallA"
+      }
+    },
+    {
+      "_id": "tyBZvaIodmycZsLf",
+      "name": "Battery",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/battery-standard.webp",
+      "system": {
+        "ammunitionType": "charge",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons that use batteries list the highest-capacity battery they are capable of using as well as how many charges from the battery that each shot consumes.</p>\n<p><strong>Capacity:</strong> 20</p>"
+        },
+        "identified": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 60,
+        "quantity": 2,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": true
+      }
+    },
+    {
+      "_id": "UOfgAfn3KI2NAue8",
+      "name": "Baton, tactical",
+      "type": "weapon",
+      "img": "icons/weapons/staves/staff-simple.webp",
+      "system": {
+        "ability": "str",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d4 + @abilities.str.mod",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A baton is a thin, solid metal shaft, usually with a textured rubber grip. A tactical baton can be used to inflict precise bludgeoning blows. An advanced baton, used by elite mercenary and security companies, often has an additional shaft, as well as a weighted end that can be powered to connect with substantially more force than a tactical baton.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 90,
+        "proficient": true,
+        "properties": {
+          "analog": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          },
+          "operative": {
+            "extension": "",
+            "value": true
+          },
+          "thrown": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "20"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 171",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "dRLFzFnvE6qrHRqu",
+      "name": "Loot",
+      "type": "container",
+      "img": "systems/sfrpg/icons/default/briefcase.svg",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "container": {
+          "contents": [
+            {
+              "id": "eXG5OTzpeVrUEZBC",
+              "index": 0
+            },
+            {
+              "id": "oXMNgtIDC9AChFM5",
+              "index": 0
+            },
+            {
+              "id": "tyBZvaIodmycZsLf",
+              "index": 0
+            },
+            {
+              "id": "UOfgAfn3KI2NAue8",
+              "index": 0
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "bulk",
+              "acceptsType": [
+                "weapon",
+                "shield",
+                "equipment",
+                "goods",
+                "consumable",
+                "container",
+                "technological",
+                "fusion",
+                "upgrade",
+                "augmentation",
+                "magic",
+                "hybrid",
+                "ammunition",
+                "weaponAccessory"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1000,
+              "subtype": "",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": ""
+      }
+    },
+    {
+      "_id": "fEO4cwjLG6JB88VX",
+      "name": "Laser pistol, azimuth",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/laser-pistol-azimuth.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "eac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 2,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Burn 1d4",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d4",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": true,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>The laser pistol is possibly the most common small arm used by explorers, guards, mercenaries, and traders. Laser pistols are light and reliable, yet they still deal a respectable amount of damage.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 350,
+        "proficient": true,
+        "properties": {
+          "one": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "80"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 173",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 1
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "laser",
+        "weaponType": "smallA"
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "Elebrian",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/alien-stare.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": 0
+      },
+      "con": {
+        "base": 1
+      },
+      "dex": {
+        "base": 1
+      },
+      "int": {
+        "base": 3
+      },
+      "str": {
+        "base": 0
+      },
+      "wis": {
+        "base": -1
+      }
+    },
+    "attributes": {
+      "abilityDC": {
+        "base": 0
+      },
+      "arms": 2,
+      "baseSpellDC": {
+        "base": 0
+      },
+      "eac": {
+        "base": 11
+      },
+      "fort": {
+        "base": 0
+      },
+      "hp": {
+        "max": 6,
+        "temp": null,
+        "value": 6
+      },
+      "init": {
+        "value": 1
+      },
+      "kac": {
+        "base": 12
+      },
+      "reach": "5",
+      "reflex": {
+        "base": 2
+      },
+      "space": "5",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 0,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 30
+        },
+        "mainMovement": "land",
+        "special": "",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "base": 2
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 0,
+      "upb": 0
+    },
+    "details": {
+      "type": "Humanoid",
+      "alignment": "N",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<h2>Description</h2>\n<p>Elebrians, the native race of @UUID[Compendium.sfrpg.setting.Item.0VTtBYDJC5vUC434]{Eox}, were nearly wiped out in the calamity that ravaged the planet. Only a tiny population of living elebrians now remain.</p>\n<p>Elebrians are very humanlike, and it has been suggested that they and humanity may share a common ancestor in the ancient past. A typical elebrian stands slightly over 6 feet tall and has pale skin and large, dark eyes. They have oversized craniums with slightly distended foreheads to house their large brains. Most elebrians are entirely hairless, but a small minority grow wispy hair on their scalps and thin eyebrows.</p>\n<p>Elebrians have quick wits and a natural desire to accumulate both knowledge and power. They are driven to undertake tasks that provide either a valued insight or a significant personal advantage.</p>",
+        "weight": ""
+      },
+      "combatRole": "",
+      "cr": 0,
+      "environment": "any (Eox)",
+      "organization": "any",
+      "organizationSize": {
+        "max": null,
+        "min": 1
+      },
+      "raceAndGrafts": "",
+      "source": "AP #3 pg. 53",
+      "subtype": "Elebrian"
+    },
+    "modifiers": [],
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "com": {
+        "ability": "int",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 3,
+        "subname": "",
+        "value": 0
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 3,
+        "subname": "",
+        "value": 0
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 7,
+        "subname": "",
+        "value": 0
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 3,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 7,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 7,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "traits": {
+      "ci": {
+        "custom": "",
+        "value": []
+      },
+      "di": {
+        "custom": "",
+        "value": []
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "Akitonian",
+        "value": [
+          "castrovelian",
+          "common",
+          "eoxian"
+        ]
+      },
+      "senses": "low-light vision",
+      "size": "medium",
+      "sr": 0
+    }
+  }
+}

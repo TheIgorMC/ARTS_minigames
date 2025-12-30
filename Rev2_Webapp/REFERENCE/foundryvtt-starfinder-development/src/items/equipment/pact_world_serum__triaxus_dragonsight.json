@@ -1,0 +1,117 @@
+{
+  "_id": "5sQhzFacX51ksaYg",
+  "name": "Pact World Serum,  Triaxus Dragonsight",
+  "type": "consumable",
+  "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This warm, fiery-red fluid grants you a +2 insight bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.gZlg2ZKze0erNLmP]{Perception} checks, and you can ignore concealment caused by dim light (as if you had low-light vision or darkvision).</p>\n<p><em>Enable/Disable modifiers in the Modifiers tab.</em></p>\n<h3>Pact World Serums</h3>\n<p>Nearly all cultures in the Pact Worlds useserums of enhancement, vials of magic liquids described on page 225 of theStarfinder Core Rulebook. Eppro Enterprises, a popular manufacturer of energy drinks and restoratives on Verces, has expended millions of credits in promoting its “Pact Worlds” line of serums, each with individual effects and flavors that capture the essence of one of the Pact Worlds. These serums are also sold mixed into drinks at bars across the system. Whether you buy into the hype of Eppro’s products or not, its Pact Worlds serums are reliable and effective. As with allserums of enhancement, these serums are effective when imbibed by living creatures and last for 1 hour.</p>\n<h3>Serums</h3>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 5,
+    "modifiers": [
+      {
+        "_id": "a0f047b8-6464-4bc3-a286-80940a55007d",
+        "name": "Pact World Serum,  Triaxus Dragonsight",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "This warm, fiery-red fluid grants you a +2 insight bonus to Perception checks, and you can ignore concealment caused by dim light (as if you had low-light vision or darkvision).",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      }
+    ],
+    "price": 475,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "PW, p. 201",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

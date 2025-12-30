@@ -1,0 +1,104 @@
+{
+  "_id": "bLFSPxAj9LPyoVAf",
+  "name": "Tenebrous Bulwark (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/graviton.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "0",
+          "group": null,
+          "isPrimarySection": true,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": true,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:graviton] Graviton Revelation</p>\n<p>As a move action, you channel the Negative Energy Plane’s power directly into your @UUID[Compendium.sfrpg.class-features.Item.kCvI3xvm0Q1slajx]{Solar Flare} or @UUID[Compendium.sfrpg.class-features.Item.WWHUAfgpvk6uIgY0]{Solar Weapon}, helping you capture and convert your escaping life energy into deadly force. As a reaction when you take damage that causes you to lose at least 2 Hit Points, the next successful attack you make with your @UUID[Compendium.sfrpg.class-features.Item.kCvI3xvm0Q1slajx]{Solar Flare} or @UUID[Compendium.sfrpg.class-features.Item.WWHUAfgpvk6uIgY0]{Solar Weapon} before the end of your next turn deals additional cold damage equal to half the number of Hit Points you lost. Undead creatures are immune to this additional cold damage.</p>\n<p>If you’re attuned or fully attuned, whenever you use this revelation’s reaction to add cold damage to your next attack, your @UUID[Compendium.sfrpg.class-features.Item.kCvI3xvm0Q1slajx]{Solar Flare} or @UUID[Compendium.sfrpg.class-features.Item.WWHUAfgpvk6uIgY0]{Solar Weapon} also gains the @UUID[Compendium.sfrpg.rules.JournalEntry.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#penetrating]{penetrating} weapon special property until the end of your next turn.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 45",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

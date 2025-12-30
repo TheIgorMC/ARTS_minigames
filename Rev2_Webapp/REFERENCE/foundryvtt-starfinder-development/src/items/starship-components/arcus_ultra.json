@@ -1,0 +1,27 @@
+{
+  "_id": "TiKMewavAZAYO3l8",
+  "name": "Arcus Ultra",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": 15,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 150,
+    "slug": "",
+    "source": "CRB pg. 296",
+    "specialMaterials": {},
+    "supportedSizes": [
+      "small",
+      "medium",
+      "large"
+    ]
+  }
+}

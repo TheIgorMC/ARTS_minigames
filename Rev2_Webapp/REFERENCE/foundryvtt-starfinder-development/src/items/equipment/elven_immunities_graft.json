@@ -1,0 +1,127 @@
+{
+  "_id": "4LQJpI9u7utxoxLr",
+  "name": "Elven Immunities Graft",
+  "type": "augmentation",
+  "img": "icons/commodities/biological/organ-brain-pink.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "8"
+      },
+      "hp": {
+        "max": "9",
+        "value": 9
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A species steeped in magic, elves have natural resistance to certain magical effects. Thanks to an implant in your brain, you become immune to magic sleep effects and gain a +2 enhancement bonus to saving throws against enchantment spells and effects.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 4,
+    "modifiers": [
+      {
+        "_id": "a8608267-50d0-4e68-a958-9b6490e5e702",
+        "name": "Elven Immunities Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "Gain a +2 enhancement bonus to saving throws against enchantment spells and effects.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 2100,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 143",
+    "system": "brain",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

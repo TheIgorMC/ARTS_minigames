@@ -1,0 +1,182 @@
+{
+  "_id": "QvPGqGO2RRhKoTcK",
+  "name": "Stag-Step Suit (Hybrid)",
+  "type": "equipment",
+  "img": "systems/sfrpg/icons/default/kevlar-vest.svg",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "armor": {
+      "type": "power",
+      "acp": -3,
+      "dex": 4,
+      "eac": 16,
+      "kac": 18,
+      "speedAdjust": 0
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "large",
+      "sturdy": true
+    },
+    "bulk": "30",
+    "capacity": {
+      "max": 40,
+      "value": 40
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "upgrade",
+            "weapon"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "armorUpgrade",
+          "weightProperty": "slots"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "weapon"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "weaponSlot",
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d6 +(@abilities.str.mod)",
+          "group": null,
+          "isPrimarySection": true,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": true,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Forged and constructed from supernatural metals collected from the realms of the fey, this powered armor has long antlers atop its blank-faced helmet. If the armor has at least 10 charges remaining, you can spend 10 charges to create a fold in reality, per the @UUID[Compendium.sfrpg.spells.Item.mUIuCkFeMLKnOypt]{Dimension Door} spell. You can travel only 100 feet with this ability, and you can’t take other creatures with you. Once you have used this ability, the stag-step suit retains a charge of dimensional static that prevents you from using the armor’s ability again for 24 hours.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 11,
+    "modifiers": [],
+    "price": 26400,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "reach": "10 ft.",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 79",
+    "specialMaterials": {},
+    "speed": "",
+    "strength": 20,
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "hour",
+      "value": 1
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

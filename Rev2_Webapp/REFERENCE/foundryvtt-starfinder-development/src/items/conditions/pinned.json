@@ -1,0 +1,132 @@
+{
+  "_id": "XgK4EdO5D3Fj3iWz",
+  "name": "Pinned",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/pinned.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You are tightly bound and can take few actions.</p>\n<p>While you are @UUID[Compendium.sfrpg.conditions.Item.XgK4EdO5D3Fj3iWz]{Pinned}, you can’t move and are @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-Footed}.</p>\n<p>You also take an additional –4 penalty to your Armor Class, attack rolls, Reflex saving throws, initiative checks, and Dexterity-based skill and ability checks (these penalties replace those from the @UUID[Compendium.sfrpg.conditions.Item.4AkWDHGM6gHDepHN]{Grappled} condition and also apply to attempts to grapple your opponent or free yourself; see Grapple on page 246).</p>\n<p>You are limited in the actions that you can take.</p>\n<p>You cannot take any action that requires the use of any of your limbs, but you can always attempt to free yourself, usually through an attack roll or Acrobatics check.</p>\n<p>You can’t make attacks of opportunity while you are @UUID[Compendium.sfrpg.conditions.Item.XgK4EdO5D3Fj3iWz]{Pinned}, but you can still take verbal and mental actions, such as spellcasting.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "81c4f254-8e3d-4b76-9555-ccb42f3ef47a",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ac",
+        "enabled": true,
+        "modifier": -4,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "both"
+      },
+      {
+        "_id": "7fc65f0c-2d70-4127-995c-b20085ce8336",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "modifier": -4,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "fcfb040a-b6a4-42c0-b809-b5aa0d3d4723",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "save",
+        "enabled": true,
+        "modifier": -4,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "reflex"
+      },
+      {
+        "_id": "3d6c2c04-3c2c-4b9f-a8d7-b1da528b800a",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "initiative",
+        "enabled": true,
+        "modifier": -4,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "5d64556e-38f6-4387-92ec-f1d3d837547e",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "modifier": -4,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "dex"
+      },
+      {
+        "_id": "b77722e5-90af-499e-b42e-889c66cfb11a",
+        "name": "Pinned",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-speeds",
+        "enabled": true,
+        "max": -1000,
+        "modifier": "-1000",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "pinned",
+    "source": "CRB.277",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

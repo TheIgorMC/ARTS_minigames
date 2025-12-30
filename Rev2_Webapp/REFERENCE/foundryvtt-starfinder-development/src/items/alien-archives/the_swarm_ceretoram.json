@@ -1,0 +1,1773 @@
+{
+  "_id": "BERlYSpqCOdyeEVL",
+  "name": "The Swarm, Ceretoram",
+  "type": "npc2",
+  "folder": "6ND7QPXmoGl6zL0n",
+  "img": "systems/sfrpg/icons/default/alien-stare.svg",
+  "items": [
+    {
+      "_id": "ALS24HAMrDb6VlEm",
+      "name": "Swarm Mind (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Members of the Swarm are bound together into a singular hive mind by a blend of exuded pheromones, imperceptible movements of antennae and limbs, electrostatic fields, and telepathic communication. All Swarm creatures within 30 feet of each other are in constant communication; if one is aware of a threat, all are. (Such awareness can spread along a “chain” of Swarm creatures under appropriate circumstances, potentially alerting distant Swarm creatures). In addition, once per round when within 30 feet of another Swarm creature, a Swarm creature can roll twice and take the better result on a saving throw against a mind-affecting effect.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "hFrv1or9c8LAJySv",
+      "name": "Claw",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 15,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": false,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Bleed 2d6",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "3d4+12",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": true,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "OTtDydRDnQDIw30E",
+      "name": "Tentacle (plus Consume)",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 15,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": false,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Staggered [DC 18]",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d8+12",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p><strong>Consume (Ex)</strong>&nbsp;A creature struck by a Swarm ceretoram’s tentacle must succeed at a DC 18 Fortitude save or have some of its biological matter siphoned off by the attack, taking an additional 1d8 piercing damage. The ceretoram then regains Hit Points equal to double this additional damage.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "o0uriP1fHNoVzDLc",
+      "name": "Remote Pulse (Su)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "reaction",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>As a reaction when a creature fails its save against a ceretoram’s mind thrust spell-like ability, the ceretoram can immediately cast its synaptic pulse spell-like ability, centering the effect on the target of the mind thrust. That creature isn’t subject to the effects of the synaptic pulse.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "R8eWebWJLLr6ymCK",
+      "name": "Ray Of Exhaustion (DC 20)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/ray_of_exhaustion.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "rsak",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 17,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You create an enervating ray of magic. You must make a ranged attack against your opponent’s EAC. On a hit, the target is immediately exhausted for the spell’s duration. A creature that succeeds at a Fortitude saving throw is only fatigued, unless it is already fatigued, in which case it instead becomes exhausted despite the saving throw.</p>\n<p>This spell has no effect on a creature that is already exhausted. Unlike normal exhaustion or fatigue, the effect ends as soon as the spell’s duration expires.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 3,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "ft",
+          "value": "25"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "fort",
+          "dc": "20",
+          "descriptor": "partial"
+        },
+        "school": "nec",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 371",
+        "sr": false,
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "1",
+          "per": "day",
+          "value": 1
+        }
+      }
+    },
+    {
+      "_id": "R0b8Zh61jyNhHB3T",
+      "name": "Synaptic Pulse (DC 20)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/synaptic_pulse.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": false
+        },
+        "area": {
+          "effect": "spread",
+          "shapable": false,
+          "shape": "sphere",
+          "units": "ft",
+          "value": "20"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You stun all creatures in range for 1 round.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "round",
+          "value": "1"
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 3,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "20",
+          "descriptor": "negate"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "sr": false,
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "1",
+          "per": "day",
+          "value": 1
+        }
+      }
+    },
+    {
+      "_id": "pJWj0Ec7oznFJC04",
+      "name": "Daze Monster (DC 19)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/daze_monster.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": true,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This spell functions like <em>daze</em>, but it can affect any one living creature of any type up to CR 5. Creatures of CR 6 or higher are not affected.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "round",
+          "value": "1"
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 2,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "ft",
+          "value": "100"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "19",
+          "descriptor": "negate"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 347",
+        "sr": true,
+        "target": {
+          "value": "one living creature of CR 5 or lower"
+        },
+        "uses": {
+          "max": "3",
+          "per": "day",
+          "value": 3
+        }
+      }
+    },
+    {
+      "_id": "cZmpDyMpaFm6GFXL",
+      "name": "Fear (DC 19)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/fear.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>With a single mental nudge, you can unlock one or more targets’ deepest nightmares. A target that succeeds at its Will saving throw against this spell is @UUID[Compendium.sfrpg.conditions.Item.nywSVEeDvp1bk7L3]{Shaken} for 1 round.</p>\n<ul>\n<li><strong>1st:</strong> When you cast @UUID[Compendium.sfrpg.spells.Item.zZGvuXQErBrHqyS6]{Fear} as a 1st-level spell, it affects one living creature of CR 4 or lower at close range (25 feet + 5 feet/2 levels). The target must succeed at a Will saving throw or be frightened for 1d4 rounds.</li>\n<li><strong>2nd:</strong> When you cast @UUID[Compendium.sfrpg.spells.Item.zZGvuXQErBrHqyS6]{Fear} as a 2nd-level spell, it affects one living creature of CR 4 or lower per 3 caster levels at medium range (100 feet + 10 feet/level), no two of which can be more than 30 feet apart. Each target must succeed at a Will saving throw or be frightened for 1 minute.</li>\n<li><strong>3rd:</strong> When you cast fear as 3rd-level spell, it affects all living creatures of CR 8 or lower in 30-foot cone-shaped burst. Each target must succeed at a Will save or become panicked for 1 minute. If cornered, a panicked creature begins cowering.</li>\n<li><strong>4th:</strong> When you cast&nbsp;fear&nbsp;as 4th-level spell, it affects all living creatures in 30-foot cone-shaped burst regardless of CR. Each target must succeed at a Will save or become panicked for 1 minute. If cornered, a panicked creature begins cowering.</li>\n</ul>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 2,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "ft",
+          "value": "100"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "19",
+          "descriptor": "partial"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 354",
+        "sr": true,
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "3",
+          "per": "day",
+          "value": 3
+        }
+      }
+    },
+    {
+      "_id": "slcoRqlXNlJWkB5q",
+      "name": "Force Blast (DC 19)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/force_blast.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "burst",
+          "shapable": false,
+          "shape": "cone",
+          "units": "ft",
+          "value": "30"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You gather mystical energy and blast it outward in a mighty wave originating from your fingertips, damaging and potentially knocking back your enemies. This spell deals 2d6 force damage to each creature in the area unless it succeeds at a Reflex saving throw for half damage.</p>\n<p>Additionally, the force from this spell effectively attempts to bull rush all creatures in the area. Attempt a single bull rush combat maneuver, using your caster level + your key ability score modifier as your attack bonus. Compare the result to each target’s KAC + 8. If you’re successful, that creature is knocked back 5 feet, plus 5 additional feet for every 5 by which your attack exceeds the creature’s KAC + 8. If there is an obstacle in the way, the creature stops at the obstacle instead.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 2,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "reflex",
+          "dc": "19",
+          "descriptor": "half"
+        },
+        "school": "evo",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 356",
+        "sr": true,
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "3",
+          "per": "day",
+          "value": 3
+        }
+      }
+    },
+    {
+      "_id": "6S5re20o9fzQzjvA",
+      "name": "Hold Person (DC 19)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/hold_person.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>The target becomes paralyzed and freezes in place. It is aware and breathes normally but can’t take any physical actions, even speech. A held creature can’t cast spells. Each round on its turn, the target can spend a full action to attempt a new saving throw to end the effect. This does not provoke attacks of opportunity. A winged creature that is paralyzed can’t flap its wings and falls. A swimmer can’t swim and may drown.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 2,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "ft",
+          "value": "100"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "19",
+          "descriptor": "negate"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 359",
+        "sr": false,
+        "target": {
+          "value": "one humanoid creature"
+        },
+        "uses": {
+          "max": "3",
+          "per": "day",
+          "value": 3
+        }
+      }
+    },
+    {
+      "_id": "CE1ZgngGDk7XFDIM",
+      "name": "Lesser Confusion (DC 18) (At Will)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/confusion_lesser.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "ft",
+          "value": "15"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This spell causes a single creature to become confused (as per the <em>@UUID[Compendium.sfrpg.spells.Item.wSeE9HyAmM7lTdpo]{Confusion}</em> spell) for 1 round.</p>\n<table style=\"width:403px;height:85px\" border=\"1\">\n<tbody>\n<tr style=\"height:17px\">\n<td style=\"height:17px;background-color:#34495e;text-align:center;width:44px\">\n<p style=\"color:white\">D%</p>\n</td>\n<td style=\"height:17px;width:352px;text-align:center;background-color:#34495e\">\n<p style=\"color:white\"><strong>Behavior</strong></p>\n</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"height:17px;width:44px;text-align:center;background-color:#7e8c8d\">\n<p style=\"color:white\">1-25</p>\n</td>\n<td style=\"height:17px;width:352px;text-align:center;background-color:#7e8c8d\">\n<p style=\"color:white\">Act normally</p>\n</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"height:17px;width:44px;text-align:center;background-color:#34495e\">\n<p style=\"color:white\">26-50</p>\n</td>\n<td style=\"height:17px;width:352px;text-align:center;background-color:#34495e\">\n<p style=\"color:white\">Do nothing but babble incoherently</p>\n</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"height:17px;width:44px;text-align:center;background-color:#7e8c8d\">\n<p style=\"color:white\">51-75</p>\n</td>\n<td style=\"height:17px;width:352px;text-align:center;background-color:#7e8c8d\">\n<p style=\"color:white\">Deal 1d8 + Str modifier damage to self with item in hand</p>\n</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"height:17px;width:44px;text-align:center;background-color:#34495e\">\n<p style=\"color:white\">76-100</p>\n</td>\n<td style=\"height:17px;width:352px;text-align:center;background-color:#34495e\">\n<p style=\"color:white\">Attack nearest creature</p>\n</td>\n</tr>\n</tbody>\n</table>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "round",
+          "value": "1"
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 1,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "always",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "close",
+          "value": "25"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "18",
+          "descriptor": "negate"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "sr": true,
+        "target": {
+          "value": "one living creature"
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "7G0wUlWgwRB5204c",
+      "name": "Mind Thrust (1st Level, DC 18) (At Will)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/mind_thrust.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": false
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "2d10",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You divine the most vulnerable portion of your opponent’s mind and overload it with a glut of psychic information. The target can attempt a Will saving throw to halve the damage dealt by this spell. This spell has no effect on creatures without an Intelligence score.</p>\n<ul>\n<li><strong>1st:</strong> When you cast mind thrust as a 1st-level spell, it deals 2d10 damage to the target.</li>\n<li><strong>2nd:</strong> When you cast mind thrust as a 2nd-level spell, it deals 4d10 damage to the target.</li>\n<li><strong>3rd:</strong> When you cast mind thrust as a 3rd-level spell, it deals 7d10 damage to the target.</li>\n<li><strong>th:</strong> When you cast mind thrust as a 4th-level spell, it deals 10d10 damage to the target and the target is fatigued for 1 round if it fails its saving throw.</li>\n<li><strong>5th:</strong> When you cast mind thrust as a 5th-level spell, it deals 15d10 damage to the target. The target is exhausted for 1 round if it fails its save and it is fatigued for 1 round if it succeeds at its saving throw.</li>\n<li><strong>6th:</strong> When you cast&nbsp;mind thrust&nbsp;as a 6th-level spell, it deals 17d10 damage to the target. The target is exhausted and @UUID[Compendium.sfrpg.conditions.Item.CvsDp0GvojxiF2jz]{Stunned} for 1 round if it fails its save, and it is fatigued for 1 round if it succeeds at its saving throw.</li>\n</ul>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 1,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "always",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "ft",
+          "value": "25"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "18",
+          "descriptor": "half"
+        },
+        "school": "div",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Starfinder Core Rulebook pg. 365",
+        "sr": true,
+        "target": {
+          "value": "one creature"
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "The Swarm, Ceretoram",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 2,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/alien-stare.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 2
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": -1
+      },
+      "con": {
+        "base": 0
+      },
+      "dex": {
+        "base": 6
+      },
+      "int": {
+        "base": 0
+      },
+      "str": {
+        "base": 3
+      },
+      "wis": {
+        "base": 4
+      }
+    },
+    "attributes": {
+      "abilityDC": {
+        "base": 0
+      },
+      "arms": 2,
+      "baseSpellDC": {
+        "base": 0
+      },
+      "eac": {
+        "base": 21
+      },
+      "fort": {
+        "base": 8
+      },
+      "hp": {
+        "max": 120,
+        "temp": null,
+        "value": 120
+      },
+      "init": {
+        "value": 6
+      },
+      "kac": {
+        "base": 22
+      },
+      "reach": "10 ft.",
+      "reflex": {
+        "base": 10
+      },
+      "space": "10 ft.",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 0,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 30
+        },
+        "mainMovement": "land",
+        "special": "original base: 30 ft.; original special: fly 30 ft. (Ex, average)",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "base": 14
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 0,
+      "upb": 0
+    },
+    "details": {
+      "type": "Monstrous Humanoid",
+      "alignment": "CE",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<h2>Description</h2>\n<p>Swarm ceretorams employ a vicious set of mental abilities that allow them to quickly overwhelm their opposition through psychic might before closing in and rending with their claws in close combat. They can feed on nearly all forms of matter, including constructs and undead.</p>\n<section>\n<h2>The Swarm</h2>\n<p>Originally an insectile race called the kucharn, the Swarm is now a single-minded collective with a desire to consume all things and absorb their best qualities into itself. The Swarm moves from planet to planet in tremendous organic hive-ships, reducing each so-called “feeder world” to a barren husk incapable of supporting life, and occasionally altering its own DNA in the process to take on qualities from that world’s species. Once it has consumed everything of use on a planet, the Swarm moves on, not bothering to hold territory.</p>\n<p>Ironically, one of the most violent races in the galaxy also birthed one of the most peaceful, as a mutation within a sub-hive gave life to the shirrens, who broke away to form a new species. The Swarm is notorious not just because of the invasion that finally ended hostilities between the Pact Worlds and the Veskarium, but also thanks to the warnings of shirrens, who understand the Swarm’s might and its hunger as no other race can.</p>\n<p>While individual components of the Swarm have some form of intelligence—or at least a set of complex programmed behaviors that resembles intellect—they cannot generally be reasoned with in any fashion. Swarm components rarely communicate with other creatures, as they see every alien entity as either a food source or a threat. The Swarm’s morale is unbreakable, and while individual components might retreat for tactical reasons, fear is utterly unknown to the Swarm and its components.</p>\n<p>The Swarm rarely wields manufactured weapons, instead integrating biotechnology grown or grafted onto component creatures. Because of its constant genetic upgrading and experimentation, the Swarm encompasses components with a wide variety of shapes, sizes, and capabilities, from the mighty dreadlancers to the microscopic, bloodstream-infesting toxicytes.</p>\n<h2>Ecology</h2>\n<h3>Environment</h3>\n<p>any</p>\n<h3>Organization</h3>\n<p>solitary, pair, or purge (3-6)</p>\n</section>",
+        "weight": ""
+      },
+      "combatRole": "",
+      "cr": 9,
+      "environment": "",
+      "organization": "",
+      "organizationSize": {
+        "max": null,
+        "min": 1
+      },
+      "raceAndGrafts": "",
+      "source": "AP #23 pg. 59",
+      "subtype": ""
+    },
+    "modifiers": [],
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 17,
+        "subname": "",
+        "value": 0
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "com": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 22,
+        "subname": "",
+        "value": 0
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "traits": {
+      "ci": {
+        "custom": "Fear Effects",
+        "value": []
+      },
+      "di": {
+        "custom": "Fear Effects",
+        "value": [
+          "acid"
+        ]
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "telepathy 100 ft",
+        "value": [
+          "shirren"
+        ]
+      },
+      "senses": "blindsense (vibration) 30 ft., darkvision 60 ft.",
+      "size": "large",
+      "sr": 0
+    }
+  }
+}

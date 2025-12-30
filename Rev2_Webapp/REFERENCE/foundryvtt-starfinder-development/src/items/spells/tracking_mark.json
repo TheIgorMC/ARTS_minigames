@@ -1,0 +1,96 @@
+{
+  "_id": "U4rFMP2V1YpWRcKJ",
+  "name": "Tracking Mark",
+  "type": "spell",
+  "img": "icons/magic/movement/chevrons-down-yellow.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": true,
+      "precog": true,
+      "tech": true,
+      "wysh": false
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You place a unique magical mark, which is about 1 square inch in size, on a creature or object. The mark is invisible, but @UUID[Compendium.sfrpg.spells.Item.kxx5x0JAgFuEQJAm]{Detect Magic} and similar effects can reveal its presence. Unattended objects are always affected by this spell. If you attempt to affect a creature or an object in a creature’s possession, the creature can attempt a Reflex save to negate the effect.</p>\n<p>Once the tracking mark is in place, you can follow the tracking mark by succeeding at a DC 20 Mysticism check. You’re able to detect the tracking mark up to 1,000 feet away, and you must be on the same plane as the tracking mark to follow it.</p>"
+    },
+    "descriptors": {},
+    "dismissible": false,
+    "duration": {
+      "units": "hour",
+      "value": "@details.cl.value"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 4,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "close"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "",
+      "descriptor": "object"
+    },
+    "school": "div",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GM pg. 84",
+    "sr": true,
+    "target": {
+      "value": "one creature or one object"
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

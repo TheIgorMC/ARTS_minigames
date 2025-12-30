@@ -1,0 +1,2263 @@
+{
+  "_id": "EcVuaguLJHoX699H",
+  "name": "Formian Myrmarch",
+  "type": "npc2",
+  "folder": "zL0DrhX9UYBabnNW",
+  "img": "systems/sfrpg/icons/default/alien-stare.svg",
+  "items": [
+    {
+      "_id": "vg0cy85KA6jnfkCu",
+      "name": "Sting (plus Myrmarch Toxin)",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 23,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 0,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "2d10 +18",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "bJ3zkdmlWOTDoLld",
+      "name": "[MultiATK] Sting (plus Myrmarch Toxin)",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 17,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 0,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d10 +18",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "5L46ecOJ4ioL8OU6",
+      "name": "[MultiATK] 2 Claws",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 17,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 0,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d10 +18",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": true,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "9pssJ3LFSr6gY5Cr",
+      "name": "[MultiATK] Bite",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/default/bolter-gun.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 17,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 0,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d10 +18",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": true,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "S4HS4LE1Ww31bS1u",
+      "name": "Sonic rifle, LFD",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/diasporan-rifle-elite.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "eac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 20,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "25"
+          },
+          "hp": {
+            "max": "45",
+            "value": 45
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "2",
+        "capacity": {
+          "max": 40,
+          "value": 40
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [
+            {
+              "id": "WmSXheUZTxCg9UqU",
+              "index": 2
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 10,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightMultiplier": 1,
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Deafen [DC 17]",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "2d10 +10",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": true
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A sonic rifle fires a blast that is loud enough to @UUID[Compendium.sfrpg.rules.Item.O5GDQUKPCJ9Zbnfj]{Deafen} targets in addition to damaging them. Sonic rifles have snub-nosed barrels and typically incorporate U-shaped prongs to improve beam stability.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 10,
+        "modifiers": [],
+        "price": 17000,
+        "proficient": true,
+        "properties": {
+          "two": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "50"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 177",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 2
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "sonic",
+        "weaponType": "longA"
+      }
+    },
+    {
+      "_id": "lJq7pdDdD3zyDRN8",
+      "name": "Mobility (Combat)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/mobility.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You can easily move past dangerous foes.</p>\n<p><strong>Prerequisites</strong>: Dex 13.</p>\n<hr />\n<p><strong>Benefit</strong>: You gain a +4 bonus to your Armor Class against attacks of opportunity that you provoke by leaving a threatened square.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "8S6QuCTSc3XwuU1D",
+      "name": "Hive Mind (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Formians operate from a shared hive intelligence that allows them to communicate nearly instantaneously. While within telepathic range of at least one other formian with this ability, a formian gains a +4 bonus to initiative and to Perception checks. If one formian is aware of a combatant, all members of the hive mind within range are aware of it, and a member of the hive mind cannot be surprised unless all members within range are surprised. If one member of the hive mind succeeds at a Will save to disbelieve an illusion effect, all members of that hive mind within telepathic range also disbelieve the effect.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "bhOjg9JwR4Sak4nk",
+      "name": "Inspire Hive (Su)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "full",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Once per day as a full action, a myrmarch can agitate the hive mind to empower all formian warriors and workers within range of its telepathy. For 10 minutes, each affected creature gains a +4 morale bonus to attack rolls, saving throws, and skill checks, as well as immunity to fear effects and temporary Hit Points equal to twice the creature’s CR. A creature can be affected by only one myrmarch’s inspire hive ability at a time.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "0gYC7pk4fn2ALatS",
+      "name": "Sonic rifle, LFD",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/diasporan-rifle-elite.webp",
+      "system": {
+        "ability": "dex",
+        "actionTarget": "eac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "25"
+          },
+          "hp": {
+            "max": "45",
+            "value": 45
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "2",
+        "capacity": {
+          "max": 40,
+          "value": 40
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 10,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightMultiplier": 1,
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Deafen",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "2d10",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": true
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A sonic rifle fires a blast that is loud enough to @UUID[Compendium.sfrpg.rules.Item.O5GDQUKPCJ9Zbnfj]{Deafen} targets in addition to damaging them. Sonic rifles have snub-nosed barrels and typically incorporate U-shaped prongs to improve beam stability.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 10,
+        "modifiers": [],
+        "price": 17000,
+        "proficient": true,
+        "properties": {
+          "two": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "50"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 177",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 2
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "sonic",
+        "weaponType": "longA"
+      }
+    },
+    {
+      "_id": "PHMQJPRZujTRU6Ob",
+      "name": "Battery, High-Capacity",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/battery-high-capacity.webp",
+      "system": {
+        "ammunitionType": "charge",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": 40,
+          "value": 40
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons that use batteries list the highest-capacity battery they are capable of using as well as how many charges from the battery that each shot consumes.</p>\n<p><strong>Capacity:</strong> 40</p>"
+        },
+        "identified": true,
+        "level": 4,
+        "modifiers": [],
+        "price": 330,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": true
+      }
+    },
+    {
+      "_id": "ksp9you7rGoNHIbn",
+      "name": "Enervation (DC 18)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/enervation.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "rsak",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": false
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 20,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You shoot a black ray at a target, making a ranged attack against the target’s EAC. If you hit, the target gains 2 temporary negative levels. Negative levels stack. If the target survives, it recovers from negative levels after a number of hours equal to your caster level (maximum 15 hours). An undead creature struck by the ray gains 10 temporary Hit Points for 1 hour.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 4,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "close"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "fort",
+          "dc": "18",
+          "descriptor": "negate"
+        },
+        "school": "nec",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 353",
+        "sr": true,
+        "target": {
+          "value": "one creature"
+        },
+        "uses": {
+          "max": "1",
+          "per": "day",
+          "value": 1
+        }
+      }
+    },
+    {
+      "_id": "qXs1lvjIgdw9dkKo",
+      "name": "Charm Monster (DC 17)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/charm_monster.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This spell functions like @UUID[Compendium.sfrpg.spells.Item.3nFCrisRp2GIjbR3]{Charm Person}, except the effect is not restricted by creature type.</p>\n<h2>@UUID[Compendium.sfrpg.spells.Item.3nFCrisRp2GIjbR3]{Charm Person}</h2>\n<p>This charm makes a humanoid creature regard you as its trusted friend and ally (treat the target’s attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus to its saving throw.</p>\n<p>The spell does not enable you to control the charmed creature as if it were an automaton. It is unlikely to attempt to harm you, but it is also unlikely to attack any of its true friends or allies. You can try to give the target suggestions, but you must succeed at an opposed Charisma check to convince it to do anything it wouldn’t ordinarily do. (Retries of this check are not allowed.) An affected creature never obeys suicidal or obviously harmful suggestions. Any act by you or your apparent allies that threatens the charmed creature breaks the spell. You must speak the creature’s language to communicate your suggestions, or else be good at pantomiming.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "day",
+          "value": "@details.cl.value"
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 3,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "close"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "17",
+          "descriptor": "negate"
+        },
+        "school": "enc",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 342",
+        "sr": true,
+        "target": {
+          "value": "one living creature"
+        },
+        "uses": {
+          "max": "3",
+          "per": "day",
+          "value": 3
+        }
+      }
+    },
+    {
+      "_id": "4iu3N4LSOoSn6ydu",
+      "name": "Status (At Will)",
+      "type": "spell",
+      "img": "systems/sfrpg/icons/spells/status.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "save",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "allowedClasses": {
+          "myst": true,
+          "precog": false,
+          "tech": false,
+          "wysh": true
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "concentration": false,
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>When you need to keep track of comrades who get separated, status allows you to mentally monitor their relative positions and general conditions. You are aware of the direction of and distance to the creatures and any conditions or states affecting them: @UUID[Compendium.sfrpg.conditions.Item.8rIj0ewW4bL8Uph5]{Confused}, diseased, @UUID[Compendium.sfrpg.conditions.Item.4MxAK5uS0zMNWhUK]{Dying}, @UUID[Compendium.sfrpg.conditions.Item.LoRydw1D4bqlbkA2]{Nauseated}, panicked, poisoned, @UUID[Compendium.sfrpg.conditions.Item.aAQ6SW6iK0EVq8Ce]{Staggered}, @UUID[Compendium.sfrpg.conditions.Item.CvsDp0GvojxiF2jz]{Stunned}, unconscious, unharmed, wounded, wounded and out of Stamina points, and the like. Once the spell has been cast upon the targets, the distance between them and the caster does not affect the spell as long as they are on the same plane of existence. If a target leaves the plane (including via Drift travel) or dies, the spell ceases to function for that creature.</p>"
+        },
+        "descriptors": {},
+        "dismissible": false,
+        "duration": {
+          "units": "hour",
+          "value": "@details.cl.value"
+        },
+        "formula": "",
+        "isActive": false,
+        "isVariableLevel": false,
+        "level": 2,
+        "materials": {
+          "consumed": false,
+          "cost": 0,
+          "supply": 0,
+          "value": ""
+        },
+        "modifiers": [],
+        "preparation": {
+          "mode": "always",
+          "prepared": true
+        },
+        "properties": {},
+        "range": {
+          "units": "touch"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "will",
+          "dc": "",
+          "descriptor": "harmless"
+        },
+        "school": "div",
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 379",
+        "sr": true,
+        "target": {
+          "value": "up to one living creature touched/3 levels"
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "3WpReDlQEwKzVs8P",
+      "name": "Loot",
+      "type": "container",
+      "img": "systems/sfrpg/icons/default/briefcase.svg",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "container": {
+          "contents": [
+            {
+              "id": "0gYC7pk4fn2ALatS",
+              "index": 0
+            },
+            {
+              "id": "PHMQJPRZujTRU6Ob",
+              "index": 0
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "bulk",
+              "acceptsType": [
+                "weapon",
+                "shield",
+                "equipment",
+                "goods",
+                "consumable",
+                "container",
+                "technological",
+                "fusion",
+                "upgrade",
+                "augmentation",
+                "magic",
+                "hybrid",
+                "ammunition",
+                "weaponAccessory"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1000,
+              "subtype": "",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": ""
+      }
+    },
+    {
+      "_id": "WmSXheUZTxCg9UqU",
+      "name": "Battery, High-Capacity",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/battery-high-capacity.webp",
+      "system": {
+        "ammunitionType": "charge",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": 40,
+          "value": 40
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons that use batteries list the highest-capacity battery they are capable of using as well as how many charges from the battery that each shot consumes.</p>\n<p><strong>Capacity:</strong> 40</p>"
+        },
+        "identified": true,
+        "level": 4,
+        "modifiers": [],
+        "price": 330,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": true
+      }
+    },
+    {
+      "_id": "dffo87cAwfZMDNOG",
+      "name": "Myrmarch Toxin",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<h3>Myrmarch Toxin</h3>\n<p><strong>Type</strong>@UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poisons} (injury);<strong>Save</strong> Fortitude DC 17</p>\n<p><strong>Track</strong> Dexterity; Frequency 1/round for 6 rounds</p>\n<p><strong>Effect</strong> The victim is also off-target while affected by this @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poisons}.</p>\n<p><strong>Cure</strong> 2 consecutive saves</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "Formian Myrmarch",
+    "actorLink": false,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": -1,
+    "height": 2,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": false,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/icons/default/alien-stare.svg",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 2
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": 2
+      },
+      "con": {
+        "base": 5
+      },
+      "dex": {
+        "base": 3
+      },
+      "int": {
+        "base": 2
+      },
+      "str": {
+        "base": 8
+      },
+      "wis": {
+        "base": 2
+      }
+    },
+    "attributes": {
+      "abilityDC": {
+        "base": 0
+      },
+      "arms": 2,
+      "baseSpellDC": {
+        "base": 0
+      },
+      "eac": {
+        "base": 23
+      },
+      "fort": {
+        "base": 12
+      },
+      "hp": {
+        "max": 165,
+        "temp": null,
+        "value": 165
+      },
+      "init": {
+        "value": 3
+      },
+      "kac": {
+        "base": 25
+      },
+      "reach": "5 ft.",
+      "reflex": {
+        "base": 14
+      },
+      "space": "10 ft.",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 0,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 50
+        },
+        "mainMovement": "land",
+        "special": "",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "base": 11
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 0,
+      "upb": 0
+    },
+    "details": {
+      "type": "Monstrous Humanoid",
+      "alignment": "LN",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<h2>Description</h2>\n<p>Formian taskmasters and myrmarchs each serve highly specialized roles within their hive-organized species. Taskmasters are typically 5 feet tall and weigh 300 pounds, while myrmarchs average 8 feet in height and weigh around 1,200 pounds.</p>\n<p>Formian taskmasters play a mercantile role and often represent formian interests abroad. Formian myrmarchs are almost never seen outside of the hive. These aristocratic members of formian culture are the queen’s agents and advisors, generals of formian armies, and leaders of complex civic projects. They are deadly combatants, but their real power comes from their ability to elicit extraordinary performance from the entire hive.</p>\n<h2>Formian</h2>\n<p>Formians resemble giant ants with humanoid upper bodies, and carve their chitinous plates with insignias reflecting their individual names and achievements. Members of a hive all share a telepathic link, allowing them to coordinate efficiently.</p>\n<p>Within a hive are castes specialized to particular tasks. The queen leads the hive and is its sole means of propagation, while castes like the aristocratic myrmarchs and mercantile taskmasters direct lower castes like warriors and workers.</p>\n<p>Formians are most common on @UUID[Compendium.sfrpg.setting.Item.mkJGLfpJkvAKLZz3]{Castrovel}. For millennia they sought to eradicate the lashunta, their traditional foes, but their queens now instead focus on adopting other species’ technology to industrialize their traditional hive societies.</p>",
+        "weight": ""
+      },
+      "combatRole": "",
+      "cr": 10,
+      "environment": "any land or underground (Castrovel)",
+      "organization": "solitary, team (2-4), platoon (1 plus 7-18 formian warriors and 6-12 formian workers), or royal guard (4 plus 12-20 formian warriors)",
+      "organizationSize": {
+        "max": null,
+        "min": 1
+      },
+      "raceAndGrafts": "",
+      "source": "AA2 pg. 52",
+      "subtype": ""
+    },
+    "modifiers": [],
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "com": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 24,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 19,
+        "subname": "",
+        "value": 0
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": true,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 19,
+        "subname": "",
+        "value": 0
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": true,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 19,
+        "subname": "",
+        "value": 0
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "value": 0
+      }
+    },
+    "traits": {
+      "ci": {
+        "custom": "",
+        "value": []
+      },
+      "di": {
+        "custom": "",
+        "value": []
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "",
+        "value": [
+          "common"
+        ]
+      },
+      "senses": "blindsense (scent) 30 ft., darkvision 60 ft.",
+      "size": "large",
+      "sr": 0
+    }
+  }
+}

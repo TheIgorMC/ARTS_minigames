@@ -1,0 +1,76 @@
+{
+  "_id": "QnGpBSHSTiszjPSb",
+  "name": "Off-Kilter",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/offkilter.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You are disoriented and floating in zero gravity.</p>\n<p>You can’t take move actions to move your speed, crawl, or take a guarded step.</p>\n<p>You are @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-Footed} and take a –2 penalty to attack rolls.</p>\n<p>You must use a method of propulsion to right yourself or grab a stabilizing object such as a wall or ladder (usually as a move action) in order to end this condition.</p>\n<p>See Zero Gravity on page 402 for more information.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "d0a80e25-d152-47a5-b497-91dc39eb9e99",
+        "name": "Off-Kilter",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "b8cee6a2-298c-4ea6-8fa9-4e9a2e236055",
+        "name": "Off-Kilter",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-speeds",
+        "enabled": true,
+        "max": -1000,
+        "modifier": "-1000",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "off-kilter",
+    "source": "CRB.276",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

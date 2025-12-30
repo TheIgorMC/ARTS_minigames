@@ -1,0 +1,64 @@
+{
+  "_id": "2EBM4caRLBOrXe2B",
+  "name": "Cosmetics",
+  "type": "goods",
+  "img": "systems/sfrpg/icons/default/hand-truck.svg",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Cosmetics are usually liquids or powders used for covering blemishes or subtly altering one’s facial features. They can be purchased in countless brands, colors, and styles. Using cosmetics to disguise yourself gives you a +1 circumstance bonus on Disguise checks as long as you are not attempting to disguise yourself as a different species.</p>"
+    },
+    "equippable": false,
+    "equipped": false,
+    "identified": true,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "a2e1ea6b-7026-403a-9a91-947027e0cc2e",
+        "name": "Cosmetics",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "Using cosmetics to disguise yourself gives you a +1 circumstance bonus on Disguise checks as long as you are not attempting to disguise yourself as a different species.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "dis"
+      }
+    ],
+    "price": 20,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "DC pg. 129"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "1ZePYtgE8CHF3CJw",
+  "name": "Basic long-range sensors",
+  "type": "starshipSensor",
+  "img": "systems/sfrpg/icons/default/radar-dish.svg",
+  "system": {
+    "cost": 10,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifier": 2,
+    "modifiers": [],
+    "range": "long",
+    "slug": "",
+    "source": "CRB pg. 301",
+    "specialMaterials": {}
+  }
+}

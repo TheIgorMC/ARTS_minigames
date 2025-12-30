@@ -1,0 +1,127 @@
+{
+  "_id": "YG7b6WIBgRFV7AUa",
+  "name": "Clinging hands",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "biotech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 8
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Your hands are covered with tiny fibers like those on a gecko’s toes. You gain a +2 circumstance bonus to your KAC against disarm combat maneuvers and to attacks to perform disarm and grapple combat maneuvers. You can ignore any increase to the DCs of @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.iLlBAZBfHJMZQRQx]{Athletics} checks to climb due to slipperiness, iciness, or heavy gravity. You can’t benefit from clinging hands if you are wearing armor or gloves that have not been either @UUID[Compendium.sfrpg.rules.WP7hddXW4mLXXXOg.JournalEntryPage.8bxhPYw9heXqKHYD#adjusting-armor]{tailored or adjusted} for you (Core Rulebook 196).</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 3,
+    "modifiers": [
+      {
+        "_id": "1b6b4784-9c74-4e9c-b113-b763163b9a63",
+        "name": "Clinging hands",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "cmd",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "You gain a +2 circumstance bonus to your KAC against disarm combat maneuvers and to attacks to perform disarm and grapple combat maneuvers.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 1350,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 86",
+    "system": "allHands",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

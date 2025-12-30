@@ -1,0 +1,127 @@
+{
+  "_id": "oAyubZ8gVCObCSZ7",
+  "name": "Tympanal cluster",
+  "type": "augmentation",
+  "img": "icons/magic/water/orb-ice-web.webp",
+  "system": {
+    "type": "cybernetic",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 9
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A tympanal cluster consists of multiple small membranes of various sizes that can detect a wide range of sounds. They give you a +2 circumstance bonus to hearing-based Perception checks.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 4,
+    "modifiers": [
+      {
+        "_id": "71970149-b26d-4023-9c6e-da1377dae874",
+        "name": "Tympanal cluster",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "Your Tympanal cluster give you a +2 circumstance bonus to hearing-based Perception checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      }
+    ],
+    "price": 2150,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 212",
+    "system": "ears",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "_id": "cT8bZ2CfL2fu8yy9",
+  "name": "Balanced Graft",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/classes/uncanny_agility.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The speedy aberrations known as @UUID[Compendium.sfrpg.races.Item.CbLeU8p8kAMHaOI9]{bantrids} roll about on their foot orbs with grace and agility. Gyrostabilizers within your own feet (or similar appendages) grant you a +2 enhancement bonus to your AC against trip combat maneuvers and allow you to stand up from @UUID[Compendium.sfrpg.conditions.Item.XeRGqHVtcZ7vsgJ0]{Prone} as a swift action.</p>\n<p><em>Toggle on/off bonus in the Modifiers tab.</em></p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "43477439-64e4-46a2-be27-67cc483eb3fe",
+        "name": "Balanced Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "ac",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Gyrostabilizers within your own feet (or similar appendages) grant you a +2 enhancement bonus to your AC against trip combat maneuvers.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "both"
+      }
+    ],
+    "price": 350,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 142",
+    "system": "allFeet",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

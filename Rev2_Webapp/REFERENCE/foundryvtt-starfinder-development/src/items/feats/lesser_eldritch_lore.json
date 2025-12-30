@@ -1,0 +1,84 @@
+{
+  "_id": "966gFQxG64LipNVt",
+  "name": "Lesser Eldritch Lore",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/lesser_eldrith_lore.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You have learned a broad range of additional low-level magic.</p>\n<p><strong>Prerequisites</strong>: Key ability score 17, Minor Eldritch Lore, caster level 7th, 7 levels in a class with a class spell list.</p>\n<hr />\n<p><strong>Benefit</strong>: You gain one additional 1st-level spell known from your class spell list.</p>\n<p><strong>Special</strong>: For every 3 levels by which your caster level exceeds 7th, you can take this feat an additional time. You cannot take this feat more times than you have taken Minor Eldritch Lore. Each time you select this feat, you gain a different 1st-level spell known from your class spell list.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

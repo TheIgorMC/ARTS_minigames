@@ -1,0 +1,188 @@
+{
+  "_id": "qH7z94vInQTk0G3u",
+  "name": "Many-mien Shield",
+  "type": "shield",
+  "img": "icons/commodities/stone/stone-chunk-teal.webp",
+  "system": {
+    "ability": "str",
+    "acp": -1,
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "43"
+      },
+      "hp": {
+        "max": "102",
+        "value": 102
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bonus": {
+      "aligned": 3,
+      "wielded": 1
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "upgrade"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 5,
+          "subtype": "armorUpgrade",
+          "weightProperty": "slots"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 19,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "1d3 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": true,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Although the prototypes for many-miened shields were built from the remains of a many-miened one, most many-mien shields are manufactured. Each is a hardened bulwark whose crystalline structure allows it to reconfigure its auxiliary features to create an adaptive defense.</p>\n<p>A many-miened shield functions as a @UUID[Compendium.sfrpg.equipment.Item.3OKV0CwWNWUQv0j0]{Knight’s Shield} (COM pg. 125) that deals bludgeoning damage when used to make unarmed strikes. A many-miened shield can accommodate five total armor upgrades; however, only two of the upgrades can be active at any time. As a move action (or as part of the move action used to align the shield against an opponent), you can deactivate either of the two active armor upgrades and simultaneously activate one of the shield’s inactive armor upgrades.</p>"
+    },
+    "dex": 6,
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 19,
+    "modifiers": [
+      {
+        "_id": "c4fb1e92-a682-4eeb-a45c-8549e83ee5b5",
+        "name": "Many-Mein Shield - Combat manuever",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "If you are wielding a Many-Mein Shield (as knight’s shield), you gain a +1 bonus to any bull rush combat maneuver you attempt.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      }
+    ],
+    "price": 555000,
+    "proficient": false,
+    "properties": {
+      "nonlethal": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 71",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

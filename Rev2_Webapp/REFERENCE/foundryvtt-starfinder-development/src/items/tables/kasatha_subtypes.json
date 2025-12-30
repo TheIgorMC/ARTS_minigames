@@ -1,0 +1,115 @@
+{
+  "_id": "U7d9BttndsDDj318",
+  "name": "Kasatha subtypes",
+  "description": "",
+  "displayRoll": true,
+  "formula": "1d4",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "bJO2Lt3B8M3LUXfg",
+      "name": "Kasatha",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.dGlSCMtFZ2ZIKUpl",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "7dwWI1p0dHAIxkw4",
+      "name": "Kasatha (Akitonian Settler)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.gel6uF2TJy9sGMM6",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Yl9l0bSMBBprkgA2",
+      "name": "Kasatha (Kasath Native)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.KPLpy6zsfhXYmtOW",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        3,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "7H7aqGfGc1drPjZL",
+      "name": "Kasatha (Nomad)",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "",
+      "documentUuid": "Compendium.sfrpg.races.Item.YorzCiw6rmWXFZqL",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        4,
+        4
+      ],
+      "weight": 1
+    }
+  ]
+}

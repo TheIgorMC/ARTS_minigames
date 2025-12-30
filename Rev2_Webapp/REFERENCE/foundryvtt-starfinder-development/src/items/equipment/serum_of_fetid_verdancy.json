@@ -1,0 +1,99 @@
+{
+  "_id": "bxjU33Re6fl2a4mo",
+  "name": "Serum of fetid verdancy",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-conical-corked-green.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This serum looks and smells like a puree of rancid vegetables left in the sun for a few days. While incredibly hard to choke down, imbibing the serum causes you to sprout several stalks of starchy green florets that grow all over your body into clumps resembling jawless skulls, shrieking faces, open claws, or other unnerving images. The florets also emit a choking gas that smells putrid and foul. For 1 minute, you gain fast healing 5; for the duration, each creature within 10 feet of you must succeed at a Fortitude save (DC = 15 + half your character level) or become sickened for 1 round. A creature that succeeds at this save is immune to the stench from this serum’s effects for 24 hours. This macabre plant growth is edible, but it tastes terrible and provides no nutritional value.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 10,
+    "modifiers": [],
+    "price": 2400,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 113",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

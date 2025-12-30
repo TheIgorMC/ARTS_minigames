@@ -1,0 +1,85 @@
+{
+  "_id": "FXsMlNNCyQXxB7XJ",
+  "name": "Quick Study (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/double_draw.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>As a move action, you become proficient with a type of weapon with which another ally within 30 feet is proficient. If that ally has weapon specialization with that weapon type, you can also apply that ally’s weapon specialization with that weapon type. This ability’s effects last a number of rounds equal to half your envoy level, after which you can’t use this ability again until after you regain Stamina Points following a 10-minute rest.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "30"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "8th Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 17",
+    "target": {
+      "value": "Ally"
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

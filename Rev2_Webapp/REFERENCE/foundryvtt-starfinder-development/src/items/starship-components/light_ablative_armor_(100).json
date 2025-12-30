@@ -1,0 +1,23 @@
+{
+  "_id": "vwx6tc6A4k8nAVw8",
+  "name": "Light ablative armor (100)",
+  "type": "starshipAblativeArmor",
+  "img": "systems/sfrpg/icons/default/metal-plate.svg",
+  "system": {
+    "ablativeValue": 100,
+    "cost": 14,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "SOM pg. 20",
+    "targetLockPenalty": 0,
+    "turnDistancePenalty": 0
+  }
+}

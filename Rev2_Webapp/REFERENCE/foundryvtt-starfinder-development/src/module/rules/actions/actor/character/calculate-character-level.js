@@ -1,0 +1,31 @@
+export default function(engine) {
+    engine.closures.add("calculateCharacterLevel", (fact) => {
+        const data = fact.data;
+        const classes = fact.classes;
+
+        if (!data.details.level) data.details.level = {value: 0, tooltip: []};
+        if (!data.details.cl.tooltip) data.details.cl.tooltip = [];
+
+        for (const cls of classes) {
+            const classLevel = cls.system.levels;
+            const tooltip = game.i18n.format("SFRPG.CharacterLevelsTooltip", {
+                class: cls.name.split(',')[0].trim(),
+                levels: classLevel + ` (@classes.${cls.name.toLowerCase().split(',')[0].trim()}.levels)`
+            });
+
+            data.details.level.value += classLevel;
+            data.details.level.tooltip.push(tooltip);
+
+            if (cls.system.isCaster) {
+                if (data.details.cl.value === null) {
+                    data.details.cl.value = 0;
+                }
+                data.details.cl.value += classLevel;
+                data.details.cl.tooltip.push(tooltip);
+            }
+        }
+
+        if (data.details.level.value < 1) data.details.level.value = 1;
+        return fact;
+    });
+}

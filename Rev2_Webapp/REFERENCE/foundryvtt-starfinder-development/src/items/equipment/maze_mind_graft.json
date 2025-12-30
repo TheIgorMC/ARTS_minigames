@@ -1,0 +1,144 @@
+{
+  "_id": "gPI8WqBqBKFoPQBe",
+  "name": "Maze Mind Graft",
+  "type": "augmentation",
+  "img": "icons/commodities/biological/organ-brain-pink.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "6"
+      },
+      "hp": {
+        "max": "8",
+        "value": 8
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Most @UUID[Compendium.sfrpg.races.Item.XbIjL8c0BwMi6Mo1]{nuars} have a naturally strong sense of direction Several microchips installed in your brain help you make similar connections, granting you a +2 enhancement bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.2xZnjhTSiLu0uoXB]{Piloting} and @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.UDTsEIldhXTn0VJA]{Survival} checks (as long as you have 1 or more ranks in those skills). In addition, you can attempt a special level-based Wisdom check (1d20 + your level + your Wisdom modifier) instead of using your total bonus in the Piloting skill to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.2xZnjhTSiLu0uoXB#navigate]{navigate} or your total bonus in the Survival skill for @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.UDTsEIldhXTn0VJA#orienteering]{orienteering}.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 3,
+    "modifiers": [
+      {
+        "_id": "aabd138f-cfa9-4633-a064-a1c942738c00",
+        "name": "Maze Mind Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "ternary(gte(@skills.pil.ranks, 1), 2, 0)",
+        "modifierType": "constant",
+        "notes": "Granting you a +2 enhancement bonus to Piloting and Survival checks (as long as you have 1 or more ranks in those skills).",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": "pil"
+      },
+      {
+        "_id": "4ac22cce-f552-4855-beea-a4c44fdbc862",
+        "name": "Maze Mind Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "ternary(gte(@skills.pil.ranks, 1), 2, 0)",
+        "modifierType": "constant",
+        "notes": "Granting you a +2 enhancement bonus to Piloting and Survival checks (as long as you have 1 or more ranks in those skills).",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": "sur"
+      }
+    ],
+    "price": 1200,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 145",
+    "system": "brain",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

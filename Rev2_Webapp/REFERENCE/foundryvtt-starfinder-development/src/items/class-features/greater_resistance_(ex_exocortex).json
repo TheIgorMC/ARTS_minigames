@@ -1,0 +1,102 @@
+{
+  "_id": "NvU3xMfhhEBxAvbd",
+  "name": "Greater Resistance (Ex; Exocortex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/greater_resistance.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.z8iOan4RJXYvVhit]{Exocortex Mods (Ex)}</p>\n<p>Choose one type of energy for which your Exocortex already has the @UUID[Compendium.sfrpg.class-features.Item.E5UGSczcIiQjjPKI]{Resistance (Ex; Exocortex)} mod. Increase your resistance to that energy type by 5. You can select this mod multiple times. Its effects do not stack. Each time you select this mod, it applies to a different energy type for which your exocortex has the resistance mod.</p>\n<p><em>Select chosen resistance in the 'Specific Affected Value' field of the Modifiers tab.</em></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "23aa8d96-d8d2-4289-9f2f-b10711090e7e",
+        "name": "Greater Resistance (Ex; Exocortex)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": true,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "acid"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "7th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Exocortex",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

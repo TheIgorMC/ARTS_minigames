@@ -1,0 +1,63 @@
+{
+  "_id": "79iXZ3ffJ2VNjZq8",
+  "name": "Easily Augmented (Android)",
+  "type": "container",
+  "img": "systems/sfrpg/icons/default/briefcase.svg",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "0",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "augmentation"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>As artificial creatures, androids are compatible with a wide array of cybernetics. Androids who have this species trait can install one additional cybernetic augmentation into one system that already has an augmentation.</p>\n<p><strong>This replaces upgrade slot.</strong></p>"
+    },
+    "equippable": false,
+    "equipped": true,
+    "identified": true,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [],
+    "price": 0,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "CRB pg. 42"
+  }
+}

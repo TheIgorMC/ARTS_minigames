@@ -1,0 +1,62 @@
+{
+  "_id": "OwZA6flUQPH0jPA0",
+  "name": "Encumbered",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/encumbered.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]</p>\n<hr />\n<p>All of your speeds are reduced by 10 feet, your maximum Dexterity bonus to your Armor Class is reduced to +2, and you take a –5 penalty to Strength- and Dexterity-based checks (or you take your armor’s armor check penalty, whichever is worse).</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "caf42d2d-3e5f-4acc-9b74-2903faddb0bf",
+        "name": "Encumbered",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-speeds",
+        "enabled": true,
+        "max": -10,
+        "modifier": "-10",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "encumbered",
+    "source": "CRB.275",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

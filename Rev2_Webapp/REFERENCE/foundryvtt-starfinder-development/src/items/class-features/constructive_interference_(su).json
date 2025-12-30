@@ -1,0 +1,119 @@
+{
+  "_id": "3k3J6neWmehqVWun",
+  "name": "Constructive Interference (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/graviton.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>&nbsp;@Icon[type:graviton] Graviton Revelation</p>\n<p>Forces humming within your @UUID[Compendium.sfrpg.class-features.Item.zM7oc1qiNLAPoH1J]{Solar Armor} make it more difficult for sound waves and electrical impulses to reach your body and harm you. You gain energy resistance 5 whenever your solar armor is active. You can choose either electricity resistance or sonic resistance when you activate the armor, and you can switch energy types as a move action.</p>\n<p>When you are attuned or fully attuned, you double the amount of resistance granted by this ability.</p>\n<p><em>Enable/Disable selected resistance in the Modifiers tab.</em></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "ce26fa0d-0555-49d2-b520-fbfea51290d8",
+        "name": "Constructive Interference (Su) - Electricity",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": false,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "lookupRange(@resources.solarian.stellarMode.value, 10, 0, 5, 1, 10)",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "electricity"
+      },
+      {
+        "_id": "5c98fded-97e7-40f5-b640-4dd123eee60a",
+        "name": "Constructive Interference (Su) - Sonic",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": false,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "lookupRange(@resources.solarian.stellarMode.value, 10, 0, 5, 1, 10)",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "sonic"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR, pg. 152",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "_id": "PXuedwnKWs6zkwyU",
+  "name": "Spell Grenade (Sp)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/spell_grenade.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.sobLlAGQkmWcFBFx]{Magic Hack}</p>\n<p>You can spend 1 Resolve Point to store a spell with a range of touch in a grenade, allowing you to affect a target within the grenade’s blast radius with the spell. Casting a spell with spell grenade uses the spell’s standard casting time, and throwing the spell grenade is a standard action. You must throw the grenade before the end of your next turn, or the spell is wasted. You are considered proficient with the grenade for this attack. Choose a single target within the grenade’s blast radius; that target is affected by the spell as if you had successfully touched it. The grenade goes off as normal, with all of its usual effects within its blast radius. If you miss the targeted intersection with the grenade, you must choose a target within the grenade’s new blast radius. If there are no suitable targets within the grenade’s blast radius, the spell is wasted. Spells whose ranges are not touch don’t benefit from this magic hack.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "sp"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "5th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Technomancer",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

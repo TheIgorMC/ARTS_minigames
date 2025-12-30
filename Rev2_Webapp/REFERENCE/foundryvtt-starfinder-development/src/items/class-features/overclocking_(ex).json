@@ -1,0 +1,119 @@
+{
+  "_id": "s8QuUMHbPDfYEJ1k",
+  "name": "Overclocking (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/overcloacking.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.YMGOKoZtKgJqIsAD]{Mechanic Trick}</p>\n<p>You have augmented the performance of your AI for maximum response timing. You gain a +2 insight bonus to initiative checks, and either you (if you have an exocortex) or your drone (if you have a drone) gains a +2 insight bonus to Reflex saves.</p>\n<p><em>Will have to manually add the Reflex Modifier to any affected Drone</em></p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "bccbba76-acd7-4e7e-af19-463ddb9af656",
+        "name": "Overclocking",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "initiative",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "3f985f4a-01bd-422e-853d-0117b3a45ed1",
+        "name": "Overclocking",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "save",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "If Exocortex",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "reflex"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level (Mechanic)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB p. 72",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "_id": "8FkqnZQI2Ql5m2iR",
+  "name": "Petal Storm",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/spells/charming_veneer.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": true,
+      "precog": false,
+      "tech": false,
+      "wysh": true
+    },
+    "area": {
+      "effect": "spread",
+      "shapable": false,
+      "shape": "sphere",
+      "units": "ft",
+      "value": "5"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "3d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You conjure a 5-foot storm of leaves and flower petals from another world, magically honing their edges to be sharp as razors. You create the storm in a square within range and can take a move action to move it up to 30 feet in any direction. If the storm enters (or is created in) a square containing a creature, the petal storm can’t move any farther that round and deals 3d6 slashing damage to that creature (Reflex negates). If you don’t move the storm, it remains where it is.</p>\n<p>Any creature that shares its space with the storm has concealment (attacks have a 20% miss chance).</p>"
+    },
+    "descriptors": {},
+    "dismissible": true,
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 3,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "medium"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "school": "con",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #42 pg. 43",
+    "sr": false,
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

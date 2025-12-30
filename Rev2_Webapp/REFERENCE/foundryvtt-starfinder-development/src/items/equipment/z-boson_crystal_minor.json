@@ -1,0 +1,150 @@
+{
+  "_id": "qoG2Fm7gG3ocfGh9",
+  "name": "Z-boson crystal, minor",
+  "type": "weapon",
+  "img": "icons/commodities/gems/gem-faceted-teardrop-blue.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 36
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "-",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 7,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Push (10 ft.)",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This specialized weapon crystal causes a solar weapon to twist energy, momentum, and even stranger forces around it. A weapon enhanced with a z-boson crystal deals increased damage and can sometimes give a target unexpected momentum, hurling it backward. Z-boson crystals are fairly esoteric and can be found in shard, least, minor, lesser, standard, greater, and true versions.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 7,
+    "modifiers": [
+      {
+        "_id": "2d50850b-b06e-43e8-96cf-abdce1256502",
+        "name": "Z-boson crystal, minor",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-damage",
+        "enabled": true,
+        "limitTo": "container",
+        "max": 4,
+        "modifier": "1d4",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 7000,
+    "proficient": true,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 49",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "solarian"
+  }
+}

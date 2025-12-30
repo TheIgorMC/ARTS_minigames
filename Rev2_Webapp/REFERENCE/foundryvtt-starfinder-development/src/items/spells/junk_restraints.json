@@ -1,0 +1,97 @@
+{
+  "_id": "3CZSF4rQVcv9WVdZ",
+  "name": "Junk Restraints",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/spells/junk_restraints.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": false,
+      "precog": false,
+      "tech": true,
+      "wysh": false
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You turn a pile of technological junk into fetters and shackles that restrain a creature within range. You must target inert, nonworking electronic equipment of at least 1 bulk. Valid targets include a large broken computer system, nonworking or unconnected computer or robot parts, a destroyed robot or another such trashed mechanical system, or any related electronic components or combination of the above, as long as the junk is found in sufficient quantity.</p>\n<p>While casting this spell, you use your magic and technological know-how to rearrange the junked parts and infuse them with energy powerful enough to restrain a Large or smaller creature. The junk flies toward the creature and attaches itself to the creature’s limbs or otherwise ensnares it, causing it to gain the @UUID[Compendium.sfrpg.conditions.Item.nFBcsp5FS1Wi46Fc]{Entangled} condition for the duration of the spell or until it ends the condition by succeeding at an Acrobatics check to escape as a move action. The DC of this check is equal to 15 + 1-1/2 × your caster level.</p>\n<p>If the targeted creature succeeds at a Reflex save, the junk lands adjacent to them harmlessly.</p>"
+    },
+    "descriptors": {},
+    "dismissible": false,
+    "duration": {
+      "units": "round",
+      "value": "floor(@details.cl.value/2)"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 4,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "25"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "school": "trs",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "NS pg. 156",
+    "sr": false,
+    "target": {
+      "value": "at least 1 bulk of inert electronic equipment; see text"
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

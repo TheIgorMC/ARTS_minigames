@@ -1,0 +1,28 @@
+{
+  "time": {
+    "year": 2556,
+    "day": 1,
+    "hour": 13,
+    "minute": 27,
+    "scrambled": false
+  },
+  "mood": {
+    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DIdle.jpg"
+  },
+  "identities": [
+    "GM",
+    "Jose Milly"
+  ],
+  "conversations": [
+    {
+      "id": "group_1767086476444",
+      "name": "The squad",
+      "type": "group",
+      "participants": [
+        "joe",
+        "spark",
+        "Jose Milly"
+      ]
+    }
+  ]
+}

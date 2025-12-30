@@ -1,0 +1,127 @@
+{
+  "_id": "SGsMZ2k8GC6wWX38",
+  "name": "Shielded Thoughts Graft",
+  "type": "augmentation",
+  "img": "icons/commodities/materials/material-webbing.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>@UUID[Compendium.sfrpg.races.Item.og2ACwfIkxoP84x1]{Embri} have evolved unusual ways of thinking that protect them from certain magic. With this augmentation, arcane-charged filaments form a cage around your brain (or similar organ), granting you immunity to magical @UUID[Compendium.sfrpg.rules.Item.PqV3OCbUTyk2upPD]{Charm effects} and a +2 enhancement bonus to saving throws against enchantment spells and effects.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "modifiers": [
+      {
+        "_id": "9be91bfc-7ea1-4d9f-937c-8b320f47d22f",
+        "name": "Shielded Thoughts Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "Immunity to magical charm effects and a +2 enhancement bonus to saving throws against enchantment spells and effects.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 4225,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 146",
+    "system": "brain",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

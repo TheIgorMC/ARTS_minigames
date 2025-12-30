@@ -1,0 +1,42 @@
+{
+  "_id": "p0sQQHqhVWOtHAn1",
+  "name": "Deploy Drone",
+  "type": "starshipAction",
+  "img": "systems/sfrpg/icons/default/crosshair.svg",
+  "system": {
+    "dc": null,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Normal effect</h2><p>You activate a starship weapon with the deployed special property, deploying a drone into a hex adjacent to your starship at the beginning of the next round.</p>"
+    },
+    "effectCritical": "",
+    "effectNormal": "You activate a starship weapon with the deployed special property, deploying a drone into a hex adjacent to your starship at the beginning of the next round.",
+    "formula": [
+      {
+        "name": "Deploy Drone (No skill check required)",
+        "dc": null,
+        "effectCritical": "",
+        "effectNormal": "",
+        "formula": "0"
+      }
+    ],
+    "isPush": false,
+    "modifiers": [],
+    "order": 11,
+    "phase": {
+      "name": "Gunnery phase",
+      "tooltip": "This action can be taken only during the gunnery phase."
+    },
+    "resolvePointCost": 0,
+    "role": "gunner",
+    "selectorKey": "gunner",
+    "selectors": [
+      "gunner"
+    ],
+    "slug": "",
+    "source": "SOM"
+  }
+}

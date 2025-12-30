@@ -1,0 +1,104 @@
+@import "./variables.less";
+
+.sfrpg.sheet.actor.vehicle {
+    min-width: 600px;
+    // min-height: 685px;
+
+    /* ----------------------------------------- */
+    /*  Sheet Header                             */
+    /* ----------------------------------------- */
+
+    .sheet-header {
+        .charlevel {
+            flex: 0 0 180px;
+            padding: 0 5px 2px;
+
+            .level {
+                height: 28px;
+            }
+        }
+    }
+
+    .summary li {
+        width: 100%;
+        input[type="text"] {
+            width: 66%;
+        }
+    }
+
+    .form-group {
+        padding: 0 5px;
+
+        .form-fields input[type="text"],
+        .form-fields select {
+            border: 1px solid @colorTan;
+            background: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    .traits {
+        margin: 0;
+    }
+
+    .sheet-body {
+        ul.attributes {
+            overflow: hidden;
+            li.attribute {
+                height: 95px;
+
+                .attribute-value span {
+                    font-size: var(--font-size-24);
+                }
+
+                .attribute-footer input {
+                    max-width: 33%;
+                }
+            }
+        }
+    }
+
+    .passenger-action {
+        flex: 0 0 25%;
+
+        .passengerPilotingSkill {
+            width: auto;
+            background: @sfrpgBlue;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                box-shadow: 0 0 5px @sfrpgBlue;
+            }
+        }
+
+        .pilotPilotingSkill {
+            width: 100%;
+            display: block;
+            background: url("../../icons/svg/d20-grey.svg") no-repeat 50% 50%;
+            background-size: 16px;
+            margin: 0 0.5em;
+
+            &:hover,
+            &:focus {
+                background-image: url("../../icons/svg/d20-black.svg");
+            }
+        }
+    }
+
+    .vehicle-system-action {
+        flex: 0 0 25%;
+
+        .roll-piloting {
+            width: auto;
+            background: @sfrpgBlue;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                box-shadow: 0 0 5px @sfrpgBlue;
+            }
+        }
+    }
+}

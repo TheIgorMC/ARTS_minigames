@@ -1,0 +1,84 @@
+{
+  "_id": "ACti4nBLewJMvG8R",
+  "name": "Shot on the Run (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/shot_on_the_run.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "full",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can move, make a ranged attack, and move again before your foes can react.</p>\n<p><strong>Prerequisites</strong>: Dex 15, @UUID[Compendium.sfrpg.feats.Item.K1DuZQv4CKQHxnIk]{Mobility (Combat)}, base attack bonus +4.</p>\n<hr />\n<p><strong>Benefit</strong>: As a full action, you can move up to your speed and make a single ranged attack at any point during your movement. If you have the @UUID[Compendium.sfrpg.class-features.Item.MBNI94tbMoqizPUk]{Trick Attack (Ex)} class feature, you can take your movement from trick attack at any time during a trick attack (see page 93) with a ranged weapon (instead of only before).</p>\n<p><strong>Normal</strong>: You can move only before or after making a ranged attack, not both.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

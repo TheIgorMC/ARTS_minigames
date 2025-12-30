@@ -1,0 +1,372 @@
+
+import { SFRPGEffectType } from "../../../../modifiers/types.js";
+
+export default function(engine) {
+    const processModifier = (bonus, data, tooltip) => {
+        let computedBonus = 0;
+        try {
+            const roll = Roll.create(bonus.modifier.toString(), data).evaluateSync({strict: false});
+            computedBonus = roll.total;
+            tooltip.push(`${bonus.name}: ${bonus.effectType === SFRPGEffectType.STARSHIP_MULTIPLY_BUILD_POINTS ? 'x' : (computedBonus >= 0 ? '+' : '')}${String(computedBonus)}`);
+        } catch (e) {
+            console.error(e);
+        }
+        return computedBonus;
+    };
+
+    const applyStackedModifiers = (stackedModifiers, data, tooltip) => {
+        return Object.entries(stackedModifiers).reduce((sum, mod) => {
+            for (const bonus of mod[1]) {
+                sum += processModifier(bonus, data, tooltip);
+            }
+            return sum;
+        }, 0);
+    };
+
+    const applyStackedMultipliers = (stackedModifiers, data, tooltip) => {
+        return Object.entries(stackedModifiers).reduce((product, mod) => {
+            if (mod[1].length === 0) return product;
+            for (const bonus of mod[1]) {
+                product *= processModifier(bonus, data, tooltip);
+            }
+            return product;
+        }, 1);
+    };
+
+    const applyBuildPointModifiers = (fact, context, data) => {
+        const buildPointModifiers = fact.modifiers.filter(mod => {
+            return (mod.enabled || mod.modifierType === "formula") && mod.effectType === SFRPGEffectType.STARSHIP_BUILD_POINTS;
+        });
+        const multiplyBuildPointModifiers = fact.modifiers.filter(mod => {
+            return (mod.enabled || mod.modifierType === "formula") && mod.effectType === SFRPGEffectType.STARSHIP_MULTIPLY_BUILD_POINTS;
+        });
+
+        if (buildPointModifiers.length > 0) {
+            const stackedModifiers = context.parameters.stackModifiers.process(
+                buildPointModifiers,
+                context,
+                {actor: fact.actor}
+            );
+            const modifierBonus = applyStackedModifiers(stackedModifiers, data, data.attributes.bp.maxTooltip);
+            data.attributes.bp.max += modifierBonus;
+        }
+
+        if (multiplyBuildPointModifiers.length > 0) {
+            const stackedModifiers = context.parameters.stackModifiers.process(
+                multiplyBuildPointModifiers,
+                context,
+                {actor: fact.actor}
+            );
+            const modifierBonus = applyStackedMultipliers(stackedModifiers, data, data.attributes.bp.maxTooltip);
+            data.attributes.bp.max *= modifierBonus;
+        }
+        data.attributes.bp.max = Math.floor(data.attributes.bp.max);
+    };
+
+    const applyHullPointModifiers = (fact, context, data) => {
+        const hullPointModifiers = fact.modifiers.filter(mod => mod.enabled && mod.effectType === SFRPGEffectType.STARSHIP_HULL_POINTS
+        );
+
+        if (hullPointModifiers.length > 0) {
+            const stackedModifiers = context.parameters.stackModifiers.process(
+                hullPointModifiers,
+                context,
+                {actor: fact.actor}
+            );
+            const modifierBonus = applyStackedModifiers(stackedModifiers, data, data.attributes.hp.tooltip);
+            data.attributes.hp.max += modifierBonus;
+        }
+    };
+
+    const applyHullPointIncrementModifiers = (fact, context, data) => {
+        const incrementModifiers = fact.modifiers.filter(mod => mod.enabled && mod.effectType === SFRPGEffectType.STARSHIP_HULL_POINTS_INCREMENT
+        );
+
+        if (incrementModifiers.length > 0) {
+            const stackedModifiers = context.parameters.stackModifiers.process(
+                incrementModifiers,
+                context,
+                {actor: fact.actor}
+            );
+            const modifierBonus = applyStackedModifiers(stackedModifiers, data, data.attributes.hp.tooltip);
+            data.attributes.hp.increment += modifierBonus;
+        }
+    };
+
+    const applyTurnDistanceModifiers = (fact, context, data) => {
+        const turnModifiers = fact.modifiers.filter(mod => mod.enabled && mod.effectType === SFRPGEffectType.STARSHIP_TURN_DISTANCE);
+
+        if (turnModifiers.length > 0) {
+            const stackedModifiers = context.parameters.stackModifiers.process(
+                turnModifiers,
+                context,
+                {actor: fact.actor}
+            );
+            const modifierBonus = applyStackedModifiers(stackedModifiers, data, data.attributes.turn.tooltip);
+            data.attributes.turn.value = Math.max(0, data.attributes.turn.value + modifierBonus);
+
+            if (modifierBonus !== 0) {
+                const label = game?.i18n ? game.i18n.localize("SFRPG.StarshipSheet.Modifiers.MiscModifier") : "Misc Modifier";
+                data.attributes.turn.tooltip.push(`${label}: ${modifierBonus.signedString()}`);
+            }
+        }
+    };
+
+    engine.closures.add( "calculateStarshipFrame", (fact, context) => {
+        const data = fact.data;
+        const frames = fact.frames;
+
+        if (!data.crew) {
+            data.crew = {
+                captain: {
+                    limit: 1,
+                    actors: []
+                },
+                chiefMate: {
+                    limit: -1,
+                    actors: []
+                },
+                engineer: {
+                    limit: -1,
+                    actors: []
+                },
+                gunner: {
+                    limit: 0,
+                    actors: []
+                },
+                magicOfficer: {
+                    limit: -1,
+                    actors: []
+                },
+                passenger: {
+                    limit: -1,
+                    actors: []
+                },
+                pilot: {
+                    limit: 1,
+                    actors: []
+                },
+                scienceOfficer: {
+                    limit: -1,
+                    actors: []
+                }
+            };
+        }
+
+        data.currency = foundry.utils.mergeObject(data.currency || {}, {
+            upb: 0
+        }, {overwrite: false});
+
+        /** If galactic trade is enabled, allow starship sheets to track unspent BPs. */
+        const isGalacticTradeEnabled = game.settings.get('sfrpg', 'enableGalacticTrade');
+        if (isGalacticTradeEnabled) {
+            data.currency = foundry.utils.mergeObject(data.currency, {
+                bp: 0
+            }, {overwrite: false});
+        } else if (data.currency?.bp !== null) {
+            delete data.currency.bp;
+        }
+
+        data.attributes.bp = {
+            value: 0,
+            max: CONFIG.SFRPG.starshipTierToBuildpoints[data.details.tier],
+            tooltip: [],
+            maxTooltip: []
+        };
+
+        /** If galactic trade is enabled, max spent BP per tier is 5% higher. */
+        if (isGalacticTradeEnabled) {
+            data.attributes.bp.max = Math.floor(data.attributes.bp.max * 1.05);
+        }
+
+        data.attributes.power = {
+            value: 0,
+            max: 0,
+            tooltip: []
+        };
+
+        data.attributes.speed = {
+            value: 0,
+            tooltip: []
+        };
+
+        data.attributes.turn = {
+            value: 0,
+            tooltip: []
+        };
+
+        if (!frames || frames.length === 0) {
+            data.frame = {
+                name: ""
+            };
+
+            data.details.frame = "";
+            data.details.size = "n/a";
+            data.attributes.maneuverability = "average";
+            data.attributes.damageThreshold = {
+                value: 0,
+                tooltip: []
+            };
+            data.attributes.expansionBays = {
+                value: 0,
+                tooltip: []
+            };
+            data.attributes.complement = {
+                min: 0,
+                max: 0
+            };
+            data.attributes.hp = {
+                increment: 0,
+                max: 0,
+                tooltip: []
+            };
+            data.crew.gunner.limit = 0;
+        } else {
+            const frame = frames[0];
+
+            data.frame = frame;
+            const maneuverability = frame.system.maneuverability;
+
+            data.details.frame = frame.name;
+            data.details.size = frame.system.size;
+            data.attributes.maneuverability = maneuverability;
+            data.attributes.damageThreshold = {
+                value: frame.system.damageThreshold.base,
+                tooltip: []
+            };
+            data.attributes.expansionBays = {
+                value: frame.system.expansionBays,
+                tooltip: []
+            };
+            data.attributes.complement = {
+                min: frame.system.crew.minimum,
+                max: frame.system.crew.maximum
+            };
+
+            data.attributes.hp.tooltip = [];
+            data.attributes.hp.increment = frame.system.hitpoints.increment;
+            applyHullPointIncrementModifiers(fact, context, data);
+            data.attributes.hp.max = frame.system.hitpoints.base + Math.floor(data.details.tier / 4) * data.attributes.hp.increment;
+            applyHullPointModifiers(fact, context, data);
+
+            data.crew.gunner.limit = frame.system.weaponMounts.forward.lightSlots + frame.system.weaponMounts.forward.heavySlots + frame.system.weaponMounts.forward.capitalSlots
+                + frame.system.weaponMounts.aft.lightSlots + frame.system.weaponMounts.aft.heavySlots + frame.system.weaponMounts.aft.capitalSlots
+                + frame.system.weaponMounts.port.lightSlots + frame.system.weaponMounts.port.heavySlots + frame.system.weaponMounts.port.capitalSlots
+                + frame.system.weaponMounts.starboard.lightSlots + frame.system.weaponMounts.starboard.heavySlots + frame.system.weaponMounts.starboard.capitalSlots
+                + frame.system.weaponMounts.turret.lightSlots + frame.system.weaponMounts.turret.heavySlots + frame.system.weaponMounts.turret.capitalSlots;
+
+            /** Get modifying armour. */
+            const ablativeArmorItems = fact.items.filter(x => x.type === "starshipAblativeArmor");
+            const armorItems = fact.items.filter(x => x.type === "starshipArmor");
+            const armorTurnPenalty = armorItems[0]?.system?.turnDistancePenalty ?? 0;
+            const ablativeArmorTurnPenalty = ablativeArmorItems[0]?.system?.turnDistancePenalty ?? 0;
+            const turnManeuverability = CONFIG.SFRPG.starshipManeuverabilityMap[maneuverability].turn;
+            data.attributes.turn.tooltip.push(`${maneuverability} maneuverability: ${turnManeuverability.signedString()}`);
+
+            if (armorTurnPenalty !== 0) {
+                data.attributes.turn.tooltip.push(`${armorItems[0].name}: ${armorTurnPenalty.signedString()}`);
+            }
+
+            if (ablativeArmorTurnPenalty !== 0) {
+                data.attributes.turn.tooltip.push(`${ablativeArmorItems[0].name}: ${ablativeArmorTurnPenalty.signedString()}`);
+            }
+
+            data.attributes.turn.value = Math.max(0, turnManeuverability + armorTurnPenalty + ablativeArmorTurnPenalty);
+        }
+
+        /** Ensure pilotingBonus exists. */
+        data.attributes.pilotingBonus = {
+            value: CONFIG.SFRPG.starshipManeuverabilityMap[data.attributes.maneuverability].pilotingBonus,
+            tooltip: [game.i18n.format("SFRPG.StarshipSheet.Header.Movement.ManeuverabilityTooltip", {maneuverability: data.attributes.maneuverability})]
+        };
+
+        /** Ensure quadrants exist */
+        if (!data.quadrants) {
+            data.quadrants = {
+                forward: {
+                    shields: {
+                        value: 0
+                    },
+                    ablative: {
+                        value: 0
+                    },
+                    ac: {
+                        value: 10,
+                        misc: null
+                    },
+                    targetLock: {
+                        value: 10,
+                        misc: null
+                    }
+                },
+                port: {
+                    shields: {
+                        value: 0
+                    },
+                    ablative: {
+                        value: 0
+                    },
+                    ac: {
+                        value: 10,
+                        misc: null
+                    },
+                    targetLock: {
+                        value: 10,
+                        misc: null
+                    }
+                },
+                starboard: {
+                    shields: {
+                        value: 0
+                    },
+                    ablative: {
+                        value: 0
+                    },
+                    ac: {
+                        value: 10,
+                        misc: null
+                    },
+                    targetLock: {
+                        value: 10,
+                        misc: null
+                    }
+                },
+                aft: {
+                    shields: {
+                        value: 0
+                    },
+                    ablative: {
+                        value: 0
+                    },
+                    ac: {
+                        value: 10,
+                        misc: null
+                    },
+                    targetLock: {
+                        value: 10,
+                        misc: null
+                    }
+                }
+            };
+        }
+
+        /** Compute BP */
+
+        // Apply build point maximum modifiers
+        applyBuildPointModifiers(fact, context, data);
+
+        const sizeMultiplier = CONFIG.SFRPG.starshipSizeMultiplierMap[data.details.size] || 0;
+        const starshipComponents = fact.items.filter(x => x.type.startsWith("starship"));
+        for (const component of starshipComponents) {
+            const componentData = component.system;
+            const bpCost = componentData.costMultipliedBySize ? sizeMultiplier * componentData.cost : componentData.cost;
+            data.attributes.bp.value += bpCost;
+            data.attributes.bp.tooltip.push(`${component.name}: ${bpCost}`);
+        }
+
+        // Apply turn distance modifiers
+        applyTurnDistanceModifiers(fact, context, data);
+
+        return fact;
+    }, { required: ["stackModifiers"], closureParameters: ["stackModifiers"] } );
+}

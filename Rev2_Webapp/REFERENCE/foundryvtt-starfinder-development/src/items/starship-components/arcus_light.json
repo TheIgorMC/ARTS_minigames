@@ -1,0 +1,26 @@
+{
+  "_id": "0c0d4OM0CXTV4d6Q",
+  "name": "Arcus Light",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": 7,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 75,
+    "slug": "",
+    "source": "CRB pg. 296",
+    "specialMaterials": {},
+    "supportedSizes": [
+      "small",
+      "tiny"
+    ]
+  }
+}

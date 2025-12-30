@@ -1,0 +1,173 @@
+{
+  "_id": "SpGCqTOEO8xi6f2D",
+  "name": "T-Quark Crystal, Minor",
+  "type": "weapon",
+  "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "special",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 30
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "-",
+    "capacity": {
+      "max": null,
+      "value": null
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 5,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>T-quark crystals have a rapid rate of decay that a solarian can manipulate a limited number of times per day to charge his solar weapon for a more powerful strike. When the t-quark crystal is active, the solar weapon is surrounded by a chaotic storm of particles, the spiraling results of the crystal’s decay. T-quark crystals are available in least, minor, lesser, standard, greater, and true varieties.</p>\n<p><strong>Special Properties:</strong> Variant boost 1d4 (3/day)</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 5,
+    "modifiers": [
+      {
+        "_id": "ab3956af-8beb-4828-ac69-e5d263a7fa36",
+        "name": "T-Quark Crystal, Minor",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-damage",
+        "enabled": true,
+        "limitTo": "container",
+        "max": 3,
+        "modifier": "1d3",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "622a7507-fb03-47b2-9240-5612b4b658df",
+        "name": "Variant Boost (T-Quark Crystal, Minor)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-damage",
+        "enabled": false,
+        "limitTo": "container",
+        "max": 4,
+        "modifier": "1d4",
+        "modifierType": "formula",
+        "notes": "A weapon with the variant boost special property acts as a weapon with the boost special property, except boosting the weapon does not expend additional charges and the weapon can be boosted only the listed number of times per day.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 3000,
+    "proficient": true,
+    "properties": {
+      "variantBoost": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none",
+      "value": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 49",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "",
+      "value": null
+    },
+    "uses": {
+      "max": "3",
+      "per": "day",
+      "value": 3
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "solarian"
+  }
+}

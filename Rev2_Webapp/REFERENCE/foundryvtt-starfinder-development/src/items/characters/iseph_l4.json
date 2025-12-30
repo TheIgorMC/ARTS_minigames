@@ -1,0 +1,5366 @@
+{
+  "_id": "BWl3Rg4g3M6ov2LC",
+  "name": "Iseph L4",
+  "type": "character",
+  "img": "systems/sfrpg/images/cup/iconics/portrait/operative-iseph.webp",
+  "items": [
+    {
+      "_id": "Hp2Y3rlSKEBhu6YO",
+      "name": "Operative",
+      "type": "class",
+      "img": "systems/sfrpg/images/cup/gameplay/operative.webp",
+      "system": {
+        "bab": "moderate",
+        "bonusSpellsPerDay": {
+          "0": {
+            "1": null,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "1": {
+            "1": 1,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "10": {
+            "1": 3,
+            "2": 3,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 2
+          },
+          "2": {
+            "1": 1,
+            "2": 1,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "3": {
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "4": {
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": null,
+            "6": null
+          },
+          "5": {
+            "1": 2,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": null
+          },
+          "6": {
+            "1": 2,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1
+          },
+          "7": {
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 1,
+            "5": 1,
+            "6": 1
+          },
+          "8": {
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 1,
+            "6": 1
+          },
+          "9": {
+            "1": 3,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 1
+          }
+        },
+        "csk": {
+          "acr": true,
+          "ath": true,
+          "blu": true,
+          "com": true,
+          "cul": true,
+          "dip": false,
+          "dis": true,
+          "eng": true,
+          "int": true,
+          "lsc": false,
+          "med": true,
+          "mys": false,
+          "per": true,
+          "phs": false,
+          "pil": true,
+          "pro": true,
+          "sen": true,
+          "sle": true,
+          "ste": true,
+          "sur": true
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You’re a shadow. You move swiftly, strike suddenly, and always have an escape plan. You’re a consummate professional, and you always get the job done, whether it’s scouting enemy lines, hunting down criminals, stealing and smuggling items, or assassinating key figures. As an operative, you’re skilled in a wide variety of disciplines and specialties, and use speed, mobility, and your quick wits rather than relying on heavy weapons. You excel at the art of surprise, whether it’s sniping targets from cover or striking while their backs are turned. Your cause may be righteous, but you have no problem fighting dirty—achieving your objective is all that matters.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.a65jtTCCb5kXCz5v]{Operative's Edge (Ex) - 1st Level}</h2>\n<p>Your diverse training as an operative grants you a +1 insight bonus to initiative checks and to skill checks. This bonus increases by 1 at 3rd level and every 4 levels thereafter.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.PU3uwrAcmGXMGo2n]{Specialization - 1st Level}</h2>\n<p>Your specialization represents your primary area of expertise. Pick one specialization upon taking your 1st level of the operative class. Once made, this choice cannot be changed. Descriptions of the specializations appear on page 94. Your specialization grants you the @UUID[Compendium.sfrpg.feats.Item.dkDzFtHOTXLnJivf]{Skill Focus} feat (see page 161) in your specialization’s associated skills, and you gain a free skill rank in each of those skills at each operative level (this does not allow you to exceed the maximum number of skill ranks in a single skill).</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.MBNI94tbMoqizPUk]{Trick Attack (Ex) - 1st Level}</h2>\n<p>You can trick or startle a foe and then attack when she drops her guard. As a full action, you can move up to your speed. Whether or not you moved, you can then make an attack with a melee weapon with the operative special property or with any small arm. Just before making your attack, attempt a Bluff, Intimidate, or Stealth check (or a check associated with your specialization; see page 94) with a DC equal to 20 + your target’s CR. If you succeed at the check, you deal 1d4 additional damage and the target is @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-footed}. This damage increases to 1d8 at 3rd level, to 3d8 at 5th level, and by an additional 1d8 every 2 levels thereafter. You can’t use this ability with a weapon that has the unwieldy special property or that requires a full action to make a single attack.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.EpLSSSdLcqVQKcSM]{Evasion (Ex) - 2nd Level}</h2>\n<p>If you succeed at a Reflex save against an effect that normally has a partial effect on a successful save, you instead suffer no effect. You gain this benefit only when unencumbered and wearing light armor or no armor, and you lose the benefit when you are helpless or otherwise unable to move.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.On2ZrPJTe8FURsXY]{Operative Exploit - 2nd Level}</h2>\n<p>As you gain experience, you learn special tricks called operative exploits. You learn your first operative exploit at 2nd level, and you learn an additional exploit every 2 levels thereafter. If an operative exploit allows a saving throw to resist its effects, the DC is equal to 10 + half your operative level + your Dexterity modifier. If it requires an enemy to attempt a skill check, the DC is equal to 10 + 1-1/2 × your operative level + your Dexterity modifier. The list of operative exploits appears on page 95. You cannot learn the same exploit more than once unless it specially says otherwise.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.cymsh0UZpmJB0cQK]{Quick Movement (Ex) - 3rd Level}</h2>\n<p>As long as you are unencumbered and wearing light armor or no armor, your land speed increases by 10 feet. At 9th level, your land speed instead increases by 20 feet, and at 15th level, your land speed instead increases by 30 feet.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.D95AjN55xf3BTnbH]{Weapon Specialization (Ex) (Operative) - 3rd Level}</h2>\n<p>You gain the Weapon Specialization feat as a bonus feat for each weapon type with which this class grants you proficiency.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.bhSrjkuWxz2DQHXC]{Debilitating Trick (Ex) - 4th Level}</h2>\n<p>When you hit an enemy with a trick attack, you can make the creature @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-footed} or @UUID[Compendium.sfrpg.conditions.Item.yUtkoIshf4dPruNd]{Off-Target} until the beginning of your next turn. You might learn exploits that grant you additional options for your debilitating trick, but you can select only one option each time you hit with a trick attack.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.TpIFhqDUrNkdiEk0]{Uncanny Agility (Ex) - 7th Level}</h2>\n<p>You are immune to the @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-footed} condition, and your opponent doesn’t gain any bonuses to attack rolls against you from flanking you or attacking you when you’re @UUID[Compendium.sfrpg.conditions.Item.XeRGqHVtcZ7vsgJ0]{Prone}. Furthermore, covering fire and harrying fire don’t provide any advantage against you.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.YXdfeYmufD6OWP7J]{Triple Attack (Ex) - 8th Level}</h2>\n<p>When making a full attack using only melee weapons with the operative special property or small arms, you can make up to three attacks instead of two.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.scbcE4mjiHoNK7Wi]{Quad Attack (Ex) - 13th Level}</h2>\n<p>When making a full attack using only melee weapons with the operative special property or small arms, you can make up to four attacks instead of two.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.jd4qWJS9qElePrhf]{Double Debilitation (Ex) - 17th Level}</h2>\n<p>When you hit an enemy with a trick attack, you can apply two of the effects from your debilitating trick.</p>\n<h2>@UUID[Compendium.sfrpg.class-features.Item.z736GBR6XdcqIaTT]{Supreme Operative (Ex) - 20th Level}</h2>\n<p>&nbsp; Whenever you attempt a skill check with your specialization’s associated skills, you can roll twice and take the higher result. Once per day as a move action, you can temporarily trade out one of your operative exploits for another operative exploit requiring the same level or lower. This trade lasts 24 hours. If the exploit you trade away is a prerequisite for any of your other abilities, you lose all abilities that require it as a prerequisite for the duration.</p>\n<h2>Alternate Class Features</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.eya9oKPHH8XsvfPL]{Heavyweight Skirmisher}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.3y8dNz62b6tXDC6y]{Magical Assassin (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.nWQDB336Ql0GoulS]{Marked for Death (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.wk7Xp5wzUdELgTel]{Stunt and Strike (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.Wct9x7zjroPrTPmX]{Spell Thief (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.r39XH26A7uPeF6XZ]{Quick Cover (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.2gwyI9ZufT3XkxrD]{Quick Trick (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.inAh60LBh9qBhRKU]{Quick Zero-G Adaptation (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.im0yTfz7hjLT7u4E]{Operative’s Arsenal (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.0ZVrmrET8PexP4UR]{Sniper}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.jn3QpS8jAjivfMbc]{Improviser}</p>"
+        },
+        "fort": "slow",
+        "hp": {
+          "value": 6
+        },
+        "isCaster": false,
+        "kas": "dex",
+        "levels": 4,
+        "modifiers": [],
+        "proficiencies": {
+          "armor": {
+            "hvy": false,
+            "lgt": true,
+            "pwr": false,
+            "shl": false
+          },
+          "weapon": {
+            "amelee": false,
+            "bmelee": true,
+            "gren": false,
+            "hweap": false,
+            "larms": false,
+            "sarms": true,
+            "snipe": true,
+            "spec": false
+          }
+        },
+        "ref": "fast",
+        "skillRanks": {
+          "value": 8
+        },
+        "slug": "operative",
+        "source": "CRB, p. 92",
+        "sp": {
+          "value": 6
+        },
+        "spellAbility": "",
+        "spellsKnown": {
+          "1": {
+            "0": 4,
+            "1": 2,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "10": {
+            "0": 6,
+            "1": 5,
+            "2": 4,
+            "3": 4,
+            "4": 2,
+            "5": null,
+            "6": null
+          },
+          "11": {
+            "0": 6,
+            "1": 6,
+            "2": 5,
+            "3": 4,
+            "4": 3,
+            "5": null,
+            "6": null
+          },
+          "12": {
+            "0": 6,
+            "1": 6,
+            "2": 5,
+            "3": 4,
+            "4": 4,
+            "5": null,
+            "6": null
+          },
+          "13": {
+            "0": 6,
+            "1": 6,
+            "2": 5,
+            "3": 5,
+            "4": 4,
+            "5": 2,
+            "6": null
+          },
+          "14": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 5,
+            "4": 4,
+            "5": 3,
+            "6": null
+          },
+          "15": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 5,
+            "4": 4,
+            "5": 4,
+            "6": null
+          },
+          "16": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 5,
+            "4": 5,
+            "5": 4,
+            "6": 2
+          },
+          "17": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 6,
+            "4": 5,
+            "5": 4,
+            "6": 3
+          },
+          "18": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 6,
+            "4": 5,
+            "5": 4,
+            "6": 4
+          },
+          "19": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 6,
+            "4": 5,
+            "5": 5,
+            "6": 4
+          },
+          "2": {
+            "0": 5,
+            "1": 3,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "20": {
+            "0": 6,
+            "1": 6,
+            "2": 6,
+            "3": 6,
+            "4": 6,
+            "5": 5,
+            "6": 5
+          },
+          "3": {
+            "0": 6,
+            "1": 4,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "4": {
+            "0": 6,
+            "1": 4,
+            "2": 2,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "5": {
+            "0": 6,
+            "1": 4,
+            "2": 3,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "6": {
+            "0": 6,
+            "1": 4,
+            "2": 4,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "7": {
+            "0": 6,
+            "1": 5,
+            "2": 4,
+            "3": 2,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "8": {
+            "0": 6,
+            "1": 5,
+            "2": 4,
+            "3": 3,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "9": {
+            "0": 6,
+            "1": 5,
+            "2": 4,
+            "3": 4,
+            "4": null,
+            "5": null,
+            "6": null
+          }
+        },
+        "spellsPerDay": {
+          "1": {
+            "1": 2,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "10": {
+            "1": 5,
+            "2": 4,
+            "3": 3,
+            "4": 2,
+            "5": null,
+            "6": null
+          },
+          "11": {
+            "1": 5,
+            "2": 4,
+            "3": 4,
+            "4": 2,
+            "5": null,
+            "6": null
+          },
+          "12": {
+            "1": 5,
+            "2": 5,
+            "3": 4,
+            "4": 3,
+            "5": null,
+            "6": null
+          },
+          "13": {
+            "1": 5,
+            "2": 5,
+            "3": 4,
+            "4": 3,
+            "5": 2,
+            "6": null
+          },
+          "14": {
+            "1": 5,
+            "2": 5,
+            "3": 4,
+            "4": 4,
+            "5": 2,
+            "6": null
+          },
+          "15": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 4,
+            "5": 3,
+            "6": null
+          },
+          "16": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 4,
+            "5": 3,
+            "6": 2
+          },
+          "17": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 4,
+            "5": 4,
+            "6": 2
+          },
+          "18": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 4,
+            "6": 3
+          },
+          "19": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 4
+          },
+          "2": {
+            "1": 2,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "20": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5
+          },
+          "3": {
+            "1": 3,
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "4": {
+            "1": 3,
+            "2": 2,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "5": {
+            "1": 4,
+            "2": 2,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "6": {
+            "1": 4,
+            "2": 3,
+            "3": null,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "7": {
+            "1": 4,
+            "2": 3,
+            "3": 2,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "8": {
+            "1": 4,
+            "2": 4,
+            "3": 2,
+            "4": null,
+            "5": null,
+            "6": null
+          },
+          "9": {
+            "1": 5,
+            "2": 4,
+            "3": 3,
+            "4": null,
+            "5": null,
+            "6": null
+          }
+        },
+        "will": "fast"
+      }
+    },
+    {
+      "_id": "aGHN2PDGPh4nyS5Q",
+      "name": "Android",
+      "type": "race",
+      "img": "systems/sfrpg/icons/default/dna2.svg",
+      "system": {
+        "type": "humanoid",
+        "abilityMods": {
+          "parts": [
+            [
+              2,
+              "dex"
+            ],
+            [
+              2,
+              "int"
+            ],
+            [
+              -2,
+              "cha"
+            ]
+          ]
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Complex technological creations crafted to resemble @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Humans}, androids were originally a servitor species, but they have since broken free to form their own society. Unlike ordinary robots or ship AIs, androids do not simply respond according to their programming; rather, they have independent consciousnesses and are animated by souls—a distinction crucial to their generally accepted status as people rather than property.</p><h3>Physical Description</h3><p>Androids are biomechanical constructs created in technological crèches called foundries. While the first androids are believed to have been mostly biological, difficult to distinguish from the @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Humans} they lived among, modern designs are more varied, and many favor metal skeletons and processors that support synthetic organs and living flesh. Nearly all androids feature a humanoid body shape and tattoo-like circuits that glow through their skin when operating at full power, but beyond this commonality, variations in physical appearance reflect an android’s design, role, and personality. Some take pains to blend into @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Human} society, while others deliberately display their mechanical nature. Though some androids are constructed or customize themselves to look like other species, such models are relatively rare. Due to their biological components, androids need to eat and sleep, but as constructed beings they do not reproduce in the @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Human} fashion and have no biological need for gender—some identify strongly as male or female, while others shift fluidly or ignore it altogether, and still others actively reject it on philosophical grounds as a relic of their former slavery.</p>\n<p>Though android bodies are assembled using tiny machines called nanites, their complex nervous systems attract and integrate souls in the same way organic creatures do. Most androids are fully grown at the time of their birth, and can technically live forever through constant repair, though most androids voluntarily release their bodies after a century or so to allow new souls to inhabit them—a process called renewal that’s viewed more as procreation than suicide.</p><h3>Home World</h3><p>Android technology in the Pact Worlds is generally believed to have developed on Golarion in the time before the Gap, though there are strong indications that the first androids there were actually travelers from a distant star system. In the modern era, various corporations throughout the Pact Worlds system unraveled the secret to android creation and began mass-producing androids as cheap, skilled labor perfect for hazardous work. This practice lasted until about 150 years ago, when the Thyst Rebellion and subsequent android revolts across the system, combined with the now legendary speech known as “The Automaton’s Polemic” by android revolutionary Serphaeus-6, led governments system-wide to officially recognize all androids as independent citizens. This ruling, however, has not completely stopped unscrupulous corporations in less regulated parts of the system from crafting illegal android slaves or forcing newborn androids to “work off” the expense of their creation. Though androids can be found anywhere in the Pact Worlds, many gravitate toward cosmopolitan @UUID[Compendium.sfrpg.setting.Item.hepqXl6gFvs5sDQu]{Absalom Station}, the machine cities of @UUID[Compendium.sfrpg.setting.Item.Gxsy07AQwteFkPhh]{Aballon}, and the freedom of @UUID[Compendium.sfrpg.setting.Item.Yt2xT4Iy6lHjCzso]{The Diaspora}.</p><h3>Society and Alignment</h3><p>Android society tends to be insular. While androids are treated equitably in most settlements, especially @UUID[Compendium.sfrpg.setting.Item.hepqXl6gFvs5sDQu]{Absalom Station}, many androids have not forgotten their people’s bondage and remain keenly aware of prejudice from other species based on their “unnatural” origin or jealousy over the androids’ freedom from aging. This leads most androids to feel a sense of kinship with others of their kind and to go out of their way to help each other, though they may also bond with members of other species who treat them well. Despite popular belief, androids’ impressive deductive reasoning abilities do not preclude sentiment, and most androids feel emotions keenly—they simply don’t always express them well, and different individuals may have trouble processing and communicating particular feelings. The average android alignment is a practical neutrality; they are focused on their own welfare and that of their friends.</p><h3>Relations</h3><p>Often cautious around strangers, androids have the most strained relationship with humanity, which built them in its image and remains their most frequent oppressor. They feel closest to shirrens, who also know what it is to be enslaved and misunderstood, and respect kasathas’ self-sufficiency. They generally dislike @UUID[Compendium.sfrpg.races.Item.7VtfabTXl7NEXC6u]{Vesk}, whom they see as slavers, and only grudgingly tolerate ysoki’s antics.</p><h3>Adventurers</h3><p>Androids adventure for many reasons: to earn a living, trace the origins of their species, or rescue androids and other creatures from servitude. Their quick thinking under fire makes them natural operatives and soldiers, while their affinity for machines makes them excellent mechanics and technomancers.</p>\n<p><strong>Ability Adjustments</strong>+2 Dex, +2 Int, -2 Cha</p>\n<p><strong>Hit Points</strong>&nbsp;4</p><h2>Vital Stats</h2><p><strong>Average Height&nbsp;</strong> 5-7 ft.</p>\n<p><strong>Average Weight&nbsp;</strong> 100-200 lbs.</p>\n<p><strong>Age of Maturity&nbsp;</strong>—</p>\n<p><strong>Maximum Age</strong> See Android entry</p><h2>Size and Type</h2><p>Androids are Medium humanoids with the android subtype.</p><h2>@UUID[Compendium.sfrpg.racial-features.Item.nyUODKP7eBP6Y6tn]{Constructed}</h2><p>For effects targeting creatures by type, androids count as both constructs and humanoids (whichever type allows an ability to affect them for abilities that affect only one type, and whichever is worse for abilities that affect both types). They receive a +2 species bonus to saving throws against @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.gBhZDjh30JEyh7DY]{Disease}, mind-affecting effects, @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poison}, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum.</p><h2>@UUID[Compendium.sfrpg.racial-features.Item.WWwVLACAXag3FBjl]{Exceptional Vision}</h2><p>This creature has darkvision with a range of 60 feet and low-light vision. See @UUID[Compendium.sfrpg.rules.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#darkvision]{Darkvision} &amp; @UUID[Compendium.sfrpg.rules.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#low-light-vision]{Low-Light Vision} for more information.</p><h2>@UUID[Compendium.sfrpg.racial-features.Item.KsMfALkK0YsP9BHg]{Flat Affect}</h2><p>Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive checks, but the DCs of Sense Motive checks attempted against them increase by 2.</p><h2>@UUID[Compendium.sfrpg.racial-features.Item.jgo2QxNdq62uImnf]{Upgrade Slot}</h2><p>Androids have a single armor upgrade slot in their bodies. Regardless of whether androids are wearing physical armor, they can use this slot to install any one armor upgrade that could be installed into light armor.</p><h1>Alternate Racial Traits</h1><p><strong>Source&nbsp;</strong><em>COM pg. 16</em></p>\n<p>Most androids have the standard android racial traits detailed in the&nbsp;Core Rulebook, but individuals might have unique abilities, represented by the following alternate species traits.</p><h2>@UUID[Compendium.sfrpg.racial-features.Item.79iXZ3ffJ2VNjZq8]{Easily Augmented}</h2><p><strong>Source&nbsp;</strong><em>COM pg. 16</em></p>\n<p>As artificial creatures, androids are compatible with a wide array of cybernetics. Androids who have this species trait can install one additional cybernetic augmentation into one system that already has an augmentation.</p>\n<p><strong>This replaces upgrade slot.</strong></p><h2>@UUID[Compendium.sfrpg.racial-features.Item.rdSW6G0QVrj7lCCU]{Impersonation Matrix}</h2><p><strong>Source&nbsp;</strong><em>COM pg. 16</em></p>\n<p>Although most androids stand out as artificial beings, some have intricate personality matrices and physical alterations that downplay their constructed nature. Androids who have this alternate species trait don’t take any penalty to Disguise checks to change their appearance to a creature of a different race or type if they are disguising themselves as a @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Human}. If the android also has the xenometric android alternate species trait (see page 17), this benefit instead applies to Disguise checks to change appearance to that of the species chosen along with the xenometric android alternate species trait.</p>\n<p><strong>This replaces the +2 species bonus to saving throws against @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.gBhZDjh30JEyh7DY]{Disease}, mind-affecting effects, @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poison}, and sleep from the constructed trait.</strong></p>\n<p><strong>The android retains all the other features of the constructed trait.</strong></p><h2>@UUID[Compendium.sfrpg.racial-features.Item.hSUOaxtYL8ZlUKQ9]{Infosphere Integration}</h2><p><strong>Source&nbsp;</strong><em>COM pg. 16</em></p>\n<p>The artificial brain an android possesses can allow better compatibility with infospheres and direct downloads of information. An android with this trait has a built-in @UUID[Compendium.sfrpg.equipment.Item.5GM9QlhUd1EB1LjJ]{Comm Unit} that can be accessed without needing to use their hands. Once per day, whenever the android takes a 10-minute rest to regain Stamina Points, they can choose one Intelligence-, Wisdom-, or Charisma-based skill. The chosen skill becomes a class skill for them, and they gain @UUID[Compendium.sfrpg.feats.Item.dkDzFtHOTXLnJivf]{Skill Focus} as a bonus feat with that skill. This decision lasts until the next time the android uses this trait.</p>\n<p><strong>This replaces exceptional vision.</strong></p><h2>@UUID[Compendium.sfrpg.racial-features.Item.qaRx3to31xIDk2B4]{Multilingual}</h2><p><strong>Source&nbsp;</strong><em>COM pg. 17</em></p>\n<p>New languages are easy for some androids to learn. An android with this species trait knows four additional languages at 1st level. In addition, whenever such an android invests a skill rank into Culture, they learn two new languages instead of one.</p>\n<p><strong>This replaces upgrade slot.</strong></p><h2>@UUID[Compendium.sfrpg.racial-features.Item.3doOj3JOx2sGyoFk]{Nanite Upgrade}</h2><p><strong>Source&nbsp;</strong><em>COM pg. 17</em></p>\n<p>Specialized nanites maintain an android body, but they can be upgraded to perform additional tasks. Androids who have this species trait gain @UUID[Compendium.sfrpg.feats.Item.6ndxWBUuSSI0zbP7]{Nanite Integration} as a bonus feat, ignoring the feat’s prerequisites.</p>\n<p><strong>This replaces upgrade slot.</strong></p><h2>@UUID[Compendium.sfrpg.racial-features.Item.I0p1LXzBNcYecIi6]{Xenometric Android}</h2><p><strong>Source</strong> <em>COM pg. 17</em></p>\n<p>Although most androids are manufactured to resemble @UUID[Compendium.sfrpg.races.Item.AMBcyDZDtJ1OOzh3]{Humans}, those crafted in the likenesses of other species exist. Such “xenometrics” possess abilities that mirror those of other species, sometimes even using hybrid tech to duplicate magic abilities.</p>\n<p>An android with this trait selects one of the species detailed in the paragraphs below. This choice cannot be changed. In addition to possessing physical features resembling those of the chosen species, the android’s size category and reach changes to match the chosen species. In addition, xenometric androids gain some of the chosen species’ species traits, which are noted in parentheses next to the species’ name; these count as species traits for the purposes of prerequisites. If a gained species trait determines land speed, the android uses the speed as defined by that species trait instead of that of the android. If the chosen species has a different type than humanoid, the xenometric android’s type changes to match.</p>\n<p>Starfinder Core Rulebook options are @UUID[Compendium.sfrpg.races.Item.SaWDXnfaX24Iuuuz]{Dwarf} (darkvision, slow but steady), @UUID[Compendium.sfrpg.races.Item.K7OFZY7hnnKZQ8YY]{Elf} (elven immunities, low-light vision), @UUID[Compendium.sfrpg.races.Item.5uBvbTEiUu1ckQwk]{Gnome} (gnome magic, low-light vision), @UUID[Compendium.sfrpg.races.Item.5WhPSrWQWwWNLvtj]{Half-elf} (adaptability, low-light vision), @UUID[Compendium.sfrpg.races.Item.hRuWhbQgSFVA12NS]{Half-orc} (darkvision, intimidating, self-sufficient), @UUID[Compendium.sfrpg.races.Item.XVyIJzuDyZ4FkmCf]{Halfling} (keen senses, sneaky, sure-footed), @UUID[Compendium.sfrpg.races.Item.dGlSCMtFZ2ZIKUpl]{Kasatha} (four-armed, natural grace), @UUID[Compendium.sfrpg.races.Item.ShWYksP7IwWcqEVa]{Lashunta} (lashunta magic, limited telepathy), @UUID[Compendium.sfrpg.races.Item.VIJ6pdOVTJle3vJx]{Shirren} (blindsense, limited telepathy), @UUID[Compendium.sfrpg.races.Item.7VtfabTXl7NEXC6u]{Vesk} (low-light vision, natural weapons), and @UUID[Compendium.sfrpg.races.Item.PWjnNkCCW5diAQU4]{Ysoki} (cheek pouches, darkvision).</p>\n<p>Starfinder Alien Archive options are @UUID[Compendium.sfrpg.races.Item.uzQCAyTR0KfOFRVA]{Dragonkin} (draconic immunities, flight), @UUID[Compendium.sfrpg.races.Item.pOnYi1vHP3bWMoWd]{Formian} (limited telepathy, natural weapons), @UUID[Compendium.sfrpg.races.Item.QDI3ZpF3ml1s7t3n]{Haan} (firespray, slow fall), @UUID[Compendium.sfrpg.races.Item.eMQUjYe9ERVWB6e2]{Kalo} (kalo movement, kalo vision), @UUID[Compendium.sfrpg.races.Item.vBGA5tASjIErgZD2]{Maraquoi} (blindsense, prehensile tail), @UUID[Compendium.sfrpg.races.Item.XbIjL8c0BwMi6Mo1]{Nuar} (natural weapons, swift), @UUID[Compendium.sfrpg.races.Item.nyQVqNvwCFL2YVO7]{Verthani} (skill focus, skin mimic), and @UUID[Compendium.sfrpg.races.Item.LRpavsPbn3mpJbYg]{Wrikreechee} (snag, wrikreechee movement).</p>\n<p>Starfinder Alien Archive 2 options are @UUID[Compendium.sfrpg.races.Item.k2q1xx8W9mXIRSyZ]{Hobgoblin} (fearsome, sneaky), @UUID[Compendium.sfrpg.races.Item.hVg8LYZczcXuweX4]{Orc} (fierce survivalist, orc ferocity), @UUID[Compendium.sfrpg.races.Item.ywqtwqxLBv5B8NpY]{Pahtra} (nimble, talented), and @UUID[Compendium.sfrpg.races.Item.6qGAoeERMRvuQjUw]{Vlaka} (cold resistance, perceptive).</p>\n<p>The Starfinder Pact Worlds option is the @UUID[Compendium.sfrpg.races.Item.GsSgAuHveQT559jc]{Strix} (nightborn, strix mobility).</p>\n<p><strong>This replaces upgrade slot and exceptional vision.</strong></p>"
+        },
+        "hp": {
+          "value": 4
+        },
+        "modifiers": [],
+        "size": "medium",
+        "slug": "",
+        "source": "CRB pg. 42",
+        "subtype": "android"
+      }
+    },
+    {
+      "_id": "tDmDOTiYlMozbJTI",
+      "name": "Ace Pilot",
+      "type": "theme",
+      "img": "systems/sfrpg/icons/default/plane-pilot.svg",
+      "system": {
+        "abilityMod": {
+          "ability": "dex",
+          "mod": 1
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You are most comfortable at the controls of a vehicle, whether it’s a starship racing through the inky void of space or a ground vehicle zooming between trees, around boulders, and across dusty badlands. You might be a member of an elite military force, the recipient of intense courses of training. Alternatively, you might be a total amateur with innate skills that make you a much-admired hotshot.</p>\n<h2>THEME KNOWLEDGE (1ST)</h2>\n<p>You are obsessed with starships and vehicles, and have committed to memory almost every related tidbit of knowledge you’ve ever come across. Reduce the DC of Culture checks to recall knowledge about starship and vehicle models and parts as well as famous hotshot pilots by 5. Piloting is a class skill for you, though if it is a class skill from the class you take at 1st level, you instead gain a +1 bonus to your Piloting checks. In addition, you gain an ability adjustment of +1 to Dexterity at character creation.</p>\n<h2>LONE WOLF (6TH)</h2>\n<p>You know at least a little bit about handling every role on a starship, and you can sub in for certain tasks in a pinch. Whenever you need to attempt a skill check either during starship combat or to directly repair or otherwise maintain your starship, you can treat half your ranks in Piloting as your ranks in the appropriate skill for the check, if that would be better (since you effectively have ranks in the related skill, you are considered trained in the skill for the purposes of this check).</p>\n<h2>NEED FOR SPEED (12TH)</h2>\n<p>Speeding in a vehicle gives you a heady rush, and you can easily handle operating vehicles at high velocities that might send lesser pilots spinning out of control. Reduce any penalties to Piloting checks you make when on a vehicle by 1. When you take the double maneuver action during a vehicle chase (see page 283), reduce the penalty for each action by 1. Whenever a Piloting check has a penalty for failing by 5 or more, you take that penalty only if you fail by 10 or more.&nbsp;</p>\n<h2>MASTER PILOT (18TH)</h2>\n<p>Your piloting accomplishments invigorate you, giving you renewed purpose and zeal. Up to twice per day, when you defeat a significant foe in starship combat as a pilot or succeed in a vehicle chase (meaning that you’ve either escaped a pursuer or caught or defeated your opponent), you recover 1 Resolve Point.</p>"
+        },
+        "modifiers": [],
+        "skill": "pil",
+        "slug": "",
+        "source": "CRB page 29"
+      }
+    },
+    {
+      "_id": "eyGdEulnZCNPoSUH",
+      "name": "Operative's Edge (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/operative_edge.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>Your diverse training as an operative grants you a +1 insight bonus to initiative checks and to skill checks. This bonus increases by 1 at 3rd level and every 4 levels thereafter.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "f691e352-86a5-4a5b-bedc-08e1e5f9fc66",
+            "name": "Operative's Edge (Ex)",
+            "type": "insight",
+            "condition": "",
+            "damage": null,
+            "effectType": "all-skills",
+            "enabled": true,
+            "limitTo": null,
+            "max": 1,
+            "modifier": "1+floor((@classes.operative.levels + 1) / 4)",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": ""
+          },
+          {
+            "_id": "3bac934e-6fa4-4f35-908f-427af82f52df",
+            "name": "Operative's Edge (Ex)",
+            "type": "insight",
+            "condition": "",
+            "damage": null,
+            "effectType": "initiative",
+            "enabled": true,
+            "limitTo": null,
+            "max": 1,
+            "modifier": "1+floor((@classes.operative.levels + 1) / 4)",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": ""
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "1st Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "QZjV2MHDrQh43p3I",
+      "name": "Specialization",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/specialization.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>Your specialization represents your primary area of expertise. Pick one specialization upon taking your 1st level of the operative class. Once made, this choice cannot be changed. Descriptions of the specializations appear on page 94 <em>(Below).</em> Your specialization grants you the @UUID[Compendium.sfrpg.feats.Item.dkDzFtHOTXLnJivf]{Skill Focus} feat (see page 161) in your specialization’s associated skills, and you gain a free skill rank in each of those skills at each operative level (this does not allow you to exceed the maximum number of skill ranks in a single skill).</p>\n<h2>Specialization Exploit - 5th Level</h2>\n<p>You gain your specialization’s listed exploit as a bonus operative exploit, even if you don’t meet the prerequisites.</p>\n<h2>Specialization Skill Mastery - 7th Level</h2>\n<p>You become so confident in certain skills that you can use them reliably even under adverse conditions. When attempting a skill check with a skill in which you have the Skill Focus feat, you can take 10 even if stress or distractions would normally prevent you from doing so.</p>\n<h2>Specialization Power - 11th Level</h2>\n<p>&nbsp;You gain a special power depending on your specialization.</p>\n<h2>Specializations</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.bFbhkgja4X25QsoH]{Bandit}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.gbVqLTMEZfa9lD1o]{Bully}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.3zkJILkaP6Ua3YWe]{Daredevil}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.zKnRX8ZuVhyvC29H]{Detective}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.694Xux457N5buBan]{Diplomat}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.9xQJSKg493OndA58]{Disciple}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.oAgSuAUz2pzLQqh5]{Driver}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.M8fM2cZz8pTEN6wP]{Explorer}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.csatQ1lLr5J8lcpq]{Gadgeteer}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.nJxXUlTGdZ7Lc5ms]{Ghost}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.SWNQ1uqSQbAJlVng]{Hacker}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.wgKDO6rfjLMzhjnr]{Memory Weaver}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.RmU5en0JokeQXJyP]{Spy}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.7jvvARPoLgBv3xBA]{Thief}</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "1st Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "3LiABg4ueFvTSgA0",
+      "name": "Ghost",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/ghost.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.PU3uwrAcmGXMGo2n]{Specialization}</p>\n<p>You can move from place to place without being noticed.</p>\n<p><strong>Associated Skills</strong>: @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.3QdtsfnVJsHEdrt0]{Acrobatics} and @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.5h3iePfJaeQMc3Qr]{Stealth}. When you use Stealth to make a trick attack, you gain a +1 bonus to the skill check.</p>\n<p><strong>Specialization Exploit</strong>: @UUID[Compendium.sfrpg.class-features.Item.WkZqCJUS19WvgeHA]{Cloaking Field (Ex)}</p>\n<p><strong>@UUID[Compendium.sfrpg.class-features.Item.fQnSzzZ8GoAtaF5w]{Phase Shift Escape (Ex)}:</strong> At 11th level, you can move through solid matter by taking your body’s matter out of phase for just a moment. As a full action, you can spend 1 Resolve Point to phase through up to 5 feet of solid matter. If you attempt to phase through something that is too thick, you spend the Resolve Point and take the action but the attempt fails. You cannot phase through force effects such as force fields or the barrier created by @UUID[Compendium.sfrpg.spells.Item.dVM22xx7CiYWY8XX]{Wall Of Force}. After using phase shift escape, you can’t use it again until after you’ve taken a full 8-hour rest.</p>\n<p><em>Free Skill Ranks from Specialization's associated skills are auto applied in the modifiers tab</em></p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "2085727b-8787-47e2-ab0b-2df80f70d6d6",
+            "name": "Specialization",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill-ranks",
+            "enabled": true,
+            "limitTo": null,
+            "max": 0,
+            "modifier": "@classes.operative.levels",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "acr"
+          },
+          {
+            "_id": "8aa8f005-22fe-4aee-bca6-c0cacd959336",
+            "name": "Specialization",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill-ranks",
+            "enabled": true,
+            "limitTo": null,
+            "max": 0,
+            "modifier": "@classes.operative.levels",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "ste"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "1st Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Specialization",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "3k3b5Jwmx40OyPeu",
+      "name": "Trick Attack (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/trick_attack.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "full",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "ft",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt; @UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>You can trick or startle a foe and then attack when she drops her guard. As a full action, you can move up to your speed. Whether or not you moved, you can then make an attack with a melee weapon with the operative special property or with any small arm. Just before making your attack, attempt a Bluff, Intimidate, or Stealth check (or a check associated with your specialization; see page 94) with a DC equal to 20 + your target’s CR. If you succeed at the check, you deal 1d4 additional damage and the target is @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-Footed} against your attack. This damage increases to 1d8 at 3rd level, to 3d8 at 5th level, and by an additional 1d8 every 2 levels thereafter. You can’t use this ability with a weapon that has the unwieldy special property or that requires a full action to make a single attack.</p>\n<p><em>In the Modifiers tab, change the skill bonus to match your Specialization's skill check bonus.</em></p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "be46a457-9a64-459c-bd3d-acf79ede8393",
+            "name": "Trick Attack skill bonus",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill",
+            "enabled": true,
+            "limitTo": null,
+            "max": 4,
+            "modifier": "4",
+            "modifierType": "constant",
+            "notes": "Skill Bonus for Trick Attack. Change the values to match your specialization",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "ste"
+          },
+          {
+            "_id": "81c0dc16-b076-48be-b097-14a63a88cfe4",
+            "name": "Trick Attack damage",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "weapon-property-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 24,
+            "modifier": "(1 - (min(1, floor(@classes.operative.levels / 3))))d4 + (1 + floor((@classes.operative.levels - 3) / 2) + min(1, floor(@classes.operative.levels / 5)))d8",
+            "modifierType": "formula",
+            "notes": "Apply if Trick Attack skill check was successful.",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "operative"
+          },
+          {
+            "_id": "f4f7a085-b5ab-4b5f-bebd-cf6ce33d7024",
+            "name": "Trick Attack damage",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "weapon-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 24,
+            "modifier": "(1 - (min(1, floor(@classes.operative.levels / 3))))d4 + (1 + floor((@classes.operative.levels - 3) / 2) + min(1, floor(@classes.operative.levels / 5)))d8",
+            "modifierType": "formula",
+            "notes": "Apply if Trick Attack skill check was successful.",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "smallA"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "1st Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "OKsNfOayLM90L7mG",
+      "name": "Evasion (Ex) (Operative)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/evasion.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>If you succeed at a Reflex save against an effect that normally has a partial effect on a successful save, you instead suffer no effect. You gain this benefit only when unencumbered and wearing light armor or no armor, and you lose the benefit when you are helpless or otherwise unable to move.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "2nd Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "EV8uA0pqJo8VdTI9",
+      "name": "Operative Exploit",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/operative_exploit.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>As you gain experience, you learn special tricks called operative exploits. You learn your first operative exploit at 2nd level, and you learn an additional exploit every 2 levels thereafter. If an operative exploit allows a saving throw to resist its effects, the DC is equal to 10 + half your operative level + your Dexterity modifier. If it requires an enemy to attempt a skill check, the DC is equal to 10 + 1-1/2 × your operative level + your Dexterity modifier. The list of operative exploits appears on page 95. You cannot learn the same exploit more than once unless it specially says otherwise.</p>\n<h2>2nd Level</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.c84usvQez3sMyhmj]{Alien Archive (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.QJjE9tvp0YFNhjfg]{Armor Optimizer (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.qS85C1OHxqO6KGqP]{Beguiling Outsider (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.6JgvFM9PsDVJnqxC]{Collaborative Specialist (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.uZa83E9JvgkMLtzW]{Combat Trick (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.78WNvhyvu3PNv1j9]{Coming Through (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.N8E9qYb7SgeXN9XO]{Death Strike (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.QlYxKJXNoo8wKdKC]{Dramatic Dive (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.22QbA8wbeWcxRIWe]{Efficient Forager (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.WzzJsheUbpb7lgaC]{Expeditious Amp (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.UrjjbL5MKr0HQFsJ]{Feign Death (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.wlrYsn05dMaEpe5K]{Field Treatment (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ejMFotFoC7gbTqvh]{Holographic Clone (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.EtlZvghK30Hlw27n]{Invigorating Strike (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.FdhfWip1bVpjOHOp]{Inoculation (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.eseniVOUmdIC9kAe]{Jack of All Trades (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.39NjCmzw2Tq62sVc]{Kick It Up (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.P6aQ6Wpt5KOZEjIF]{Nightvision (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.2divdDN7ltCdLH7N]{Powerful Flier (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.Z3MPGoaXFFLHxv35]{Quick Disguise (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ZcoYv915Grhz7Gmy]{Secure Mind (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.zuTU6TUbZNEZj0zD]{Sense Magic (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.HtyPUSKEX9s6GSYs]{Shuriken Assassin (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.Suznr1WSCjd8lRMo]{Uncanny Mobility (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.NaGCVIyrwQsH8bV5]{Uncanny Pilot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.AOHkbIjjeez1xyd8]{Without a Trace (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.gKTokERoqJMw3Tjc]{Xenolinguist (Ex)}</p>\n<h2>6th Level</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.wlQ4ZyieOW259H8E]{All-Terrain Pilot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.OAVc1W07QUCBNS94]{Bleeding Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.rKRXkuuYb1KXP8wG]{Certainty (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.sAig01x59dY78r7C]{Daring Leap (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.KHg9HjJVua1BA6ti]{Debilitating Sniper (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.pQyvikDN4ygzK3XW]{Disrupting Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.zHvk8K9j9J16Pq7d]{Enhanced Senses (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.5hFENxRv1EN8G8ZX]{Explorer's Lash (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.s7Ky6ciGqZo76ufI]{Hampering Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.sbRjZRSYJMe5VdlM]{High-Ground Sniper (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.8D3x742G1EpW8yi5]{Improved Quick Movement (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.iXNufpth6OcQ3cxp]{Interfering Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.76pPNAgYq34lJGJz]{Mentalist's Bane}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.r5siuht4D5PF9F9h]{Professional Trick (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.HEHY10fj02IUFQCh]{Setup Strike (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.7jMP5sAgsJWIDV9F]{Soft Movement (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.GQ1CfD6EuVcaj5vW]{Speed Hacker (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.mXCFi3kv3Tkcia68]{Spell Sniper (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.GoWU6HVKu4uarth5]{Springboard (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.o2GDNS1g87yquIMS]{Staggering Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.COMSo09Fc4dT1oy7]{Stalwart (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.53vvS3ogfOHTmtEz]{Sure-Footed (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.rKdRBoMFfRWWPU4B]{Uncanny Shooter (Ex)}</p>\n<h2>10th Level</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.WkZqCJUS19WvgeHA]{Cloaking Field (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.6EbKkF2yop2fK8yT]{Daring Explorer (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.RWsWmKuo1dvfF3X5]{Deactivating Shot}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.6bGa9hDPQzix8Grr]{Disarming Command (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ROKksmxjvBSC1bEH]{Elusive Hacker (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.tJrt3OsZ3UVPvFEi]{Ever Vigilant (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.rh7MRpEqpfYuS7Xz]{Experiential Learning (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.qfr1FqWcslyvzzBP]{False Friend (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.z8ffWH9kzeYSj79E]{Fearsome Presence (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.cFPuRtplseICwmdg]{Ghost Step (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ISaVcxApeHWdY767]{Glimpse the Truth (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.YjDe1a16TvdF232b]{Holographic Distraction (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.2N2OH6u4oZnYL6rs]{Improved Evasion (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.a7OzSFRznAqvqyNC]{Improved Uncanny Mobility (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.lVkSTMAQDqS6jpaX]{Infectious Charm (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ZxQ5PHUhMXg7tzzc]{Intelligence Network (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.GthTqHHzNdVki94y]{Lash Snare (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.92c1eOFEI5CQy2y4]{Master of Disguise (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.uxOdzER7HJu4GEZz]{Psychokinetic Skills (Sp)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.dki2mlbyj3F8Rkm3]{Signature Stunt (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.WIPXaqsgvZt9cLU9]{Spider Climber (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.baRuU23mPo6lkVbn]{Stunning Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.7CKYzT7GLWx8YLs2]{Terrain Concealment (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.h5y6rN0c26FsCvQ9]{Trick Stunt (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.583I8ujhHputWnep]{Utility Belt (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.qfdLaLl6DqIG0oyC]{Versatile Movement (Ex)}</p>\n<h2>14th Level</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.ItE5wzk3HJFz9xaF]{Audacity (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.IbnGI8G3EtQ0FMtH]{Dual Specialization (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.FFhU2gNfYWtPm7oq]{Efficient Cloaking Field (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.mOdCEGMxvjzyrmVZ]{Extreme Movement (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.DBLjsVe5tkMG7Qoo]{Knockout Shot (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.C82WDji3fMQmvWH0]{Multiattack Mastery (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.UPpUSE3BLhDOzr8Z]{Shadow Slide (Sp)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.aCgo9Eh1tzkCkmQ7]{Teleport Trace (Su)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.AHFqNCWYiq0xUjNM]{Uncanny Senses (Ex)}</p>\n<p>@UUID[Compendium.sfrpg.class-features.Item.4VXi6DHQpn8wIUAO]{Virulent Shot (Ex)}</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "2nd Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "pUJalifxYgC2y7FM",
+      "name": "Quick Movement (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/quick_movement.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>As long as you are unencumbered and wearing light armor or no armor, your land speed increases by 10 feet. At 9th level, your land speed instead increases by 20 feet, and at 15th level, your land speed instead increases by 30 feet.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "c8186644-f0a5-4635-84e3-e49cf29b4202",
+            "name": "Quick Movement (Ex)",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "specific-speed",
+            "enabled": true,
+            "limitTo": null,
+            "max": 10,
+            "modifier": "lookupRange(@classes.operative.levels, 10, 9, 20, 15, 30)",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "land"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "3rd Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "7sIJJUIwHb12YwXH",
+      "name": "Debilitating Trick (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/debilitating_trick.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>When you succeed at both the skill check and attack roll of your trick attack, you can make the creature @UUID[Compendium.sfrpg.conditions.Item.MZ8OoH1GE9qDMyCD]{Flat-Footed} or @UUID[Compendium.sfrpg.conditions.Item.yUtkoIshf4dPruNd]{Off-Target} until the beginning of your next turn. You might learn exploits that grant you additional options for your debilitating trick, but you can select only one option each time you hit with a trick attack.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "4th Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "XNBm8ZDtqkHtpHIS",
+      "name": "Constructed",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>For effects targeting creatures by type, androids count as both constructs and humanoids (whichever type allows an ability to affect them for abilities that affect only one type, and whichever is worse for abilities that affect both types). They receive a +2 species bonus to saving throws against @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.gBhZDjh30JEyh7DY]{Disease}, mind-affecting effects, @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poison}, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "speciesFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "2b67683b-f116-44b2-b3ca-89304ea20be8",
+            "name": "Constructed",
+            "type": "racial",
+            "condition": "",
+            "damage": null,
+            "effectType": "saves",
+            "enabled": false,
+            "limitTo": null,
+            "max": 2,
+            "modifier": "2",
+            "modifierType": "formula",
+            "notes": "For effects targeting creatures by type, androids count as both constructs and humanoids (whichever type allows an ability to affect them for abilities that affect only one type, and whichever is worse for abilities that affect both types). They receive a +2 species bonus to saving throws against disease, mind-affecting effects, poison, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum.",
+            "source": "Racial",
+            "subtab": "misc",
+            "valueAffected": "dip"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "Android",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 42",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "",
+          "per": "day",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "NiawJdlQxWlyFJ6A",
+      "name": "Exceptional Vision",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This creature has darkvision with a range of 60 feet and low-light vision. See @UUID[Compendium.sfrpg.rules.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#darkvision]{Darkvision} &amp; @UUID[Compendium.sfrpg.rules.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#low-light-vision]{Low-Light Vision} for more information.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "speciesFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "Racial Feature",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "",
+          "per": "day",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "bDv6HTFUvpQl86aD",
+      "name": "Flat Affect",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/default/achievement.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive checks, but the DCs of Sense Motive checks attempted against them increase by 2.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "speciesFeature",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "2b67683b-f116-44b2-b3ca-89304ea20be8",
+            "name": "Flat affect",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill",
+            "enabled": true,
+            "limitTo": null,
+            "max": -2,
+            "modifier": "-2",
+            "modifierType": "constant",
+            "notes": "Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive checks, but the DCs of Sense Motive checks attempted against them increase by 2.",
+            "source": "Racial",
+            "subtab": "misc",
+            "valueAffected": "sen"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "Android",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 42",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "",
+          "per": "day",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "Ztivc7LY2LM4ru12",
+      "name": "Upgrade Slot (Android)",
+      "type": "container",
+      "img": "systems/sfrpg/icons/default/briefcase.svg",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "0",
+        "container": {
+          "contents": [
+            {
+              "id": "10oTYuE9rhr2Jhou",
+              "index": 0
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "upgrade"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "armorUpgrade",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Androids have a single armor upgrade slot in their bodies. Regardless of whether androids are wearing physical armor, they can use this slot to install any one armor upgrade that could be installed into light armor.</p>"
+        },
+        "equippable": false,
+        "equipped": true,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 0,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "CRB pg. 42"
+      }
+    },
+    {
+      "_id": "T8otZ49UA0XNGMkc",
+      "name": "Unarmed strike",
+      "type": "weapon",
+      "img": "icons/equipment/hand/gauntlet-simple-leather-brown-gold.webp",
+      "system": {
+        "ability": "str",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "0"
+          },
+          "hp": {
+            "max": "15",
+            "value": 15
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d3 + @abilities.str.mod",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>An unarmed strike can be dealt with any limb or appendage. Unarmed strikes deal nonlethal damage, and the damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus to weapon damage rolls.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 0,
+        "modifiers": [],
+        "price": 0,
+        "proficient": true,
+        "properties": {
+          "archaic": {
+            "extension": "",
+            "value": true
+          },
+          "nonlethal": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "touch"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 171",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "XYM8DmuohBM3CEbj",
+      "name": "Dive for Cover (Combat)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/dive_for_cover.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You know how to dive out of the area of an effect.</p>\n<p><strong>Prerequisites</strong>: Base Reflex save bonus +2.</p>\n<hr />\n<p><strong>Benefit</strong>: When you attempt a Reflex save against an area attack or area effect, you can fall @UUID[Compendium.sfrpg.conditions.Item.XeRGqHVtcZ7vsgJ0]{Prone} in an adjacent square and roll that Reflex save twice (taking the better result of the two). If you were in a threatened space, this movement provokes attacks of opportunity normally.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": true,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "d0wO17hzJKABurS8",
+      "name": "Kip Up (Combat)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/kip_up.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "swift",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You can stand up from @UUID[Compendium.sfrpg.conditions.Item.XeRGqHVtcZ7vsgJ0]{Prone} in a hurry.</p>\n<p><strong>Prerequisites</strong>: Acrobatics 1 rank.</p>\n<hr />\n<p><strong>Benefit</strong>: You can stand from @UUID[Compendium.sfrpg.conditions.Item.XeRGqHVtcZ7vsgJ0]{Prone} as a swift action, rather than a move action.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": true,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "qkCaXti5fTIpM89i",
+      "name": "Multi-Weapon Fighting (Combat)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/multi_weapon_fighting.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You know how to fight with several lighter weapons at once and how to take advantage of your multiple attacks.</p>\n<hr />\n<p><strong>Benefit</strong>: When you make a full attack with two or more small arms or with two or more operative melee weapons (see page 184), reduce the penalty for making a full attack by 1.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": true,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "257d4ff8-6ff8-4371-86be-c47cef09d64d",
+            "name": "Multi-Weapon Fighting",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "all-attacks",
+            "enabled": false,
+            "limitTo": null,
+            "max": 1,
+            "modifier": "1",
+            "modifierType": "formula",
+            "notes": "When you make a full attack with two or more small arms or with two or more operative melee weapons, reduce the penalty for making a full attack.",
+            "source": "1",
+            "subtab": "misc",
+            "valueAffected": ""
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "fbnlEHibOtm6h43K",
+      "name": "Skill Focus - Acrobatics",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/skillfocus.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You are particularly adept at a certain skill.</p>\n<hr />\n<p><strong>Benefit</strong>: Choose a skill. You gain a +3 insight bonus to checks involving the chosen skill.</p>\n<p><strong>Special</strong>: You can take this feat multiple times. Its effects don’t stack. Each time you take this feat, it applies to a new skill.</p>\n<p><em>Change the chosen skill in the Modifiers tab</em></p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "4cb52139-5f87-49d8-806b-9531aef1923c",
+            "name": "Skill Focus",
+            "type": "insight",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill",
+            "enabled": true,
+            "limitTo": null,
+            "max": 3,
+            "modifier": "3",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "acr"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "V9Nvwesi1F9Ek4si",
+      "name": "Skill Focus - Stealth",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/feats/skillfocus.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You are particularly adept at a certain skill.</p>\n<hr />\n<p><strong>Benefit</strong>: Choose a skill. You gain a +3 insight bonus to checks involving the chosen skill.</p>\n<p><strong>Special</strong>: You can take this feat multiple times. Its effects don’t stack. Each time you take this feat, it applies to a new skill.</p>\n<p><em>Change the chosen skill in the Modifiers tab</em></p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "feat",
+          "combat": false,
+          "specialAbilityType": ""
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "4cb52139-5f87-49d8-806b-9531aef1923c",
+            "name": "Skill Focus",
+            "type": "insight",
+            "condition": "",
+            "damage": null,
+            "effectType": "skill",
+            "enabled": true,
+            "limitTo": null,
+            "max": 3,
+            "modifier": "3",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "ste"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "xa2vJ3YkM70avOBB",
+      "name": "Uncanny Pilot (Ex)",
+      "type": "feat",
+      "img": "systems/sfrpg/icons/classes/uncanny_pilot.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.On2ZrPJTe8FURsXY]{Operative Exploit}</p>\n<p>When you attack while you’re driving a vehicle, you halve the vehicle’s penalty to your attack roll (to a minimum of no penalty if the vehicle normally imposes a –1 penalty). When you’re in a chase, you gain a +2 bonus to skill checks you attempt when taking the evade or trick pilot actions.</p>\n<p><em>The ability to halve the vehicle's penalty is not currently automated.</em></p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "863433c3-d5af-427b-962e-6a067c303159",
+            "name": "Uncanny Pilot (Ex)",
+            "type": "untyped",
+            "condition": "",
+            "damage": null,
+            "effectType": "all-skills",
+            "enabled": false,
+            "limitTo": null,
+            "max": 2,
+            "modifier": "2",
+            "modifierType": "formula",
+            "notes": "When you’re in a chase, you gain a +2 bonus to skill checks you attempt when taking the evade or trick pilot actions.",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": ""
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": "none"
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "2nd Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative Exploit",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "l6730LAGdAWUK2ez",
+      "name": "Serum of Healing, Mk 1",
+      "type": "consumable",
+      "img": "systems/sfrpg/icons/equipment/magic%20items/serum-of-healing.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "heal",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "ft",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "chatFlavor": "",
+        "consumableType": "serum",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d8",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": true,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This vial of medical serum quickly sets bones and repairs other physical damage. It restores Hit Points when administered to a living creature.</p>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 50,
+        "properties": {},
+        "quantity": 2,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "none"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "autoDestroy": true,
+          "autoUse": true,
+          "max": "1",
+          "per": "charges",
+          "value": 1
+        }
+      }
+    },
+    {
+      "_id": "tSoUEgcsqZElTP2o",
+      "name": "Serum of Healing, Mk 2",
+      "type": "consumable",
+      "img": "systems/sfrpg/icons/equipment/magic%20items/serum-of-healing.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "heal",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "chatFlavor": "",
+        "consumableType": "serum",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "3d8",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": true,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This vial of medical serum quickly sets bones and repairs other physical damage. It restores Hit Points when administered to a living creature.</p>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "level": 5,
+        "modifiers": [],
+        "price": 425,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "none"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": ""
+        },
+        "uses": {
+          "autoDestroy": true,
+          "autoUse": true,
+          "max": "1",
+          "per": "charges",
+          "value": 1
+        }
+      }
+    },
+    {
+      "_id": "yGvHIqWC8A8NmEH0",
+      "name": "Incendiary grenade I",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/incendiary-grenade.webp",
+      "system": {
+        "ability": "str",
+        "actionTarget": "",
+        "actionType": "rwak",
+        "activation": {
+          "type": "action",
+          "condition": "",
+          "cost": 1
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "burst",
+          "shapable": false,
+          "shape": "sphere",
+          "units": "ft",
+          "value": "5"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "9"
+          },
+          "hp": {
+            "max": "21",
+            "value": 21
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 1,
+          "value": 1
+        },
+        "chatFlavor": "burning 1d4",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 2,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d6",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": true,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Incendiary grenades detonate in a spray of superheated plasma.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 2,
+        "modifiers": [],
+        "price": 140,
+        "proficient": false,
+        "properties": {
+          "explode": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          },
+          "thrown": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "20"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "reflex",
+          "dc": "10+floor(@item.level/2)+@abilities.dex.mod",
+          "descriptor": "partial"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 178",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 1
+        },
+        "uses": {
+          "max": "1",
+          "per": "charges",
+          "value": 1
+        },
+        "weaponCategory": "flame",
+        "weaponType": "grenade"
+      }
+    },
+    {
+      "_id": "kgdG2I2tWOIXJZv0",
+      "name": "Medpatch",
+      "type": "technological",
+      "img": "systems/sfrpg/icons/equipment/technological%20items/medpatch.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 1
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A medpatch is a simple, all-in-one, disposable medical device designed to be slapped onto a wound or area of concern (such as a clearly diseased or poisoned section of the body) with little skill required. A medpatch allows you to attempt a Medicine check untrained with a +10 circumstance bonus, but only for the first aid, long-term stability, treat disease, and treat @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Drugs} or poison tasks.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "formula": "",
+        "hands": 1,
+        "identified": true,
+        "isActive": false,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 50,
+        "proficient": false,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 1
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "j11hE0elWImqsxK0",
+      "name": "Defrex hide",
+      "type": "equipment",
+      "img": "icons/equipment/chest/breastplate-rivited-red.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "armor": {
+          "type": "light",
+          "acp": 0,
+          "dex": 4,
+          "eac": 5,
+          "kac": 5,
+          "speedAdjust": 0
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "13"
+          },
+          "hp": {
+            "max": "27",
+            "value": 27
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [
+            {
+              "id": "GaI9zGRjqukQHUH4",
+              "index": 0
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "upgrade",
+                "weapon"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "armorUpgrade",
+              "weightProperty": "slots"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Made from the hide of a ferocious mammal native to Vesk-2, this light armor is popular among vesk but less often worn by other races. Tanned stretches of the creature’s thick hide are stitched together with metal wires, and the suits are reinforced with metal studs or scales.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": true,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 4,
+        "modifiers": [],
+        "price": 2250,
+        "proficient": false,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "reach": "",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 197",
+        "specialMaterials": {},
+        "speed": "",
+        "strength": 0,
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    },
+    {
+      "_id": "GaI9zGRjqukQHUH4",
+      "name": "Jump jets",
+      "type": "upgrade",
+      "img": "icons/commodities/tech/smoke-spout-blue.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "allowedArmorType": "lightAndHeavy",
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "4"
+          },
+          "hp": {
+            "max": "7",
+            "value": 7
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>You can activate jump jets as part of a move action in order to fly during your movement. You can fly up to 30 feet (average maneuverability) with a maximum height of 10 feet, or you can fly up to 20 feet straight up. You must land at the end of your move action. Jump jets can’t lift you if you’re @UUID[Compendium.sfrpg.conditions.Item.OwZA6flUQPH0jPA0]{Encumbered}.</p>\n<p>This upgrade can be installed only in light or heavy armor.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "level": 2,
+        "modifiers": [],
+        "price": 1000,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slots": 1,
+        "slug": "",
+        "source": "CRB pg. 205",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "action",
+          "value": 2
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "8E4Lu7oeTbTde08b",
+      "name": "Arc pistol, static",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/arc-pistol.webp",
+      "system": {
+        "ability": "dex",
+        "actionTarget": "eac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "charge",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "9"
+          },
+          "hp": {
+            "max": "21",
+            "value": 21
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [
+            {
+              "id": "zH6Q71jOZedDtkiG",
+              "index": 2
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 2,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "Arc 2",
+          "parts": [
+            {
+              "name": "",
+              "formula": "2",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": true,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ]
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d6",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": true,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Arc pistols fire deadly, stunning blasts of electricity at ranged targets. They have a two-pronged emitter that directs the electrical blast and a bulky chamber that holds the capacitor.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 2,
+        "modifiers": [],
+        "price": 750,
+        "proficient": true,
+        "properties": {
+          "one": {
+            "extension": "",
+            "value": true
+          },
+          "stun": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "50"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 173",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 2
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "shock",
+        "weaponType": "smallA"
+      }
+    },
+    {
+      "_id": "zH6Q71jOZedDtkiG",
+      "name": "Battery",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/battery-standard.webp",
+      "system": {
+        "ammunitionType": "charge",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": 20,
+          "value": 20
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons that use batteries list the highest-capacity battery they are capable of using as well as how many charges from the battery that each shot consumes.</p>\n<p><strong>Capacity:</strong> 20</p>"
+        },
+        "identified": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 60,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": true
+      }
+    },
+    {
+      "_id": "URnYBwOZCwZI3ZZf",
+      "name": "Semi-auto pistol, tactical",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/semi-auto-pistol-tactical.webp",
+      "system": {
+        "ability": "dex",
+        "actionTarget": "kac",
+        "actionType": "rwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "roundS",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 9,
+          "value": 9
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [
+            {
+              "id": "RD52VNMl70XKrZ57",
+              "index": 2
+            }
+          ],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "goods"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "",
+              "weightProperty": ""
+            },
+            {
+              "type": "slot",
+              "acceptsType": [
+                "ammunition"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "ammunitionSlot",
+              "weightProperty": ""
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d6",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": true,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>The semiautomatic mechanism of this pistol discharges spent cartridges and reloads fresh ones in the barrel, provided a cartridge remains in the magazine.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 260,
+        "proficient": true,
+        "properties": {
+          "analog": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "30"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 173",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "shot",
+          "value": 1
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "projectile",
+        "weaponType": "smallA"
+      }
+    },
+    {
+      "_id": "X9UMa7M6RsRRoH75",
+      "name": "Rounds, Small Arm",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/rounds-small-arm.webp",
+      "system": {
+        "ammunitionType": "roundS",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Cased rounds are housed in magazines, which can be fitted into the appropriate weapon.</p>\n<p><strong>Capacity:</strong> 30</p>"
+        },
+        "identified": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 40,
+        "quantity": 21,
+        "quantityPerPack": 30,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": false
+      }
+    },
+    {
+      "_id": "RD52VNMl70XKrZ57",
+      "name": "Rounds, Small Arm",
+      "type": "ammunition",
+      "img": "systems/sfrpg/icons/equipment/weapons/rounds-small-arm.webp",
+      "system": {
+        "ammunitionType": "roundS",
+        "attributes": {
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Cased rounds are housed in magazines, which can be fitted into the appropriate weapon.</p>\n<p><strong>Capacity:</strong> 30</p>"
+        },
+        "identified": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 40,
+        "quantity": 9,
+        "quantityPerPack": 30,
+        "slug": "",
+        "source": "Core Rulebook",
+        "specialMaterials": {},
+        "useCapacity": false
+      }
+    },
+    {
+      "_id": "Ks7DIWchA6lvsYLd",
+      "name": "Knife, survival",
+      "type": "weapon",
+      "img": "systems/sfrpg/icons/equipment/weapons/survival-knife.webp",
+      "system": {
+        "ability": "str",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "7"
+          },
+          "hp": {
+            "max": "18",
+            "value": 18
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": [
+            {
+              "type": "slot",
+              "acceptsType": [
+                "fusion"
+              ],
+              "affectsEncumbrance": true,
+              "amount": 1,
+              "subtype": "fusion",
+              "weightProperty": "level"
+            }
+          ]
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d4 + @abilities.str.mod",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": false,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": true,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>These light blades can be used for both mundane tasks and combat. A typical survival knife has a fixed, single-edged, carbonsteel or ceramic blade and is treated against corrosion. Tactical knives have large, double-edged blades, often with a section of serrated blade near the haft, and they come in both fixed and folding-blade designs; users may prefer one style or the other, but the two are identical in terms of price, weight, and damage dealt.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": true,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 1,
+        "modifiers": [],
+        "price": 95,
+        "proficient": true,
+        "properties": {
+          "analog": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          },
+          "operative": {
+            "extension": "",
+            "value": true
+          },
+          "thrown": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "ft",
+          "value": "20"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 171",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "lSzTCDzGA6AxbxoF",
+      "name": "Clothing, Everyday",
+      "type": "goods",
+      "img": "icons/equipment/chest/shirt-collared-brown.webp",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<h1>Clothing</h1>\n<p>Clothing is mass produced throughout the Pact Worlds, and the residents of the system are never wanting for clothes. Clothing is often worn both under and over armor, and its benefits apply in nearly all situations. Clothing comes in several varieties based upon its intended purpose, as described below.</p>\n<p><strong>Clothes designed for everyday wear come in a dazzling array of colors and styles, many of which are tailored to specific cultures or planets. Most characters choose their everyday wear based on their personal preferences.</strong></p>"
+        },
+        "equippable": false,
+        "equipped": false,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 1,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "CRB pg. 230"
+      }
+    },
+    {
+      "_id": "tJAlTgeVGOjP9Fjp",
+      "name": "Field Ration (1/Week)",
+      "type": "goods",
+      "img": "systems/sfrpg/icons/equipment/goods/field-ration.webp",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "1",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A field ration is prepackaged food that can easily sustain you but lacks flavor and visual appeal. Field rations generally consist of chewy, brownish blocks of processed nutrients, which contain enough moisture to provide a day’s worth of water intake. While it is possible to survive for weeks on nothing but field rations, it’s not a pleasant experience.</p>"
+        },
+        "equippable": false,
+        "equipped": false,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 1,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "Core Rulebook"
+      }
+    },
+    {
+      "_id": "ASMdHtnJ38QR4SKj",
+      "name": "Hygiene Kit",
+      "type": "goods",
+      "img": "systems/sfrpg/icons/equipment/technological%20items/xenobiologists-field-kit.webp",
+      "system": {
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This kit contains all of the tools and products needed to practice good grooming and hygiene. Kits designed for specific races include supplies (such as scale-care products for vesk or antennae grooming for lashuntas or shirrens) that are of less use to other creatures.</p>"
+        },
+        "equippable": false,
+        "equipped": false,
+        "identified": true,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 3,
+        "proficient": false,
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "slug": "",
+        "source": "CRB pg. 231"
+      }
+    },
+    {
+      "_id": "vJp8Ym3gt5qurTs4",
+      "name": "Comm Unit, Personal",
+      "type": "technological",
+      "img": "systems/sfrpg/icons/equipment/technological%20items/comm-unit-personal.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A personal comm unit is pocket-sized device that combines a minor portable computer (treat as a tier-0 computer with no upgrades or modules) and a cellular communication device, allowing wireless communication with other comm units in both audio- and text-based formats at planetary range (see page 272). A personal comm unit also includes a calculator, a flashlight (increases the light level one step in a 15-foot cone), and several entertainment options (including games and access to any local infospheres). You can upgrade a personal comm unit to function as some other devices (such as full computers and scanners) by spending credits equal to 110% of the additional device’s price.</p>\n<p>Comm units that function at system-wide and unlimited ranges aren’t as portable; they include built-in generators that provide the necessary amount of power. Short-term use of these units can be purchased in most major settlements (see page 234).</p>\n<p>See page 430 for more about Pact Worlds communications.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "formula": "",
+        "hands": 1,
+        "identified": true,
+        "isActive": false,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 7,
+        "proficient": false,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "hour",
+          "value": 1
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "U249LEWEHQWe2LH2",
+      "name": "Cable line, titanium alloy (40 ft.)",
+      "type": "technological",
+      "img": "systems/sfrpg/icons/equipment/technological%20items/cable-line-titanium-alloy.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>Industrial-strength cabling is typically woven from hundreds of cords of high-durability plastic that are often coated in metal for added strength, usually adamantine or titanium alloy.</p>\n<p><strong>Price:</strong> 5/10 ft</p>\n<p><strong>Bulk:</strong> 1/10 ft</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "formula": "",
+        "hands": 0,
+        "identified": true,
+        "isActive": false,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 20,
+        "proficient": false,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB, p. 219",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "I1NuGekXAGty4ilV",
+      "name": "Tool Kit, Hacking Kit",
+      "type": "technological",
+      "img": "systems/sfrpg/icons/equipment/technological%20items/tool-kit.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": ""
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": ""
+          },
+          "hp": {
+            "max": "",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>A tool kit is a set of specialized tools and devices not worth purchasing individually, but which as a collection are required for a given task or provide a circumstance bonus to certain skill checks. The types of tool kits are: <strong>hacking kit</strong> (required for most Computer checks; see page 137 for more information).</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "formula": "",
+        "hands": 0,
+        "identified": true,
+        "isActive": false,
+        "isEquipment": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 20,
+        "proficient": false,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Core Rulebook",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "10oTYuE9rhr2Jhou",
+      "name": "Quick-release sheath",
+      "type": "upgrade",
+      "img": "systems/sfrpg/icons/default/armor-upgrade.svg",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "allowedArmorType": "any",
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": "0"
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "2"
+          },
+          "hp": {
+            "max": "6",
+            "value": 6
+          },
+          "size": "medium",
+          "sturdy": false
+        },
+        "bulk": "L",
+        "capacity": {
+          "max": 0,
+          "value": 0
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>This articulated compartment can hold a one-handed weapon of no more than light bulk. You can activate this upgrade as a swift action to put the item in your hand as though you’d drawn it.</p>"
+        },
+        "duration": {
+          "units": "text",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "level": 1,
+        "modifiers": [],
+        "price": 325,
+        "properties": {},
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": ""
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slots": 1,
+        "slug": "",
+        "source": "CRB pg. 205",
+        "target": {
+          "value": null
+        },
+        "usage": {
+          "per": "",
+          "value": 0
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        }
+      }
+    },
+    {
+      "_id": "AWo4DU0s18agsFtJ",
+      "name": "Unarmed strike",
+      "type": "weapon",
+      "img": "icons/equipment/hand/gauntlet-simple-leather-brown-gold.webp",
+      "system": {
+        "ability": "str",
+        "actionTarget": "kac",
+        "actionType": "mwak",
+        "activation": {
+          "type": "none",
+          "condition": "",
+          "cost": null
+        },
+        "ammunitionType": "",
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "none",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "attributes": {
+          "ac": {
+            "value": "5"
+          },
+          "customBuilt": false,
+          "dex": {
+            "mod": ""
+          },
+          "hardness": {
+            "value": "0"
+          },
+          "hp": {
+            "max": "15",
+            "value": 15
+          },
+          "size": "medium",
+          "sturdy": true
+        },
+        "bulk": "-",
+        "capacity": {
+          "max": null,
+          "value": null
+        },
+        "chatFlavor": "",
+        "container": {
+          "contents": [],
+          "includeContentsInWealthCalculation": true,
+          "isOpen": true,
+          "storage": []
+        },
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [
+            {
+              "name": "",
+              "formula": "1d3 + @abilities.str.mod",
+              "group": null,
+              "isPrimarySection": false,
+              "types": {
+                "acid": false,
+                "bludgeoning": true,
+                "cold": false,
+                "electricity": false,
+                "fire": false,
+                "healing": false,
+                "nonlethal": false,
+                "piercing": false,
+                "radiation": false,
+                "slashing": false,
+                "sonic": false
+              }
+            }
+          ],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>An unarmed strike can be dealt with any limb or appendage. Unarmed strikes deal nonlethal damage, and the damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus to weapon damage rolls.</p>"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "equippable": false,
+        "equipped": false,
+        "equippedBulkMultiplier": 1,
+        "formula": "",
+        "identified": true,
+        "isActive": false,
+        "isEquipment": true,
+        "level": 0,
+        "modifiers": [],
+        "price": 0,
+        "proficient": false,
+        "properties": {
+          "archaic": {
+            "extension": "",
+            "value": true
+          },
+          "nonlethal": {
+            "extension": "",
+            "value": true
+          },
+          "one": {
+            "extension": "",
+            "value": true
+          }
+        },
+        "quantity": 1,
+        "quantityPerPack": 1,
+        "range": {
+          "units": "touch"
+        },
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": "negate"
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "CRB pg. 171",
+        "special": "",
+        "specialMaterials": {},
+        "target": {
+          "value": ""
+        },
+        "usage": {
+          "per": "",
+          "value": null
+        },
+        "uses": {
+          "max": "",
+          "per": "",
+          "value": null
+        },
+        "weaponCategory": "uncategorized",
+        "weaponType": "basicM"
+      }
+    },
+    {
+      "_id": "4PfeaIKyGzYBN5dJ",
+      "name": "Weapon Specialization (Ex) (Operative)",
+      "type": "feat",
+      "img": "systems/sfrpg/images/cup/gameplay/operative.webp",
+      "system": {
+        "ability": "",
+        "actionTarget": "",
+        "actionType": "",
+        "activation": {
+          "type": "",
+          "condition": "",
+          "cost": 0
+        },
+        "area": {
+          "effect": "",
+          "shapable": false,
+          "shape": "",
+          "units": "",
+          "value": ""
+        },
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "effect": "",
+          "parts": []
+        },
+        "damage": {
+          "parts": [],
+          "primaryGroup": null
+        },
+        "damageNotes": "",
+        "description": {
+          "chat": "",
+          "gmnotes": "",
+          "short": "",
+          "unidentified": "",
+          "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.uf8ADOAeBrtUkPVl]{Operative}</p>\n<p>You gain the @UUID[Compendium.sfrpg.feats.Item.9Us7Eg9cAoq3BcS5]{Weapon Specialization (Combat)}feat as a bonus feat for each weapon type with which this class grants you proficiency.</p>"
+        },
+        "descriptors": {},
+        "details": {
+          "category": "classFeature",
+          "combat": false,
+          "specialAbilityType": "ex"
+        },
+        "duration": {
+          "units": "instantaneous",
+          "value": ""
+        },
+        "formula": "",
+        "isActive": false,
+        "modifiers": [
+          {
+            "_id": "1f5aa774-bf32-40cc-8621-c685b4ed5b30",
+            "name": "Weapon Specialization Operative",
+            "type": "weapon-specialization",
+            "condition": "",
+            "damage": null,
+            "effectType": "weapon-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 0,
+            "modifier": "floor(@details.level.value / 2)",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "smallA"
+          },
+          {
+            "_id": "c8df914d-9f1f-4c48-95a7-44629c4c9b48",
+            "name": "Weapon Specialization Operative",
+            "type": "weapon-specialization",
+            "condition": "",
+            "damage": null,
+            "effectType": "weapon-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 0,
+            "modifier": "ternary(@item.properties.operative, floor(@details.level.value / 2), @details.level.value)",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "basicM"
+          },
+          {
+            "_id": "2cc1f298-b481-4f2b-aa42-ce280f0192b1",
+            "name": "Weapon Specialization Operative",
+            "type": "weapon-specialization",
+            "condition": "",
+            "damage": null,
+            "effectType": "weapon-damage",
+            "enabled": true,
+            "limitTo": null,
+            "max": 0,
+            "modifier": "@details.level.value",
+            "modifierType": "constant",
+            "notes": "",
+            "source": "",
+            "subtab": "misc",
+            "valueAffected": "sniper"
+          }
+        ],
+        "properties": {},
+        "range": {
+          "units": ""
+        },
+        "recharge": {
+          "charged": false,
+          "value": ""
+        },
+        "requirements": "3rd Level",
+        "rollNotes": "",
+        "save": {
+          "type": "",
+          "dc": "",
+          "descriptor": ""
+        },
+        "skillCheck": {
+          "type": "",
+          "dc": "",
+          "variable": false
+        },
+        "slug": "",
+        "source": "Operative",
+        "target": {
+          "value": null
+        },
+        "uses": {
+          "max": "0",
+          "per": "",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "prototypeToken": {
+    "name": "Iseph",
+    "actorLink": true,
+    "alpha": 1,
+    "appendNumber": false,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.sp"
+    },
+    "detectionModes": [],
+    "displayBars": 20,
+    "displayName": 20,
+    "disposition": 1,
+    "height": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "animation": {
+        "type": null,
+        "intensity": 5,
+        "reverse": false,
+        "speed": 5
+      },
+      "attenuation": 0.5,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "contrast": 0,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "dim": 0,
+      "luminosity": 0.5,
+      "negative": false,
+      "priority": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "lockRotation": false,
+    "movementAction": null,
+    "occludable": {
+      "radius": 0
+    },
+    "prependAdjective": false,
+    "randomImg": false,
+    "ring": {
+      "colors": {
+        "background": null,
+        "ring": null
+      },
+      "effects": 1,
+      "enabled": false,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "rotation": 0,
+    "sight": {
+      "angle": 360,
+      "attenuation": 0.1,
+      "brightness": 1,
+      "color": null,
+      "contrast": 0,
+      "enabled": true,
+      "range": 0,
+      "saturation": 0,
+      "visionMode": "basic"
+    },
+    "texture": {
+      "alphaThreshold": 0.75,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "src": "systems/sfrpg/images/cup/iconics/token/operative-iseph_token.webp",
+      "tint": "#ffffff"
+    },
+    "turnMarker": {
+      "animation": null,
+      "disposition": false,
+      "mode": 1,
+      "src": null
+    },
+    "width": 1
+  },
+  "system": {
+    "abilities": {
+      "cha": {
+        "base": 13,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      },
+      "con": {
+        "base": 10,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      },
+      "dex": {
+        "base": 15,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      },
+      "int": {
+        "base": 10,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      },
+      "str": {
+        "base": 12,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      },
+      "wis": {
+        "base": 10,
+        "damage": null,
+        "drain": null,
+        "userPenalty": null
+      }
+    },
+    "attributes": {
+      "arms": 2,
+      "fort": {
+        "misc": 0
+      },
+      "hp": {
+        "max": 28,
+        "temp": null,
+        "value": 28
+      },
+      "init": {
+        "value": 0
+      },
+      "reach": "",
+      "reflex": {
+        "misc": 0
+      },
+      "rp": {
+        "max": 6,
+        "value": 6
+      },
+      "sp": {
+        "max": 24,
+        "value": 24
+      },
+      "space": "",
+      "speed": {
+        "burrowing": {
+          "base": 0
+        },
+        "climbing": {
+          "base": 0
+        },
+        "flying": {
+          "base": 0,
+          "baseManeuverability": 0
+        },
+        "land": {
+          "base": 30
+        },
+        "mainMovement": "land",
+        "special": "",
+        "swimming": {
+          "base": 0
+        }
+      },
+      "will": {
+        "misc": 0
+      }
+    },
+    "conditions": {
+      "asleep": false,
+      "bleeding": false,
+      "blinded": false,
+      "broken": false,
+      "burning": false,
+      "confused": false,
+      "cowering": false,
+      "dazed": false,
+      "dazzled": false,
+      "dead": false,
+      "deafened": false,
+      "dying": false,
+      "encumbered": false,
+      "entangled": false,
+      "exhausted": false,
+      "fascinated": false,
+      "fatigued": false,
+      "flat-footed": false,
+      "frightened": false,
+      "grappled": false,
+      "helpless": false,
+      "invisible": false,
+      "nauseated": false,
+      "off-kilter": false,
+      "off-target": false,
+      "overburdened": false,
+      "panicked": false,
+      "paralyzed": false,
+      "pinned": false,
+      "prone": false,
+      "shaken": false,
+      "sickened": false,
+      "stable": false,
+      "staggered": false,
+      "stunned": false,
+      "unconscious": false
+    },
+    "currency": {
+      "credit": 39,
+      "upb": 0
+    },
+    "details": {
+      "alignment": "Neutral Good",
+      "biography": {
+        "age": "0",
+        "dateOfBirth": "",
+        "deity": "",
+        "fullBodyImage": "systems/sfrpg/images/mystery-body.webp",
+        "genderPronouns": "",
+        "height": "",
+        "homeWorld": "",
+        "otherVisuals": "",
+        "public": "",
+        "value": "<p>Born on Aballon, Iseph has spent a lifetime running from mysterious forces that want them dead. As a “retired” black ops agent, Iseph hires on with freelance adventuring crews as a pilot specializing in dangerous transport or exploratory missions. If those jobs require infiltration or a well-placed bullet from the shadows—well, that costs extra.</p>\n<h2>SPECIAL ABILITIES</h2>\n<p><strong>Constructed</strong> For effects targeting creatures by type, Iseph counts as both a construct and a humanoid (whichever is worse for Iseph).</p>\n<hr />\n<p><strong>Darkvision</strong> Iseph can see up to 60 feet in total darkness.</p>\n<hr />\n<p><strong>Debilitating Trick (Ex)</strong> When Iseph hits an enemy with a trick attack, Iseph can choose to make that enemy either flat-footed or off-target until the beginning of Iseph’s next turn.Dive for Cover When Iseph attempts a Reflex save against an area attack or area effect, they can choose to fall prone in an adjacent space in order to roll the saving throw twice, taking the better of the two results.</p>\n<hr />\n<p><strong>Evasion (Ex)</strong> If Iseph succeeds at a Reflex save against an effect that has a partial effect on a successful save, they instead suffer no effect.</p>\n<hr />\n<p><strong>Flat Affect</strong> The DC of a Sense Motive check attempted against Iseph increases by 2.</p>\n<hr />\n<p><strong>Kip Up</strong> Iseph can stand from prone as a swift action, rather than a move action.</p>\n<hr />\n<p><strong>Low-Light Vision</strong> Iseph can see in dim light as if it were normal light.</p>\n<hr />\n<p><strong>Multi-Weapon Fighting</strong> When Iseph makes a full attack with two or more operative melee weapons or small arms, reduce the penalty to each attack from –4 to –3.&nbsp;</p>\n<hr />\n<p><strong>Trick Attack</strong> As a full action, Iseph can move up to 40 feet and make a single attack with a small arm (or a melee weapon with the operative special property) as a trick attack. Just before making the attack, Iseph attempts a Bluff, Intimidate, or Stealth check (whichever is better for Iseph) with a DC equal to 20 + the target’s CR. If the skill check is successful, the attack deals an additional 1d8 damage and the target is flat-footed against this attack.</p>\n<hr />\n<p><strong>Uncanny Pilot (Ex)</strong> When Iseph attacks while driving a vehicle, they take only half the vehicle’s normal penalty to their attack roll. When in a chase, Iseph gains a +2 bonus to skill checks when attempting the evade or trick pilot actions.</p>\n<hr />\n<p><strong>Upgrade Slot</strong> Iseph has an internal quick-release sheath normally installed in armor as an upgrade. This can store a single one-handed weapon, which Iseph can draw as a swift action.</p>\n<h2>GEAR DESCRIPTIONS</h2>\n<p><strong>Defrex Hide</strong> While wearing this armor, Iseph can close its environmental seals and survive in a vacuum (and other harsh environments) for up to 4 days. The armor has jump jets as an upgrade, allowing Iseph to fly up to 30 feet as part of a move action. At the end of this flight Iseph must land or they fall. Iseph can do this 10 times before the jump jets’ battery must be recharged or replaced.</p>\n<hr />\n<p><strong>Medpatch</strong> Iseph can use this to attempt an untrained Medicine check with a +10 bonus to perform the first aid, long-term stability, treat disease, or treat drugs or poison task.&nbsp;</p>\n<hr />\n<p><strong>Mk 1 Serum of Healing</strong> Drinking a vial of this serum restores 1d8 HP.</p>\n<hr />\n<p><strong>Mk 2 Serum of Healing</strong> Drinking a vial of this serum restores 3d8 HP.</p>\n<hr />\n<p><strong>Static Arc Pistol</strong> This weapon fires a bolt of electricity. On a critical hit, it arcs and deals 2 electricity damage to a new target of your choice that is adjacent to your original target. As a move action, it can be set to deal nonlethal damage. It can be fired 10 times before its battery must be recharged or replaced.</p>\n<hr />\n<p><strong>Tactical Semi-Auto Pistol</strong> This weapon fires physical bullets and can be fired nine times before it must be reloaded.</p>\n<hr />\n<p><strong>Titanium Alloy Cable</strong> This 40-foot-long cable is designed for climbing or securing loose cargo.</p>",
+        "weight": ""
+      },
+      "cl": {
+        "value": null
+      },
+      "race": "Android",
+      "theme": "Ace Pilot",
+      "xp": {
+        "value": 0
+      }
+    },
+    "modifiers": [],
+    "options": {
+      "hideUntrained": false
+    },
+    "skills": {
+      "acr": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "ath": {
+        "ability": "str",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "blu": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "com": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "cul": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "dip": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "dis": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "eng": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "int": {
+        "ability": "cha",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "lsc": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "med": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "mys": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "per": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "phs": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 0
+      },
+      "pil": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "pro": {
+        "ability": "int",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sen": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      },
+      "sle": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": true,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "ste": {
+        "ability": "dex",
+        "enabled": false,
+        "hasArmorCheckPenalty": true,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 4,
+        "subname": "",
+        "value": 3
+      },
+      "sur": {
+        "ability": "wis",
+        "enabled": false,
+        "hasArmorCheckPenalty": false,
+        "isTrainedOnly": false,
+        "misc": 0,
+        "ranks": 0,
+        "subname": "",
+        "value": 3
+      }
+    },
+    "slug": "",
+    "spells": {
+      "spell0": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell1": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell2": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell3": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell4": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell5": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      },
+      "spell6": {
+        "max": 0,
+        "perClass": {},
+        "value": 0
+      }
+    },
+    "traits": {
+      "armorProf": {
+        "custom": "",
+        "value": []
+      },
+      "ci": {
+        "custom": "",
+        "value": []
+      },
+      "di": {
+        "custom": "",
+        "value": []
+      },
+      "dv": {
+        "custom": "",
+        "value": []
+      },
+      "languages": {
+        "custom": "",
+        "value": [
+          "common",
+          "shirren"
+        ]
+      },
+      "senses": "Darkvision 60 ft., Low-light vision",
+      "size": "medium",
+      "sr": 0,
+      "weaponProf": {
+        "custom": "",
+        "value": []
+      }
+    }
+  }
+}

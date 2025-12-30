@@ -1,0 +1,153 @@
+{
+  "_id": "vBh1euD0NKHsu4ek",
+  "name": "Monocle of recognition",
+  "type": "magic",
+  "img": "icons/tools/scribal/lens-grey-red.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 10
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>An unassuming brass eyepiece that can be fitted for any species’ visual sensors, a monocle of recognition helps you better tell friend from foe. While wearing it, you gain a +2 enhancement bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.gZlg2ZKze0erNLmP]{Perception} checks to pierce a @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.aayAhTaRzitONs5U]{Disguise} and to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.nBrYkGfNBJAHe0xJ]{Sense Motive} checks to sense mental effects.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 5,
+    "limitedWear": true,
+    "modifiers": [
+      {
+        "_id": "70c72951-686f-481d-99ce-1afc79b5ad9f",
+        "name": "Monocle of recognition",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "you gain a +2 enhancement bonus to Perception checks to pierce a disguise and to Sense Motive checks to sense mental effects.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      },
+      {
+        "_id": "71dc2828-b283-4e33-9592-ab71b2bd5ae8",
+        "name": "Monocle of recognition",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "you gain a +2 enhancement bonus to Perception checks to pierce a disguise and to Sense Motive checks to sense mental effects.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "sen"
+      }
+    ],
+    "price": 3000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #22 pg. 44",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

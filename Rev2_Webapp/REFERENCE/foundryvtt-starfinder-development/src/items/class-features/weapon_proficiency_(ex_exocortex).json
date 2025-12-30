@@ -1,0 +1,84 @@
+{
+  "_id": "28PhX1gOjYNvC3Fa",
+  "name": "Weapon Proficiency (Ex; Exocortex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/weapon_proficiency.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.z8iOan4RJXYvVhit]{Exocortex Mods (Ex)}</p>\n<p>Your exocortex gains one of the following feats as a bonus feat (it must meet all the prerequisites of the chosen feat): @UUID[Compendium.sfrpg.feats.Item.54qpDSqRUsVRWOSZ]{Advanced Melee Weapon Proficiency (Combat)}, or @UUID[Compendium.sfrpg.feats.Item.Ssw8itpOPE45uFzO]{Heavy Weapon Proficiency (Combat)}. You can select this mod multiple times; each time, you gains another of the available proficiency feats as a bonus feat.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "7th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Exocortex",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "_id": "F5jc6jhyllRNGrRF",
+  "name": "Vivacious Nimbus (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/photon.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "@classes.solarian.levels",
+          "group": null,
+          "isPrimarySection": true,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>&nbsp;@Icon[type:photon] Photon Revelation</p>\n<p>As a standard action while shedding normal or bright light with your @UUID[Compendium.sfrpg.class-features.Item.7VVFPck5IJhTmP7q]{Flare (Su)} revelation, you can infuse the light with the Positive Energy Plane’s life-giving influence, granting creatures in the illuminated area the effects of the <em>@UUID[Compendium.sfrpg.spells.Item.QtZHSuJf0hcryYtR]{Death Ward}</em> spell. This additional effect lasts for 1 round or until you leave photon mode, whichever happens first, though you can maintain this effect as a standard action each round (or as a move action if you’re fully attuned). When you @UUID[Compendium.sfrpg.conditions.Item.tOpF6qjnlnKc10t7]{Blind} an undead creature with your @UUID[Compendium.sfrpg.class-features.Item.7VVFPck5IJhTmP7q]{Flare (Su)} revelation flash of brilliant light, the target also takes force damage equal to your solarian level.</p>\n<p>You must have the @UUID[Compendium.sfrpg.class-features.Item.7VVFPck5IJhTmP7q]{Flare (Su)} revelation to select this revelation.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "10th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 45",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

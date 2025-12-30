@@ -1,0 +1,24 @@
+{
+  "_id": "wJSx6US0qUgOe7wq",
+  "name": "Signal Booster",
+  "type": "starshipDriftEngine",
+  "img": "systems/sfrpg/icons/default/star-gate.svg",
+  "system": {
+    "cost": 5,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "engineRating": 2,
+    "isPowered": false,
+    "maxSize": "huge",
+    "modifiers": [],
+    "pcu": 100,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

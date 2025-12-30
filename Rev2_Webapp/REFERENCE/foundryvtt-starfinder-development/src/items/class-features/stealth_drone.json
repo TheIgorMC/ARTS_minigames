@@ -1,0 +1,57 @@
+{
+  "_id": "UZjMSvXesViIrJl8",
+  "name": "Stealth Drone",
+  "type": "chassis",
+  "img": "systems/sfrpg/icons/classes/stealth_drone.webp",
+  "system": {
+    "abilityIncreaseStats": {
+      "first": "dex",
+      "second": "wis"
+    },
+    "abilityScores": {
+      "cha": 6,
+      "con": "-",
+      "dex": 14,
+      "int": 6,
+      "str": 12,
+      "wis": 10
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.Y4ajp13ACVnzaS5s]{Drone Chassis}</p>\n<p>Sleek and covered in a light-absorbing alloy, the stealth drone prowls along the ground on multiple small legs, silenced wheels, an air cushion, or some similar form of propulsion. This drone specializes in stealth and infiltration and can vanish almost entirely from sight as long as it remains perfectly still.</p>\n<h2>Initial Mods</h2>\n<p>@UUID[Compendium.sfrpg.class-features.Item.mZpIDgU1G1aHudu2]{Climbing Claws (Ex)},@UUID[Compendium.sfrpg.class-features.Item.ZCNA7qg5Hz6Jirs0]{Reactive Camouflage (Ex)},@UUID[Compendium.sfrpg.class-features.Item.dDZLj7L4psee7UZc]{Weapon Mount (Ex)}</p>\n<h2>Bonus Skill Unit</h2>\n<p>Stealth @UUID[Compendium.sfrpg.class-features.Item.6cm9UHSlmWPU9QQe]{Skill Unit (Ex)}</p>"
+    },
+    "eac": 10,
+    "fort": "slow",
+    "kac": 12,
+    "levels": 1,
+    "modifiers": [],
+    "ref": "fast",
+    "size": "small",
+    "slug": "",
+    "source": "",
+    "speed": {
+      "burrowing": {
+        "base": 0
+      },
+      "climbing": {
+        "base": 20
+      },
+      "flying": {
+        "base": 0,
+        "baseManeuverability": 0
+      },
+      "land": {
+        "base": 40
+      },
+      "mainMovement": "land",
+      "special": "",
+      "swimming": {
+        "base": 0
+      }
+    },
+    "will": "slow"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "_id": "LJy5CKuumG4MDaVK",
+  "name": "Rel-Battery, Mk 1",
+  "type": "ammunition",
+  "img": "systems/sfrpg/icons/equipment/technological%20items/chemalyzer.webp",
+  "system": {
+    "ammunitionType": "charge",
+    "attributes": {
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "",
+    "capacity": {
+      "max": 1000,
+      "value": 1000
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Hybrid item</h2>\n<p>This tiny hybrid device can be attached to any technological device that uses a battery and has an item level equal to or less than its own, drawing infinite energy from rel-state and providing unlimited charges.</p>\n<p><em>Manually drag and drop into device to load rel-battery.</em></p>"
+    },
+    "identified": true,
+    "level": 16,
+    "modifiers": [],
+    "price": 150000,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AP #33 pg. 53",
+    "specialMaterials": {},
+    "useCapacity": true
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "_id": "EepVScicHMPsbFzH",
+  "name": "Invisibility-Hampering Projector (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/invisibility_hampering_projector.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.YMGOKoZtKgJqIsAD]{Mechanic Trick}</p>\n<p>As a move action, you can use your custom rig’s holographic projector to project a holographic image in a direct overlay over an invisible creature within 120 feet, and your custom rig’s computer moves the image to follow the invisible creature, effectively negating the creature’s invisibility as long as it remains within 120 feet of you. If it moves beyond that range, it breaks the effect until you use this ability again. You must have the @UUID[Compendium.sfrpg.class-features.Item.sOP7UdTk4XTVhlpA]{holographic projector}, @UUID[Compendium.sfrpg.class-features.Item.7f0FuxZuOwqREwLO]{invisibility bypass processor}, and @UUID[Compendium.sfrpg.class-features.Item.C0D3yPSOtK8ON6y7]{visual data processor} mechanic tricks to learn this trick.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "120"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level (Mechanic)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, p. 73",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

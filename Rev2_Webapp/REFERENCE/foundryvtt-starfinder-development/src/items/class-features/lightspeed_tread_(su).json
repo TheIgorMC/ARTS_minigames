@@ -1,0 +1,102 @@
+{
+  "_id": "ZfiO4bIxEMP7dndH",
+  "name": "Lightspeed Tread (Su)",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:photon] Photon Revelation</p>\n<p>You can travel across great distances with incredible speed. You gain a +10-foot enhancement bonus to each of your speeds when calculating the distance you travel overland, and you grant this bonus to all allies within 50 feet of you. You also increase the full speed and speed in miles per hour of vehicles you pilot by 10%.</p>\n<p>While you are attuned or fully attuned, each of your speeds gains a +10-foot enhancement bonus until the end of your next turn whenever you use a photon stellar revelation.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "fda0f8f6-fe59-404e-87ac-df1a04cb0412",
+        "name": "Lightspeed Tread",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-speeds",
+        "enabled": false,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "10",
+        "modifierType": "formula",
+        "notes": "While you are attuned or fully attuned, each of your speeds gains a +10-foot enhancement bonus until the end of your next turn whenever you use a photon stellar revelation.",
+        "source": "Lightspeed Tread",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 24",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

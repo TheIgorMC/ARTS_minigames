@@ -1,0 +1,85 @@
+{
+  "_id": "nPw6Dv5Y9YQMXV4S",
+  "name": "Terminal Uplink (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/equipment/goods/credstick.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "full",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.YMGOKoZtKgJqIsAD]{Mechanic Trick}</p>\n<p>You can use your exocortex to stay vigilant. As a full action, you can upload your exocortex into a computer to which you have root access, directing it to monitor that computer. Once your exocortex is integrated, your @UUID[Compendium.sfrpg.class-features.Item.uWZ3LvxQ3yezLB4j]{Custom Rig (Ex)} alerts you whenever a creature operates or attempts to hack the computer, similar to the alarm countermeasure. Your exocortex upload can be removed from the computer by other users as if it were a module. If you upload your exocortex into a different computer, you lose the benefits of terminal uplink with the first computer, and the exocortex upload on that computer deletes itself [[/r 1d10]] minutes later.</p>\n<p>If you upload your exocortex into a computer with a camera, microphone, or other similar monitoring device, you can perceive the computer’s surroundings with that hardware by using your custom rig, so long as you’re within 100 feet per mechanic level you have of the computer. While observing the computer’s surroundings in this way, you can’t use your exocortex’s memory module, and the number of targets you can track with your exocortex is reduced by one. You must have an @UUID[Compendium.sfrpg.class-features.Item.cM54UpNXExgDSbq4]{Exocortex} to select this mechanic trick.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "",
+      "value": "100 ft./ Mechanic level"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 18",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "_id": "eCntPbwoXGNThC6e",
+  "name": "Cerebral countermeasures",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "biotech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A cerebral countermeasure is a tiny gland that constantly monitors your brainwaves, watching for unexpected spikes in activity that indicate mental assault. As a reaction before you attempt a saving throw against a mind-affecting effect, you can cause the gland to release proteins that deflect and confuse mental attacks by overloading the chemical receptors that would otherwise respond to the mental attack. This grants you a +2 circumstance bonus to your Will saving throws against mind-affecting effects until the end of your next turn. The disruption this defense causes makes it difficult to concentrate, giving you a –2 penalty to Intelligence-, Wisdom-, and Charisma-based skill checks until the end of your next turn.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "modifiers": [
+      {
+        "_id": "d6b87e4b-1426-454f-b540-6813262bea86",
+        "name": "Cerebral countermeasures",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "save",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "As a reaction before you attempt a saving throw against a mind-affecting effect, you can cause the gland to release proteins that deflect and confuse mental attacks by overloading the chemical receptors that would otherwise respond to the mental attack. This grants you a +2 circumstance bonus to your Will saving throws against mind-affecting effects until the end of your next turn.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "will"
+      },
+      {
+        "_id": "c8629197-51ac-4e68-80a2-03b50693916b",
+        "name": "Cerebral countermeasures",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "a –2 penalty to Intelligence-, Wisdom-, and Charisma-based skill checks until the end of your next turn.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "int"
+      },
+      {
+        "_id": "c687ec0c-932a-4ac2-8e7d-15b327c5f944",
+        "name": "Cerebral countermeasures",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "A –2 penalty to Intelligence-, Wisdom-, and Charisma-based skill checks until the end of your next turn.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "wis"
+      },
+      {
+        "_id": "4f556346-b2df-4009-a423-ec06c8bbb5e8",
+        "name": "Cerebral countermeasures",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "A –2 penalty to Intelligence-, Wisdom-, and Charisma-based skill checks until the end of your next turn.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "cha"
+      }
+    ],
+    "price": 4200,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2 pg. 19",
+    "system": "brain",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

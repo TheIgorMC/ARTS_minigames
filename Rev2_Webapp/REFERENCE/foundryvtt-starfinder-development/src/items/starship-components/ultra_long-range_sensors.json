@@ -1,0 +1,23 @@
+{
+  "_id": "sTlY6PcR1KoV1HbS",
+  "name": "Ultra Long-Range Sensors",
+  "type": "starshipSensor",
+  "img": "systems/sfrpg/icons/default/radar-dish.svg",
+  "system": {
+    "cost": 20,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifier": 6,
+    "modifiers": [],
+    "range": "long",
+    "slug": "",
+    "source": "NS pg. 114",
+    "specialMaterials": {}
+  }
+}

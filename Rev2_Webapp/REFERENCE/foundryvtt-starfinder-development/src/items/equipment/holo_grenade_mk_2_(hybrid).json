@@ -1,0 +1,150 @@
+{
+  "_id": "J30Fq6g7M1XpOP0F",
+  "name": "Holo Grenade, Mk 2 (Hybrid)",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/holo-grenade.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "ac5",
+    "actionType": "rwak",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": "10"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 27
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 4,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Commonly used as novelties,<em>holo grenades</em> can create all sorts of illusions in a harmless but surprising and often amusing way. A holo version of the @UUID[Compendium.sfrpg.equipment.Item.Op1pND4wEWA3YQ7E]{Wonder Grenade} (creating only an appearance of the listed effects) is popular among fey and children. However,<em>holo grenades</em> have less innocent uses as well—criminals and infiltrators use <em>holo grenades</em> as distractions.</p>\n<p>A <em>holo grenade</em> creates a preprogrammed illusion no larger than the blast radius. The illusion functions as if you had cast <em>holographic image</em> with a level, caster level, and duration according to the grenade’s type.</p>\n<p>2nd-level @UUID[Compendium.sfrpg.spells.Item.kDFNOMx78KU1GGol]{Holographic Image}; caster level 6th; duration 5 rounds</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 4,
+    "modifiers": [],
+    "price": 300,
+    "proficient": false,
+    "properties": {
+      "explode": {
+        "extension": "",
+        "value": true
+      },
+      "hybrid": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "thrown": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "20"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "will",
+      "dc": "10+floor(@item.level/2)+@abilities.dex.mod",
+      "descriptor": "disbelieve"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 126",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "shot",
+      "value": 1
+    },
+    "uses": {
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "grenade"
+  }
+}

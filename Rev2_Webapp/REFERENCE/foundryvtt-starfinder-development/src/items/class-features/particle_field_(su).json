@@ -1,0 +1,84 @@
+{
+  "_id": "px7wLH2eAAyf3cPl",
+  "name": "Particle Field (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/photon.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:photon] Photon Revelation</p>\n<p>As a move action, you surround yourself with a swirling sheath of charged particles that absorb some damage from attacks made against you. This constantly renewing field of particles acts as a force field that grants 25 temporary Hit Points and has fast healing 4. This lasts for 1 round or until you leave photon mode. This force field does not function if you also have a force field from an armor upgrade, mechanic’s @UUID[Compendium.sfrpg.class-features.Item.xcIBsW8VL3DD9rVU]{Energy Shield (Ex)}, or another similar effect.</p>\n<p>When you are attuned or fully attuned, the fast healing of your particle field increases to 6.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "10+floor(@classes.solarian.levels/2) + @abilities.cha.mod",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 153",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "_id": "j3vARYoWtEpsv7XV",
+  "name": "Sample Scanner (Ex)",
+  "type": "feat",
+  "img": "icons/environment/wilderness/tree-spruce.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "min",
+      "condition": "",
+      "cost": 10
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.YMGOKoZtKgJqIsAD]{Mechanic Trick}</p>\n<p>Your exocortex is adept at analyzing field samples. As a move action, you can place items or materials weighing up to 1 bulk into your @UUID[Compendium.sfrpg.class-features.Item.uWZ3LvxQ3yezLB4j]{Custom Rig (Ex)} and direct your exocortex to analyze them. This functions as taking 20 to recall knowledge about the items, but it takes 10 minutes to perform, instead of the usual 2 minutes. While scanning an object, you can’t use your exocortex’s @UUID[Compendium.sfrpg.class-features.Item.yeAW67ho3SsxqJNR]{Memory Module (Ex)}, and the number of targets you can designate your exocortex to track is reduced by one. You must have an @UUID[Compendium.sfrpg.class-features.Item.cM54UpNXExgDSbq4]{Exocortex} to select this mechanic trick.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none",
+      "value": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 18",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

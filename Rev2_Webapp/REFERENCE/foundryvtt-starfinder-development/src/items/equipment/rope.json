@@ -1,0 +1,46 @@
+{
+  "_id": "SW1b3H0IKAMObpAR",
+  "name": "Rope",
+  "type": "goods",
+  "img": "systems/sfrpg/icons/equipment/goods/rope.webp",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Synthetic rope is exceptionally durable, elastic, and specifically designed to be easy to grip and climb. Although it lacks the strength and durability of cable lines, synthetic rope is significantly cheaper and lighter than those alternatives.</p>"
+    },
+    "equippable": false,
+    "equipped": false,
+    "identified": true,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [],
+    "price": 1,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "ARM, p 131"
+  }
+}

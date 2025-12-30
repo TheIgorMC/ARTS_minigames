@@ -1,0 +1,62 @@
+{
+  "_id": "3iTdt2NRgIyrychR",
+  "name": "Asleep",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/asleep.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p><hr /><p>You are sleeping and @UUID[Compendium.sfrpg.conditions.Item.RxvbSB9ZgSCBu2jw]{Helpless}.</p>\n<p>While asleep, you take a –10 penalty to Perception checks to notice anything.</p>\n<p>If you succeed at a Perception check to notice something despite the penalty, you automatically awaken.</p>\n<p>You are also awoken if you are slapped or wounded.</p>\n<p>An ally can wake you as a standard action.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "7777a761-d1bf-467b-859f-aaa872fd4569",
+        "name": "Perception (Notice)",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "skill",
+        "enabled": true,
+        "max": -10,
+        "modifier": "-10",
+        "modifierType": "formula",
+        "notes": "While Asleep.",
+        "source": "Condition (SRD)",
+        "subtab": "misc",
+        "valueAffected": "per"
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "asleep",
+    "source": "CRB pg. 273",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

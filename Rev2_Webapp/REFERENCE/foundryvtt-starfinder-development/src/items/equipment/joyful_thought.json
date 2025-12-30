@@ -1,0 +1,117 @@
+{
+  "_id": "aMCxoI3bE3U061VH",
+  "name": "Joyful Thought",
+  "type": "consumable",
+  "img": "icons/consumables/potions/potion-bottle-labeled-stopped-purple.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "",
+    "chatFlavor": "",
+    "consumableType": "serum",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A joyful thought serum is synthesized from the famous sensestone of Veyvilla-6. It manifests as a rosy purple brew bubbling with great effervescence. Upon imbibing the serum, a momentary, overwhelming joy encompasses your mind; you can attempt a new saving throw against any mind-affecting effects that are currently affecting you. Succeed or fail, you gain a +4 enhancement bonus to saving throws against mind-affecting effects for 10 minutes afterward as your mind focuses on happier thoughts.</p>\n<h3>Serums</h3>\n<p>Serums are vials of magic liquid that you can imbibe as a standard action or carefully trickle down the throat of a helpless or unconscious creature as a full action. Serums are normally 1 ounce of liquid (though it is possible to make serums with larger volumes, these are no more effective than standard serums), and lose potency if they are mixed with any other material. A serum can be used only once. Regardless of a serum’s actual item level, all serum vials have their hardness and Hit Points calculated as if they were 1st-level items.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 7,
+    "modifiers": [
+      {
+        "_id": "5522cf0f-b286-41f6-b657-2e863c27a011",
+        "name": "Joyful Thought",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "Upon imbibing the serum, a momentary, overwhelming joy encompasses your mind; you can attempt a new saving throw against any mind-affecting effects that are currently affecting you. Succeed or fail, you gain a +4 enhancement bonus to saving throws against mind-affecting effects for 10 minutes afterward as your mind focuses on happier thoughts.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 870,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #37 pg. 39",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

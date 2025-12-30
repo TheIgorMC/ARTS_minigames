@@ -1,0 +1,180 @@
+{
+  "_id": "vV6GyFwnarW0HDus",
+  "name": "Hellknight flail",
+  "type": "weapon",
+  "img": "systems/sfrpg/icons/equipment/weapons/incapacitator.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": null
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "23"
+      },
+      "hp": {
+        "max": "42",
+        "value": 42
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 20,
+      "value": 20
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 9,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "goods"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "staggered [Fort]",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "3d4 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": true,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Hellknight flails were first created by the Hellknight Order of the Chain on Golarion during the years just before the Gap. Many can be traced back to Citadel Gheradesca, the ancient fortress headquarters of the Order of the Chain, where they were given out as rewards to members of the order who brought particularly high-value fugitives back to face legal consequences. Traditionally, a Hellknight flail was a basic melee weapon with the archaic special property that had heavy iron chains affixed to the haft of the weapon. After the Gap, various Hellknight orders discovered instructions for the creation of Hellknight flails among their carefully archived records. As a result, modern Hellknights have recreated Hellknight flails by applying the binding and chained weapon fusions to batons and similar weapons. Order of the Chain Hellknights frequently use Hellknight flails, as do Hellknights of other orders, as well as other law enforcement agents and bounty hunters unaffiliated with the Hellknights, though to a lesser extent. The Hellknight flail presented in the table on page 50 is an incapacitator with the binding and chained fusions, and the price includes both the weapon and the fusions.</p>\n<p><strong>Incapacitator</strong></p>\n<p>When this nonreflective, dark-gray baton connects with a target, it discharges an electrical pulse that can stagger its victim.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 9,
+    "modifiers": [],
+    "price": 19400,
+    "proficient": false,
+    "properties": {
+      "nonlethal": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "operative": {
+        "extension": "",
+        "value": true
+      },
+      "powered": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #1 pg. 52",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "minute",
+      "value": 2
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "basicM"
+  }
+}

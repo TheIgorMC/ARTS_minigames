@@ -1,0 +1,167 @@
+{
+  "_id": "KihhOJo1XmUisUfQ",
+  "name": "Pyrespike crystal, shard",
+  "type": "weapon",
+  "img": "icons/commodities/stone/geode-raw-purple.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "special",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 24
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "-",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Sicken",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Often made from multihued obsidian, a pyrespike crystal softly thrums like a tiny volcano straining to explode. This weapon crystal functions normally with most solar weapons, but when applied to a @UUID[Compendium.sfrpg.class-features.Item.kCvI3xvm0Q1slajx]{solar flare}<sup>COM</sup>, the crystal grants the solar flare the automatic weapon special property, affecting up to 6 targets. Afterward, the solar flare can’t be used in automatic mode again until you’ve rested for 10 minutes to regain Stamina Points.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 3,
+    "modifiers": [
+      {
+        "_id": "762ce15a-aa62-4bb3-968e-a96dfe60c4c3",
+        "name": "Pyrespike crystal, shard",
+        "type": "untyped",
+        "condition": "",
+        "damage": {
+          "damageGroup": null,
+          "damageTypes": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": true,
+            "piercing": false,
+            "slashing": false,
+            "sonic": false
+          }
+        },
+        "effectType": "all-damage",
+        "enabled": true,
+        "limitTo": "container",
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "damageSection",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 1400,
+    "proficient": true,
+    "properties": {
+      "automatic": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS, pg. 79",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "solarian"
+  }
+}

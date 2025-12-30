@@ -1,0 +1,96 @@
+{
+  "_id": "uYgKNrHDf1TSTRT5",
+  "name": "Amorphous Form",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/spells/enduring_worlds.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "special",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": true,
+      "precog": false,
+      "tech": false,
+      "wysh": true
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Your body briefly shifts into an amorphous form, enabling you to circumvent certain attacks and squeeze through tight spaces. You do not take double damage from critical hits, but critical hit effects apply against you normally. You gain a +4 circumstance bonus to your KAC against the grapple and reposition combat maneuvers. You can move through an area as small as one-quarter of your space without squeezing, or one-eighth your space when squeezing.</p>\n<p>To benefit from this spell, you must have the shapechanger subtype or be benefiting from a polymorph effect. You can cast this spell as a reaction when you are attacked by a grapple or reposition maneuver or hit by a critical hit, but when you do, you can’t take a standard action on your next turn.</p>"
+    },
+    "descriptors": {},
+    "dismissible": true,
+    "duration": {
+      "units": "round",
+      "value": "@details.cl.value"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 2,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "personal"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "school": "trs",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #27 pg. 45",
+    "sr": false,
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

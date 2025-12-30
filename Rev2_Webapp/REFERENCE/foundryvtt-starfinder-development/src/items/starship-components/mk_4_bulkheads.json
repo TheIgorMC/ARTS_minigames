@@ -1,0 +1,21 @@
+{
+  "_id": "0nsA1TzgEtgWaF9l",
+  "name": "Mk 4 bulkheads",
+  "type": "starshipReinforcedBulkhead",
+  "img": "systems/sfrpg/icons/default/metal-scales-plus.svg",
+  "system": {
+    "cost": 7,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "fortification": 40,
+    "modifiers": [],
+    "slug": "",
+    "source": "SOM pg. 21"
+  }
+}

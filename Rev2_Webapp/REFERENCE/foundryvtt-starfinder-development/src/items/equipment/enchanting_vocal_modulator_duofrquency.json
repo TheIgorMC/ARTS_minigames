@@ -1,0 +1,161 @@
+{
+  "_id": "6pcSrKiMnOqFPFL4",
+  "name": "Enchanting vocal modulator, duofrquency",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "magitech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 19
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Your voice box has an enchanted digital modulator that can alter its frequency to be supernaturally compelling. As a move action you can calibrate it to a single creature that you have heard and understood speaking or using other sound-based communication. It remains calibrated to that target until you pick a new target. You gain a +2 insight bonus to Bluff, Diplomacy, and Intimidate checks to influence that creature using your voice (not other forms of communication). In addition, you can cast <em>@UUID[Compendium.sfrpg.spells.Item.nmBeoZQUNcZw7nmy]{suggestion}</em> once per day (DC = 10 + half your character level + your Charisma modifier) as a standard action, targeting a creature your system is calibrated to.</p>\n<p>A <em>duofrequency enchanting vocal modulator</em> can target two creatures at once. It can be calibrated to two targets with a single move action, and its suggestion function can be used to target both with a single command. Similarly, a quadfrequency enchanting vocal modulator can target up to four creatures.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 14,
+    "modifiers": [
+      {
+        "_id": "103f3da1-7a73-4efa-b290-579919a776a3",
+        "name": "Enchanting vocal modulator, duofrquency",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You gain a +2 insight bonus to Bluff, Diplomacy, and Intimidate checks to influence that creature using your voice (not other forms of communication).",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "blu"
+      },
+      {
+        "_id": "8afdd816-85cf-4a13-bea8-d756650d9864",
+        "name": "Enchanting vocal modulator, duofrquency",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You gain a +2 insight bonus to Bluff, Diplomacy, and Intimidate checks to influence that creature using your voice (not other forms of communication).",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "dip"
+      },
+      {
+        "_id": "54fc247a-bd9e-4704-9998-e8a998db0d52",
+        "name": "Enchanting vocal modulator, duofrquency",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You gain a +2 insight bonus to Bluff, Diplomacy, and Intimidate checks to influence that creature using your voice (not other forms of communication).",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "int"
+      }
+    ],
+    "price": 66500,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "will",
+      "dc": "10 + floor(@details.level.value / 2) + @abilities.cha.mod",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 91",
+    "system": "throat",
+    "target": {
+      "value": "2 targets"
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

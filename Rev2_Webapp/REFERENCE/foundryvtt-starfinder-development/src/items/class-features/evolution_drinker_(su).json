@@ -1,0 +1,84 @@
+{
+  "_id": "qqSk8ZJ8RHjNWLRN",
+  "name": "Evolution Drinker (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.classes.Item.tcQlonOTpuaKeGLs]{Evolutionist}</p>\n<p>When you hit a creature with your evolution drain special melee attack and the target fails its Fortitude save, you can choose to gain 1d3+1 Mutation Points instead of 1d3 MP. If you gain 4 Mutation Points in this way, the shock causes the target to be @UUID[Compendium.sfrpg.conditions.Item.LoRydw1D4bqlbkA2]{nauseated} for 1 round, after which it’s sickened for 3 rounds.</p>\n<p>When you score a critical hit against a creature with your adaptive strike, you can drain Mutation Points from it as though you had performed the special melee attack. If your adaptive strike has another critical hit effect, you can choose to apply either this effect or the weapon’s critical hit effect. Once you gain MP from a critical hit in this way, you can’t do so again until you rest for 10 minutes to recover Stamina Points.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level - Evolutionist",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "IS, pg. 14",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

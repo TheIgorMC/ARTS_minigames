@@ -1,0 +1,127 @@
+{
+  "_id": "R770Vr3E2NBctwUC",
+  "name": "Hardened Mantle Graft",
+  "type": "augmentation",
+  "img": "icons/commodities/materials/material-webbing.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "16"
+      },
+      "hp": {
+        "max": "13",
+        "value": 13
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>@UUID[Compendium.sfrpg.races.Item.xtMfdzTgIvzEoBUb]{Ijtikris} are protected by stone-like shells on their heads and lower mantles. Your own skin has been strengthened with nanofibers or mystical alloys, granting you a +4 enhancement bonus to saving throws against critical hit effects. In addition, you reduce the damage you take from a critical hit by an amount equal to your character level + your Constitution bonus to a minimum of 1, or to 0 if you also have another means of reduction.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 8,
+    "modifiers": [
+      {
+        "_id": "90b26aae-e455-4be1-8f36-da64d7d809ec",
+        "name": "Hardened mantle",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "Granting you a +4 enhancement bonus to saving throws against critical hit effects. In addition, you reduce the damage you take from a critical hit by an amount equal to your character level + your Constitution bonus to a minimum of 1, or to 0 if you also have another means of reduction.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 9000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 144",
+    "system": "skin",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

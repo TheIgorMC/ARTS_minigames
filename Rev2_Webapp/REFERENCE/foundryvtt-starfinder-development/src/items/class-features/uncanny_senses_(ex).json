@@ -1,0 +1,84 @@
+{
+  "_id": "AHFqNCWYiq0xUjNM",
+  "name": "Uncanny Senses (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/uncanny_senses.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.On2ZrPJTe8FURsXY]{Operative Exploit}</p>\n<p>Your enhanced senses grow even more discerning. Your @UUID[Compendium.sfrpg.rules.JournalEntry.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#blindsense]{Blindsense} becomes @UUID[Compendium.sfrpg.rules.JournalEntry.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#blindsight]{Blindsight} with a range of 60 feet. If you have @UUID[Compendium.sfrpg.rules.JournalEntry.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#darkvision]{Darkvision}, its range increases by 30 feet. You must have the @UUID[Compendium.sfrpg.class-features.Item.zHvk8K9j9J16Pq7d]{Enhanced Senses} exploit to learn this exploit.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "14th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Operative Exploit",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

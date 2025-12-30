@@ -1,0 +1,102 @@
+{
+  "_id": "DWnf33KOj5tNmZC0",
+  "name": "Masked Visage",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/masked_visage.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>With your face concealed, you can be inscrutable.</p>\n<hr />\n<p><strong>Benefit</strong>: While a mask obscures your face, you gain a +2 circumstance bonus to Bluff checks to lie. DCs of Sense Motive attempts against you increase by 2, as does the DC of Intimidate attempts to bully you.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "a5ca3841-5e71-4c95-8844-3621268d29e0",
+        "name": "Masked Visage",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "While a mask obscures your face, you gain a circumstance bonus to Bluff checks to lie.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "blu"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "_id": "RRMeewPu6WyBTI7h",
+  "name": "Planar lenses",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "magitech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 50
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This augmentation consists of thin layers of planar material inserted into a creature’s eyes. When you purchase or craft a set of planar lenses, you choose a plane that’s coterminous with the Material Plane: the Ethereal Plane, the First World, or the Shadow Plane. As a move action, you can activate these lenses to see into that plane. You can deactivate the lenses as a move action.</p>\n<p>While active, the lenses allow you to see the plane at the location where it corresponds with your current location on the Material Plane. The viewed plane’s surroundings appear to overlap with your surroundings on the Material Plane, giving you a –10 penalty on sight-based Perception checks to notice activity on the Material Plane while the lenses are active. You can see only 60 feet into the viewed plane, regardless of your normal range of vision. If you’re on the plane that corresponds with your lens model, you can use the lenses to view the Material Plane; otherwise, the lenses don’t function unless you’re on the Material Plane.</p>\n<p>You can activate the lenses once per day; additional uses per day cost 1 Resolve Point each. Each activation lasts for 1 minute.</p>"
+    },
+    "duration": {
+      "units": "minute",
+      "value": "1"
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 15,
+    "modifiers": [
+      {
+        "_id": "81488c25-391f-4b45-859d-8b355301b138",
+        "name": "Planar lenses",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": -10,
+        "modifier": "-10",
+        "modifierType": "formula",
+        "notes": "You have a –10 penalty on sight-based Perception checks to notice activity on the Material Plane while the Planar lenses are active.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      }
+    ],
+    "price": 122000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 112",
+    "system": "eyes",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

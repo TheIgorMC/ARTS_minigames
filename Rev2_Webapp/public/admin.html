@@ -98,8 +98,33 @@
             font-size: 0.9rem;
         }
         .chat-msg { margin-bottom: 5px; }
-        .chat-msg .sender { color: var(--accent-color); font-weight: bold; }
-        .chat-msg .time { color: #666; font-size: 0.8rem; margin-right: 5px; }
+        /* Chat View (Admin) */
+        .chat-msg {
+            padding: 8px 12px;
+            border-radius: 5px;
+            max-width: 80%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            clear: both;
+            margin-bottom: 5px;
+        }
+        
+        .chat-msg.player {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            float: left;
+        }
+
+        .chat-msg.me {
+            background: rgba(0, 243, 255, 0.2);
+            border: 1px solid var(--accent-color);
+            float: right;
+            text-align: right;
+        }
+        
+        .chat-msg .sender { font-weight: bold; display: block; margin-bottom: 2px; font-size: 0.8rem; opacity: 0.8; }
+        .chat-msg .time { font-size: 0.7rem; color: #888; margin-right: 5px; }
+        .chat-msg .channel-tag { font-size: 0.7rem; color: #aaa; margin-right: 5px; font-style: italic; }
 
         h2 { margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--accent-color); }
 
@@ -161,17 +186,43 @@
             flex-direction: column;
             gap: 20px;
         }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border: 1px solid var(--accent-color); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <header>
         <h1>Starfinder GM Station</h1>
+        
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
-            <button class="tab-btn" onclick="switchTab('map')">Map</button>
+            <button class="tab-btn" onclick="switchTab('map')">Scene</button>
             <button class="tab-btn" onclick="switchTab('database')">Objects</button>
             <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
+            <button class="tab-btn" onclick="switchTab('logs')">Logs</button>
+        </div>
+
+        <!-- TIME DISPLAY & CONTROLS -->
+        <div style="display: flex; align-items: center; gap: 15px; position: relative;">
+            <div id="gm-time-display" style="font-size: 1.2rem; color: var(--accent-color); font-weight: bold; letter-spacing: 1px;">--:--</div>
+            <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleTimeControls()">EDIT</button>
+            <button class="action-btn" id="scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleScramble()">SCRAMBLE</button>
+            
+            <div id="header-time-controls" style="display: none; position: absolute; top: 50px; right: 0; background: #0f0f15; border: 1px solid var(--accent-color); padding: 15px; z-index: 100; box-shadow: 0 0 20px rgba(0,0,0,0.8); width: 300px;">
+                <h3 style="margin-top: 0; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px;">System Time</h3>
+                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+                    <input type="number" id="time-year" placeholder="Y" style="width: 50px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-day" placeholder="D" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-hour" placeholder="H" style="width: 35px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <input type="number" id="time-min" placeholder="M" style="width: 35px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
+                    <button class="action-btn" style="padding: 5px;" onclick="setTime()">SET</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -179,40 +230,36 @@
         <!-- LEFT COLUMN: CONTENT -->
         <div id="tab-live" class="panel">
             
-            <!-- TIME CONTROL -->
-            <div style="margin-bottom: 30px; border: 1px solid #333; padding: 15px;">
-                <h3 style="margin-top: 0;">System Time</h3>
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                    <input type="number" id="time-year" placeholder="Year" style="width: 60px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-day" placeholder="Day" style="width: 50px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-hour" placeholder="HH" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-min" placeholder="MM" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <button class="action-btn" style="padding: 5px 10px;" onclick="setTime()">SET</button>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <label><input type="checkbox" id="scramble-check" onchange="toggleScramble()"> SCRAMBLE (Disturbance)</label>
-                </div>
-            </div>
-
             <h2>Hacking Control</h2>
             <div style="margin-bottom: 20px; border: 1px solid var(--accent-color); padding: 10px;">
                 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                     <input type="text" id="hack-pwd" placeholder="Secret Password" style="flex: 2; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
-                    <div style="display: flex; gap: 5px; flex: 1;">
-                        <div style="flex: 1;">
-                            <label style="font-size: 0.8rem; color: #888;">DC</label>
-                            <input type="number" id="hack-dc" placeholder="DC" value="15" style="width: 100%; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                    <div style="display: flex; gap: 10px; flex: 1;">
+                        <div style="flex: 1; min-width: 0;">
+                            <label style="font-size: 0.8rem; color: #888; display: block; margin-bottom: 2px;">DC</label>
+                            <input type="number" id="hack-dc" placeholder="DC" value="15" style="width: 100%; box-sizing: border-box; padding: 8px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
                         </div>
-                        <div style="flex: 1;">
-                            <label style="font-size: 0.8rem; color: #888;">Complexity (Rings)</label>
-                            <input type="number" id="hack-complexity" placeholder="Complexity" value="3" style="width: 100%; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        <div style="flex: 1; min-width: 0;">
+                            <label style="font-size: 0.8rem; color: #888; display: block; margin-bottom: 2px;">Rings</label>
+                            <input type="number" id="hack-complexity" placeholder="Comp" value="3" style="width: 100%; box-sizing: border-box; padding: 8px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
                         </div>
                     </div>
-                    <button class="action-btn" onclick="startHacking()" style="margin-top: 20px;">START</button>
-                    <button class="action-btn danger" onclick="stopHacking()" style="margin-top: 20px;">STOP</button>
                 </div>
                 
-                <div id="hack-active-controls" style="display: none;">
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 0.8rem; color: #888;">Target Player</label>
+                    <select id="hack-target" style="width: 100%; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        <option value="all">ALL PLAYERS</option>
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button class="action-btn" onclick="startHacking()" style="flex: 1;">START</button>
+                    <button class="action-btn danger" onclick="stopHacking()" style="flex: 1;">STOP</button>
+                </div>
+                
+                <div id="hack-active-controls" style="display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 10px;">
                     <h3 style="color: #fff; margin: 10px 0;">Active Session</h3>
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <div id="hack-status" style="font-size: 1.2rem; letter-spacing: 3px; color: var(--accent-color); flex: 1;">******</div>
@@ -221,38 +268,36 @@
                     </div>
                 </div>
             </div>
-
-            <h2>Table Control (Projector)</h2>
-            <div class="controls-grid">
-                <button class="action-btn" onclick="triggerScene('hacking')">SCENARIO: HACKING</button>
-                <button class="action-btn danger" onclick="triggerScene('reset')">RESET TABLE</button>
-            </div>
-
-            <h2 style="margin-top: 30px;">Mood Display (Tablet)</h2>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <select id="mood-select" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
-                    <option value="">Select Image...</option>
-                </select>
-                <button class="action-btn" onclick="setMood()">SET MOOD</button>
-                <button class="action-btn danger" onclick="clearMood()">CLEAR</button>
-            </div>
-
-            <h2 style="margin-top: 30px;">Player Control (Mobile)</h2>
-            <div class="controls-grid">
-                <button class="action-btn" onclick="triggerPlayer('hacking_keypad')">DEPLOY: KEYPAD</button>
-                <button class="action-btn" onclick="triggerPlayer('info_dump')">DEPLOY: INTEL</button>
-                <button class="action-btn danger" onclick="triggerPlayer('alert')">ALERT: RED</button>
-                <button class="action-btn" onclick="triggerPlayer('reset')">RESET PLAYERS</button>
-            </div>
         </div>
 
         <div id="tab-map" class="panel hidden">
-            <h2>Map Management</h2>
+            <h2>Scene Management</h2>
+
+            <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 20px;">
+                <h3>Mood Display</h3>
+                <div style="display: flex; gap: 10px;">
+                    <select id="mood-select" style="flex: 1; padding: 10px; background: #111; color: #fff; border: 1px solid var(--border-color); font-family: inherit;">
+                        <option value="">Select Image...</option>
+                    </select>
+                    <button class="action-btn" onclick="setMood()">SET MOOD</button>
+                    <button class="action-btn danger" onclick="clearMood()">CLEAR</button>
+                </div>
+            </div>
             
             <div style="margin-bottom: 20px;">
                 <h3>Live Preview</h3>
                 <div style="border: 2px solid var(--accent-color); height: 300px; overflow: hidden; position: relative;">
                     <iframe src="/" style="width: 1920px; height: 1080px; border: 0; transform: scale(0.25); transform-origin: 0 0;"></iframe>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3>Set Background</h3>
+                <div style="display: flex; gap: 10px;">
+                    <select id="bg-select" style="flex: 1; padding: 10px; background: #111; color: var(--accent-color); border: 1px solid var(--border-color); font-family: inherit;">
+                        <option value="">Select Background...</option>
+                    </select>
+                    <button class="action-btn" onclick="setBackground()">Set BG</button>
                 </div>
             </div>
 
@@ -333,27 +378,129 @@
             <button class="action-btn" style="margin-top: 20px; width: 100%;" onclick="saveCharactersCards()">SAVE CHARACTERS</button>
         </div>
 
+        <div id="tab-logs" class="panel hidden">
+            <h2>System Logs</h2>
+            <div id="log" style="height: calc(100vh - 200px); border: 1px solid #333; padding: 10px; background: #000;"></div>
+        </div>
+
         <!-- RIGHT COLUMN: SIDEBAR -->
         <div id="sidebar">
-            <div class="panel" style="flex: 1; display: flex; flex-direction: column;">
-                <h3>COMMS LOG</h3>
-                <div class="time-display" id="gm-time-display">--:--</div>
-                <div id="chat-log" class="chat-log"></div>
-                <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <input type="text" id="chat-alias" placeholder="Sender (Default: GM)" value="GM" style="padding: 5px; background: #222; color: var(--accent-color); border: 1px solid #444; font-weight: bold;">
+            <div class="panel" style="flex: 1; display: flex; flex-direction: column; padding: 0;">
+                <!-- IDENTITY HEADER -->
+                <div style="padding: 10px; border-bottom: 1px solid #333; background: #1a1a24;">
+                    <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                        <select id="identity-select" onchange="switchIdentity()" style="flex: 1; padding: 8px; background: #000; color: var(--accent-color); border: 1px solid var(--accent-color); font-weight: bold;">
+                            <option value="GM">GM</option>
+                        </select>
+                        <button onclick="addIdentity()" title="Add Identity" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">+</button>
+                        <button onclick="openGroupModal()" title="New Group Chat" style="background: #333; color: #fff; border: none; width: 30px; cursor: pointer;">👥</button>
+                    </div>
+                </div>
+
+                <!-- CONVERSATION LIST -->
+                <div id="conversation-list" style="height: 150px; overflow-y: auto; border-bottom: 1px solid #333; background: #0f0f15;">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- CHAT LOG -->
+                <div id="chat-log" class="chat-log" style="flex: 1; border: none; margin: 0;"></div>
+                
+                <!-- INPUT AREA -->
+                <div style="padding: 10px; background: #1a1a24; border-top: 1px solid #333;">
                     <div style="display: flex; gap: 5px;">
-                        <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                        <button class="action-btn" style="padding: 5px 10px;" onclick="sendChat()">SEND</button>
+                        <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                        <button class="action-btn" style="padding: 0 15px;" onclick="sendChat()">></button>
                     </div>
                 </div>
             </div>
-            
-            <div class="panel" style="height: 200px;">
-                <h3>System Log</h3>
-                <div id="log"></div>
-            </div>
         </div>
     </main>
+
+    <!-- GROUP CHAT MODAL -->
+    <div id="group-chat-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 400px; max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+            <h3 style="margin: 0; color: var(--accent-color);">Create Group Chat</h3>
+            
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Chat Name</label>
+                <input type="text" id="group-name" placeholder="e.g. Mission Briefing" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Participants (Players)</label>
+                <div id="group-participants-players" style="max-height: 150px; overflow-y: auto; border: 1px solid #333; padding: 5px;">
+                    <!-- Checkboxes -->
+                </div>
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Participants (Identities)</label>
+                <div id="group-participants-identities" style="max-height: 100px; overflow-y: auto; border: 1px solid #333; padding: 5px;">
+                    <!-- Checkboxes -->
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button class="action-btn" onclick="submitGroupChat()" style="flex: 1;">CREATE</button>
+                <button class="action-btn danger" onclick="closeGroupModal()" style="flex: 1;">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHARACTER EDITOR MODAL -->
+    <div id="char-editor-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 800px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
+                <h3 style="margin: 0; color: var(--accent-color);">Character Editor</h3>
+                <button onclick="closeCharacterEditor()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+
+            <div class="tabs" style="margin-bottom: 10px;">
+                <button class="tab-btn active" onclick="switchEditorTab('details')">Details</button>
+                <button class="tab-btn" onclick="switchEditorTab('stats')">Stats</button>
+                <button class="tab-btn" onclick="switchEditorTab('inventory')">Inventory</button>
+            </div>
+
+            <div id="editor-tab-details" class="editor-panel">
+                <div class="controls-grid">
+                    <div><label style="color:#888; font-size:0.8rem;">Name</label><input type="text" id="edit-name" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">Username</label><input type="text" id="edit-username" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">Password</label><input type="text" id="edit-password" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">Class</label><input type="text" id="edit-class" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div class="full-width"><label style="color:#888; font-size:0.8rem;">Roles (comma sep)</label><input type="text" id="edit-roles" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                </div>
+            </div>
+
+            <div id="editor-tab-stats" class="editor-panel hidden">
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Vitals</h4>
+                <div class="controls-grid">
+                    <div><label style="color:#888; font-size:0.8rem;">SP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-sp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-sp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                    <div><label style="color:#888; font-size:0.8rem;">HP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-hp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-hp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                    <div><label style="color:#888; font-size:0.8rem;">RP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-rp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-rp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                </div>
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333; margin-top:20px;">Attributes</h4>
+                <div class="controls-grid">
+                    <div><label style="color:#888; font-size:0.8rem;">STR</label><input type="number" id="edit-str" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">DEX</label><input type="number" id="edit-dex" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CON</label><input type="number" id="edit-con" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">INT</label><input type="number" id="edit-int" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">WIS</label><input type="number" id="edit-wis" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CHA</label><input type="number" id="edit-cha" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                </div>
+            </div>
+
+            <div id="editor-tab-inventory" class="editor-panel hidden">
+                <div><label style="color:#888; font-size:0.8rem;">Credits</label><input type="number" id="edit-credits" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333; margin-top:20px;">Items (JSON)</h4>
+                <textarea id="edit-inventory" style="width: 100%; height: 200px; background: #000; color: #0f0; font-family: monospace; border:1px solid #333; padding:10px;"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="action-btn" onclick="saveCharacterEditor()">SAVE CHANGES</button>
+                <button class="action-btn danger" onclick="closeCharacterEditor()">CANCEL</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const socket = io();
@@ -403,6 +550,7 @@
             cachedData = data;
             renderObjectsTable();
             renderCharactersCards();
+            if (typeof renderConversationList === 'function') renderConversationList();
             
             updateSpawnSelect();
 
@@ -416,6 +564,47 @@
                     opt.innerText = scene.name + ' (' + scene.objects.length + ' objs)';
                     sceneSelect.appendChild(opt);
                 });
+            }
+
+            // Populate Hack Target Select
+            const hackTargetSelect = document.getElementById('hack-target');
+            if (hackTargetSelect) {
+                hackTargetSelect.innerHTML = '<option value="all">ALL PLAYERS</option>';
+                
+                // Add Roles Group
+                const roles = new Set();
+                if (data.characters) {
+                    data.characters.forEach(char => {
+                        if (char.roles && Array.isArray(char.roles)) {
+                            char.roles.forEach(r => roles.add(r));
+                        }
+                    });
+                }
+                
+                if (roles.size > 0) {
+                    const group = document.createElement('optgroup');
+                    group.label = "ROLES";
+                    roles.forEach(role => {
+                        const opt = document.createElement('option');
+                        opt.value = 'role:' + role;
+                        opt.innerText = 'ROLE: ' + role;
+                        group.appendChild(opt);
+                    });
+                    hackTargetSelect.appendChild(group);
+                }
+
+                // Add Individual Players
+                if (data.characters) {
+                    const group = document.createElement('optgroup');
+                    group.label = "PLAYERS";
+                    data.characters.forEach(char => {
+                        const opt = document.createElement('option');
+                        opt.value = char.username; // Use username as ID for targeting
+                        opt.innerText = char.name + ' (' + char.username + ')';
+                        group.appendChild(opt);
+                    });
+                    hackTargetSelect.appendChild(group);
+                }
             }
         });
 
@@ -476,8 +665,32 @@
             // Group by Category
             const categories = {};
             cachedData.objects.forEach(obj => {
-                // Filter by Scene ID if active
-                if (currentSceneId && obj.sceneId && obj.sceneId !== currentSceneId) return;
+                // Filter out BG and MOOD
+                if (obj.name.startsWith('[BG]') || obj.name.startsWith('[MOOD]')) return;
+                if (obj.folder && (obj.folder.includes('[BG]') || obj.folder.includes('[MOOD]'))) return;
+
+                // Filter by Scene: Show if Global OR matches Current Scene
+                // We check obj.sceneId (if set) OR try to infer from folder if available
+                let isVisible = false;
+                
+                // 1. Check explicit sceneId
+                if (obj.sceneId) {
+                    if (obj.sceneId === 'global' || obj.sceneId === 'Global') isVisible = true;
+                    else if (currentSceneId && obj.sceneId === currentSceneId) isVisible = true;
+                } 
+                // 2. Check folder (if available in object data, or if we can infer it)
+                // Note: obj.image is like "/media/[01]Verros Office/item.png"
+                else if (obj.image) {
+                    if (obj.image.includes('[00]Global')) isVisible = true;
+                    else if (currentSceneId && obj.image.includes(currentSceneId)) isVisible = true;
+                    else if (!currentSceneId && obj.image.includes('[00]Global')) isVisible = true; // Fallback
+                }
+                // 3. If no scene info, assume global? Or hide? Let's assume global if uncategorized
+                else {
+                    isVisible = true;
+                }
+
+                if (!isVisible) return;
 
                 const cat = obj.category || 'Uncategorized';
                 if (!categories[cat]) categories[cat] = [];
@@ -516,7 +729,10 @@
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
                         <span style="color: var(--accent-color); font-weight: bold;">#${char.id || index}</span>
-                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
+                        <div>
+                            <button style="color: var(--accent-color); background: none; border: none; cursor: pointer; margin-right: 10px;" onclick="openCharacterEditor(${index})">EDIT</button>
+                            <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
+                        </div>
                     </div>
                     <div>
                         <label style="font-size: 0.7rem; color: #888;">Name</label>
@@ -533,8 +749,12 @@
                         </div>
                     </div>
                     <div>
-                        <label style="font-size: 0.7rem; color: #888;">Class/Role</label>
+                        <label style="font-size: 0.7rem; color: #888;">Class</label>
                         <input type="text" value="${char.class || ''}" onchange="updateCharacter(${index}, 'class', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #888;">Game Roles (comma sep)</label>
+                        <input type="text" value="${(char.roles || []).join(', ')}" onchange="updateCharacterRoles(${index}, this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
                     </div>
                 `;
                 grid.appendChild(card);
@@ -544,6 +764,14 @@
         function updateCharacter(index, field, value) {
             if (cachedData && cachedData.characters[index]) {
                 cachedData.characters[index][field] = value;
+            }
+        }
+
+        function updateCharacterRoles(index, value) {
+            if (cachedData && cachedData.characters[index]) {
+                // Split by comma and trim
+                const roles = value.split(',').map(r => r.trim()).filter(r => r.length > 0);
+                cachedData.characters[index].roles = roles;
             }
         }
 
@@ -591,6 +819,15 @@
         }
 
         // --- MAP MANAGEMENT ---
+        function setBackground() {
+            const select = document.getElementById('bg-select');
+            const url = select.value;
+            if (url) {
+                socket.emit('admin_map_action', { type: 'set_background', url: '/media/' + url });
+                log('CMD MAP: Set Background ' + url);
+            }
+        }
+
         function spawnObject() {
             const objId = document.getElementById('spawn-obj-select').value;
             if (!objId) return;
@@ -601,18 +838,34 @@
         function saveScene() {
             const name = document.getElementById('scene-name').value;
             if (!name) return alert('Enter a scene name');
-            socket.emit('admin_scene_action', { type: 'save', name: name });
+            
+            // If we have a current scene ID, use it to update that specific scene
+            // Otherwise, just send name (server will create new or find by name)
+            const payload = { type: 'save', name: name };
+            if (currentSceneId) {
+                payload.id = currentSceneId;
+            }
+            
+            socket.emit('admin_scene_action', payload);
             log('SCENE SAVED: ' + name);
         }
 
         function loadScene() {
-            const id = document.getElementById('scene-select').value;
+            const select = document.getElementById('scene-select');
+            const id = select.value;
             if (!id) return;
             if(confirm('Load scene? Current table will be overwritten.')) {
+                // Update name field with clean name from cached data
+                const scene = cachedData.scenes.find(s => s.id === id);
+                if (scene) {
+                    document.getElementById('scene-name').value = scene.name;
+                    currentSceneId = id; // Set current ID locally
+                    
+                    // Trigger media list update to refresh filters
+                    socket.emit('admin_refresh_db'); // This might be overkill, but ensures we have fresh file lists
+                }
+
                 socket.emit('admin_scene_action', { type: 'load', id: id });
-                currentSceneId = id;
-                updateSpawnSelect();
-                log('SCENE LOADED: ' + id);
             }
         }
 
@@ -643,10 +896,20 @@
             const pwd = document.getElementById('hack-pwd').value;
             const dc = document.getElementById('hack-dc').value;
             const complexity = document.getElementById('hack-complexity').value;
+            const target = document.getElementById('hack-target').value;
+            
             if (!pwd) return alert('Enter password');
-            socket.emit('gm_hacking_action', { type: 'start', password: pwd, dc: dc, complexity: complexity });
+            
+            socket.emit('gm_hacking_action', { 
+                type: 'start', 
+                password: pwd, 
+                dc: dc, 
+                complexity: complexity,
+                target: target 
+            });
+            
             document.getElementById('hack-active-controls').style.display = 'block';
-            log('HACK START: ' + pwd);
+            log(`HACK START: ${pwd} [Target: ${target}]`);
         }
 
         function stopHacking() {
@@ -680,6 +943,15 @@
         }
 
         // --- TIME & CHAT ---
+        function toggleTimeControls() {
+            const controls = document.getElementById('header-time-controls');
+            if (controls.style.display === 'none') {
+                controls.style.display = 'block';
+            } else {
+                controls.style.display = 'none';
+            }
+        }
+
         function setTime() {
             const y = document.getElementById('time-year').value;
             const d = document.getElementById('time-day').value;
@@ -689,70 +961,361 @@
         }
 
         function toggleScramble() {
-            const val = document.getElementById('scramble-check').checked;
-            socket.emit('admin_time_action', { type: 'scramble', value: val });
+            // Toggle based on current button state or global state
+            const btn = document.getElementById('scramble-btn');
+            const isScrambled = btn.classList.contains('danger'); // Using 'danger' class (red) to indicate active scramble
+            
+            socket.emit('admin_time_action', { type: 'scramble', value: !isScrambled });
+        }
+
+        // --- CHAT & IDENTITY LOGIC ---
+        let currentIdentity = 'GM';
+        let currentConversation = 'global';
+        let chatHistoryCache = [];
+        let gmIdentities = ['GM'];
+        let conversations = [];
+
+        function switchIdentity() {
+            currentIdentity = document.getElementById('identity-select').value;
+            renderConversationList();
+            renderChatLog();
+        }
+
+        function addIdentity() {
+            const name = prompt('Enter new Identity Name:');
+            if (name) {
+                socket.emit('admin_identity_action', { type: 'add', name: name });
+            }
+        }
+
+        let editingGroupId = null;
+
+        // --- GROUP CHAT LOGIC ---
+        function openGroupModal(groupId = null) {
+            editingGroupId = groupId;
+            document.getElementById('group-chat-modal').style.display = 'flex';
+            document.querySelector('#group-chat-modal h3').innerText = groupId ? 'Edit Group Chat' : 'Create Group Chat';
+            document.querySelector('#group-chat-modal button.action-btn').innerText = groupId ? 'UPDATE' : 'CREATE';
+            
+            let currentParticipants = [];
+            let currentName = '';
+            
+            if (groupId) {
+                const group = conversations.find(c => c.id === groupId);
+                if (group) {
+                    currentParticipants = group.participants || [];
+                    currentName = group.name;
+                }
+            }
+            
+            document.getElementById('group-name').value = currentName;
+
+            // Populate Players
+            const pList = document.getElementById('group-participants-players');
+            pList.innerHTML = '';
+            if (cachedData && cachedData.characters) {
+                cachedData.characters.forEach(char => {
+                    const div = document.createElement('div');
+                    const checked = currentParticipants.includes(char.username) ? 'checked' : '';
+                    div.innerHTML = `<label><input type="checkbox" value="${char.username}" class="group-check-player" ${checked}> ${char.name}</label>`;
+                    pList.appendChild(div);
+                });
+            }
+
+            // Populate Identities
+            const iList = document.getElementById('group-participants-identities');
+            iList.innerHTML = '';
+            gmIdentities.forEach(id => {
+                const div = document.createElement('div');
+                const checked = currentParticipants.includes(id) ? 'checked' : '';
+                div.innerHTML = `<label><input type="checkbox" value="${id}" class="group-check-identity" ${checked}> ${id}</label>`;
+                iList.appendChild(div);
+            });
+        }
+
+        function closeGroupModal() {
+            document.getElementById('group-chat-modal').style.display = 'none';
+            editingGroupId = null;
+        }
+
+        function submitGroupChat() {
+            const name = document.getElementById('group-name').value;
+            if (!name) return alert('Enter chat name');
+            
+            const participants = [];
+            document.querySelectorAll('.group-check-player:checked').forEach(c => participants.push(c.value));
+            document.querySelectorAll('.group-check-identity:checked').forEach(c => participants.push(c.value));
+            
+            if (participants.length < 1) return alert('Select at least 1 participant');
+            
+            if (editingGroupId) {
+                socket.emit('update_conversation', { id: editingGroupId, name: name, participants: participants });
+            } else {
+                socket.emit('create_conversation', { name: name, participants: participants });
+            }
+            closeGroupModal();
+        }
+
+        socket.on('conversations_update', (convs) => {
+            conversations = convs;
+            renderConversationList();
+        });
+
+        socket.on('admin_identities_update', (identities) => {
+            gmIdentities = identities;
+            const select = document.getElementById('identity-select');
+            const current = select.value;
+            
+            select.innerHTML = '';
+            identities.forEach(id => {
+                const opt = document.createElement('option');
+                opt.value = id;
+                opt.innerText = id;
+                select.appendChild(opt);
+            });
+            
+            if (identities.includes(current)) {
+                select.value = current;
+            } else {
+                select.value = 'GM';
+                currentIdentity = 'GM';
+            }
+            renderConversationList();
+        });
+
+        function renderConversationList() {
+            const list = document.getElementById('conversation-list');
+            list.innerHTML = '';
+            
+            // Always have Global
+            addConversationItem('Global', 'global');
+            
+            // Add Groups
+            conversations.forEach(conv => {
+                // Show only if currentIdentity is in participants
+                if (conv.participants && conv.participants.includes(currentIdentity)) {
+                    addConversationItem(`[G] ${conv.name}`, conv.id, true);
+                }
+            });
+
+            // Add Players (Private Chats)
+            if (cachedData && cachedData.characters) {
+                cachedData.characters.forEach(char => {
+                    const channelId = `dm_${currentIdentity}_${char.username}`;
+                    addConversationItem(char.name, channelId);
+                });
+            }
+        }
+
+        function addConversationItem(label, channelId, isGroup = false) {
+            const list = document.getElementById('conversation-list');
+            const div = document.createElement('div');
+            div.style.padding = '10px';
+            div.style.cursor = 'pointer';
+            div.style.borderBottom = '1px solid #222';
+            div.style.background = currentConversation === channelId ? '#222' : 'transparent';
+            div.style.color = currentConversation === channelId ? 'var(--accent-color)' : '#888';
+            div.style.display = 'flex';
+            div.style.justifyContent = 'space-between';
+            div.style.alignItems = 'center';
+            
+            const span = document.createElement('span');
+            span.innerText = label;
+            div.appendChild(span);
+
+            if (isGroup) {
+                const editBtn = document.createElement('button');
+                editBtn.innerText = '⚙';
+                editBtn.style.background = 'none';
+                editBtn.style.border = 'none';
+                editBtn.style.color = '#555';
+                editBtn.style.cursor = 'pointer';
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    openGroupModal(channelId);
+                };
+                div.appendChild(editBtn);
+            }
+            
+            div.onclick = () => {
+                currentConversation = channelId;
+                renderConversationList(); // Re-render to update active state
+                renderChatLog();
+            };
+            
+            list.appendChild(div);
         }
 
         function sendChat() {
             const input = document.getElementById('chat-input');
-            const aliasInput = document.getElementById('chat-alias');
             const msg = input.value;
-            const sender = aliasInput.value || 'GM';
             
             if (msg) {
-                socket.emit('chat_message', { sender: sender, text: msg });
+                socket.emit('chat_message', { 
+                    sender: currentIdentity, 
+                    text: msg, 
+                    channel: currentConversation 
+                });
                 input.value = '';
             }
         }
 
-        socket.on('time_update', (time) => {
-            document.getElementById('time-year').value = time.year;
-            document.getElementById('time-day').value = time.day;
-            document.getElementById('time-hour').value = time.hour;
-            document.getElementById('time-min').value = time.minute;
-            document.getElementById('scramble-check').checked = time.scrambled;
+        function renderChatLog() {
+            const log = document.getElementById('chat-log');
+            log.innerHTML = '';
             
-            const display = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
-            document.getElementById('gm-time-display').innerText = display;
-        });
+            // Filter history
+            const filtered = chatHistoryCache.filter(msg => {
+                // Show if channel matches
+                if (msg.channel === currentConversation) return true;
+                // If global, show in global
+                if (currentConversation === 'global' && msg.channel === 'global') return true;
+                return false;
+            });
+            
+            filtered.forEach(msg => {
+                log.appendChild(renderChatMessage(msg));
+            });
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function renderChatMessage(msg) {
+            const div = document.createElement('div');
+            const isMe = msg.sender === currentIdentity;
+            
+            div.className = 'chat-msg ' + (isMe ? 'me' : 'player');
+            
+            let timeDisplay = msg.gameTime || new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            div.innerHTML = `
+                <span class="sender">${msg.sender} <span class="time">${timeDisplay}</span></span>
+                ${msg.text}
+            `;
+            return div;
+        }
 
         socket.on('chat_update', (msg) => {
-            const log = document.getElementById('chat-log');
-            const div = document.createElement('div');
-            div.className = 'chat-msg';
-            const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            div.innerHTML = `<span class="time">[${timeStr}]</span> <span class="sender">${msg.sender}:</span> ${msg.text}`;
-            log.appendChild(div);
-            log.scrollTop = log.scrollHeight;
+            chatHistoryCache.push(msg);
+            if (chatHistoryCache.length > 100) chatHistoryCache.shift();
+            
+            // Only append if it belongs to current view
+            if (msg.channel === currentConversation || (currentConversation === 'global' && msg.channel === 'global')) {
+                const log = document.getElementById('chat-log');
+                log.appendChild(renderChatMessage(msg));
+                log.scrollTop = log.scrollHeight;
+            }
         });
         
         socket.on('chat_history', (history) => {
-            const log = document.getElementById('chat-log');
-            log.innerHTML = '';
-            history.forEach(msg => {
-                const div = document.createElement('div');
-                div.className = 'chat-msg';
-                const timeStr = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                div.innerHTML = `<span class="time">[${timeStr}]</span> <span class="sender">${msg.sender}:</span> ${msg.text}`;
-                log.appendChild(div);
-            });
-            log.scrollTop = log.scrollHeight;
+            chatHistoryCache = history;
+            renderChatLog();
+        });
+
+        // --- TIME LOGIC ---
+        let scrambleTimeout = null;
+        let lastTimeState = null;
+
+        function runScramble() {
+            if (!lastTimeState || !lastTimeState.scrambled) return;
+            
+            const display = document.getElementById('gm-time-display');
+            const dateStr = `${lastTimeState.year}-${String(lastTimeState.day).padStart(3, '0')} ${String(lastTimeState.hour).padStart(2, '0')}:${String(lastTimeState.minute).padStart(2, '0')}`;
+            
+            let glitchText = '';
+            for (let char of dateStr) {
+                // Only scramble some digits (30% chance)
+                if (/[0-9]/.test(char) && Math.random() > 0.7) {
+                    glitchText += Math.floor(Math.random() * 10);
+                } else {
+                    glitchText += char;
+                }
+            }
+            display.innerText = glitchText;
+            
+            // Random delay between 50ms and 250ms
+            const delay = Math.random() * 200 + 50;
+            scrambleTimeout = setTimeout(runScramble, delay);
+        }
+
+        socket.on('time_update', (time) => {
+            lastTimeState = time;
+            
+            // Only update inputs if controls are NOT visible (user is not editing)
+            const controls = document.getElementById('header-time-controls');
+            if (controls.style.display === 'none') {
+                document.getElementById('time-year').value = time.year;
+                document.getElementById('time-day').value = time.day;
+                document.getElementById('time-hour').value = time.hour;
+                document.getElementById('time-min').value = time.minute;
+            }
+            
+            // Update Scramble Button State
+            const btn = document.getElementById('scramble-btn');
+            if (time.scrambled) {
+                btn.classList.add('danger'); // Red
+                btn.style.boxShadow = '0 0 10px #ff3333';
+                
+                if (!scrambleTimeout) {
+                    runScramble();
+                }
+            } else {
+                btn.classList.remove('danger');
+                btn.style.boxShadow = 'none';
+                
+                if (scrambleTimeout) {
+                    clearTimeout(scrambleTimeout);
+                    scrambleTimeout = null;
+                }
+                
+                const display = `${time.year}-${String(time.day).padStart(3, '0')} ${String(time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`;
+                document.getElementById('gm-time-display').innerText = display;
+            }
         });
 
         socket.on('media_list_update', (files) => {
             const select = document.getElementById('mood-select');
             const objSelect = document.getElementById('new-obj-image');
+            const bgSelect = document.getElementById('bg-select');
             
-            // files is now an array of objects { path, name, folder, type }
-            // Filter for mood images for the mood selector
-            const moodFiles = files.filter(f => f.type === 'mood');
-            
-            const moodOptions = '<option value="">Select Image...</option>' + 
-                moodFiles.map(f => `<option value="${f.path}">${f.folder}/${f.name}</option>`).join('');
-            
-            select.innerHTML = moodOptions;
+            // Helper to group by folder
+            const createGroupedOptions = (fileList) => {
+                const groups = {};
+                fileList.forEach(f => {
+                    if (!groups[f.folder]) groups[f.folder] = [];
+                    groups[f.folder].push(f);
+                });
+                
+                let html = '<option value="">Select Image...</option>';
+                Object.keys(groups).sort().forEach(folder => {
+                    html += `<optgroup label="${folder}">`;
+                    groups[folder].forEach(f => {
+                        html += `<option value="${f.path}">${f.name}</option>`;
+                    });
+                    html += `</optgroup>`;
+                });
+                return html;
+            };
 
-            // For object creation, show all
+            // 1. Filter Moods: Only [00]Global or Current Scene
+            const moodFiles = files.filter(f => {
+                if (f.type !== 'mood') return false;
+                if (f.folder.includes('[00]Global')) return true;
+                if (currentSceneId && f.folder.includes(currentSceneId)) return true;
+                return false;
+            });
+            select.innerHTML = createGroupedOptions(moodFiles);
+
+            // 2. Filter Backgrounds: Only Current Scene
+            if (bgSelect) {
+                const bgFiles = files.filter(f => {
+                    if (f.type !== 'background') return false;
+                    if (currentSceneId && f.folder.includes(currentSceneId)) return true;
+                    return false;
+                });
+                bgSelect.innerHTML = createGroupedOptions(bgFiles);
+            }
+
+            // 3. Object Creation: Show all (Admin needs to see everything to create DB entries)
             if(objSelect) {
                 const allOptions = '<option value="">Select Image...</option>' + 
                     files.map(f => `<option value="${f.path}" data-type="${f.type}" data-folder="${f.folder}">${f.folder}/${f.name}</option>`).join('');
@@ -834,6 +1397,113 @@
             }
             document.getElementById('hack-status').innerText = display.split('').join(' ');
         });
+
+        // --- CHARACTER EDITOR ---
+        let editingCharIndex = -1;
+
+        function openCharacterEditor(index) {
+            if (!cachedData || !cachedData.characters[index]) return;
+            editingCharIndex = index;
+            const char = cachedData.characters[index];
+            
+            // Populate Details
+            document.getElementById('edit-name').value = char.name || '';
+            document.getElementById('edit-username').value = char.username || '';
+            document.getElementById('edit-password').value = char.password || '';
+            document.getElementById('edit-class').value = char.class || '';
+            document.getElementById('edit-roles').value = (char.roles || []).join(', ');
+
+            // Populate Stats
+            const vitals = char.vitals || {};
+            document.getElementById('edit-sp').value = vitals.sp || 0;
+            document.getElementById('edit-max-sp').value = vitals.max_sp || 0;
+            document.getElementById('edit-hp').value = vitals.hp || 0;
+            document.getElementById('edit-max-hp').value = vitals.max_hp || 0;
+            document.getElementById('edit-rp').value = vitals.rp || 0;
+            document.getElementById('edit-max-rp').value = vitals.max_rp || 0;
+
+            const stats = char.stats || {};
+            document.getElementById('edit-str').value = stats.STR || 10;
+            document.getElementById('edit-dex').value = stats.DEX || 10;
+            document.getElementById('edit-con').value = stats.CON || 10;
+            document.getElementById('edit-int').value = stats.INT || 10;
+            document.getElementById('edit-wis').value = stats.WIS || 10;
+            document.getElementById('edit-cha').value = stats.CHA || 10;
+
+            // Populate Inventory
+            document.getElementById('edit-credits').value = char.credits || 0;
+            document.getElementById('edit-inventory').value = JSON.stringify(char.inventory || [], null, 2);
+
+            document.getElementById('char-editor-modal').style.display = 'flex';
+            switchEditorTab('details');
+        }
+
+        function closeCharacterEditor() {
+            document.getElementById('char-editor-modal').style.display = 'none';
+            editingCharIndex = -1;
+        }
+
+        function switchEditorTab(tabName) {
+            document.querySelectorAll('.editor-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('editor-tab-' + tabName).classList.remove('hidden');
+            
+            // Update buttons
+            const tabs = document.querySelector('#char-editor-modal .tabs');
+            tabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            if (event && event.target && event.target.classList.contains('tab-btn')) {
+                event.target.classList.add('active');
+            } else {
+                // Default to first if called programmatically without event
+                const btn = Array.from(tabs.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase() === tabName);
+                if(btn) btn.classList.add('active');
+            }
+        }
+
+        function saveCharacterEditor() {
+            if (editingCharIndex === -1 || !cachedData) return;
+            
+            const char = cachedData.characters[editingCharIndex];
+            
+            // Save Details
+            char.name = document.getElementById('edit-name').value;
+            char.username = document.getElementById('edit-username').value;
+            char.password = document.getElementById('edit-password').value;
+            char.class = document.getElementById('edit-class').value;
+            char.roles = document.getElementById('edit-roles').value.split(',').map(r => r.trim()).filter(r => r.length > 0);
+
+            // Save Stats
+            char.vitals = {
+                sp: parseInt(document.getElementById('edit-sp').value) || 0,
+                max_sp: parseInt(document.getElementById('edit-max-sp').value) || 0,
+                hp: parseInt(document.getElementById('edit-hp').value) || 0,
+                max_hp: parseInt(document.getElementById('edit-max-hp').value) || 0,
+                rp: parseInt(document.getElementById('edit-rp').value) || 0,
+                max_rp: parseInt(document.getElementById('edit-max-rp').value) || 0
+            };
+
+            char.stats = {
+                STR: parseInt(document.getElementById('edit-str').value) || 10,
+                DEX: parseInt(document.getElementById('edit-dex').value) || 10,
+                CON: parseInt(document.getElementById('edit-con').value) || 10,
+                INT: parseInt(document.getElementById('edit-int').value) || 10,
+                WIS: parseInt(document.getElementById('edit-wis').value) || 10,
+                CHA: parseInt(document.getElementById('edit-cha').value) || 10
+            };
+
+            // Save Inventory
+            char.credits = parseInt(document.getElementById('edit-credits').value) || 0;
+            try {
+                char.inventory = JSON.parse(document.getElementById('edit-inventory').value);
+            } catch (e) {
+                alert('Invalid JSON for Inventory');
+                return;
+            }
+
+            saveCharactersCards(); // Saves to server
+            renderCharactersCards(); // Updates UI
+            closeCharacterEditor();
+        }
     </script>
 </body>
 </html>

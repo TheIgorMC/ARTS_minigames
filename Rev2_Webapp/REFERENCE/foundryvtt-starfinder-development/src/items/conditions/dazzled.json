@@ -1,0 +1,77 @@
+{
+  "_id": "YjE6UGzwOTfO9p4g",
+  "name": "Dazzled",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/dazzled.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You are unable to see well because of overstimulation of your eyes.</p>\n<p>You take a –1 penalty to attack rolls and sight-based Perception checks.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "94ec57e3-0c16-4efb-adee-96b699dafeea",
+        "name": "Perception (Sight) Checks",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "skill",
+        "enabled": true,
+        "max": -1,
+        "modifier": "-1",
+        "modifierType": "formula",
+        "notes": "For Perception (Sight) Checks.",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "per"
+      },
+      {
+        "_id": "27306a31-a6cc-49ca-b587-f16ae175cdbd",
+        "name": "Attack Rolls",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "max": -1,
+        "modifier": "-1",
+        "modifierType": "formula",
+        "notes": "Sight-Based Attack Rolls.",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "dazzled",
+    "source": "CRB.275",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

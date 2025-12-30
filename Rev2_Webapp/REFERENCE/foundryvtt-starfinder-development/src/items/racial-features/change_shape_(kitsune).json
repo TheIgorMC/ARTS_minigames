@@ -1,0 +1,102 @@
+{
+  "_id": "rNLLU3ENzE0yrsfn",
+  "name": "Change Shape (Kitsune)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>As a standard action, a kitsune can assume the appearance of a specific single Medium humanoid. The kitsune always takes this specific form when using this ability. The kitsune gains a +10 species bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.aayAhTaRzitONs5U]{Disguise} checks to appear as that type of humanoid. This ability otherwise functions as @UUID[Compendium.sfrpg.spells.Item.HGg3fIQGDzUwueVa]{Disguise Self}, except that the kitsune can remain in this form indefinitely.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "speciesFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "permanent",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "15def881-7143-411d-b4c0-94ca9269f580",
+        "name": "Change Shape",
+        "type": "racial",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "10",
+        "modifierType": "constant",
+        "notes": "As a standard action, a kitsune can assume the appearance of a specific single Medium humanoid. The kitsune always takes this specific form when using this ability. The kitsune gains a +10 species bonus to  Disguisechecks to appear as that type of humanoid. This ability otherwise functions as disguise self, except that the kitsune can remain in this form indefinitely.",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "dis"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "Kitsune",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "EN pg. 27",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

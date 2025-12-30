@@ -1,0 +1,136 @@
+{
+  "_id": "iWKd6dwPuJf11xXu",
+  "name": "Scrounger",
+  "type": "feat",
+  "img": "icons/creatures/mammals/rodent-rat-green.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This creature receives a +2 species bonus to Engineering, Stealth, and Survival checks</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "speciesFeature",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "74c07780-7f36-4cd1-899b-4147b1f9b439",
+        "name": "Scrounger",
+        "type": "racial",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "This creature receives a +2 species bonus to Engineering, Stealth, and Survival checks",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "eng"
+      },
+      {
+        "_id": "e662ed9e-2c21-4970-a336-89850ca26bb5",
+        "name": "Scrounger",
+        "type": "racial",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "This creature receives a +2 species bonus to Engineering, Stealth, and Survival checks",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "ste"
+      },
+      {
+        "_id": "2f512334-ef71-4a50-b7be-accf975225d8",
+        "name": "Scrounger",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "This creature receives a +2 species bonus to Engineering, Stealth, and Survival checks",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "sur"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "Racial Feature",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

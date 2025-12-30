@@ -1,0 +1,153 @@
+{
+  "_id": "fzByCW0EvFvf9cZN",
+  "name": "Eohi boots",
+  "type": "magic",
+  "img": "icons/equipment/feet/boots-leather-banded-furred.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The insides of these simple-looking gray boots are lined with @UUID[Compendium.sfrpg.alien-archives.Item.FzmDauR9R1sOWY7i]{Eohi} fur (see page 57). Once per day as a full action, you can move up to your speed and make a full attack with melee weapons only. The penalty on each attack is –6 instead of –4, and you take a –2 penalty to your AC until the beginning of your next turn.</p>\n<p><em>Enable/Disable AC penalty in Modifiers tab.</em></p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "limitedWear": true,
+    "modifiers": [
+      {
+        "_id": "788cc33d-6c9b-4fdd-a0de-83b3416c1414",
+        "name": "Eohi boots",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": -6,
+        "modifier": "-6",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "f02b6d7d-efd8-4f3c-901a-d849078c6e01",
+        "name": "Eohi boots - AC",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "acp",
+        "enabled": false,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "acp-all"
+      }
+    ],
+    "price": 4200,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #4 pg. 45",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "action",
+      "value": 1
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

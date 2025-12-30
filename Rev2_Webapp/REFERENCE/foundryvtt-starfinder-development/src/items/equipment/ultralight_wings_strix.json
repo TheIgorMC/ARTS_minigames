@@ -1,0 +1,109 @@
+{
+  "_id": "gXwQri4eIkuvbmAZ",
+  "name": "Ultralight wings, strix",
+  "type": "augmentation",
+  "img": "icons/magic/holy/angel-wings-gray.webp",
+  "system": {
+    "type": "biotech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 12
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A set of wings that can fold up tightly is attached to your shoulder blades. You can deploy or fold up the wings as a move action. When deployed, the wings provide you with an extraordinary fly speed with clumsy maneuverability according to the model of ultralight wings you have. You can’t deploy your ultralight wings unless your shoulders are bare or you are wearing custom clothing, and you can’t use your wings to fly if you are encumbered, overburdened, or wearing more than light armor. Ultralight wings integrate into your natural shoulders and can be installed into prosthetic arms.</p><table><thead><tr><th>Model</th><th>Level</th><th>Price</th><th>Fly Speed</th></tr></thead><tbody style=\"text-align:center\"><tr><td>Strix</td><td>7</td><td>6,400</td><td>40 ft.</td></tr><tr><td>Angel</td><td>11</td><td>28,600</td><td>60 ft.</td></tr><tr><td>Dragon</td><td>14</td><td>80,300</td><td>90 ft.</td></tr></tbody></table>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 7,
+    "modifiers": [],
+    "price": 6400,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 87",
+    "system": "allArms",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

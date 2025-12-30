@@ -1,0 +1,67 @@
+{
+  "_id": "eF36xrYtexToaxzE",
+  "name": "Dreadnought",
+  "type": "starshipFrame",
+  "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+  "system": {
+    "cost": 200,
+    "crew": {
+      "maximum": 500,
+      "minimum": 125
+    },
+    "damageThreshold": {
+      "base": 15
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "expansionBays": 20,
+    "hitpoints": {
+      "base": 400,
+      "increment": 50
+    },
+    "isPowered": true,
+    "maneuverability": "clumsy",
+    "modifiers": [],
+    "pcu": null,
+    "size": "colossal",
+    "slug": "",
+    "source": "CRB pg. 296",
+    "weaponMounts": {
+      "aft": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "forward": {
+        "capitalSlots": 2,
+        "heavySlots": 2,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "port": {
+        "capitalSlots": 1,
+        "heavySlots": 3,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "starboard": {
+        "capitalSlots": 1,
+        "heavySlots": 3,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "turret": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 4,
+        "spinalSlots": 0
+      }
+    }
+  }
+}

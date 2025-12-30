@@ -1,0 +1,147 @@
+{
+  "_id": "zT7rofgXogS42NFe",
+  "name": "Photoenergetic Node",
+  "type": "augmentation",
+  "img": "icons/commodities/biological/eye-lizard-orange-red.webp",
+  "system": {
+    "type": "biotech",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "9"
+      },
+      "hp": {
+        "max": "7",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "1d6",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": true,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Implanting a tashtari’s photoenergetic node into your hand causes the appendage to glow with faint light. As a move action, you can discharge energy stored in your photoenergetic node into an analog melee weapon that you are currently holding in the same hand that has this biotech augmentation installed. The released energy instantaneously superheats the melee weapon, causing the weapon to deal 1d6 additional fire damage on a successful attack. The affected weapon deals this additional damage for 1 round for every 2 character levels you have. While heated, the affected weapon also sheds light as a flashlight, lantern, or beacon (you choose when you activate the augmentation). Once you’ve expended your photoenergetic node, you can’t use it again until you’ve rested for 10 minutes to regain Stamina Points, but you can spend 1 Resolve Point to recharge it immediately.</p><h2>Tashtari Biotech</h2><p>Hunters can do brisk business harvesting the filaments, photoenergetic nodes, and focusing membranes of tashtaris and selling them to bioengineers. If not for conservation efforts on @UUID[Compendium.sfrpg.setting.Item.mkJGLfpJkvAKLZz3]{Castrovel}, tashtaris could have been hunted to extinction, since their photosensitive adaptations are difficult and expensive to duplicate through synthetic means. Cessation of hostilities between the @UUID[Compendium.sfrpg.races.Item.pOnYi1vHP3bWMoWd]{formians} and @UUID[Compendium.sfrpg.races.Item.ShWYksP7IwWcqEVa]{lashuntas} has allowed a recent surge in the regulated trade of biotech that incorporates tashtari tissue. Explorers and scouts equip themselves with focusing membranes or filament mesh, and many people throughout the Pact Worlds use photoenergetic nodes for practical and cosmetic purposes.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 2,
+    "modifiers": [
+      {
+        "_id": "0f21df8b-e689-4257-80b9-f72a98fd8c15",
+        "name": "Photoenergetic node",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-damage",
+        "enabled": false,
+        "limitTo": null,
+        "max": 6,
+        "modifier": "1d6",
+        "modifierType": "formula",
+        "notes": "The released energy instantaneously superheats the melee weapon, causing the weapon to deal 1d6 additional fire damage on a successful attack. The affected weapon deals this additional damage for 1 round for every 2 character levels you have.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 625,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2 pg. 125",
+    "system": "hand",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "_id": "aEKuCtuNjFLWtlAi",
+  "name": "Scanner, X-Ray Visor",
+  "type": "technological",
+  "img": "systems/sfrpg/icons/default/processor.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 14
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 40,
+      "value": 40
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Scanners are common items that allow you to extend your senses and record your experiences. Some specialized scanners can also provide other senses, such as blindsense or sense through, but these often require ongoing monitoring or impose other restrictions. Common examples include laser microphones, motion detectors, and x-ray visors.</p>\n<p>This sensor is worn as an adjustable viewer resting over the eyes, like goggles or thick glasses. It sends out X-rays and interprets the information gathered as an image it imposes over your normal vision. This grants&nbsp;@UUID[Compendium.sfrpg.universal-creature-rules.Item.Tal0kby35vyhC83i]{Sense Through (Su)} (vision) with a range of 60 feet, though it is blocked by materials one-fifth as dense as those that block normal sense through (2 feet of wood or plastic, 1 foot of stone, 2 inches of common metal, or 1 inch of lead or any starmetal) and limits you to black-and-white vision while in use. You don’t gain the benefit of any other special visual senses (such as lowlight vision) while the visor is active, and you can’t attempt sight-based Perception checks beyond 60 feet. Activating or deactivating the sensor is a move action.</p>\n<p><strong>Capacity&nbsp;</strong> 40; <strong>Usage&nbsp;</strong> 2/round</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 9,
+    "modifiers": [],
+    "price": 15000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "ft",
+      "value": "60"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 219",
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "round",
+      "value": 2
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

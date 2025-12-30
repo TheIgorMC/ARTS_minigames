@@ -1,0 +1,184 @@
+{
+  "_id": "PFJa8O4ElJR7DK3D",
+  "name": "Extradimensional Armor (Hybrid)",
+  "type": "equipment",
+  "img": "systems/sfrpg/icons/default/kevlar-vest.svg",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "armor": {
+      "type": "power",
+      "acp": -3,
+      "dex": 3,
+      "eac": 22,
+      "kac": 28,
+      "speedAdjust": 0
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "20",
+    "capacity": {
+      "max": 20,
+      "value": 20
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "upgrade",
+            "weapon"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "armorUpgrade",
+          "weightProperty": "slots"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "weapon"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 3,
+          "subtype": "weaponSlot",
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d10 +(@abilities.str.mod)",
+          "group": null,
+          "isPrimarySection": true,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": true,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Constructed with the aid of mad cultists who revere inhuman, unknowable entities from the most distant corners of reality, this metallic armor defies conventional geometry. Its flat planes appear strangely curved upon close inspection, and its contours bend and blur. Your opponents can’t keep a clear sight on the armor’s shape or position, even when looking directly at it. If you have @UUID[Compendium.sfrpg.rules.Kjba2E3Ad5oMJ7hV.JournalEntryPage.nyB6pt2dd6iVQGmS]{Concealment} from an attacker from any source, increase the miss chance from concealment by 10% (normally to 30%). If you do not have concealment from an attacker, the armor’s warped shape grants you concealment but with only a 10% miss chance. This armor has no effect on attacks against you when you have total concealment. Wearing the armor has a deleterious effect on mortal sanity; when you remove the armor, you must succeed at a Will save (DC = 10 plus 1 per full hour spent wearing the extradimensional armor) or take a –2 penalty to Will saves and Wisdom-based ability checks and skill checks for 24 hours.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 17,
+    "modifiers": [],
+    "price": 278200,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "reach": "10 ft.",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 75",
+    "specialMaterials": {},
+    "speed": {
+      "special": ""
+    },
+    "strength": 26,
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "hour",
+      "value": 1
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

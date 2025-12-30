@@ -1,0 +1,119 @@
+{
+  "_id": "1u1LCDK7CH1j5TLs",
+  "name": "Vidgame Aficionado",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/four_handed_hacker.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Through dedication, you’ve honed your skill at games and employed them in your daily life.</p>\n<p><strong>Prerequisites</strong>: Profession (vidgamer) 7 ranks</p>\n<hr />\n<p><strong>Benefit</strong>: Your dedication to vidgames of all types has provided you an eclectic array of trivia and skills. You can attempt any Intelligence- or Wisdom-based Profession skill check using your Profession (vidgamer) modifier with a –5 penalty, and you’re treated as trained in those Profession skills. Once per day, you can attempt a Profession (vidgamer) check to identify a creature in place of using Engineering, Life Science, or Mysticism.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "689efab0-a673-455a-889b-8ff3dddd9ae6",
+        "name": "Vidgame Aficionado",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -5,
+        "modifier": "-5",
+        "modifierType": "formula",
+        "notes": "You can attempt any Intelligence- or Wisdom-based Profession skill check using your Profession (vidgamer) modifier with a –5 penalty, and you’re treated as trained in those Profession skills.",
+        "source": "Feat",
+        "subtab": "misc",
+        "valueAffected": "int"
+      },
+      {
+        "_id": "e4eb1a7d-7848-46e1-a510-17ee4b3281cc",
+        "name": "Vidgame Aficionado",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-skills",
+        "enabled": false,
+        "limitTo": null,
+        "max": -5,
+        "modifier": "-5",
+        "modifierType": "formula",
+        "notes": "You can attempt any Intelligence- or Wisdom-based Profession skill check using your Profession (vidgamer) modifier with a –5 penalty, and you’re treated as trained in those Profession skills.",
+        "source": "Feat",
+        "subtab": "misc",
+        "valueAffected": "wis"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 25",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "_id": "NRZijtJWFWrsoYUI",
+  "name": "Positive Conduit",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/positive_conduit.webp",
+  "system": {
+    "ability": "con",
+    "actionTarget": "",
+    "actionType": "heal",
+    "activation": {
+      "type": "none",
+      "condition": "Regain Hit Points from a magical effect or serum.",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "@abilities.con.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": true,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Your body resonates with positive energy, absorbing more benefit than usual from healing effects.</p>\n<p><strong>Prerequisites</strong>: Con 13.</p>\n<hr />\n<p><strong>Benefit</strong>: When you regain Hit Points from a magical effect or serum, you regain an additional amount of Hit Points equal to your Constitution modifier. Once you use this ability, you can’t use it again until you take a 10-minute rest to regain Stamina Points.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

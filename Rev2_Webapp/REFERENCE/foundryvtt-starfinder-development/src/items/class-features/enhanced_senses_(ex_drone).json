@@ -1,0 +1,103 @@
+{
+  "_id": "rDCdrOBeaaeFLjmg",
+  "name": "Enhanced Senses (Ex; Drone)",
+  "type": "mod",
+  "img": "systems/sfrpg/icons/classes/enhanced_senses_drone.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "additionalMovement": "",
+    "additionalSenses": "low-light vision 60; darkvision 60",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "arms": {
+      "armType": "general",
+      "number": 0
+    },
+    "attackBonus": 0,
+    "bonusSkill": "",
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.QsCRXffpsDoMvPnT]{Basic Mods}</p>\n<p>Your drone gains low-light vision, darkvision to 60 feet, and a +2 insight bonus to Perception skill checks. If your drone has the camera mod, the camera gains these senses as well.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "isArmorSlot": false,
+    "isFree": false,
+    "maxInstalls": 1,
+    "modifiers": [
+      {
+        "_id": "8cfd3643-78d0-4e68-9d47-f113eea04f2a",
+        "name": "New Modifier",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, pg. 77",
+    "spellResistance": 0,
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponProficiency": ""
+  }
+}

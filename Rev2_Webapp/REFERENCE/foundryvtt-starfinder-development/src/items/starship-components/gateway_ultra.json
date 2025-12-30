@@ -1,0 +1,27 @@
+{
+  "_id": "3vxdiVT2YSjIrErO",
+  "name": "Gateway Ultra",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": 50,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 500,
+    "slug": "",
+    "source": "CRB pg. 296",
+    "specialMaterials": {},
+    "supportedSizes": [
+      "huge",
+      "gargantuan",
+      "colossal"
+    ]
+  }
+}

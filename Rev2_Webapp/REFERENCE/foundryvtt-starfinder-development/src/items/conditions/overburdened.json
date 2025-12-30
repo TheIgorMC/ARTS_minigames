@@ -1,0 +1,92 @@
+{
+  "_id": "11k3ObUIXEYFGrg9",
+  "name": "Overburdened",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/overburdened.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>All of your speeds are reduced to 5 feet, your maximum Dexterity bonus to your Armor Class is reduced to +0, and you take a –5 penalty to Strength- and Dexterity-based checks (or your armor’s armor check penalty, whichever is worse).</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "ae835bed-74cb-4156-8d11-5f1acda4ae00",
+        "name": "Overburdened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "max": -5,
+        "modifier": "-5",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "str"
+      },
+      {
+        "_id": "adb0b1c8-3cff-443a-8eef-1801a4f73c5d",
+        "name": "Overburdened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "max": -5,
+        "modifier": "-5",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "dex"
+      },
+      {
+        "_id": "2a5424e1-7184-4a32-b3cb-92c3efb16e93",
+        "name": "Overburdened",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-speeds",
+        "enabled": true,
+        "max": -5,
+        "modifier": "-5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "overburdened",
+    "source": "CRB.276",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

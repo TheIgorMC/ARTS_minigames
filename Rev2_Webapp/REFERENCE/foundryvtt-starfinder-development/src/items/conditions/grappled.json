@@ -1,0 +1,134 @@
+{
+  "_id": "4AkWDHGM6gHDepHN",
+  "name": "Grappled",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/grappled.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You are restrained by a creature, effect, or trap.</p>\n<p>You can’t move, and you take a –2 penalty to your Armor Class, attack rolls, Reflex saving throws, initiative checks, and Dexterity-based skill and ability checks, except those made to grapple your opponent in turn or to escape a grapple (see Grapple on page 246).</p>\n<p>In addition, you can’t take actions that require two hands (or other limbs) to perform.</p>\n<p>You can’t make attacks of opportunity.</p>\n<p>You can’t use Stealth to hide from the creature grappling you, even if a special ability allows you to hide when you normally couldn’t.</p>\n<p>If you become invisible, through a spell or other ability, you gain a +2 circumstance bonus to your check to escape being @UUID[Compendium.sfrpg.conditions.Item.4AkWDHGM6gHDepHN]{Grappled}, but you receive no other benefit.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "adf5f3cf-4f30-49a2-b828-3b2b3e93df07",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ac",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "both"
+      },
+      {
+        "_id": "dccb0409-cc76-4865-b142-d49625f86f42",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "7dfe6bb7-6af9-4e25-a892-4cdf04d7b973",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "save",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "reflex"
+      },
+      {
+        "_id": "061cff37-b5e8-452b-a904-779dfa287325",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "initiative",
+        "enabled": true,
+        "modifier": -2,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "5ab0115c-7536-4cf4-b394-b73b470d8191",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "dex"
+      },
+      {
+        "_id": "0eb5042d-5279-4264-a1cf-3725dbfb70d6",
+        "name": "Grappled",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-speeds",
+        "enabled": true,
+        "max": -1000,
+        "modifier": "-1000",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "grappled",
+    "source": "CRB.276",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

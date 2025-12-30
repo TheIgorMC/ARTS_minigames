@@ -1,0 +1,23 @@
+{
+  "_id": "1yRyXjnefzNILiVV",
+  "name": "Superior ablative armor (520)",
+  "type": "starshipAblativeArmor",
+  "img": "systems/sfrpg/icons/default/metal-plate.svg",
+  "system": {
+    "ablativeValue": 520,
+    "cost": 45,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "SOM pg. 20",
+    "targetLockPenalty": 0,
+    "turnDistancePenalty": 2
+  }
+}

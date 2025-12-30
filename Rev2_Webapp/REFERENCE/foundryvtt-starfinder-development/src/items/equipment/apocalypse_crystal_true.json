@@ -1,0 +1,155 @@
+{
+  "_id": "nOgepJvkHe4XblEF",
+  "name": "Apocalypse crystal, true",
+  "type": "weapon",
+  "img": "icons/commodities/gems/gem-rough-cushion-red-white.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "",
+    "actionType": "other",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 105
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 20,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "Corrode 2d6",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Regions ravaged by a living apocalypse’s radioactivity sometimes develop a form of natural solarian weapon crystal known as an apocalypse crystal. While no one is foolish enough to oppose a living apocalypse to search its environs for these crystals, when a living apocalypse moves away from a devastated area it dwelt in for a long period, there is often a “crystal rush.” Representatives of solarian academies and other prospectors in environmental suits risk exposure to lingering radiation in hopes of finding any apocalypse crystals before anyone else—and before the malevolent nuclear ooze returns.</p>\n<p>An apocalypse crystal causes the damage dealt by your solarian weapon to function as a force effect. On a critical hit, your target’s molecules begin to lose cohesion, inflicting terrible damage.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 20,
+    "modifiers": [
+      {
+        "_id": "125831f5-2097-4969-8f77-f5bd079b4379",
+        "name": "Apocalypse crystal, true",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-damage",
+        "enabled": true,
+        "limitTo": "container",
+        "max": 36,
+        "modifier": "6d6",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 776000,
+    "proficient": true,
+    "properties": {
+      "force": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2 pg. 81",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "solarian"
+  }
+}

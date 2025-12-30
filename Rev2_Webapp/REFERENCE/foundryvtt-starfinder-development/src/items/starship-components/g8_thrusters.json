@@ -1,0 +1,28 @@
+{
+  "_id": "5EJdPUHjvrdKOo0P",
+  "name": "G8 thrusters",
+  "type": "starshipThruster",
+  "img": "systems/sfrpg/icons/default/rocket-thruster.svg",
+  "system": {
+    "cost": 16,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "isBooster": false,
+    "isEnabled": true,
+    "isPowered": true,
+    "modifiers": [],
+    "pcu": 240,
+    "pilotingModifier": 0,
+    "slug": "",
+    "source": "CRB pg. 297",
+    "specialMaterials": {},
+    "speed": 8,
+    "supportedSize": "gargantuan"
+  }
+}

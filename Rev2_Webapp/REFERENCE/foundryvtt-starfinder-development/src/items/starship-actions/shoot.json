@@ -1,0 +1,42 @@
+{
+  "_id": "umc9JwD3YQmZhOyh",
+  "name": "Shoot",
+  "type": "starshipAction",
+  "img": "systems/sfrpg/icons/default/crosshair.svg",
+  "system": {
+    "dc": null,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Normal effect</h2><p>You can fire one of your starship’s weapons. If you use a turret weapon, you can target a ship in any arc.</p>"
+    },
+    "effectCritical": "",
+    "effectNormal": "You can fire one of your starship’s weapons. If you use a turret weapon, you can target a ship in any arc.",
+    "formula": [
+      {
+        "name": "Gunnery",
+        "dc": null,
+        "effectCritical": "",
+        "effectNormal": "",
+        "formula": "max(@gunner.attributes.baseAttackBonus.value, @gunner.skills.pil.ranks, @gunner.skills.gun.mod) + @gunner.abilities.dex.mod"
+      }
+    ],
+    "isPush": false,
+    "modifiers": [],
+    "order": 10,
+    "phase": {
+      "name": "Gunnery phase",
+      "tooltip": "This action can be taken only during the gunnery phase."
+    },
+    "resolvePointCost": 0,
+    "role": "gunner",
+    "selectorKey": "gunner",
+    "selectors": [
+      "gunner"
+    ],
+    "slug": "",
+    "source": "CRB"
+  }
+}

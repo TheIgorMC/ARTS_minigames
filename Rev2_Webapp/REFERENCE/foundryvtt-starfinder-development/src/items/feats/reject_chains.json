@@ -1,0 +1,102 @@
+{
+  "_id": "ixMJa5T3oq7s5eOv",
+  "name": "Reject Chains",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/reject_chains.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "none",
+      "condition": "Failed a saving throw against a charm or compulsion effect.",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Shirrens threw off the Swarm’s hold on their collective psyche, and the embers of that strength still burn within you.</p>\n<p><strong>Prerequisites</strong>: @UUID[Compendium.sfrpg.races.Item.VIJ6pdOVTJle3vJx]{Shirren}.</p>\n<hr />\n<p><strong>Benefit</strong>: You gain a +2 insight bonus to saving throws against @UUID[Compendium.sfrpg.rules.Item.PqV3OCbUTyk2upPD]{Charm} and compulsion effects, and once per day you can reroll a save against such an effect.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "eee9a601-1415-4425-ad85-9aa45243b6c8",
+        "name": "Reject Chains",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "save",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "Bonus to saving throws against charm and compulsion effects.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "will"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "1",
+      "per": "day",
+      "value": 1
+    }
+  }
+}

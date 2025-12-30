@@ -1,0 +1,24 @@
+{
+  "_id": "7zjCJEAlI5WbcTeV",
+  "name": "Signal Superior",
+  "type": "starshipDriftEngine",
+  "img": "systems/sfrpg/icons/default/star-gate.svg",
+  "system": {
+    "cost": 15,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "engineRating": 4,
+    "isPowered": false,
+    "maxSize": "large",
+    "modifiers": [],
+    "pcu": 175,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

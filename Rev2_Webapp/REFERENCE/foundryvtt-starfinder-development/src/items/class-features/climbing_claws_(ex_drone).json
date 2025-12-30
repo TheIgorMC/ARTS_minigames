@@ -1,0 +1,103 @@
+{
+  "_id": "mZpIDgU1G1aHudu2",
+  "name": "Climbing Claws (Ex; Drone)",
+  "type": "mod",
+  "img": "systems/sfrpg/icons/classes/climbing_claws.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "additionalMovement": "",
+    "additionalSenses": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "arms": {
+      "armType": "general",
+      "number": 0
+    },
+    "attackBonus": 0,
+    "bonusSkill": "",
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.QsCRXffpsDoMvPnT]{Basic Mods}</p>\n<p>Your drone gains a climb speed equal to half its land speed. This mod can be applied to only combat and stealth drones.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "isArmorSlot": false,
+    "isFree": false,
+    "maxInstalls": 1,
+    "modifiers": [
+      {
+        "_id": "47006504-6afa-4e90-a4dc-bbd2bf39d3f7",
+        "name": "Climbing Claws (Ex)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "specific-speed",
+        "enabled": true,
+        "limitTo": null,
+        "max": 15,
+        "modifier": "floor(@attributes.speed.land.value / 2)",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "climbing"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, pg. 77",
+    "spellResistance": 0,
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponProficiency": ""
+  }
+}

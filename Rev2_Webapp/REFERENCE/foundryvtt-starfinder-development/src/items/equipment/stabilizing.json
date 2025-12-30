@@ -1,0 +1,64 @@
+{
+  "_id": "0oVx2R4B3rFuOgmW",
+  "name": "Stabilizing",
+  "type": "fusion",
+  "img": "systems/sfrpg/icons/equipment/weapons/weapon-fusions-1.webp",
+  "system": {
+    "bulk": "L",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The stabilizing fusion helps you keep your orientation in zero gravity. While wielding such a weapon, you can steady yourself even if you don’t have a surface to grab onto or a means of propulsion. If you do have such means, you can steady yourself as either a move action or a swift action. You gain a +4 bonus to checks to avoid gaining the off-kilter condition. Only melee weapons, small arms, and long arms can benefit from the stabilizing fusion.</p>"
+    },
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "23d8de67-6cd0-435c-a2ee-7a923d4e89b5",
+        "name": "Stabilizing - acro",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "You gain a +4 bonus to checks to avoid gaining the off-kilter condition.",
+        "source": "Weapon Fusion",
+        "subtab": "misc",
+        "valueAffected": "acr"
+      },
+      {
+        "_id": "158de3f8-a845-4de1-9aac-690a208a13f5",
+        "name": "Stabilizing - ath",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 4,
+        "modifier": "4",
+        "modifierType": "formula",
+        "notes": "You gain a +4 bonus to checks to avoid gaining the off-kilter condition.",
+        "source": "Weapon Fusion",
+        "subtab": "misc",
+        "valueAffected": "ath"
+      }
+    ],
+    "price": 0,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 65"
+  }
+}

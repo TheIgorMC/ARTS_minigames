@@ -1,0 +1,24 @@
+{
+  "_id": "pLNNQ8Z4bVz3pd9g",
+  "name": "Mk 4 mononode",
+  "type": "starshipComputer",
+  "img": "systems/sfrpg/icons/default/server-rack.svg",
+  "system": {
+    "cost": 16,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "isPowered": true,
+    "modifier": 4,
+    "modifiers": [],
+    "nodes": 1,
+    "pcu": 25,
+    "slug": "",
+    "source": "CRB pg. 297"
+  }
+}

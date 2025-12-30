@@ -1,0 +1,131 @@
+{
+  "_id": "QeqNH6FRcUz5sAmK",
+  "name": "Radiation buffer",
+  "type": "upgrade",
+  "img": "systems/sfrpg/icons/default/armor-upgrade.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "allowedArmorType": "any",
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "2"
+      },
+      "hp": {
+        "max": "6",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This device grants a +2 bonus to your initial saving throw against radiation (see page 403) in addition to any bonuses from your armor’s environmental protection. This doesn’t provide any bonus to saves against the secondary effects of radiation.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "5b40f2a6-b17f-4b53-8fdd-62da8f521947",
+        "name": "Radiation Buffer",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "This device grants a +2 bonus to your initial saving throw against radiation (see page 403) in addition to any bonuses from your armor’s environmental protection. This doesn’t provide any bonus to saves against the secondary effects of radiation.",
+        "source": "Armor upgrade",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 200,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slots": 1,
+    "slug": "",
+    "source": "CRB pg. 205",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

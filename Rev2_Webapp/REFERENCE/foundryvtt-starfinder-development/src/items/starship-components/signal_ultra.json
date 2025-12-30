@@ -1,0 +1,24 @@
+{
+  "_id": "J71iBS7WZ7KyM50s",
+  "name": "Signal Ultra",
+  "type": "starshipDriftEngine",
+  "img": "systems/sfrpg/icons/default/star-gate.svg",
+  "system": {
+    "cost": 20,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "engineRating": 5,
+    "isPowered": false,
+    "maxSize": "medium",
+    "modifiers": [],
+    "pcu": 200,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

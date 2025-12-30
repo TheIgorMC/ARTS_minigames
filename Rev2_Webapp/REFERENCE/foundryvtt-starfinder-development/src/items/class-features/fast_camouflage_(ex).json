@@ -1,0 +1,84 @@
+{
+  "_id": "sngpYT1VY0A9CltG",
+  "name": "Fast Camouflage (Ex)",
+  "type": "feat",
+  "img": "icons/equipment/head/mask-carved-bird-grey-pink.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "round",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>You can use a @UUID[Compendium.sfrpg.equipment.Item.I3ghqhtQ56N2ZIjD]{disguise kit} for [[/r 1d3]] rounds to apply basic camouflage to yourself suitable for a specific biome; without a disguise kit, it takes 1d3 minutes to scavenge suitable materials and apply the camouflage. While wearing this disguise in that biome, you can apply your @UUID[Compendium.sfrpg.class-features.Item.OzwMoyrdE3fcNZLP]{expertise} ability to your Stealth checks. The camouflage lasts for 1 hour.</p>\n<p>If you spend 1 Resolve Point when using this ability, you can instead apply the camouflage to a willing adjacent creature, applying your expertise die to the creature’s Stealth checks. Once any other creature has benefited from this improvisation, it can’t gain the benefits again until it has taken a 10-minute rest to recover Stamina Points.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "hour",
+      "value": "1"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "6th Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 16",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

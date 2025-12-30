@@ -1,0 +1,85 @@
+{
+  "_id": "j0Z6D5P2W6aVgTef",
+  "name": "Astounding Fortitude (Ex) (9th)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/improved_great_fortitude.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You gain @UUID[Compendium.sfrpg.feats.Item.gHFaGEQj42de9zmT]{Improved Great Fortitude} as a bonus feat. As a reaction, you can spend 1 Resolve Point to have an ally you can see within 10 feet reroll a failed Fortitude save. You can’t affect another ally in this way until you take a 10-minute rest to recover Stamina Points.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "10"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "9th Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 26",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "1",
+      "per": "sr",
+      "value": 1
+    }
+  }
+}

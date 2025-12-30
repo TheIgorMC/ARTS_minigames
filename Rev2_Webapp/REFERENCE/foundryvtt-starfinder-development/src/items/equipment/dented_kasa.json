@@ -1,0 +1,136 @@
+{
+  "_id": "sRJZIgbAmzTtCuYf",
+  "name": "Dented kasa",
+  "type": "magic",
+  "img": "icons/equipment/head/helm-norman-brown.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 10
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A conical helm of battered metal, a dented kasa is a headgear with a history. Helmets of this sort belonged to veteran warriors of ages past, each dent representing a potentially mortal blow the kasa deflected. You wear the kasa by incorporating it into part of your armor’s headwear. The helmet counts as a worn magic item unless you install it in armor, taking up one upgrade slot.</p>\n<p>While wearing the dented kasa, you gain a +2 enhancement bonus to saving throws against critical hit effects. In addition, when you take a critical hit, you can spend 2 Resolve Points as a reaction to negate the resulting extra damage and critical hit effect. When you do so, the kasa gains a new dent, scratch, or other mark.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 5,
+    "limitedWear": true,
+    "modifiers": [
+      {
+        "_id": "13e403c1-37e3-4943-9446-f50c7e89c0cb",
+        "name": "Dented kasa",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "While wearing the dented kasa, you gain a +2 enhancement bonus to saving throws against critical hit effects. In addition, when you take a critical hit, you can spend 2 Resolve Points as a reaction to negate the resulting extra damage and critical hit effect. When you do so, the kasa gains a new dent, scratch, or other mark.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 3000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 112",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

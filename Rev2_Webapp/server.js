@@ -49,6 +49,70 @@ let timeState = {
     minute: 0,
     scrambled: false
 };
+let gmIdentities = ['GM']; // Default identity
+let currentSceneId = null; // Track currently loaded scene for autosave
+let conversations = []; // { id, name, type: 'group'|'dm', participants: [] }
+
+// --- PERSISTENCE ---
+const STATUS_FILE = path.join(DATA_DIR, 'status.json');
+const CHAT_LOG_FILE = path.join(DATA_DIR, 'chat_logs.txt');
+
+function saveStatus() {
+    const status = {
+        time: timeState,
+        mood: moodState,
+        identities: gmIdentities,
+        conversations: conversations
+    };
+    fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
+}
+
+function loadStatus() {
+    if (fs.existsSync(STATUS_FILE)) {
+        try {
+            const status = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8'));
+            if (status.time) timeState = status.time;
+            if (status.mood) moodState = status.mood;
+            if (status.identities) gmIdentities = status.identities;
+            if (status.conversations) conversations = status.conversations;
+            console.log('Status loaded:', status);
+        } catch (e) {
+            console.error('Error loading status:', e);
+        }
+    }
+}
+
+function saveChatLog(msg) {
+    const logLine = JSON.stringify(msg) + '\n';
+    fs.appendFileSync(CHAT_LOG_FILE, logLine);
+}
+
+function loadChatLogs() {
+    if (fs.existsSync(CHAT_LOG_FILE)) {
+        try {
+            const data = fs.readFileSync(CHAT_LOG_FILE, 'utf8');
+            const lines = data.split('\n').filter(line => line.trim() !== '');
+            chatHistory = lines.map(line => {
+                try {
+                    return JSON.parse(line);
+                } catch (e) {
+                    return null;
+                }
+            }).filter(msg => msg !== null);
+            // Keep only last 100 in memory for quick access, but file has all
+            if (chatHistory.length > 100) {
+                chatHistory = chatHistory.slice(-100);
+            }
+            console.log(`Loaded ${chatHistory.length} chat messages.`);
+        } catch (e) {
+            console.error('Error loading chat logs:', e);
+        }
+    }
+}
+
+// Load on startup
+loadStatus();
+loadChatLogs();
 
 // Time Ticker (Every 60s real time = 1 min game time)
 setInterval(() => {
@@ -63,6 +127,7 @@ setInterval(() => {
             }
         }
         io.emit('time_update', timeState);
+        saveStatus(); // Save every minute
     }
 }, 60000);
 
@@ -251,6 +316,25 @@ function saveSceneData(sceneId, data) {
     }
 }
 
+function autosaveCurrentScene() {
+    if (!currentSceneId) return;
+    
+    // Find current scene name to preserve it
+    const currentScene = scenes.find(s => s.id === currentSceneId);
+    const name = currentScene ? currentScene.name : currentSceneId;
+
+    const sceneData = {
+        id: currentSceneId,
+        name: name,
+        objects: tableState.activeObjects,
+        mood: moodState.imageUrl
+    };
+    
+    saveSceneData(currentSceneId, sceneData);
+    // We don't emit admin_data_update here to avoid spamming the GM client with full reloads
+    // But we might want to notify that save happened?
+}
+
 // Gestione connessioni Socket.io
 io.on('connection', (socket) => {
     console.log('Un client si è connesso: ' + socket.id);
@@ -268,10 +352,62 @@ io.on('connection', (socket) => {
         if (role === 'gm') {
             socket.emit('admin_data_update', { objects, characters, scenes });
             socket.emit('media_list_update', getMediaFiles());
+            socket.emit('admin_identities_update', gmIdentities);
+            socket.emit('conversations_update', conversations);
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
             socket.emit('table_state_update', tableState);
+        }
+    });
+
+    // --- GM IDENTITIES ---
+    socket.on('admin_identity_action', (action) => {
+        if (action.type === 'add') {
+            if (!gmIdentities.includes(action.name)) {
+                gmIdentities.push(action.name);
+                saveStatus();
+                socket.emit('admin_identities_update', gmIdentities);
+            }
+        } else if (action.type === 'remove') {
+            gmIdentities = gmIdentities.filter(id => id !== action.name);
+            saveStatus();
+            socket.emit('admin_identities_update', gmIdentities);
+        }
+    });
+
+    // --- CONVERSATIONS ---
+    socket.on('create_conversation', (data) => {
+        // data: { name, participants: [] }
+        const newConv = {
+            id: 'group_' + Date.now(),
+            name: data.name,
+            type: 'group',
+            participants: data.participants
+        };
+        conversations.push(newConv);
+        saveStatus();
+        
+        // Notify GM
+        socket.emit('conversations_update', conversations);
+        
+        // Notify Players involved
+        io.to('player').emit('conversations_update', conversations);
+    });
+
+    socket.on('update_conversation', (data) => {
+        // data: { id, name, participants: [] }
+        const convIndex = conversations.findIndex(c => c.id === data.id);
+        if (convIndex !== -1) {
+            conversations[convIndex].name = data.name;
+            conversations[convIndex].participants = data.participants;
+            saveStatus();
+            
+            // Notify GM
+            socket.emit('conversations_update', conversations);
+            
+            // Notify Players involved
+            io.to('player').emit('conversations_update', conversations);
         }
     });
 
@@ -283,6 +419,7 @@ io.on('connection', (socket) => {
             socket.join('player'); // Unisciti al canale generico player
             socket.join('player_' + user.id); // Canale privato per questo player
             socket.emit('login_success', user);
+            socket.emit('conversations_update', conversations);
         } else {
             socket.emit('login_error', 'Credenziali non valide');
         }
@@ -340,10 +477,6 @@ io.on('connection', (socket) => {
             // Use folder name as ID. If it's a new scene name, we might need to create a folder?
             // For now, assume we are saving to the CURRENT loaded scene or a new one if specified
             
-            // If action.id is provided (existing scene), use it.
-            // If action.name is provided, try to find matching folder or create new?
-            // Simplified: We only save to existing folders/IDs for now or create new folder [XX] Name
-            
             let sceneId = action.id;
             if (!sceneId && action.name) {
                 // Try to find scene by name
@@ -357,6 +490,7 @@ io.on('connection', (socket) => {
             }
 
             if (sceneId) {
+                currentSceneId = sceneId; // Set as current
                 const newScene = {
                     id: sceneId,
                     name: action.name || sceneId,
@@ -370,6 +504,7 @@ io.on('connection', (socket) => {
         } else if (action.type === 'load') {
             const scene = scenes.find(s => s.id === action.id);
             if (scene) {
+                currentSceneId = scene.id; // Set as current
                 tableState.activeObjects = JSON.parse(JSON.stringify(scene.objects)); // Deep copy
                 io.to('table').emit('table_state_update', tableState);
                 
@@ -398,16 +533,31 @@ io.on('connection', (socket) => {
     // --- GESTIONE HACKING (GM) ---
     socket.on('gm_hacking_action', (action) => {
         if (action.type === 'start') {
+            // Resolve target if it's a role
+            let target = action.target || 'all';
+            
+            // If target starts with "role:", find all players with that role
+            if (typeof target === 'string' && target.startsWith('role:')) {
+                const roleName = target.split(':')[1];
+                const targetPlayers = characters.filter(c => c.roles && c.roles.includes(roleName)).map(c => c.username);
+                target = targetPlayers; // Array of usernames
+            }
+
             hackingState = {
                 active: true,
                 password: action.password.toUpperCase(),
                 dc: parseInt(action.dc) || 15,
                 complexity: parseInt(action.complexity) || 3,
                 revealedIndices: [],
-                attempts: 0
+                attempts: 0,
+                target: target // 'all', username, or array of usernames
             };
-            // Invia stato iniziale ai player
-            io.to('player').emit('player_hacking_update', getPublicHackingState());
+            
+            const publicState = getPublicHackingState();
+            
+            // Broadcast to all players, they will filter based on 'target'
+            io.to('player').emit('player_hacking_update', { ...publicState, target: hackingState.target });
+            
             // Conferma al GM
             socket.emit('gm_hacking_update', hackingState);
         
@@ -420,24 +570,24 @@ io.on('connection', (socket) => {
             
             if (diff < 0) {
                 // Fallimento
-                io.to('player').emit('player_hacking_result', { success: false, message: 'ACCESS DENIED' });
+                const failMsg = { success: false, message: 'ACCESS DENIED', target: hackingState.target };
+                io.to('player').emit('player_hacking_result', failMsg);
                 socket.emit('gm_hacking_log', 'Check Failed: ' + roll + ' vs DC ' + hackingState.dc);
             } else {
                 // Successo -> Avvia Minigame
-                // Difficoltà minigame basata sul margine di successo
-                // Margine alto = Gioco più facile (es. velocità minore, gap più larghi)
-                const difficulty = Math.max(0, 10 - diff); // Più basso è meglio
-                
-                // Calcolo numero anelli: Rimuovi 1 anello ogni 5 punti di margine
+                const difficulty = Math.max(0, 10 - diff); 
                 const ringsRemoved = Math.floor(diff / 5);
                 const numRings = Math.max(1, (hackingState.complexity || 3) - ringsRemoved);
 
-                io.to('player').emit('start_minigame', { 
+                const minigameConfig = { 
                     type: 'CIRCLE', 
                     difficulty: difficulty,
                     rings: numRings,
-                    margin: diff
-                });
+                    margin: diff,
+                    target: hackingState.target
+                };
+
+                io.to('player').emit('start_minigame', minigameConfig);
                 socket.emit('gm_hacking_log', 'Check Passed! Starting Minigame (Margin: ' + diff + ', Rings: ' + numRings + ')');
             }
         } else if (action.type === 'stop') {
@@ -521,6 +671,7 @@ io.on('connection', (socket) => {
         
         // Aggiorna il tavolo
         io.to('table').emit('table_state_update', tableState);
+        autosaveCurrentScene();
     });
 
     // 2. Comandi dal GM
@@ -558,6 +709,8 @@ io.on('connection', (socket) => {
             // Aggiorna il GM e gli altri tavoli
             io.to('gm').emit('sync_object', data);
             socket.broadcast.to('table').emit('sync_object', data);
+            
+            autosaveCurrentScene();
         }
     });
 
@@ -575,16 +728,31 @@ io.on('connection', (socket) => {
         if (action.type === 'set') {
             moodState.imageUrl = action.url;
             io.emit('mood_state_update', moodState.imageUrl);
+            saveStatus();
+            autosaveCurrentScene();
         }
     });
     
     // --- CHAT & TIME ---
     socket.on('chat_message', (msg) => {
-        // msg: { sender: 'GM' | 'PlayerName', text: '...' }
+        // msg: { sender: 'GM' | 'PlayerName', text: '...', channel: 'global' }
         const isAdmin = socket.rooms.has('gm');
-        const fullMsg = { ...msg, timestamp: Date.now(), isAdmin: isAdmin };
+        const channel = msg.channel || 'global';
+        
+        // Format game time string
+        const gameTimeStr = `${timeState.year}-${String(timeState.day).padStart(3, '0')} ${String(timeState.hour).padStart(2, '0')}:${String(timeState.minute).padStart(2, '0')}`;
+
+        const fullMsg = { 
+            ...msg, 
+            channel: channel,
+            timestamp: Date.now(), 
+            gameTime: gameTimeStr,
+            isAdmin: isAdmin 
+        };
+        
         chatHistory.push(fullMsg);
-        if (chatHistory.length > 50) chatHistory.shift(); // Keep last 50
+        if (chatHistory.length > 100) chatHistory.shift(); // Keep last 100 in memory
+        saveChatLog(fullMsg);
         io.emit('chat_update', fullMsg);
     });
 
@@ -594,6 +762,7 @@ io.on('connection', (socket) => {
             timeState.day = parseInt(action.day);
             timeState.hour = parseInt(action.hour);
             timeState.minute = parseInt(action.minute);
+            saveStatus();
         } else if (action.type === 'scramble') {
             timeState.scrambled = action.value;
         }

@@ -1,0 +1,102 @@
+{
+  "_id": "nwnH7LmAjw6c2nbQ",
+  "name": "Aquatic Propulsion (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.XrBOn1MueVB4u5sV]{Nanocyte Knack}</p>\n<p>Your nanites propel your weapons with great force, pushing through water and dense gases without difficulty. Each time you form a weapon using your @UUID[Compendium.sfrpg.class-features.Item.KOxmSWm5D1jHy8VU]{gear array}, you can apply the @UUID[Compendium.sfrpg.rules.JournalEntry.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#underwater]{underwater} weapon special property to that weapon (when used underwater, it ignores the –2 penalty to attack rolls and deals full damage). If you do, combat maneuvers you attempt using that weapon gain a +1 bonus.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "bf7f9f36-d8ea-4668-bc1f-03976faeb31d",
+        "name": "Aquatic Propulsion (Ex)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "weapon-property-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "Each time you form a weapon using your gear array, you can apply the underwater weapon special property to that weapon (when used underwater, it ignores the –2 penalty to attack rolls and deals full damage). If you do, combat maneuvers you attempt using that weapon gain a +1 bonus.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "underwater"
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "6th Level - Nanocyte",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "PoC pg. 103",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

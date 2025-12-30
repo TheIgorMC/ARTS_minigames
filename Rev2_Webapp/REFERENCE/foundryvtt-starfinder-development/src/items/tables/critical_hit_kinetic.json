@@ -1,0 +1,1386 @@
+{
+  "_id": "lOS77XG74snuHj7J",
+  "name": "Critical Hit: Kinetic",
+  "description": "",
+  "displayRoll": true,
+  "formula": "1d53",
+  "img": "icons/svg/mystery-man.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "ZsysRD4XuDyaOlMJ",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Slam to the Brainpan</b> Crit Effect: The target takes a -5 penalty to Intelligence check and Intelligence-based skill checks until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        1,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "vdk1FYhm7DSymTVi",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Knocked Cross-eyed</b> The target takes a -2 penalty to all Intelligence-, Wisdom-, and Charisma-based ability checks and skill checks until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        2,
+        2
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xWBirGDia7lyAfnH",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Infection</b> Bonus Effect: The target contracts filth fever (Fortitude negates; Core Rulebook 418).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        3,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "eVSex0fxwVtzQXT6",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Spun Around</b> Bonus Effect: The target is flat-footed for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        4,
+        4
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "73OyhVWfpmil98f2",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Shot to the Vitals</b> Crit Effect: The target is exhausted for 1d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        5,
+        5
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "coNJL5aHS2HT4jxv",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Ring your Bell</b> Crit Effect: The target is staggered for 1d3 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        6,
+        6
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "EibYqMwL1M7oKCNQ",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Low Blow</b> Normal damage. Bonus Effect: The target is sickened for 2d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        7,
+        7
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "F3U1QKC05kBmEkhw",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Torn Ligament</b> Bonus Effect: The target takes a -5 penalty to Strength checks and Strength-based skill checks until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        8,
+        8
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Pus56zXvXRoV0ywC",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>You shot my Toe!</b> Bonus effect: The target is knocked prone.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        9,
+        9
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "XaeQVNSu8AoGTmvp",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Trick Shot</b> Crit Effect: Attempt a free dirty trick combat maneuver against the target at the same attack bonus, regardless of range.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        10,
+        10
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "GwaMYHOiOunwW1nk",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Through and Through</b> Crit Effect: Attempt a free sunder combat maneuver against the target at the same attack bonus, regardless of range.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        11,
+        11
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "pKBP7aDc7v26ZRod",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Runaway</b> Bonus Effect: The attack has the automatic weapon special property (Core Rulebook 180).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        12,
+        12
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "hY1QkE8P45VJYyYh",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Bloody Blow</b> Crit Effect: Wound.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        13,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ZYxLunutMNtkLJJ6",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Follow Fire</b> Crit Effect: The attack has the line weapon special property.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        14,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "x4DEojC9kkoEkIhP",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Bullet With Your Name On It</b> Bonus Effect: The target is shaken for 1 round (Will negates); this is a fear effect.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        15,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "JfaSYdYJTEuMPeWG",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Hit like a Ton of Bricks</b> Bonus Effect: The target is off-target for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        16,
+        16
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "wQDhkN9lTmThHQ4W",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Disarming Shot</b> Crit Effect: Attempt a free disarm combat maneuver against the target at the same attack bonus, regardless of range.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        17,
+        17
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "e82yrLbFxfzGw22r",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Gory</b> Bonus Effect: The target is sickened for 1d6 rounds (Fortitude negates).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        18,
+        18
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "cKEIceSkWyKqFQYY",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Shock and Awe</b> Bonus Effect: The target is staggered for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        19,
+        19
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "2gYDmlMpyOS32eCm",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Surprise Opening</b> Crit Effect: The target provokes attacks of opportunity from all threatening opponents.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        20,
+        20
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "f4QfHdIhFbX1RKlp",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Wing Shot</b> Crit Effect: The target's movement speeds are reduced by %50 for 1 minute.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        21,
+        21
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "87ubZ288jvezhGqF",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Flurry Fire</b> Bonus Effect: You can apply the effects of covering fire or harrying fire to the target (Core Rulebook 246-247).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        22,
+        22
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "E388haTxUVmxfSIt",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Bell Ringer</b> Bonus Effect: The target takes a -5 penalty to Intelligence checks and Intelligence-based skill checks until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        23,
+        23
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "RWbnPJUQ4jWnJtsH",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Spleen Shot</b> Bonus effect: The target is poisoned (treat as blue whinnis; Core Rulebook 419).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        24,
+        24
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "WMuYRclXhg50xvjl",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Muscle Damage</b> Crit Effect: The target moves 1 step down the Dexterity poison track (Core Rulebook 415) until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        25,
+        25
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "YzbrcTDgNhbJ1d57",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Nose be Gone</b> Bonus Effect: The target moves 1 step down the Charisma poison track (Core Rulebook 415) until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        26,
+        26
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "nfNRot5qJ5vjf099",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Torn Tendon</b> Bonus Effect: The target moves 1 step down the Strength poison track (Core Rulebook 415) until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        27,
+        27
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "E5835UAMjkynLeDc",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Nicked and Artery</b> Bonus Effect: Bleed (1d6/5 levels).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        28,
+        28
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "tH06yiPzDCu6Ltfo",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Lodged in the Bone</b> Bonus Effect: Bleed (1d6/10 levels); Medicine checks to stop the bleed damage take a -5 penalty.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        29,
+        29
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "wKBRyNNhuzVI50Ao",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Throat Shot</b> Crit Effect: The target cannot breathe or speak. This effect can be removed using the first aid task of the Medicine skill.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        30,
+        30
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "ZEYryWNMLT0FU10K",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Pierced Defences</b> Bonus Effect: The next attack against the target's KAC, if successful, is a critical hit.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        31,
+        31
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "LcMXHlFd89XuJT9V",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Shoot the Chandelier</b> Bonus Effect: Create a square of cover adjacent to you or your target, as if using the Barricade feat (Core Rulebook 155).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        32,
+        32
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "IUQWpauDHHzz8Z2L",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Perfect Shot</b> Bonus Effect: You regain 1 resolve point.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        33,
+        33
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "GqGxldLv2uZ7pNIx",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Walking Fire</b> Bonus Effect: You can immediately take an additional move action.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        34,
+        34
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "kjawMlwpDn5OALIF",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Grenade go Boom</b> Bonus Effect One grenade in the target's possession detonates (Reflex negates).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        35,
+        35
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "TIOMOLAwR9vIvZzW",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Spun Around</b> Bonus Effect: The target's next attack that misses is rerolled against its nearest ally.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        36,
+        36
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "QlvvnrdWItcUCwpf",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Left Gasping</b> Crit Effect: The target is encumbered for 2d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        37,
+        37
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "5d1ro2h1dVrv7L2k",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Cracked Bone</b> Crit Effect: The target is nauseated for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        38,
+        38
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "APbBsylTTwF5pXRC",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Buffeted About</b> Crit Effect: The target is flat-footed for 1d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        39,
+        39
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "Lm0LN5pFSrhoyMpQ",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Eyebrow Bleed</b> Crit Effect: The target is off-target and takes a -5 penalty to Perception checks until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        40,
+        40
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "rreamnprKVhVqgy3",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Broken Ribs</b> Bonus Effect: The target cannot benefit from nonmagical healing for 1d4 days.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        41,
+        41
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "1bwLv6D4tWP3cGMT",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Bruised and Bloodied</b> Crit Effect: Bleed (1d6/4 levels). The target is staggered for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        42,
+        42
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "xOdoVSVbfh7uwR5s",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>To that Thinky Bits</b> Crit Effect: The target moves 2 steps down the Intelligence poison track (Fortitude save to end each round; Core Rulebook 416).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        43,
+        43
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "H5fadApeLq08xJ3D",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Shoulder Wound</b> Crit Effect: The target's kinetic attacks deal half damage for 1d3 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        44,
+        44
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "GFbTbInsH9q0aTbV",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Blinding Hail of Bullets</b> Bonus Effect: You gain concealment (Core Rulebook 253) for 1d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        45,
+        45
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "d9G9P2F1s6xOKzs6",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Fin Fillet</b> Bonus Effect: The target loses one form of movement other than land movement until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        46,
+        46
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "NkkADSMad2DDfvHp",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Vulnerable Spot</b> Crit Effect: The target moves 1 step down the poison track of an ability score of your choice (Fortitude negates; Core Rulebook 415).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        47,
+        47
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "EdB9ORMbj4MAXPXG",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Seeing Stars</b> Crit Effect: The target suffers a 20% miss chance for 1d4 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        48,
+        48
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "DGGWUo3rtKym6nTe",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>And Stay Down!</b> Crit Effect: The target is stunned for 1 round (Fortitude negates) and knocked prone.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        49,
+        49
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "BiLyeh5jrIxo8ZVD",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Spalling</b> Crit Effect: Bleed (1d6/5 levels). The target's KAC is reduced by 2 until healed.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        50,
+        50
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "dOQbvfhKtzzcSoqU",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Grazing Hit</b> Normal damage. Bonus Effect: The target is stunned for 1 round.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        51,
+        51
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "kQszJtw0WrCr9hYl",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Sucking Chest Wound</b> Crit Effect: The target is exhausted until healed (Fortitude negates).",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        52,
+        52
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "eR96ecRkGb2vA6D2",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b>Shrapnel by the Bone</b> Crit Effect: The target suffers a 20% chance of being stunned each round for 2d6 rounds.",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "range": [
+        53,
+        53
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "wjY461oMHU3A1JWd",
+      "name": "",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "Critical Hit: Extreme",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        53
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "NcrDW9r5PDPbSReq",
+      "name": "",
+      "type": "document",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "Critical Hit/Fumble Cards",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "range": [
+        1,
+        53
+      ],
+      "weight": 1
+    }
+  ]
+}

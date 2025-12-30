@@ -1,0 +1,47 @@
+{
+  "_id": "4jui3LDX2QOYJyfP",
+  "name": "Defending",
+  "type": "fusion",
+  "img": "systems/sfrpg/icons/equipment/weapons/weapon-fusions-3.webp",
+  "system": {
+    "bulk": "-",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Weapons with the <em>defending</em> fusion aid their wielder when blocking or fighting defensively. When you fight defensively while attacking with a weapon with this fusion, you gain a +1 bonus to attack rolls with the weapon (effectively reducing the penalty from fighting defensively to –3) and an additional +1 bonus to AC until the start of your next turn. Additionally, if your weapon has the block weapon special property, increase the enhancement bonus to your AC against melee attacks from that target to +2. Only melee weapons can benefit from this fusion.</p>"
+    },
+    "level": 3,
+    "modifiers": [
+      {
+        "_id": "b3b87fc9-ca71-490c-a37f-1aafdb9136fd",
+        "name": "Defending weapon fusion",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Weapon Fusion",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 0,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 63"
+  }
+}

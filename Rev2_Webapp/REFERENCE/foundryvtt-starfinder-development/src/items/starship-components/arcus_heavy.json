@@ -1,0 +1,27 @@
+{
+  "_id": "IpntuLzSdJyI58bV",
+  "name": "Arcus Heavy",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": 13,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 130,
+    "slug": "",
+    "source": "CRB pg. 296",
+    "specialMaterials": {},
+    "supportedSizes": [
+      "medium",
+      "small",
+      "tiny"
+    ]
+  }
+}

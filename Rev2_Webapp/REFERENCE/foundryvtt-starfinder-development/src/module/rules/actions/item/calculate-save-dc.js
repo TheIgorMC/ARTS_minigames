@@ -1,0 +1,91 @@
+import { DiceSFRPG } from "../../../dice.js";
+import { SFRPGEffectType } from "../../../modifiers/types.js";
+import RollContext from "../../../rolls/rollcontext.js";
+
+export default function(engine) {
+    engine.closures.add("calculateSaveDC", (fact, context) => {
+        const item = fact.item;
+        const itemData = item;
+        const data = itemData.system;
+
+        const actor = fact.owner.actor;
+        if (!actor) return fact;
+        const actorData = fact.owner.actorData;
+        const classes = actor.items.filter(item => item.type === "class");
+
+        if (data.actionType) {
+
+            if (data.save && data.save.type) {
+                const save = data.save || {};
+
+                let dcFormula = save.dc?.toString();
+                if (!dcFormula) {
+                    const ownerKeyAbilityId = classes[0]?.system.kas ?? null;
+                    const itemKeyAbilityId = data.ability;
+                    const spellbookSpellAbility = actorData?.attributes.spellcasting;
+                    const classSpellAbility = classes[0]?.system.spellAbility;
+
+                    const abilityKey = itemKeyAbilityId || spellbookSpellAbility || classSpellAbility || ownerKeyAbilityId;
+
+                    if (actor.type === "npc" || actor.type === "npc2") {
+                        if (itemData.type === "spell") {
+                            dcFormula = `@owner.attributes.baseSpellDC.value + @item.level`;
+                        } else {
+                            dcFormula = `@owner.attributes.abilityDC.value`;
+                        }
+                    } else {
+                        if (itemData.type === "spell") {
+                            dcFormula = "10 + @item.level" + (abilityKey ? ` + @owner.abilities.${abilityKey}.mod` : "");
+                        } else if (itemData.type === "feat") {
+                            dcFormula = "10 + floor(@owner.details.level.value / 2)" + (abilityKey ? ` + @owner.abilities.${abilityKey}.mod` : "");
+                        } else {
+                            dcFormula = "10 + floor(@item.level / 2)" + (abilityKey ? ` + @owner.abilities.${abilityKey}.mod` : "");
+                        }
+                    }
+                }
+
+                if (itemData.type === "spell") {
+                    // Get owner spell save dc modifiers and append to roll
+                    const dcModifiers = actor.getAllModifiers().filter(x => x.enabled && x.effectType === SFRPGEffectType.SPELL_SAVE_DC);
+                    const stackedModifiers = context.parameters.stackModifiers.process(dcModifiers, context, {actor: fact.owner.actor});
+                    for (const modifiers of Object.values(stackedModifiers)) {
+                        for (const modifier of modifiers) {
+                            dcFormula += ` + ${modifier.modifier}[${modifier.name}]`;
+                        }
+                    }
+                }
+
+                let computedSave = false;
+
+                if (dcFormula) {
+                    const rollContext = RollContext.createItemRollContext(item, actor, {itemData: data});
+
+                    const rollResult = DiceSFRPG.resolveFormulaWithoutDice(dcFormula, rollContext, {logErrors: false});
+                    if (!rollResult.hadError) {
+                        item.labels.save = `DC ${rollResult.total >= 0 ? rollResult.total : ""} ${CONFIG.SFRPG.saves[save.type]} ${CONFIG.SFRPG.saveDescriptors[save.descriptor]}`;
+                        item.labels.saveFormula = dcFormula;
+                        computedSave = true;
+                    } else {
+                        console.error(
+                            `An error occurred parsing the %csave DC formula%c for %c'${item.name}'%c owned by %c'${actor?.name ?? "Unknown Actor"}'%c\n\nIs there a dice term in the formula?\nFormula: %c${dcFormula}`,
+                            "font-weight: bold; color: blue;",
+                            "",
+                            "font-weight: bold; color: black;",
+                            "",
+                            "font-weight: bold; color: green;",
+                            "",
+                            "font-weight: bold; color: black;"
+                        );
+                    }
+                }
+
+                if (!computedSave) {
+                    item.labels.save = 10;
+                    item.labels.saveFormula = 10;
+                }
+            }
+        }
+
+        return fact;
+    }, { required: ["stackModifiers"], closureParameters: ["stackModifiers"] } );
+}

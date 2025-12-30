@@ -1,0 +1,84 @@
+{
+  "_id": "Bl1Dw3CX7Brl1AC2",
+  "name": "Suppressive Fire (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/suppressive_fire.webp",
+  "system": {
+    "ability": "dex",
+    "actionTarget": "",
+    "actionType": "rwak",
+    "activation": {
+      "type": "full",
+      "condition": "Using a ranged weapon with the automatic weapon property.",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 4,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can use automatic weapons to create a cone of covering fire or harrying fire.</p>\n<p><strong>Prerequisites</strong>: Base attack bonus +1, proficiency with heavy weapons.</p>\n<hr />\n<p><strong>Benefit</strong>: As a full action, you can use a ranged weapon with the automatic weapon property to provide covering fire or harrying fire in a cone with a range equal to half the weapon’s range increment. You must expend 10 charges or rounds of ammunition to use this ability. Decide if you are providing covering fire or harrying fire. Make a single ranged attack roll with a +4 bonus, and compare it to the AC of all creatures in the area. Any creature with an AC equal to or less than your attack roll is affected by the selected effect. If you select covering fire, choose a single ally that gains the benefit of the covering fire bonus to its AC.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

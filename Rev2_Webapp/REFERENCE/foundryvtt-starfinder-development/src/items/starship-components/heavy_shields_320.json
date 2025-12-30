@@ -1,0 +1,28 @@
+{
+  "_id": "VuV5azb8kiQjmAa5",
+  "name": "Heavy Shields 320",
+  "type": "starshipShield",
+  "img": "icons/magic/defensive/armor-shield-barrier-steel.webp",
+  "system": {
+    "armorBonus": 0,
+    "cost": 27,
+    "costMultipliedBySize": false,
+    "defenseValue": 0,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "isDeflector": false,
+    "isPowered": true,
+    "modifiers": [],
+    "pcu": 70,
+    "regeneration": 16,
+    "shieldPoints": 320,
+    "slug": "",
+    "source": "CRB pg. 302",
+    "targetLockBonus": 0
+  }
+}

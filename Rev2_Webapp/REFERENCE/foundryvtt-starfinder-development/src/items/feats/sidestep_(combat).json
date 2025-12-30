@@ -1,0 +1,84 @@
+{
+  "_id": "ctVapVvAIroeoF0a",
+  "name": "Sidestep (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/sidestep.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "reaction",
+      "condition": "An opponent misses you with a melee attack.",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can reposition yourself after a foe’s missed swing.</p>\n<p><strong>Prerequisites</strong>: Dex 15, Mobility or trick attack class feature.</p>\n<hr />\n<p><strong>Benefit</strong>: Whenever an opponent misses you with a melee attack, you can take a guarded step as a reaction, as long as you remain within that opponent’s threatened area. If you take this step, you can’t take a guarded step during your next turn. If you take an action to move during your next turn, subtract 5 feet from your total movement.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

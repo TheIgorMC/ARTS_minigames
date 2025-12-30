@@ -1,0 +1,67 @@
+{
+  "_id": "3whk642fnwjuwXGJ",
+  "name": "Battleship",
+  "type": "starshipFrame",
+  "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+  "system": {
+    "cost": 150,
+    "crew": {
+      "maximum": 300,
+      "minimum": 100
+    },
+    "damageThreshold": {
+      "base": 10
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "expansionBays": 8,
+    "hitpoints": {
+      "base": 280,
+      "increment": 40
+    },
+    "isPowered": true,
+    "maneuverability": "average",
+    "modifiers": [],
+    "pcu": null,
+    "size": "gargantuan",
+    "slug": "",
+    "source": "CRB pg. 296",
+    "weaponMounts": {
+      "aft": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "forward": {
+        "capitalSlots": 1,
+        "heavySlots": 2,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "port": {
+        "capitalSlots": 0,
+        "heavySlots": 2,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "starboard": {
+        "capitalSlots": 0,
+        "heavySlots": 2,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "turret": {
+        "capitalSlots": 0,
+        "heavySlots": 2,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      }
+    }
+  }
+}

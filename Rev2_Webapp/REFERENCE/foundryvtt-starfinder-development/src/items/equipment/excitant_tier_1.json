@@ -1,0 +1,134 @@
+{
+  "_id": "jdaeJKUdEFn1F4u8",
+  "name": "Excitant, Tier 1",
+  "type": "consumable",
+  "img": "systems/sfrpg/icons/equipment/goods/analgesic-tier-1.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "util",
+    "activation": {
+      "type": "hour",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "medicne",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h1>Excitant</h1>\n<p>While stimulants provide a quick burst of energy, excitants provide a longer and more measured effect and are popular among soldiers on watch, though jitteriness is a common side effect. For a number of hours equal to the medicinal’s tier, you gain a bonus equal to the medicinal’s tier to saving throws to avoid becoming fatigued or @UUID[Compendium.sfrpg.conditions.Item.33ynSbmexuxC3cAQ]{Exhausted}, and you gain immunity to sleep effects. You take a –2 penalty to Dexterity-based skill checks for the duration of the medicinal. During this time, you do not need to attempt Fortitude saves to avoid the effects of sleep deprivation.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "dab6fd70-5e3c-4ec9-bdeb-e217facce241",
+        "name": "Save vs fat, Ext",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "For a number of hours equal to the medicinal’s tier, you gain a bonus equal to the medicinal’s tier to saving throws to avoid becoming fatigued or exhausted, and you gain immunity to sleep effects.",
+        "source": "Excitant, Tier 1",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "b2870554-d6e8-46c3-b142-63e287c0b1fe",
+        "name": "Dex-based skill check",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-skills",
+        "enabled": true,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "formula",
+        "notes": "ou take a –2 penalty to Dexterity-based skill checks for the duration of the medicinal. During this time, you do not need to attempt Fortitude saves to avoid the effects of sleep deprivation.",
+        "source": "Excitant, Tier 1",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 75,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "none"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 133",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "autoDestroy": false,
+      "autoUse": true,
+      "max": "1",
+      "per": "charges",
+      "value": 1
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "OVc4CgVQqpRPBAkL",
+  "name": "Gunner Harness, Light",
+  "type": "weaponAccessory",
+  "img": "systems/sfrpg/icons/default/gun-stock.svg",
+  "system": {
+    "ammunitionType": "",
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 8
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt; @UUID[Compendium.sfrpg.rules.Item.nwRAcqBuoleMkfZE]{Weapon Accessories}</p>\n<p>A gunner harness is a wearable support mesh for an articulated arm that can serve as a mount for a heavy weapon. A gunner harness reduces the minimum Strength score required to fire a heavy weapon without penalty, as determined by the harness’s type. In addition, when you fire the mounted weapon, reduce the total penalty you take for making a full attack and due to range by a value determined by the harness’s type. Donning or removing a gunner harness is a full action, and attaching a weapon to a gunner harness or removing it is a full action.</p>\n<p>Strength 12; reduce your total penalty by 1.</p>"
+    },
+    "level": 3,
+    "modifiers": [],
+    "price": 1400,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 60",
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "weaponType": "heavyWeapon"
+  }
+}

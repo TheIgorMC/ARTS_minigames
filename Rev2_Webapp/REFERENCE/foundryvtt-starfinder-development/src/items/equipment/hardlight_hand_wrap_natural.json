@@ -1,0 +1,190 @@
+{
+  "_id": "182GxIMDFtgBxJfS",
+  "name": "Hardlight hand wrap, natural",
+  "type": "weapon",
+  "img": "icons/equipment/hand/glove-simple-leather-brown-blue.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "eac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "none",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "charge",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "none",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "33"
+      },
+      "hp": {
+        "max": "57",
+        "value": 57
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 40,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 14,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "goods"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "ammunition"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "ammunitionSlot",
+          "weightProperty": ""
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "4d10 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": true,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A hardlight hand wrap consists of a small generator of force energy built into a form-fitting glove made of interwoven photoelectric ribbon. The weapon uses cutting-edge hologram technology to create bursts of hardlight that can briefly interact with both corporeal and incorporeal beings. It takes a bit of training to perfect the timing of strikes made with a hardlight hand wrap, as you must activate the force generator at the precise moment you hit your target, but many feel that the practice is worth the effort. Relatively inconspicuous and easily modifiable to fit any species’ anatomy, hardlight hand wraps are invaluable when facing living holograms, ghosts, and other incorporeal dangers.</p>\n<p>Hardlight hand wraps can be customized to shine in any color in the visible spectrum when used, and a few manufacturers of weapon accessories even offer custom firmware that modifies the appearance of a hardlight hand wrap to manifest as an animalistic claw or fist when used. This doesn’t change the weapon’s statistics, but it can be intimidating on the field of battle. A few unscrupulous types wield hardlight hand wraps when attempting to impersonate solarians, usually to scare off their enemies or as part of complicated con jobs. However, these ruses quickly fall apart when the faux solarians are unable to manifest any other powers these mystic warriors possess.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 14,
+    "modifiers": [],
+    "price": 75000,
+    "proficient": false,
+    "properties": {
+      "bright": {
+        "extension": "",
+        "value": true
+      },
+      "force": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      },
+      "powered": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": "touch"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA3 pg. 67",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": ""
+    },
+    "usage": {
+      "per": "minute",
+      "value": 4
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "advancedM"
+  }
+}

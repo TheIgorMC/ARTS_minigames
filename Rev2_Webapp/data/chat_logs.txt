@@ -1,0 +1,11 @@
+{"sender":"GM","text":"hi","timestamp":1767081261015,"isAdmin":true}
+{"sender":"Joe","text":"hi","timestamp":1767081293879,"isAdmin":false}
+{"sender":"GM","text":"hi","channel":"global","timestamp":1767082318576,"isAdmin":true}
+{"sender":"GM","text":"hi","channel":"global","timestamp":1767083242985,"gameTime":"320-001 12:25","isAdmin":true}
+{"sender":"Joe","text":"u there yet?","channel":"global","timestamp":1767084398909,"gameTime":"320-001 12:44","isAdmin":false}
+{"sender":"GM","text":"hi there","channel":"dm_GM_joe","timestamp":1767084407781,"gameTime":"320-001 12:44","isAdmin":true}
+{"sender":"Jose Milly","text":"hi sweetie","channel":"dm_Jose Milly_joe","timestamp":1767084563224,"gameTime":"320-001 12:46","isAdmin":true}
+{"sender":"Jose Milly","text":"hii","channel":"dm_Jose Milly_joe","timestamp":1767085575698,"gameTime":"320-001 12:48","isAdmin":true}
+{"sender":"Jose Milly","text":"Is the package safe?","channel":"group_1767086476444","timestamp":1767086491898,"gameTime":"320-001 13:01","isAdmin":true}
+{"sender":"Joe","text":"Affirm","channel":"group_1767086476444","timestamp":1767086509354,"gameTime":"320-001 13:01","isAdmin":false}
+{"sender":"GM","text":"test","channel":"dm_GM_joe","timestamp":1767092569230,"gameTime":"2556-001 13:26","isAdmin":true}

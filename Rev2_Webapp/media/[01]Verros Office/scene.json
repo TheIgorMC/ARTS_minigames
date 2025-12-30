@@ -1,0 +1,72 @@
+{
+  "id": "[01]Verros Office",
+  "name": "Verros Office",
+  "objects": [
+    {
+      "instanceId": "1767086285107y0zej",
+      "id": "holopad3_png",
+      "name": "HoloPad3",
+      "category": "Verros Office",
+      "sceneId": "[01]Verros Office",
+      "type": "item",
+      "image": "/media/%5B01%5DVerros%20Office/HoloPad3.png",
+      "width": 100,
+      "height": 100,
+      "draggable": true,
+      "description": "",
+      "x": 1197.7655253445614,
+      "y": 578.9298203383206,
+      "scaleX": 3.313670358143826,
+      "scaleY": 3.313670358143826,
+      "rotation": 6.69603825797566
+    },
+    {
+      "instanceId": "1767086318411rvtj2",
+      "id": "datastick_png",
+      "name": "Datastick",
+      "category": "Verros Office",
+      "sceneId": "[01]Verros Office",
+      "type": "item",
+      "image": "/media/%5B01%5DVerros%20Office/Datastick.png",
+      "width": 100,
+      "height": 100,
+      "draggable": true,
+      "description": "Un datastick danneggiato",
+      "x": 846,
+      "y": 77,
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0
+    },
+    {
+      "instanceId": "1767086331075rkmxc",
+      "id": "holopad2_png",
+      "name": "HoloPad2",
+      "category": "Verros Office",
+      "sceneId": "[01]Verros Office",
+      "type": "item",
+      "image": "/media/%5B01%5DVerros%20Office/HoloPad2.png",
+      "width": 100,
+      "height": 100,
+      "draggable": true,
+      "description": "",
+      "x": 33.741249949966075,
+      "y": 119.5276024770279,
+      "scaleX": 2.983501534638103,
+      "scaleY": 2.983501534638108,
+      "rotation": -25.559965171823034
+    },
+    {
+      "instanceId": "bg_1767091783902",
+      "type": "background",
+      "image": "/media/%5B01%5DVerros%20Office/%5BBG%5D%20Table%20night.jpg",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "draggable": false,
+      "name": "Background"
+    }
+  ],
+  "mood": "/media/%5B00%5DGlobal/%5BMOOD%5DGemini.jpg"
+}

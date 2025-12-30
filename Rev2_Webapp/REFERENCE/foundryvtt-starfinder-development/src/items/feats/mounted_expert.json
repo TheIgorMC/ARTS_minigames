@@ -1,0 +1,84 @@
+{
+  "_id": "ecYcDA2dh5qW2KOx",
+  "name": "Mounted Expert",
+  "type": "feat",
+  "img": "icons/environment/creatures/horse-tan.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>While mounted, you exhibit exceptional control over not just your creature companion but also yourself.</p>\n<p><strong>Prerequisites:</strong> Combat-Trained Mount, Survival 5 ranks.</p>\n<hr />\n<p><strong>Benefit:</strong> When you would be knocked prone while mounted, you still gain the prone condition, but you stay mounted. You can take the stand up action to lose the prone condition as normal. Also, while you are mounted and able to take actions, your mount gains a +2 insight bonus to KAC against combat maneuvers.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA3 pg. 140",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

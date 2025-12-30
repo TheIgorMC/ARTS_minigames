@@ -1,0 +1,189 @@
+{
+  "_id": "qds57tGImWIHk4JE",
+  "name": "Deterrence Scale, Amperometric",
+  "type": "shield",
+  "img": "systems/sfrpg/icons/default/energy-shield.svg",
+  "system": {
+    "ability": "str",
+    "acp": null,
+    "actionTarget": "eac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 39
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bonus": {
+      "aligned": 1,
+      "wielded": 1
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "upgrade"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 0,
+          "subtype": "armorUpgrade",
+          "weightProperty": "slots"
+        },
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 0,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "1d3 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": true,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        },
+        {
+          "name": "Reaction Damage",
+          "formula": "@item.level",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": true,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": false,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A deterrence scale is a small, light shell of chitin carried with one limb and maneuvered to intercept attacks against you. A limb wielding a deterrence scale can still hold another object and be used to reload weapons, but it cannot wield weapons or other shields.</p>\n<p>A deterrence scale also can be used to make melee attacks; it is an advanced melee weapon when used in this way, dealing 1d3 electricity damage. In addition, when you have the shield aligned against a specific foe within your reach and that foe attacks you with a melee attack, you can use your reaction to shock that foe, dealing electricity damage equal to the shield’s item level; the attacker can attempt a Reflex save (DC = 10 + half the shield’s item level + your Dexterity modifier) to reduce this damage by half.</p>\n<p>A deterrence scale has the powered and stun weapon special properties. An electroplax or amperometric deterrence shield has capacity 20 and usage 1, while a galvanic or voltaic deterrence shield has capacity 40 and usage 1. A deterrence scale expends 1 charge each time you attack with it or you use a reaction to shock an attacker.</p>"
+    },
+    "dex": null,
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 8,
+    "modifiers": [],
+    "price": 9400,
+    "proficient": false,
+    "properties": {
+      "nonlethal": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "reflex",
+      "dc": "10 + floor(@item.level / 2) + @abilities.dex.mod",
+      "descriptor": "half"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #29 pg. 50",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

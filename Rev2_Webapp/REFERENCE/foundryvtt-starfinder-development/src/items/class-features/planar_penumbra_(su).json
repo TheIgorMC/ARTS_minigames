@@ -1,0 +1,102 @@
+{
+  "_id": "85EVkmBBSnwR5717",
+  "name": "Planar Penumbra (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/graviton.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:graviton] Graviton Revelation</p>\n<p>You channel extraplanar energies that emulate a black hole’s crushing, draining power. As a move action, you cause a weapon you wield to deal cold damage instead of its usual damage type. (This doesn’t change whether the weapon targets EAC or KAC). The weapon ignores the cold resistance of chaotic outsiders and good outsiders, and it deals an additional 1d6 damage against such creatures. This effect lasts for 1 round or until you leave graviton mode. You can’t use this stellar revelation to enhance a weapon that has the @UUID[Compendium.sfrpg.equipment.Item.Do0w6So0C40HqhER]{Anarchic} or @UUID[Compendium.sfrpg.equipment.Item.5KsmBkidShbIetHD]{Holy} fusion.</p>\n<p>When you’re attuned or fully attuned, your weapon also gains your choice of the @UUID[Compendium.sfrpg.equipment.Item.Iep4sqgx3KuTe97f]{Axiomatic} or @UUID[Compendium.sfrpg.equipment.Item.21qnSrGH3lk8ivBI]{Unholy} fusion for the duration of the effect. This temporary fusion ignores item level requirements and doesn’t count toward the maximum level of fusions the weapon can have at once.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "f94350a7-494c-4ad6-af97-7611546b1977",
+        "name": "Planar Penumbra (Su)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-damage",
+        "enabled": false,
+        "limitTo": null,
+        "max": 6,
+        "modifier": "1d6",
+        "modifierType": "formula",
+        "notes": "The weapon ignores the cold resistance of chaotic outsiders and good outsiders, and it deals an additional 1d6 damage against such creatures.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "6th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "fort",
+      "dc": "10+floor(@classes.solarian.levels/2) + @abilities.cha.mod",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 45",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

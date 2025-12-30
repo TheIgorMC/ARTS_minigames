@@ -1,0 +1,127 @@
+{
+  "_id": "CWMEmFH1BVbXXVvU",
+  "name": "Force Matrix, Mk 3",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/default/vr-headset.svg",
+  "system": {
+    "type": "cybernetic",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": null
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<table style=\"width:131px\"><tbody><tr><th style=\"width:76px\">MODEL</th><th style=\"width:49px\">DR</th></tr><tr><td style=\"width:76px\">Mk 1</td><td style=\"width:49px\">3</td></tr><tr><td style=\"width:76px\">Mk 2</td><td style=\"width:49px\">6</td></tr><tr><td style=\"width:76px\">Mk 3</td><td style=\"width:49px\">10</td></tr></tbody></table><p>Your hand contains a matrix of energy-sensitive fibers that can shape a @UUID[Compendium.sfrpg.equipment.Item.Rb1wAWFquudLKIx7]{force field} armor upgrade (Core Rulebook 206) installed into armor you are wearing, focusing its strength in a particular direction. As a move action while your force field is active, you can designate an opponent you can see. Until the beginning of your next turn, your force field’s fast healing is halved, but against the designated opponent’s attacks, you increase your force field’s fortification percentage chance by 10% (maximum 100%) and gain DR/— based on the model of your force matrix. This benefit ends if you lose all the temporary Hit Points provided by your force field. The hand bearing the force matrix augmentation must be free to activate its abilities.</p>\n<p><em>Enable/Disable DR in the Modifiers tab.</em></p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 17,
+    "modifiers": [
+      {
+        "_id": "3128a908-f294-4186-98fe-5d1d5cd6df4d",
+        "name": "Force Matrix, Mk 3",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "damage-reduction",
+        "enabled": false,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "10",
+        "modifierType": "constant",
+        "notes": "Until the beginning of your next turn, your force field’s fast healing is halved, but against the designated opponent’s attacks, you increase your force field’s fortification percentage chance by 10% (maximum 100%) and gain DR/— based on the model of your force matrix. This benefit ends if you lose all the temporary Hit Points provided by your force field. The hand bearing the force matrix augmentation must be free to activate its abilities.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 278100,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "",
+    "system": "hand",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

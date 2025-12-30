@@ -1,0 +1,84 @@
+{
+  "_id": "Tal0kby35vyhC83i",
+  "name": "Sense Through (Su)",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-tendrils-web-purple.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The creature can sense through obstacles that would normally block the ability to perceive what is beyond them. The specific sense this ability applies to is indicated in parentheses after the sense through entry in the creature’s statistics. If the ability allows the creature to sense through only a specific material, that material is listed after the specific sense. For more information on sense through, see @UUID[Compendium.sfrpg.rules.JournalEntry.rX5rK6UWAIOeeipl.JournalEntryPage.p0o9tmWtKZ0qy8DI#sense-through]{page 264 of the Starfinder Core Rulebook}.</p>\n<p><em>Format</em>:<strong>Senses</strong> sense through (vision).</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "universalCreatureRule",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA1 pg. 156",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

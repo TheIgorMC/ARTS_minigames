@@ -1,0 +1,81 @@
+{
+  "_id": "KaqNfSwwuzofl4PN",
+  "name": "Embri Mask (Fleshbound Mask)",
+  "type": "goods",
+  "img": "icons/equipment/head/mask-carved-gargoyle-grey.webp",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "0",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Some embri’s flesh grows up and around their masks. For such embri, being unmasked exposes raw nerves and inflicts constant painful distraction. While such an embri has its mask removed, it has a –2 penalty to ability checks and skill checks and must roll all Reflex saving throws twice and take the lower result.</p>\n<p><em>This item represents the Embri's @UUID[Compendium.sfrpg.racial-features.Item.KaqNfSwwuzofl4PN]{Embri Mask (Fleshbound Mask)} feature. Equipping this item will reverse the feature's penalties in it's Modifier tab. Though the feature is not limited to this mask item alone.</em></p>"
+    },
+    "equippable": true,
+    "equipped": false,
+    "identified": true,
+    "isEquipment": false,
+    "level": 1,
+    "modifiers": [
+      {
+        "_id": "3c25266f-c6a5-4eb1-92c4-2fa9c5a52fed",
+        "name": "Fleshbound Mask (Ex)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-skills",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Some embri’s flesh grows up and around their masks. For such embri, being unmasked exposes raw nerves and inflicts constant painful distraction. While such an embri has its mask removed, it has a –2 penalty to ability checks and skill checks and must roll all Reflex saving throws twice and take the lower result.",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "dbf10435-0d63-4c67-a14e-01a079ee6a1c",
+        "name": "Fleshbound Mask (Ex)",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "ability-checks",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "Some embri’s flesh grows up and around their masks. For such embri, being unmasked exposes raw nerves and inflicts constant painful distraction. While such an embri has its mask removed, it has a –2 penalty to ability checks and skill checks and must roll all Reflex saving throws twice and take the lower result.",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 0,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "NS pg. 128"
+  }
+}

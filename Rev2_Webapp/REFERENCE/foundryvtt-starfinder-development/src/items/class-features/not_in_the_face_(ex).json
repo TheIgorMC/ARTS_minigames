@@ -1,0 +1,87 @@
+{
+  "_id": "YPMVnilamc13U679",
+  "name": "Not in the Face (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/not_in_the_face.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "save",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>@Icon[type:sense-dependent]</p>\n<p>As a move action, you can choose one enemy within 60 feet. That enemy must succeed at a Will save or take a –4 penalty to all attacks it makes against you until the end of your next turn.</p>\n<p>At 6th level, you can spend 1 Resolve Point to make the enemy take the penalty with no saving throw allowed.</p>\n<p>@UUID[Compendium.sfrpg.effects.Item.Ans8smPl0HJXR85o]{Effect: Not in the Face (Ex)}</p>"
+    },
+    "descriptors": {
+      "sense-dependent": true
+    },
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "60"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "1st Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "will",
+      "dc": "10 + floor(@classes.envoy.levels / 2) + @abilities.cha.mod",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 62",
+    "target": {
+      "value": "One Enemy"
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_id": "TQ2bp29Gdbvhru6r",
+  "name": "Sustained Determination (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/sustained_determination.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>@Icon[type:language-dependent] @Icon[type:mind-affecting] @Icon[type:sense-dependent]</p>\n<p>As a move action, you can spend 2 Resolve Points to grant an ally within 60 feet 1 Resolve Point that he can spend to empower one of his abilities, even if he has spent all of his own Resolve Points. The ally must spend the Resolve Point before the start of your next turn; if he does not do so, he loses the Resolve Point and you still lose the Resolve Points you spent. You can’t grant the same ally the benefits of this ability again until both you and your ally have recovered your Resolve Points after an 8-hour rest or its equivalent.</p>"
+    },
+    "descriptors": {
+      "language-dependent": true,
+      "mind-affecting": true,
+      "sense-dependent": true
+    },
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "60"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "8th Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 64",
+    "target": {
+      "value": "Ally"
+    },
+    "uses": {
+      "max": "1",
+      "per": "lr",
+      "value": 1
+    }
+  }
+}

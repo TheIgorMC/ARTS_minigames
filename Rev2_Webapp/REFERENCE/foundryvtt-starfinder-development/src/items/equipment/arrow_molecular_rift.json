@@ -1,0 +1,64 @@
+{
+  "_id": "A7Ix9BdewFpKOmpS",
+  "name": "Arrow, molecular rift",
+  "type": "goods",
+  "img": "icons/weapons/ammunition/arrows-war-red.webp",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h2>Arrows</h2>\n<p>For those who want to deal greater damage with a bow but don’t want the noise and collateral damage of grenade arrows, conventional arrows are available with technological improvements to deal additional damage, including diamond-edge and molecular rift arrows. When used as ammunition for weapons other than the 1st-level bow (such as crossbolters), these arrows don’t increase damage, but diamond-edge arrows gain the wound critical hit effect and molecular rift arrows gain the severe wound critical hit effect. If the weapon already has a critical hit effect, when you score a critical hit, you can apply either the weapon’s normal critical hit effect or the effect granted by the arrow.</p>"
+    },
+    "equippable": false,
+    "equipped": false,
+    "identified": true,
+    "isEquipment": false,
+    "level": 18,
+    "modifiers": [
+      {
+        "_id": "e57a6858-707f-4107-be8b-f33fabd128bf",
+        "name": "Arrow, Molecular-rift",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "weapon-property-damage",
+        "enabled": true,
+        "limitTo": null,
+        "max": 60,
+        "modifier": "+10d6",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "amm"
+      }
+    ],
+    "price": 53700,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 55"
+  }
+}

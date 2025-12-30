@@ -1,0 +1,119 @@
+{
+  "_id": "Ascxt6wWMDv5ieDY",
+  "name": "Oracular Gift",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/oracular_gift.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You have a particular knack for predicting the future.</p>\n<p><strong>Prerequisites</strong>: Ability to cast&nbsp;augury.</p>\n<hr />\n<p><strong>Benefit</strong>:You gain a +1 bonus to Perception checks to act in the surprise round, as well as to initiative checks. Additionally, you can cast augury once per day without spending a Resolve Point to do so, and add your caster level to the percentage chance of the spell giving you a meaningful reply.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": false,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "58d16cfe-4d60-4af6-949d-18040681d023",
+        "name": "Oracular Gift",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "You gain a bonus to Perception checks to act in the surprise round.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "per"
+      },
+      {
+        "_id": "53312f81-7218-48fa-88c8-b976abb2cac3",
+        "name": "Oracular Gift",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "initiative",
+        "enabled": true,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

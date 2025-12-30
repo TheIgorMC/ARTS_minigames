@@ -1,0 +1,153 @@
+{
+  "_id": "aaqwi5V8sLRiT41L",
+  "name": "Shantak whistle",
+  "type": "magic",
+  "img": "icons/tools/instruments/pipe-flute-yellow.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Resembling the skull of a shantak but carved from its wing bone, a shantak whistle is a recorder-like instrument with several decorative holes drilled in its length—though only one tone may be produced by blowing into this whistle, and only shantaks can hear the sound. All others hear nothing but the soft rush of breath sweeping through the instrument. When you play a shantak whistle for 1 minute, its song reaches out to the stars, and within 1d6 hours, a single shantak arrives at your location.&nbsp;</p>\n<p>Once it arrives, a shantak is under no magical compulsion to serve you, but you gain a +10 circumstance bonus to skill checks to secure the shantak’s service as a mount (at the GM’s discretion, usually requiring @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.1tzIBDaDAO4hmX5C]{Diplomacy} or @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.6fqgiVqlA7u9jS4i]{Intimidate}) for one Large or smaller creature. Even a shantak compelled to serve as a mount usually refuses to participate in battle and is likely to cooperate only long enough for a one-way trip using its spaceflight ability.&nbsp;</p>\n<p>A shantak whistle can be used only once every 2 weeks.</p>\n<p>@UUID[Compendium.sfrpg.alien-archives.Item.rd0AtjaMqZ8RI03A]{Shantak}</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 13,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "7ce8adfa-85a5-417f-badf-e282ef0a214b",
+        "name": "Shantak whistle",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "10",
+        "modifierType": "formula",
+        "notes": "Once a shantak arrives after using the Shantak whistle, a shantak is under no magical compulsion to serve you, but you gain a +10 circumstance bonus to skill checks to secure the shantak’s service as a mount (at the GM’s discretion, usually requiring  Diplomacy or  Intimidate) for one Large or smaller creature.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "dip"
+      },
+      {
+        "_id": "eb2b8e82-b352-4f3c-89e3-a465b9eac2b2",
+        "name": "Shantak whistle",
+        "type": "circumstance",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "10",
+        "modifierType": "formula",
+        "notes": "Once a shantak arrives after using the Shantak whistle, a shantak is under no magical compulsion to serve you, but you gain a +10 circumstance bonus to skill checks to secure the shantak’s service as a mount (at the GM’s discretion, usually requiring  Diplomacy or  Intimidate) for one Large or smaller creature.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "int"
+      }
+    ],
+    "price": 49000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA2, p. 111",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "_id": "d5fsrdKiBbJmC0X3",
+  "name": "Banishing blade, Mk 1",
+  "type": "weapon",
+  "img": "icons/weapons/swords/sword-gold-holy.webp",
+  "system": {
+    "ability": "str",
+    "actionTarget": "kac",
+    "actionType": "mwak",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 39
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "slot",
+          "acceptsType": [
+            "fusion"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 8,
+          "subtype": "fusion",
+          "weightProperty": "level"
+        }
+      ]
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [
+        {
+          "name": "",
+          "formula": "2d8 + @abilities.str.mod",
+          "group": null,
+          "isPrimarySection": false,
+          "types": {
+            "acid": false,
+            "bludgeoning": false,
+            "cold": false,
+            "electricity": false,
+            "fire": false,
+            "healing": false,
+            "nonlethal": false,
+            "piercing": false,
+            "radiation": false,
+            "slashing": true,
+            "sonic": false
+          }
+        }
+      ],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Banishing bladesare magic weapons capable of forcing extraplanar foes back to their native plane. These weapons were once used primarily by the Church of Iomedae in its crusades against fiendish incursions, but the Drift Crisis brought growing concerns that other extraplanar creatures might threaten the Material Plane, and production of these weapons accelerated. Allbanishing bladesfunction as if they had the @UUID[Compendium.sfrpg.equipment.Item.5KsmBkidShbIetHD]{Holy}fusion in addition to the rest of their abilities. This counts against how many total fusions abanishing bladecan have.</p>\n<p>If you score a critical hit against a creature with the extraplanar subtype, that creature must succeed at Will save (DC = 10 + item level + your key ability score modifier) or be sent back to its home plane, as the spelldismissal, with the following exceptions: if the creature also has the evil subtype, thebanishing bladecounts as an object the subject opposes, granting a +2 to the save DC and a +1 on caster-level checks to overcome the subject’s spell resistance, if any. If you must make a caster-level check to overcome a target’s spell resistance to use this effect, use thebanishing blade’s item level as your caster level. Formk 1andmk 2 banishing blades, the banished creature automatically returns in the same spot from where it was banished after 1 minute has elapsed.</p>\n<p><strong>Mk 1 (Level 8):</strong> Functions as a @UUID[Compendium.sfrpg.equipment.Item.9N81Lk3nY5AvVhyN]{Longsword, sintered}.</p>\n<p><em>Apply Holy fusion to weapon after placing in Inventory.</em></p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 8,
+    "modifiers": [],
+    "price": 10500,
+    "proficient": false,
+    "properties": {
+      "analog": {
+        "extension": "",
+        "value": true
+      },
+      "one": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "DC pg. 54",
+    "special": "",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    },
+    "weaponCategory": "uncategorized",
+    "weaponType": "advancedM"
+  }
+}

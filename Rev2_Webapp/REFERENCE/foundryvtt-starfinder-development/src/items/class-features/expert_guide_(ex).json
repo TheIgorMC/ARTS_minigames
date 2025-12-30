@@ -1,0 +1,87 @@
+{
+  "_id": "qM53pOHci1ETsYWo",
+  "name": "Expert Guide (Ex)",
+  "type": "feat",
+  "img": "icons/environment/wilderness/terrain-river-road-gray.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "skill",
+    "activation": {
+      "type": "move",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.hIhgdXnqGHBm0A64]{Envoy Improvisation}</p>\n<p>@Icon[type:language-dependent] @Icon[type:sense-dependent]</p>\n<p>As a move action, you can attempt a DC 15 Survival check to identify a clear path. If you succeed, select one 5-foot square of @UUID[Compendium.sfrpg.rules.JournalEntry.2mmspP39EOiog9zD.JournalEntryPage.OpSxLHltqqCYJOfE#difficult-terrain]{difficult terrain} that you can perceive, plus one additional 5-foot square for every 5 points by which the result of your check exceeds the DC. Until the end of your next turn, you and your allies can move through the indicated spaces as though they weren’t difficult terrain.</p>"
+    },
+    "descriptors": {
+      "language-dependent": true,
+      "sense-dependent": true
+    },
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "none"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level (Envoy)",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "sur",
+      "dc": "15",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GEM pg. 16",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

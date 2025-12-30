@@ -1,0 +1,127 @@
+{
+  "_id": "Sm1cAeWmi94bN3iJ",
+  "name": "Vampire voice, Mk 2",
+  "type": "augmentation",
+  "img": "icons/magic/control/fear-fright-mask-yellow.webp",
+  "system": {
+    "type": "necrograft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A vampire voice necrograft attaches to your vocal cords, granting a supernaturally threatening tone. While most recipients of vampire voices are convinced their necrografts came from vampire spawn, creators of these undead augmentations never promise any such lofty origins.</p>\n<p>A vampire voice grants an enhancement bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.6fqgiVqlA7u9jS4i]{Intimidate} checks equal to the necrograft’s mark. You can also use Intimidate to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.6fqgiVqlA7u9jS4i#bully]{bully} a creature without sharing a language. If you succeed at the check, you can convey a single simple request along with the bullying (such as “go away” or “don’t hurt him”), though specific or complex requests can’t be made without sharing a language. Once a creature has been the target of a bullying attempt by a recipient with a vampire voice, it can’t be targeted by this ability from the same recipient again for 24 hours.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "modifiers": [
+      {
+        "_id": "2ef4d0ab-89bc-445c-9f2e-509d184c7f68",
+        "name": "Vampire voice",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "A vampire voice grants an enhancement bonus to Intimidate checks equal to the necrograft’s mark.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "int"
+      }
+    ],
+    "price": 4000,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 97",
+    "system": "throat",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

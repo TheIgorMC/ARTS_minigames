@@ -1,0 +1,46 @@
+{
+  "_id": "xVqn1Sh9Fv51SzO6",
+  "name": "Wake-up Patch",
+  "type": "goods",
+  "img": "systems/sfrpg/icons/equipment/augmentations/gill-sheath.webp",
+  "system": {
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This patch delivers a cocktail of stimulants when applied to an appendage or torso as a standard action. After 1 minute, the person who received the patch gains a +2 circumstance bonus to saving throws against effects that cause the @UUID[Compendium.sfrpg.conditions.Item.3iTdt2NRgIyrychR]{Asleep} condition and to Fortitude saves from sleep deprivation for 24 hours. If you use three wake-up patches in a week, you immediately gain the @UUID[Compendium.sfrpg.conditions.Item.33ynSbmexuxC3cAQ]{Exhausted} condition when the effects of the third patch wear off.</p>"
+    },
+    "equippable": false,
+    "equipped": false,
+    "identified": true,
+    "isEquipment": false,
+    "level": 2,
+    "modifiers": [],
+    "price": 100,
+    "proficient": false,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AP #19 pg. 45"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "_id": "GoXXOPGD32mckcuD",
+  "name": "Melee Striker (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/melee_striker.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.wFTC0sGqdpnZUib4]{Gear Boost}</p>\n<p>Add an additional bonus equal to half your Strength bonus to damage rolls with melee weapons.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "bce3a77e-0453-4810-b7f8-54e9c389f286",
+        "name": "Melee Striker (Ex) - Melee Damage Rolls",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-damage",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "floor(@abilities.str.mod/2)",
+        "modifierType": "constant",
+        "notes": "Add an additional bonus equal to half your Strength bonus to damage rolls with melee weapons.",
+        "source": "Melee Striker (Ex)",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Gear Boost",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

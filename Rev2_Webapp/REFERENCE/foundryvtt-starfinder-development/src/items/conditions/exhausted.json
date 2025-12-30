@@ -1,0 +1,175 @@
+{
+  "_id": "33ynSbmexuxC3cAQ",
+  "name": "Exhausted",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/exhausted.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You move at half speed, you can’t run or charge, and you take a –3 penalty to your Armor Class, attack rolls, melee damage rolls, thrown weapon damage rolls that add Strength to damage, Reflex saving throws, initiative checks, and Strength- and Dexterity-based skill and ability checks.</p>\n<p>The amount of bulk you can carry without becoming @UUID[Compendium.sfrpg.conditions.Item.OwZA6flUQPH0jPA0]{Encumbered} is reduced by 3.</p>\n<p>After 1 hour of complete rest, you instead become @UUID[Compendium.sfrpg.conditions.Item.JGFn4MrDZ6X5vrzU]{Fatigued}.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "638286eb-b4c2-4411-9f7b-96cc2025f5b5",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ac",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "both"
+      },
+      {
+        "_id": "b2b4ed27-5974-4270-aaca-fef4ec801837",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "all-attacks",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "bd34f7a6-8673-428f-b49f-af336e0a2052",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "melee-damage",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "607086ba-8695-4b80-8437-6f1fb78d96f3",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "save",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "reflex"
+      },
+      {
+        "_id": "8b93dfb8-00ca-413f-aabe-e3910172107d",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "initiative",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "40942df7-61dc-4a14-b4f3-923f9ab62cde",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "str"
+      },
+      {
+        "_id": "373bca62-dbe3-42b8-a4aa-b729ad881093",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "ability-skills",
+        "enabled": true,
+        "modifier": -3,
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "dex"
+      },
+      {
+        "_id": "1f14d6d3-59ec-4c61-961f-a9dce3fc5e55",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "bulk",
+        "enabled": true,
+        "max": -3,
+        "modifier": "-3",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Exhausted",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "25e820a8-ef29-49ff-a455-079d646954c5",
+        "name": "Exhausted",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "multiply-all-speeds",
+        "enabled": true,
+        "max": 0.5,
+        "modifier": "0.5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "exhausted",
+    "source": "CRB.276",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

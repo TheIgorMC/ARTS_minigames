@@ -1,0 +1,148 @@
+{
+  "_id": "V2u7uYaFlbms42D9",
+  "name": "Filtered rebreather",
+  "type": "upgrade",
+  "img": "systems/sfrpg/icons/classes/ever_vigilant.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "allowedArmorType": "any",
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "12"
+      },
+      "hp": {
+        "max": "11",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": null,
+      "value": null
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This upgraded rebreather supplements your armor’s ability to provide fresh air and filters out common toxins and poisonous vapors. Armor with this upgrade can provide fresh air for a number of weeks equal to its level. You also gain acid resistance 5 and a +2 bonus to saving throws against @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.ZaS9H4rwaFIQTUBC]{Poison} and @UUID[Compendium.sfrpg.rules.JaRMioj4isNp7r1P.JournalEntryPage.gBhZDjh30JEyh7DY]{disease}.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 6,
+    "modifiers": [
+      {
+        "_id": "d9b2d386-63d6-4d3b-85f4-4cdc035f6f60",
+        "name": "Filtered Rebreather",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "You also gain acid resistance 5 and a +2 bonus to saving throws against poison and disease.",
+        "source": "Armor Upgrade",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "2eaf94dc-3f92-4f99-a19c-ffc3c373895c",
+        "name": "Filtered Rebreather",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Armor Upgrade",
+        "subtab": "misc",
+        "valueAffected": "acid"
+      }
+    ],
+    "price": 4600,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slots": 1,
+    "slug": "",
+    "source": "CRB pg. 205",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": null
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

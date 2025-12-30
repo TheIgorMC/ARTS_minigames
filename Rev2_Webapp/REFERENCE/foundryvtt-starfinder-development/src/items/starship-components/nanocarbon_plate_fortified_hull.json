@@ -1,0 +1,21 @@
+{
+  "_id": "VavnQgS9G7L6Comi",
+  "name": "Nanocarbon plate fortified hull",
+  "type": "starshipFortifiedHull",
+  "img": "systems/sfrpg/icons/default/steel-door.svg",
+  "system": {
+    "cost": 6,
+    "costMultipliedBySize": true,
+    "criticalThresholdBonus": 3,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "SOM pg. 21"
+  }
+}

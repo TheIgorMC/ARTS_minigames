@@ -1,0 +1,136 @@
+{
+  "_id": "7XSXcquzf1mID71x",
+  "name": "Shadow orb",
+  "type": "magic",
+  "img": "icons/commodities/gems/pearl-swirl-teal.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 15
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>While you hold this small orb of black glass, it puts forth tendrils of darkness that capture nearby light. The light level within a 20-foot radius of you decreases by one step. Lasers fired at you are bent toward the orb. This gives laser attacks against you a +1 circumstance bonus to hit, but also grants you fire resistance 5 against laser attacks.</p>\n<p><em>Enable/Disable fire resistance in the Modifiers tab, when recieving damage from a laser attack.</em></p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 10,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "79f4b61f-d343-47c3-bff3-6de578be7a89",
+        "name": "Shadow orb",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "energy-resistance",
+        "enabled": false,
+        "limitTo": null,
+        "max": 5,
+        "modifier": "5",
+        "modifierType": "constant",
+        "notes": "Shadow orb",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "fire"
+      }
+    ],
+    "price": 2850,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB, p. 222",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

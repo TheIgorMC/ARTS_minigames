@@ -1,0 +1,24 @@
+{
+  "_id": "g5Xky3Bc9VHbPCfb",
+  "name": "Mk 6 armor",
+  "type": "starshipArmor",
+  "img": "systems/sfrpg/icons/default/metal-scales.svg",
+  "system": {
+    "armorBonus": 6,
+    "cost": 9,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "CRB pg. 297",
+    "specialMaterials": {},
+    "targetLockPenalty": 0,
+    "turnDistancePenalty": 0
+  }
+}

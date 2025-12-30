@@ -21,6 +21,21 @@
       "MAX_HP": 24,
       "RP": 5,
       "MAX_RP": 5
-    }
+    },
+    "roles": [
+      "pilot",
+      "hacker"
+    ]
+  },
+  {
+    "id": "371922",
+    "name": "Spark",
+    "username": "spark",
+    "password": "123",
+    "class": "Mystic",
+    "roles": [
+      "scientist",
+      "mystic"
+    ]
   }
 ]

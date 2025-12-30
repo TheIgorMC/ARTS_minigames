@@ -1,0 +1,24 @@
+{
+  "_id": "4DoRSgcroo2F9dsF",
+  "name": "Signal Major",
+  "type": "starshipDriftEngine",
+  "img": "systems/sfrpg/icons/default/star-gate.svg",
+  "system": {
+    "cost": 10,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "engineRating": 3,
+    "isPowered": false,
+    "maxSize": "large",
+    "modifiers": [],
+    "pcu": 150,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "_id": "LHs75jnX6TjBfuDC",
+  "name": "Accurate",
+  "type": "fusion",
+  "img": "systems/sfrpg/icons/equipment/weapons/weapon-fusions-5.webp",
+  "system": {
+    "bulk": "-",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>The <em>accurate</em> fusion bestows exceptional balance and handling on a weapon. When you take a move action to aim a weapon with this fusion at a specific target, you gain a +1 bonus to your next attack roll with that weapon provided neither you nor your target has moved since you aimed. You also gain this bonus if you take a move action to aim for other purposes, such as aiming a weapon with the sniper special property. Only ranged weapons can benefit from this fusion.</p>"
+    },
+    "level": 5,
+    "modifiers": [
+      {
+        "_id": "69466788-6e87-4e9f-a85b-fd5479ad94ca",
+        "name": "Accurate weapon fusion",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "all-attacks",
+        "enabled": false,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "formula",
+        "notes": "When you take a move action to aim a weapon with this fusion at a specific target, you gain a +1 bonus to your next attack roll with that weapon provided neither you nor your target has moved since you aimed.",
+        "source": "Weapon Fusion",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 0,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 62"
+  }
+}

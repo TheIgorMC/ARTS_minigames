@@ -1,0 +1,77 @@
+{
+  "_id": "D8JvCEmOiWKe2UDx",
+  "name": "Deafened",
+  "type": "effect",
+  "img": "systems/sfrpg/icons/conditions/deafened.webp",
+  "system": {
+    "type": "condition",
+    "abilityMods": {
+      "parts": []
+    },
+    "activeDuration": {
+      "activationTime": 0,
+      "endsOn": "onTurnStart",
+      "expiryInit": 0,
+      "expiryMode": {
+        "type": "turn",
+        "turn": "parent"
+      },
+      "unit": "permanent",
+      "value": 0
+    },
+    "context": {},
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": []
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.rules.Item.0yJjfyvWg5pDLcVR]{Conditions}</p>\n<hr />\n<p>You can’t hear.</p>\n<p>You take a –4 penalty to initiative checks and opposed Perception checks, and you automatically fail Perception checks based on sound.</p>\n<p>Characters who remain @UUID[Compendium.sfrpg.conditions.Item.D8JvCEmOiWKe2UDx]{Deafened} for a long time grow accustomed to these drawbacks and can overcome some of them.</p>"
+    },
+    "enabled": true,
+    "modifiers": [
+      {
+        "_id": "b325f976-e17f-4ade-a640-2e736fd2d350",
+        "name": "Perception (Opposed)",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "skill",
+        "enabled": true,
+        "max": -4,
+        "modifier": "-4",
+        "modifierType": "formula",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": "per"
+      },
+      {
+        "_id": "b08bd1bb-bb45-44d0-811c-ab6dddfe843c",
+        "name": "Initiative",
+        "type": "untyped",
+        "condition": "",
+        "effectType": "initiative",
+        "enabled": true,
+        "max": -4,
+        "modifier": "-4",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "Condition",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "requirements": "Condition",
+    "showOnToken": true,
+    "slug": "deafened",
+    "source": "CRB.275",
+    "sourceActorId": null,
+    "turnEvents": []
+  }
+}

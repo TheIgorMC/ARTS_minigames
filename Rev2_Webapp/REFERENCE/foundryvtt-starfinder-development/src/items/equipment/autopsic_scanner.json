@@ -1,0 +1,238 @@
+{
+  "_id": "EkEATPfvmR5z5vkI",
+  "name": "Autopsic scanner",
+  "type": "hybrid",
+  "img": "systems/sfrpg/icons/default/energise.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 12
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Originally created for use by law-enforcement field agents, this scanner comes in a compact metal case that unfolds to reveal a small monitor and two attached sets of color-coded medical electrodes. Neat text etched directly on the case includes basic instructions, making it usable with little training.</p>\n<p>As a full action, you can attach anautopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2insight bonus to perform such checks.</p>\n<p>While the electrodes are affixed to a corpse with an intact brain (or equivalent structure), you can use the scanner to analyze the brain, attempting to retrieve one piece of information the creature knew in its last 10 minutes of life. This can be a still image of one moment the creature experienced, though details the creature didn’t consider relevant at the time are less distinct. Alternatively, the scanner can attempt to ask the corpse one question about its final moments, asspeak with dead; although the effect grants no saving throw, there’s only a 20% chance the corpse’s response transliterated to the screen is intelligible. Either method of interrogation subtly changes the brain’s chemistry, making it immune to subsequent uses of the device</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 7,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "c2c9753d-d914-4e55-9181-ca908b3e0e67",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "eng"
+      },
+      {
+        "_id": "c94dd879-952b-4c86-8e4b-4b048371f0c0",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "lsc"
+      },
+      {
+        "_id": "3b420045-424a-4452-8fd4-f3feddd08868",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "med"
+      },
+      {
+        "_id": "9ba76fa8-fabf-4a1c-ac90-f589a1796b8b",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "mys"
+      },
+      {
+        "_id": "20fc9783-d21d-4b3e-9e80-013dd3fb3c1d",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "pro"
+      },
+      {
+        "_id": "524cca17-4bbf-4c18-80d8-2affb0e407bf",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "phs"
+      },
+      {
+        "_id": "2bd8a9d2-20fb-4aa6-bcbd-544431a2792a",
+        "name": "Autopsic scanner",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "formula",
+        "notes": "As a full action, you can attach an autopsic scanner’s electrodes to a corpse, causing an outline of its body to display on the device’s screen, marking major injuries. While using the device in this way, you can attempt checks to determine the cause of a creature’s death even if untrained, and you gain a +2 insight bonus to perform such checks.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "sur"
+      }
+    ],
+    "price": 6300,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GM pg. 44",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

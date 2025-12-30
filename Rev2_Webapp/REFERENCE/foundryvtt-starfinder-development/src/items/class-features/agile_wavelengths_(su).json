@@ -1,0 +1,102 @@
+{
+  "_id": "urPxYZYq1gK8RtL5",
+  "name": "Agile Wavelengths (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/images/cup/gameplay/graviton.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.G7p2YIGFTAU6uGjL]{Stellar Revelation}</p>\n<p>@Icon[type:graviton] Graviton Revelation</p>\n<p>You have developed a technique to conduct maneuvers on the battlefield at range with your solar flare. You can attempt combat maneuvers as a ranged attack instead of a melee attack, with a range of 30 feet. Any weapon special properties your solar flare has that would affect certain combat maneuvers apply as normal. While attuned or fully attuned, you gain a +2 insight bonus to combat maneuvers attempted at range using this stellar revelation. You must have a solar flare to select this stellar revelation.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [
+      {
+        "_id": "ef003263-fd3a-46e2-a1b3-1c19c997b6f4",
+        "name": "Agile Wavelengths (Su)",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "ranged-attacks",
+        "enabled": true,
+        "limitTo": null,
+        "max": 0,
+        "modifier": "(ternary(lt(@resources.solarian.stellarMode.value, 0), 2, 0))",
+        "modifierType": "formula",
+        "notes": "While attuned or fully attuned, you gain a +2 insight bonus to combat maneuvers attempted at range using this stellar revelation.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "2nd Level",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Solarian",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

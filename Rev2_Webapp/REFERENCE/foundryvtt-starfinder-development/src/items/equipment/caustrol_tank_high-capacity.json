@@ -1,0 +1,39 @@
+{
+  "_id": "hn07E52qP8uuRKRX",
+  "name": "Caustrol Tank, High-Capacity",
+  "type": "ammunition",
+  "img": "systems/sfrpg/icons/equipment/weapons/petrol-tank.webp",
+  "system": {
+    "ammunitionType": "caustrol",
+    "attributes": {
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "1",
+    "capacity": {
+      "max": 40,
+      "value": 40
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Acid lancers use a special synthetic acid called caustrol for ammunition, which has the same price and comes in the same size containers as petrol.</p>\n<p><strong>Capacity: 4</strong> 0</p>"
+    },
+    "identified": true,
+    "level": 3,
+    "modifiers": [],
+    "price": 280,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AA1 pg. 109",
+    "specialMaterials": {},
+    "useCapacity": true
+  }
+}

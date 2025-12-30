@@ -1,0 +1,96 @@
+{
+  "_id": "cfFqVYrRTFvMLFek",
+  "name": "Akashic Investigation",
+  "type": "spell",
+  "img": "systems/sfrpg/icons/classes/akashic_knownledge.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "min",
+      "condition": "",
+      "cost": 1
+    },
+    "allowedClasses": {
+      "myst": true,
+      "precog": true,
+      "tech": true,
+      "wysh": false
+    },
+    "area": {
+      "effect": "emanation",
+      "shapable": false,
+      "shape": "sphere",
+      "units": "ft",
+      "value": "20"
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "concentration": false,
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You sift through the Akashic Record to view a shadow of the past day’s events that happened in the spell’s area. You overlay these events at the location that they occurred, staging a blurred reenactment of events that took place over the last 24 hours. This reenactment presents only a shadow of the original events, with the creatures appearing as shadows that make indecipherable noises. You can make out the general actions, positions, and sizes of creatures, identify generic noises, and determine the mood and tone of conversation. There isn’t enough detail to identify creatures in this reenactment by anything more specific than creature type, nor to determine anything spoken. You have the ability to fast forward, rewind, move in slow motion, and pause the events to get a better view, at any speed desired.</p>"
+    },
+    "descriptors": {},
+    "dismissible": true,
+    "duration": {
+      "units": "hour",
+      "value": "1"
+    },
+    "formula": "",
+    "isActive": false,
+    "isVariableLevel": false,
+    "level": 6,
+    "materials": {
+      "consumed": false,
+      "cost": 0,
+      "supply": 0,
+      "value": ""
+    },
+    "modifiers": [],
+    "preparation": {
+      "mode": "",
+      "prepared": false
+    },
+    "properties": {},
+    "range": {
+      "units": "close"
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "school": "div",
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "GM pg. 67",
+    "sr": false,
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

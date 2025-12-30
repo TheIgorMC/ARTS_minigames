@@ -1,0 +1,99 @@
+{
+  "_id": "WdbEppnQ02MClumA",
+  "name": "Counteractant, Tier 2",
+  "type": "consumable",
+  "img": "systems/sfrpg/icons/equipment/goods/antibiotic-tier-2.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 10
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "medicne",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h1>Counteractant</h1>\n<p>This substance boosts your immune system. If you take or are injected with a counteractant, you gain a bonus equal to the medicinal’s tier to saving throws to end @UUID[Compendium.sfrpg.rules.Item.JaRMioj4isNp7r1P]{Afflictions}, and a successful saving throw counts as a number of consecutive saving throws equal to the medicinal’s tier. These benefits last a number of days equal to the medicinal’s tier.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 5,
+    "modifiers": [],
+    "price": 3000,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "COM pg. 127",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

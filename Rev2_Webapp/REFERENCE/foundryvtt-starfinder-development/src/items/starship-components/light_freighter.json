@@ -1,0 +1,67 @@
+{
+  "_id": "ck0QQw1vY8938PMZ",
+  "name": "Light Freighter",
+  "type": "starshipFrame",
+  "img": "systems/sfrpg/icons/default/hexagonal-nut.svg",
+  "system": {
+    "cost": 10,
+    "crew": {
+      "maximum": 6,
+      "minimum": 1
+    },
+    "damageThreshold": {
+      "base": 0
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "expansionBays": 3,
+    "hitpoints": {
+      "base": 40,
+      "increment": 10
+    },
+    "isPowered": true,
+    "maneuverability": "good",
+    "modifiers": [],
+    "pcu": null,
+    "size": "small",
+    "slug": "",
+    "source": "CRB pg. 295",
+    "weaponMounts": {
+      "aft": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      },
+      "forward": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 2,
+        "spinalSlots": 0
+      },
+      "port": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "starboard": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 1,
+        "spinalSlots": 0
+      },
+      "turret": {
+        "capitalSlots": 0,
+        "heavySlots": 0,
+        "lightSlots": 0,
+        "spinalSlots": 0
+      }
+    }
+  }
+}

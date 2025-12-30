@@ -1,0 +1,169 @@
+{
+  "_id": "GZyGQ2R5hVh5Kzgs",
+  "name": "Emotion Regulator, Basic",
+  "type": "technological",
+  "img": "icons/equipment/neck/necklace-carved-stone.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This small device is often worn strapped to the back of the neck or attached to a helmet. When activated, an emotion regulator sends out regular neurological pulses, reigning in extreme emotions.</p>\n<p>A basic emotion regulator grants you a +2 insight bonus to saves against emotion and fear effects, but your dulled reactions to danger impart a –2 penalty to your initiative checks and Reflex saving throws.</p>\n<p><strong>Capacity&nbsp;</strong> 20;&nbsp;<strong>Usage&nbsp;</strong> 1/10 minutes</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": false,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 2,
+    "modifiers": [
+      {
+        "_id": "2b61eb4d-4dd4-400a-9a36-8fb508438e3f",
+        "name": "vs emotion, fear, mind-affecting, pain effects",
+        "type": "insight",
+        "condition": "",
+        "damage": null,
+        "effectType": "saves",
+        "enabled": false,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "+2",
+        "modifierType": "formula",
+        "notes": "A basic emotion regulator grants you a +2 insight bonus to saves against emotion and fear effects, but your dulled reactions to danger impart a –2 penalty to your initiative checks and Reflex saving throws.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "68132c1b-311a-4fa7-b30f-ce6b6a9dee55",
+        "name": "dulled reaction to danger",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "initiative",
+        "enabled": true,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      },
+      {
+        "_id": "dbf3b436-d794-401e-8ee2-856a0da53b15",
+        "name": "dulled reaction to danger",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "save",
+        "enabled": true,
+        "limitTo": null,
+        "max": -2,
+        "modifier": "-2",
+        "modifierType": "constant",
+        "notes": "",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": "reflex"
+      }
+    ],
+    "price": 800,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 103",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

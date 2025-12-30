@@ -1,0 +1,84 @@
+{
+  "_id": "YSGQZ5lvbWbMgHli",
+  "name": "Instant Crater (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/instant_crater.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "Wielding a ranged weapon that has the explode weapon special property.",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can calculate the angle and timing of your explosive weapons to damage the ground, making the terrain treacherous.</p>\n<p><strong>Prerequisites</strong>: Base attack bonus +5.</p>\n<hr />\n<p><strong>Benefit</strong>: As a standard action, you can make a ranged attack using a weapon that has the explode weapon special property, targeting an intersection as normal and choosing one square adjacent to that intersection. If you hit the targeted intersection and your damage roll exceeds the hardness of the material of the chosen square, that square becomes difficult terrain. This is in addition to the normal effects of the weapon.You have trained to make your unarmed attacks lethal and strike with kicks, head-butts, and similar attacks.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Character Operations Manual",
+    "target": {
+      "value": "Square adjacent to the chosen intersection."
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

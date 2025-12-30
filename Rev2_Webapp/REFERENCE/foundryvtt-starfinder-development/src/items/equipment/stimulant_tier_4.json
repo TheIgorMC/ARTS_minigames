@@ -1,0 +1,99 @@
+{
+  "_id": "kvSo25AsniMm0uJU",
+  "name": "Stimulant, Tier 4",
+  "type": "consumable",
+  "img": "systems/sfrpg/icons/equipment/goods/analgesic-tier-4.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 50
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "chatFlavor": "",
+    "consumableType": "medicne",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<h1>Stimulant</h1>\n<p>This adrenaline-filled injection provides you with a burst of energy, allowing you to shrug off the effects of fatigue or exhaustion for a short time, though this surge takes a toll on you. A tier 1 stimulant lasts for 1d4 rounds, a tier 2 stimulant lasts for 2d4 rounds, a tier 3 stimulant lasts for 4d4 rounds, and a tier 4 stimulant lasts for 6d4 rounds, during which time you can ignore all penalties due to being fatigued or @UUID[Compendium.sfrpg.conditions.Item.33ynSbmexuxC3cAQ]{Exhausted}. After the stimulant wears off, the condition returns, but if you would have been fatigued, you are instead @UUID[Compendium.sfrpg.conditions.Item.33ynSbmexuxC3cAQ]{Exhausted}.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 15,
+    "modifiers": [],
+    "price": 16200,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 133",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "autoDestroy": true,
+      "autoUse": true,
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

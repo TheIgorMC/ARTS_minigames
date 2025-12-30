@@ -1,0 +1,158 @@
+import CheckNameHelper from "../../utils/skill-names.js";
+import BaseEnricher from "./base.js";
+
+export const checkIcons = Object.freeze({
+    "acrobatics": "fa-person-walking",
+    "athletics": "fa-dumbbell",
+    "bluff": "fa-comment",
+    "computers": "fa-computer",
+    "culture": "fa-flag",
+    "diplomacy": "fa-handshake",
+    "disguise": "fa-mask",
+    "engineering": "fa-gear",
+    "intimidate": "fa-face-angry",
+    "life-science": "fa-dna",
+    "medicine": "fa-syringe",
+    "mysticism": "fa-hand-sparkles",
+    "perception": "fa-magnifying-glass",
+    "profession": "fa-user-tie",
+    "physical-science": "fa-flask",
+    "piloting": "fa-plane",
+    "sense-motive": "fa-person-circle-question",
+    "sleight-of-hand": "fa-hands",
+    "stealth": "fa-moon",
+    "survival": "fa-campground",
+
+    "fortitude": "fa-shield-heart",
+    "reflex": "fa-person-running",
+    "will": "fa-brain",
+
+    "strength": "fa-weight-hanging",
+    "dexterity": "fa-feather-pointed",
+    "constitution": "fa-heart-pulse",
+    "intelligence": "fa-glasses",
+    "wisdom": "fa-mountain-sun",
+    "charisma": "fa-people-arrows",
+
+    "caster-level": "fa-wand-magic-sparkles"
+});
+
+/**
+ * Roll a specific check
+ * @class
+ */
+export default class CheckEnricher extends BaseEnricher {
+    // @Check[type:athletics]
+    // @Check[type:life-science]
+    // @Check[type:reflex]
+    constructor() {
+        super();
+    }
+
+    /** @inheritdoc */
+    get enricherType() {
+        return "Check";
+    }
+
+    /** @inheritdoc */
+    get validTypes() {
+        return [
+            ...Object.keys(CONFIG.SFRPG.skills),
+            ...Object.keys(CONFIG.SFRPG.saves),
+            ...Object.keys(CONFIG.SFRPG.abilities),
+            "caster-level"
+        ];
+    }
+
+    /** @inheritdoc */
+    get icons() {
+        return checkIcons;
+    }
+
+    get checkType() {
+        const shortName = CheckNameHelper.shortFormName(this.args.type);
+        const C = CONFIG.SFRPG;
+
+        // Disambiguate between "INTelligence and INTimidate"
+        if (shortName === "int") return this.args.type === "intimidate" ? "skill" : "ability";
+
+        if (shortName in C.skills) return "skill";
+        else if (shortName in C.saves) return "save";
+        else if (shortName in C.abilities) return "ability";
+        else return null;
+    }
+
+    get localizedType() {
+        const C = CONFIG.SFRPG;
+        const shortName = CheckNameHelper.shortFormName(this.args.type);
+
+        switch (this.checkType) {
+            case "skill": return C.skills[shortName];
+            case "save": return C.saves[shortName];
+            case "ability": return C.abilities[shortName];
+            default: return "";
+        }
+    }
+
+    /**
+     * @override to check using the 3-letter identifier for the type against the valid types (which are 3 letter identifiers).
+     * Inputted types are full names.
+     */
+    isValid() {
+        if (!this.args.type || !this.validTypes.includes(CheckNameHelper.shortFormName(this.args.type))) {
+            return this._failValidation("Type");
+        }
+
+        return true;
+    }
+
+    validateName() {
+        const i18nPath = this.checkType === "save" ? "SFRPG.Save" : "SFRPG.Check";
+        const localizedCheck = game.i18n.localize(i18nPath);
+
+        this.name ||= `${this.localizedType} ${localizedCheck}`;
+    }
+
+    /**
+     * @extends BaseEnricher
+     * @returns {HTMLAnchorElement} */
+    createElement() {
+        const a = super.createElement();
+        const dcValue = this.args.dc ? parseInt(this.args.dc) : null;
+        const displayDC = this.args.displayDC !== undefined ? (this.args.displayDC === 'true' ? true : false) : (this.args.dc ? true : false);
+
+        if (dcValue) a.dataset.dc = parseInt(this.args.dc);
+        if (displayDC) a.dataset.displayDC = 'true';
+        else a.dataset.displayDC = 'false';
+        const iconSlug = (this.checkType === "ability") ? CheckNameHelper.longFormNameAbilities(this.args.type) : CheckNameHelper.longFormName(this.args.type);
+
+        a.innerHTML = `<i class="fas ${this.icons[iconSlug]}"></i>${displayDC ? `<span class="dc-value">DC ${a.dataset.dc} </span>` : ''}${a.innerHTML}`;
+
+        return a;
+
+    }
+
+    static hasRepost = true;
+    static hasListener = true;
+
+    static listener(event) {
+        const data = event.currentTarget.dataset;
+
+        const actor = _token?.actor ?? game.user?.character;
+        if (!actor) return ui.notifications.error("You must have a token or an actor selected.");
+        const options = {
+            event,
+            dc: data.dc,
+            displayDC: data.displayDC
+        };
+        const id = CheckNameHelper.shortFormName(data.type);
+
+        // Disambiguate between "INTelligence and INTimidate", then select skill/save/ability
+        if (id === "int") data.type === "intimidate" ? actor.rollSkill(id, options) : actor.rollAbility(id, options);
+        else if      (id in CONFIG.SFRPG.skills)    actor.rollSkill(id, options);
+        else if (id in CONFIG.SFRPG.saves)     actor.rollSave(id, options);
+        else if (id in CONFIG.SFRPG.abilities) actor.rollAbility(id, options);
+
+    }
+
+}

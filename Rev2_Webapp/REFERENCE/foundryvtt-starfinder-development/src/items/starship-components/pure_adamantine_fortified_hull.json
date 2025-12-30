@@ -1,0 +1,21 @@
+{
+  "_id": "h6tI7Xniw5TYud70",
+  "name": "Pure adamantine fortified hull",
+  "type": "starshipFortifiedHull",
+  "img": "systems/sfrpg/icons/default/steel-door.svg",
+  "system": {
+    "cost": 12,
+    "costMultipliedBySize": true,
+    "criticalThresholdBonus": 5,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "SOM pg. 21"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "_id": "bMjPH2VpKBHxpdRJ",
+  "name": "Great Cleave (Combat)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/feats/great_cleave.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "none",
+      "condition": "Strike a second target with the Cleave feat.",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>You can strike many adjacent foes with a single blow.</p>\n<p><strong>Prerequisites</strong>: Str 13, Cleave, base attack bonus +4.</p>\n<hr />\n<p><strong>Benefit</strong>: If you strike a second target with the Cleave feat, you can spend 1 Resolve Point to make a melee attack against each subsequent foe that is both adjacent to the last target and within your reach, as long as you hit the previous foe. You can’t attack an individual foe more than once during this attack action.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "feat",
+      "combat": true,
+      "specialAbilityType": ""
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": "negate"
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "Core Rulebook",
+    "target": {
+      "value": "1 target within reach and adjacent to last target hit."
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

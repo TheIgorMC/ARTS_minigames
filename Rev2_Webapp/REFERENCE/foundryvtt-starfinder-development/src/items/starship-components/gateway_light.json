@@ -1,0 +1,27 @@
+{
+  "_id": "UieTC37N5MWJKdn4",
+  "name": "Gateway Light",
+  "type": "starshipPowerCore",
+  "img": "systems/sfrpg/icons/default/power-generator.svg",
+  "system": {
+    "cost": 30,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "pcu": 300,
+    "slug": "",
+    "source": "CRB pg. 296",
+    "specialMaterials": {},
+    "supportedSizes": [
+      "large",
+      "huge",
+      "gargantuan"
+    ]
+  }
+}

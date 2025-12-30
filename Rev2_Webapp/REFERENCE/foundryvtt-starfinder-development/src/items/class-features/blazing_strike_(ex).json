@@ -1,0 +1,84 @@
+{
+  "_id": "SZVvKBmR2eHjKWAm",
+  "name": "Blazing Strike (Ex)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/default/achievement.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": null
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.wFTC0sGqdpnZUib4]{Gear Boost}</p>\n<p>When you hit a creature within 30 feet of you while using a weapon with the @UUID[Compendium.sfrpg.rules.JournalEntry.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#bright]{Bright} weapon special property, the radiance partially blinds the target, giving it the @UUID[Compendium.sfrpg.conditions.Item.YjE6UGzwOTfO9p4g]{Dazzled} condition for 1 round. If you hit multiple creatures at the same time (such as with an @UUID[Compendium.sfrpg.rules.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#automatic]{Automatic}, @UUID[Compendium.sfrpg.rules.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#blast]{Blast}, or @UUID[Compendium.sfrpg.rules.Nrf6oy9pJwcEmryP.JournalEntryPage.nXkFsyxk7Vybdn7G#explode]{Explode} weapon), only the creature nearest to you or at the center of the explosion (your choice if multiple creatures are equidistant) is affected.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "ex"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": ""
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "3rd level Soldier",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AR pg. 154",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

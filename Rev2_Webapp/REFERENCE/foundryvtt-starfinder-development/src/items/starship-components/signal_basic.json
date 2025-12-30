@@ -1,0 +1,24 @@
+{
+  "_id": "m61HQ4ox4WwPp1Xd",
+  "name": "Signal Basic",
+  "type": "starshipDriftEngine",
+  "img": "systems/sfrpg/icons/default/star-gate.svg",
+  "system": {
+    "cost": 2,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "engineRating": 1,
+    "isPowered": false,
+    "maxSize": "supercolossal",
+    "modifiers": [],
+    "pcu": 75,
+    "slug": "",
+    "source": "CRB pg. 298"
+  }
+}

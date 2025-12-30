@@ -1,0 +1,113 @@
+{
+  "_id": "sNEtzEYeeH5rdBkt",
+  "name": "Shadow skip unit (Magic)",
+  "type": "upgrade",
+  "img": "systems/sfrpg/icons/default/armor-upgrade.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "allowedArmorType": "any",
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "4"
+      },
+      "hp": {
+        "max": "7",
+        "value": 7
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 3,
+      "value": 3
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>As a standard action, you can teleport from one area of dim light or darkness to another such area that you can see, with a maximum range of 60 feet. Activating this upgrade counts as moving from your space, provoking attacks of opportunity, though you have concealment (20% miss chance) against any foe that makes an attack of opportunity. Ashadow skip unit’s charges replenish at a rate of 1 charge for every 8 continuous hours the upgrade (or its armor, if installed) spends in dim light or darkness, and entering an area of brighter light for more than 1 round resets the recharge time. This is a teleportation effect.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "formula": "",
+    "isActive": false,
+    "level": 10,
+    "modifiers": [],
+    "price": 19000,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slots": 1,
+    "slug": "",
+    "source": "GM pg. 55",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "action",
+      "value": 1
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

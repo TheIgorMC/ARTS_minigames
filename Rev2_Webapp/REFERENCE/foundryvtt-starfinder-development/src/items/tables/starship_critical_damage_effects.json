@@ -1,0 +1,136 @@
+{
+  "_id": "RkDign75n1xFBsdK",
+  "name": "Starship Critical Damage Effects",
+  "description": "@UUID[Compendium.sfrpg.rules.JournalEntry.y41YyBmHZYus6NCZ.JournalEntryPage.oEDt7byMjC9PQFj7#critical-damage]{Starship Critical Damage Effects}",
+  "displayRoll": true,
+  "formula": "1d100",
+  "img": "icons/svg/lightning.svg",
+  "replacement": true,
+  "results": [
+    {
+      "_id": "3NkocHImlle2SKUA",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b> Life Support </b> <br /> Condition applies to all captain actions",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/regen.svg",
+      "range": [
+        1,
+        10
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "I56vad6kNmEsdZrO",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b> Sensors </b> <br /> Condition applies to all science officer actions",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/eye.svg",
+      "range": [
+        11,
+        30
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "dGw6IXgrUAVuNV69",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b> Weapons Array </b> <br /> Randomly determine one arc containing weapons; condition applies to all gunner actions using weapons in that arc (a turret counts as being in all arcs) @Compendium[sfrpg.macros.rv3zsqWTPofWFwe0]{Random Weapon Arc}",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/target.svg",
+      "range": [
+        31,
+        60
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "RSjsYHxfeXyfCqm2",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b> Engines </b> <br /> Condition applies to all pilot actions",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/fire.svg",
+      "range": [
+        61,
+        80
+      ],
+      "weight": 1
+    },
+    {
+      "_id": "0XcWYQvxO7tpg8rM",
+      "name": "",
+      "type": "text",
+      "_stats": {
+        "compendiumSource": null,
+        "coreVersion": "13.351",
+        "createdTime": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "lastModifiedBy": null,
+        "modifiedTime": null,
+        "systemId": null,
+        "systemVersion": null
+      },
+      "description": "<b> Power Core </b> <br /> Condition applies to all engineer actions except hold it together and patch; a malfunctioning or wrecked power core affects other crew members’ actions (see Critical Damage Conditions below)",
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/radiation.svg",
+      "range": [
+        81,
+        100
+      ],
+      "weight": 1
+    }
+  ]
+}

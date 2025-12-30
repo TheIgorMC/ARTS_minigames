@@ -1,0 +1,69 @@
+{
+  "_id": "ZdyT354IdsISJUBB",
+  "name": "Bayonet Bracket, Heavy",
+  "type": "weaponAccessory",
+  "img": "systems/sfrpg/icons/default/gun-stock.svg",
+  "system": {
+    "ammunitionType": "",
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 6
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": [
+        {
+          "type": "bulk",
+          "acceptsType": [
+            "weapon"
+          ],
+          "affectsEncumbrance": true,
+          "amount": 1,
+          "subtype": "",
+          "weightMultiplier": 1,
+          "weightProperty": ""
+        }
+      ]
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt; @UUID[Compendium.sfrpg.rules.Item.nwRAcqBuoleMkfZE]{Weapon Accessories}</p>\n<p>A bayonet bracket allows you to attach a one-handed melee weapon to the bottom rail of a railed weapon or a small arm. The melee weapon cannot have the reach weapon special property. Attaching a melee weapon to a bayonet bracket or removing it is a full action. If the attached melee weapon deals bludgeoning or slashing damage, you take a –2 penalty to attack rolls with it while it’s attached. The type of bayonet bracket determines which weapons you can use together.</p>\n<p>A heavy bracket allows you to fasten a melee weapon of 1 bulk or less to a longarm, heavy weapon, or sniper weapon.</p>"
+    },
+    "level": 1,
+    "modifiers": [],
+    "price": 300,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "AR pg. 58",
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "weaponType": "railedWeapon"
+  }
+}

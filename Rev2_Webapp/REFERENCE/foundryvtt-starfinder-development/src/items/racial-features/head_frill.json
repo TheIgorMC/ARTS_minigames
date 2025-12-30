@@ -1,0 +1,147 @@
+{
+  "_id": "mgpwv2RKr9a9G5sI",
+  "name": "Head Frill",
+  "type": "shield",
+  "img": "systems/sfrpg/icons/default/energy-shield.svg",
+  "system": {
+    "ability": "str",
+    "acp": null,
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 0
+      },
+      "size": "medium",
+      "sturdy": true
+    },
+    "bonus": {
+      "aligned": 1,
+      "wielded": 0
+    },
+    "bulk": "0",
+    "capacity": {
+      "max": 0,
+      "value": 0
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A hardshell tromlin’s head frill is a bony plate used for self-defense. As a move action, the tromlin can align the frill against one opponent they’re observing, granting the tromlin a +1 shield bonus to AC against attacks from that opponent until the start of the tromlin’s next turn. A tromlin hardshell proficient with shields can wear a fitted shield on their frill. The tromlin can wield and align this fitted shield without a free hand, reducing any armor check penalty the shield imposes by 1. A fitted shield costs 10% more than a normal shield of its kind.</p>\n<p><em>Enable/Disable ACP bonus, when wearing another shield on the head frill, in the Modifiers tab.</em></p>"
+    },
+    "dex": null,
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "equippedBulkMultiplier": 1,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": true,
+    "level": 0,
+    "modifiers": [
+      {
+        "_id": "83d4bf0f-bb90-4890-8025-e77606d920aa",
+        "name": "Head Frill - ACP",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "acp",
+        "enabled": true,
+        "limitTo": null,
+        "max": 1,
+        "modifier": "1",
+        "modifierType": "constant",
+        "notes": "A tromlin hardshell proficient with shields can wear a fitted shield on their frill. The tromlin can wield and align this fitted shield without a free hand, reducing any armor check penalty the shield imposes by 1. A fitted shield costs 10% more than a normal shield of its kind.",
+        "source": "Racial",
+        "subtab": "misc",
+        "valueAffected": "acp-all"
+      }
+    ],
+    "price": 0,
+    "proficient": false,
+    "properties": {
+      "nonlethal": {
+        "extension": "",
+        "value": true
+      }
+    },
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "SA:tLoL-1 pg. 63",
+    "specialMaterials": {},
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "",
+      "value": 0
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

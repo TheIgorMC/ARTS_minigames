@@ -1,0 +1,48 @@
+@import "./variables.less";
+
+@headerHeight: 44px;
+
+body {
+    .exo2();
+}
+
+.window-app {
+    .window-header {
+        background: linear-gradient(
+            25deg,
+            rgba(103, 24, 24, 1) 0%,
+            rgba(196, 30, 30, 1) 40%,
+            rgba(192, 28, 28, 1) 60%,
+            rgba(138, 3, 3, 1) 100%
+        );
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom: none;
+    }
+}
+
+.sfrpg.sheet {
+    .window-content {
+        background: @sheetBackground;
+        padding: 0;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .window-resizable-handle {
+        bottom: 0px;
+        border-radius: 4px 0 5px 0;
+    }
+
+    .sheet-lower {
+        padding: 5px;
+    }
+}
+
+aside {
+    &#tooltip {
+        &.wide-tooltip {
+            max-width: 500px;
+        }
+    }
+}

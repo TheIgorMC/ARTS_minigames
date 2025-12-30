@@ -1,0 +1,39 @@
+{
+  "_id": "SyP17Mci1t570LI6",
+  "name": "Battery, Super-Capacity",
+  "type": "ammunition",
+  "img": "systems/sfrpg/icons/equipment/weapons/battery-super-capacity.webp",
+  "system": {
+    "ammunitionType": "charge",
+    "attributes": {
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "capacity": {
+      "max": 80,
+      "value": 80
+    },
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons that use batteries list the highest-capacity battery they are capable of using as well as how many charges from the battery that each shot consumes.</p>\n<p><strong>Capacity:</strong> 80</p>"
+    },
+    "identified": true,
+    "level": 4,
+    "modifiers": [],
+    "price": 390,
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "slug": "",
+    "source": "CRB pg. 179",
+    "specialMaterials": {},
+    "useCapacity": true
+  }
+}

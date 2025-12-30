@@ -1,0 +1,22 @@
+{
+  "_id": "NjzEJPKLCsoSjdHK",
+  "name": "Weapon Hatch",
+  "type": "starshipSecuritySystem",
+  "img": "systems/sfrpg/icons/default/cctv-camera.svg",
+  "system": {
+    "cost": null,
+    "costMultipliedBySize": false,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>A weapon hatch conceals a single weapon mounted on the ship (until it’s fired). A science officer’s scan action reveals this weapon only on the 5th level of information discovery (instead of the 3rd).</p><hr /><p>COST (IN BP): 1/3 × weapon cost</p>"
+    },
+    "isPowered": false,
+    "modifiers": [],
+    "pcu": 4,
+    "slug": "",
+    "source": "PoC pg. 30"
+  }
+}

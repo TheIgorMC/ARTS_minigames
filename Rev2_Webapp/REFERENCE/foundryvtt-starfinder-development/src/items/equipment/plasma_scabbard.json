@@ -1,0 +1,136 @@
+{
+  "_id": "rXGjPT7PJD0BG2no",
+  "name": "Plasma Scabbard",
+  "type": "magic",
+  "img": "systems/sfrpg/icons/default/magick-trick.svg",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "ammunitionType": "",
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": ""
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": ""
+      },
+      "hp": {
+        "max": "",
+        "value": 11
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "L",
+    "capacity": {
+      "max": 1,
+      "value": 1
+    },
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>This thin metallic band can be affixed either to an existing scabbard that holds a melee weapon that deals kinetic damage or directly to the hilt of a melee weapon that deals kinetic damage. You can activate the device as a swift action when you draw the weapon, coating the weapon with a corona of plasma. The first successful attack you make with that weapon deals an additional 1d10 electricity and fire damage. Once you’ve used the plasma scabbard, you can’t use it again until you’ve rested for 10 minutes to regain Stamina Points, though you can spend 1 Resolve Point at any point to charge it immediately.</p>"
+    },
+    "duration": {
+      "units": "text",
+      "value": ""
+    },
+    "equippable": false,
+    "equipped": false,
+    "formula": "",
+    "hands": 0,
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 6,
+    "limitedWear": false,
+    "modifiers": [
+      {
+        "_id": "bce7f724-bea0-4617-8515-66492d35285d",
+        "name": "Plasma scabbard",
+        "type": "untyped",
+        "condition": "",
+        "damage": null,
+        "effectType": "melee-damage",
+        "enabled": false,
+        "limitTo": null,
+        "max": 10,
+        "modifier": "+1d10",
+        "modifierType": "formula",
+        "notes": "The first successful attack you make with that weapon deals an additional 1d10 electricity and fire damage.",
+        "source": "",
+        "subtab": "misc",
+        "valueAffected": ""
+      }
+    ],
+    "price": 4250,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AP #13 pg. 53",
+    "target": {
+      "value": null
+    },
+    "usage": {
+      "per": "action",
+      "value": 1
+    },
+    "uses": {
+      "max": "",
+      "per": "",
+      "value": null
+    }
+  }
+}

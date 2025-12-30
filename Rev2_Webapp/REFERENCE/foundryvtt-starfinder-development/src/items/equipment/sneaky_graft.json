@@ -1,0 +1,127 @@
+{
+  "_id": "iPT0ywx7OhxCRZkT",
+  "name": "Sneaky Graft",
+  "type": "augmentation",
+  "img": "systems/sfrpg/icons/classes/blitz.webp",
+  "system": {
+    "type": "speciesGraft",
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "",
+      "condition": "",
+      "cost": 0
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "",
+      "value": "0"
+    },
+    "attackBonus": 0,
+    "attributes": {
+      "ac": {
+        "value": "5"
+      },
+      "customBuilt": false,
+      "dex": {
+        "mod": ""
+      },
+      "hardness": {
+        "value": "6"
+      },
+      "hp": {
+        "max": "8",
+        "value": 8
+      },
+      "size": "medium",
+      "sturdy": false
+    },
+    "bulk": "-",
+    "chatFlavor": "",
+    "container": {
+      "contents": [],
+      "includeContentsInWealthCalculation": true,
+      "isOpen": true,
+      "storage": []
+    },
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>Many @UUID[Compendium.sfrpg.races.Item.XVyIJzuDyZ4FkmCf]{halflings} have developed stealth skills as a tool for survival. Soft pads installed in the soles of your feet (or similar appendages) make you stealthier. You gain a +2 enhancement bonus to @UUID[Compendium.sfrpg.rules.GMkLZsN3a7YPvA03.JournalEntryPage.5h3iePfJaeQMc3Qr]{Stealth} checks. In addition, you reduce the penalty for using Stealth while moving by 5 and reduce the Stealth check penalty for sniping by 10.</p>"
+    },
+    "duration": {
+      "units": "instantaneous",
+      "value": ""
+    },
+    "equippable": true,
+    "equipped": false,
+    "formula": "",
+    "identified": true,
+    "isActive": false,
+    "isEquipment": false,
+    "level": 3,
+    "modifiers": [
+      {
+        "_id": "4e0b9eab-2b38-425d-a0a6-01b4651ec2c0",
+        "name": "Sneaky Graft",
+        "type": "enhancement",
+        "condition": "",
+        "damage": null,
+        "effectType": "skill",
+        "enabled": true,
+        "limitTo": null,
+        "max": 2,
+        "modifier": "2",
+        "modifierType": "constant",
+        "notes": "You gain a +2 enhancement bonus to Stealth checks.",
+        "source": "Augmentation",
+        "subtab": "misc",
+        "valueAffected": "ste"
+      }
+    ],
+    "price": 1300,
+    "proficient": false,
+    "properties": {},
+    "quantity": 1,
+    "quantityPerPack": 1,
+    "range": {
+      "units": ""
+    },
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "AA4 pg. 147",
+    "system": "allFeet",
+    "target": {
+      "value": null
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}

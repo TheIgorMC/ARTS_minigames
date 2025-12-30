@@ -1,0 +1,24 @@
+{
+  "_id": "Ih8xQ7vVFMe3HHpc",
+  "name": "Mk 3 armor",
+  "type": "starshipArmor",
+  "img": "systems/sfrpg/icons/default/metal-scales.svg",
+  "system": {
+    "armorBonus": 3,
+    "cost": 3,
+    "costMultipliedBySize": true,
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": ""
+    },
+    "modifiers": [],
+    "slug": "",
+    "source": "CRB pg. 297",
+    "specialMaterials": {},
+    "targetLockPenalty": 0,
+    "turnDistancePenalty": 0
+  }
+}

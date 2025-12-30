@@ -1,0 +1,85 @@
+{
+  "_id": "IuY4xCmRlUwPZhZ2",
+  "name": "Wormholes (Su)",
+  "type": "feat",
+  "img": "systems/sfrpg/icons/classes/wormholes.webp",
+  "system": {
+    "ability": "",
+    "actionTarget": "",
+    "actionType": "",
+    "activation": {
+      "type": "action",
+      "condition": "",
+      "cost": 1
+    },
+    "area": {
+      "effect": "",
+      "shapable": false,
+      "shape": "",
+      "units": "ft",
+      "value": ""
+    },
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "effect": "",
+      "parts": []
+    },
+    "damage": {
+      "parts": [],
+      "primaryGroup": null
+    },
+    "damageNotes": "",
+    "description": {
+      "chat": "",
+      "gmnotes": "",
+      "short": "",
+      "unidentified": "",
+      "value": "<p>&gt;@UUID[Compendium.sfrpg.class-features.Item.UVNOjH2ERlQjcGnU]{Zenith Revelation}</p>\n<p>@Icon[type:graviton] Graviton Revelation</p>\n<p>When you’re fully graviton-attuned, you can create two linked wormholes as a standard action. One wormhole must be adjacent to you, and the other appears anywhere in line of sight within medium range (100 feet + 10 feet per solarian level). Each wormhole is 5 feet across and appears at an intersection between two squares. You and any Large or smaller creatures you mentally designate (you can designate “all creatures,” “all lashuntas,” or similar categories) can travel between the wormholes. This is considered extradimensional travel. Entering a wormhole instantly transports a creature to a square adjacent to the other wormhole’s intersection, where the creature can continue its movement. The wormholes remain for 1 round for every 2 solarian levels you have. At 17th level, you can create three wormholes using this ability, and upon entering the wormhole, a creature can decide which of the other two wormholes to exit.</p>"
+    },
+    "descriptors": {},
+    "details": {
+      "category": "classFeature",
+      "combat": false,
+      "specialAbilityType": "su"
+    },
+    "duration": {
+      "units": "round",
+      "value": "1*floor(@classes.solarian.levels/2)"
+    },
+    "formula": "",
+    "isActive": false,
+    "modifiers": [],
+    "properties": {},
+    "range": {
+      "units": "ft",
+      "value": "100"
+    },
+    "recharge": {
+      "charged": false,
+      "value": ""
+    },
+    "requirements": "9th Level Solarian",
+    "rollNotes": "",
+    "save": {
+      "type": "",
+      "dc": "",
+      "descriptor": ""
+    },
+    "skillCheck": {
+      "type": "",
+      "dc": "",
+      "variable": false
+    },
+    "slug": "",
+    "source": "CRB pg. 107",
+    "target": {
+      "value": ""
+    },
+    "uses": {
+      "max": "0",
+      "per": "",
+      "value": 0
+    }
+  }
+}
