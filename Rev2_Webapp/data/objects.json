@@ -190,5 +190,77 @@
     "height": 1080,
     "draggable": false,
     "description": ""
+  },
+  {
+    "id": "jose_milly_png",
+    "name": "Jose Milly",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Jose%20Milly.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
+  },
+  {
+    "id": "markus_revell_png",
+    "name": "Markus Revell",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Markus%20Revell.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
+  },
+  {
+    "id": "gyra_milly_png",
+    "name": "Gyra Milly",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Gyra%20Milly.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
+  },
+  {
+    "id": "jeful_sutton_png",
+    "name": "Jeful Sutton",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Jeful%20Sutton.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
+  },
+  {
+    "id": "kairos_falken_png",
+    "name": "Kairos Falken",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Kairos%20Falken.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
+  },
+  {
+    "id": "lirien_ngozi_png",
+    "name": "Lirien Ngozi",
+    "category": "Character pictures",
+    "sceneId": "[CHAR] Character pictures",
+    "type": "item",
+    "image": "/media/%5BCHAR%5D%20Character%20pictures/Lirien%20Ngozi.png",
+    "width": 100,
+    "height": 100,
+    "draggable": true,
+    "description": ""
   }
 ]

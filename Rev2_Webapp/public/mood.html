@@ -33,6 +33,84 @@
             opacity: 1;
             z-index: 2;
         }
+        #rp-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 0;
+            /* No gap here, handled by margins */
+        }
+        
+        /* WRAPPER: Handles Layout Space & Entry/Exit */
+        .char-wrapper {
+            height: 90%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            
+            /* Start collapsed */
+            max-width: 0;
+            opacity: 0;
+            margin: 0;
+            
+            /* Flex properties to ensure it behaves */
+            flex: 0 1 auto; /* Can shrink, grow based on width */
+            min-width: 0; /* Allow shrinking below content size */
+            
+            /* Smooth layout transition */
+            transition: max-width 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                        opacity 0.8s ease,
+                        margin 0.8s ease,
+                        transform 0.3s ease; /* For talking scale */
+            
+            /* Clip content during entry to avoid spill */
+            overflow: hidden;
+        }
+        
+        .char-wrapper.visible {
+            opacity: 1;
+            margin: 0 10px; /* Add spacing when visible */
+            /* max-width set by JS */
+        }
+        
+        .char-wrapper.hidden {
+            max-width: 0 !important;
+            opacity: 0;
+            margin: 0;
+        }
+
+        .char-wrapper.talking {
+            transform: scale(1.1);
+            z-index: 100;
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.3));
+            /* We keep overflow hidden, so shadow applies to wrapper shape */
+        }
+
+        /* IMAGE: Handles Content & Slide In */
+        .rp-char {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            
+            /* Start shifted */
+            transform: translateX(50px);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
+        }
+        
+        .char-wrapper.visible .rp-char {
+            transform: translateX(0);
+        }
         #placeholder {
             position: absolute;
             width: 100%;
@@ -53,6 +131,9 @@
     <div class="mood-container">
         <img id="mood-1" class="mood-layer" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
         <img id="mood-2" class="mood-layer" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+        
+        <!-- Roleplay Layer -->
+        <div id="rp-layer"></div>
     </div>
 
     <script>
@@ -60,6 +141,7 @@
         const img1 = document.getElementById('mood-1');
         const img2 = document.getElementById('mood-2');
         const placeholder = document.getElementById('placeholder');
+        const rpLayer = document.getElementById('rp-layer');
         
         let activeImg = 1; // 1 or 2
 
@@ -84,6 +166,11 @@
             socket.on('mood_state_update', (url) => {
                 console.log('Received mood update:', url);
                 updateMood(url);
+            });
+
+            socket.on('roleplay_state_update', (state) => {
+                console.log('Received roleplay update:', state);
+                renderRoleplay(state);
             });
         }
 
@@ -110,6 +197,95 @@
                     placeholder.style.display = 'flex';
                 }, 1500);
             }
+        }
+
+        function renderRoleplay(state) {
+            if (!state || !state.active) {
+                // Fade out all existing
+                Array.from(rpLayer.children).forEach(child => {
+                    child.classList.remove('visible');
+                    child.classList.add('hidden');
+                    setTimeout(() => child.remove(), 1000);
+                });
+                return;
+            }
+
+            const newChars = state.characters || [];
+            
+            // 1. Remove characters not in new state
+            Array.from(rpLayer.children).forEach(child => {
+                if (!newChars.find(c => c.id === child.dataset.id)) {
+                    child.classList.remove('visible');
+                    child.classList.add('hidden');
+                    setTimeout(() => child.remove(), 1000);
+                }
+            });
+
+            // 2. Add or Update characters
+            // Calculate target width first
+            const count = newChars.length;
+            // Calculate width: (100% - margins) / count
+            // Let's say 90% total width available, max 50% per char
+            let widthPercent = 90 / Math.max(1, count);
+            if (count === 1) widthPercent = Math.min(widthPercent, 50); 
+            const targetMaxWidth = `${widthPercent}%`;
+
+            newChars.forEach(char => {
+                if (!char.image) return;
+                
+                let wrapper = rpLayer.querySelector(`.char-wrapper[data-id="${char.id}"]`);
+                
+                if (!wrapper) {
+                    // Create new Wrapper
+                    wrapper = document.createElement('div');
+                    wrapper.className = 'char-wrapper';
+                    wrapper.dataset.id = char.id;
+                    
+                    // Create Image
+                    const img = document.createElement('img');
+                    img.className = 'rp-char';
+                    img.src = char.image;
+                    img.title = char.name;
+                    
+                    wrapper.appendChild(img);
+                    rpLayer.appendChild(wrapper);
+                    
+                    // Force reflow
+                    void wrapper.offsetWidth;
+
+                    // Trigger fade in next frame
+                    requestAnimationFrame(() => {
+                        wrapper.classList.add('visible');
+                        wrapper.style.maxWidth = targetMaxWidth;
+                    });
+                } else {
+                    // Update existing
+                    const img = wrapper.querySelector('img');
+                    if (img && img.src !== char.image && !img.src.endsWith(char.image)) {
+                        img.src = char.image;
+                    }
+                    
+                    // Handle Talking State on Wrapper
+                    if (char.talking) {
+                        wrapper.classList.add('talking');
+                    } else {
+                        wrapper.classList.remove('talking');
+                    }
+
+                    // Ensure visible
+                    if (!wrapper.classList.contains('visible')) {
+                        wrapper.classList.remove('hidden');
+                        wrapper.classList.add('visible');
+                    }
+                    
+                    // Update width
+                    wrapper.style.maxWidth = targetMaxWidth;
+                }
+            });
+
+            // 3. Dynamic Sizing (Apply to Wrappers) - REMOVED as it's now handled in loop
+            // But we need to ensure removed items don't mess up layout?
+            // Removed items have .hidden and max-width: 0 !important, so they shouldn't affect layout.
         }
     </script>
 </body>

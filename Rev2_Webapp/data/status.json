@@ -2,17 +2,17 @@
   "time": {
     "year": 2556,
     "day": 1,
-    "hour": 17,
-    "minute": 47,
+    "hour": 18,
+    "minute": 44,
     "scrambled": false,
     "textScrambled": false
   },
   "mood": {
-    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DIdle.jpg"
+    "imageUrl": "/media/%5B01%5DVerros%20Office/%5BMOOD%5D%20Verros%20Office.png"
   },
   "roleplay": {
-    "active": false,
-    "background": "",
+    "active": true,
+    "background": "/media/%5B00%5DGlobal/%5BMOOD%5DGemini%20University%20Lower%20Out.jpg",
     "characters": []
   },
   "identities": [

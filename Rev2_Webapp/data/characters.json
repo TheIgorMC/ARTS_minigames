@@ -43,7 +43,27 @@
     "name": "Jose Milly",
     "isNPC": true,
     "class": "Unknown",
-    "image": "",
+    "image": "/media/[CHAR] Character pictures/Jose Milly.png",
+    "tokenImage": "",
+    "description": "",
+    "npcType": "rp"
+  },
+  {
+    "id": "882214",
+    "name": "Kairos Falken",
+    "isNPC": true,
+    "class": "Unknown",
+    "image": "/media/[CHAR] Character pictures/Kairos Falken.png",
+    "tokenImage": "",
+    "description": "",
+    "npcType": "rp"
+  },
+  {
+    "id": "580496",
+    "name": "Lirien Ngozi",
+    "isNPC": true,
+    "class": "Unknown",
+    "image": "/media/[CHAR] Character pictures/Lirien Ngozi.png",
     "tokenImage": "",
     "description": "",
     "npcType": "rp"

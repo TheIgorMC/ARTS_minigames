@@ -518,16 +518,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('admin_project_character', (char) => {
-        if (!char.image) return;
+        // Use token image if available, otherwise fallback to main image
+        const imgToUse = char.tokenImage || char.image;
+        if (!imgToUse) return;
         
         const instance = {
             instanceId: 'char_' + Date.now(),
             type: 'character',
-            image: char.image,
+            image: imgToUse,
             x: 500,
             y: 200,
-            width: 400,
-            height: 600,
+            width: 200, // Smaller default for tokens?
+            height: 200,
             draggable: true,
             name: char.name,
             description: char.class || 'Character'
@@ -535,6 +537,41 @@ io.on('connection', (socket) => {
         tableState.activeObjects.push(instance);
         io.to('table').emit('table_state_update', tableState);
         socket.emit('gm_hacking_log', 'Projected Character: ' + char.name);
+    });
+
+    socket.on('admin_project_rp_character', (char) => {
+        if (!char.image) return;
+        
+        // Add to roleplay state
+        const rpChar = {
+            id: char.id,
+            name: char.name,
+            image: char.image, // Use MOOD image (big)
+            x: 50, // Center percentage?
+            y: 50,
+            scale: 1.0
+        };
+        
+        // Ensure roleplay is active
+        roleplayState.active = true;
+        
+        // Check if we should clear others or append? 
+        // "The images of the NPC are to be put OVER the mood image"
+        // Let's assume we can have multiple, but maybe we want to clear previous ones if they are just "projected"?
+        // For now, let's just push. The GM can clear them via another control if needed (which we might need to add).
+        // Actually, let's check if it's already there to avoid duplicates.
+        if (!roleplayState.characters) roleplayState.characters = [];
+        
+        // If character is already projected, maybe move it to front?
+        const existingIdx = roleplayState.characters.findIndex(c => c.id === char.id);
+        if (existingIdx >= 0) {
+            roleplayState.characters.splice(existingIdx, 1);
+        }
+        roleplayState.characters.push(rpChar);
+        
+        io.emit('roleplay_state_update', roleplayState);
+        socket.emit('gm_hacking_log', 'Projected RP Character: ' + char.name);
+        saveStatus();
     });
 
     socket.on('admin_add_item', (newItem) => {

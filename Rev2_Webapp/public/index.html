@@ -45,17 +45,30 @@
                 // Renderizza Immagine (o Sfondo)
                 var imageObj = new Image();
                 imageObj.onload = function() {
-                    // Calcola dimensioni mantenendo aspect ratio se non specificate
+                    // Calcola dimensioni mantenendo aspect ratio
                     let w = objData.width;
                     let h = objData.height;
                     
-                    if (!w && !h) {
-                        w = imageObj.width;
-                        h = imageObj.height;
-                    } else if (w && !h) {
-                        h = w * (imageObj.height / imageObj.width);
-                    } else if (!w && h) {
-                        w = h * (imageObj.width / imageObj.height);
+                    // Special handling for backgrounds - keep exact size
+                    if (objData.type === 'background' || objData.type === 'mood') {
+                         if (!w) w = 1920;
+                         if (!h) h = 1080;
+                    } else {
+                        // For other objects, enforce aspect ratio based on image
+                        const ratio = imageObj.width / imageObj.height;
+                        
+                        if (w) {
+                            // If width is provided, calculate height based on ratio
+                            // (Even if height was also provided, we override it to prevent distortion)
+                            h = w / ratio;
+                        } else if (h) {
+                            // If only height provided
+                            w = h * ratio;
+                        } else {
+                            // Neither provided
+                            w = imageObj.width;
+                            h = imageObj.height;
+                        }
                     }
 
                     var kImage = new Konva.Image({

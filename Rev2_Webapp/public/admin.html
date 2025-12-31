@@ -716,9 +716,9 @@
                 <!-- LEFT: CONTROLS -->
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     <div class="control-group">
-                        <h3 style="margin-top: 0;">Background</h3>
+                        <h3 style="margin-top: 0;">Mood Image</h3>
                         <select id="rp-bg-select" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
-                            <option value="">Select Background...</option>
+                            <option value="">Select Mood Image...</option>
                         </select>
                     </div>
                     
@@ -730,25 +730,20 @@
                     </div>
 
                     <div style="display: flex; gap: 10px;">
-                        <button class="action-btn" onclick="applyRoleplayState()">APPLY TO PLAYERS</button>
+                        <button class="action-btn" onclick="applyRoleplayState()">SET BACKGROUND</button>
                         <button class="action-btn danger" onclick="clearRoleplayState()">CLEAR ALL</button>
                     </div>
                 </div>
 
                 <!-- RIGHT: PREVIEW -->
-                <div style="border: 1px solid #333; padding: 20px; background: #0f0f15;">
-                    <h3>Current State</h3>
-                    <div id="rp-preview-status" style="color: var(--accent-color); margin-bottom: 20px;">
-                        Inactive
+                <div style="border: 1px solid #333; background: #000; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #111;">
+                        <h3 style="margin: 0; color: #fff;">Live Preview</h3>
                     </div>
-                    <div>
-                        <strong>Background:</strong> <span id="rp-preview-bg">-</span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <strong>Active Characters:</strong>
-                        <ul id="rp-preview-chars" style="padding-left: 20px; color: #aaa;">
-                            <li>None</li>
-                        </ul>
+                    <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #000;">
+                        <div style="width: 100%; aspect-ratio: 16/10; max-height: 100%;">
+                            <iframe src="/mood.html" style="width: 100%; height: 100%; border: 0;"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1209,14 +1204,14 @@
                                 <option value="combat" ${char.npcType === 'combat' ? 'selected' : ''}>Combat</option>
                             </select>
                         </label>
-                        <label style="color: #fff; font-size: 0.8rem;"><input type="checkbox" checked onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC</label>
+                        <span style="color: #888; font-size: 0.8rem;">(NPC)</span>
                     </div>
                 `;
             } else if (isRPOnly) {
                 npcControls = `
                     <div style="display: flex; gap: 10px; align-items: center; background: #222; padding: 5px;">
                         <span style="color: #00ffaa; font-size: 0.8rem; font-weight: bold;">ROLEPLAY ONLY</span>
-                        <label style="color: #fff; font-size: 0.8rem; margin-left: auto;"><input type="checkbox" checked onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC</label>
+                        <span style="color: #888; font-size: 0.8rem; margin-left: auto;">(NPC)</span>
                     </div>
                 `;
             } else {
@@ -1334,7 +1329,7 @@
                     <label style="font-size: 0.7rem; color: #888;">Token URL (Small)</label>
                     <input type="text" value="${char.tokenImage || ''}" onchange="updateCharacter(${index}, 'tokenImage', this.value)" placeholder="/media/..." style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
                 </div>
-                <button class="action-btn" style="width: 100%; margin-top: 5px;" onclick="projectCharacter(${index})">PROJECT TO TABLE</button>
+                <button class="action-btn" style="width: 100%; margin-top: 5px;" onclick="projectCharacter(${index})">${isRPOnly ? 'PROJECT TO MOOD' : 'PROJECT TO TABLE'}</button>
             `;
             return card;
         }
@@ -1342,8 +1337,13 @@
         function projectCharacter(index) {
             const char = cachedData.characters[index];
             if (char) {
-                socket.emit('admin_project_character', char);
-                log('CMD: Project Character ' + char.name);
+                if (char.isNPC && char.npcType === 'rp') {
+                    socket.emit('admin_project_rp_character', char);
+                    log('CMD: Project RP Character ' + char.name);
+                } else {
+                    socket.emit('admin_project_character', char);
+                    log('CMD: Project Character ' + char.name);
+                }
             }
         }
 
@@ -1437,7 +1437,7 @@
                 name: name,
                 isNPC: isNPC,
                 class: 'Unknown',
-                image: '',
+                image: isNPC ? '/media/[CHAR] Character pictures/' + name + '.png' : '',
                 tokenImage: '',
                 description: '' // Stored but hidden in card
             };
@@ -1981,10 +1981,16 @@
                 bgSelect.innerHTML = createGroupedOptions(bgFiles);
             }
 
-            // 2b. Roleplay Backgrounds: All Backgrounds
+            // 2b. Roleplay Backgrounds: Use MOOD images
             if (rpBgSelect) {
-                const allBgFiles = files.filter(f => f.type === 'background');
-                rpBgSelect.innerHTML = createGroupedOptions(allBgFiles);
+                // Filter Moods: Only [00]Global or Current Scene (same as mood-select)
+                const moodFiles = files.filter(f => {
+                    if (f.type !== 'mood') return false;
+                    if (f.folder.includes('[00]Global')) return true;
+                    if (currentSceneId && f.folder.includes(currentSceneId)) return true;
+                    return false;
+                });
+                rpBgSelect.innerHTML = createGroupedOptions(moodFiles);
             }
 
             // 3. Object Creation: Show all (Admin needs to see everything to create DB entries)
@@ -2535,36 +2541,155 @@
             if (!list || !cachedData || !cachedData.characters) return;
             
             list.innerHTML = '';
-            cachedData.characters.forEach(char => {
+            
+            // Filter for NPCs only and Sort Alphabetically
+            const npcs = cachedData.characters
+                .filter(c => c.isNPC)
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            npcs.forEach(char => {
                 const div = document.createElement('div');
-                div.style.marginBottom = '5px';
+                div.style.marginBottom = '10px';
+                div.style.padding = '5px';
+                div.style.borderBottom = '1px solid #222';
+                div.style.display = 'flex';
+                div.style.alignItems = 'center';
+                div.style.justifyContent = 'space-between';
                 
-                const isChecked = currentRoleplayState.characters.includes(char.id);
+                // Check if this char is in the current state
+                const activeChar = currentRoleplayState.characters.find(c => c.id === char.id);
+                const isVisible = !!activeChar;
+                const currentMood = activeChar ? (activeChar.mood || 'default') : 'default';
                 
+                // Mood Options (Scaffolding)
+                // In future, we can populate this from char.moods if available
+                const moodOptions = `
+                    <option value="default" ${currentMood === 'default' ? 'selected' : ''}>Default</option>
+                    <option value="angry" ${currentMood === 'angry' ? 'selected' : ''}>Angry</option>
+                    <option value="happy" ${currentMood === 'happy' ? 'selected' : ''}>Happy</option>
+                    <option value="sad" ${currentMood === 'sad' ? 'selected' : ''}>Sad</option>
+                `;
+
                 div.innerHTML = `
-                    <label style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
-                        <input type="checkbox" value="${char.id}" class="rp-char-check" ${isChecked ? 'checked' : ''}>
-                        <span style="color: #fff;">${char.name}</span>
-                        <span style="color: #888; font-size: 0.8rem;">(${char.class})</span>
-                    </label>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="color: #fff; font-weight: bold;">${char.name}</span>
+                        <span style="color: #888; font-size: 0.7rem;">(${char.npcType === 'rp' ? 'RP' : 'Combat'})</span>
+                    </div>
+                    <div style="display: flex; gap: 5px; align-items: center;">
+                        <button class="action-btn" 
+                                style="padding: 5px 10px; font-size: 0.7rem; min-width: 40px; background: #334; border-color: #556;"
+                                onmousedown="startTalking('${char.id}')">
+                            TALK
+                        </button>
+                        <select onchange="updateRoleplayCharMood('${char.id}', this.value)" style="padding: 2px; background: #111; color: #aaa; border: 1px solid #333; font-size: 0.8rem; width: 70px;">
+                            ${moodOptions}
+                        </select>
+                        <button class="action-btn ${isVisible ? 'active-btn' : ''}" 
+                                style="padding: 5px 10px; font-size: 0.7rem; min-width: 50px; ${isVisible ? 'background: #004400; border-color: #00ff00; color: #fff;' : ''}"
+                                onclick="toggleRoleplayChar('${char.id}', ${!isVisible})">
+                            ${isVisible ? 'ON AIR' : 'SHOW'}
+                        </button>
+                    </div>
                 `;
                 list.appendChild(div);
             });
         }
 
-        function applyRoleplayState() {
-            const bg = document.getElementById('rp-bg-select').value;
-            const checks = document.querySelectorAll('.rp-char-check:checked');
-            const charIds = Array.from(checks).map(c => c.value);
+        function startTalking(charId) {
+            setRoleplayTalking(charId, true);
             
-            const newState = {
-                active: true,
-                background: bg ? '/media/' + bg : '',
-                characters: charIds
+            const stopTalking = () => {
+                setRoleplayTalking(charId, false);
+                window.removeEventListener('mouseup', stopTalking);
             };
+            window.addEventListener('mouseup', stopTalking);
+        }
+
+        function setRoleplayTalking(charId, isTalking) {
+            // Only update if char is active
+            const char = currentRoleplayState.characters.find(c => c.id === charId);
+            if (!char) return;
+
+            // Avoid redundant updates
+            if (!!char.talking === isTalking) return;
+
+            let newChars = currentRoleplayState.characters.map(c => {
+                if (c.id === charId) {
+                    return { ...c, talking: isTalking };
+                }
+                return c;
+            });
+            updateRoleplayState({ characters: newChars });
+        }
+
+        function toggleRoleplayChar(charId, shouldShow) {
+            // Clone current state characters
+            let newChars = [...currentRoleplayState.characters];
             
+            if (shouldShow) {
+                // Add if not exists
+                if (!newChars.find(c => c.id === charId)) {
+                    const char = cachedData.characters.find(c => c.id === charId);
+                    if (char) {
+                        newChars.push({
+                            id: char.id,
+                            name: char.name,
+                            image: char.image,
+                            mood: 'default',
+                            x: 50,
+                            y: 50
+                        });
+                    }
+                }
+            } else {
+                // Remove
+                newChars = newChars.filter(c => c.id !== charId);
+            }
+            
+            updateRoleplayState({ characters: newChars });
+        }
+
+        function updateRoleplayCharMood(charId, mood) {
+            let newChars = currentRoleplayState.characters.map(c => {
+                if (c.id === charId) {
+                    // Construct image path based on mood
+                    // Convention: /media/[CHAR] Character pictures/[MOOD]Name.png
+                    const basePath = '/media/[CHAR] Character pictures/';
+                    let imageName = c.name + '.png';
+                    
+                    if (mood !== 'default') {
+                        imageName = `[${mood.toUpperCase()}]${c.name}.png`;
+                    }
+                    
+                    return { ...c, mood: mood, image: basePath + imageName };
+                }
+                return c;
+            });
+            updateRoleplayState({ characters: newChars });
+        }
+
+        function updateRoleplayState(changes) {
+            const newState = { ...currentRoleplayState, ...changes, active: true };
+            
+            // Ensure background is set if not present (fallback to current selection)
+            if (!newState.background) {
+                const bg = document.getElementById('rp-bg-select').value;
+                if (bg) newState.background = '/media/' + bg;
+            }
+
             socket.emit('admin_roleplay_action', { type: 'update', state: newState });
-            log('ROLEPLAY: Applied state');
+            
+            // If background changed in this update, sync mood display
+            if (changes.background) {
+                 socket.emit('admin_mood_action', { type: 'set', url: changes.background });
+            }
+        }
+
+        function applyRoleplayState() {
+            // This function is now mainly for the Background Apply button
+            const bg = document.getElementById('rp-bg-select').value;
+            updateRoleplayState({ background: bg ? '/media/' + bg : '' });
+            log('ROLEPLAY: Background Updated');
         }
 
         function clearRoleplayState() {
@@ -2584,43 +2709,15 @@
         socket.on('roleplay_state_update', (state) => {
             currentRoleplayState = state;
             
-            // Update Preview
-            const statusDiv = document.getElementById('rp-preview-status');
-            if (state.active) {
-                statusDiv.innerText = 'ACTIVE';
-                statusDiv.style.color = '#0f0';
-            } else {
-                statusDiv.innerText = 'INACTIVE';
-                statusDiv.style.color = '#888';
-            }
-            
-            document.getElementById('rp-preview-bg').innerText = state.background || 'None';
-            
-            const charList = document.getElementById('rp-preview-chars');
-            charList.innerHTML = '';
-            if (state.characters && state.characters.length > 0) {
-                state.characters.forEach(id => {
-                    const char = cachedData && cachedData.characters ? cachedData.characters.find(c => c.id === id) : null;
-                    const li = document.createElement('li');
-                    li.innerText = char ? char.name : id;
-                    charList.appendChild(li);
-                });
-            } else {
-                charList.innerHTML = '<li>None</li>';
-            }
-            
-            // Sync UI inputs if not currently editing (simple check: if tab is active?)
-            // For now, let's just sync checkboxes to match state
-            document.querySelectorAll('.rp-char-check').forEach(c => {
-                c.checked = state.characters.includes(c.value);
-            });
+            // Re-render list to update buttons state
+            renderRoleplayCharList();
             
             if (state.background) {
                 // Try to set select value, stripping /media/ prefix if needed
                 const cleanPath = state.background.replace('/media/', '');
                 const select = document.getElementById('rp-bg-select');
                 // Only set if option exists
-                if (select.querySelector(`option[value="${cleanPath}"]`)) {
+                if (select && select.querySelector(`option[value="${cleanPath}"]`)) {
                     select.value = cleanPath;
                 }
             }
