@@ -7,25 +7,125 @@
     "class": "Mechanic",
     "credits": 1250,
     "stats": {
-      "STR": 10,
+      "STR": 12,
       "DEX": 12,
-      "CON": 14,
+      "CON": 13,
       "INT": 18,
-      "WIS": 16,
-      "CHA": 10
+      "WIS": 12,
+      "CHA": 14
     },
     "vitals": {
-      "SP": 10,
-      "MAX_SP": 10,
-      "HP": 24,
-      "MAX_HP": 24,
-      "RP": 5,
-      "MAX_RP": 5
+      "level": 6,
+      "sp": 40,
+      "max_sp": 48,
+      "hp": 40,
+      "max_hp": 40,
+      "rp": 9,
+      "max_rp": 9
     },
     "roles": [
       "pilot",
       "hacker"
-    ]
+    ],
+    "group": "",
+    "money": 12389,
+    "skills": {
+      "acr": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 5,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 6,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 4,
+        "misc": 0
+      }
+    },
+    "feats": [
+      "Shield Proficiency",
+      "Longarm Proficiency",
+      {
+        "name": "Weapon Specialization",
+        "option": "Small Arms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Longarms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Basic Melee"
+      },
+      "Heavy Armor Proficiency"
+    ],
+    "inventory": [],
+    "xp": "16780"
   },
   {
     "id": "371922",
@@ -36,7 +136,10 @@
     "roles": [
       "scientist",
       "mystic"
-    ]
+    ],
+    "stats": {
+      "maxHp": 120
+    }
   },
   {
     "id": "497961",
@@ -46,7 +149,123 @@
     "image": "/media/[CHAR] Character pictures/Jose Milly.png",
     "tokenImage": "",
     "description": "",
-    "npcType": "rp"
+    "npcType": "rp",
+    "username": "",
+    "password": "",
+    "group": "Verces",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
   },
   {
     "id": "882214",
@@ -56,7 +275,123 @@
     "image": "/media/[CHAR] Character pictures/Kairos Falken.png",
     "tokenImage": "",
     "description": "",
-    "npcType": "rp"
+    "npcType": "rp",
+    "username": "",
+    "password": "",
+    "group": "Gemini",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
   },
   {
     "id": "580496",
@@ -66,6 +401,1952 @@
     "image": "/media/[CHAR] Character pictures/Lirien Ngozi.png",
     "tokenImage": "",
     "description": "",
-    "npcType": "rp"
+    "npcType": "rp",
+    "username": "",
+    "password": "",
+    "group": "Gemini",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220rv0x0",
+    "name": "Adira Kwan",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Adira Kwan.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "17672795712202ys3r",
+    "name": "Eira Sun",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Eira Sun.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "17672795712205caqv",
+    "name": "Elara Sterling",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Elara Sterling.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "1767279571220xq7qt",
+    "name": "Gyra Milly",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Gyra Milly.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220oqjn7",
+    "name": "Halden Verros",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Halden Verros.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220w4nw9",
+    "name": "Hawthorne Gammon",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Verces",
+    "image": "/media/[CHAR] Character pictures/Hawthorne Gammon.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "17672795712205uba3",
+    "name": "Jeful Sutton",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Jeful Sutton.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220ayv1v",
+    "name": "Kellan Vaeloran",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Kellan Vaeloran.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "1767279571220o2in6",
+    "name": "Keralis Vex",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Keralis Vex.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "17672795712207pr6r",
+    "name": "Loran Yoher",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Loran Yoher.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "17672795712205z9ot",
+    "name": "Lyra Faret",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Lyra Faret.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "1767279571220tuh1q",
+    "name": "Lysandra Vaeloran",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Lysandra Vaeloran.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "17672795712209vkop",
+    "name": "Markus Revell",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Markus Revell.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "17672795712205ojtj",
+    "name": "Rella Kautar",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Rella Kautar.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "1767279571220kb5cc",
+    "name": "Sarana Yokier",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Sarana Yokier.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220v5o31",
+    "name": "Soler Navary",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Soler Navary.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220186kf",
+    "name": "Trevor Holbach",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Verces",
+    "image": "/media/[CHAR] Character pictures/Trevor Holbach.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220jylg2",
+    "name": "Tudray Hertas",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Tudray Hertas.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220wr7td",
+    "name": "Xavier Milly",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Verces",
+    "image": "/media/[CHAR] Character pictures/Xavier Milly.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220ezd87",
+    "name": "Zarnak Trashmaw",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Zarnak Trashmaw.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
+  },
+  {
+    "id": "1767279571220ch840",
+    "name": "Ziva Patel",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "Gemini",
+    "image": "/media/[CHAR] Character pictures/Ziva Patel.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file",
+    "username": "",
+    "password": "",
+    "roles": [],
+    "vitals": {
+      "level": 1,
+      "sp": 0,
+      "max_sp": 0,
+      "hp": 0,
+      "max_hp": 0,
+      "rp": 0,
+      "max_rp": 0
+    },
+    "stats": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 0,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 0,
+      "fort_misc": 0,
+      "ref_base": 0,
+      "ref_misc": 0,
+      "will_base": 0,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [],
+    "money": 0,
+    "inventory": []
+  },
+  {
+    "id": "1767279571220sypmr",
+    "name": "Zorian III",
+    "isNPC": true,
+    "npcType": "rp",
+    "group": "General",
+    "image": "/media/[CHAR] Character pictures/Zorian III.png",
+    "class": "Unknown",
+    "description": "Auto-generated from file"
   }
 ]

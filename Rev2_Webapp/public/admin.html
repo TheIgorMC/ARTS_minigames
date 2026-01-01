@@ -325,6 +325,45 @@
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border: 1px solid var(--accent-color); }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+        /* Custom Number Input Styling */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .num-control-wrapper {
+            display: flex;
+            align-items: center;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 3px;
+        }
+        .num-control-wrapper input {
+            border: none !important;
+            text-align: center;
+            flex: 1;
+            min-width: 0;
+        }
+        .num-btn {
+            background: #222;
+            color: #888;
+            border: none;
+            cursor: pointer;
+            padding: 5px 8px;
+            font-weight: bold;
+            user-select: none;
+        }
+        .num-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+        .num-btn:active {
+            background: var(--accent-color);
+            color: #000;
+        }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -628,7 +667,11 @@
         <div id="tab-characters" class="panel hidden">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2 style="margin: 0;">CHARACTERS</h2>
-                <button class="action-btn" onclick="addNewCharacter()">+ NEW CHARACTER</button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="action-btn" onclick="openRequestCheckModal()">REQUEST CHECK</button>
+                    <button class="action-btn" onclick="socket.emit('admin_scan_chars')">SCAN FOLDERS</button>
+                    <button class="action-btn" onclick="addNewCharacter()">+ NEW CHARACTER</button>
+                </div>
             </div>
             
             <!-- Sub-tabs -->
@@ -788,6 +831,46 @@
         </div>
     </div>
 
+    <!-- REQUEST CHECK MODAL -->
+    <div id="req-check-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 400px; display: flex; flex-direction: column; gap: 15px;">
+            <h3 style="margin: 0; color: var(--accent-color);">Request Check</h3>
+            
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Target Player</label>
+                <select id="req-check-target" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Check Type</label>
+                <select id="req-check-type" onchange="updateReqCheckOptions()" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                    <option value="skill">Skill Check</option>
+                    <option value="ability">Ability Check</option>
+                    <option value="save">Saving Throw</option>
+                </select>
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Stat</label>
+                <select id="req-check-stat" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+
+            <div>
+                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Difficulty (DC) - Optional</label>
+                <input type="text" id="req-check-dc" placeholder="e.g. 15" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="action-btn" style="flex: 1; border-color: #555; color: #aaa;" onclick="closeRequestCheckModal()">CANCEL</button>
+                <button class="action-btn" style="flex: 1;" onclick="sendRequestCheck()">SEND REQUEST</button>
+            </div>
+        </div>
+    </div>
+
     <!-- NEW CHARACTER MODAL -->
     <div id="new-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
         <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 300px; display: flex; flex-direction: column; gap: 15px;">
@@ -817,7 +900,7 @@
 
     <!-- CHARACTER EDITOR MODAL -->
     <div id="char-editor-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 800px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 1000px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
                 <h3 style="margin: 0; color: var(--accent-color);">Character Editor</h3>
                 <button onclick="closeCharacterEditor()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
@@ -826,6 +909,9 @@
             <div class="tabs" style="margin-bottom: 10px;">
                 <button class="tab-btn active" onclick="switchEditorTab('details')">Details</button>
                 <button class="tab-btn" onclick="switchEditorTab('stats')">Stats</button>
+                <button class="tab-btn" onclick="switchEditorTab('combat')">Combat</button>
+                <button class="tab-btn" onclick="switchEditorTab('skills')">Skills</button>
+                <button class="tab-btn" onclick="switchEditorTab('feats')">Feats</button>
                 <button class="tab-btn" onclick="switchEditorTab('inventory')">Inventory</button>
             </div>
 
@@ -834,33 +920,194 @@
                     <div><label style="color:#888; font-size:0.8rem;">Name</label><input type="text" id="edit-name" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                     <div><label style="color:#888; font-size:0.8rem;">Username</label><input type="text" id="edit-username" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                     <div><label style="color:#888; font-size:0.8rem;">Password</label><input type="text" id="edit-password" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">Class</label><input type="text" id="edit-class" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div>
+                        <label style="color:#888; font-size:0.8rem;">Class</label>
+                        <select id="edit-class" onchange="updateSkillTotals(); renderEditorSkills(cachedData.characters[editingCharIndex]);" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;">
+                            <option value="Biohacker">Biohacker</option>
+                            <option value="Envoy">Envoy</option>
+                            <option value="Evolutionist">Evolutionist</option>
+                            <option value="Mechanic">Mechanic</option>
+                            <option value="Mystic">Mystic</option>
+                            <option value="Nanocyte">Nanocyte</option>
+                            <option value="Operative">Operative</option>
+                            <option value="Precog">Precog</option>
+                            <option value="Solarian">Solarian</option>
+                            <option value="Soldier">Soldier</option>
+                            <option value="Technomancer">Technomancer</option>
+                            <option value="Vanguard">Vanguard</option>
+                            <option value="Witchwarper">Witchwarper</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+                    </div>
+                    <div><label style="color:#888; font-size:0.8rem;">Group (Folder)</label><input type="text" id="edit-group" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                     <div class="full-width"><label style="color:#888; font-size:0.8rem;">Roles (comma sep)</label><input type="text" id="edit-roles" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                </div>
+                <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 10px;">
+                    <button class="action-btn danger" onclick="deleteCharacter(editingCharIndex); closeCharacterEditor();" style="width: 100%;">DELETE CHARACTER</button>
                 </div>
             </div>
 
             <div id="editor-tab-stats" class="editor-panel hidden">
                 <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Vitals</h4>
                 <div class="controls-grid">
-                    <div><label style="color:#888; font-size:0.8rem;">SP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-sp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-sp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
-                    <div><label style="color:#888; font-size:0.8rem;">HP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-hp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-hp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
-                    <div><label style="color:#888; font-size:0.8rem;">RP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-rp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-rp" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                    <div><label style="color:#888; font-size:0.8rem;">Level</label><input type="number" id="edit-level" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">SP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-sp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-sp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                    <div><label style="color:#888; font-size:0.8rem;">HP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-hp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-hp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
+                    <div><label style="color:#888; font-size:0.8rem;">RP (Cur/Max)</label><div style="display:flex; gap:5px;"><input type="number" id="edit-rp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"><input type="number" id="edit-max-rp" oninput="quickUpdateVitals()" style="width:50%; padding:5px; background:#000; color:#fff; border:1px solid #333;"></div></div>
                 </div>
                 <h4 style="color:var(--accent-color); border-bottom:1px solid #333; margin-top:20px;">Attributes</h4>
                 <div class="controls-grid">
-                    <div><label style="color:#888; font-size:0.8rem;">STR</label><input type="number" id="edit-str" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">DEX</label><input type="number" id="edit-dex" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">CON</label><input type="number" id="edit-con" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">INT</label><input type="number" id="edit-int" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">WIS</label><input type="number" id="edit-wis" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">CHA</label><input type="number" id="edit-cha" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">STR</label><input type="number" id="edit-str" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">DEX</label><input type="number" id="edit-dex" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CON</label><input type="number" id="edit-con" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">INT</label><input type="number" id="edit-int" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">WIS</label><input type="number" id="edit-wis" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CHA</label><input type="number" id="edit-cha" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                </div>
+            </div>
+
+            <div id="editor-tab-combat" class="editor-panel hidden">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <!-- ATTACK -->
+                    <div>
+                        <h3 style="color: #f55; border-bottom: 1px solid #f55;">ATTACK</h3>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Base Attack Bonus (BAB)</label>
+                            <input type="number" id="edit-bab" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Melee Misc Mod</label>
+                            <input type="number" id="edit-melee-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Ranged Misc Mod</label>
+                            <input type="number" id="edit-ranged-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Thrown Misc Mod</label>
+                            <input type="number" id="edit-thrown-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                    </div>
+
+                    <!-- SAVES -->
+                    <div>
+                        <h3 style="color: #55f; border-bottom: 1px solid #55f;">SAVES</h3>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Fortitude Base</label>
+                            <input type="number" id="edit-fort-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Fortitude Misc</label>
+                            <input type="number" id="edit-fort-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Reflex Base</label>
+                            <input type="number" id="edit-ref-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Reflex Misc</label>
+                            <input type="number" id="edit-ref-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Will Base</label>
+                            <input type="number" id="edit-will-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label style="font-size: 0.8rem; color: #888;">Will Misc</label>
+                            <input type="number" id="edit-will-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editor-tab-skills" class="editor-panel hidden">
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Skills</h4>
+                <div style="overflow-y: auto; height: 400px; border: 1px solid #333;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                        <thead style="background: #111; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 5px; text-align: left;">Skill</th>
+                                <th style="padding: 5px; text-align: center;">Attr</th>
+                                <th style="padding: 5px; text-align: center;">Total</th>
+                                <th style="padding: 5px; text-align: center;">Ranks</th>
+                                <th style="padding: 5px; text-align: center;">Misc</th>
+                            </tr>
+                        </thead>
+                        <tbody id="editor-skills-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="editor-tab-feats" class="editor-panel hidden">
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Feats & Abilities</h4>
+                
+                <div style="background: #111; padding: 10px; border: 1px solid #333; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <div style="flex: 1; position: relative;">
+                            <input type="text" id="feat-search" placeholder="Search feat..." onkeyup="filterFeatSearch()" 
+                                   style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333; font-size: 1rem;">
+                            <div id="feat-search-results" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; max-height: 200px; overflow-y: auto; background: #1a1a24; border: 1px solid var(--accent-color); z-index: 10;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="feat-add-container" style="display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #333;">
+                        <div id="feat-options-wrapper" style="display: none; margin-bottom: 10px;">
+                            <label style="color: #888; font-size: 0.8rem; display: block; margin-bottom: 5px;">Options (e.g. Weapon Type)</label>
+                            <select id="feat-option-select" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="action-btn" onclick="confirmAddFeat()" style="width: 100%;">ADD FEAT</button>
+                        </div>
+                        <div id="feat-preview-desc" style="color: #aaa; font-size: 0.8rem; margin-top: 5px; font-style: italic;"></div>
+                    </div>
+                </div>
+
+                <div id="editor-feats-list" style="border: 1px solid #333; height: 350px; overflow-y: auto; background: #000; padding: 5px;">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
             <div id="editor-tab-inventory" class="editor-panel hidden">
-                <div><label style="color:#888; font-size:0.8rem;">Credits</label><input type="number" id="edit-credits" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                <h4 style="color:var(--accent-color); border-bottom:1px solid #333; margin-top:20px;">Items (JSON)</h4>
-                <textarea id="edit-inventory" style="width: 100%; height: 200px; background: #000; color: #0f0; font-family: monospace; border:1px solid #333; padding:10px;"></textarea>
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Inventory</h4>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="color:#ffd700; font-size:0.8rem;">Money</label>
+                    <input type="number" id="edit-money" style="width:100%; padding:8px; background:#000; color:#ffd700; border:1px solid #333;">
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="inv-add-filter" placeholder="Search item..." onkeyup="filterInvAddSelect()" style="flex: 1; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                    <select id="inv-add-select" style="flex: 2; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                        <option value="">Select Item...</option>
+                    </select>
+                    <input type="number" id="inv-add-qty" value="1" style="width: 60px; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                    <button class="action-btn" onclick="addToEditorInventory()">ADD</button>
+                </div>
+
+                <div id="editor-inventory-list" style="border: 1px solid #333; height: 300px; overflow-y: auto; background: #000;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                        <thead style="background: #111; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 5px; text-align: left;">Name</th>
+                                <th style="padding: 5px; text-align: center;">Atk</th>
+                                <th style="padding: 5px; text-align: center;">Dmg</th>
+                                <th style="padding: 5px; text-align: center;">Qty</th>
+                                <th style="padding: 5px; text-align: center;">Act</th>
+                            </tr>
+                        </thead>
+                        <tbody id="editor-inventory-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div style="display: flex; gap: 10px; margin-top: 20px;">
@@ -1152,31 +1399,68 @@
             npcGrid.innerHTML = '';
             npcRpGrid.innerHTML = '';
             
-            cachedData.characters.forEach((char, index) => {
+            // Helper for grouping
+            const renderGrouped = (container, chars, isRPOnly) => {
+                const groups = {};
+                chars.forEach(char => {
+                    const g = char.group || 'General';
+                    if (!groups[g]) groups[g] = [];
+                    groups[g].push(char);
+                });
+
+                Object.keys(groups).sort().forEach(groupName => {
+                    // Group Header
+                    const header = document.createElement('div');
+                    header.style.gridColumn = '1 / -1';
+                    header.style.color = '#aaa';
+                    header.style.borderBottom = '1px solid #333';
+                    header.style.padding = '5px 0';
+                    header.style.marginTop = '10px';
+                    header.style.fontWeight = 'bold';
+                    header.innerText = groupName;
+                    container.appendChild(header);
+
+                    groups[groupName].forEach((char, index) => {
+                        // We need original index for callbacks
+                        const originalIndex = cachedData.characters.findIndex(c => c.id === char.id);
+                        const card = createCharacterCard(char, originalIndex, true, isRPOnly);
+                        container.appendChild(card);
+                    });
+                });
+            };
+
+            const pcs = [];
+            const npcsCombat = [];
+            const npcsRp = [];
+
+            cachedData.characters.forEach((char) => {
                 const isNPC = char.isNPC || false;
                 const npcType = char.npcType || 'both';
                 
                 if (isNPC) {
                     if (npcType === 'rp') {
-                        // RP Only NPC
-                        const card = createCharacterCard(char, index, true, true);
-                        npcRpGrid.appendChild(card);
+                        npcsRp.push(char);
                     } else {
-                        // Combat/Both NPC
-                        // Filter Logic for NPCs
                         if (npcFilter !== 'all') {
                             if (npcFilter === 'rp' && npcType === 'combat') return;
                             if (npcFilter === 'combat' && npcType === 'rp') return;
                         }
-                        const card = createCharacterCard(char, index, true, false);
-                        npcGrid.appendChild(card);
+                        npcsCombat.push(char);
                     }
                 } else {
-                    // PC
-                    const card = createCharacterCard(char, index, false, false);
-                    pcGrid.appendChild(card);
+                    pcs.push(char);
                 }
             });
+
+            // Render PCs (No grouping needed usually, but consistent)
+            pcs.forEach(char => {
+                const index = cachedData.characters.findIndex(c => c.id === char.id);
+                pcGrid.appendChild(createCharacterCard(char, index, false, false));
+            });
+
+            // Render NPCs Grouped
+            renderGrouped(npcGrid, npcsCombat, false);
+            renderGrouped(npcRpGrid, npcsRp, true);
         }
 
         function createCharacterCard(char, index, isNPC, isRPOnly) {
@@ -1215,27 +1499,14 @@
                     </div>
                 `;
             } else {
-                npcControls = `
-                    <div style="display: flex; gap: 10px; align-items: center; background: #222; padding: 5px;">
-                        <label style="color: #fff; font-size: 0.8rem;"><input type="checkbox" onchange="updateCharacter(${index}, 'isNPC', this.checked)"> NPC Mode</label>
-                    </div>
-                `;
+                // PC: No NPC controls
+                npcControls = '';
             }
 
             // PC Specific Fields
             let pcFields = '';
             if (!isNPC) {
                 pcFields = `
-                <div style="display: flex; gap: 5px;">
-                    <div style="flex: 1;">
-                        <label style="font-size: 0.7rem; color: #888;">Username</label>
-                        <input type="text" value="${char.username || ''}" onchange="updateCharacter(${index}, 'username', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label style="font-size: 0.7rem; color: #888;">Password</label>
-                        <input type="text" value="${char.password || ''}" onchange="updateCharacter(${index}, 'password', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                    </div>
-                </div>
                 <div style="display: flex; gap: 5px;">
                     <div style="flex: 1;">
                         <label style="font-size: 0.7rem; color: #ffd700;">Money</label>
@@ -1252,28 +1523,31 @@
             // Stats & Actions (Hide for RP Only)
             let statsAndActions = '';
             if (!isRPOnly) {
+                // Ensure vitals exist
+                const vitals = char.vitals || { hp:0, max_hp:0, sp:0, max_sp:0, rp:0, max_rp:0 };
+                
                 statsAndActions = `
                 <!-- Stats Quick Edit -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
                     <div>
                         <label style="font-size: 0.7rem; color: #f55;">HP / Max</label>
                         <div style="display: flex;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.hp) || 0}" onchange="updateCharacterStat(${index}, 'hp', this.value)" style="width: 50%; background: #311; color: #fff; border: 1px solid #522;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxHp) || 0}" onchange="updateCharacterStat(${index}, 'maxHp', this.value)" style="width: 50%; background: #311; color: #888; border: 1px solid #522;">
+                            <input type="number" class="no-spin" value="${vitals.hp || 0}" onchange="updateCharacterStat(${index}, 'hp', this.value)" style="width: 50%; background: #311; color: #fff; border: 1px solid #522;">
+                            <input type="number" class="no-spin" value="${vitals.max_hp || 0}" onchange="updateCharacterStat(${index}, 'max_hp', this.value)" style="width: 50%; background: #311; color: #888; border: 1px solid #522;">
                         </div>
                     </div>
                     <div>
                         <label style="font-size: 0.7rem; color: #55f;">SP / Max</label>
                         <div style="display: flex;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.sp) || 0}" onchange="updateCharacterStat(${index}, 'sp', this.value)" style="width: 50%; background: #113; color: #fff; border: 1px solid #225;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxSp) || 0}" onchange="updateCharacterStat(${index}, 'maxSp', this.value)" style="width: 50%; background: #113; color: #888; border: 1px solid #225;">
+                            <input type="number" class="no-spin" value="${vitals.sp || 0}" onchange="updateCharacterStat(${index}, 'sp', this.value)" style="width: 50%; background: #113; color: #fff; border: 1px solid #225;">
+                            <input type="number" class="no-spin" value="${vitals.max_sp || 0}" onchange="updateCharacterStat(${index}, 'max_sp', this.value)" style="width: 50%; background: #113; color: #888; border: 1px solid #225;">
                         </div>
                     </div>
                     <div>
                         <label style="font-size: 0.7rem; color: #5f5;">RP / Max</label>
                         <div style="display: flex;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.rp) || 0}" onchange="updateCharacterStat(${index}, 'rp', this.value)" style="width: 50%; background: #131; color: #fff; border: 1px solid #252;">
-                            <input type="number" class="no-spin" value="${(char.stats && char.stats.maxRp) || 0}" onchange="updateCharacterStat(${index}, 'maxRp', this.value)" style="width: 50%; background: #131; color: #888; border: 1px solid #252;">
+                            <input type="number" class="no-spin" value="${vitals.rp || 0}" onchange="updateCharacterStat(${index}, 'rp', this.value)" style="width: 50%; background: #131; color: #fff; border: 1px solid #252;">
+                            <input type="number" class="no-spin" value="${vitals.max_rp || 0}" onchange="updateCharacterStat(${index}, 'max_rp', this.value)" style="width: 50%; background: #131; color: #888; border: 1px solid #252;">
                         </div>
                     </div>
                 </div>
@@ -1304,18 +1578,19 @@
 
             card.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
-                    <span style="color: ${borderColor}; font-weight: bold;">#${char.id || index} ${isNPC ? (isRPOnly ? '(RP)' : '(NPC)') : '(PC)'}</span>
+                    <span style="color: ${borderColor}; font-weight: bold;">${char.name || 'Unnamed'} ${isNPC ? (isRPOnly ? '(RP)' : '(NPC)') : '(PC)'}</span>
                     <div>
-                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteCharacter(${index})">X</button>
+                        <button style="color: #aaa; background: none; border: none; cursor: pointer; margin-right: 5px;" onclick="openCharacterEditor(${index})">✎</button>
                     </div>
                 </div>
                 
                 ${npcControls}
 
+                ${isNPC ? `
                 <div>
                     <label style="font-size: 0.7rem; color: #888;">Name</label>
                     <input type="text" value="${char.name || ''}" onchange="updateCharacter(${index}, 'name', this.value)" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                </div>
+                </div>` : ''}
                 
                 ${statsAndActions}
                 ${pcFields}
@@ -1348,26 +1623,26 @@
         }
 
         function updateCharacterStat(index, stat, value) {
-            if (!cachedData.characters[index].stats) cachedData.characters[index].stats = {};
-            cachedData.characters[index].stats[stat] = parseInt(value);
+            if (!cachedData.characters[index].vitals) cachedData.characters[index].vitals = {};
+            cachedData.characters[index].vitals[stat] = parseInt(value);
         }
 
         function quickAction(index, action) {
             const char = cachedData.characters[index];
-            if (!char.stats) char.stats = { hp:0, maxHp:0, sp:0, maxSp:0, rp:0, maxRp:0 };
+            if (!char.vitals) char.vitals = { hp:0, max_hp:0, sp:0, max_sp:0, rp:0, max_rp:0 };
             
             if (action === 'rest_short') {
-                if (char.stats.sp < char.stats.maxSp && char.stats.rp > 0) {
-                    char.stats.sp = char.stats.maxSp;
-                    char.stats.rp--;
+                if (char.vitals.sp < char.vitals.max_sp && char.vitals.rp > 0) {
+                    char.vitals.sp = char.vitals.max_sp;
+                    char.vitals.rp--;
                     log(`ACTION: ${char.name} Short Rest (-1 RP, Full SP)`);
                 } else {
                     alert('Cannot Short Rest (No RP or Full SP)');
                 }
             } else if (action === 'rest_long') {
-                char.stats.hp = char.stats.maxHp;
-                char.stats.sp = char.stats.maxSp;
-                char.stats.rp = char.stats.maxRp;
+                char.vitals.hp = char.vitals.max_hp;
+                char.vitals.sp = char.vitals.max_sp;
+                char.vitals.rp = char.vitals.max_rp;
                 log(`ACTION: ${char.name} Long Rest (Full Restore)`);
             } else if (action === 'reload') {
                 log(`ACTION: ${char.name} Reloaded`);
@@ -1673,6 +1948,88 @@
         }
 
         let editingGroupId = null;
+
+        // --- REQUEST CHECK LOGIC ---
+        function openRequestCheckModal() {
+            const modal = document.getElementById('req-check-modal');
+            const targetSelect = document.getElementById('req-check-target');
+            
+            // Populate Targets (PCs only usually)
+            targetSelect.innerHTML = '';
+            if (cachedData && cachedData.characters) {
+                cachedData.characters.forEach(char => {
+                    if (!char.isNPC) {
+                        const opt = document.createElement('option');
+                        opt.value = char.username || char.name; // Prefer username for socket targeting
+                        opt.innerText = char.name;
+                        targetSelect.appendChild(opt);
+                    }
+                });
+            }
+            
+            updateReqCheckOptions();
+            modal.style.display = 'flex';
+        }
+
+        function closeRequestCheckModal() {
+            document.getElementById('req-check-modal').style.display = 'none';
+        }
+
+        function updateReqCheckOptions() {
+            const type = document.getElementById('req-check-type').value;
+            const statSelect = document.getElementById('req-check-stat');
+            statSelect.innerHTML = '';
+
+            if (type === 'skill') {
+                SKILL_DEFINITIONS.forEach(skill => {
+                    const opt = document.createElement('option');
+                    opt.value = skill.id;
+                    opt.innerText = skill.name;
+                    statSelect.appendChild(opt);
+                });
+            } else if (type === 'ability') {
+                ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'].forEach(attr => {
+                    const opt = document.createElement('option');
+                    opt.value = attr;
+                    opt.innerText = attr;
+                    statSelect.appendChild(opt);
+                });
+            } else if (type === 'save') {
+                ['Fortitude', 'Reflex', 'Will'].forEach(save => {
+                    const opt = document.createElement('option');
+                    opt.value = save.toLowerCase();
+                    opt.innerText = save;
+                    statSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function sendRequestCheck() {
+            const target = document.getElementById('req-check-target').value;
+            const type = document.getElementById('req-check-type').value;
+            const stat = document.getElementById('req-check-stat').value;
+            const dc = document.getElementById('req-check-dc').value;
+            
+            // Get display name for stat
+            let statName = stat;
+            if (type === 'skill') {
+                const s = SKILL_DEFINITIONS.find(x => x.id === stat);
+                if (s) statName = s.name;
+            } else if (type === 'save') {
+                statName = stat.charAt(0).toUpperCase() + stat.slice(1);
+            }
+
+            socket.emit('gm_request_check', {
+                target: target,
+                type: type,
+                stat: stat,
+                statName: statName,
+                dc: dc
+            });
+            
+            log(`REQ CHECK: ${target} -> ${statName} ${dc ? '(DC ' + dc + ')' : ''}`);
+            closeRequestCheckModal();
+        }
 
         // --- GROUP CHAT LOGIC ---
         function openGroupModal(groupId = null) {
@@ -2426,6 +2783,272 @@
             socket.emit('admin_refresh_db');
         }
 
+        // --- SKILLS & FEATS LOGIC ---
+        const SKILL_DEFINITIONS = [
+            { id: 'acr', name: 'Acrobatics', attr: 'DEX' },
+            { id: 'ath', name: 'Athletics', attr: 'STR' },
+            { id: 'blu', name: 'Bluff', attr: 'CHA' },
+            { id: 'com', name: 'Computers', attr: 'INT' },
+            { id: 'cul', name: 'Culture', attr: 'INT' },
+            { id: 'dip', name: 'Diplomacy', attr: 'CHA' },
+            { id: 'dis', name: 'Disguise', attr: 'CHA' },
+            { id: 'eng', name: 'Engineering', attr: 'INT' },
+            { id: 'int', name: 'Intimidate', attr: 'CHA' },
+            { id: 'lif', name: 'Life Science', attr: 'INT' },
+            { id: 'med', name: 'Medicine', attr: 'INT' },
+            { id: 'mys', name: 'Mysticism', attr: 'WIS' },
+            { id: 'per', name: 'Perception', attr: 'WIS' },
+            { id: 'phy', name: 'Physical Science', attr: 'INT' },
+            { id: 'pil', name: 'Piloting', attr: 'DEX' },
+            { id: 'sen', name: 'Sense Motive', attr: 'WIS' },
+            { id: 'sle', name: 'Sleight of Hand', attr: 'DEX' },
+            { id: 'ste', name: 'Stealth', attr: 'DEX' },
+            { id: 'sur', name: 'Survival', attr: 'WIS' }
+        ];
+
+        const CLASS_SKILLS = {
+            "Biohacker": ["blu", "com", "cul", "dip", "eng", "lif", "med", "per", "phy", "pro", "sen", "sle"],
+            "Envoy": ["acr", "ath", "blu", "com", "cul", "dip", "dis", "eng", "int", "med", "per", "pil", "pro", "sen", "sle", "ste"],
+            "Evolutionist": ["acr", "ath", "cul", "dis", "int", "per", "pro", "ste", "sur"],
+            "Mechanic": ["ath", "com", "eng", "med", "per", "phy", "pil", "pro"],
+            "Mystic": ["blu", "cul", "dip", "dis", "int", "lif", "med", "mys", "per", "pro", "sen", "sur"],
+            "Nanocyte": ["acr", "ath", "com", "eng", "lif", "med", "per", "phy", "pil", "pro", "sle", "ste"],
+            "Operative": ["acr", "ath", "blu", "com", "cul", "dis", "eng", "int", "med", "per", "pil", "pro", "sen", "sle", "ste", "sur"],
+            "Precog": ["acr", "blu", "cul", "dip", "mys", "per", "pil", "pro", "sen", "ste"],
+            "Solarian": ["acr", "ath", "dip", "int", "mys", "per", "phy", "pro", "sen", "ste"],
+            "Soldier": ["acr", "ath", "eng", "int", "med", "pil", "pro", "sur"],
+            "Technomancer": ["com", "eng", "lif", "mys", "phy", "pil", "pro", "sle"],
+            "Vanguard": ["acr", "ath", "cul", "dip", "int", "lif", "med", "mys", "per", "pro", "ste", "sur"],
+            "Witchwarper": ["acr", "blu", "cul", "dip", "int", "mys", "phy", "pro"]
+        };
+
+        const FEATS_DB = [
+            "Above and Below", "Accelerated Recovery", "Adaptive Casting", "Adaptive Fighting", "Adaptive Resistance", "Adaptive Upgrade", "Add Leverage", "Advance Warning", "Advanced Melee Weapon Proficiency", "Aerial Evasion", "Agile Casting", "Agile Swimmer", "Akiton Battery Hack", "Alien Herbalism", "All Hands on Deck", "Ambuscade", "Ambush Awareness", "Amplified Glitch", "Amplified Outgoing Signals", "Antagonize", "Antigrenadier", "Apt Mentor", "Arcane Riposte", "Arm Extensions", "Avenger", "Back to Back", "Backpedal", "Balanced Charger", "Barricade", "Basic Melee Weapon Proficiency", "Battle Thaumaturgy", "Bear Down", "Bear Hug", "Bird's Eye View", "Blind-Fight", "Blood in Their Eyes", "Blood of the Spider", "Bodyguard", "Bolstering Bravado", "Borrowed Vitality", "Breach and Clear", "Breaking Blasts", "Brutal Slash", "Bud Drone", "Bullying Brute", "Certain Strength", "Chemical Trail", "Chitinous Wall", "Cleave", "Climbing Master", "Close Combat", "Combat Casting", "Combat-Trained Mount", "Combined Strike", "Comedic Timing", "Community Leader", "Complex Adaptation", "Connection Inkling", "Constant Alert", "Cook Grenade", "Coordinated Shot", "Corruption’s Gift", "Cosmic Truth", "Counter Grapple", "Craven Ploy", "Creature Companion Adept", "Creature Companion Expert", "Creature Companion Master", "Creature Companion Virtuoso", "Crescendo of Victory", "Crescendo of Violence", "Crushing Follow-up", "Cultural Chameleon", "Curveball", "Dead Lift", "Deadly Aim", "Deadly Boast", "Death From Above", "Defensive Roll", "Defensive Stance", "Defensive Strike", "Defensive Striker", "Deflect Projectiles", "Deft Pursuit", "Determined Caster", "Deterring Threat", "Devoted Healer", "Diehard", "Diligent", "Diligent Searcher", "Dire Straits", "Discordant Din", "Disease Adaptation", "Disease Rejection", "Dispelling Strike", "Distance Hurler", "Dive Bomb", "Dive for Cover", "Diverse Conditioning", "Diversion", "Divine Blessing", "Divine Weapon", "Doorbuster", "Double Draw", "Double Tap", "Double Trouble", "Draconic Senses", "Draconic Shot", "Drag Down", "Driving Force", "Echolocation Attack", "Efficient Administrator", "Efficient Engineering", "Effortless Aerobatics", "Eldritch Lore", "Enclose Serums", "Enhanced Communalism", "Enhanced Resistance", "Environmental Adaptation", "Epic Retort", "Escaped Experimental Subject", "Expansive Breath", "Extended Telepathy", "Extra Resolve", "Fancy Footwork", "Far Shot", "Fast Clotting", "Fast Talk", "Fend Off", "Fighting Balance", "Firing Solution", "First Responder", "Flashmorph", "Fleet", "Focused Sense", "Focused Spellcaster", "Fortified Mind", "Forward Momentum", "Fouling Reposition", "Four-Handed Hacker", "Friend of the Wilds", "Frightening Injection", "Frightful Display", "Frightfully Tough", "Fusillade", "Gag Gift", "Grab Attention", "Grab and Go", "Grappler Pull", "Grasping LFAN", "Great Cleave", "Great Fortitude", "Greater Eldritch Lore", "Greater Feint", "Greater Shadow Infusion", "Greater Spell Penetration", "Grenade Mastery", "Grenade Proficiency", "Grim Determination", "Ground Fighting", "Group Negotiations", "Gussy Up", "Harm Undead", "Harmony of Bullets", "Hauler", "Heavy Armor Proficiency", "Heavy Weapon Proficiency", "Heightened Immune Response", "Helpful Telepath", "Hibernate", "Hidden Strike", "Hurl Ally", "Impressive Flex", "Improved Antigrenadier", "Improved Combat Maneuver", "Improved Critical", "Improved Demoralize", "Improved Dive Bomb", "Improved Energy Resistance", "Improved Feint", "Improved Great Fortitude", "Improved Initiative", "Improved Iron Will", "Improved Kip-Up", "Improved Lightning Reflexes", "Improved Shadow Infusion", "Improved Sidestep", "Improved Spell-Like Ability", "Improved Stand Still", "Improved Supporting Fire", "Improved Unarmed Strike", "In Harm’s Way", "Incisive Insight", "Indirect Retreat", "Instant Crater", "Intuit Relationships", "Iron Will", "Jet Charge", "Jet Dash", "Jinx", "Kasathan Battle Dance", "Kip Up", "Knock Heads", "Last Ditch Effort", "Last-chance Grab", "Laugh at Danger", "Lesser Eldritch Lore", "Ley Leech", "Light Armor Proficiency", "Lightning Hands", "Lightning Reflexes", "Line Climber", "Living Ladder", "Lock Eyes", "Lock Them Down", "Longarm Proficiency", "Lucky Guess", "Lung Puncture", "Lunge", "Maestro’s Flourish", "Major Draconic Form", "Major Eldritch Lore", "Major Naturalism", "Major Psychic Power", "Major Stage Magic", "Many-Handed Master", "Masked Visage", "Massive Splash", "Master Crafter", "Masterful Imitation", "Media Mogul", "Medical Expert", "Meditative Might", "Melt Defenses", "Memorable Coercer", "Memory Access", "Merciful Striker", "Metabolic Cleanse", "Midair Detonation", "Mind over Magic", "Minor Draconic Form", "Minor Eldritch Lore", "Minor Naturalism", "Minor Psychic Power", "Minor Stage Magic", "Mobility", "Momentous Attack", "More Than Flesh", "Morphing Feint", "Mounted Expert", "Multi-Weapon Fighting", "Multifaceted Nature", "Multitudinous LFAN", "Muscular Retort", "Mystic Opportunist", "Mystic Strike", "Nanite Integration", "Natural Bounty", "Natural Recouperation", "Naturalism", "Nimble Moves", "Obnoxious Trickster", "Observant Follower", "Old Growth", "Opening Volley", "Operatic Shatter", "Opposition Research", "Oracular Gift", "Panicked Power", "Parrying Technique", "Parting Shot", "Penetrating Attack", "Penetrating Spell", "Percussive Maintenance", "Periastra Training", "Perpetual Polymorph", "Physical Presence", "Pilot’s Bravado", "Pincered LFAN", "Pinpoint Hearing", "Pinpoint Hurler", "Plow Through", "Poison Adaptation", "Poison Rejection", "Polymath", "Polymorph Adept", "Polymorphic Titan", "Positive Conduit", "Powered Armored Proficiency", "Profession Mastery", "Professional Courtesy", "Professional Regard", "Project Lead", "Protective Fur", "Protector of Kahlannal", "Psychic Insight", "Psychic Power", "Psychic Sense", "Psychic Stalking", "Pull the Pin", "Quick Dismissal", "Quick Draw", "Quicker Trickler", "Rallying Roar", "Read Foe", "Reality Glimmer", "Refined Menace", "Reflect Projectiles", "Registered Dietitian", "Reject Chains", "Relocate Vitals", "Rending Slash", "Repair Specialist", "Restricting Fire", "Retrotech", "Ricochet Grenade", "Righteous Frenzy", "Runner Gunner", "Sacred Strike", "Scoundrel's Finesse", "Scurry", "Second-Chance Saboteur", "Sense Assumptions", "Shadow Infusion", "Shelter Ally", "Shield Block", "Shield Proficiency", "Shield Wall", "Shifter’s Eye", "Shot on the Run", "Shoulder Burden", "Sidestep", "Silt Shield", "Skill Focus", "Skill Synergy", "Sky Jockey", "Slam Down", "Slippery Shooter", "Small Arm Proficiency", "Sniper Weapon Proficiency", "Solid Stance", "Soothing Focus", "Soothing Orator", "Soothing Telepathy", "Special Weapon Proficiency", "Spectacular Smash", "Spell Feint", "Spell Focus", "Spell Gem Eater", "Spell Penetration", "Spellbane", "Spellguard", "Spot Structural Vulnerability", "Spot of Luck", "Spring Attack", "Spry Cover", "Squox Companion", "Stage Magic", "Stand Still", "Stand Strong", "Starship Aficionado", "Startled Scream", "Startling Charge", "Steady Flier", "Steady Footing", "Steel Nerves", "Steel Self", "Step Up", "Step Up and Strike", "Strafe", "Street Racer", "Strike Back", "Strong First Impression", "Strong Sense of Self", "Superheated Spells", "Suppressive Fire", "Survival Instincts", "Survivalist", "Swimming Master", "Symptom Management", "Tactful Advisor", "Tailored Serum", "Take This", "Tandem Feint", "Tandem Maneuver", "Target of Opportunity", "Technomantic Dabbler", "Telepathic Scream", "Telepathic Spy", "Terrifying Presence", "The People's Champion", "Three-Point Stance", "Throat Punch", "Through the Lines", "Tight Fit", "Time-Touched", "Timely Coordination", "Toughness", "Toxic Strike", "Trading Places", "Trained Actor", "Tripping Rush", "Tripping Tumble", "True Dragon Form", "Trusted Companion", "Tunneling Vanguard", "Unbreakable Will", "Uncanny Senses", "Underfoot", "Underhanded Snare", "Underwater Brawler", "Unfriendly Fire", "Unsinkable Caster", "Veiled Threat", "Versatile Fighting", "Versatile Focus", "Versatile Specialization", "Vestigial Vigor", "Vidgame Aficionado", "Vile Rejection", "Vital Essence", "Warpweaver", "Wary Withdrawal", "Water Magic", "Weak Point", "Weapon Focus", "Weapon Specialization", "Wind Shield", "Zero In", "Zero-G Training"
+        ];
+
+        const FEAT_LOGIC = {
+            "Weapon Specialization": {
+                desc: "Choose a weapon type. You deal extra damage equal to your level (or half level for Small Arms/Operative) with these weapons.",
+                options: ["Basic Melee", "Advanced Melee", "Small Arms", "Longarms", "Heavy Weapons", "Sniper Weapons", "Grenades", "Special"],
+                effect: "dmg_bonus"
+            },
+            "Weapon Focus": {
+                desc: "Choose a weapon type. You gain a +1 bonus to attack rolls with these weapons.",
+                options: ["Basic Melee", "Advanced Melee", "Small Arms", "Longarms", "Heavy Weapons", "Sniper Weapons", "Grenades", "Special"],
+                effect: "atk_bonus"
+            },
+            "Greater Weapon Focus": {
+                desc: "Choose a weapon type. You gain an additional +1 bonus to attack rolls with these weapons.",
+                options: ["Basic Melee", "Advanced Melee", "Small Arms", "Longarms", "Heavy Weapons", "Sniper Weapons", "Grenades", "Special"],
+                effect: "atk_bonus_greater"
+            },
+            "Versatile Focus": {
+                desc: "You gain a +1 bonus to attack rolls with all weapons you are proficient with.",
+                effect: "atk_bonus_all"
+            },
+            "Toughness": {
+                desc: "You gain +1 Stamina Point per character level.",
+                effect: "sp_bonus"
+            },
+            "Improved Initiative": {
+                desc: "You gain a +4 bonus to initiative checks.",
+                effect: "init_bonus"
+            },
+            "Skill Focus": {
+                desc: "Choose a skill. You gain a +3 insight bonus to checks with that skill.",
+                options: ["Acrobatics", "Athletics", "Bluff", "Computers", "Culture", "Diplomacy", "Disguise", "Engineering", "Intimidate", "Life Science", "Medicine", "Mysticism", "Perception", "Physical Science", "Piloting", "Sense Motive", "Sleight of Hand", "Stealth", "Survival"],
+                effect: "skill_bonus"
+            },
+            "Skill Synergy": {
+                desc: "Choose a skill. You gain a +2 insight bonus to checks with that skill. (Select this feat twice to pick two skills).",
+                options: ["Acrobatics", "Athletics", "Bluff", "Computers", "Culture", "Diplomacy", "Disguise", "Engineering", "Intimidate", "Life Science", "Medicine", "Mysticism", "Perception", "Physical Science", "Piloting", "Sense Motive", "Sleight of Hand", "Stealth", "Survival"],
+                effect: "skill_bonus_synergy"
+            },
+            "Energy Resistance": {
+                desc: "Choose an energy type. You gain resistance 5 against that energy type.",
+                options: ["Acid", "Cold", "Electricity", "Fire", "Sonic"],
+                effect: "resistance"
+            },
+            "Improved Energy Resistance": {
+                desc: "Choose an energy type. You gain resistance 10 against that energy type.",
+                options: ["Acid", "Cold", "Electricity", "Fire", "Sonic"],
+                effect: "resistance_improved"
+            },
+            "Penetrating Attack": {
+                desc: "Choose a weapon type. Your attacks with these weapons ignore 5 points of DR.",
+                options: ["Basic Melee", "Advanced Melee", "Small Arms", "Longarms", "Heavy Weapons", "Sniper Weapons", "Grenades", "Special"],
+                effect: "dr_bypass"
+            }
+        };
+
+        function getAttrMod(score) {
+            return Math.floor((score - 10) / 2);
+        }
+
+        function updateSkillTotals() {
+            const stats = {
+                STR: parseInt(document.getElementById('edit-str').value) || 10,
+                DEX: parseInt(document.getElementById('edit-dex').value) || 10,
+                CON: parseInt(document.getElementById('edit-con').value) || 10,
+                INT: parseInt(document.getElementById('edit-int').value) || 10,
+                WIS: parseInt(document.getElementById('edit-wis').value) || 10,
+                CHA: parseInt(document.getElementById('edit-cha').value) || 10
+            };
+            
+            const charClass = document.getElementById('edit-class').value;
+            const classSkills = CLASS_SKILLS[charClass] || [];
+
+            SKILL_DEFINITIONS.forEach(skill => {
+                const ranks = parseInt(document.getElementById(`skill-ranks-${skill.id}`).value) || 0;
+                const misc = parseInt(document.getElementById(`skill-misc-${skill.id}`).value) || 0;
+                
+                const attrScore = stats[skill.attr];
+                const attrMod = getAttrMod(attrScore);
+                
+                const isClassSkill = classSkills.includes(skill.id);
+                
+                let total = ranks + attrMod + misc;
+                if (isClassSkill && ranks > 0) total += 3;
+
+                // Apply Feat Bonuses (Skill Focus / Synergy)
+                if (editorFeats) {
+                    editorFeats.forEach(f => {
+                        const fName = typeof f === 'string' ? f : f.name;
+                        const fOption = typeof f === 'string' ? null : f.option;
+                        
+                        if (fName === 'Skill Focus' && fOption === skill.name) {
+                            total += 3;
+                        }
+                        if (fName === 'Skill Synergy' && fOption === skill.name) {
+                            total += 2;
+                        }
+                    });
+                }
+                
+                document.getElementById(`skill-total-${skill.id}`).innerText = total;
+                document.getElementById(`skill-attr-val-${skill.id}`).innerText = attrMod;
+                
+                // Update visual indicator
+                const indicator = document.getElementById(`skill-class-indicator-${skill.id}`);
+                if (indicator) {
+                    indicator.style.opacity = isClassSkill ? '1' : '0.1';
+                    indicator.style.color = isClassSkill ? 'var(--accent-color)' : '#888';
+                }
+            });
+        }
+
+        function renderEditorSkills(char) {
+            const tbody = document.getElementById('editor-skills-tbody');
+            tbody.innerHTML = '';
+            
+            const charSkills = char.skills || {};
+            const stats = char.stats || { STR:10, DEX:10, CON:10, INT:10, WIS:10, CHA:10 };
+            const charClass = char.class || 'Unknown';
+            const classSkills = CLASS_SKILLS[charClass] || [];
+
+            SKILL_DEFINITIONS.forEach(skill => {
+                const sData = charSkills[skill.id] || { ranks: 0, misc: 0 };
+                const attrMod = getAttrMod(stats[skill.attr] || 10);
+                const isClassSkill = classSkills.includes(skill.id);
+                
+                let total = (sData.ranks || 0) + attrMod + (sData.misc || 0);
+                if (isClassSkill && sData.ranks > 0) total += 3;
+
+                // Apply Feat Bonuses (Skill Focus / Synergy)
+                if (editorFeats) {
+                    editorFeats.forEach(f => {
+                        const fName = typeof f === 'string' ? f : f.name;
+                        const fOption = typeof f === 'string' ? null : f.option;
+                        
+                        if (fName === 'Skill Focus' && fOption === skill.name) {
+                            total += 3;
+                        }
+                        if (fName === 'Skill Synergy' && fOption === skill.name) {
+                            total += 2;
+                        }
+                    });
+                }
+
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #222';
+                tr.innerHTML = `
+                    <td style="padding: 5px; color: #fff;">
+                        ${skill.name} <span style="color:#666; font-size:0.7rem;">(${skill.attr})</span>
+                        <span id="skill-class-indicator-${skill.id}" style="margin-left:5px; font-size:0.8rem; opacity:${isClassSkill ? '1' : '0.1'}; color:${isClassSkill ? 'var(--accent-color)' : '#888'};" title="Class Skill">★</span>
+                    </td>
+                    <td style="padding: 5px; text-align: center; color: #888;" id="skill-attr-val-${skill.id}">${attrMod}</td>
+                    <td style="padding: 5px; text-align: center; color: var(--accent-color); font-weight: bold;" id="skill-total-${skill.id}">${total}</td>
+                    <td style="padding: 5px; text-align: center;">
+                        <input type="number" id="skill-ranks-${skill.id}" value="${sData.ranks || 0}" min="0" 
+                            onchange="updateSkillTotals()" 
+                            style="width: 50px; background: #000; color: #fff; border: 1px solid #333; text-align: center;">
+                    </td>
+                    <td style="padding: 5px; text-align: center;">
+                        <input type="number" id="skill-misc-${skill.id}" value="${sData.misc || 0}" 
+                            onchange="updateSkillTotals()" 
+                            style="width: 50px; background: #000; color: #fff; border: 1px solid #333; text-align: center;">
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            enhanceNumberInputs();
+        }
+
+        // --- UI HELPERS ---
+        function enhanceNumberInputs() {
+            document.querySelectorAll('#char-editor-modal input[type=number]').forEach(input => {
+                if (input.parentElement.classList.contains('num-control-wrapper')) return; // Already enhanced
+                
+                // Create wrapper
+                const wrapper = document.createElement('div');
+                wrapper.className = 'num-control-wrapper';
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.background = '#000';
+                wrapper.style.border = '1px solid #333';
+                
+                // Create buttons
+                const btnDown = document.createElement('button');
+                btnDown.innerText = '-';
+                btnDown.className = 'num-btn';
+                btnDown.style.background = '#222';
+                btnDown.style.color = '#888';
+                btnDown.style.border = 'none';
+                btnDown.style.cursor = 'pointer';
+                btnDown.style.padding = '5px 8px';
+                btnDown.onclick = () => {
+                    input.stepDown();
+                    input.dispatchEvent(new Event('change'));
+                };
+
+                const btnUp = document.createElement('button');
+                btnUp.innerText = '+';
+                btnUp.className = 'num-btn';
+                btnUp.style.background = '#222';
+                btnUp.style.color = '#888';
+                btnUp.style.border = 'none';
+                btnUp.style.cursor = 'pointer';
+                btnUp.style.padding = '5px 8px';
+                btnUp.onclick = () => {
+                    input.stepUp();
+                    input.dispatchEvent(new Event('change'));
+                };
+
+                // Insert wrapper
+                input.parentNode.insertBefore(wrapper, input);
+                wrapper.appendChild(btnDown);
+                wrapper.appendChild(input);
+                wrapper.appendChild(btnUp);
+                
+                // Style input to fit
+                input.style.border = 'none';
+                input.style.textAlign = 'center';
+                input.style.width = '100%';
+                input.style.minWidth = '30px';
+            });
+        }
+
         // --- CHARACTER EDITOR ---
         let editingCharIndex = -1;
 
@@ -2439,10 +3062,12 @@
             document.getElementById('edit-username').value = char.username || '';
             document.getElementById('edit-password').value = char.password || '';
             document.getElementById('edit-class').value = char.class || '';
+            document.getElementById('edit-group').value = char.group || '';
             document.getElementById('edit-roles').value = (char.roles || []).join(', ');
 
             // Populate Stats
             const vitals = char.vitals || {};
+            document.getElementById('edit-level').value = vitals.level || 1;
             document.getElementById('edit-sp').value = vitals.sp || 0;
             document.getElementById('edit-max-sp').value = vitals.max_sp || 0;
             document.getElementById('edit-hp').value = vitals.hp || 0;
@@ -2458,12 +3083,331 @@
             document.getElementById('edit-wis').value = stats.WIS || 10;
             document.getElementById('edit-cha').value = stats.CHA || 10;
 
+            // Populate Combat
+            const combat = char.combat || {};
+            document.getElementById('edit-bab').value = combat.bab || 0;
+            document.getElementById('edit-melee-misc').value = combat.melee_misc || 0;
+            document.getElementById('edit-ranged-misc').value = combat.ranged_misc || 0;
+            document.getElementById('edit-thrown-misc').value = combat.thrown_misc || 0;
+            
+            const saves = char.saves || {};
+            document.getElementById('edit-fort-base').value = saves.fort_base || 0;
+            document.getElementById('edit-fort-misc').value = saves.fort_misc || 0;
+            document.getElementById('edit-ref-base').value = saves.ref_base || 0;
+            document.getElementById('edit-ref-misc').value = saves.ref_misc || 0;
+            document.getElementById('edit-will-base').value = saves.will_base || 0;
+            document.getElementById('edit-will-misc').value = saves.will_misc || 0;
+
+            // Populate Skills
+            renderEditorSkills(char);
+
+            // Populate Feats
+            editorFeats = JSON.parse(JSON.stringify(char.feats || []));
+            // populateFeatsDatalist(); // Removed in favor of custom search
+            renderEditorFeats();
+
             // Populate Inventory
-            document.getElementById('edit-credits').value = char.credits || 0;
-            document.getElementById('edit-inventory').value = JSON.stringify(char.inventory || [], null, 2);
+            document.getElementById('edit-money').value = char.money || 0;
+            
+            // Initialize Editor Inventory
+            editorInventory = JSON.parse(JSON.stringify(char.inventory || []));
+            renderEditorInventory();
+            populateInvAddSelect();
 
             document.getElementById('char-editor-modal').style.display = 'flex';
             switchEditorTab('details');
+            
+            // Enhance inputs after a short delay to ensure DOM is ready/visible
+            setTimeout(enhanceNumberInputs, 100);
+        }
+
+        let editorInventory = [];
+
+        function populateInvAddSelect() {
+            const select = document.getElementById('inv-add-select');
+            select.innerHTML = '<option value="">Select Item...</option>';
+            
+            if (!cachedData || !cachedData.items) return;
+            
+            // Sort items by name
+            const sortedItems = [...cachedData.items].sort((a, b) => a.name.localeCompare(b.name));
+            
+            sortedItems.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id; // Use ID as reference
+                opt.innerText = `${item.name} (${item.category})`;
+                opt.dataset.name = item.name.toLowerCase();
+                select.appendChild(opt);
+            });
+        }
+
+        function filterInvAddSelect() {
+            const filter = document.getElementById('inv-add-filter').value.toLowerCase();
+            const select = document.getElementById('inv-add-select');
+            const options = select.options;
+            
+            for (let i = 1; i < options.length; i++) { // Skip first option
+                const opt = options[i];
+                const txt = opt.innerText.toLowerCase();
+                if (txt.includes(filter)) {
+                    opt.style.display = '';
+                } else {
+                    opt.style.display = 'none';
+                }
+            }
+        }
+
+        function addToEditorInventory() {
+            const select = document.getElementById('inv-add-select');
+            const itemId = select.value;
+            const qty = parseInt(document.getElementById('inv-add-qty').value) || 1;
+            
+            if (!itemId) return;
+            
+            // Check if already exists
+            const existing = editorInventory.find(i => i.itemId === itemId);
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + qty;
+            } else {
+                editorInventory.push({ itemId: itemId, quantity: qty });
+            }
+            renderEditorInventory();
+        }
+
+        function removeFromEditorInventory(index) {
+            editorInventory.splice(index, 1);
+            renderEditorInventory();
+        }
+
+        let editorFeats = [];
+
+        // --- FEAT UI LOGIC ---
+        function filterFeatSearch() {
+            const input = document.getElementById('feat-search');
+            const resultsDiv = document.getElementById('feat-search-results');
+            const query = input.value.toLowerCase();
+            
+            resultsDiv.innerHTML = '';
+            if (query.length < 2) {
+                resultsDiv.style.display = 'none';
+                return;
+            }
+
+            const matches = FEATS_DB.filter(f => f.toLowerCase().includes(query));
+            
+            if (matches.length > 0) {
+                matches.forEach(feat => {
+                    const div = document.createElement('div');
+                    div.className = 'feat-search-result';
+                    div.innerText = feat;
+                    div.onclick = () => selectFeatFromSearch(feat);
+                    resultsDiv.appendChild(div);
+                });
+                resultsDiv.style.display = 'block';
+            } else {
+                resultsDiv.style.display = 'none';
+            }
+        }
+
+        function selectFeatFromSearch(featName) {
+            document.getElementById('feat-search').value = featName;
+            document.getElementById('feat-search-results').style.display = 'none';
+            
+            const addContainer = document.getElementById('feat-add-container');
+            const optionsWrapper = document.getElementById('feat-options-wrapper');
+            const optionsSelect = document.getElementById('feat-option-select');
+            const descDiv = document.getElementById('feat-preview-desc');
+            
+            addContainer.style.display = 'block';
+            
+            // Description
+            if (FEAT_LOGIC[featName] && FEAT_LOGIC[featName].desc) {
+                descDiv.innerText = FEAT_LOGIC[featName].desc;
+            } else {
+                descDiv.innerText = '';
+            }
+
+            // Check if feat has options
+            if (FEAT_LOGIC[featName] && FEAT_LOGIC[featName].options) {
+                optionsWrapper.style.display = 'block';
+                optionsSelect.innerHTML = '';
+                FEAT_LOGIC[featName].options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt;
+                    option.innerText = opt;
+                    optionsSelect.appendChild(option);
+                });
+            } else {
+                optionsWrapper.style.display = 'none';
+            }
+        }
+
+        function confirmAddFeat() {
+            const featName = document.getElementById('feat-search').value;
+            if (!featName) return;
+
+            const optionsWrapper = document.getElementById('feat-options-wrapper');
+            let featOption = null;
+            
+            if (optionsWrapper.style.display !== 'none') {
+                featOption = document.getElementById('feat-option-select').value;
+            }
+
+            // Check for duplicates (considering options)
+            const exists = editorFeats.some(f => {
+                if (typeof f === 'string') return f === featName;
+                return f.name === featName && f.option === featOption;
+            });
+
+            if (exists) {
+                alert('Feat already added!');
+                return;
+            }
+
+            if (featOption) {
+                editorFeats.push({ name: featName, option: featOption });
+            } else {
+                editorFeats.push(featName);
+            }
+
+            renderEditorFeats();
+            
+            // Reset UI
+            document.getElementById('feat-search').value = '';
+            document.getElementById('feat-add-container').style.display = 'none';
+        }
+
+        function removeFeat(index) {
+            editorFeats.splice(index, 1);
+            renderEditorFeats();
+        }
+
+        function renderEditorFeats() {
+            const list = document.getElementById('editor-feats-list');
+            list.innerHTML = '';
+            
+            editorFeats.forEach((feat, index) => {
+                const div = document.createElement('div');
+                div.className = 'feat-item';
+                div.style.display = 'flex';
+                div.style.justifyContent = 'space-between';
+                div.style.alignItems = 'center';
+                div.style.background = '#333';
+                div.style.padding = '5px 10px';
+                div.style.marginBottom = '5px';
+                div.style.borderRadius = '4px';
+
+                let displayName = typeof feat === 'string' ? feat : `${feat.name} (${feat.option})`;
+                
+                div.innerHTML = `
+                    <span>${displayName}</span>
+                    <button onclick="removeFeat(${index})" style="color: #f00; background: none; border: none; cursor: pointer;">X</button>
+                `;
+                list.appendChild(div);
+            });
+            
+            // Re-calculate inventory stats whenever feats change
+            renderEditorInventory();
+            // Re-calculate skill stats whenever feats change (for Skill Focus)
+            updateSkillTotals();
+            renderEditorSkills(cachedData.characters[editingCharIndex]);
+        }
+
+        function renderEditorInventory() {
+            const tbody = document.getElementById('editor-inventory-tbody');
+            tbody.innerHTML = '';
+            
+            const level = parseInt(document.getElementById('edit-level').value) || 1;
+            const strMod = getAttrMod(parseInt(document.getElementById('edit-str').value) || 10);
+            const dexMod = getAttrMod(parseInt(document.getElementById('edit-dex').value) || 10);
+            
+            editorInventory.forEach((entry, index) => {
+                // Lookup item details
+                const item = cachedData.items.find(i => i.id === entry.itemId);
+                const name = item ? item.name : `Unknown Item (${entry.itemId})`;
+                const category = item ? item.category : '-';
+                const qty = entry.quantity || 1;
+                
+                let atkDisplay = '-';
+                let dmgDisplay = '-';
+
+                if (item && item.category === 'Weapon') {
+                    // Determine Weapon Type and Ability
+                    // Mapping Feat Options to Item Details
+                    // "Basic Melee" -> basicM
+                    // "Advanced Melee" -> advancedM
+                    // "Small Arms" -> smallA
+                    // "Longarms" -> longA
+                    // "Heavy Weapons" -> heavy
+                    // "Sniper Weapons" -> sniper
+                    // "Grenades" -> grenade
+                    
+                    const weaponType = item.details ? item.details.weaponType : '';
+                    const ability = item.details ? item.details.ability : ''; // 'str' or 'dex'
+                    
+                    let isMelee = ability === 'str' || (item.details && item.details.range === 'Melee');
+                    let atkBonus = level + (ability === 'dex' ? dexMod : strMod); // Simplified BAB = Level
+                    let dmgBonus = ability === 'str' ? strMod : 0; 
+
+                    // Apply Feats
+                    editorFeats.forEach(f => {
+                        const fName = typeof f === 'string' ? f : f.name;
+                        const fOption = typeof f === 'string' ? null : f.option;
+                        
+                        if (fName === 'Weapon Focus' || fName === 'Greater Weapon Focus') {
+                            let match = false;
+                            if (fOption === 'Basic Melee' && weaponType === 'basicM') match = true;
+                            if (fOption === 'Advanced Melee' && weaponType === 'advancedM') match = true;
+                            if (fOption === 'Small Arms' && weaponType === 'smallA') match = true;
+                            if (fOption === 'Longarms' && weaponType === 'longA') match = true;
+                            if (fOption === 'Heavy Weapons' && weaponType === 'heavy') match = true;
+                            if (fOption === 'Sniper Weapons' && weaponType === 'sniper') match = true;
+                            if (fOption === 'Grenades' && weaponType === 'grenade') match = true;
+                            
+                            if (match) atkBonus += 1;
+                        }
+                        if (fName === 'Versatile Focus') {
+                            atkBonus += 1;
+                        }
+                        if (fName === 'Weapon Specialization') {
+                            let match = false;
+                            if (fOption === 'Basic Melee' && weaponType === 'basicM') match = true;
+                            if (fOption === 'Advanced Melee' && weaponType === 'advancedM') match = true;
+                            if (fOption === 'Small Arms' && weaponType === 'smallA') match = true;
+                            if (fOption === 'Longarms' && weaponType === 'longA') match = true;
+                            if (fOption === 'Heavy Weapons' && weaponType === 'heavy') match = true;
+                            if (fOption === 'Sniper Weapons' && weaponType === 'sniper') match = true;
+                            if (fOption === 'Grenades' && weaponType === 'grenade') match = true;
+
+                            if (match) {
+                                if (fOption === 'Small Arms') { // Operative weapons also use half level usually
+                                    dmgBonus += Math.floor(level / 2);
+                                } else {
+                                    dmgBonus += level;
+                                }
+                            }
+                        }
+                    });
+
+                    atkDisplay = `+${atkBonus}`;
+                    dmgDisplay = `+${dmgBonus}`;
+                }
+                
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #222';
+                tr.innerHTML = `
+                    <td style="padding: 5px; color: ${item ? '#fff' : '#f00'};">${name}</td>
+                    <td style="padding: 5px; color: #888;">${category}</td>
+                    <td style="padding: 5px; text-align: center;">${qty}</td>
+                    <td style="padding: 5px; text-align: center; font-size: 0.9em; color: #aaa;">
+                        ${atkDisplay} / ${dmgDisplay}
+                    </td>
+                    <td style="padding: 5px; text-align: center;">
+                        <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="removeFromEditorInventory(${index})">X</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
         function closeCharacterEditor() {
@@ -2488,6 +3432,38 @@
             }
         }
 
+        let vitalsUpdateTimeout = null;
+
+        function quickUpdateVitals() {
+            if (editingCharIndex === -1 || !cachedData) return;
+            
+            // Debounce
+            if (vitalsUpdateTimeout) clearTimeout(vitalsUpdateTimeout);
+            
+            vitalsUpdateTimeout = setTimeout(() => {
+                const char = cachedData.characters[editingCharIndex];
+                
+                // Update Vitals in local cache
+                // Preserve existing vitals properties if any (though we overwrite most)
+                const oldVitals = char.vitals || {};
+                
+                char.vitals = {
+                    ...oldVitals,
+                    level: parseInt(document.getElementById('edit-level').value) || 1,
+                    sp: parseInt(document.getElementById('edit-sp').value) || 0,
+                    max_sp: parseInt(document.getElementById('edit-max-sp').value) || 0,
+                    hp: parseInt(document.getElementById('edit-hp').value) || 0,
+                    max_hp: parseInt(document.getElementById('edit-max-hp').value) || 0,
+                    rp: parseInt(document.getElementById('edit-rp').value) || 0,
+                    max_rp: parseInt(document.getElementById('edit-max-rp').value) || 0
+                };
+                
+                // Save to server (which broadcasts to players)
+                saveCharactersCards();
+                // Note: We don't call renderCharactersCards() here to avoid UI flicker/reset while typing
+            }, 500); // 500ms delay
+        }
+
         function saveCharacterEditor() {
             if (editingCharIndex === -1 || !cachedData) return;
             
@@ -2497,11 +3473,13 @@
             char.name = document.getElementById('edit-name').value;
             char.username = document.getElementById('edit-username').value;
             char.password = document.getElementById('edit-password').value;
+            char.group = document.getElementById('edit-group').value;
             char.class = document.getElementById('edit-class').value;
             char.roles = document.getElementById('edit-roles').value.split(',').map(r => r.trim()).filter(r => r.length > 0);
 
             // Save Stats
             char.vitals = {
+                level: parseInt(document.getElementById('edit-level').value) || 1,
                 sp: parseInt(document.getElementById('edit-sp').value) || 0,
                 max_sp: parseInt(document.getElementById('edit-max-sp').value) || 0,
                 hp: parseInt(document.getElementById('edit-hp').value) || 0,
@@ -2519,14 +3497,39 @@
                 CHA: parseInt(document.getElementById('edit-cha').value) || 10
             };
 
+            // Save Combat
+            char.combat = {
+                bab: parseInt(document.getElementById('edit-bab').value) || 0,
+                melee_misc: parseInt(document.getElementById('edit-melee-misc').value) || 0,
+                ranged_misc: parseInt(document.getElementById('edit-ranged-misc').value) || 0,
+                thrown_misc: parseInt(document.getElementById('edit-thrown-misc').value) || 0
+            };
+
+            // Save Saves
+            char.saves = {
+                fort_base: parseInt(document.getElementById('edit-fort-base').value) || 0,
+                fort_misc: parseInt(document.getElementById('edit-fort-misc').value) || 0,
+                ref_base: parseInt(document.getElementById('edit-ref-base').value) || 0,
+                ref_misc: parseInt(document.getElementById('edit-ref-misc').value) || 0,
+                will_base: parseInt(document.getElementById('edit-will-base').value) || 0,
+                will_misc: parseInt(document.getElementById('edit-will-misc').value) || 0
+            };
+
+            // Save Skills
+            char.skills = {};
+            SKILL_DEFINITIONS.forEach(skill => {
+                char.skills[skill.id] = {
+                    ranks: parseInt(document.getElementById(`skill-ranks-${skill.id}`).value) || 0,
+                    misc: parseInt(document.getElementById(`skill-misc-${skill.id}`).value) || 0
+                };
+            });
+
+            // Save Feats
+            char.feats = editorFeats;
+
             // Save Inventory
-            char.credits = parseInt(document.getElementById('edit-credits').value) || 0;
-            try {
-                char.inventory = JSON.parse(document.getElementById('edit-inventory').value);
-            } catch (e) {
-                alert('Invalid JSON for Inventory');
-                return;
-            }
+            char.money = parseInt(document.getElementById('edit-money').value) || 0;
+            char.inventory = editorInventory;
 
             saveCharactersCards(); // Saves to server
             renderCharactersCards(); // Updates UI
@@ -2547,51 +3550,78 @@
                 .filter(c => c.isNPC)
                 .sort((a, b) => a.name.localeCompare(b.name));
 
+            // Group by 'group' property
+            const groups = {};
             npcs.forEach(char => {
-                const div = document.createElement('div');
-                div.style.marginBottom = '10px';
-                div.style.padding = '5px';
-                div.style.borderBottom = '1px solid #222';
-                div.style.display = 'flex';
-                div.style.alignItems = 'center';
-                div.style.justifyContent = 'space-between';
-                
-                // Check if this char is in the current state
-                const activeChar = currentRoleplayState.characters.find(c => c.id === char.id);
-                const isVisible = !!activeChar;
-                const currentMood = activeChar ? (activeChar.mood || 'default') : 'default';
-                
-                // Mood Options (Scaffolding)
-                // In future, we can populate this from char.moods if available
-                const moodOptions = `
-                    <option value="default" ${currentMood === 'default' ? 'selected' : ''}>Default</option>
-                    <option value="angry" ${currentMood === 'angry' ? 'selected' : ''}>Angry</option>
-                    <option value="happy" ${currentMood === 'happy' ? 'selected' : ''}>Happy</option>
-                    <option value="sad" ${currentMood === 'sad' ? 'selected' : ''}>Sad</option>
-                `;
+                const g = char.group || 'General';
+                if (!groups[g]) groups[g] = [];
+                groups[g].push(char);
+            });
 
-                div.innerHTML = `
-                    <div style="display: flex; flex-direction: column;">
-                        <span style="color: #fff; font-weight: bold;">${char.name}</span>
-                        <span style="color: #888; font-size: 0.7rem;">(${char.npcType === 'rp' ? 'RP' : 'Combat'})</span>
-                    </div>
-                    <div style="display: flex; gap: 5px; align-items: center;">
-                        <button class="action-btn" 
-                                style="padding: 5px 10px; font-size: 0.7rem; min-width: 40px; background: #334; border-color: #556;"
-                                onmousedown="startTalking('${char.id}')">
-                            TALK
-                        </button>
-                        <select onchange="updateRoleplayCharMood('${char.id}', this.value)" style="padding: 2px; background: #111; color: #aaa; border: 1px solid #333; font-size: 0.8rem; width: 70px;">
-                            ${moodOptions}
-                        </select>
-                        <button class="action-btn ${isVisible ? 'active-btn' : ''}" 
-                                style="padding: 5px 10px; font-size: 0.7rem; min-width: 50px; ${isVisible ? 'background: #004400; border-color: #00ff00; color: #fff;' : ''}"
-                                onclick="toggleRoleplayChar('${char.id}', ${!isVisible})">
-                            ${isVisible ? 'ON AIR' : 'SHOW'}
-                        </button>
-                    </div>
-                `;
-                list.appendChild(div);
+            Object.keys(groups).sort().forEach(groupName => {
+                const details = document.createElement('details');
+                details.open = true; // Default open
+                details.style.marginBottom = '10px';
+                
+                const summary = document.createElement('summary');
+                summary.innerText = groupName;
+                summary.style.cursor = 'pointer';
+                summary.style.color = '#aaa';
+                summary.style.fontWeight = 'bold';
+                summary.style.marginBottom = '5px';
+                details.appendChild(summary);
+
+                const container = document.createElement('div');
+                container.style.paddingLeft = '10px';
+
+                groups[groupName].forEach(char => {
+                    const div = document.createElement('div');
+                    div.style.marginBottom = '10px';
+                    div.style.padding = '5px';
+                    div.style.borderBottom = '1px solid #222';
+                    div.style.display = 'flex';
+                    div.style.alignItems = 'center';
+                    div.style.justifyContent = 'space-between';
+                    
+                    // Check if this char is in the current state
+                    const activeChar = currentRoleplayState.characters.find(c => c.id === char.id);
+                    const isVisible = !!activeChar;
+                    const currentMood = activeChar ? (activeChar.mood || 'default') : 'default';
+                    
+                    // Mood Options (Scaffolding)
+                    const moodOptions = `
+                        <option value="default" ${currentMood === 'default' ? 'selected' : ''}>Default</option>
+                        <option value="angry" ${currentMood === 'angry' ? 'selected' : ''}>Angry</option>
+                        <option value="happy" ${currentMood === 'happy' ? 'selected' : ''}>Happy</option>
+                        <option value="sad" ${currentMood === 'sad' ? 'selected' : ''}>Sad</option>
+                    `;
+
+                    div.innerHTML = `
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="color: #fff; font-weight: bold;">${char.name}</span>
+                            <span style="color: #888; font-size: 0.7rem;">(${char.npcType === 'rp' ? 'RP' : 'Combat'})</span>
+                        </div>
+                        <div style="display: flex; gap: 5px; align-items: center;">
+                            <button class="action-btn" 
+                                    style="padding: 5px 10px; font-size: 0.7rem; min-width: 40px; background: #334; border-color: #556;"
+                                    onmousedown="startTalking('${char.id}')">
+                                TALK
+                            </button>
+                            <select onchange="updateRoleplayCharMood('${char.id}', this.value)" style="padding: 2px; background: #111; color: #aaa; border: 1px solid #333; font-size: 0.8rem; width: 70px;">
+                                ${moodOptions}
+                            </select>
+                            <button class="action-btn ${isVisible ? 'active-btn' : ''}" 
+                                    style="padding: 5px 10px; font-size: 0.7rem; min-width: 50px; ${isVisible ? 'background: #004400; border-color: #00ff00; color: #fff;' : ''}"
+                                    onclick="toggleRoleplayChar('${char.id}', ${!isVisible})">
+                                ${isVisible ? 'ON AIR' : 'SHOW'}
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+                
+                details.appendChild(container);
+                list.appendChild(details);
             });
         }
 

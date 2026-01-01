@@ -574,6 +574,93 @@ io.on('connection', (socket) => {
         saveStatus();
     });
 
+    socket.on('admin_scan_chars', () => {
+        const charDir = path.join(__dirname, 'media', '[CHAR] Character pictures');
+        if (!fs.existsSync(charDir)) {
+            socket.emit('gm_hacking_log', 'Error: Character folder not found');
+            return;
+        }
+    
+        const files = [];
+        // Custom recursive scan to capture folder structure
+        function scan(directory, root) {
+            const items = fs.readdirSync(directory);
+            items.forEach(item => {
+                const fullPath = path.join(directory, item);
+                if (fs.statSync(fullPath).isDirectory()) {
+                    scan(fullPath, root);
+                } else {
+                    // Check extension
+                    if (/\.(png|jpg|jpeg)$/i.test(item)) {
+                        // Ignore variants starting with [
+                        if (!item.startsWith('[')) {
+                            files.push({
+                                fullPath: fullPath,
+                                fileName: item,
+                                // Get relative folder path, replace backslashes with forward slashes
+                                group: path.relative(root, directory).replace(/\\/g, '/') || 'General'
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    
+        scan(charDir, charDir);
+    
+        let addedCount = 0;
+        let updatedCount = 0;
+
+        files.forEach(file => {
+            const name = path.parse(file.fileName).name;
+            const existing = characters.find(c => c.name === name);
+            
+            // Construct web-accessible path
+            // media/[CHAR].../Group/File.png
+            let webPath = '/media/[CHAR] Character pictures/';
+            if (file.group !== 'General') {
+                webPath += file.group + '/';
+            }
+            webPath += file.fileName;
+    
+            if (!existing) {
+                const newChar = {
+                    id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                    name: name,
+                    isNPC: true,
+                    npcType: 'rp', // Default to RP for auto-scanned
+                    group: file.group,
+                    image: webPath,
+                    class: 'Unknown',
+                    description: 'Auto-generated from file'
+                };
+                characters.push(newChar);
+                addedCount++;
+            } else {
+                // Update group if it's missing or 'General' and we found a specific one
+                let changed = false;
+                if ((!existing.group || existing.group === 'General') && file.group !== 'General') {
+                    existing.group = file.group;
+                    changed = true;
+                }
+                // Update image path to ensure it's correct
+                if (existing.image !== webPath) {
+                    existing.image = webPath;
+                    changed = true;
+                }
+                if (changed) updatedCount++;
+            }
+        });
+    
+        if (addedCount > 0 || updatedCount > 0) {
+            saveData();
+            socket.emit('admin_data_update', { objects, characters, scenes, items });
+            socket.emit('gm_hacking_log', `Scanned ${files.length} files. Added ${addedCount}, Updated ${updatedCount}.`);
+        } else {
+            socket.emit('gm_hacking_log', `Scan complete. No changes.`);
+        }
+    });
+
     socket.on('admin_add_item', (newItem) => {
         if (!newItem.name) return;
 
