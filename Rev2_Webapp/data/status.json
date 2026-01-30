@@ -2,16 +2,16 @@
   "time": {
     "year": 2556,
     "day": 2,
-    "hour": 11,
-    "minute": 12,
+    "hour": 13,
+    "minute": 30,
     "scrambled": false,
     "textScrambled": false
   },
   "mood": {
-    "imageUrl": ""
+    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DIdle.jpg"
   },
   "roleplay": {
-    "active": false,
+    "active": true,
     "background": "",
     "characters": []
   },
