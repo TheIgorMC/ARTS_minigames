@@ -9,7 +9,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_university_lower_hall_jpg",
@@ -21,7 +24,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_university_lower_out_jpg",
@@ -33,7 +39,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_university_upper_hall_jpg",
@@ -45,7 +54,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_university_upper_out_jpg",
@@ -57,7 +69,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_upper_road_jpg",
@@ -69,7 +84,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_idle_jpg",
@@ -81,7 +99,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "datastick_png",
@@ -165,7 +186,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_reactor_jpg",
@@ -177,7 +201,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_gemini_jpg",
@@ -189,7 +216,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "jose_milly_png",
@@ -273,7 +303,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "_mood_garden_night_png",
@@ -285,7 +318,10 @@
     "width": 1920,
     "height": 1080,
     "draggable": false,
-    "description": ""
+    "description": "",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "adira_kwan_png",

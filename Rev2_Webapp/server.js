@@ -59,6 +59,7 @@ let roleplayState = {
 let gmIdentities = ['GM']; // Default identity
 let currentSceneId = null; // Track currently loaded scene for autosave
 let conversations = []; // { id, name, type: 'group'|'dm', participants: [] }
+let quests = []; // { id, name, description, active }
 
 // --- PERSISTENCE ---
 const STATUS_FILE = path.join(DATA_DIR, 'status.json');
@@ -232,6 +233,12 @@ function loadData() {
         } else {
             items = [];
         }
+
+        if (fs.existsSync(path.join(DATA_DIR, 'quests.json'))) {
+            quests = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'quests.json')));
+        } else {
+            quests = [];
+        }
         
         // Load ignored list
         let ignored = [];
@@ -311,6 +318,7 @@ function saveData() {
         fs.writeFileSync(path.join(DATA_DIR, 'objects.json'), JSON.stringify(objects, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'characters.json'), JSON.stringify(characters, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'items.json'), JSON.stringify(items, null, 2));
+        fs.writeFileSync(path.join(DATA_DIR, 'quests.json'), JSON.stringify(quests, null, 2));
         // Scenes are saved individually now
         console.log('Dati salvati.');
     } catch (e) {
@@ -375,7 +383,7 @@ io.on('connection', (socket) => {
         
         // Se è il GM, inviagli subito i dati aggiornati
         if (role === 'gm') {
-            socket.emit('admin_data_update', { objects, characters, scenes, items });
+            socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
             socket.emit('media_list_update', getMediaFiles());
             socket.emit('admin_identities_update', gmIdentities);
             socket.emit('conversations_update', conversations);
@@ -711,9 +719,10 @@ io.on('connection', (socket) => {
         if (data.type === 'objects') objects = data.content;
         if (data.type === 'characters') characters = data.content;
         if (data.type === 'items') items = data.content;
+        if (data.type === 'quests') quests = data.content;
         saveData();
         // Notifica il GM che il salvataggio è avvenuto
-        socket.emit('admin_data_update', { objects, characters, scenes, items });
+        socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
         // Opzionale: Notifica i player se i loro dati sono cambiati
         if (data.type === 'characters') {
             const safeChars = characters.map(c => ({
@@ -731,9 +740,24 @@ io.on('connection', (socket) => {
     socket.on('admin_refresh_db', () => {
         console.log('Admin requested DB refresh...');
         loadData();
-        socket.emit('admin_data_update', { objects, characters, scenes, items });
+        socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
         socket.emit('media_list_update', getMediaFiles());
         socket.emit('gm_hacking_log', 'Database Refreshed (Rescanned Media)');
+    });
+
+    // --- GESTIONE QUEST (GM) ---
+    socket.on('admin_quest_action', (action) => {
+        if (action.type === 'create') {
+            quests.push(action.quest);
+        } else if (action.type === 'update') {
+            const idx = quests.findIndex(q => q.id === action.quest.id);
+            if (idx >= 0) quests[idx] = action.quest;
+        } else if (action.type === 'delete') {
+            quests = quests.filter(q => q.id !== action.id);
+        }
+        
+        saveData();
+        socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
     });
 
     // --- GESTIONE SCENE (GM) ---

@@ -125,7 +125,10 @@
       "Heavy Armor Proficiency"
     ],
     "inventory": [],
-    "xp": "16780"
+    "xp": "16780",
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "371922",
@@ -139,7 +142,10 @@
     ],
     "stats": {
       "maxHp": 120
-    }
+    },
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "497961",
@@ -391,7 +397,10 @@
     },
     "feats": [],
     "money": 0,
-    "inventory": []
+    "inventory": [],
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "580496",
@@ -517,7 +526,10 @@
     },
     "feats": [],
     "money": 0,
-    "inventory": []
+    "inventory": [],
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "1767279571220rv0x0",
@@ -912,7 +924,10 @@
     },
     "feats": [],
     "money": 0,
-    "inventory": []
+    "inventory": [],
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "1767279571220w4nw9",
@@ -1162,7 +1177,10 @@
     },
     "feats": [],
     "money": 0,
-    "inventory": []
+    "inventory": [],
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "1767279571220ayv1v",
@@ -1567,7 +1585,10 @@
     },
     "feats": [],
     "money": 0,
-    "inventory": []
+    "inventory": [],
+    "quests": [
+      "quest_1769796633173"
+    ]
   },
   {
     "id": "17672795712205ojtj",

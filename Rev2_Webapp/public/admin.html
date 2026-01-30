@@ -45,6 +45,23 @@
 
         h1 { margin: 0; font-size: 1.5rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; }
 
+        .quest-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #000;
+            padding: 5px 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+
+        .quest-control select {
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 5px;
+        }
+
         /* Tabs */
         .tabs { display: flex; gap: 10px; }
         .tab-btn {
@@ -369,7 +386,19 @@
 </head>
 <body>
     <header>
-        <h1>Starfinder GM Station</h1>
+        <div style="display:flex; align-items:center; gap:20px;">
+            <h1>Starfinder GM Station</h1>
+            <div class="quest-control">
+                <span style="color:#888; font-size:0.8rem;">ACTIVE QUEST:</span>
+                <select id="active-quest-select" onchange="changeActiveQuest()">
+                    <option value="">-- ALL / NONE --</option>
+                </select>
+                <label style="font-size:0.8rem; color:#aaa; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                    <input type="checkbox" id="quest-filter-strict" onchange="changeActiveQuest()" checked> Filter
+                </label>
+                <button class="btn-micro" onclick="openQuestManager()" style="font-size: 0.8rem; padding: 4px 8px; border: 1px solid #333; background: #222; color: #aaa; cursor: pointer;">MANAGE</button>
+            </div>
+        </div>
         
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
@@ -583,6 +612,7 @@
                                 <th style="padding: 5px; text-align: left;">Type</th>
                                 <th style="padding: 5px; text-align: left;">Scene</th>
                                 <th style="padding: 5px; text-align: left;">Desc</th>
+                                <th style="padding: 5px; text-align: center;">Q</th>
                                 <th style="padding: 5px; text-align: center;">Act</th>
                             </tr>
                         </thead>
@@ -763,6 +793,10 @@
                         <select id="rp-bg-select" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
                             <option value="">Select Mood Image...</option>
                         </select>
+                        <div style="display: flex; gap: 10px; margin-top:10px;">
+                            <button class="action-btn" style="flex:1;" onclick="applyRoleplayState()">SET BG</button>
+                            <button class="action-btn danger" style="flex:1;" onclick="clearRoleplayState()">CLEAR</button>
+                        </div>
                     </div>
                     
                     <div class="control-group" style="flex: 1; display: flex; flex-direction: column;">
@@ -770,11 +804,6 @@
                         <div id="rp-char-list" style="flex: 1; overflow-y: auto; border: 1px solid #333; padding: 10px; background: #000;">
                             <!-- Checkboxes populated by JS -->
                         </div>
-                    </div>
-
-                    <div style="display: flex; gap: 10px;">
-                        <button class="action-btn" onclick="applyRoleplayState()">SET BACKGROUND</button>
-                        <button class="action-btn danger" onclick="clearRoleplayState()">CLEAR ALL</button>
                     </div>
                 </div>
 
@@ -1207,6 +1236,10 @@
         // --- DATABASE ---
         socket.on('admin_data_update', (data) => {
             cachedData = data;
+
+            // Update Quest UI
+            if (typeof refreshQuestUI === 'function') refreshQuestUI();
+
             renderObjectsTable();
             renderItemsTable();
             renderCharactersCards();
@@ -1278,19 +1311,30 @@
             const filterScene = document.getElementById('obj-filter-scene').value.toLowerCase();
             const filterName = document.getElementById('obj-filter-name').value.toLowerCase();
             
+            const strictQuest = activeQuestId && document.getElementById('quest-filter-strict') && document.getElementById('quest-filter-strict').checked;
+
             cachedData.objects.forEach((obj, index) => {
                 if (filterScene && (!obj.sceneId || !obj.sceneId.toLowerCase().includes(filterScene))) return;
                 if (filterName && !obj.name.toLowerCase().includes(filterName)) return;
                 
+                const inQuest = isItemInActiveQuest(obj);
+                if (strictQuest && !inQuest) return;
+
                 const tr = document.createElement('tr');
                 tr.style.borderBottom = '1px solid #333';
+                if (inQuest && activeQuestId) tr.style.background = 'rgba(0, 210, 255, 0.05)';
                 
+                const questBtn = activeQuestId ? 
+                    `<button style="background:none; border:none; color:${inQuest ? '#00d2ff' : '#444'}; cursor:pointer; font-weight:bold;" onclick="toggleQuestAssignment('object', '${obj.id}')">${inQuest ? '★' : '☆'}</button>` :
+                    '-';
+
                 tr.innerHTML = `
                     <td style="padding: 5px;"><img src="${obj.image}" style="width: 30px; height: 30px; object-fit: cover;"></td>
                     <td style="padding: 5px;"><input type="text" value="${obj.name}" onchange="updateObject(${index}, 'name', this.value)" style="width: 100%; background: transparent; color: #fff; border: none;"></td>
                     <td style="padding: 5px;">${obj.type}</td>
                     <td style="padding: 5px;">${obj.sceneId || '-'}</td>
                     <td style="padding: 5px;"><input type="text" value="${obj.description || ''}" onchange="updateObject(${index}, 'description', this.value)" style="width: 100%; background: transparent; color: #aaa; border: none;"></td>
+                    <td style="padding: 5px; text-align: center;">${questBtn}</td>
                     <td style="padding: 5px; text-align: center;">
                         <button style="color: #f00; background: none; border: none; cursor: pointer;" onclick="deleteObject(${index})">X</button>
                     </td>
@@ -1432,8 +1476,12 @@
             const pcs = [];
             const npcsCombat = [];
             const npcsRp = [];
+            
+            const strictQuest = activeQuestId && document.getElementById('quest-filter-strict') && document.getElementById('quest-filter-strict').checked;
 
             cachedData.characters.forEach((char) => {
+                if (strictQuest && !isItemInActiveQuest(char)) return;
+
                 const isNPC = char.isNPC || false;
                 const npcType = char.npcType || 'both';
                 
@@ -1576,10 +1624,13 @@
                 `;
             }
 
+            const inQuest = isItemInActiveQuest(char);
+            
             card.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 5px;">
                     <span style="color: ${borderColor}; font-weight: bold;">${char.name || 'Unnamed'} ${isNPC ? (isRPOnly ? '(RP)' : '(NPC)') : '(PC)'}</span>
-                    <div>
+                    <div style="display:flex; align-items:center;">
+                        ${activeQuestId ? `<button title="Toggle Quest" style="color:${inQuest ? '#00d2ff' : '#444'}; font-size:1.2rem; background:none; border:none; cursor:pointer; margin-right:5px;" onclick="toggleQuestAssignment('character', '${char.id}')">★</button>` : ''}
                         <button style="color: #aaa; background: none; border: none; cursor: pointer; margin-right: 5px;" onclick="openCharacterEditor(${index})">✎</button>
                     </div>
                 </div>
@@ -2294,12 +2345,47 @@
             document.getElementById('gm-time-display').innerText = display;
         });
 
+        // Initialize Global Cache
+        let cachedMediaFiles = [];
+
         socket.on('media_list_update', (files) => {
+            cachedMediaFiles = files;
+            renderMediaFiles();
+        });
+
+        function renderMediaFiles() {
+            const files = cachedMediaFiles;
+            if (!files) return;
+
             const select = document.getElementById('mood-select');
             const objSelect = document.getElementById('new-obj-image');
             const bgSelect = document.getElementById('bg-select');
             const rpBgSelect = document.getElementById('rp-bg-select');
             
+            // Filter by Active Quest if Strict Mode is on
+            const strictQuest = activeQuestId && document.getElementById('quest-filter-strict') && document.getElementById('quest-filter-strict').checked;
+            
+            // Helper to check if a file is allowed by quest
+            const isFileAllowed = (f) => {
+                if (!strictQuest) return true;
+                if (!cachedData || !cachedData.objects) return true; // If no object data, allow all (or logic to define)
+                
+                // Find corresponding object
+                // Object.image is "/media/" + encoded path
+                // f.path is encoded path
+                const objPath = '/media/' + f.path;
+                const obj = cachedData.objects.find(o => o.image === objPath);
+                
+                if (obj) {
+                    return isItemInActiveQuest(obj);
+                }
+                // If no object found (untracked file), maybe hide it if strict?
+                // Let's hide it to be safe, or user can't "group" it
+                return false; 
+            };
+
+            const filteredFiles = strictQuest ? files.filter(isFileAllowed) : files;
+
             // Helper to group by folder
             const createGroupedOptions = (fileList) => {
                 const groups = {};
@@ -2320,17 +2406,17 @@
             };
 
             // 1. Filter Moods: Only [00]Global or Current Scene
-            const moodFiles = files.filter(f => {
+            const moodFiles = filteredFiles.filter(f => {
                 if (f.type !== 'mood') return false;
                 if (f.folder.includes('[00]Global')) return true;
                 if (currentSceneId && f.folder.includes(currentSceneId)) return true;
                 return false;
             });
-            select.innerHTML = createGroupedOptions(moodFiles);
+            if (select) select.innerHTML = createGroupedOptions(moodFiles);
 
             // 2. Filter Backgrounds: Only Current Scene
             if (bgSelect) {
-                const bgFiles = files.filter(f => {
+                const bgFiles = filteredFiles.filter(f => {
                     if (f.type !== 'background') return false;
                     if (currentSceneId && f.folder.includes(currentSceneId)) return true;
                     return false;
@@ -2341,22 +2427,27 @@
             // 2b. Roleplay Backgrounds: Use MOOD images
             if (rpBgSelect) {
                 // Filter Moods: Only [00]Global or Current Scene (same as mood-select)
-                const moodFiles = files.filter(f => {
+                // Use filteredFiles (which already applied strict quest filter)
+                const rpMoodFiles = filteredFiles.filter(f => {
                     if (f.type !== 'mood') return false;
                     if (f.folder.includes('[00]Global')) return true;
                     if (currentSceneId && f.folder.includes(currentSceneId)) return true;
                     return false;
                 });
-                rpBgSelect.innerHTML = createGroupedOptions(moodFiles);
+                rpBgSelect.innerHTML = createGroupedOptions(rpMoodFiles);
             }
 
             // 3. Object Creation: Show all (Admin needs to see everything to create DB entries)
+            // Even in strict mode, when creating a NEW object, we probably want to see all files?
+            // But if I want to "Add an object to the quest", I might want to see filtered files?
+            // Let's Use filtered list for consistency. If user wants to see all, they uncheck "Filter".
             if(objSelect) {
+                const searchList = strictQuest ? filteredFiles : files; 
                 const allOptions = '<option value="">Select Image...</option>' + 
-                    files.map(f => `<option value="${f.path}" data-type="${f.type}" data-folder="${f.folder}">${f.folder}/${f.name}</option>`).join('');
+                    searchList.map(f => `<option value="${f.path}" data-type="${f.type}" data-folder="${f.folder}">${f.folder}/${f.name}</option>`).join('');
                 objSelect.innerHTML = allOptions;
             }
-        });
+        }
 
         function updateNewObjDefaults() {
             const objSelect = document.getElementById('new-obj-image');
@@ -3545,9 +3636,15 @@
             
             list.innerHTML = '';
             
+            const strictQuest = activeQuestId && document.getElementById('quest-filter-strict') && document.getElementById('quest-filter-strict').checked;
+
             // Filter for NPCs only and Sort Alphabetically
             const npcs = cachedData.characters
                 .filter(c => c.isNPC)
+                .filter(c => {
+                    if (strictQuest) return isItemInActiveQuest(c);
+                    return true;
+                })
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             // Group by 'group' property
@@ -3752,6 +3849,207 @@
                 }
             }
         });
+    </script>
+    <!-- QUEST MANAGER MODAL -->
+    <div id="quest-manager-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: #111; border: 1px solid #444; width: 800px; height: 500px; display: flex; flex-direction: column; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <h3 style="margin: 0; color: #00d2ff;">QUEST LOG</h3>
+                <button onclick="document.getElementById('quest-manager-modal').style.display='none'" style="background:none; border:none; color:#888; cursor:pointer;">CLOSE [X]</button>
+            </div>
+            
+            <div style="flex: 1; display: flex; gap: 20px; min-height: 0;">
+                <!-- QUEST LIST -->
+                <div style="width: 250px; border-right: 1px solid #333; padding-right: 10px; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px;">
+                        <button class="btn" onclick="createNewQuest()" style="width:100%;">+ NEW QUEST</button>
+                    </div>
+                    <div id="quest-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 5px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- QUEST EDITOR -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+                    <div id="quest-editor-panel" style="display:none; flex-direction:column; height:100%;">
+                        <div>
+                            <label style="color:#888; font-size:0.8rem;">Quest Name</label>
+                            <input type="text" id="quest-edit-name" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff; font-size:1.1rem;">
+                        </div>
+                        
+                        <div style="flex:1; display:flex; flex-direction:column;">
+                            <label style="color:#888; font-size:0.8rem; margin-top:10px;">Description / Notes</label>
+                            <textarea id="quest-edit-desc" style="flex:1; width:100%; padding:10px; background:#222; border:1px solid #444; color:#ccc; resize:none; font-family:inherit;"></textarea>
+                        </div>
+
+                        <div style="margin-top: 20px; display:flex; justify-content:space-between;">
+                            <button class="btn red" onclick="deleteCurrentQuest()">DELETE QUEST</button>
+                            <button class="btn" onclick="saveCurrentQuest()">SAVE CHANGES</button>
+                        </div>
+                    </div>
+                    <div id="quest-editor-placeholder" style="flex:1; display:flex; justify-content:center; align-items:center; color:#555;">
+                        Select a Quest to edit details
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- QUEST MANAGEMENT LOGIC ---
+        let activeQuestId = localStorage.getItem('gm_active_quest') || '';
+        let editingQuestId = null;
+
+        function refreshQuestUI() {
+            // Update Header Select
+            const select = document.getElementById('active-quest-select');
+            select.innerHTML = '<option value="">-- ALL / NONE --</option>';
+            
+            if (cachedData && cachedData.quests) {
+                cachedData.quests.forEach(q => {
+                    const opt = document.createElement('option');
+                    opt.value = q.id;
+                    opt.innerText = q.name;
+                    select.appendChild(opt);
+                });
+            }
+            select.value = activeQuestId;
+
+            // Update List in Manager
+            const list = document.getElementById('quest-list');
+            list.innerHTML = '';
+            if (cachedData && cachedData.quests) {
+                cachedData.quests.forEach(q => {
+                    const div = document.createElement('div');
+                    div.style.padding = '10px';
+                    div.style.cursor = 'pointer';
+                    div.style.background = (editingQuestId === q.id) ? '#333' : '#1a1a1a';
+                    div.style.border = (activeQuestId === q.id) ? '1px solid #00d2ff' : '1px solid #333';
+                    
+                    div.innerHTML = `
+                        <div style="font-weight:bold; color:${activeQuestId === q.id ? '#00d2ff' : '#fff'}">${q.name}</div>
+                        <div style="font-size:0.8rem; color:#888;">${q.id === activeQuestId ? '[ACTIVE]' : ''}</div>
+                    `;
+                    div.onclick = () => loadQuestForEdit(q.id);
+                    list.appendChild(div);
+                });
+            }
+        }
+
+        function changeActiveQuest() {
+            activeQuestId = document.getElementById('active-quest-select').value;
+            localStorage.setItem('gm_active_quest', activeQuestId);
+            refreshQuestUI(); // Update highlighting
+            log(`Active Quest changed to: ${activeQuestId || 'NONE'}`);
+            
+            // Re-render views to apply filter
+            // Depending on which tab is active
+            renderObjectsTable();
+            renderCharactersCards();
+            renderMediaFiles(); 
+            renderRoleplayCharList();
+        }
+
+        function openQuestManager() {
+            document.getElementById('quest-manager-modal').style.display = 'flex';
+            refreshQuestUI();
+        }
+
+        function createNewQuest() {
+            const newId = 'quest_' + Date.now();
+            const newQuest = {
+                id: newId,
+                name: 'New Quest',
+                description: ''
+            };
+            socket.emit('admin_quest_action', { type: 'create', quest: newQuest });
+            editingQuestId = newId; 
+            // The update loop will refresh UI and we can select it then
+        }
+
+        function loadQuestForEdit(id) {
+            editingQuestId = id;
+            refreshQuestUI(); // Update selection highlight
+            
+            const q = cachedData.quests.find(x => x.id === id);
+            if (!q) return;
+
+            document.getElementById('quest-editor-panel').style.display = 'flex';
+            document.getElementById('quest-editor-placeholder').style.display = 'none';
+            
+            document.getElementById('quest-edit-name').value = q.name;
+            document.getElementById('quest-edit-desc').value = q.description || '';
+        }
+
+        function saveCurrentQuest() {
+            if (!editingQuestId) return;
+            const q = {
+                id: editingQuestId,
+                name: document.getElementById('quest-edit-name').value,
+                description: document.getElementById('quest-edit-desc').value
+            };
+            socket.emit('admin_quest_action', { type: 'update', quest: q });
+            log('Quest updated.');
+        }
+
+        function deleteCurrentQuest() {
+            if (!editingQuestId) return;
+            if(!confirm('Delete this quest? Items associated to it will NOT be deleted, just unlinked.')) return;
+            
+            socket.emit('admin_quest_action', { type: 'delete', id: editingQuestId });
+            
+            if (activeQuestId === editingQuestId) {
+                activeQuestId = '';
+                localStorage.setItem('gm_active_quest', '');
+            }
+            editingQuestId = null;
+            document.getElementById('quest-editor-panel').style.display = 'none';
+            document.getElementById('quest-editor-placeholder').style.display = 'flex';
+        }
+
+        // --- FILTERING UTILS ---
+        function isItemInActiveQuest(item) {
+            if (!activeQuestId) return true; // Show all if no quest active
+            if (!item.quests) return false; // Hide if item has no quests (and filter is on)
+            return item.quests.includes(activeQuestId);
+        }
+
+        function toggleQuestAssignment(itemType, itemId) {
+            if (!activeQuestId) {
+                alert('No active quest selected!');
+                return;
+            }
+            
+            // Find item in cache
+            let collection = null;
+            if (itemType === 'object') collection = cachedData.objects;
+            else if (itemType === 'character') collection = cachedData.characters;
+            else if (itemType === 'media') collection = cachedData.media; // Wait, media isn't in cachedData root usually?
+            // Actually media files are separate.
+            
+            // For now support Objects and Characters
+            let item = collection.find(x => x.id === itemId);
+            if (!item) return;
+
+            if (!item.quests) item.quests = [];
+            
+            const idx = item.quests.indexOf(activeQuestId);
+            if (idx >= 0) {
+                item.quests.splice(idx, 1);
+                log(`Removed ${item.name} from quest.`);
+            } else {
+                item.quests.push(activeQuestId);
+                log(`Added ${item.name} to quest.`);
+            }
+
+            // Save
+            if (itemType === 'object') saveObjectsTable();
+            if (itemType === 'character') saveCharactersCards(); // This function name is tricky, checks server.js admin_update_data
+            
+            // Re-render
+            if (itemType === 'object') renderObjectsTable();
+            if (itemType === 'character') renderCharactersCards();
+        }
     </script>
 </body>
 </html>

@@ -1,29 +1,19 @@
 {
   "time": {
     "year": 2556,
-    "day": 1,
-    "hour": 23,
-    "minute": 18,
+    "day": 2,
+    "hour": 11,
+    "minute": 12,
     "scrambled": false,
     "textScrambled": false
   },
   "mood": {
-    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DGemini%20Lower%20Road.jpg"
+    "imageUrl": ""
   },
   "roleplay": {
-    "active": true,
-    "background": "/media/%5B00%5DGlobal/%5BMOOD%5DGemini%20Lower%20Road.jpg",
-    "characters": [
-      {
-        "id": "580496",
-        "name": "Lirien Ngozi",
-        "image": "/media/[CHAR] Character pictures/Lirien Ngozi.png",
-        "mood": "default",
-        "x": 50,
-        "y": 50,
-        "talking": false
-      }
-    ]
+    "active": false,
+    "background": "",
+    "characters": []
   },
   "identities": [
     "GM",
