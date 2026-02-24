@@ -381,6 +381,50 @@
             background: var(--accent-color);
             color: #000;
         }
+
+        /* Character Creation Wizard */
+        .wizard-step-indicator {
+            flex: 1;
+            text-align: center;
+            padding: 8px 5px;
+            background: #111;
+            border: 1px solid #333;
+            color: #555;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        .wizard-step-indicator:hover { color: #aaa; border-color: #555; }
+        .wizard-step-indicator.active {
+            background: rgba(0, 210, 255, 0.15);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .wizard-step-indicator.completed {
+            background: rgba(0, 255, 100, 0.1);
+            border-color: #0a0;
+            color: #0a0;
+        }
+        .wizard-panel { min-height: 200px; }
+        .wizard-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.15s;
+        }
+        .wizard-item:hover { background: rgba(0, 210, 255, 0.1); }
+        .wizard-item.selected {
+            background: rgba(0, 210, 255, 0.2);
+            border-left: 3px solid var(--accent-color);
+        }
+        .wizard-item .item-name { color: #fff; font-weight: bold; }
+        .wizard-item .item-source { color: #666; font-size: 0.75rem; }
+        .wizard-item .item-meta { color: #888; font-size: 0.8rem; }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -700,6 +744,7 @@
                 <div style="display: flex; gap: 10px;">
                     <button class="action-btn" onclick="openRequestCheckModal()">REQUEST CHECK</button>
                     <button class="action-btn" onclick="socket.emit('admin_scan_chars')">SCAN FOLDERS</button>
+                    <button class="action-btn" onclick="openImportCharModal()">IMPORT (HEPHAISTOS)</button>
                     <button class="action-btn" onclick="addNewCharacter()">+ NEW CHARACTER</button>
                 </div>
             </div>
@@ -900,29 +945,210 @@
         </div>
     </div>
 
-    <!-- NEW CHARACTER MODAL -->
-    <div id="new-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 300px; display: flex; flex-direction: column; gap: 15px;">
-            <h3 style="margin: 0; color: var(--accent-color);">New Character</h3>
-            
-            <div>
-                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Name</label>
-                <input type="text" id="new-char-name" placeholder="Character Name" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+    <!-- NEW CHARACTER MODAL (now a multi-step wizard) -->
+    <div id="new-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 900px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
+                <h3 style="margin: 0; color: var(--accent-color);">CHARACTER CREATION WIZARD</h3>
+                <button onclick="closeNewCharModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
             </div>
 
-            <div>
-                <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Type</label>
-                <div style="display: flex; gap: 10px;">
-                    <button id="btn-type-pc" class="action-btn" style="flex: 1; padding: 10px;" onclick="selectCharType('pc')">PC</button>
-                    <button id="btn-type-npc" class="action-btn" style="flex: 1; padding: 10px; opacity: 0.5;" onclick="selectCharType('npc')">NPC</button>
-                    <button id="btn-type-npc-rp" class="action-btn" style="flex: 1; padding: 10px; opacity: 0.5;" onclick="selectCharType('npc-rp')">RP Only</button>
+            <!-- Step Indicator -->
+            <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                <div id="wizard-step-0" class="wizard-step-indicator active" onclick="wizardGoToStep(0)">1. Type & Name</div>
+                <div id="wizard-step-1" class="wizard-step-indicator" onclick="wizardGoToStep(1)">2. Race</div>
+                <div id="wizard-step-2" class="wizard-step-indicator" onclick="wizardGoToStep(2)">3. Class</div>
+                <div id="wizard-step-3" class="wizard-step-indicator" onclick="wizardGoToStep(3)">4. Theme</div>
+                <div id="wizard-step-4" class="wizard-step-indicator" onclick="wizardGoToStep(4)">5. Ability Scores</div>
+                <div id="wizard-step-5" class="wizard-step-indicator" onclick="wizardGoToStep(5)">6. Review & Create</div>
+            </div>
+
+            <!-- Source Filter (persistent across steps) -->
+            <div id="wizard-source-filter" style="background: #0a0a12; padding: 8px 12px; border: 1px solid #333; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span style="color: #888; font-size: 0.8rem; white-space: nowrap;">SOURCE FILTER:</span>
+                <select id="wizard-source-select" onchange="wizardApplySourceFilter()" style="padding: 5px; background: #111; color: #fff; border: 1px solid #444; font-size: 0.85rem; max-width: 250px;">
+                    <option value="__all__">All Sources</option>
+                    <option value="__core__">Core Books Only (CRB, COM, ARM, AA1-4, GEM, DC)</option>
+                </select>
+                <span id="wizard-source-count" style="color: #555; font-size: 0.75rem;"></span>
+            </div>
+
+            <!-- STEP 0: Type & Name -->
+            <div id="wizard-panel-0" class="wizard-panel">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Character Type & Name</h4>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="btn-type-pc" class="action-btn" style="flex: 1; padding: 15px;" onclick="selectCharType('pc')">PC (Player Character)</button>
+                    <button id="btn-type-npc" class="action-btn" style="flex: 1; padding: 15px; opacity: 0.5;" onclick="selectCharType('npc')">NPC (Combat)</button>
+                    <button id="btn-type-npc-rp" class="action-btn" style="flex: 1; padding: 15px; opacity: 0.5;" onclick="selectCharType('npc-rp')">NPC (RP Only)</button>
                 </div>
                 <input type="hidden" id="new-char-type" value="pc">
+                <div style="margin-bottom: 10px;">
+                    <label style="color: #888; font-size: 0.8rem;">Character Name</label>
+                    <input type="text" id="new-char-name" placeholder="Enter name..." style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333; font-size: 1.1rem;">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label style="color: #888; font-size: 0.8rem;">Username (for PCs)</label>
+                        <input type="text" id="new-char-username" placeholder="login username" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                    </div>
+                    <div>
+                        <label style="color: #888; font-size: 0.8rem;">Password (for PCs)</label>
+                        <input type="text" id="new-char-password" value="123" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333;">
+                    </div>
+                </div>
             </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button class="action-btn" style="flex: 1; border-color: #555; color: #aaa;" onclick="closeNewCharModal()">CANCEL</button>
-                <button class="action-btn" style="flex: 1;" onclick="confirmNewCharacter()">CREATE</button>
+            <!-- STEP 1: Race -->
+            <div id="wizard-panel-1" class="wizard-panel" style="display: none;">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Choose Race</h4>
+                <input type="text" id="wizard-race-search" placeholder="Search races..." oninput="wizardFilterRaces()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
+                <div id="wizard-race-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
+                </div>
+                <div id="wizard-race-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                    <h5 id="wizard-race-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
+                    <div id="wizard-race-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Class -->
+            <div id="wizard-panel-2" class="wizard-panel" style="display: none;">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Choose Class</h4>
+                <input type="text" id="wizard-class-search" placeholder="Search classes..." oninput="wizardFilterClasses()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
+                <div id="wizard-class-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
+                </div>
+                <div id="wizard-class-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                    <h5 id="wizard-class-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
+                    <div id="wizard-class-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Theme -->
+            <div id="wizard-panel-3" class="wizard-panel" style="display: none;">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Choose Theme</h4>
+                <input type="text" id="wizard-theme-search" placeholder="Search themes..." oninput="wizardFilterThemes()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
+                <div id="wizard-theme-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
+                </div>
+                <div id="wizard-theme-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                    <h5 id="wizard-theme-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
+                    <div id="wizard-theme-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Ability Scores -->
+            <div id="wizard-panel-4" class="wizard-panel" style="display: none;">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Set Ability Scores</h4>
+                <p style="color: #888; font-size: 0.85rem; margin: 0 0 10px 0;">Standard Starfinder: Start at 10, apply racial/theme mods, then distribute 10 additional points (max 18 at creation).</p>
+                <div id="wizard-ability-mods-summary" style="background: #0a0a12; padding: 8px; border: 1px solid #333; margin-bottom: 15px; font-size: 0.85rem; color: #aaa;"></div>
+                <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; text-align: center;">
+                    <div>
+                        <label style="color: #f55; font-weight: bold;">STR</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-str-base">10</div>
+                        <input type="number" id="wizard-str" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-str-mod">+0</div>
+                    </div>
+                    <div>
+                        <label style="color: #5f5; font-weight: bold;">DEX</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-dex-base">10</div>
+                        <input type="number" id="wizard-dex" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-dex-mod">+0</div>
+                    </div>
+                    <div>
+                        <label style="color: #ff5; font-weight: bold;">CON</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-con-base">10</div>
+                        <input type="number" id="wizard-con" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-con-mod">+0</div>
+                    </div>
+                    <div>
+                        <label style="color: #55f; font-weight: bold;">INT</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-int-base">10</div>
+                        <input type="number" id="wizard-int" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-int-mod">+0</div>
+                    </div>
+                    <div>
+                        <label style="color: #f5f; font-weight: bold;">WIS</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-wis-base">10</div>
+                        <input type="number" id="wizard-wis" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-wis-mod">+0</div>
+                    </div>
+                    <div>
+                        <label style="color: #5ff; font-weight: bold;">CHA</label>
+                        <div style="color: #555; font-size: 0.7rem;" id="wizard-cha-base">10</div>
+                        <input type="number" id="wizard-cha" value="10" min="1" max="28" onchange="wizardUpdateAbilityPoints()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; text-align: center; font-size: 1.2rem;">
+                        <div style="color: #888; font-size: 0.7rem;" id="wizard-cha-mod">+0</div>
+                    </div>
+                </div>
+                <div id="wizard-points-remaining" style="text-align: center; margin-top: 15px; font-size: 1.1rem; color: var(--accent-color);">Points Remaining: 10</div>
+            </div>
+
+            <!-- STEP 5: Review -->
+            <div id="wizard-panel-5" class="wizard-panel" style="display: none;">
+                <h4 style="color: var(--accent-color); margin-top: 0;">Review & Create</h4>
+                <div id="wizard-review-content" style="background: #000; padding: 15px; border: 1px solid #333; font-size: 0.9rem; line-height: 1.6;">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div style="display: flex; gap: 10px; margin-top: 10px; border-top: 1px solid #333; padding-top: 15px;">
+                <button class="action-btn" id="wizard-btn-prev" style="flex: 1; border-color: #555; color: #aaa;" onclick="wizardPrev()" disabled>BACK</button>
+                <button class="action-btn" id="wizard-btn-next" style="flex: 1;" onclick="wizardNext()">NEXT</button>
+                <button class="action-btn" id="wizard-btn-create" style="flex: 1; display: none; border-color: #0f0; color: #0f0;" onclick="confirmNewCharacter()">CREATE CHARACTER</button>
+                <button class="action-btn" style="border-color: #555; color: #666; padding: 10px 20px;" onclick="closeNewCharModal()">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORT CHARACTER MODAL (Hephaistos JSON) -->
+    <div id="import-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 250; justify-content: center; align-items: center;">
+        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 25px; width: 700px; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 15px;">
+                <h3 style="margin: 0; color: var(--accent-color);">Import Hephaistos Character</h3>
+                <button onclick="closeImportCharModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="color: #888; font-size: 0.85rem;">Select a .json file exported from Hephaistos:</label>
+                <input type="file" id="import-char-file" accept=".json" onchange="previewImportChar()" style="display: block; margin-top: 8px; padding: 8px; background: #111; border: 1px solid #333; color: #fff; width: 100%;">
+            </div>
+
+            <div id="import-char-preview" style="display: none;">
+                <div style="background: #111; border: 1px solid #333; padding: 15px; margin-bottom: 15px;">
+                    <div id="import-char-summary" style="color: #ccc;"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <div>
+                        <label style="color: #888; font-size: 0.85rem;">Import as:</label>
+                        <select id="import-char-type" style="width: 100%; padding: 8px; background: #111; border: 1px solid #333; color: #fff; margin-top: 4px;">
+                            <option value="pc">PC (Player Character)</option>
+                            <option value="npc">NPC (Combat)</option>
+                        </select>
+                    </div>
+                    <div id="import-char-creds-wrapper">
+                        <label style="color: #888; font-size: 0.85rem;">Username / Password:</label>
+                        <div style="display: flex; gap: 5px; margin-top: 4px;">
+                            <input type="text" id="import-char-username" placeholder="username" style="flex: 1; padding: 8px; background: #111; border: 1px solid #333; color: #fff;">
+                            <input type="text" id="import-char-password" value="123" style="width: 60px; padding: 8px; background: #111; border: 1px solid #333; color: #fff;">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <label style="color: #888; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
+                        <input type="checkbox" id="import-char-inventory" checked> Import inventory
+                    </label>
+                    <label style="color: #888; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
+                        <input type="checkbox" id="import-char-feats" checked> Import feats
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button class="action-btn" style="flex: 1; border-color: #0f0; color: #0f0;" onclick="confirmImportChar()">IMPORT CHARACTER</button>
+                    <button class="action-btn" style="border-color: #555; color: #666; padding: 10px 20px;" onclick="closeImportCharModal()">CANCEL</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1300,6 +1526,23 @@
                     hackTargetSelect.appendChild(group);
                 }
             }
+        });
+
+        // --- RULESET DATA ---
+        let rulesetData = null;
+        let rulesetFeatsLookup = {}; // name (without category suffix) → full feat object
+        socket.on('ruleset_update', (data) => {
+            rulesetData = data;
+            // Build feats lookup for the character editor feat search
+            rulesetFeatsLookup = {};
+            if (data.feats) {
+                data.feats.forEach(f => {
+                    // Strip category from name, e.g. "Adaptive Fighting (Combat)" → "Adaptive Fighting"
+                    const cleanName = f.name.replace(/\s*\([^)]*\)\s*$/, '').trim();
+                    rulesetFeatsLookup[cleanName] = f;
+                });
+            }
+            console.log('Ruleset loaded:', data.sources?.length, 'sources,', data.races?.length, 'races,', data.classes?.length, 'classes,', data.themes?.length, 'themes,', data.feats?.length, 'feats');
         });
 
         function renderObjectsTable() {
@@ -1716,15 +1959,146 @@
         }
 
         let selectedCharType = 'pc';
+        let wizardStep = 0;
+        const WIZARD_TOTAL_STEPS = 6;
+        let wizardState = {
+            race: null,
+            class: null,
+            theme: null,
+            abilities: { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 }
+        };
+
+        const CORE_SOURCES = ['CRB', 'COM', 'ARM', 'AA1', 'AA2', 'AA3', 'AA4', 'GEM', 'DC'];
+        const ABILITY_NAMES = { str: 'STR', dex: 'DEX', con: 'CON', int: 'INT', wis: 'WIS', cha: 'CHA' };
 
         function addNewCharacter() {
+            if (!rulesetData) {
+                if (!confirm('Ruleset data has not loaded yet. Race/Class/Theme selection will be unavailable. Continue?')) return;
+            }
+            wizardStep = 0;
+            wizardState = { race: null, class: null, theme: null, abilities: { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 }, abilityBase: null };
             document.getElementById('new-char-modal').style.display = 'flex';
             document.getElementById('new-char-name').value = '';
-            selectCharType('pc'); // Default
+            document.getElementById('new-char-username').value = '';
+            document.getElementById('new-char-password').value = '123';
+            selectCharType('pc');
+            // Populate source filter
+            wizardPopulateSourceFilter();
+            wizardShowStep(0);
         }
 
         function closeNewCharModal() {
             document.getElementById('new-char-modal').style.display = 'none';
+        }
+
+        function wizardPopulateSourceFilter() {
+            const sel = document.getElementById('wizard-source-select');
+            // Keep first two options (All, Core)
+            while (sel.options.length > 2) sel.remove(2);
+            if (rulesetData && rulesetData.sources) {
+                // Group: real book sources (those with longer names)
+                const books = rulesetData.sources.filter(s => s.name.length > 4 || ['CRB','COM','ARM','GEM','DC'].includes(s.code));
+                books.sort((a, b) => a.name.localeCompare(b.name));
+                books.forEach(src => {
+                    const opt = document.createElement('option');
+                    opt.value = src.code;
+                    opt.innerText = `${src.name} (${src.code})`;
+                    sel.appendChild(opt);
+                });
+            }
+        }
+
+        function wizardGetFilteredItems(items) {
+            const filterVal = document.getElementById('wizard-source-select').value;
+            if (filterVal === '__all__') return items;
+            if (filterVal === '__core__') return items.filter(i => i.source && CORE_SOURCES.includes(i.source.code));
+            return items.filter(i => i.source && i.source.code === filterVal);
+        }
+
+        function wizardApplySourceFilter() {
+            const filterVal = document.getElementById('wizard-source-select').value;
+            // Re-render current step's list
+            if (wizardStep === 1) wizardRenderRaces();
+            if (wizardStep === 2) wizardRenderClasses();
+            if (wizardStep === 3) wizardRenderThemes();
+            // Update count
+            const countEl = document.getElementById('wizard-source-count');
+            if (filterVal === '__all__') countEl.innerText = '';
+            else {
+                const rCount = wizardGetFilteredItems(rulesetData?.races || []).length;
+                const cCount = wizardGetFilteredItems(rulesetData?.classes || []).length;
+                const tCount = wizardGetFilteredItems(rulesetData?.themes || []).length;
+                countEl.innerText = `(${rCount} races, ${cCount} classes, ${tCount} themes)`;
+            }
+        }
+
+        function wizardShowStep(step) {
+            wizardStep = step;
+            // Hide all panels
+            for (let i = 0; i < WIZARD_TOTAL_STEPS; i++) {
+                const panel = document.getElementById('wizard-panel-' + i);
+                if (panel) panel.style.display = i === step ? 'block' : 'none';
+                const ind = document.getElementById('wizard-step-' + i);
+                if (ind) {
+                    ind.classList.remove('active');
+                    if (i < step) ind.classList.add('completed');
+                    else ind.classList.remove('completed');
+                    if (i === step) ind.classList.add('active');
+                }
+            }
+
+            // Show/hide source filter (only on steps 1-3)
+            document.getElementById('wizard-source-filter').style.display = (step >= 1 && step <= 3) ? 'flex' : 'none';
+
+            // Navigation buttons
+            document.getElementById('wizard-btn-prev').disabled = step === 0;
+            const isNpcRp = selectedCharType === 'npc-rp';
+            const lastStep = isNpcRp ? 0 : WIZARD_TOTAL_STEPS - 1;
+            
+            if (isNpcRp && step === 0) {
+                // RP-only NPCs skip to direct create
+                document.getElementById('wizard-btn-next').style.display = 'none';
+                document.getElementById('wizard-btn-create').style.display = 'block';
+            } else if (step === lastStep) {
+                document.getElementById('wizard-btn-next').style.display = 'none';
+                document.getElementById('wizard-btn-create').style.display = 'block';
+            } else {
+                document.getElementById('wizard-btn-next').style.display = 'block';
+                document.getElementById('wizard-btn-create').style.display = 'none';
+            }
+
+            // Populate step content
+            if (step === 1) wizardRenderRaces();
+            if (step === 2) wizardRenderClasses();
+            if (step === 3) wizardRenderThemes();
+            if (step === 4) wizardPrepareAbilities();
+            if (step === 5) wizardPrepareReview();
+        }
+
+        function wizardGoToStep(step) {
+            // Only allow backward navigation via step indicators (forward requires Next button validation)
+            const isNpcRp = selectedCharType === 'npc-rp';
+            if (isNpcRp && step > 0) return;
+            if (step > wizardStep) return;
+            wizardShowStep(step);
+        }
+
+        function wizardNext() {
+            if (wizardStep === 0) {
+                const name = document.getElementById('new-char-name').value.trim();
+                if (!name) { alert('Please enter a character name.'); return; }
+            }
+            if (wizardStep === 1 && !wizardState.race && selectedCharType !== 'npc-rp') {
+                if (!confirm('No race selected. Continue anyway?')) return;
+            }
+            if (wizardStep === 2 && !wizardState.class && selectedCharType !== 'npc-rp') {
+                if (!confirm('No class selected. Continue anyway?')) return;
+            }
+            wizardShowStep(wizardStep + 1);
+        }
+
+        function wizardPrev() {
+            if (wizardStep > 0) wizardShowStep(wizardStep - 1);
         }
 
         function selectCharType(type) {
@@ -1735,7 +2109,6 @@
             const btnNpc = document.getElementById('btn-type-npc');
             const btnNpcRp = document.getElementById('btn-type-npc-rp');
             
-            // Reset all
             [btnPc, btnNpc, btnNpcRp].forEach(btn => {
                 btn.style.opacity = '0.5';
                 btn.style.borderColor = '#555';
@@ -1751,43 +2124,477 @@
                 btnNpcRp.style.opacity = '1';
                 btnNpcRp.style.borderColor = '#00ffaa';
             }
+
+            // Update step visibility for NPC-RP (skip wizard steps)
+            const isNpcRp = type === 'npc-rp';
+            for (let i = 1; i < WIZARD_TOTAL_STEPS; i++) {
+                const ind = document.getElementById('wizard-step-' + i);
+                if (ind) ind.style.display = isNpcRp ? 'none' : 'block';
+            }
+            if (isNpcRp) {
+                document.getElementById('wizard-btn-next').style.display = 'none';
+                document.getElementById('wizard-btn-create').style.display = 'block';
+            } else {
+                document.getElementById('wizard-btn-next').style.display = 'block';
+                document.getElementById('wizard-btn-create').style.display = 'none';
+            }
         }
 
+        // --- WIZARD: RACES ---
+        function wizardRenderRaces() {
+            const list = document.getElementById('wizard-race-list');
+            list.innerHTML = '';
+            if (!rulesetData || !rulesetData.races) { list.innerHTML = '<div style="padding:20px;color:#888;">No ruleset data loaded.</div>'; return; }
+            
+            const search = (document.getElementById('wizard-race-search').value || '').toLowerCase();
+            let races = wizardGetFilteredItems(rulesetData.races);
+            if (search) races = races.filter(r => r.name.toLowerCase().includes(search));
+            races.sort((a, b) => a.name.localeCompare(b.name));
+
+            races.forEach(race => {
+                const div = document.createElement('div');
+                div.className = 'wizard-item' + (wizardState.race && wizardState.race.id === race.id ? ' selected' : '');
+                const modsStr = (race.abilityMods || []).map(m => `${m.ability.toUpperCase()} ${m.value > 0 ? '+' : ''}${m.value}`).join(', ');
+                div.innerHTML = `
+                    <div>
+                        <span class="item-name">${race.name}</span>
+                        <span class="item-meta" style="margin-left:10px;">HP: ${race.hp} | Size: ${race.size || '?'} | Type: ${race.type || '?'}</span>
+                    </div>
+                    <div>
+                        <span class="item-meta">${modsStr || 'No mods'}</span>
+                        <span class="item-source">${race.source ? race.source.raw || race.source.code : '?'}</span>
+                    </div>
+                `;
+                div.onclick = () => {
+                    wizardState.race = race;
+                    wizardRenderRaces();
+                    wizardShowRaceDetail(race);
+                };
+                list.appendChild(div);
+            });
+            if (races.length === 0) list.innerHTML = '<div style="padding:20px;color:#888;">No races match the filter.</div>';
+        }
+
+        function wizardFilterRaces() { wizardRenderRaces(); }
+
+        function wizardShowRaceDetail(race) {
+            const panel = document.getElementById('wizard-race-detail');
+            panel.style.display = 'block';
+            document.getElementById('wizard-race-detail-name').innerText = race.name;
+            const modsStr = (race.abilityMods || []).map(m => `${m.ability.toUpperCase()} ${m.value > 0 ? '+' : ''}${m.value}`).join(', ');
+            let descClean = (race.description || '').replace(/<[^>]*>/g, ' ').substring(0, 300);
+            document.getElementById('wizard-race-detail-info').innerHTML = `
+                <div style="display:flex;gap:15px;margin-bottom:5px;">
+                    <span><strong>HP:</strong> ${race.hp}</span>
+                    <span><strong>Size:</strong> ${race.size || '?'}</span>
+                    <span><strong>Type:</strong> ${race.type || '?'}${race.subtype ? ' (' + race.subtype + ')' : ''}</span>
+                    <span><strong>Ability Mods:</strong> ${modsStr || 'None'}</span>
+                </div>
+                <div><strong>Source:</strong> ${race.source ? race.source.raw || race.source.name : 'Unknown'}</div>
+                <div style="margin-top:5px;color:#777;">${descClean}${descClean.length >= 300 ? '...' : ''}</div>
+            `;
+        }
+
+        // --- WIZARD: CLASSES ---
+        function wizardRenderClasses() {
+            const list = document.getElementById('wizard-class-list');
+            list.innerHTML = '';
+            if (!rulesetData || !rulesetData.classes) { list.innerHTML = '<div style="padding:20px;color:#888;">No ruleset data loaded.</div>'; return; }
+            
+            const search = (document.getElementById('wizard-class-search').value || '').toLowerCase();
+            let classes = wizardGetFilteredItems(rulesetData.classes);
+            if (search) classes = classes.filter(c => c.name.toLowerCase().includes(search));
+            classes.sort((a, b) => a.name.localeCompare(b.name));
+
+            classes.forEach(cls => {
+                const div = document.createElement('div');
+                div.className = 'wizard-item' + (wizardState.class && wizardState.class.id === cls.id ? ' selected' : '');
+                div.innerHTML = `
+                    <div>
+                        <span class="item-name">${cls.name}</span>
+                        <span class="item-meta" style="margin-left:10px;">KAS: ${(cls.kas || '?').toUpperCase()} | HP: ${cls.hp} | SP: ${cls.sp} | Skills/Lvl: ${cls.skillRanks}</span>
+                    </div>
+                    <div>
+                        <span class="item-meta">BAB: ${cls.bab} | Fort: ${cls.fort} | Ref: ${cls.ref} | Will: ${cls.will}</span>
+                        <span class="item-source">${cls.source ? cls.source.raw || cls.source.code : '?'}</span>
+                    </div>
+                `;
+                div.onclick = () => {
+                    wizardState.class = cls;
+                    wizardRenderClasses();
+                    wizardShowClassDetail(cls);
+                };
+                list.appendChild(div);
+            });
+            if (classes.length === 0) list.innerHTML = '<div style="padding:20px;color:#888;">No classes match the filter.</div>';
+        }
+
+        function wizardFilterClasses() { wizardRenderClasses(); }
+
+        function wizardShowClassDetail(cls) {
+            const panel = document.getElementById('wizard-class-detail');
+            panel.style.display = 'block';
+            document.getElementById('wizard-class-detail-name').innerText = cls.name;
+            const classSkillNames = (cls.classSkills || []).map(sk => {
+                const def = SKILL_DEFINITIONS.find(s => s.id === mapSkillId(sk));
+                return def ? def.name : sk;
+            }).join(', ');
+            let descClean = (cls.description || '').replace(/<[^>]*>/g, ' ').substring(0, 300);
+            document.getElementById('wizard-class-detail-info').innerHTML = `
+                <div style="display:flex;gap:15px;flex-wrap:wrap;margin-bottom:5px;">
+                    <span><strong>Key Ability:</strong> ${(cls.kas || '?').toUpperCase()}</span>
+                    <span><strong>HP/Lvl:</strong> ${cls.hp}</span>
+                    <span><strong>SP/Lvl:</strong> ${cls.sp}</span>
+                    <span><strong>Skill Ranks/Lvl:</strong> ${cls.skillRanks}</span>
+                    <span><strong>BAB:</strong> ${cls.bab}</span>
+                    <span><strong>Saves:</strong> Fort ${cls.fort}, Ref ${cls.ref}, Will ${cls.will}</span>
+                    <span><strong>Caster:</strong> ${cls.isCaster ? 'Yes (' + (cls.spellAbility || '?').toUpperCase() + ')' : 'No'}</span>
+                </div>
+                <div><strong>Class Skills:</strong> ${classSkillNames || 'None'}</div>
+                <div><strong>Source:</strong> ${cls.source ? cls.source.raw || cls.source.name : 'Unknown'}</div>
+                <div style="margin-top:5px;color:#777;">${descClean}${descClean.length >= 300 ? '...' : ''}</div>
+            `;
+        }
+
+        // --- WIZARD: THEMES ---
+        function wizardRenderThemes() {
+            const list = document.getElementById('wizard-theme-list');
+            list.innerHTML = '';
+            if (!rulesetData || !rulesetData.themes) { list.innerHTML = '<div style="padding:20px;color:#888;">No ruleset data loaded.</div>'; return; }
+            
+            const search = (document.getElementById('wizard-theme-search').value || '').toLowerCase();
+            let themes = wizardGetFilteredItems(rulesetData.themes);
+            if (search) themes = themes.filter(t => t.name.toLowerCase().includes(search));
+            themes.sort((a, b) => a.name.localeCompare(b.name));
+
+            themes.forEach(theme => {
+                const div = document.createElement('div');
+                div.className = 'wizard-item' + (wizardState.theme && wizardState.theme.id === theme.id ? ' selected' : '');
+                const modStr = theme.abilityMod ? `${theme.abilityMod.ability.toUpperCase()} +${theme.abilityMod.value}` : 'No mod';
+                const skillDef = SKILL_DEFINITIONS.find(s => s.id === mapSkillId(theme.skill));
+                const skillName = skillDef ? skillDef.name : (theme.skill || '?');
+                div.innerHTML = `
+                    <div>
+                        <span class="item-name">${theme.name}</span>
+                        <span class="item-meta" style="margin-left:10px;">${modStr} | Skill: ${skillName}</span>
+                    </div>
+                    <div>
+                        <span class="item-source">${theme.source ? theme.source.raw || theme.source.code : '?'}</span>
+                    </div>
+                `;
+                div.onclick = () => {
+                    wizardState.theme = theme;
+                    wizardRenderThemes();
+                    wizardShowThemeDetail(theme);
+                };
+                list.appendChild(div);
+            });
+            if (themes.length === 0) list.innerHTML = '<div style="padding:20px;color:#888;">No themes match the filter.</div>';
+        }
+
+        function wizardFilterThemes() { wizardRenderThemes(); }
+
+        function wizardShowThemeDetail(theme) {
+            const panel = document.getElementById('wizard-theme-detail');
+            panel.style.display = 'block';
+            document.getElementById('wizard-theme-detail-name').innerText = theme.name;
+            const modStr = theme.abilityMod ? `${theme.abilityMod.ability.toUpperCase()} +${theme.abilityMod.value}` : 'No mod';
+            const skillDef = SKILL_DEFINITIONS.find(s => s.id === mapSkillId(theme.skill));
+            const skillName = skillDef ? skillDef.name : (theme.skill || '?');
+            let descClean = (theme.description || '').replace(/<[^>]*>/g, ' ').substring(0, 300);
+            document.getElementById('wizard-theme-detail-info').innerHTML = `
+                <div style="display:flex;gap:15px;margin-bottom:5px;">
+                    <span><strong>Ability Mod:</strong> ${modStr}</span>
+                    <span><strong>Theme Skill:</strong> ${skillName}</span>
+                </div>
+                <div><strong>Source:</strong> ${theme.source ? theme.source.raw || theme.source.name : 'Unknown'}</div>
+                <div style="margin-top:5px;color:#777;">${descClean}${descClean.length >= 300 ? '...' : ''}</div>
+            `;
+        }
+
+        // --- WIZARD: ABILITY SCORES ---
+        function wizardPrepareAbilities() {
+            // Calculate base scores from race + theme
+            const base = { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 };
+            let modsHtml = '<strong>Modifiers:</strong> ';
+            const modsList = [];
+
+            if (wizardState.race && wizardState.race.abilityMods) {
+                wizardState.race.abilityMods.forEach(m => {
+                    const key = m.ability.toUpperCase();
+                    if (base[key] !== undefined) {
+                        base[key] += m.value;
+                        modsList.push(`Race (${wizardState.race.name}): ${key} ${m.value > 0 ? '+' : ''}${m.value}`);
+                    }
+                });
+            }
+            if (wizardState.theme && wizardState.theme.abilityMod) {
+                const m = wizardState.theme.abilityMod;
+                const key = m.ability.toUpperCase();
+                if (base[key] !== undefined) {
+                    base[key] += m.value;
+                    modsList.push(`Theme (${wizardState.theme.name}): ${key} ${m.value > 0 ? '+' : ''}${m.value}`);
+                }
+            }
+
+            if (modsList.length === 0) modsHtml += 'None';
+            else modsHtml += modsList.join(' | ');
+            document.getElementById('wizard-ability-mods-summary').innerHTML = modsHtml;
+
+            // Set base display and input values
+            ['str', 'dex', 'con', 'int', 'wis', 'cha'].forEach(attr => {
+                const key = attr.toUpperCase();
+                document.getElementById('wizard-' + attr + '-base').innerText = 'base: ' + base[key];
+                document.getElementById('wizard-' + attr).value = base[key];
+            });
+
+            wizardState.abilityBase = base;
+            wizardUpdateAbilityPoints();
+        }
+
+        function wizardUpdateAbilityPoints() {
+            const base = wizardState.abilityBase || { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 };
+            let spent = 0;
+            ['str', 'dex', 'con', 'int', 'wis', 'cha'].forEach(attr => {
+                const key = attr.toUpperCase();
+                const val = parseInt(document.getElementById('wizard-' + attr).value) || 10;
+                const diff = val - base[key];
+                if (diff > 0) spent += diff;
+                wizardState.abilities[key] = val;
+                const mod = Math.floor((val - 10) / 2);
+                document.getElementById('wizard-' + attr + '-mod').innerText = (mod >= 0 ? '+' : '') + mod;
+            });
+            const remaining = 10 - spent;
+            const el = document.getElementById('wizard-points-remaining');
+            el.innerText = `Points Remaining: ${remaining}`;
+            el.style.color = remaining < 0 ? '#f55' : (remaining === 0 ? '#0f0' : 'var(--accent-color)');
+        }
+
+        // --- WIZARD: REVIEW ---
+        function wizardPrepareReview() {
+            const name = document.getElementById('new-char-name').value || 'New Character';
+            const type = selectedCharType;
+            const race = wizardState.race;
+            const cls = wizardState.class;
+            const theme = wizardState.theme;
+            const abs = wizardState.abilities;
+
+            // Compute derived stats
+            const level = 1;
+            const raceHp = race ? race.hp : 0;
+            const classHp = cls ? cls.hp : 0;
+            const classSp = cls ? cls.sp : 0;
+            const conMod = Math.floor(((abs.CON || 10) - 10) / 2);
+            const kasKey = cls ? cls.kas : '';
+            const kasMod = kasKey ? Math.floor(((abs[kasKey.toUpperCase()] || 10) - 10) / 2) : 0;
+            const totalHp = raceHp + classHp;
+            const totalSp = Math.max(0, classSp + conMod);
+            const totalRp = Math.max(1, kasMod + Math.floor(level / 2));
+
+            // BAB  
+            let bab = 0;
+            if (cls) {
+                if (cls.bab === 'full') bab = level;
+                else if (cls.bab === 'moderate') bab = Math.floor(level * 3 / 4);
+                else bab = Math.floor(level / 2);
+            }
+
+            // Saves
+            function saveVal(progression) {
+                if (progression === 'fast') return 2 + Math.floor(level / 2);
+                return Math.floor(level / 3);
+            }
+
+            const saves = {
+                fort: cls ? saveVal(cls.fort) : 0,
+                ref: cls ? saveVal(cls.ref) : 0,
+                will: cls ? saveVal(cls.will) : 0
+            };
+
+            const skillRanks = cls ? (cls.skillRanks + Math.floor(((abs.INT || 10) - 10) / 2)) : 0;
+
+            let html = `
+                <table style="width:100%;border-collapse:collapse;">
+                    <tr><td style="color:#888;padding:5px;border-bottom:1px solid #222;">Name</td><td style="color:#fff;padding:5px;border-bottom:1px solid #222;">${name}</td></tr>
+                    <tr><td style="color:#888;padding:5px;border-bottom:1px solid #222;">Type</td><td style="color:#fff;padding:5px;border-bottom:1px solid #222;">${type.toUpperCase()}</td></tr>
+                    <tr><td style="color:#888;padding:5px;border-bottom:1px solid #222;">Race</td><td style="color:#0ff;padding:5px;border-bottom:1px solid #222;">${race ? race.name : '<span style="color:#888;">None</span>'} ${race?.source ? '<span style="color:#555;">(' + race.source.raw + ')</span>' : ''}</td></tr>
+                    <tr><td style="color:#888;padding:5px;border-bottom:1px solid #222;">Class</td><td style="color:#0ff;padding:5px;border-bottom:1px solid #222;">${cls ? cls.name : '<span style="color:#888;">None</span>'} ${cls?.source ? '<span style="color:#555;">(' + cls.source.raw + ')</span>' : ''}</td></tr>
+                    <tr><td style="color:#888;padding:5px;border-bottom:1px solid #222;">Theme</td><td style="color:#0ff;padding:5px;border-bottom:1px solid #222;">${theme ? theme.name : '<span style="color:#888;">None</span>'} ${theme?.source ? '<span style="color:#555;">(' + theme.source.raw + ')</span>' : ''}</td></tr>
+                </table>
+                <div style="margin-top:15px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center;">
+                    ${['STR','DEX','CON','INT','WIS','CHA'].map(a => {
+                        const val = abs[a] || 10;
+                        const mod = Math.floor((val - 10) / 2);
+                        const isKas = kasKey && kasKey.toUpperCase() === a;
+                        return `<div style="background:#111;padding:8px;border:1px solid ${isKas ? 'var(--accent-color)' : '#333'};${isKas ? 'box-shadow:0 0 5px rgba(0,210,255,0.3);' : ''}">
+                            <div style="font-size:0.8rem;color:#888;">${a}</div>
+                            <div style="font-size:1.3rem;color:#fff;font-weight:bold;">${val}</div>
+                            <div style="font-size:0.8rem;color:${mod >= 0 ? '#0f0' : '#f55'};">${mod >= 0 ? '+' : ''}${mod}</div>
+                            ${isKas ? '<div style="font-size:0.6rem;color:var(--accent-color);">KAS</div>' : ''}
+                        </div>`;
+                    }).join('')}
+                </div>
+                <div style="margin-top:15px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+                    <div style="background:#311;padding:10px;border:1px solid #522;text-align:center;">
+                        <div style="color:#888;font-size:0.8rem;">HP</div>
+                        <div style="color:#f55;font-size:1.5rem;font-weight:bold;">${totalHp}</div>
+                        <div style="color:#666;font-size:0.7rem;">${raceHp} race + ${classHp} class</div>
+                    </div>
+                    <div style="background:#113;padding:10px;border:1px solid #225;text-align:center;">
+                        <div style="color:#888;font-size:0.8rem;">SP</div>
+                        <div style="color:#55f;font-size:1.5rem;font-weight:bold;">${totalSp}</div>
+                        <div style="color:#666;font-size:0.7rem;">${classSp} class + ${conMod} CON</div>
+                    </div>
+                    <div style="background:#131;padding:10px;border:1px solid #252;text-align:center;">
+                        <div style="color:#888;font-size:0.8rem;">RP</div>
+                        <div style="color:#5f5;font-size:1.5rem;font-weight:bold;">${totalRp}</div>
+                        <div style="color:#666;font-size:0.7rem;">${kasMod} KAS + ${Math.floor(level/2)} half-lvl</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+                    <div style="background:#111;padding:8px;border:1px solid #333;text-align:center;">
+                        <div style="color:#888;font-size:0.7rem;">BAB</div>
+                        <div style="color:#fff;font-weight:bold;">+${bab}</div>
+                    </div>
+                    <div style="background:#111;padding:8px;border:1px solid #333;text-align:center;">
+                        <div style="color:#888;font-size:0.7rem;">Fort</div>
+                        <div style="color:#fff;font-weight:bold;">+${saves.fort + Math.floor(((abs.CON||10)-10)/2)}</div>
+                    </div>
+                    <div style="background:#111;padding:8px;border:1px solid #333;text-align:center;">
+                        <div style="color:#888;font-size:0.7rem;">Ref</div>
+                        <div style="color:#fff;font-weight:bold;">+${saves.ref + Math.floor(((abs.DEX||10)-10)/2)}</div>
+                    </div>
+                    <div style="background:#111;padding:8px;border:1px solid #333;text-align:center;">
+                        <div style="color:#888;font-size:0.7rem;">Will</div>
+                        <div style="color:#fff;font-weight:bold;">+${saves.will + Math.floor(((abs.WIS||10)-10)/2)}</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;color:#888;font-size:0.85rem;">
+                    <strong>Skill Ranks/Level:</strong> ${Math.max(1, skillRanks)}
+                    ${cls && cls.classSkills ? ' | <strong>Class Skills:</strong> ' + cls.classSkills.map(sk => { const def = SKILL_DEFINITIONS.find(s => s.id === mapSkillId(sk)); return def ? def.name : sk; }).join(', ') : ''}
+                </div>
+            `;
+            document.getElementById('wizard-review-content').innerHTML = html;
+        }
+
+        // --- WIZARD: CREATE ---
         function confirmNewCharacter() {
             const name = document.getElementById('new-char-name').value || 'New Character';
             const type = document.getElementById('new-char-type').value;
             const isNPC = (type === 'npc' || type === 'npc-rp');
+            const isRpOnly = type === 'npc-rp';
             
+            const race = wizardState.race;
+            const cls = wizardState.class;
+            const theme = wizardState.theme;
+            const abs = wizardState.abilities;
+
+            // Compute derived stats
+            const level = 1;
+            const raceHp = race ? race.hp : 0;
+            const classHp = cls ? cls.hp : 0;
+            const classSp = cls ? cls.sp : 0;
+            const conMod = Math.floor(((abs.CON || 10) - 10) / 2);
+            const kasKey = cls ? cls.kas : '';
+            const kasMod = kasKey ? Math.floor(((abs[kasKey.toUpperCase()] || 10) - 10) / 2) : 0;
+            const totalHp = raceHp + classHp;
+            const totalSp = Math.max(0, classSp + conMod);
+            const totalRp = Math.max(1, kasMod + Math.floor(level / 2));
+
+            let bab = 0;
+            if (cls) {
+                if (cls.bab === 'full') bab = level;
+                else if (cls.bab === 'moderate') bab = Math.floor(level * 3 / 4);
+                else bab = Math.floor(level / 2);
+            }
+
+            function saveVal(progression) {
+                if (progression === 'fast') return 2 + Math.floor(level / 2);
+                return Math.floor(level / 3);
+            }
+
             const newChar = {
-                id: Date.now().toString().substr(-6),
+                id: Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
                 name: name,
                 isNPC: isNPC,
-                class: 'Unknown',
+                class: cls ? cls.name : 'Unknown',
                 image: isNPC ? '/media/[CHAR] Character pictures/' + name + '.png' : '',
                 tokenImage: '',
-                description: '' // Stored but hidden in card
+                description: '',
+                race: race ? race.name : '',
+                raceId: race ? race.id : '',
+                theme: theme ? theme.name : '',
+                themeId: theme ? theme.id : '',
+                group: '',
+                roles: []
             };
 
             if (isNPC) {
-                if (type === 'npc-rp') {
-                    newChar.npcType = 'rp';
-                } else {
-                    newChar.npcType = 'both'; // Default for standard NPC
-                }
+                newChar.npcType = isRpOnly ? 'rp' : 'both';
             } else {
-                newChar.username = 'user' + Math.floor(Math.random()*1000);
-                newChar.password = '123';
+                newChar.username = document.getElementById('new-char-username').value || ('user' + Math.floor(Math.random()*1000));
+                newChar.password = document.getElementById('new-char-password').value || '123';
                 newChar.money = 0;
                 newChar.xp = 0;
             }
 
+            // Only add full stats for non-RP-only characters
+            if (!isRpOnly) {
+                newChar.vitals = {
+                    level: level,
+                    sp: totalSp,
+                    max_sp: totalSp,
+                    hp: totalHp,
+                    max_hp: totalHp,
+                    rp: totalRp,
+                    max_rp: totalRp
+                };
+                newChar.stats = {
+                    STR: abs.STR || 10,
+                    DEX: abs.DEX || 10,
+                    CON: abs.CON || 10,
+                    INT: abs.INT || 10,
+                    WIS: abs.WIS || 10,
+                    CHA: abs.CHA || 10
+                };
+                newChar.combat = {
+                    bab: bab,
+                    melee_misc: 0,
+                    ranged_misc: 0,
+                    thrown_misc: 0
+                };
+                newChar.saves = {
+                    fort_base: cls ? saveVal(cls.fort) : 0,
+                    fort_misc: 0,
+                    ref_base: cls ? saveVal(cls.ref) : 0,
+                    ref_misc: 0,
+                    will_base: cls ? saveVal(cls.will) : 0,
+                    will_misc: 0
+                };
+                
+                // Initialize empty skills
+                newChar.skills = {};
+                SKILL_DEFINITIONS.forEach(sk => {
+                    newChar.skills[sk.id] = { ranks: 0, misc: 0 };
+                });
+
+                newChar.feats = [];
+                newChar.inventory = [];
+            }
+
+            if (!cachedData || !cachedData.characters) {
+                alert('Data not loaded yet. Please wait and try again.');
+                return;
+            }
             cachedData.characters.push(newChar);
+            saveCharactersCards(); // Auto-save to server
             renderCharactersCards();
             closeNewCharModal();
+            log('CHARACTER CREATED: ' + name + (cls ? ' (' + cls.name + ')' : '') + (race ? ' [' + race.name + ']' : ''));
             
             // Switch to appropriate tab
             if (!isNPC) switchCharSubTab('pc');
-            else if (type === 'npc-rp') switchCharSubTab('npc-rp');
+            else if (isRpOnly) switchCharSubTab('npc-rp');
             else switchCharSubTab('npc');
         }
 
@@ -1820,6 +2627,330 @@
                 socket.emit('admin_refresh_db');
                 log('CMD: Refresh DB');
             }
+        }
+
+        // --- HEPHAISTOS IMPORT LOGIC ---
+        let importCharData = null; // Parsed Hephaistos JSON
+
+        function openImportCharModal() {
+            importCharData = null;
+            document.getElementById('import-char-file').value = '';
+            document.getElementById('import-char-preview').style.display = 'none';
+            document.getElementById('import-char-username').value = '';
+            document.getElementById('import-char-password').value = '123';
+            document.getElementById('import-char-type').value = 'pc';
+            document.getElementById('import-char-modal').style.display = 'flex';
+        }
+
+        function closeImportCharModal() {
+            document.getElementById('import-char-modal').style.display = 'none';
+            importCharData = null;
+        }
+
+        function previewImportChar() {
+            const file = document.getElementById('import-char-file').files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (!data.name || !data.type || data.type !== 'character') {
+                        alert('This does not appear to be a valid Hephaistos character export.');
+                        return;
+                    }
+                    importCharData = data;
+
+                    // Build preview summary
+                    const cls = data.classes && data.classes[0] ? data.classes[0] : null;
+                    const level = cls ? cls.levels : '?';
+                    const className = cls ? cls.name : 'Unknown';
+                    const raceName = data.race ? data.race.name : 'Unknown';
+                    const themeName = data.theme ? data.theme.name : 'None';
+                    const abs = data.abilityScores || {};
+
+                    const hp = data.vitals?.health?.max || 0;
+                    const sp = data.vitals?.stamina?.max || 0;
+                    const rp = data.vitals?.resolve?.max || 0;
+                    const credits = data.credits || 0;
+                    const featCount = data.feats?.acquiredFeats?.length || 0;
+                    const invCount = data.inventory?.length || 0;
+                    const skillCount = (data.skills || []).filter(s => s.ranks > 0).length;
+
+                    function getAbilityTotal(name) {
+                        const a = abs[name.toLowerCase()];
+                        return a ? a.total : 10;
+                    }
+
+                    document.getElementById('import-char-summary').innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 1.3rem; color: var(--accent-color); font-weight: bold;">${data.name}</span>
+                            <span style="color: #888;">Level ${level} ${raceName} ${className}</span>
+                        </div>
+                        <div style="color: #888; margin-bottom: 5px;">Theme: ${themeName} | Gender: ${data.gender || '?'} | Homeworld: ${data.homeworld || '?'}</div>
+                        <div style="display: grid; grid-template-columns: repeat(6,1fr); gap: 8px; margin: 10px 0; text-align: center;">
+                            ${['Strength','Dexterity','Constitution','Intelligence','Wisdom','Charisma'].map(a => {
+                                const val = getAbilityTotal(a);
+                                const mod = Math.floor((val - 10) / 2);
+                                return `<div style="background:#0a0a14;padding:5px;border:1px solid #333;">
+                                    <div style="font-size:0.7rem;color:#666;">${a.substring(0,3).toUpperCase()}</div>
+                                    <div style="font-size:1.1rem;color:#fff;">${val}</div>
+                                    <div style="font-size:0.7rem;color:${mod>=0?'#0f0':'#f55'};">${mod>=0?'+':''}${mod}</div>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; text-align: center;">
+                            <div style="background:#200;padding:5px;border:1px solid #422;"><span style="color:#888;font-size:0.7rem;">HP</span> <span style="color:#f55;font-weight:bold;">${hp}</span></div>
+                            <div style="background:#002;padding:5px;border:1px solid #224;"><span style="color:#888;font-size:0.7rem;">SP</span> <span style="color:#55f;font-weight:bold;">${sp}</span></div>
+                            <div style="background:#020;padding:5px;border:1px solid #242;"><span style="color:#888;font-size:0.7rem;">RP</span> <span style="color:#5f5;font-weight:bold;">${rp}</span></div>
+                        </div>
+                        <div style="color: #888; font-size: 0.85rem;">
+                            Skills ranked: ${skillCount} | Feats: ${featCount} | Inventory items: ${invCount} | Credits: ${credits.toLocaleString()}
+                        </div>
+                    `;
+
+                    // Auto-fill username from name
+                    document.getElementById('import-char-username').value = data.name.toLowerCase().replace(/\s+/g, '');
+                    document.getElementById('import-char-preview').style.display = 'block';
+
+                } catch (err) {
+                    alert('Error parsing JSON: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Hephaistos skill name → app skill ID mapping
+        const HEPH_SKILL_MAP = {
+            'Acrobatics': 'acr', 'Athletics': 'ath', 'Bluff': 'blu', 'Computers': 'com',
+            'Culture': 'cul', 'Diplomacy': 'dip', 'Disguise': 'dis', 'Engineering': 'eng',
+            'Intimidate': 'int', 'Life Science': 'lif', 'Medicine': 'med', 'Mysticism': 'mys',
+            'Perception': 'per', 'Physical Science': 'phy', 'Piloting': 'pil',
+            'Sense Motive': 'sen', 'Sleight of Hand': 'sle', 'Stealth': 'ste',
+            'Survival': 'sur', 'Profession': 'pro'
+        };
+
+        function confirmImportChar() {
+            if (!importCharData) { alert('No character data loaded.'); return; }
+            if (!cachedData || !cachedData.characters) { alert('App data not loaded yet.'); return; }
+
+            const h = importCharData; // shorthand
+            const isNPC = document.getElementById('import-char-type').value === 'npc';
+            const importInv = document.getElementById('import-char-inventory').checked;
+            const importFeats = document.getElementById('import-char-feats').checked;
+
+            const cls = h.classes && h.classes[0] ? h.classes[0] : null;
+            const level = cls ? cls.levels : 1;
+            const abs = h.abilityScores || {};
+            function aTotal(name) { const a = abs[name.toLowerCase()]; return a ? a.total : 10; }
+
+            // Build character
+            const newChar = {
+                id: Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
+                name: h.name || 'Imported Character',
+                isNPC: isNPC,
+                class: cls ? cls.name : 'Unknown',
+                race: h.race ? h.race.name : '',
+                theme: h.theme ? h.theme.name : '',
+                description: h.description || '',
+                image: isNPC ? '/media/[CHAR] Character pictures/' + (h.name || 'Unknown') + '.png' : '',
+                tokenImage: '',
+                group: '',
+                roles: []
+            };
+
+            if (!isNPC) {
+                newChar.username = document.getElementById('import-char-username').value || h.name.toLowerCase().replace(/\s+/g, '');
+                newChar.password = document.getElementById('import-char-password').value || '123';
+            } else {
+                newChar.npcType = 'both';
+            }
+
+            newChar.money = h.credits || 0;
+            newChar.xp = 0;
+
+            // Vitals
+            const spMax = h.vitals?.stamina?.max || 0;
+            const spDmg = h.vitals?.stamina?.damage || 0;
+            const hpMax = h.vitals?.health?.max || 0;
+            const hpDmg = h.vitals?.health?.damage || 0;
+            const rpMax = h.vitals?.resolve?.max || 0;
+            const rpDmg = h.vitals?.resolve?.damage || 0;
+
+            newChar.vitals = {
+                level: level,
+                sp: Math.max(0, spMax - spDmg),
+                max_sp: spMax,
+                hp: Math.max(0, hpMax - hpDmg),
+                max_hp: hpMax,
+                rp: Math.max(0, rpMax - rpDmg),
+                max_rp: rpMax
+            };
+
+            // Stats
+            newChar.stats = {
+                STR: aTotal('strength'),
+                DEX: aTotal('dexterity'),
+                CON: aTotal('constitution'),
+                INT: aTotal('intelligence'),
+                WIS: aTotal('wisdom'),
+                CHA: aTotal('charisma')
+            };
+
+            // Combat
+            newChar.combat = {
+                bab: h.attackBonuses?.bab?.base || 0,
+                melee_misc: 0,
+                ranged_misc: 0,
+                thrown_misc: 0
+            };
+
+            // Saves
+            newChar.saves = {
+                fort_base: h.saves?.fortitude?.base || 0,
+                fort_misc: 0,
+                ref_base: h.saves?.reflex?.base || 0,
+                ref_misc: 0,
+                will_base: h.saves?.will?.base || 0,
+                will_misc: 0
+            };
+
+            // Skills
+            newChar.skills = {};
+            SKILL_DEFINITIONS.forEach(sk => {
+                newChar.skills[sk.id] = { ranks: 0, misc: 0 };
+            });
+            if (h.skills) {
+                h.skills.forEach(sk => {
+                    const id = HEPH_SKILL_MAP[sk.skill || sk.name];
+                    if (id && newChar.skills[id]) {
+                        newChar.skills[id].ranks = sk.ranks || 0;
+                        // Sum up misc bonuses from Hephaistos
+                        const miscTotal = (sk.bonuses || []).reduce((sum, b) => sum + (b.value || 0), 0);
+                        newChar.skills[id].misc = miscTotal;
+                    }
+                });
+            }
+
+            // Feats
+            newChar.feats = [];
+            if (importFeats && h.feats && h.feats.acquiredFeats) {
+                h.feats.acquiredFeats.forEach(feat => {
+                    const name = feat.name;
+                    if (feat.selectedOptions && feat.selectedOptions.length > 0) {
+                        // Feat with option (e.g. Weapon Specialization → Longarms)
+                        feat.selectedOptions.forEach(opt => {
+                            newChar.feats.push({ name: name, option: opt.name });
+                        });
+                    } else {
+                        // Check for duplicates
+                        if (!newChar.feats.some(f => (typeof f === 'string' ? f : f.name) === name)) {
+                            newChar.feats.push(name);
+                        }
+                    }
+                });
+            }
+
+            // Inventory
+            newChar.inventory = [];
+            if (importInv && h.inventory) {
+                // Build a case-insensitive name→item lookup from the items database
+                const itemDbByName = new Map();
+                if (cachedData.items) {
+                    cachedData.items.forEach(dbItem => {
+                        const key = (dbItem.name || '').toLowerCase().trim();
+                        if (key && !itemDbByName.has(key)) itemDbByName.set(key, dbItem);
+                    });
+                }
+                let matchedCount = 0, unmatchedCount = 0;
+
+                h.inventory.forEach(item => {
+                    const hName = (item.name || '').trim();
+                    const dbMatch = itemDbByName.get(hName.toLowerCase());
+                    const qty = item.quantity || 1;
+
+                    if (dbMatch) {
+                        // Matched to items.json — use standard {itemId, quantity} reference
+                        newChar.inventory.push({ itemId: dbMatch.id, quantity: qty });
+                        matchedCount++;
+                    } else {
+                        // No DB match — store as inline item so data is preserved
+                        const entry = {
+                            itemId: null,
+                            quantity: qty,
+                            _inline: {
+                                name: hName || 'Unknown Item',
+                                category: item.type || 'Item',
+                                description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 300),
+                                level: item.level || 0,
+                                price: item.price || 0,
+                                bulk: item.bulk || 0
+                            }
+                        };
+                        // Weapon-specific fields
+                        if (item.type === 'Weapon') {
+                            entry._inline.weaponType = item.weaponType || '';
+                            entry._inline.damage = item.damage ? `${item.damage.dice?.count || 1}d${item.damage.dice?.sides || 4} ${(item.damage.damage || []).join('+')}` : '';
+                            entry._inline.range = item.range || 0;
+                            if (item.critical) entry._inline.critical = `${item.critical.name}${item.critical.additionalInfo ? ' ' + item.critical.additionalInfo : ''}`;
+                            if (item.special) entry._inline.special = item.special.map(s => s.name).join(', ');
+                            // Store details for renderEditorInventory weapon calculations
+                            const wTypeMap = { 'Longarm': 'longA', 'Small Arm': 'smallA', 'Heavy Weapon': 'heavy', 'Sniper Weapon': 'sniper', 'Grenade': 'grenade' };
+                            const isMelee = (item.weaponType || '').toLowerCase().includes('melee');
+                            entry._inline.details = {
+                                weaponType: wTypeMap[item.weaponType] || (isMelee ? 'basicM' : ''),
+                                ability: isMelee ? 'str' : 'dex',
+                                range: isMelee ? 'Melee' : (item.range ? item.range + ' ft.' : '')
+                            };
+                        }
+                        // Armor-specific fields
+                        if (item.type === 'Armor') {
+                            entry._inline.details = {
+                                eac: item.eacBonus || 0,
+                                kac: item.kacBonus || 0,
+                                maxDex: item.maxDexBonus || 0,
+                                acp: -(item.armorCheckPenalty || 0)
+                            };
+                        }
+                        newChar.inventory.push(entry);
+                        unmatchedCount++;
+                    }
+                });
+
+                if (unmatchedCount > 0) {
+                    log('IMPORT NOTE: ' + matchedCount + ' items matched DB, ' + unmatchedCount + ' stored as inline (not in items.json)');
+                }
+            }
+
+            // Additional metadata from Hephaistos
+            newChar.importSource = 'hephaistos';
+            newChar.homeworld = h.homeworld || '';
+            newChar.gender = h.gender || '';
+            newChar.speed = h.speed?.land || 30;
+            newChar.languages = h.languages || '';
+            if (h.armorClass) {
+                newChar.ac = {
+                    eac: h.armorClass.eac?.total || 10,
+                    kac: h.armorClass.kac?.total || 10
+                };
+            }
+            if (h.initiative) {
+                newChar.initiative_misc = (h.initiative.bonuses || []).reduce((sum, b) => sum + (b.value || 0), 0);
+            }
+            if (h.senses && h.senses.length > 0) {
+                newChar.senses = h.senses.map(s => s.senseType + (s.range ? ' ' + s.range + ' ft.' : '')).join(', ');
+            }
+
+            // Push and save
+            cachedData.characters.push(newChar);
+            saveCharactersCards();
+            renderCharactersCards();
+            closeImportCharModal();
+            log('CHARACTER IMPORTED (Hephaistos): ' + newChar.name + ' [Lvl ' + level + ' ' + newChar.class + ']');
+
+            // Switch to appropriate tab
+            if (!isNPC) switchCharSubTab('pc');
+            else switchCharSubTab('npc');
         }
 
         // --- MAP MANAGEMENT ---
@@ -2893,9 +4024,14 @@
             { id: 'pil', name: 'Piloting', attr: 'DEX' },
             { id: 'sen', name: 'Sense Motive', attr: 'WIS' },
             { id: 'sle', name: 'Sleight of Hand', attr: 'DEX' },
+            { id: 'pro', name: 'Profession', attr: 'WIS' },
             { id: 'ste', name: 'Stealth', attr: 'DEX' },
             { id: 'sur', name: 'Survival', attr: 'WIS' }
         ];
+
+        // Map ruleset skill IDs to local IDs (FoundryVTT uses different abbreviations)
+        const RULESET_SKILL_MAP = { lsc: 'lif', phs: 'phy' };
+        function mapSkillId(id) { return RULESET_SKILL_MAP[id] || id; }
 
         const CLASS_SKILLS = {
             "Biohacker": ["blu", "com", "cul", "dip", "eng", "lif", "med", "per", "phy", "pro", "sen", "sle"],
@@ -3290,7 +4426,10 @@
                 matches.forEach(feat => {
                     const div = document.createElement('div');
                     div.className = 'feat-search-result';
-                    div.innerText = feat;
+                    const rFeat = rulesetFeatsLookup[feat];
+                    const sourceTag = rFeat && rFeat.source ? ` <span style="color:#555;font-size:0.8em;">[${rFeat.source.code}]</span>` : '';
+                    const combatTag = rFeat && rFeat.isCombat ? ' <span style="color:#d90;font-size:0.75em;">⚔</span>' : '';
+                    div.innerHTML = feat + combatTag + sourceTag;
                     div.onclick = () => selectFeatFromSearch(feat);
                     resultsDiv.appendChild(div);
                 });
@@ -3311,9 +4450,16 @@
             
             addContainer.style.display = 'block';
             
-            // Description
+            // Description - prefer FEAT_LOGIC, fall back to ruleset description
             if (FEAT_LOGIC[featName] && FEAT_LOGIC[featName].desc) {
                 descDiv.innerText = FEAT_LOGIC[featName].desc;
+            } else if (rulesetFeatsLookup[featName] && rulesetFeatsLookup[featName].description) {
+                let rDesc = rulesetFeatsLookup[featName].description.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (rDesc.length > 400) rDesc = rDesc.substring(0, 400) + '...';
+                const rFeat = rulesetFeatsLookup[featName];
+                const reqStr = rFeat.requirements ? '\nRequirements: ' + rFeat.requirements : '';
+                const srcStr = rFeat.source ? '\nSource: ' + (rFeat.source.raw || rFeat.source.name) : '';
+                descDiv.innerText = rDesc + reqStr + srcStr;
             } else {
                 descDiv.innerText = '';
             }
@@ -3413,16 +4559,22 @@
             const dexMod = getAttrMod(parseInt(document.getElementById('edit-dex').value) || 10);
             
             editorInventory.forEach((entry, index) => {
-                // Lookup item details
-                const item = cachedData.items.find(i => i.id === entry.itemId);
-                const name = item ? item.name : `Unknown Item (${entry.itemId})`;
-                const category = item ? item.category : '-';
+                // Lookup item details from DB, falling back to inline data
+                let item = entry.itemId ? cachedData.items.find(i => i.id === entry.itemId) : null;
+                const inline = entry._inline || null;
+                const name = item ? item.name : (inline ? inline.name : `Unknown Item (${entry.itemId})`);
+                const category = item ? item.category : (inline ? inline.category : '-');
                 const qty = entry.quantity || 1;
+                const isInline = !item && inline;
                 
                 let atkDisplay = '-';
                 let dmgDisplay = '-';
 
-                if (item && item.category === 'Weapon') {
+                // Use inline item as a pseudo-item for weapon calculations if no DB match
+                if (!item && inline && inline.category === 'Weapon') {
+                    item = inline; // inline has details.weaponType etc.
+                }
+                if (item && (item.category === 'Weapon' || (inline && inline.category === 'Weapon'))) {
                     // Determine Weapon Type and Ability
                     // Mapping Feat Options to Item Details
                     // "Basic Melee" -> basicM
@@ -3487,7 +4639,7 @@
                 const tr = document.createElement('tr');
                 tr.style.borderBottom = '1px solid #222';
                 tr.innerHTML = `
-                    <td style="padding: 5px; color: ${item ? '#fff' : '#f00'};">${name}</td>
+                    <td style="padding: 5px; color: ${item || inline ? '#fff' : '#f00'};">${name}${isInline ? ' <span style="color:#f80;font-size:0.7em;">[IMPORTED]</span>' : ''}</td>
                     <td style="padding: 5px; color: #888;">${category}</td>
                     <td style="padding: 5px; text-align: center;">${qty}</td>
                     <td style="padding: 5px; text-align: center; font-size: 0.9em; color: #aaa;">
@@ -3514,13 +4666,9 @@
             const tabs = document.querySelector('#char-editor-modal .tabs');
             tabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             
-            if (event && event.target && event.target.classList.contains('tab-btn')) {
-                event.target.classList.add('active');
-            } else {
-                // Default to first if called programmatically without event
-                const btn = Array.from(tabs.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase() === tabName);
-                if(btn) btn.classList.add('active');
-            }
+            // Find the button by tabName text
+            const btn = Array.from(tabs.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase() === tabName.toLowerCase());
+            if (btn) btn.classList.add('active');
         }
 
         let vitalsUpdateTimeout = null;

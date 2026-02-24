@@ -39,6 +39,14 @@
         var layer = new Konva.Layer();
         stage.add(layer);
 
+        // Deselect on empty stage click (registered once, globally)
+        stage.on('click tap', function (e) {
+            if (e.target === stage) {
+                stage.find('Transformer').forEach(t => t.destroy());
+                layer.draw();
+            }
+        });
+
         // Funzione per creare un oggetto trascinabile
         function spawnObject(objData) {
             if (objData.image) {
@@ -128,15 +136,6 @@
                             });
                         });
                     }
-
-                    // Deseleziona se clicco sul vuoto
-                    stage.on('click tap', function (e) {
-                        // Se il target è lo stage (sfondo vuoto), rimuovi transformer
-                        if (e.target === stage) {
-                            stage.find('Transformer').forEach(t => t.destroy());
-                            layer.draw();
-                        }
-                    });
 
                     // Tooltip (Hover 2s)
                     let tooltipTimeout;
@@ -252,7 +251,11 @@
             // Renderizza oggetti attivi
             if (state.activeObjects) {
                 // Ordina: prima gli sfondi, poi il resto (anche se moveToBottom aiuta)
-                const sorted = state.activeObjects.sort((a, b) => (a.type === 'background' ? -1 : 1));
+                const sorted = [...state.activeObjects].sort((a, b) => {
+                    if (a.type === 'background' && b.type !== 'background') return -1;
+                    if (a.type !== 'background' && b.type === 'background') return 1;
+                    return 0;
+                });
                 
                 sorted.forEach(obj => {
                     spawnObject(obj);

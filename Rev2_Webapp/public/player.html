@@ -560,7 +560,7 @@
                 </div>
                 <div id="chat-messages" class="chat-messages"></div>
                 <div class="chat-input-area" style="padding:10px; background: rgba(0,0,0,0.8);">
-                    <input type="text" id="chat-input" class="chat-input" placeholder="Message...">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Message..." onkeydown="if(event.key==='Enter')sendChat()">
                     <button class="btn" style="width: auto; padding: 10px 20px; margin: 0;" onclick="sendChat()">SEND</button>
                 </div>
             </div>
@@ -661,9 +661,14 @@
             { id: 'pil', name: 'Piloting', attr: 'DEX' },
             { id: 'sen', name: 'Sense Motive', attr: 'WIS' },
             { id: 'sle', name: 'Sleight of Hand', attr: 'DEX', trainedOnly: true },
+            { id: 'pro', name: 'Profession', attr: 'WIS', trainedOnly: true },
             { id: 'ste', name: 'Stealth', attr: 'DEX' },
             { id: 'sur', name: 'Survival', attr: 'WIS' }
         ];
+
+        // Map ruleset skill IDs to local IDs
+        const RULESET_SKILL_MAP = { lsc: 'lif', phs: 'phy' };
+        function mapSkillId(id) { return RULESET_SKILL_MAP[id] || id; }
 
         const CLASS_SKILLS = {
             "Biohacker": ["blu", "com", "cul", "dip", "eng", "lif", "med", "per", "phy", "pro", "sen", "sle"],
@@ -707,7 +712,8 @@
             myCharacter = charData;
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('char-name-display').innerText = charData.name.toUpperCase();
-            document.getElementById('menu-char-name').innerText = charData.name.toUpperCase();
+            const menuName = document.getElementById('menu-char-name');
+            if (menuName) menuName.innerText = charData.name.toUpperCase();
             
             updateStats(charData);
         });
@@ -938,8 +944,11 @@
             
             // Check target
             if (state.target && state.target !== 'all') {
-                if (!myCharacter || myCharacter.username !== state.target) {
-                    return; // Not for me
+                if (!myCharacter) return;
+                if (Array.isArray(state.target)) {
+                    if (!state.target.includes(myCharacter.username)) return;
+                } else {
+                    if (myCharacter.username !== state.target) return;
                 }
             }
             
@@ -1071,8 +1080,11 @@
         socket.on('start_minigame', (config) => {
             // Check target
             if (config.target && config.target !== 'all') {
-                if (!myCharacter || myCharacter.username !== config.target) {
-                    return; // Not for me
+                if (!myCharacter) return;
+                if (Array.isArray(config.target)) {
+                    if (!config.target.includes(myCharacter.username)) return;
+                } else {
+                    if (myCharacter.username !== config.target) return;
                 }
             }
 

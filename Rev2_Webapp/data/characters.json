@@ -1,136 +1,5 @@
 [
   {
-    "id": "pc_joe",
-    "username": "joe",
-    "password": "123",
-    "name": "Joe",
-    "class": "Mechanic",
-    "credits": 1250,
-    "stats": {
-      "STR": 12,
-      "DEX": 12,
-      "CON": 13,
-      "INT": 18,
-      "WIS": 12,
-      "CHA": 14
-    },
-    "vitals": {
-      "level": 6,
-      "sp": 40,
-      "max_sp": 48,
-      "hp": 40,
-      "max_hp": 40,
-      "rp": 9,
-      "max_rp": 9
-    },
-    "roles": [
-      "pilot",
-      "hacker"
-    ],
-    "group": "",
-    "money": 12389,
-    "skills": {
-      "acr": {
-        "ranks": 4,
-        "misc": 0
-      },
-      "ath": {
-        "ranks": 4,
-        "misc": 0
-      },
-      "blu": {
-        "ranks": 1,
-        "misc": 0
-      },
-      "com": {
-        "ranks": 5,
-        "misc": 0
-      },
-      "cul": {
-        "ranks": 2,
-        "misc": 0
-      },
-      "dip": {
-        "ranks": 2,
-        "misc": 0
-      },
-      "dis": {
-        "ranks": 2,
-        "misc": 0
-      },
-      "eng": {
-        "ranks": 4,
-        "misc": 0
-      },
-      "int": {
-        "ranks": 0,
-        "misc": 0
-      },
-      "lif": {
-        "ranks": 3,
-        "misc": 0
-      },
-      "med": {
-        "ranks": 3,
-        "misc": 0
-      },
-      "mys": {
-        "ranks": 0,
-        "misc": 0
-      },
-      "per": {
-        "ranks": 4,
-        "misc": 0
-      },
-      "phy": {
-        "ranks": 3,
-        "misc": 0
-      },
-      "pil": {
-        "ranks": 6,
-        "misc": 0
-      },
-      "sen": {
-        "ranks": 1,
-        "misc": 0
-      },
-      "sle": {
-        "ranks": 2,
-        "misc": 0
-      },
-      "ste": {
-        "ranks": 2,
-        "misc": 0
-      },
-      "sur": {
-        "ranks": 4,
-        "misc": 0
-      }
-    },
-    "feats": [
-      "Shield Proficiency",
-      "Longarm Proficiency",
-      {
-        "name": "Weapon Specialization",
-        "option": "Small Arms"
-      },
-      {
-        "name": "Weapon Specialization",
-        "option": "Longarms"
-      },
-      {
-        "name": "Weapon Specialization",
-        "option": "Basic Melee"
-      },
-      "Heavy Armor Proficiency"
-    ],
-    "inventory": [],
-    "xp": "16780",
-    "quests": [
-      "quest_1769796633173"
-    ]
-  },
-  {
     "id": "371922",
     "name": "Spark",
     "username": "spark",
@@ -2369,5 +2238,273 @@
     "image": "/media/[CHAR] Character pictures/Zorian III.png",
     "class": "Unknown",
     "description": "Auto-generated from file"
+  },
+  {
+    "id": "mm0h96awtmtk",
+    "name": "Joe",
+    "isNPC": false,
+    "class": "Mechanic",
+    "race": "Human",
+    "theme": "Scholar",
+    "description": "",
+    "image": "",
+    "tokenImage": "",
+    "group": "",
+    "roles": [],
+    "username": "joe",
+    "password": "123",
+    "money": 12389,
+    "xp": 0,
+    "vitals": {
+      "level": 6,
+      "sp": 42,
+      "max_sp": 48,
+      "hp": 40,
+      "max_hp": 40,
+      "rp": 9,
+      "max_rp": 9
+    },
+    "stats": {
+      "STR": 12,
+      "DEX": 12,
+      "CON": 13,
+      "INT": 18,
+      "WIS": 12,
+      "CHA": 14
+    },
+    "combat": {
+      "bab": 4,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 5,
+      "fort_misc": 0,
+      "ref_base": 5,
+      "ref_misc": 0,
+      "will_base": 2,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 5,
+        "misc": 2
+      },
+      "cul": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 4,
+        "misc": 2
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 4,
+        "misc": 2
+      },
+      "phy": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 6,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 2,
+        "misc": 3
+      },
+      "pro": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 4,
+        "misc": 0
+      }
+    },
+    "feats": [
+      "Toughness",
+      {
+        "name": "Skill Focus",
+        "option": "Sleight of Hand"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Longarms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Small Arms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Basic Melee"
+      },
+      "Longarm Proficiency",
+      "Heavy Armor Proficiency",
+      "Shield Proficiency",
+      "Barricade",
+      "Extra Resolve",
+      "Improved Initiative"
+    ],
+    "inventory": [
+      {
+        "itemId": "7ZkTZj58lPFE8bZ7",
+        "quantity": 1
+      },
+      {
+        "itemId": null,
+        "quantity": 1,
+        "_inline": {
+          "name": "Battery, Standard",
+          "category": "Ammunition",
+          "description": "Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons tha",
+          "level": 1,
+          "price": 60,
+          "bulk": 0
+        }
+      },
+      {
+        "itemId": null,
+        "quantity": 3,
+        "_inline": {
+          "name": "Battery, Standard",
+          "category": "Ammunition",
+          "description": "Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons tha",
+          "level": 1,
+          "price": 60,
+          "bulk": 0
+        }
+      },
+      {
+        "itemId": "k4uhCOLBmuO1nxQy",
+        "quantity": 1
+      },
+      {
+        "itemId": "ss2eEOuouZklgDbk",
+        "quantity": 1
+      },
+      {
+        "itemId": "73Q4p64z7ezNHwtf",
+        "quantity": 1
+      },
+      {
+        "itemId": "V2u7uYaFlbms42D9",
+        "quantity": 1
+      },
+      {
+        "itemId": "hdUNyuKciEdJ8LYm",
+        "quantity": 3
+      },
+      {
+        "itemId": "z5kz9TDrS3pu6sDw",
+        "quantity": 1
+      },
+      {
+        "itemId": "Gty66lbfFbvp00A1",
+        "quantity": 1
+      },
+      {
+        "itemId": "dldJbi8rEyeEtKIr",
+        "quantity": 1
+      },
+      {
+        "itemId": "21udB0pEmkZhe9gk",
+        "quantity": 1
+      },
+      {
+        "itemId": "4ANV2gtgo6zRffs3",
+        "quantity": 1
+      },
+      {
+        "itemId": "6jNXUNrgJwjzHz5O",
+        "quantity": 2
+      },
+      {
+        "itemId": "cNlQXXhIAlZmjObX",
+        "quantity": 1
+      },
+      {
+        "itemId": "cNlQXXhIAlZmjObX",
+        "quantity": 1
+      },
+      {
+        "itemId": "33PnCqADTRKrAyA6",
+        "quantity": 1
+      },
+      {
+        "itemId": "VcdpH3GNyErkml58",
+        "quantity": 4
+      },
+      {
+        "itemId": "9zAxjLCJAxWuPMgw",
+        "quantity": 2
+      },
+      {
+        "itemId": "AWo4DU0s18agsFtJ",
+        "quantity": 1
+      },
+      {
+        "itemId": "vvGynUbd3g4aOrbt",
+        "quantity": 1
+      }
+    ],
+    "importSource": "hephaistos",
+    "homeworld": "Yassin",
+    "gender": "Male",
+    "speed": 30,
+    "languages": "",
+    "ac": {
+      "eac": 17,
+      "kac": 19
+    },
+    "initiative_misc": 4,
+    "senses": "Darkvision 60 ft., Low-Light Vision"
   }
 ]

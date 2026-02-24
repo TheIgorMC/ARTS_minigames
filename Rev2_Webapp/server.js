@@ -29,6 +29,7 @@ let objects = [];
 let characters = [];
 let items = [];
 let scenes = [];
+let ruleset = null; // Starfinder ruleset (races, classes, themes, feats)
 let tableState = {
     activeObjects: [] // { instanceId, ...objData, x, y }
 };
@@ -226,8 +227,12 @@ function loadData() {
             fs.mkdirSync(globalDir, { recursive: true });
         }
 
-        objects = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'objects.json')));
-        characters = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'characters.json')));
+        objects = fs.existsSync(path.join(DATA_DIR, 'objects.json'))
+            ? JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'objects.json')))
+            : [];
+        characters = fs.existsSync(path.join(DATA_DIR, 'characters.json'))
+            ? JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'characters.json')))
+            : [];
         if (fs.existsSync(path.join(DATA_DIR, 'items.json'))) {
             items = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'items.json')));
         } else {
@@ -238,6 +243,15 @@ function loadData() {
             quests = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'quests.json')));
         } else {
             quests = [];
+        }
+
+        // Load Starfinder Ruleset
+        if (fs.existsSync(path.join(DATA_DIR, 'ruleset.json'))) {
+            ruleset = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'ruleset.json'), 'utf8'));
+            console.log(`Ruleset loaded: ${ruleset.races?.length || 0} races, ${ruleset.classes?.length || 0} classes, ${ruleset.themes?.length || 0} themes, ${ruleset.feats?.length || 0} feats, ${ruleset.sources?.length || 0} sources`);
+        } else {
+            console.warn('WARNING: ruleset.json not found!');
+            ruleset = { sources: [], races: [], classes: [], themes: [], feats: [] };
         }
         
         // Load ignored list
@@ -329,7 +343,13 @@ function saveData() {
 function saveSceneData(sceneId, data) {
     try {
         const mediaDir = path.join(__dirname, 'media');
-        const sceneDir = path.join(mediaDir, sceneId);
+        const sceneDir = path.resolve(mediaDir, sceneId);
+        
+        // Prevent path traversal
+        if (!sceneDir.startsWith(mediaDir + path.sep) && sceneDir !== mediaDir) {
+            console.error(`Path traversal attempt blocked: ${sceneId}`);
+            return;
+        }
         
         if (!fs.existsSync(sceneDir)) {
             fs.mkdirSync(sceneDir, { recursive: true });
@@ -387,6 +407,14 @@ io.on('connection', (socket) => {
             socket.emit('media_list_update', getMediaFiles());
             socket.emit('admin_identities_update', gmIdentities);
             socket.emit('conversations_update', conversations);
+            // Send ruleset data (sources list is lightweight, full data on demand)
+            socket.emit('ruleset_update', {
+                sources: ruleset.sources || [],
+                races: (ruleset.races || []).map(r => ({ id: r.id, name: r.name, type: r.type, subtype: r.subtype, size: r.size, hp: r.hp, abilityMods: r.abilityMods, description: r.description, source: r.source })),
+                classes: (ruleset.classes || []).map(c => ({ id: c.id, name: c.name, kas: c.kas, hp: c.hp, sp: c.sp, skillRanks: c.skillRanks, bab: c.bab, fort: c.fort, ref: c.ref, will: c.will, isCaster: c.isCaster, spellAbility: c.spellAbility, classSkills: c.classSkills, proficiencies: c.proficiencies, description: c.description, source: c.source })),
+                themes: (ruleset.themes || []).map(t => ({ id: t.id, name: t.name, abilityMod: t.abilityMod, skill: t.skill, description: t.description, source: t.source })),
+                feats: (ruleset.feats || []).map(f => ({ id: f.id, name: f.name, category: f.category, isCombat: f.isCombat, requirements: f.requirements, description: f.description, modifiers: f.modifiers, source: f.source }))
+            });
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
@@ -716,6 +744,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('admin_update_data', (data) => {
+        if (!data || !data.type || !Array.isArray(data.content)) return;
         if (data.type === 'objects') objects = data.content;
         if (data.type === 'characters') characters = data.content;
         if (data.type === 'items') items = data.content;
@@ -834,7 +863,7 @@ io.on('connection', (socket) => {
 
             hackingState = {
                 active: true,
-                password: action.password.toUpperCase(),
+                password: (action.password || '').toUpperCase(),
                 dc: parseInt(action.dc) || 15,
                 complexity: parseInt(action.complexity) || 3,
                 revealedIndices: [],
@@ -1047,10 +1076,10 @@ io.on('connection', (socket) => {
 
     socket.on('admin_time_action', (action) => {
         if (action.type === 'set') {
-            timeState.year = parseInt(action.year);
-            timeState.day = parseInt(action.day);
-            timeState.hour = parseInt(action.hour);
-            timeState.minute = parseInt(action.minute);
+            timeState.year = parseInt(action.year) || timeState.year;
+            timeState.day = parseInt(action.day) || timeState.day;
+            timeState.hour = parseInt(action.hour) || timeState.hour;
+            timeState.minute = parseInt(action.minute) || timeState.minute;
             saveStatus();
         } else if (action.type === 'scramble') {
             timeState.scrambled = action.value;
