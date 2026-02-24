@@ -1,22 +1,5 @@
 [
   {
-    "id": "371922",
-    "name": "Spark",
-    "username": "spark",
-    "password": "123",
-    "class": "Mystic",
-    "roles": [
-      "scientist",
-      "mystic"
-    ],
-    "stats": {
-      "maxHp": 120
-    },
-    "quests": [
-      "quest_1769796633173"
-    ]
-  },
-  {
     "id": "497961",
     "name": "Jose Milly",
     "isNPC": true,
@@ -2506,5 +2489,193 @@
     },
     "initiative_misc": 4,
     "senses": "Darkvision 60 ft., Low-Light Vision"
+  },
+  {
+    "id": "mm0htiofjy5u",
+    "name": "Spark",
+    "isNPC": false,
+    "class": "Technomancer",
+    "race": "Ysoki",
+    "theme": "Mercenary",
+    "description": "",
+    "image": "",
+    "tokenImage": "",
+    "group": "",
+    "roles": [],
+    "username": "spark",
+    "password": "123",
+    "money": 11400,
+    "xp": 0,
+    "vitals": {
+      "level": 6,
+      "sp": 26,
+      "max_sp": 42,
+      "hp": 32,
+      "max_hp": 32,
+      "rp": 5,
+      "max_rp": 6
+    },
+    "stats": {
+      "STR": 11,
+      "DEX": 12,
+      "CON": 12,
+      "INT": 16,
+      "WIS": 18,
+      "CHA": 12
+    },
+    "combat": {
+      "bab": 4,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 2,
+      "fort_misc": 0,
+      "ref_base": 2,
+      "ref_misc": 0,
+      "will_base": 5,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 1,
+        "misc": 2
+      },
+      "cul": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 2,
+        "misc": 2
+      },
+      "int": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 4,
+        "misc": 5
+      },
+      "per": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "pro": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 3,
+        "misc": 2
+      },
+      "sur": {
+        "ranks": 3,
+        "misc": 2
+      }
+    },
+    "feats": [
+      {
+        "name": "Weapon Specialization",
+        "option": "Small Arms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Basic Melee"
+      },
+      "Spell Focus",
+      "Toughness",
+      "Deadly Aim",
+      {
+        "name": "Skill Focus",
+        "option": "Mysticism"
+      }
+    ],
+    "inventory": [
+      {
+        "itemId": "SyP17Mci1t570LI6",
+        "quantity": 2
+      },
+      {
+        "itemId": "l6pRqKmaLOrNJUDn",
+        "quantity": 1
+      },
+      {
+        "itemId": "Rb1wAWFquudLKIx7",
+        "quantity": 1
+      },
+      {
+        "itemId": "cUon85lUsWQlOsha",
+        "quantity": 1
+      },
+      {
+        "itemId": "VcdpH3GNyErkml58",
+        "quantity": 1
+      },
+      {
+        "itemId": "AWo4DU0s18agsFtJ",
+        "quantity": 1
+      },
+      {
+        "itemId": "i8iGLklstIX9GxNd",
+        "quantity": 1
+      }
+    ],
+    "importSource": "hephaistos",
+    "homeworld": "",
+    "gender": "Male",
+    "speed": 30,
+    "languages": "",
+    "ac": {
+      "eac": 18,
+      "kac": 18
+    },
+    "initiative_misc": 0,
+    "senses": "Darkvision 60 ft."
   }
 ]

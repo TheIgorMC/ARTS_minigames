@@ -30,6 +30,7 @@ let characters = [];
 let items = [];
 let scenes = [];
 let ruleset = null; // Starfinder ruleset (races, classes, themes, feats)
+let spells = [];   // Starfinder spell database
 let tableState = {
     activeObjects: [] // { instanceId, ...objData, x, y }
 };
@@ -254,6 +255,15 @@ function loadData() {
             ruleset = { sources: [], races: [], classes: [], themes: [], feats: [] };
         }
         
+        // Load spell database
+        if (fs.existsSync(path.join(DATA_DIR, 'spells.json'))) {
+            spells = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'spells.json'), 'utf8'));
+            console.log(`Spells loaded: ${spells.length} spells`);
+        } else {
+            console.warn('WARNING: spells.json not found! Run: node import_spells.js');
+            spells = [];
+        }
+
         // Load ignored list
         let ignored = [];
         if (fs.existsSync(path.join(DATA_DIR, 'ignored.json'))) {
@@ -403,7 +413,7 @@ io.on('connection', (socket) => {
         
         // Se è il GM, inviagli subito i dati aggiornati
         if (role === 'gm') {
-            socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
+            socket.emit('admin_data_update', { objects, characters, scenes, items, quests, spells });
             socket.emit('media_list_update', getMediaFiles());
             socket.emit('admin_identities_update', gmIdentities);
             socket.emit('conversations_update', conversations);
@@ -415,6 +425,8 @@ io.on('connection', (socket) => {
                 themes: (ruleset.themes || []).map(t => ({ id: t.id, name: t.name, abilityMod: t.abilityMod, skill: t.skill, description: t.description, source: t.source })),
                 feats: (ruleset.feats || []).map(f => ({ id: f.id, name: f.name, category: f.category, isCombat: f.isCombat, requirements: f.requirements, description: f.description, modifiers: f.modifiers, source: f.source }))
             });
+            // Send spell database
+            socket.emit('spells_update', spells);
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
@@ -490,6 +502,10 @@ io.on('connection', (socket) => {
             socket.join('player_' + user.id); // Canale privato per questo player
             socket.emit('login_success', user);
             
+            // Send items DB + spells DB so player can resolve inventory and spells
+            socket.emit('player_items_db', items.map(i => ({ id: i.id, name: i.name, category: i.category, level: i.level, details: i.details })));
+            socket.emit('player_spells_db', spells);
+
             // Send safe character list for Roleplay Mode
             const safeChars = characters.map(c => ({
                 id: c.id,
@@ -763,6 +779,13 @@ io.on('connection', (socket) => {
                 // Exclude password, inventory, stats if not needed
             }));
             io.to('player').emit('player_data_update', safeChars);
+            
+            // Send updated character data to each logged-in player
+            characters.forEach(c => {
+                if (c.username) {
+                    io.to('player_' + c.id).emit('player_char_update', c);
+                }
+            });
         }
     });
 

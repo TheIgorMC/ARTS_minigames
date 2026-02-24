@@ -97,6 +97,23 @@
         
         .section-title { margin-top: 20px; color: var(--primary-color); border-bottom: 1px solid var(--primary-color); font-size: 1.1rem; margin-bottom: 10px; }
 
+        /* Inventory items */
+        .inv-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; border-bottom: 1px solid #222; font-size: 0.85rem; }
+        .inv-item-name { color: #ccc; }
+        .inv-item-meta { color: #666; font-size: 0.75rem; }
+        .inv-item-qty { color: var(--primary-color); font-size: 0.8rem; min-width: 30px; text-align: right; }
+
+        /* Spell display */
+        .spell-level-header { padding: 4px 8px; background: #111; color: var(--primary-color); font-weight: bold; font-size: 0.8rem; border-bottom: 1px solid #333; }
+        .spell-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+        .spell-item:active { background: rgba(0,243,255,0.08); }
+        .spell-item-name { color: #ddd; font-size: 0.85rem; }
+        .spell-item-info { color: #666; font-size: 0.7rem; }
+        .spell-slots-row { display: flex; gap: 6px; flex-wrap: wrap; }
+        .spell-slot-chip { display: flex; flex-direction: column; align-items: center; padding: 4px 8px; background: #111; border: 1px solid #333; border-radius: 4px; font-size: 0.7rem; min-width: 50px; }
+        .spell-slot-chip .slot-label { color: #888; margin-bottom: 2px; }
+        .spell-slot-chip .slot-val { color: var(--primary-color); font-weight: bold; font-size: 0.9rem; }
+
         /* Scanline effect */
         body::before {
             content: " ";
@@ -607,7 +624,13 @@
             <div class="stat-row"><span class="stat-label">CREDITS</span><span class="stat-val" id="val-credits">0</span></div>
             
             <div class="section-title">INVENTORY</div>
-            <div id="inventory-list" style="color: #888; font-style: italic;">No items loaded.</div>
+            <div id="inventory-list" style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="color: #888; font-style: italic;">No items loaded.</div>
+            </div>
+
+            <div class="section-title" id="spells-section-title" style="display: none;">SPELLS</div>
+            <div id="spell-slots-summary" style="display: none; margin-bottom: 10px;"></div>
+            <div id="spells-list" style="display: none; flex-direction: column; gap: 2px;"></div>
         </div>
 
     </div>
@@ -809,6 +832,148 @@
 
             renderCombatStats(char);
             renderSkills(char);
+            renderPlayerInventory(char);
+            renderPlayerSpells(char);
+        }
+
+        let playerItemsDb = [];  // Items database sent by server
+        let playerSpellsDb = []; // Spells database sent by server
+
+        socket.on('player_items_db', (data) => {
+            playerItemsDb = data || [];
+            console.log('Player items DB loaded:', playerItemsDb.length);
+            if (myCharacter) renderPlayerInventory(myCharacter);
+        });
+        socket.on('player_spells_db', (data) => {
+            playerSpellsDb = data || [];
+            console.log('Player spells DB loaded:', playerSpellsDb.length);
+            if (myCharacter) renderPlayerSpells(myCharacter);
+        });
+        socket.on('player_char_update', (charData) => {
+            myCharacter = charData;
+            updateStats(charData);
+        });
+
+        function renderPlayerInventory(char) {
+            const container = document.getElementById('inventory-list');
+            if (!container) return;
+            const inv = char.inventory || [];
+            if (inv.length === 0) {
+                container.innerHTML = '<div style="color:#888;font-style:italic;">No items loaded.</div>';
+                return;
+            }
+            // Build itemId → item lookup
+            const itemMap = new Map();
+            playerItemsDb.forEach(i => itemMap.set(i.id, i));
+
+            let html = '';
+            inv.forEach(entry => {
+                let name, category, level;
+                if (entry.itemId && itemMap.has(entry.itemId)) {
+                    const db = itemMap.get(entry.itemId);
+                    name = db.name;
+                    category = db.category || '';
+                    level = db.level;
+                } else if (entry._inline) {
+                    name = entry._inline.name || 'Unknown Item';
+                    category = entry._inline.category || '';
+                    level = entry._inline.level;
+                } else {
+                    name = entry.itemId || 'Unknown';
+                    category = '';
+                    level = null;
+                }
+                const qty = entry.quantity || 1;
+                html += `<div class="inv-item">
+                    <div>
+                        <span class="inv-item-name">${name}</span>
+                        <span class="inv-item-meta">${category}${level != null ? ' Lvl ' + level : ''}</span>
+                    </div>
+                    <span class="inv-item-qty">x${qty}</span>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderPlayerSpells(char) {
+            const titleEl = document.getElementById('spells-section-title');
+            const slotsEl = document.getElementById('spell-slots-summary');
+            const listEl = document.getElementById('spells-list');
+            if (!titleEl || !slotsEl || !listEl) return;
+
+            const spells = char.spells || [];
+            const slots = char.spellSlots || null;
+
+            if (spells.length === 0 && !slots) {
+                titleEl.style.display = 'none';
+                slotsEl.style.display = 'none';
+                listEl.style.display = 'none';
+                return;
+            }
+
+            titleEl.style.display = '';
+            slotsEl.style.display = '';
+            listEl.style.display = 'flex';
+
+            // Spell slots summary
+            if (slots) {
+                const labels = ['0th', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+                let slotHtml = '<div class="spell-slots-row">';
+                for (let i = 0; i <= 6; i++) {
+                    const known = (slots.known && slots.known[i]) || 0;
+                    const perDay = slots.perDay ? slots.perDay[i] : 0;
+                    const used = slots.used ? slots.used[i] : 0;
+                    if (known === 0 && perDay === 0) continue;
+                    const remaining = perDay === -1 ? '∞' : Math.max(0, perDay - used);
+                    slotHtml += `<div class="spell-slot-chip">
+                        <span class="slot-label">${labels[i]}</span>
+                        <span class="slot-val">${remaining}${perDay !== -1 ? '/' + perDay : ''}</span>
+                    </div>`;
+                }
+                slotHtml += '</div>';
+                slotsEl.innerHTML = slotHtml;
+            } else {
+                slotsEl.innerHTML = '';
+            }
+
+            // Spell list grouped by level
+            const byLevel = {};
+            spells.forEach(sp => {
+                const lvl = sp.level || 0;
+                if (!byLevel[lvl]) byLevel[lvl] = [];
+                byLevel[lvl].push(sp);
+            });
+
+            const levelLabels = ['Cantrips', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+            let html = '';
+            for (let lvl = 0; lvl <= 6; lvl++) {
+                if (!byLevel[lvl] || byLevel[lvl].length === 0) continue;
+                html += `<div class="spell-level-header">${levelLabels[lvl]} Level (${byLevel[lvl].length})</div>`;
+                byLevel[lvl].forEach((sp, idx) => {
+                    html += `<div class="spell-item" onclick="showPlayerSpellDetail(${lvl}, ${idx})">
+                        <div>
+                            <span class="spell-item-name">${sp.name}</span>
+                            <span class="spell-item-info"> [${sp.school || ''}]</span>
+                        </div>
+                        <span class="spell-item-info">${sp.castingTime || ''}</span>
+                    </div>`;
+                });
+            }
+            listEl.innerHTML = html || '<div style="color:#888;font-style:italic;padding:10px;">No spells known.</div>';
+        }
+
+        function showPlayerSpellDetail(lvl, idx) {
+            if (!myCharacter || !myCharacter.spells) return;
+            const byLevel = {};
+            myCharacter.spells.forEach(sp => {
+                const l = sp.level || 0;
+                if (!byLevel[l]) byLevel[l] = [];
+                byLevel[l].push(sp);
+            });
+            const sp = byLevel[lvl] && byLevel[lvl][idx];
+            if (!sp) return;
+            const desc = (sp.description || '').replace(/<[^>]*>/g, '').substring(0, 500);
+            alert(`${sp.name} (${sp.school}, Level ${sp.level})\n\nCasting Time: ${sp.castingTime || '-'}\nRange: ${sp.range || '-'}\nTarget: ${sp.target || sp.area || '-'}\nDuration: ${sp.duration || '-'}\nSave: ${sp.save || 'None'}\nSR: ${sp.sr ? 'Yes' : 'No'}\n\n${desc}`);
         }
 
         function getAttrMod(score) {

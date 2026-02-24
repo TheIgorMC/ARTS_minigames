@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>GM Control Station</title>
@@ -17,6 +17,31 @@
             --border-color: #333;
             --accent-color: #00d2ff;
             --text-color: #eee;
+            /* Semantic colors */
+            --color-danger: #ff3333;
+            --color-success: #00cc44;
+            --color-warning: #ffaa00;
+            --color-npc: #ffaa00;
+            --color-gold: #ffd700;
+            --color-muted: #888;
+            --color-faint: #555;
+            /* Gray scale */
+            --gray-950: #050505;
+            --gray-900: #0a0a12;
+            --gray-850: #0f0f15;
+            --gray-800: #1a1a24;
+            --gray-700: #333;
+            --gray-600: #444;
+            --gray-500: #888;
+            --gray-400: #aaa;
+            --gray-300: #ccc;
+            /* Type scale */
+            --text-xs: 0.7rem;
+            --text-sm: 0.8rem;
+            --text-base: 0.9rem;
+            --text-lg: 1.1rem;
+            --text-xl: 1.3rem;
+            --text-2xl: 1.5rem;
         }
 
         * { box-sizing: border-box; }
@@ -122,13 +147,11 @@
             margin-bottom: 10px;
             font-size: 0.9rem;
         }
-        .chat-msg { margin-bottom: 5px; }
-        /* Chat View (Admin) */
         .chat-msg {
             padding: 8px 12px;
             border-radius: 5px;
             max-width: 80%;
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             line-height: 1.4;
             clear: both;
             margin-bottom: 5px;
@@ -240,6 +263,7 @@
         }
         input[type=number].no-spin {
             -moz-appearance: textfield;
+            appearance: textfield;
         }
 
         /* Map Layout */
@@ -350,6 +374,7 @@
         }
         input[type=number] {
             -moz-appearance: textfield;
+            appearance: textfield;
         }
         .num-control-wrapper {
             display: flex;
@@ -425,6 +450,170 @@
         .wizard-item .item-name { color: #fff; font-weight: bold; }
         .wizard-item .item-source { color: #666; font-size: 0.75rem; }
         .wizard-item .item-meta { color: #888; font-size: 0.8rem; }
+
+        /* ─── Standardized Modal Classes ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 200;
+            justify-content: center; align-items: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: var(--gray-800);
+            border: 1px solid var(--accent-color);
+            padding: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .modal-box--sm { width: 400px; }
+        .modal-box--md { width: 700px; }
+        .modal-box--lg { width: 1000px; }
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        .modal-header h3 { margin: 0; color: var(--accent-color); }
+        .modal-footer {
+            display: flex; gap: 10px; margin-top: 20px;
+        }
+
+        /* ─── Standardized Form Elements ─── */
+        .form-label {
+            color: var(--gray-500);
+            font-size: var(--text-sm);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 8px;
+            background: #000;
+            color: #fff;
+            border: 1px solid var(--gray-700);
+            font-family: inherit;
+            font-size: var(--text-base);
+        }
+        .form-select { cursor: pointer; }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(0, 210, 255, 0.2);
+        }
+        .form-input--sm { padding: 5px; font-size: var(--text-sm); }
+        .form-group { margin-bottom: 10px; }
+
+        /* ─── Icon / Small Buttons ─── */
+        .btn-icon {
+            background: none; border: none; cursor: pointer;
+            font-size: 1rem; padding: 4px 6px; transition: color 0.15s;
+        }
+        .btn-icon--close { color: #fff; font-size: 1.5rem; }
+        .btn-icon--close:hover { color: var(--color-danger); }
+        .btn-icon--danger { color: var(--color-danger); }
+        .btn-icon--danger:hover { color: #ff6666; }
+        .btn-icon--edit { color: var(--gray-400); }
+        .btn-icon--edit:hover { color: #fff; }
+
+        .action-btn--sm {
+            padding: 6px 12px;
+            font-size: var(--text-sm);
+        }
+
+        /* ─── Missing button classes (Quest Manager, RP) ─── */
+        .btn {
+            background: var(--gray-800);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            font-size: var(--text-sm);
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+        .btn.red {
+            border-color: var(--color-danger);
+            color: var(--color-danger);
+        }
+        .btn.red:hover {
+            background: var(--color-danger);
+            color: #000;
+        }
+        .active-btn {
+            background: var(--gray-800);
+            border: 1px solid var(--color-success);
+            color: var(--color-success);
+            padding: 6px 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .active-btn:hover {
+            background: var(--color-success);
+            color: #000;
+        }
+
+        /* ─── Spell System ─── */
+        .spell-slot-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        .spell-slot-box {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-700);
+            padding: 6px;
+            text-align: center;
+            font-size: var(--text-xs);
+        }
+        .spell-slot-box .slot-level {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: var(--text-sm);
+        }
+        .spell-slot-box .slot-counts {
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        .spell-slot-box .slot-input {
+            width: 32px; padding: 2px; text-align: center;
+            background: #000; color: #fff; border: 1px solid var(--gray-700);
+            font-family: inherit; font-size: var(--text-xs);
+        }
+        .spell-entry {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 10px;
+            border-bottom: 1px solid #222;
+            transition: background 0.15s;
+        }
+        .spell-entry:hover { background: rgba(0, 210, 255, 0.05); }
+        .spell-entry .spell-name { color: #fff; font-weight: bold; font-size: var(--text-sm); }
+        .spell-entry .spell-meta { color: var(--gray-500); font-size: var(--text-xs); }
+        .spell-entry .spell-school { color: var(--accent-color); font-size: var(--text-xs); }
+
+        /* ─── Flex/Grid Helpers ─── */
+        .flex-row { display: flex; gap: 10px; align-items: center; }
+        .flex-row--sm { display: flex; gap: 5px; align-items: center; }
+        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+        /* ─── Section Headers (editor) ─── */
+        .section-heading {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--gray-700);
+            padding-bottom: 5px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .section-heading:first-child { margin-top: 0; }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -875,9 +1064,9 @@
     </main>
 
     <!-- GROUP CHAT MODAL -->
-    <div id="group-chat-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 400px; max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
-            <h3 style="margin: 0; color: var(--accent-color);">Create Group Chat</h3>
+    <div id="group-chat-modal" class="modal-overlay">
+        <div class="modal-box modal-box--sm">
+            <div class="modal-header"><h3>Create Group Chat</h3></div>
             
             <div>
                 <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Chat Name</label>
@@ -906,9 +1095,9 @@
     </div>
 
     <!-- REQUEST CHECK MODAL -->
-    <div id="req-check-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 400px; display: flex; flex-direction: column; gap: 15px;">
-            <h3 style="margin: 0; color: var(--accent-color);">Request Check</h3>
+    <div id="req-check-modal" class="modal-overlay">
+        <div class="modal-box modal-box--sm">
+            <div class="modal-header"><h3>Request Check</h3></div>
             
             <div>
                 <label style="display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px;">Target Player</label>
@@ -946,11 +1135,11 @@
     </div>
 
     <!-- NEW CHARACTER MODAL (now a multi-step wizard) -->
-    <div id="new-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 900px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
-                <h3 style="margin: 0; color: var(--accent-color);">CHARACTER CREATION WIZARD</h3>
-                <button onclick="closeNewCharModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    <div id="new-char-modal" class="modal-overlay">
+        <div class="modal-box" style="width: 900px;">
+            <div class="modal-header">
+                <h3>CHARACTER CREATION WIZARD</h3>
+                <button class="btn-icon btn-icon--close" onclick="closeNewCharModal()">&times;</button>
             </div>
 
             <!-- Step Indicator -->
@@ -1102,11 +1291,11 @@
     </div>
 
     <!-- IMPORT CHARACTER MODAL (Hephaistos JSON) -->
-    <div id="import-char-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 250; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 25px; width: 700px; max-height: 90vh; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 15px;">
-                <h3 style="margin: 0; color: var(--accent-color);">Import Hephaistos Character</h3>
-                <button onclick="closeImportCharModal()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    <div id="import-char-modal" class="modal-overlay" style="z-index: 250;">
+        <div class="modal-box modal-box--md">
+            <div class="modal-header">
+                <h3>Import Hephaistos Character</h3>
+                <button class="btn-icon btn-icon--close" onclick="closeImportCharModal()">&times;</button>
             </div>
 
             <div style="margin-bottom: 15px;">
@@ -1143,6 +1332,9 @@
                     <label style="color: #888; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
                         <input type="checkbox" id="import-char-feats" checked> Import feats
                     </label>
+                    <label style="color: #888; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;">
+                        <input type="checkbox" id="import-char-spells" checked> Import spells
+                    </label>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
@@ -1154,11 +1346,11 @@
     </div>
 
     <!-- CHARACTER EDITOR MODAL -->
-    <div id="char-editor-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 1000px; max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
-                <h3 style="margin: 0; color: var(--accent-color);">Character Editor</h3>
-                <button onclick="closeCharacterEditor()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    <div id="char-editor-modal" class="modal-overlay">
+        <div class="modal-box modal-box--lg">
+            <div class="modal-header">
+                <h3>Character Editor</h3>
+                <button class="btn-icon btn-icon--close" onclick="closeCharacterEditor()">&times;</button>
             </div>
 
             <div class="tabs" style="margin-bottom: 10px;">
@@ -1167,6 +1359,7 @@
                 <button class="tab-btn" onclick="switchEditorTab('combat')">Combat</button>
                 <button class="tab-btn" onclick="switchEditorTab('skills')">Skills</button>
                 <button class="tab-btn" onclick="switchEditorTab('feats')">Feats</button>
+                <button class="tab-btn" onclick="switchEditorTab('spells')">Spells</button>
                 <button class="tab-btn" onclick="switchEditorTab('inventory')">Inventory</button>
             </div>
 
@@ -1330,6 +1523,53 @@
                 </div>
             </div>
 
+            <!-- SPELLS TAB -->
+            <div id="editor-tab-spells" class="editor-panel hidden">
+                <h4 class="section-heading" style="margin-top:0;">Spell Slots</h4>
+                <div id="editor-spell-slots" class="spell-slot-grid">
+                    <!-- 7 columns: cantrip, 1st-6th -->
+                </div>
+
+                <h4 class="section-heading">Known Spells</h4>
+                <div style="background: #111; padding: 10px; border: 1px solid var(--gray-700); margin-bottom: 10px;">
+                    <div class="flex-row" style="margin-bottom: 5px;">
+                        <div style="flex: 1; position: relative;">
+                            <input type="text" id="spell-search" placeholder="Search spell..." onkeyup="filterSpellSearch()"
+                                   class="form-input" style="font-size: 1rem;">
+                            <div id="spell-search-results" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: var(--gray-800); border: 1px solid var(--accent-color); z-index: 10;">
+                            </div>
+                        </div>
+                        <select id="spell-level-filter" onchange="filterSpellSearch()" class="form-select" style="width: 100px;">
+                            <option value="">All Lvl</option>
+                            <option value="0">0 (Cantrip)</option>
+                            <option value="1">1st</option>
+                            <option value="2">2nd</option>
+                            <option value="3">3rd</option>
+                            <option value="4">4th</option>
+                            <option value="5">5th</option>
+                            <option value="6">6th</option>
+                        </select>
+                        <select id="spell-school-filter" onchange="filterSpellSearch()" class="form-select" style="width: 120px;">
+                            <option value="">All Schools</option>
+                            <option value="Abjuration">Abjuration</option>
+                            <option value="Conjuration">Conjuration</option>
+                            <option value="Divination">Divination</option>
+                            <option value="Enchantment">Enchantment</option>
+                            <option value="Evocation">Evocation</option>
+                            <option value="Illusion">Illusion</option>
+                            <option value="Necromancy">Necromancy</option>
+                            <option value="Transmutation">Transmutation</option>
+                            <option value="Universal">Universal</option>
+                        </select>
+                    </div>
+                    <div id="spell-add-preview" style="display: none; margin-top: 8px; padding: 8px; background: #000; border: 1px solid var(--gray-700); font-size: var(--text-sm); color: var(--gray-400);"></div>
+                </div>
+
+                <div id="editor-spells-list" style="border: 1px solid var(--gray-700); height: 350px; overflow-y: auto; background: #000; padding: 5px;">
+                    <div style="color: var(--gray-500); padding: 20px; text-align: center; font-style: italic;">No spells assigned. Use the search above to add spells.</div>
+                </div>
+            </div>
+
             <div id="editor-tab-inventory" class="editor-panel hidden">
                 <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Inventory</h4>
                 
@@ -1373,14 +1613,14 @@
     </div>
 
     <!-- ITEM INSPECTOR MODAL -->
-    <div id="item-inspector-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;">
-        <div style="background: #1a1a24; border: 1px solid var(--accent-color); padding: 20px; width: 600px; max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px;">
+    <div id="item-inspector-modal" class="modal-overlay">
+        <div class="modal-box" style="width: 600px;">
+            <div class="modal-header">
                 <div>
-                    <h3 id="inspector-title" style="margin: 0; color: var(--accent-color); font-size: 1.5rem;">Item Name</h3>
-                    <div id="inspector-subtitle" style="color: #888; font-size: 0.9rem;">Category | Level | Price</div>
+                    <h3 id="inspector-title">Item Name</h3>
+                    <div id="inspector-subtitle" style="color: var(--gray-500); font-size: 0.9rem;">Category | Level | Price</div>
                 </div>
-                <button onclick="closeInspector()" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                <button class="btn-icon btn-icon--close" onclick="closeInspector()">&times;</button>
             </div>
             
             <div id="inspector-content">
@@ -1543,6 +1783,20 @@
                 });
             }
             console.log('Ruleset loaded:', data.sources?.length, 'sources,', data.races?.length, 'races,', data.classes?.length, 'classes,', data.themes?.length, 'themes,', data.feats?.length, 'feats');
+        });
+
+        // --- SPELL DATABASE ---
+        let spellDatabase = []; // Flat array of all spells from spells.json
+        socket.on('spells_update', (data) => {
+            spellDatabase = data || [];
+            console.log('Spell database loaded:', spellDatabase.length, 'spells');
+        });
+        // Also pick up spells from admin_data_update (initial load)
+        socket.on('admin_data_update', function _spellsFromData(data) {
+            if (data && data.spells && data.spells.length) {
+                spellDatabase = data.spells;
+                console.log('Spell database (from data):', spellDatabase.length, 'spells');
+            }
         });
 
         function renderObjectsTable() {
@@ -1977,7 +2231,7 @@
             }
             wizardStep = 0;
             wizardState = { race: null, class: null, theme: null, abilities: { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 }, abilityBase: null };
-            document.getElementById('new-char-modal').style.display = 'flex';
+            document.getElementById('new-char-modal').classList.add('open');
             document.getElementById('new-char-name').value = '';
             document.getElementById('new-char-username').value = '';
             document.getElementById('new-char-password').value = '123';
@@ -1988,7 +2242,7 @@
         }
 
         function closeNewCharModal() {
-            document.getElementById('new-char-modal').style.display = 'none';
+            document.getElementById('new-char-modal').classList.remove('open');
         }
 
         function wizardPopulateSourceFilter() {
@@ -2639,11 +2893,11 @@
             document.getElementById('import-char-username').value = '';
             document.getElementById('import-char-password').value = '123';
             document.getElementById('import-char-type').value = 'pc';
-            document.getElementById('import-char-modal').style.display = 'flex';
+            document.getElementById('import-char-modal').classList.add('open');
         }
 
         function closeImportCharModal() {
-            document.getElementById('import-char-modal').style.display = 'none';
+            document.getElementById('import-char-modal').classList.remove('open');
             importCharData = null;
         }
 
@@ -2738,6 +2992,7 @@
             const isNPC = document.getElementById('import-char-type').value === 'npc';
             const importInv = document.getElementById('import-char-inventory').checked;
             const importFeats = document.getElementById('import-char-feats').checked;
+            const importSpells = document.getElementById('import-char-spells').checked;
 
             const cls = h.classes && h.classes[0] ? h.classes[0] : null;
             const level = cls ? cls.levels : 1;
@@ -2919,6 +3174,82 @@
 
                 if (unmatchedCount > 0) {
                     log('IMPORT NOTE: ' + matchedCount + ' items matched DB, ' + unmatchedCount + ' stored as inline (not in items.json)');
+                }
+            }
+
+            // Spells (from Hephaistos class spells)
+            newChar.spells = [];
+            newChar.spellSlots = {
+                known:  [0, 0, 0, 0, 0, 0, 0],
+                perDay: [0, 0, 0, 0, 0, 0, 0],
+                used:   [0, 0, 0, 0, 0, 0, 0]
+            };
+            if (importSpells && cls) {
+                // Load slot arrays from the class
+                if (cls.spellsKnown) newChar.spellSlots.known = cls.spellsKnown.slice(0, 7);
+                if (cls.spellsPerDay) newChar.spellSlots.perDay = cls.spellsPerDay.slice(0, 7);
+                if (cls.spellsUsed)  newChar.spellSlots.used  = cls.spellsUsed.slice(0, 7);
+                // Pad to 7 elements if shorter
+                while (newChar.spellSlots.known.length < 7) newChar.spellSlots.known.push(0);
+                while (newChar.spellSlots.perDay.length < 7) newChar.spellSlots.perDay.push(0);
+                while (newChar.spellSlots.used.length < 7) newChar.spellSlots.used.push(0);
+
+                // Build name→spell lookup from spellDatabase
+                const spellDbByName = new Map();
+                if (spellDatabase && spellDatabase.length) {
+                    spellDatabase.forEach(dbSp => {
+                        spellDbByName.set((dbSp.name || '').toLowerCase().trim(), dbSp);
+                    });
+                }
+
+                const hepSpells = cls.spells || [];
+                // Also include additionalSpells if present
+                if (h.additionalSpells && h.additionalSpells.length) {
+                    hepSpells.push(...h.additionalSpells);
+                }
+
+                let spellMatched = 0, spellInline = 0;
+                hepSpells.forEach(hSp => {
+                    const hName = (hSp.name || '').trim();
+                    const dbMatch = spellDbByName.get(hName.toLowerCase());
+
+                    // Determine spell level for this character's class
+                    let spLvl = 0;
+                    if (hSp.level && Array.isArray(hSp.level)) {
+                        const classEntry = hSp.level.find(l => l.class === (cls.name || ''));
+                        spLvl = classEntry ? classEntry.level : (hSp.level[0] ? hSp.level[0].level : 0);
+                    }
+
+                    if (dbMatch) {
+                        newChar.spells.push({
+                            id: dbMatch.id, name: dbMatch.name, level: dbMatch.level,
+                            school: dbMatch.school, classes: dbMatch.classes,
+                            castingTime: dbMatch.castingTime, range: dbMatch.range,
+                            duration: dbMatch.duration, save: dbMatch.save, sr: dbMatch.sr,
+                            damage: dbMatch.damage, target: dbMatch.target, area: dbMatch.area,
+                            description: dbMatch.description, source: dbMatch.source
+                        });
+                        spellMatched++;
+                    } else {
+                        // Inline spell (not in spells.json)
+                        const saveStr = (hSp.savingThrow && hSp.savingThrow.length)
+                            ? hSp.savingThrow.map(s => s.save + (s.effect ? ' (' + s.effect + ')' : '')).join(', ')
+                            : '';
+                        const srVal = hSp.spellResistance && hSp.spellResistance.length && hSp.spellResistance[0].resistance;
+                        newChar.spells.push({
+                            id: null, name: hName, level: spLvl,
+                            school: hSp.school || '', classes: (hSp.level || []).map(l => l.class),
+                            castingTime: hSp.castingTime || '', range: hSp.range || '',
+                            duration: hSp.duration || '', save: saveStr, sr: !!srVal,
+                            damage: '', target: hSp.target || hSp.area || '',
+                            area: hSp.area || '', description: (hSp.description || '').replace(/<[^>]*>/g, '').substring(0, 500),
+                            source: hSp.reference ? hSp.reference.shortName : ''
+                        });
+                        spellInline++;
+                    }
+                });
+                if (hepSpells.length > 0) {
+                    log('IMPORT SPELLS: ' + spellMatched + ' matched DB, ' + spellInline + ' stored inline (' + hepSpells.length + ' total)');
                 }
             }
 
@@ -3150,11 +3481,11 @@
             }
             
             updateReqCheckOptions();
-            modal.style.display = 'flex';
+            modal.classList.add('open');
         }
 
         function closeRequestCheckModal() {
-            document.getElementById('req-check-modal').style.display = 'none';
+            document.getElementById('req-check-modal').classList.remove('open');
         }
 
         function updateReqCheckOptions() {
@@ -3216,7 +3547,7 @@
         // --- GROUP CHAT LOGIC ---
         function openGroupModal(groupId = null) {
             editingGroupId = groupId;
-            document.getElementById('group-chat-modal').style.display = 'flex';
+            document.getElementById('group-chat-modal').classList.add('open');
             document.querySelector('#group-chat-modal h3').innerText = groupId ? 'Edit Group Chat' : 'Create Group Chat';
             document.querySelector('#group-chat-modal button.action-btn').innerText = groupId ? 'UPDATE' : 'CREATE';
             
@@ -3257,7 +3588,7 @@
         }
 
         function closeGroupModal() {
-            document.getElementById('group-chat-modal').style.display = 'none';
+            document.getElementById('group-chat-modal').classList.remove('open');
             editingGroupId = null;
         }
 
@@ -3953,11 +4284,11 @@
             `;
 
             document.getElementById('inspector-content').innerHTML = html;
-            document.getElementById('item-inspector-modal').style.display = 'flex';
+            document.getElementById('item-inspector-modal').classList.add('open');
         }
 
         function closeInspector() {
-            document.getElementById('item-inspector-modal').style.display = 'none';
+            document.getElementById('item-inspector-modal').classList.remove('open');
         }
 
         function changeItemsPage(delta) {
@@ -4333,6 +4664,16 @@
             // populateFeatsDatalist(); // Removed in favor of custom search
             renderEditorFeats();
 
+            // Populate Spells
+            editorSpells = JSON.parse(JSON.stringify(char.spells || []));
+            editorSpellSlots = JSON.parse(JSON.stringify(char.spellSlots || {
+                known:  [0, 0, 0, 0, 0, 0, 0],
+                perDay: [0, 0, 0, 0, 0, 0, 0],
+                used:   [0, 0, 0, 0, 0, 0, 0]
+            }));
+            renderSpellSlots();
+            renderEditorSpells();
+
             // Populate Inventory
             document.getElementById('edit-money').value = char.money || 0;
             
@@ -4341,7 +4682,7 @@
             renderEditorInventory();
             populateInvAddSelect();
 
-            document.getElementById('char-editor-modal').style.display = 'flex';
+            document.getElementById('char-editor-modal').classList.add('open');
             switchEditorTab('details');
             
             // Enhance inputs after a short delay to ensure DOM is ready/visible
@@ -4407,6 +4748,184 @@
         }
 
         let editorFeats = [];
+
+        // --- SPELL EDITOR STATE ---
+        let editorSpells = [];       // Array of spell objects {id, name, level, school, ...}
+        let editorSpellSlots = {     // Per-level tracking: known, perDay, used
+            known:  [0, 0, 0, 0, 0, 0, 0],  // index 0=cantrips, 1=1st, ... 6=6th
+            perDay: [0, 0, 0, 0, 0, 0, 0],
+            used:   [0, 0, 0, 0, 0, 0, 0]
+        };
+
+        // Class → spell list mapping code (used for filtering search)
+        const CLASS_SPELL_KEY = {
+            'Mystic': 'Mystic', 'Technomancer': 'Technomancer',
+            'Witchwarper': 'Witchwarper', 'Precog': 'Precog'
+        };
+
+        function renderSpellSlots() {
+            const container = document.getElementById('editor-spell-slots');
+            const labels = ['0 (Cantrip)', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+            container.innerHTML = '';
+            labels.forEach((label, i) => {
+                const box = document.createElement('div');
+                box.className = 'spell-slot-box';
+                box.innerHTML = `
+                    <div class="slot-level">${label}</div>
+                    <div class="slot-counts">
+                        <div style="margin-bottom:2px;">Known: <input type="number" class="slot-input" id="spell-known-${i}" value="${editorSpellSlots.known[i]}" min="0" onchange="editorSpellSlots.known[${i}]=parseInt(this.value)||0"></div>
+                        <div style="margin-bottom:2px;">/Day: <input type="number" class="slot-input" id="spell-per-day-${i}" value="${editorSpellSlots.perDay[i] === -1 ? '∞' : editorSpellSlots.perDay[i]}" ${editorSpellSlots.perDay[i] === -1 ? 'disabled title="Unlimited (cantrips)"' : ''} min="0" onchange="editorSpellSlots.perDay[${i}]=parseInt(this.value)||0"></div>
+                        <div>Used: <input type="number" class="slot-input" id="spell-used-${i}" value="${editorSpellSlots.used[i]}" min="0" onchange="editorSpellSlots.used[${i}]=parseInt(this.value)||0"></div>
+                    </div>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function renderEditorSpells() {
+            const list = document.getElementById('editor-spells-list');
+            if (editorSpells.length === 0) {
+                list.innerHTML = '<div style="color: var(--gray-500); padding: 20px; text-align: center; font-style: italic;">No spells assigned. Use the search above to add spells.</div>';
+                return;
+            }
+
+            // Group by level
+            const byLevel = {};
+            editorSpells.forEach((sp, idx) => {
+                const lvl = sp.level || 0;
+                if (!byLevel[lvl]) byLevel[lvl] = [];
+                byLevel[lvl].push({ ...sp, _idx: idx });
+            });
+
+            const levelLabels = ['Cantrips (0)', '1st Level', '2nd Level', '3rd Level', '4th Level', '5th Level', '6th Level'];
+            let html = '';
+            for (let lvl = 0; lvl <= 6; lvl++) {
+                if (!byLevel[lvl] || byLevel[lvl].length === 0) continue;
+                html += `<div style="padding: 5px 10px; background: var(--gray-900); color: var(--accent-color); font-weight: bold; font-size: var(--text-sm); border-bottom: 1px solid var(--gray-700);">${levelLabels[lvl]} (${byLevel[lvl].length})</div>`;
+                byLevel[lvl].forEach(sp => {
+                    html += `<div class="spell-entry">
+                        <div>
+                            <span class="spell-name">${sp.name}</span>
+                            <span class="spell-school">[${sp.school || '?'}]</span>
+                            <div class="spell-meta">${sp.castingTime || ''} | ${sp.range || ''} | ${sp.duration || ''}</div>
+                        </div>
+                        <div class="flex-row--sm">
+                            <button class="btn-icon btn-icon--edit" onclick="showSpellDetail(${sp._idx})" title="View details">🔍</button>
+                            <button class="btn-icon btn-icon--danger" onclick="removeEditorSpell(${sp._idx})" title="Remove">✕</button>
+                        </div>
+                    </div>`;
+                });
+            }
+            list.innerHTML = html;
+        }
+
+        function filterSpellSearch() {
+            const input = document.getElementById('spell-search');
+            const resultsDiv = document.getElementById('spell-search-results');
+            const query = input.value.toLowerCase();
+            const levelFilter = document.getElementById('spell-level-filter').value;
+            const schoolFilter = document.getElementById('spell-school-filter').value;
+
+            resultsDiv.innerHTML = '';
+            if (query.length < 2 && !levelFilter && !schoolFilter) {
+                resultsDiv.style.display = 'none';
+                return;
+            }
+
+            // Determine character's class for relevance filtering
+            const charClass = document.getElementById('edit-class') ? document.getElementById('edit-class').value : '';
+            const classKey = CLASS_SPELL_KEY[charClass] || '';
+
+            let matches = (spellDatabase || []).filter(sp => {
+                if (query.length >= 2 && !sp.name.toLowerCase().includes(query)) return false;
+                if (levelFilter !== '' && sp.level !== parseInt(levelFilter)) return false;
+                if (schoolFilter && sp.school !== schoolFilter) return false;
+                return true;
+            });
+
+            // Sort: class-relevant first, then by level, then name
+            matches.sort((a, b) => {
+                const aRelevant = classKey && a.classes && a.classes.includes(classKey) ? 0 : 1;
+                const bRelevant = classKey && b.classes && b.classes.includes(classKey) ? 0 : 1;
+                if (aRelevant !== bRelevant) return aRelevant - bRelevant;
+                if (a.level !== b.level) return a.level - b.level;
+                return a.name.localeCompare(b.name);
+            });
+
+            matches = matches.slice(0, 50); // Limit results
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = '<div style="padding: 10px; color: var(--gray-500);">No spells found.</div>';
+                resultsDiv.style.display = 'block';
+                return;
+            }
+
+            matches.forEach(sp => {
+                const isRelevant = classKey && sp.classes && sp.classes.includes(classKey);
+                const alreadyAdded = editorSpells.some(es => es.id === sp.id);
+                const div = document.createElement('div');
+                div.style.cssText = `padding: 8px 10px; cursor: pointer; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; ${alreadyAdded ? 'opacity: 0.4;' : ''}`;
+                div.innerHTML = `
+                    <div>
+                        <span style="color: ${isRelevant ? '#fff' : '#aaa'}; font-weight: ${isRelevant ? 'bold' : 'normal'};">${sp.name}</span>
+                        <span style="color: var(--accent-color); font-size: 0.75rem;"> [Lvl ${sp.level}]</span>
+                        <span style="color: var(--gray-500); font-size: 0.7rem;"> ${sp.school}</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.7rem; color: ${isRelevant ? 'var(--color-success)' : 'var(--gray-600)'};">${sp.classes ? sp.classes.join(', ') : ''}</span>
+                        ${alreadyAdded ? '<span style="color: var(--gray-500); font-size: 0.7rem;"> ✓</span>' : ''}
+                    </div>
+                `;
+                div.onmouseenter = () => {
+                    const preview = document.getElementById('spell-add-preview');
+                    let desc = (sp.description || '').replace(/<[^>]*>/g, '').substring(0, 300);
+                    preview.innerHTML = `<strong>${sp.name}</strong> (${sp.school}, Lvl ${sp.level})<br>
+                        ${sp.save ? '<em>Save: ' + sp.save + '</em> | ' : ''}${sp.target ? 'Target: ' + sp.target + ' | ' : ''}${sp.damage ? 'Dmg: ' + sp.damage + ' | ' : ''}
+                        <br>${desc}...`;
+                    preview.style.display = 'block';
+                };
+                if (!alreadyAdded) {
+                    div.onclick = () => addEditorSpell(sp);
+                }
+                resultsDiv.appendChild(div);
+            });
+            resultsDiv.style.display = 'block';
+        }
+
+        function addEditorSpell(sp) {
+            if (editorSpells.some(es => es.id === sp.id)) return; // Already added
+            editorSpells.push({
+                id: sp.id,
+                name: sp.name,
+                level: sp.level,
+                school: sp.school,
+                classes: sp.classes,
+                castingTime: sp.castingTime,
+                range: sp.range,
+                duration: sp.duration,
+                save: sp.save,
+                sr: sp.sr,
+                damage: sp.damage,
+                target: sp.target,
+                area: sp.area,
+                description: sp.description,
+                source: sp.source
+            });
+            renderEditorSpells();
+            filterSpellSearch(); // Refresh search to show checkmark
+        }
+
+        function removeEditorSpell(index) {
+            editorSpells.splice(index, 1);
+            renderEditorSpells();
+        }
+
+        function showSpellDetail(index) {
+            const sp = editorSpells[index];
+            if (!sp) return;
+            let desc = (sp.description || '').replace(/<[^>]*>/g, '');
+            alert(`${sp.name} (${sp.school}, Level ${sp.level})\n\nCasting Time: ${sp.castingTime}\nRange: ${sp.range}\nTarget: ${sp.target || sp.area || '-'}\nDuration: ${sp.duration}\nSave: ${sp.save || 'None'}\nSR: ${sp.sr ? 'Yes' : 'No'}\nDamage: ${sp.damage || 'None'}\nClasses: ${(sp.classes || []).join(', ')}\nSource: ${sp.source || '-'}\n\n${desc}`);
+        }
 
         // --- FEAT UI LOGIC ---
         function filterFeatSearch() {
@@ -4654,7 +5173,7 @@
         }
 
         function closeCharacterEditor() {
-            document.getElementById('char-editor-modal').style.display = 'none';
+            document.getElementById('char-editor-modal').classList.remove('open');
             editingCharIndex = -1;
         }
 
@@ -4765,6 +5284,10 @@
 
             // Save Feats
             char.feats = editorFeats;
+
+            // Save Spells
+            char.spells = editorSpells;
+            char.spellSlots = editorSpellSlots;
 
             // Save Inventory
             char.money = parseInt(document.getElementById('edit-money').value) || 0;
@@ -4999,11 +5522,11 @@
         });
     </script>
     <!-- QUEST MANAGER MODAL -->
-    <div id="quest-manager-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="background: #111; border: 1px solid #444; width: 800px; height: 500px; display: flex; flex-direction: column; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
-                <h3 style="margin: 0; color: #00d2ff;">QUEST LOG</h3>
-                <button onclick="document.getElementById('quest-manager-modal').style.display='none'" style="background:none; border:none; color:#888; cursor:pointer;">CLOSE [X]</button>
+    <div id="quest-manager-modal" class="modal-overlay" style="z-index: 2000;">
+        <div class="modal-box" style="width: 800px; height: 500px;">
+            <div class="modal-header">
+                <h3>QUEST LOG</h3>
+                <button class="btn-icon btn-icon--close" onclick="document.getElementById('quest-manager-modal').classList.remove('open')">&times;</button>
             </div>
             
             <div style="flex: 1; display: flex; gap: 20px; min-height: 0;">
@@ -5099,7 +5622,7 @@
         }
 
         function openQuestManager() {
-            document.getElementById('quest-manager-modal').style.display = 'flex';
+            document.getElementById('quest-manager-modal').classList.add('open');
             refreshQuestUI();
         }
 
