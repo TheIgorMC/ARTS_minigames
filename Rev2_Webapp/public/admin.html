@@ -1954,7 +1954,7 @@
             editorShopStock = JSON.parse(JSON.stringify(shop.stock || []));
             document.getElementById('bulk-preview-info').textContent = '';
             renderShopStockEditor();
-            modal.classList.add('active');
+            modal.classList.add('open');
         }
 
         let editorShopStock = [];
@@ -2079,11 +2079,11 @@
                 stock: editorShopStock
             };
             socket.emit('admin_shop_action', { type: 'update', shop });
-            document.getElementById('shop-editor-modal').classList.remove('active');
+            document.getElementById('shop-editor-modal').classList.remove('open');
         }
 
         function closeShopEditor() {
-            document.getElementById('shop-editor-modal').classList.remove('active');
+            document.getElementById('shop-editor-modal').classList.remove('open');
         }
 
         function filterShopItems() {

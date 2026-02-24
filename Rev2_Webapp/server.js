@@ -1139,11 +1139,14 @@ io.on('connection', (socket) => {
         // Execute purchase
         char.money = (char.money || 0) - price;
         if (!char.inventory) char.inventory = [];
-        const existing = char.inventory.find(i => i.id === data.itemId);
+        const existing = char.inventory.find(i => (i.itemId || i.id) === data.itemId);
         if (existing) {
-            existing.qty = (existing.qty || 1) + 1;
+            existing.quantity = (existing.quantity || existing.qty || 1) + 1;
+            // Normalize legacy fields
+            if (existing.id && !existing.itemId) { existing.itemId = existing.id; delete existing.id; }
+            if (existing.qty !== undefined) { delete existing.qty; }
         } else {
-            char.inventory.push({ id: data.itemId, qty: 1 });
+            char.inventory.push({ itemId: data.itemId, quantity: 1 });
         }
 
         // Reduce stock
@@ -1166,9 +1169,9 @@ io.on('connection', (socket) => {
         const shop = shops.find(s => s.id === shopId);
         if (!shop) return;
 
-        const invEntry = (char.inventory || []).find(i => i.id === data.itemId);
+        const invEntry = (char.inventory || []).find(i => (i.itemId || i.id) === data.itemId);
         if (!invEntry) { socket.emit('shop_error', 'You don\'t have this item'); return; }
-        const invQty = typeof invEntry.qty === 'number' ? invEntry.qty : 1;
+        const invQty = typeof invEntry.quantity === 'number' ? invEntry.quantity : (typeof invEntry.qty === 'number' ? invEntry.qty : 1);
         if (invQty <= 0) { socket.emit('shop_error', 'You don\'t have this item'); return; }
 
         const item = items.find(i => i.id === data.itemId);
@@ -1178,10 +1181,14 @@ io.on('connection', (socket) => {
 
         // Execute sale
         char.money = (char.money || 0) + sellPrice;
-        if (invEntry.qty > 1) {
-            invEntry.qty--;
+        const currentQty = typeof invEntry.quantity === 'number' ? invEntry.quantity : (typeof invEntry.qty === 'number' ? invEntry.qty : 1);
+        if (currentQty > 1) {
+            invEntry.quantity = currentQty - 1;
+            // Normalize legacy fields
+            if (invEntry.id && !invEntry.itemId) { invEntry.itemId = invEntry.id; delete invEntry.id; }
+            if (invEntry.qty !== undefined) { delete invEntry.qty; }
         } else {
-            char.inventory = char.inventory.filter(i => i.id !== data.itemId);
+            char.inventory = char.inventory.filter(i => (i.itemId || i.id) !== data.itemId);
         }
 
         saveData();
