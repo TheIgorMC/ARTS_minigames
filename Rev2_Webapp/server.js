@@ -62,6 +62,40 @@ let gmIdentities = ['GM']; // Default identity
 let currentSceneId = null; // Track currently loaded scene for autosave
 let conversations = []; // { id, name, type: 'group'|'dm', participants: [] }
 let quests = []; // { id, name, description, active }
+let shops = []; // { id, name, location, description, categories[], stock: [{itemId, qty, priceOverride?}], isOpen }
+let levelupPending = new Set(); // Character IDs that are allowed to level up
+let shopSessions = {}; // { charId: shopId } - maps which shop a player has open
+
+// --- STARFINDER PROGRESSION TABLES ---
+const SF_BAB = {
+    full:     [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    moderate: [0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15]
+};
+const SF_SAVES = {
+    fast: [0,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12],
+    slow: [0,0,0,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6]
+};
+const SF_ABILITY_INCREASE_LEVELS = [5, 10, 15, 20];
+const SF_FEAT_LEVELS = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+const SF_THEME_BENEFIT_LEVELS = [6, 12, 18];
+// Spells known: index = class level, value = [cantrips, 1st, 2nd, 3rd, 4th, 5th, 6th]
+const SF_SPELLS_KNOWN = [
+    [0,0,0,0,0,0,0],[4,2,0,0,0,0,0],[5,3,0,0,0,0,0],[6,4,0,0,0,0,0],
+    [6,4,2,0,0,0,0],[6,4,3,0,0,0,0],[6,4,4,0,0,0,0],[6,5,4,2,0,0,0],
+    [6,5,4,3,0,0,0],[6,5,4,4,0,0,0],[6,5,5,4,2,0,0],[6,6,5,4,3,0,0],
+    [6,6,5,4,4,0,0],[6,6,5,5,4,2,0],[6,6,6,5,4,3,0],[6,6,6,5,4,4,0],
+    [6,6,6,5,5,4,2],[6,6,6,6,5,4,3],[6,6,6,6,5,4,4],[6,6,6,6,5,5,4],
+    [6,6,6,6,6,5,5]
+];
+// Spells per day: index = class level, value = [1st, 2nd, 3rd, 4th, 5th, 6th]
+const SF_SPELLS_PER_DAY = [
+    [0,0,0,0,0,0],[2,0,0,0,0,0],[2,0,0,0,0,0],[3,0,0,0,0,0],
+    [3,2,0,0,0,0],[4,2,0,0,0,0],[4,3,0,0,0,0],[4,3,2,0,0,0],
+    [4,4,2,0,0,0],[5,4,3,0,0,0],[5,4,3,2,0,0],[5,4,4,2,0,0],
+    [5,5,4,3,0,0],[5,5,4,3,2,0],[5,5,4,4,2,0],[5,5,5,4,3,0],
+    [5,5,5,4,3,2],[5,5,5,4,4,2],[5,5,5,5,4,3],[5,5,5,5,5,3],
+    [5,5,5,5,5,4]
+];
 
 // --- PERSISTENCE ---
 const STATUS_FILE = path.join(DATA_DIR, 'status.json');
@@ -270,6 +304,14 @@ function loadData() {
             ignored = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'ignored.json')));
         }
 
+        // Load shops
+        if (fs.existsSync(path.join(DATA_DIR, 'shops.json'))) {
+            shops = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'shops.json'), 'utf8'));
+            console.log(`Shops loaded: ${shops.length} shops`);
+        } else {
+            shops = [];
+        }
+
         // Load scenes from media folders
         scenes = loadScenes();
         
@@ -343,6 +385,7 @@ function saveData() {
         fs.writeFileSync(path.join(DATA_DIR, 'characters.json'), JSON.stringify(characters, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'items.json'), JSON.stringify(items, null, 2));
         fs.writeFileSync(path.join(DATA_DIR, 'quests.json'), JSON.stringify(quests, null, 2));
+        fs.writeFileSync(path.join(DATA_DIR, 'shops.json'), JSON.stringify(shops, null, 2));
         // Scenes are saved individually now
         console.log('Dati salvati.');
     } catch (e) {
@@ -427,6 +470,9 @@ io.on('connection', (socket) => {
             });
             // Send spell database
             socket.emit('spells_update', spells);
+            // Send level-up pending status and shops to GM
+            socket.emit('admin_levelup_status', Array.from(levelupPending));
+            socket.emit('admin_shops_update', shops);
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
@@ -503,7 +549,7 @@ io.on('connection', (socket) => {
             socket.emit('login_success', user);
             
             // Send items DB + spells DB so player can resolve inventory and spells
-            socket.emit('player_items_db', items.map(i => ({ id: i.id, name: i.name, category: i.category, level: i.level, details: i.details })));
+            socket.emit('player_items_db', items.map(i => ({ id: i.id, name: i.name, category: i.category, level: i.level, price: i.price, details: i.details })));
             socket.emit('player_spells_db', spells);
 
             // Send safe character list for Roleplay Mode
@@ -517,6 +563,11 @@ io.on('connection', (socket) => {
             socket.emit('player_data_update', safeChars);
             
             socket.emit('conversations_update', conversations);
+
+            // Send level-up availability if pending
+            if (levelupPending.has(user.id)) {
+                socket.emit('levelup_available', true);
+            }
         } else {
             socket.emit('login_error', 'Credenziali non valide');
         }
@@ -810,6 +861,334 @@ io.on('connection', (socket) => {
         
         saveData();
         socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
+    });
+
+    // --- LEVEL-UP SYSTEM ---
+    socket.on('gm_allow_levelup', (charId) => {
+        if (!charId) return;
+        const char = characters.find(c => c.id === charId);
+        if (!char || !char.vitals) return;
+        levelupPending.add(charId);
+        console.log(`Level-up allowed for: ${char.name} (currently level ${char.vitals.level})`);
+        // Notify GM
+        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        // Notify player
+        io.to('player_' + charId).emit('levelup_available', true);
+    });
+
+    socket.on('gm_revoke_levelup', (charId) => {
+        levelupPending.delete(charId);
+        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        io.to('player_' + charId).emit('levelup_available', false);
+    });
+
+    socket.on('player_request_levelup_data', (charId) => {
+        if (!levelupPending.has(charId)) return;
+        const char = characters.find(c => c.id === charId);
+        if (!char || !char.vitals) return;
+
+        const newLevel = (char.vitals.level || 1) + 1;
+        if (newLevel > 20) return;
+
+        // Look up class, race, theme from ruleset
+        const cls = (ruleset.classes || []).find(c => c.name === char.class);
+        const race = (ruleset.races || []).find(r => r.id === char.raceId || r.name === char.race);
+        const theme = (ruleset.themes || []).find(t => t.id === char.themeId || t.name === char.theme);
+
+        const hasAbilityIncrease = SF_ABILITY_INCREASE_LEVELS.includes(newLevel);
+        const hasFeat = SF_FEAT_LEVELS.includes(newLevel);
+        const hasThemeBenefit = SF_THEME_BENEFIT_LEVELS.includes(newLevel);
+        const isCaster = cls ? cls.isCaster : false;
+
+        // Compute what auto-values will be at new level
+        const raceHp = race ? race.hp : 0;
+        const classHp = cls ? cls.hp : 0;
+        const classSp = cls ? cls.sp : 0;
+        const bab = cls ? (SF_BAB[cls.bab] || SF_BAB.moderate)[newLevel] || 0 : 0;
+        const fortBase = cls ? (SF_SAVES[cls.fort] || SF_SAVES.slow)[newLevel] || 0 : 0;
+        const refBase = cls ? (SF_SAVES[cls.ref] || SF_SAVES.slow)[newLevel] || 0 : 0;
+        const willBase = cls ? (SF_SAVES[cls.will] || SF_SAVES.slow)[newLevel] || 0 : 0;
+        const skillRanksPerLevel = (cls ? cls.skillRanks : 0) + Math.floor(((char.stats?.INT || 10) - 10) / 2);
+
+        // Spell data for casters
+        let spellData = null;
+        if (isCaster) {
+            const known = SF_SPELLS_KNOWN[newLevel] || [0,0,0,0,0,0,0];
+            const perDay = SF_SPELLS_PER_DAY[newLevel] || [0,0,0,0,0,0];
+            const prevKnown = SF_SPELLS_KNOWN[newLevel - 1] || [0,0,0,0,0,0,0];
+            // Calculate how many new spells player can pick per level
+            const newSpellSlots = known.map((k, i) => Math.max(0, k - prevKnown[i]));
+            spellData = { known, perDay, newSpellSlots };
+        }
+
+        // Extract theme benefit text for this level
+        let themeBenefitText = '';
+        if (hasThemeBenefit && theme && theme.description) {
+            const levelLabel = newLevel === 6 ? '6th' : newLevel === 12 ? '12th' : '18th';
+            const regex = new RegExp(`${levelLabel}\\s*Level[\\s\\S]*?(?=<h|$)`, 'i');
+            const match = theme.description.match(regex);
+            if (match) themeBenefitText = match[0];
+        }
+
+        // Gather IDs of spells the character already knows
+        const knownSpellIds = (char.spells || []).map(s => s.id);
+
+        // Send all level-up info to the player
+        socket.emit('levelup_data', {
+            charId,
+            newLevel,
+            currentStats: char.stats,
+            hasAbilityIncrease,
+            hasFeat,
+            hasThemeBenefit,
+            themeBenefitText,
+            themeName: theme ? theme.name : char.theme || '',
+            isCaster,
+            spellData,
+            className: cls ? cls.name : char.class,
+            classDescription: cls ? cls.description : '',
+            raceHp,
+            classHp,
+            classSp,
+            bab,
+            fortBase,
+            refBase,
+            willBase,
+            skillRanksPerLevel: Math.max(1, skillRanksPerLevel),
+            classSkills: cls ? cls.classSkills : [],
+            kas: cls ? cls.kas : '',
+            currentSkillRanks: char.skills || {},
+            feats: (ruleset.feats || []).map(f => ({ id: f.id, name: f.name, category: f.category, isCombat: f.isCombat, requirements: f.requirements, description: f.description, source: f.source })),
+            availableSpells: isCaster ? spells : [],
+            knownSpellIds
+        });
+    });
+
+    socket.on('player_submit_levelup', (data) => {
+        if (!data || !data.charId) return;
+        if (!levelupPending.has(data.charId)) {
+            socket.emit('levelup_error', 'Level-up not authorized');
+            return;
+        }
+        const char = characters.find(c => c.id === data.charId);
+        if (!char || !char.vitals) return;
+
+        const newLevel = (char.vitals.level || 1) + 1;
+        if (newLevel > 20) { socket.emit('levelup_error', 'Max level reached'); return; }
+
+        const cls = (ruleset.classes || []).find(c => c.name === char.class);
+        const race = (ruleset.races || []).find(r => r.id === char.raceId || r.name === char.race);
+
+        // Step 1: Apply ability score increases (if applicable)
+        if (SF_ABILITY_INCREASE_LEVELS.includes(newLevel) && Array.isArray(data.abilityIncreases)) {
+            data.abilityIncreases.slice(0, 4).forEach(ab => {
+                const key = ab.toUpperCase();
+                if (char.stats && char.stats[key] !== undefined) {
+                    char.stats[key] += (char.stats[key] >= 17 ? 1 : 2);
+                }
+            });
+        }
+
+        // Step 2: Compute HP/SP/RP
+        const conMod = Math.floor(((char.stats?.CON || 10) - 10) / 2);
+        const raceHp = race ? race.hp : 0;
+        const classHp = cls ? cls.hp : 0;
+        const classSp = cls ? cls.sp : 0;
+        const kasKey = cls ? cls.kas : '';
+        const kasMod = kasKey ? Math.floor(((char.stats?.[kasKey.toUpperCase()] || 10) - 10) / 2) : 0;
+
+        char.vitals.level = newLevel;
+        char.vitals.max_hp = raceHp + (classHp * newLevel);
+        char.vitals.hp = char.vitals.max_hp; // Full heal on level up
+        char.vitals.max_sp = Math.max(0, (classSp + conMod) * newLevel);
+        char.vitals.sp = char.vitals.max_sp;
+        char.vitals.max_rp = Math.max(1, Math.floor(newLevel / 2) + kasMod);
+        char.vitals.rp = char.vitals.max_rp;
+
+        // Step 3: BAB & Saves
+        char.combat.bab = cls ? (SF_BAB[cls.bab] || SF_BAB.moderate)[newLevel] || 0 : 0;
+        char.saves.fort_base = cls ? (SF_SAVES[cls.fort] || SF_SAVES.slow)[newLevel] || 0 : 0;
+        char.saves.ref_base = cls ? (SF_SAVES[cls.ref] || SF_SAVES.slow)[newLevel] || 0 : 0;
+        char.saves.will_base = cls ? (SF_SAVES[cls.will] || SF_SAVES.slow)[newLevel] || 0 : 0;
+
+        // Step 4: Theme benefits (informational, no mechanical changes needed on server)
+
+        // Step 5: Class features (informational)
+
+        // Step 6: Spells (if caster)
+        if (cls && cls.isCaster && data.newSpells && Array.isArray(data.newSpells)) {
+            // Add new spells to character's spell list
+            data.newSpells.forEach(spell => {
+                if (spell && spell.id && !char.spells?.find(s => s.id === spell.id)) {
+                    if (!char.spells) char.spells = [];
+                    char.spells.push(spell);
+                }
+            });
+            // Update spell slots
+            const known = SF_SPELLS_KNOWN[newLevel] || [0,0,0,0,0,0,0];
+            const perDay = SF_SPELLS_PER_DAY[newLevel] || [0,0,0,0,0,0];
+            if (!char.spellSlots) char.spellSlots = { known: [0,0,0,0,0,0,0], perDay: [0,0,0,0,0,0,0], used: [0,0,0,0,0,0,0] };
+            char.spellSlots.known = known;
+            char.spellSlots.perDay = [-1, ...perDay]; // -1 = unlimited cantrips
+            char.spellSlots.used = [0,0,0,0,0,0,0]; // Reset on level up
+        }
+
+        // Step 7: Feats
+        if (SF_FEAT_LEVELS.includes(newLevel) && data.newFeat) {
+            if (!char.feats) char.feats = [];
+            if (data.newFeat.option) {
+                char.feats.push({ name: data.newFeat.name, option: data.newFeat.option });
+            } else {
+                char.feats.push(data.newFeat.name);
+            }
+        }
+
+        // Step 8: Skill ranks
+        if (data.skillRanks && typeof data.skillRanks === 'object') {
+            Object.entries(data.skillRanks).forEach(([skillId, addedRanks]) => {
+                const ranks = parseInt(addedRanks);
+                if (ranks > 0 && char.skills && char.skills[skillId]) {
+                    char.skills[skillId].ranks = (char.skills[skillId].ranks || 0) + ranks;
+                    // Cap at character level
+                    if (char.skills[skillId].ranks > newLevel) {
+                        char.skills[skillId].ranks = newLevel;
+                    }
+                }
+            });
+        }
+
+        // Remove from pending
+        levelupPending.delete(data.charId);
+
+        // Save & notify
+        saveData();
+        socket.emit('levelup_complete', char);
+        socket.emit('levelup_available', false);
+        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        io.to('gm').emit('admin_data_update', { objects, characters, scenes, items, quests, spells });
+        // Send updated char to player
+        io.to('player_' + data.charId).emit('player_char_update', char);
+        console.log(`Level-up completed: ${char.name} is now level ${newLevel}`);
+    });
+
+    // --- SHOP SYSTEM ---
+    socket.on('admin_shop_action', (action) => {
+        if (!action || !action.type) return;
+
+        if (action.type === 'create') {
+            const shop = {
+                id: Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
+                name: action.name || 'New Shop',
+                location: action.location || '',
+                description: action.description || '',
+                categories: action.categories || [],
+                stock: action.stock || [],
+                isOpen: false,
+                resalePercent: action.resalePercent || 10
+            };
+            shops.push(shop);
+        } else if (action.type === 'update') {
+            const idx = shops.findIndex(s => s.id === action.shop.id);
+            if (idx >= 0) shops[idx] = { ...shops[idx], ...action.shop };
+        } else if (action.type === 'delete') {
+            shops = shops.filter(s => s.id !== action.id);
+        } else if (action.type === 'open') {
+            // Open shop for specific player(s)
+            const shop = shops.find(s => s.id === action.shopId);
+            if (!shop) return;
+            const targetIds = Array.isArray(action.charIds) ? action.charIds : [action.charIds];
+            targetIds.forEach(cid => {
+                shopSessions[cid] = action.shopId;
+                io.to('player_' + cid).emit('shop_open', {
+                    shop: { ...shop, stock: shop.stock.map(s => ({ ...s, item: items.find(i => i.id === s.itemId) })) },
+                    resalePercent: shop.resalePercent || 10
+                });
+            });
+            console.log(`Shop "${shop.name}" opened for ${targetIds.length} player(s)`);
+        } else if (action.type === 'close') {
+            const targetIds = Array.isArray(action.charIds) ? action.charIds : Object.keys(shopSessions);
+            targetIds.forEach(cid => {
+                delete shopSessions[cid];
+                io.to('player_' + cid).emit('shop_close');
+            });
+        }
+
+        saveData();
+        io.to('gm').emit('admin_shops_update', shops);
+    });
+
+    socket.on('player_buy_item', (data) => {
+        if (!data || !data.charId || !data.itemId) return;
+        const char = characters.find(c => c.id === data.charId);
+        if (!char) return;
+        const shopId = shopSessions[data.charId];
+        if (!shopId) { socket.emit('shop_error', 'No shop is open'); return; }
+        const shop = shops.find(s => s.id === shopId);
+        if (!shop) return;
+
+        const stockEntry = shop.stock.find(s => s.itemId === data.itemId);
+        if (!stockEntry) { socket.emit('shop_error', 'Item not available in this shop'); return; }
+        if (stockEntry.qty !== -1 && stockEntry.qty <= 0) { socket.emit('shop_error', 'Item out of stock'); return; }
+
+        const item = items.find(i => i.id === data.itemId);
+        if (!item) return;
+        const price = stockEntry.priceOverride || item.price || 0;
+
+        if ((char.money || 0) < price) { socket.emit('shop_error', 'Not enough credits'); return; }
+
+        // Execute purchase
+        char.money = (char.money || 0) - price;
+        if (!char.inventory) char.inventory = [];
+        const existing = char.inventory.find(i => i.id === data.itemId);
+        if (existing) {
+            existing.qty = (existing.qty || 1) + 1;
+        } else {
+            char.inventory.push({ id: data.itemId, qty: 1 });
+        }
+
+        // Reduce stock
+        if (stockEntry.qty !== -1) stockEntry.qty--;
+
+        saveData();
+        io.to('player_' + data.charId).emit('player_char_update', char);
+        socket.emit('shop_transaction', { type: 'buy', item: item.name, itemId: data.itemId, price, newBalance: char.money });
+        io.to('gm').emit('admin_data_update', { objects, characters, scenes, items, quests, spells });
+        io.to('gm').emit('admin_shops_update', shops);
+        console.log(`${char.name} bought ${item.name} for ${price} credits`);
+    });
+
+    socket.on('player_sell_item', (data) => {
+        if (!data || !data.charId || !data.itemId) return;
+        const char = characters.find(c => c.id === data.charId);
+        if (!char) return;
+        const shopId = shopSessions[data.charId];
+        if (!shopId) { socket.emit('shop_error', 'No shop is open'); return; }
+        const shop = shops.find(s => s.id === shopId);
+        if (!shop) return;
+
+        const invEntry = (char.inventory || []).find(i => i.id === data.itemId);
+        if (!invEntry) { socket.emit('shop_error', 'You don\'t have this item'); return; }
+        const invQty = typeof invEntry.qty === 'number' ? invEntry.qty : 1;
+        if (invQty <= 0) { socket.emit('shop_error', 'You don\'t have this item'); return; }
+
+        const item = items.find(i => i.id === data.itemId);
+        if (!item) return;
+        const fullPrice = item.price || 0;
+        const sellPrice = Math.floor(fullPrice * (shop.resalePercent || 10) / 100);
+
+        // Execute sale
+        char.money = (char.money || 0) + sellPrice;
+        if (invEntry.qty > 1) {
+            invEntry.qty--;
+        } else {
+            char.inventory = char.inventory.filter(i => i.id !== data.itemId);
+        }
+
+        saveData();
+        io.to('player_' + data.charId).emit('player_char_update', char);
+        socket.emit('shop_transaction', { type: 'sell', item: item.name, price: sellPrice, newBalance: char.money });
+        io.to('gm').emit('admin_data_update', { objects, characters, scenes, items, quests, spells });
+        console.log(`${char.name} sold ${item.name} for ${sellPrice} credits (${shop.resalePercent}% of ${fullPrice})`);
     });
 
     // --- GESTIONE SCENE (GM) ---

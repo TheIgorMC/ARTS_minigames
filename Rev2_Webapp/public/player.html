@@ -483,6 +483,101 @@
             to { opacity: 0; transform: translateY(-10px); }
         }
 
+        /* Level-Up Wizard & Shop Modals */
+        .player-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 300;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .player-modal-overlay.active { display: flex; }
+        .player-modal-box {
+            background: #0a0a12;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            margin: 10px auto;
+        }
+        .player-modal-box h2 { color: var(--primary-color); margin: 0 0 15px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .player-modal-box h3 { color: #ffd700; margin: 15px 0 8px; font-size: 1rem; }
+        .player-modal-box .step-indicator { color: #555; font-size: 0.8rem; margin-bottom: 10px; }
+        .player-modal-box .info-panel { background: rgba(0,243,255,0.05); border: 1px solid #333; padding: 10px; margin: 8px 0; font-size: 0.85rem; color: #ccc; }
+        .player-modal-box .info-panel strong { color: var(--primary-color); }
+        .player-modal-box .auto-val { color: #0f0; font-weight: bold; }
+        .player-modal-box label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 3px; }
+        .player-modal-box select, .player-modal-box input[type="text"], .player-modal-box input[type="number"] {
+            background: #000; color: #fff; border: 1px solid #333; padding: 6px; font-family: inherit; font-size: 0.9rem; width: 100%;
+        }
+        .player-modal-box .btn-row { display: flex; gap: 10px; margin-top: 15px; justify-content: flex-end; }
+        .player-modal-box .btn-row .btn { width: auto; padding: 10px 20px; margin: 0; font-size: 0.9rem; }
+        .player-modal-box .btn.btn-gold { border-color: #ffd700; color: #ffd700; }
+        .player-modal-box .btn.btn-gold:active { background: #ffd700; color: #000; }
+        .player-modal-box .btn.btn-red { border-color: #f55; color: #f55; }
+
+        .ability-pick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .ability-pick-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #111; border: 1px solid #333; }
+        .ability-pick-item.selected { border-color: #ffd700; background: rgba(255, 215, 0, 0.08); }
+        .ability-pick-item .ab-name { color: #fff; font-weight: bold; }
+        .ability-pick-item .ab-val { color: var(--primary-color); }
+        .ability-pick-item .ab-change { color: #0f0; font-size: 0.8rem; }
+
+        .spell-pick-item, .feat-pick-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-bottom: 1px solid #222; cursor: pointer; }
+        .spell-pick-item:hover, .feat-pick-item:hover { background: rgba(0,243,255,0.05); }
+        .spell-pick-item.selected, .feat-pick-item.selected { background: rgba(255,215,0,0.08); border-left: 2px solid #ffd700; }
+        .spell-pick-item.known { opacity: 0.4; border-left: 2px solid #555; }
+        .spell-pick-item.known .known-badge { color: #888; font-size: 0.65rem; text-transform: uppercase; margin-left: 6px; }
+        .spell-school-badge { display: inline-block; font-size: 0.6rem; padding: 1px 5px; border: 1px solid #444; color: #999; margin-left: 6px; vertical-align: middle; }
+        .spell-desc-panel { padding: 8px 10px; background: #0a0a14; border-left: 2px solid var(--primary-color); margin: 0 0 2px; font-size: 0.78rem; color: #aaa; max-height: 25vh; overflow-y: auto; }
+        .spell-desc-panel p { margin: 3px 0; }
+        .spell-level-group { margin-bottom: 12px; }
+        .spell-level-header { color: #ffd700; font-size: 0.85rem; padding: 6px 0 4px; border-bottom: 1px solid #333; margin-bottom: 4px; font-weight: bold; }
+        .spell-level-header .slots-count { color: var(--primary-color); font-weight: normal; font-size: 0.75rem; float: right; }
+
+        .skill-rank-row { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid #1a1a1a; }
+        .skill-rank-row .sk-name { flex: 1; color: #ccc; font-size: 0.82rem; min-width: 0; }
+        .skill-rank-row .sk-class { color: #ffd700; font-size: 0.65rem; }
+        .skill-rank-row .sk-info { display: flex; flex-direction: column; align-items: flex-end; margin-right: 4px; min-width: 80px; }
+        .skill-rank-row .sk-ranks { color: var(--primary-color); font-size: 0.75rem; }
+        .skill-rank-row .sk-bonus { color: #0f0; font-size: 0.8rem; font-weight: bold; }
+        .skill-rank-row .sk-btns { display: flex; gap: 3px; }
+        .skill-rank-row .sk-btns button { width: 28px; height: 28px; padding: 0; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+
+        .levelup-banner {
+            display: none;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 12px 20px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            animation: pulse-gold 2s infinite;
+            z-index: 5;
+        }
+        .levelup-banner.visible { display: block; }
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.3); }
+            50% { box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+        }
+
+        /* Shop styles */
+        .shop-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #222; }
+        .shop-item-name { color: #ccc; font-size: 0.85rem; flex: 1; }
+        .shop-item-price { color: #ffd700; font-size: 0.85rem; min-width: 70px; text-align: right; }
+        .shop-item-btn { background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 4px 10px; cursor: pointer; font-family: inherit; font-size: 0.8rem; }
+        .shop-item-btn:active { background: var(--primary-color); color: #000; }
+        .shop-item-btn.sell { border-color: #f55; color: #f55; }
+        .shop-item-btn.sell:active { background: #f55; color: #000; }
+
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -541,6 +636,9 @@
             <span id="hud-rp" style="font-weight: bold; color: #5f5; font-size: 1.1rem;">0</span>
         </div>
     </div>
+
+    <!-- LEVEL UP BANNER (shown above screens when available) -->
+    <div id="levelup-banner" class="levelup-banner" onclick="requestLevelupData()">⬆ LEVEL UP AVAILABLE — TAP TO BEGIN</div>
 
     <div id="notification-area"></div>
 
@@ -650,6 +748,43 @@
             </div>
 
             <button class="btn" onclick="performRequestedCheck()">ACKNOWLEDGE</button>
+        </div>
+    </div>
+
+    <!-- LEVEL-UP WIZARD MODAL -->
+    <div id="levelup-modal" class="player-modal-overlay">
+        <div class="player-modal-box">
+            <h2>⬆ LEVEL UP</h2>
+            <div id="levelup-step-indicator" class="step-indicator"></div>
+            <div id="levelup-step-content">
+                <!-- Populated by JS per step -->
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="levelup-prev-btn" onclick="levelupPrevStep()" style="display:none;">← BACK</button>
+                <button class="btn btn-gold" id="levelup-next-btn" onclick="levelupNextStep()">NEXT →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOP MODAL -->
+    <div id="shop-modal" class="player-modal-overlay">
+        <div class="player-modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;" id="shop-name">SHOP</h2>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="color:#ffd700; font-weight:bold;" id="shop-balance">0 CR</span>
+                    <button class="btn btn-red" style="padding:6px 14px; margin:0; font-size:0.8rem;" onclick="closeShop()">✕ CLOSE</button>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <button class="btn" id="shop-tab-buy" onclick="switchShopTab('buy')" style="flex:1; padding:8px; margin:0; font-size:0.9rem;">BUY</button>
+                <button class="btn" id="shop-tab-sell" onclick="switchShopTab('sell')" style="flex:1; padding:8px; margin:0; font-size:0.9rem;">SELL</button>
+            </div>
+            <input type="text" id="shop-search" placeholder="Search items..." oninput="renderShopItems()" style="width:100%; margin-bottom:10px; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+            <div id="shop-items-list" style="max-height:50vh; overflow-y:auto;">
+                <!-- Populated by JS -->
+            </div>
+            <div id="shop-message" style="color:#0f0; text-align:center; margin-top:10px; min-height:20px;"></div>
         </div>
     </div>
 
@@ -1937,6 +2072,624 @@
 
         // Start glitch loop
         setTimeout(randomGlitch, 3000);
+
+        // =============================================
+        // LEVEL-UP WIZARD
+        // =============================================
+        let levelupAvailable = false;
+        let levelupData = null;
+        let levelupStep = 0;
+        let levelupSteps = [];
+        let levelupState = {
+            abilityIncreases: [],
+            newSpells: [],
+            newFeat: null,
+            skillRanks: {}
+        };
+        let expandedSpellId = null; // For toggling spell description
+
+        socket.on('levelup_available', (available) => {
+            levelupAvailable = available;
+            const banner = document.getElementById('levelup-banner');
+            if (banner) banner.classList.toggle('visible', available);
+            // If GM revoked while wizard is open, close it
+            if (!available) {
+                const modal = document.getElementById('levelup-modal');
+                if (modal && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    levelupData = null;
+                    showNotification('Level-up was revoked by the GM');
+                }
+            }
+        });
+
+        socket.on('levelup_data', (data) => {
+            levelupData = data;
+            levelupState = { abilityIncreases: [], newSpells: [], newFeat: null, skillRanks: {} };
+            expandedSpellId = null;
+            
+            // Build step list based on what's applicable
+            levelupSteps = [];
+            if (data.hasAbilityIncrease) levelupSteps.push('abilities');
+            levelupSteps.push('vitals');
+            levelupSteps.push('combat');
+            if (data.hasThemeBenefit) levelupSteps.push('theme');
+            levelupSteps.push('classFeatures');
+            // For spells: split into per-level steps (spells_0, spells_1, etc.)
+            if (data.isCaster && data.spellData) {
+                data.spellData.newSpellSlots.forEach((count, lvl) => {
+                    if (count > 0) levelupSteps.push('spells_' + lvl);
+                });
+            }
+            if (data.hasFeat) levelupSteps.push('feats');
+            levelupSteps.push('skills');
+            levelupSteps.push('review');
+
+            levelupStep = 0;
+            renderLevelupStep();
+            document.getElementById('levelup-modal').classList.add('active');
+        });
+
+        socket.on('levelup_complete', (char) => {
+            document.getElementById('levelup-modal').classList.remove('active');
+            levelupData = null;
+            showNotification('LEVEL UP COMPLETE! You are now Level ' + char.vitals.level);
+        });
+
+        socket.on('levelup_error', (msg) => {
+            alert('Level-up error: ' + msg);
+        });
+
+        function requestLevelupData() {
+            if (!myCharacter) return;
+            socket.emit('player_request_levelup_data', myCharacter.id);
+        }
+
+        function renderLevelupStep() {
+            if (!levelupData || !levelupSteps.length) return;
+            const stepName = levelupSteps[levelupStep];
+            const content = document.getElementById('levelup-step-content');
+            const indicator = document.getElementById('levelup-step-indicator');
+            const prevBtn = document.getElementById('levelup-prev-btn');
+            const nextBtn = document.getElementById('levelup-next-btn');
+            
+            indicator.textContent = `Level ${levelupData.newLevel} — Step ${levelupStep + 1} of ${levelupSteps.length}`;
+            prevBtn.style.display = levelupStep > 0 ? '' : 'none';
+            nextBtn.textContent = levelupStep === levelupSteps.length - 1 ? '✓ CONFIRM' : 'NEXT →';
+            if (levelupStep === levelupSteps.length - 1) {
+                nextBtn.className = 'btn btn-gold';
+            } else {
+                nextBtn.className = 'btn';
+            }
+
+            const d = levelupData;
+            const aMod = (v) => { const m = Math.floor((v - 10) / 2); return (m >= 0 ? '+' : '') + m; };
+
+            if (stepName === 'abilities') {
+                const stats = d.currentStats;
+                const selected = levelupState.abilityIncreases;
+                content.innerHTML = `
+                    <h3>ABILITY SCORE INCREASE</h3>
+                    <div class="info-panel">At level ${d.newLevel}, choose <strong>4 ability scores</strong> to increase.<br>Scores below 17 get +2, scores 17+ get +1.</div>
+                    <div style="text-align:center; color:#ffd700; margin:8px 0;">Selected: ${selected.length}/4</div>
+                    <div class="ability-pick-grid" id="ability-pick-grid">
+                        ${['STR','DEX','CON','INT','WIS','CHA'].map(ab => {
+                            const base = stats[ab] || 10;
+                            const isSel = selected.includes(ab);
+                            const inc = base >= 17 ? 1 : 2;
+                            return `<div class="ability-pick-item ${isSel ? 'selected' : ''}" onclick="toggleAbilityPick('${ab}')">
+                                <div>
+                                    <span class="ab-name">${ab}</span>
+                                    <span class="ab-val" style="margin-left:10px;">${base} (${aMod(base)})</span>
+                                </div>
+                                ${isSel ? `<span class="ab-change">+${inc} → ${base + inc}</span>` : `<span style="color:#555; font-size:0.8rem;">+${inc}</span>`}
+                            </div>`;
+                        }).join('')}
+                    </div>
+                `;
+            } else if (stepName === 'vitals') {
+                const conMod = Math.floor(((d.currentStats?.CON || 10) - 10) / 2);
+                let bonusCon = 0;
+                if (levelupState.abilityIncreases.includes('CON')) {
+                    bonusCon = (d.currentStats?.CON || 10) >= 17 ? 1 : 2;
+                }
+                const effectiveConMod = Math.floor(((d.currentStats?.CON || 10) + bonusCon - 10) / 2);
+                const maxHp = d.raceHp + (d.classHp * d.newLevel);
+                const maxSp = Math.max(0, (d.classSp + effectiveConMod) * d.newLevel);
+                const kasKey = d.kas ? d.kas.toUpperCase() : '';
+                let kasMod = kasKey ? Math.floor(((d.currentStats?.[kasKey] || 10) - 10) / 2) : 0;
+                if (levelupState.abilityIncreases.includes(kasKey)) {
+                    const kasVal = d.currentStats?.[kasKey] || 10;
+                    kasMod = Math.floor(((kasVal + (kasVal >= 17 ? 1 : 2)) - 10) / 2);
+                }
+                const maxRp = Math.max(1, Math.floor(d.newLevel / 2) + kasMod);
+                content.innerHTML = `
+                    <h3>VITALS UPDATE</h3>
+                    <div class="info-panel">These values are automatically computed for level ${d.newLevel}.</div>
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+                        <div class="stat-row"><span class="stat-label">MAX HP</span><span class="auto-val">${maxHp}</span></div>
+                        <div style="color:#888; font-size:0.75rem; padding-left:10px;">Race HP (${d.raceHp}) + Class HP (${d.classHp}) × Level (${d.newLevel})</div>
+                        <div class="stat-row"><span class="stat-label">MAX SP</span><span class="auto-val">${maxSp}</span></div>
+                        <div style="color:#888; font-size:0.75rem; padding-left:10px;">( Class SP (${d.classSp}) + CON mod (${effectiveConMod}) ) × Level (${d.newLevel})</div>
+                        <div class="stat-row"><span class="stat-label">MAX RP</span><span class="auto-val">${maxRp}</span></div>
+                        <div style="color:#888; font-size:0.75rem; padding-left:10px;">Level/2 (${Math.floor(d.newLevel / 2)}) + ${d.kas ? d.kas.toUpperCase() : 'KAS'} mod (${kasMod})</div>
+                    </div>
+                `;
+            } else if (stepName === 'combat') {
+                content.innerHTML = `
+                    <h3>COMBAT & SAVES</h3>
+                    <div class="info-panel">Automatically updated based on your class (${d.className}).</div>
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+                        <div class="stat-row"><span class="stat-label">BASE ATTACK BONUS</span><span class="auto-val">+${d.bab}</span></div>
+                        <div class="stat-row"><span class="stat-label">FORT SAVE (base)</span><span class="auto-val">+${d.fortBase}</span></div>
+                        <div class="stat-row"><span class="stat-label">REF SAVE (base)</span><span class="auto-val">+${d.refBase}</span></div>
+                        <div class="stat-row"><span class="stat-label">WILL SAVE (base)</span><span class="auto-val">+${d.willBase}</span></div>
+                    </div>
+                `;
+            } else if (stepName === 'theme') {
+                content.innerHTML = `
+                    <h3>THEME BENEFIT — ${d.themeName}</h3>
+                    <div class="info-panel">${d.themeBenefitText || 'Check your theme description for level ' + d.newLevel + ' benefits.'}</div>
+                    <div style="color:#888; font-size:0.8rem; margin-top:10px;">Theme benefits are informational — apply any mechanical changes manually if needed.</div>
+                `;
+            } else if (stepName === 'classFeatures') {
+                const levelRegex = new RegExp(`(\\d+)(?:st|nd|rd|th)\\s+Level`, 'gi');
+                let featureText = '';
+                if (d.classDescription) {
+                    const sections = d.classDescription.split(/<h2>/gi);
+                    sections.forEach(s => {
+                        const match = s.match(/(\d+)(?:st|nd|rd|th)\s+Level/i);
+                        if (match && parseInt(match[1]) === d.newLevel) {
+                            featureText += '<h2>' + s.split(/<h2>/i)[0];
+                        }
+                    });
+                }
+                content.innerHTML = `
+                    <h3>CLASS FEATURES — ${d.className}</h3>
+                    ${featureText ? `<div class="info-panel" style="max-height:30vh; overflow-y:auto;">${featureText}</div>` : 
+                        `<div class="info-panel">No new class features at level ${d.newLevel}, or features are embedded in existing abilities. Check your class description for details.</div>`}
+                    <div style="color:#888; font-size:0.8rem; margin-top:10px;">Class features are informational — review and note any new abilities.</div>
+                `;
+            } else if (stepName.startsWith('spells_')) {
+                // Per-level spell selection step
+                const spellLevel = parseInt(stepName.split('_')[1]);
+                const sd = d.spellData;
+                const slotsForThisLevel = sd.newSpellSlots[spellLevel];
+                const selectedForLevel = levelupState.newSpells.filter(s => s.level === spellLevel);
+                const knownIds = new Set(d.knownSpellIds || []);
+                // Also count spells selected in OTHER level steps as "will be known"
+                const allSelectedIds = new Set(levelupState.newSpells.map(s => s.id));
+
+                const cn = d.className?.toLowerCase() || '';
+                const classSpells = (d.availableSpells || []).filter(s => {
+                    if (s.level !== spellLevel) return false;
+                    if (s.classes && !s.classes.some(c => c.toLowerCase().includes(cn))) return false;
+                    return true;
+                });
+
+                // Group by school
+                const bySchool = {};
+                classSpells.forEach(s => {
+                    const school = s.school || 'Other';
+                    if (!bySchool[school]) bySchool[school] = [];
+                    bySchool[school].push(s);
+                });
+                const schoolNames = Object.keys(bySchool).sort();
+
+                content.innerHTML = `
+                    <h3>${spellLevel === 0 ? 'CANTRIPS' : 'LEVEL ' + spellLevel + ' SPELLS'}</h3>
+                    <div class="info-panel">Choose <strong>${slotsForThisLevel}</strong> new ${spellLevel === 0 ? 'cantrip(s)' : 'spell(s)'}. Already-known spells are dimmed.</div>
+                    <div style="color:#ffd700; margin:5px 0;">Selected: ${selectedForLevel.length} / ${slotsForThisLevel}</div>
+                    <input type="text" id="levelup-spell-search" placeholder="Search spells..." oninput="renderLevelupSpellListByLevel(${spellLevel})" style="width:100%; margin-bottom:8px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                    <div id="levelup-spell-list" style="max-height:35vh; overflow-y:auto; border:1px solid #333;"></div>
+                `;
+                setTimeout(() => renderLevelupSpellListByLevel(spellLevel), 0);
+            } else if (stepName === 'feats') {
+                const selectedFeat = levelupState.newFeat;
+                content.innerHTML = `
+                    <h3>NEW FEAT</h3>
+                    <div class="info-panel">Choose <strong>1 feat</strong> at level ${d.newLevel}.</div>
+                    <div style="color:#888; margin-bottom:5px;">${selectedFeat ? `Selected: <strong style="color:#ffd700;">${typeof selectedFeat === 'string' ? selectedFeat : selectedFeat.name}</strong>` : 'None selected'}</div>
+                    <input type="text" id="levelup-feat-search" placeholder="Search feats..." oninput="renderLevelupFeatList()" style="width:100%; margin-bottom:8px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                    <div id="levelup-feat-list" style="max-height:35vh; overflow-y:auto; border:1px solid #333;"></div>
+                `;
+                setTimeout(() => renderLevelupFeatList(), 0);
+            } else if (stepName === 'skills') {
+                const ranksPerLevel = d.skillRanksPerLevel;
+                const allocated = Object.values(levelupState.skillRanks).reduce((a, b) => a + b, 0);
+                const serverSkills = d.currentSkillRanks || {};
+
+                content.innerHTML = `
+                    <h3>SKILL RANKS</h3>
+                    <div class="info-panel">Allocate <strong>${ranksPerLevel}</strong> skill rank(s). Max ranks per skill = <strong>${d.newLevel}</strong>.</div>
+                    <div style="color:#ffd700; margin:5px 0;">Remaining: ${ranksPerLevel - allocated} / ${ranksPerLevel}</div>
+                    <div id="levelup-skill-list" style="max-height:40vh; overflow-y:auto;">
+                        ${SKILL_DEFINITIONS.map(sk => {
+                            const existingRanks = serverSkills[sk.id]?.ranks || myCharacter?.skills?.[sk.id]?.ranks || 0;
+                            const added = levelupState.skillRanks[sk.id] || 0;
+                            const totalRanks = existingRanks + added;
+                            const isClass = (d.classSkills || []).map(cs => {
+                                const mapped = {lsc:'lif', phs:'phy'};
+                                return mapped[cs] || cs;
+                            }).includes(sk.id);
+                            // Compute bonus: ranks + ability mod + (3 if class skill with ≥1 rank)
+                            const abilityKey = sk.attr || '';
+                            let abilityScore = d.currentStats?.[abilityKey] || 10;
+                            // Account for ability increases made in this level-up
+                            if (levelupState.abilityIncreases.includes(abilityKey)) {
+                                abilityScore += (abilityScore >= 17 ? 1 : 2);
+                            }
+                            const abilityMod = Math.floor((abilityScore - 10) / 2);
+                            const classBonus = (isClass && totalRanks > 0) ? 3 : 0;
+                            const totalBonus = totalRanks + abilityMod + classBonus;
+                            const bonusSign = totalBonus >= 0 ? '+' : '';
+                            const atMax = totalRanks >= d.newLevel;
+
+                            return `<div class="skill-rank-row">
+                                <span class="sk-name">${sk.name} ${isClass ? '<span class="sk-class">[C]</span>' : ''}</span>
+                                <span class="sk-info">
+                                    <span class="sk-ranks">Ranks: ${existingRanks}${added > 0 ? ' <span style="color:#ffd700;">+' + added + '</span>' : ''} / ${d.newLevel}</span>
+                                    <span class="sk-bonus">Total: ${bonusSign}${totalBonus}</span>
+                                </span>
+                                <span class="sk-btns">
+                                    <button class="shop-item-btn" onclick="adjustSkillRank('${sk.id}', -1)">−</button>
+                                    <button class="shop-item-btn" ${atMax || allocated >= ranksPerLevel ? 'disabled style="opacity:0.3;"' : ''} onclick="adjustSkillRank('${sk.id}', 1)">+</button>
+                                </span>
+                            </div>`;
+                        }).join('')}
+                    </div>
+                `;
+            } else if (stepName === 'review') {
+                let summary = `<h3>REVIEW & CONFIRM</h3>
+                    <div class="info-panel">Review your choices before confirming level ${d.newLevel}.</div>
+                    <div style="margin:10px 0; display:flex; flex-direction:column; gap:5px;">`;
+                if (levelupState.abilityIncreases.length > 0) {
+                    summary += `<div class="stat-row"><span class="stat-label">Ability Increases</span><span class="stat-val">${levelupState.abilityIncreases.join(', ')}</span></div>`;
+                }
+                summary += `<div class="stat-row"><span class="stat-label">BAB</span><span class="auto-val">+${d.bab}</span></div>`;
+                if (levelupState.newFeat) {
+                    const fn = typeof levelupState.newFeat === 'string' ? levelupState.newFeat : levelupState.newFeat.name;
+                    summary += `<div class="stat-row"><span class="stat-label">New Feat</span><span class="stat-val">${fn}</span></div>`;
+                }
+                if (levelupState.newSpells.length > 0) {
+                    // Group by level
+                    const byLv = {};
+                    levelupState.newSpells.forEach(s => { const l = s.level; if (!byLv[l]) byLv[l] = []; byLv[l].push(s.name); });
+                    Object.keys(byLv).sort((a,b) => a - b).forEach(l => {
+                        summary += `<div class="stat-row"><span class="stat-label">Lv${l} Spells</span><span class="stat-val">${byLv[l].join(', ')}</span></div>`;
+                    });
+                }
+                const totalSkills = Object.values(levelupState.skillRanks).reduce((a, b) => a + b, 0);
+                const skillDetails = Object.entries(levelupState.skillRanks).filter(([,v]) => v > 0).map(([id, v]) => {
+                    const def = SKILL_DEFINITIONS.find(s => s.id === id);
+                    return (def ? def.name : id) + ' +' + v;
+                });
+                summary += `<div class="stat-row"><span class="stat-label">Skill Ranks</span><span class="stat-val">${totalSkills} (${skillDetails.join(', ') || 'none'})</span></div>`;
+                summary += `</div>`;
+                content.innerHTML = summary;
+            }
+        }
+
+        function toggleAbilityPick(ab) {
+            const idx = levelupState.abilityIncreases.indexOf(ab);
+            if (idx >= 0) {
+                levelupState.abilityIncreases.splice(idx, 1);
+            } else if (levelupState.abilityIncreases.length < 4) {
+                levelupState.abilityIncreases.push(ab);
+            }
+            renderLevelupStep();
+        }
+
+        function renderLevelupSpellListByLevel(spellLevel) {
+            const container = document.getElementById('levelup-spell-list');
+            if (!container || !levelupData?.availableSpells) return;
+            const search = (document.getElementById('levelup-spell-search')?.value || '').toLowerCase();
+            const d = levelupData;
+            const sd = d.spellData;
+            const slotsForThisLevel = sd.newSpellSlots[spellLevel];
+            const knownIds = new Set(d.knownSpellIds || []);
+            const selectedForLevel = levelupState.newSpells.filter(s => s.level === spellLevel);
+            const allSelectedIds = new Set(levelupState.newSpells.map(s => s.id));
+
+            const cn = d.className?.toLowerCase() || '';
+            const classSpells = d.availableSpells.filter(s => {
+                if (s.level !== spellLevel) return false;
+                if (s.classes && !s.classes.some(c => c.toLowerCase().includes(cn))) return false;
+                if (search && !s.name.toLowerCase().includes(search)) return false;
+                return true;
+            });
+
+            // Group by school
+            const bySchool = {};
+            classSpells.forEach(s => {
+                const school = s.school || 'Other';
+                if (!bySchool[school]) bySchool[school] = [];
+                bySchool[school].push(s);
+            });
+            const schoolNames = Object.keys(bySchool).sort();
+
+            let html = '';
+            schoolNames.forEach(school => {
+                html += `<div class="spell-level-group">`;
+                html += `<div class="spell-level-header">${school} <span class="slots-count">${bySchool[school].length} spells</span></div>`;
+                bySchool[school].sort((a, b) => a.name.localeCompare(b.name)).forEach(s => {
+                    const isKnown = knownIds.has(s.id);
+                    const isSel = allSelectedIds.has(s.id);
+                    const isExpanded = expandedSpellId === s.id;
+                    html += `<div class="spell-pick-item ${isSel ? 'selected' : ''} ${isKnown && !isSel ? 'known' : ''}" onclick="toggleLevelupSpellByLevel('${s.id}', ${spellLevel})" style="flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; flex:1; min-width:0;">
+                            <span style="color:#fff; ${isKnown && !isSel ? 'text-decoration:line-through;' : ''}">${s.name}</span>
+                            ${isKnown ? '<span class="known-badge">KNOWN</span>' : ''}
+                            <span class="spell-school-badge">${s.school || '?'}</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            ${isSel ? '<span style="color:#ffd700; font-weight:bold;">✓</span>' : ''}
+                            <button class="shop-item-btn" style="padding:2px 8px; font-size:0.7rem;" onclick="event.stopPropagation(); toggleSpellDesc('${s.id}', ${spellLevel})">${isExpanded ? '▲' : 'ℹ'}</button>
+                        </div>
+                    </div>`;
+                    if (isExpanded) {
+                        html += `<div class="spell-desc-panel">
+                            <div style="color:#666; font-size:0.7rem; margin-bottom:4px;">
+                                ${s.castingTime ? 'CT: ' + s.castingTime + ' | ' : ''}${s.range ? 'Range: ' + s.range + ' | ' : ''}${s.duration ? 'Dur: ' + s.duration : ''}
+                                ${s.save ? ' | Save: ' + s.save : ''}${s.sr ? ' | SR: ' + s.sr : ''}
+                            </div>
+                            ${s.description || '<i>No description available.</i>'}
+                        </div>`;
+                    }
+                });
+                html += `</div>`;
+            });
+            container.innerHTML = html || '<div style="color:#888; padding:10px;">No matching spells found.</div>';
+        }
+
+        function toggleSpellDesc(spellId, spellLevel) {
+            expandedSpellId = expandedSpellId === spellId ? null : spellId;
+            renderLevelupSpellListByLevel(spellLevel);
+        }
+
+        function toggleLevelupSpellByLevel(spellId, spellLevel) {
+            if (!levelupData?.availableSpells || !levelupData.spellData) return;
+            const sd = levelupData.spellData;
+            const slotsForThisLevel = sd.newSpellSlots[spellLevel];
+            const idx = levelupState.newSpells.findIndex(s => s.id === spellId);
+
+            if (idx >= 0) {
+                levelupState.newSpells.splice(idx, 1);
+            } else {
+                // Can't select already-known spells
+                if ((levelupData.knownSpellIds || []).includes(spellId)) return;
+                // Check slots for this level
+                const selectedForLevel = levelupState.newSpells.filter(s => s.level === spellLevel);
+                if (selectedForLevel.length >= slotsForThisLevel) return;
+                const spell = levelupData.availableSpells.find(s => s.id === spellId);
+                if (spell) levelupState.newSpells.push(spell);
+            }
+            renderLevelupStep();
+        }
+
+        function renderLevelupFeatList() {
+            const container = document.getElementById('levelup-feat-list');
+            if (!container || !levelupData?.feats) return;
+            const search = (document.getElementById('levelup-feat-search')?.value || '').toLowerCase();
+            const feats = levelupData.feats.filter(f => !search || f.name.toLowerCase().includes(search)).slice(0, 40);
+            const selName = levelupState.newFeat ? (typeof levelupState.newFeat === 'string' ? levelupState.newFeat : levelupState.newFeat.name) : '';
+
+            container.innerHTML = feats.map(f => {
+                const isSel = f.name === selName;
+                return `<div class="feat-pick-item ${isSel ? 'selected' : ''}" onclick="selectLevelupFeat('${f.name.replace(/'/g, "\\'")}')">
+                    <div><span style="color:#fff;">${f.name}</span> ${f.isCombat ? '<span style="color:#f55; font-size:0.7rem;">[Combat]</span>' : ''}</div>
+                    ${isSel ? '<span style="color:#ffd700;">✓</span>' : ''}
+                </div>`;
+            }).join('') || '<div style="color:#888; padding:10px;">No matching feats found.</div>';
+        }
+
+        function selectLevelupFeat(featName) {
+            const current = levelupState.newFeat;
+            if (current && (typeof current === 'string' ? current : current.name) === featName) {
+                levelupState.newFeat = null;
+            } else {
+                levelupState.newFeat = featName;
+            }
+            renderLevelupStep();
+        }
+
+        function adjustSkillRank(skillId, delta) {
+            if (!levelupData) return;
+            const ranksPerLevel = levelupData.skillRanksPerLevel;
+            const allocated = Object.values(levelupState.skillRanks).reduce((a, b) => a + b, 0);
+            const currentAdded = levelupState.skillRanks[skillId] || 0;
+            const serverSkills = levelupData.currentSkillRanks || {};
+            const existingRanks = serverSkills[skillId]?.ranks || myCharacter?.skills?.[skillId]?.ranks || 0;
+            const maxRanks = levelupData.newLevel;
+
+            if (delta > 0) {
+                if (allocated >= ranksPerLevel) return;
+                if (existingRanks + currentAdded >= maxRanks) return;
+                levelupState.skillRanks[skillId] = currentAdded + 1;
+            } else {
+                if (currentAdded <= 0) return;
+                levelupState.skillRanks[skillId] = currentAdded - 1;
+            }
+            renderLevelupStep();
+        }
+
+        function levelupNextStep() {
+            if (levelupStep === levelupSteps.length - 1) {
+                submitLevelup();
+                return;
+            }
+            // Validation before proceeding
+            const stepName = levelupSteps[levelupStep];
+            if (stepName === 'abilities' && levelupState.abilityIncreases.length !== 4) {
+                alert('Please select exactly 4 ability scores to increase.');
+                return;
+            }
+            if (stepName.startsWith('spells_')) {
+                const spellLevel = parseInt(stepName.split('_')[1]);
+                const slotsForThisLevel = levelupData.spellData.newSpellSlots[spellLevel];
+                const selectedForLevel = levelupState.newSpells.filter(s => s.level === spellLevel);
+                if (selectedForLevel.length < slotsForThisLevel) {
+                    alert(`Please select ${slotsForThisLevel} spell(s) for level ${spellLevel}. You have ${selectedForLevel.length}.`);
+                    return;
+                }
+            }
+            levelupStep++;
+            expandedSpellId = null;
+            renderLevelupStep();
+        }
+
+        function levelupPrevStep() {
+            if (levelupStep > 0) {
+                levelupStep--;
+                expandedSpellId = null;
+                renderLevelupStep();
+            }
+        }
+
+        function submitLevelup() {
+            if (!levelupData || !myCharacter) return;
+            socket.emit('player_submit_levelup', {
+                charId: myCharacter.id,
+                abilityIncreases: levelupState.abilityIncreases,
+                newSpells: levelupState.newSpells,
+                newFeat: levelupState.newFeat ? (typeof levelupState.newFeat === 'string' ? { name: levelupState.newFeat } : levelupState.newFeat) : null,
+                skillRanks: levelupState.skillRanks
+            });
+        }
+
+        // =============================================
+        // SHOP SYSTEM
+        // =============================================
+        let currentShop = null;
+        let currentResalePercent = 10;
+        let shopTab = 'buy';
+
+        socket.on('shop_open', (data) => {
+            currentShop = data.shop;
+            currentResalePercent = data.resalePercent || 10;
+            shopTab = 'buy';
+            document.getElementById('shop-name').textContent = currentShop.name || 'SHOP';
+            updateShopBalance();
+            renderShopItems();
+            document.getElementById('shop-modal').classList.add('active');
+        });
+
+        socket.on('shop_close', () => {
+            document.getElementById('shop-modal').classList.remove('active');
+            currentShop = null;
+        });
+
+        socket.on('shop_transaction', (data) => {
+            const msg = document.getElementById('shop-message');
+            if (msg) {
+                const color = data.type === 'buy' ? '#0f0' : '#f55';
+                msg.style.color = color;
+                msg.textContent = `${data.type === 'buy' ? 'Bought' : 'Sold'} ${data.item} for ${data.price} CR — Balance: ${data.newBalance} CR`;
+                setTimeout(() => { msg.textContent = ''; }, 4000);
+            }
+            updateShopBalance();
+            // After buying, update local shop stock display
+            if (data.type === 'buy' && currentShop) {
+                const stockEntry = currentShop.stock.find(s => s.item && s.item.id === data.itemId);
+                if (stockEntry && stockEntry.qty !== -1) stockEntry.qty--;
+            }
+            renderShopItems();
+        });
+
+        socket.on('shop_error', (msg) => {
+            const el = document.getElementById('shop-message');
+            if (el) {
+                el.style.color = '#f55';
+                el.textContent = msg;
+                setTimeout(() => { el.textContent = ''; }, 3000);
+            }
+        });
+
+        function updateShopBalance() {
+            const el = document.getElementById('shop-balance');
+            if (el && myCharacter) el.textContent = (myCharacter.money || 0) + ' CR';
+        }
+
+        function closeShop() {
+            document.getElementById('shop-modal').classList.remove('active');
+            currentShop = null;
+        }
+
+        function switchShopTab(tab) {
+            shopTab = tab;
+            document.getElementById('shop-tab-buy').style.borderColor = tab === 'buy' ? 'var(--primary-color)' : '#333';
+            document.getElementById('shop-tab-buy').style.color = tab === 'buy' ? 'var(--primary-color)' : '#555';
+            document.getElementById('shop-tab-sell').style.borderColor = tab === 'sell' ? '#f55' : '#333';
+            document.getElementById('shop-tab-sell').style.color = tab === 'sell' ? '#f55' : '#555';
+            renderShopItems();
+        }
+
+        function renderShopItems() {
+            const container = document.getElementById('shop-items-list');
+            if (!container) return;
+            const search = (document.getElementById('shop-search')?.value || '').toLowerCase();
+
+            if (shopTab === 'buy') {
+                if (!currentShop || !currentShop.stock) { container.innerHTML = '<div style="color:#888; padding:10px;">No items available.</div>'; return; }
+                const items = currentShop.stock.filter(s => {
+                    if (s.qty === 0) return false;
+                    const item = s.item;
+                    if (!item) return false;
+                    if (search && !item.name.toLowerCase().includes(search)) return false;
+                    return true;
+                });
+                container.innerHTML = items.map(s => {
+                    const item = s.item;
+                    const price = s.priceOverride || item.price || 0;
+                    const qtyText = s.qty === -1 ? '∞' : s.qty;
+                    const canAfford = (myCharacter?.money || 0) >= price;
+                    return `<div class="shop-item-row">
+                        <div style="flex:1;">
+                            <div class="shop-item-name">${item.name}</div>
+                            <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Stock: ${qtyText}</div>
+                        </div>
+                        <span class="shop-item-price">${price} CR</span>
+                        <button class="shop-item-btn" ${!canAfford ? 'disabled style="opacity:0.3;"' : ''} onclick="buyItem('${item.id}')">BUY</button>
+                    </div>`;
+                }).join('') || '<div style="color:#888; padding:10px;">No items match.</div>';
+            } else {
+                // Sell tab — show player inventory, cross-reference with item DB
+                const inv = myCharacter?.inventory || [];
+                const items = inv.filter(entry => {
+                    const qty = typeof entry.qty === 'number' ? entry.qty : 1;
+                    if (qty <= 0) return false;
+                    const item = playerItemsDb.find(i => i.id === entry.id);
+                    if (!item) return false;
+                    if (search && !item.name.toLowerCase().includes(search)) return false;
+                    return true;
+                });
+                container.innerHTML = items.map(entry => {
+                    const item = playerItemsDb.find(i => i.id === entry.id);
+                    const qty = typeof entry.qty === 'number' ? entry.qty : 1;
+                    const fullPrice = item?.price || 0;
+                    const sellPrice = Math.floor(fullPrice * currentResalePercent / 100);
+                    return `<div class="shop-item-row">
+                        <div style="flex:1;">
+                            <div class="shop-item-name">${item.name}</div>
+                            <div style="color:#666; font-size:0.7rem;">Qty: ${qty} | ${item.category || ''} | Value: ${fullPrice} CR</div>
+                        </div>
+                        <span class="shop-item-price" style="color:#f55;">${sellPrice} CR</span>
+                        <button class="shop-item-btn sell" onclick="sellItem('${entry.id}')">SELL</button>
+                    </div>`;
+                }).join('') || '<div style="color:#888; padding:10px;">No items to sell.</div>';
+            }
+        }
+
+        function buyItem(itemId) {
+            if (!myCharacter) return;
+            socket.emit('player_buy_item', { charId: myCharacter.id, itemId });
+        }
+
+        function sellItem(itemId) {
+            if (!myCharacter) return;
+            socket.emit('player_sell_item', { charId: myCharacter.id, itemId });
+        }
+
     </script>
 </body>
 </html>

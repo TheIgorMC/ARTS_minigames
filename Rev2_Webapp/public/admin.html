@@ -641,6 +641,7 @@
             <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
             <button class="tab-btn" onclick="switchTab('comms')">Comms</button>
             <button class="tab-btn" onclick="switchTab('roleplay')">Roleplay</button>
+            <button class="tab-btn" onclick="switchTab('shops')">Shops</button>
             <button class="tab-btn" onclick="switchTab('logs')">Logs</button>
         </div>
 
@@ -1055,6 +1056,15 @@
             </div>
         </div>
 
+        <!-- SHOPS TAB -->
+        <div id="tab-shops" class="panel hidden">
+            <h2>Shop Management</h2>
+            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                <button class="action-btn" onclick="createNewShop()">+ New Shop</button>
+            </div>
+            <div id="shop-manager-list"></div>
+        </div>
+
         <div id="tab-logs" class="panel hidden">
             <h2>System Logs</h2>
             <div id="log" style="height: calc(100vh - 200px); border: 1px solid #333; padding: 10px; background: #000;"></div>
@@ -1405,12 +1415,12 @@
                 </div>
                 <h4 style="color:var(--accent-color); border-bottom:1px solid #333; margin-top:20px;">Attributes</h4>
                 <div class="controls-grid">
-                    <div><label style="color:#888; font-size:0.8rem;">STR</label><input type="number" id="edit-str" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">DEX</label><input type="number" id="edit-dex" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">CON</label><input type="number" id="edit-con" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">INT</label><input type="number" id="edit-int" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">WIS</label><input type="number" id="edit-wis" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
-                    <div><label style="color:#888; font-size:0.8rem;">CHA</label><input type="number" id="edit-cha" onchange="updateSkillTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">STR</label><input type="number" id="edit-str" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">DEX</label><input type="number" id="edit-dex" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CON</label><input type="number" id="edit-con" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">INT</label><input type="number" id="edit-int" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">WIS</label><input type="number" id="edit-wis" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
+                    <div><label style="color:#888; font-size:0.8rem;">CHA</label><input type="number" id="edit-cha" onchange="updateSkillTotals();updateCombatTotals()" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                 </div>
             </div>
 
@@ -1421,50 +1431,86 @@
                         <h3 style="color: #f55; border-bottom: 1px solid #f55;">ATTACK</h3>
                         <div style="margin-bottom: 10px;">
                             <label style="font-size: 0.8rem; color: #888;">Base Attack Bonus (BAB)</label>
-                            <input type="number" id="edit-bab" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            <input type="number" id="edit-bab" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
                         </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Melee Misc Mod</label>
-                            <input type="number" id="edit-melee-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Melee Misc Mod</label>
+                                <input type="number" id="edit-melee-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:60px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="combat-melee-total" style="font-size: 1.3rem; font-weight: bold; color: #f55;">+0</div>
+                            </div>
                         </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Ranged Misc Mod</label>
-                            <input type="number" id="edit-ranged-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Ranged Misc Mod</label>
+                                <input type="number" id="edit-ranged-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:60px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="combat-ranged-total" style="font-size: 1.3rem; font-weight: bold; color: #f55;">+0</div>
+                            </div>
                         </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Thrown Misc Mod</label>
-                            <input type="number" id="edit-thrown-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Thrown Misc Mod</label>
+                                <input type="number" id="edit-thrown-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:60px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="combat-thrown-total" style="font-size: 1.3rem; font-weight: bold; color: #f55;">+0</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- SAVES -->
                     <div>
                         <h3 style="color: #55f; border-bottom: 1px solid #55f;">SAVES</h3>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Fortitude Base</label>
-                            <input type="number" id="edit-fort-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Fortitude Misc</label>
-                            <input type="number" id="edit-fort-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Fortitude Base</label>
+                                <input type="number" id="edit-fort-base" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Fort Misc</label>
+                                <input type="number" id="edit-fort-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:50px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="save-fort-total" style="font-size: 1.3rem; font-weight: bold; color: #55f;">+0</div>
+                            </div>
                         </div>
                         
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Reflex Base</label>
-                            <input type="number" id="edit-ref-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Reflex Misc</label>
-                            <input type="number" id="edit-ref-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Reflex Base</label>
+                                <input type="number" id="edit-ref-base" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Reflex Misc</label>
+                                <input type="number" id="edit-ref-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:50px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="save-ref-total" style="font-size: 1.3rem; font-weight: bold; color: #55f;">+0</div>
+                            </div>
                         </div>
 
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Will Base</label>
-                            <input type="number" id="edit-will-base" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="font-size: 0.8rem; color: #888;">Will Misc</label>
-                            <input type="number" id="edit-will-misc" value="0" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Will Base</label>
+                                <input type="number" id="edit-will-base" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="font-size: 0.8rem; color: #888;">Will Misc</label>
+                                <input type="number" id="edit-will-misc" value="0" onchange="updateCombatTotals()" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
+                            </div>
+                            <div style="text-align:center; min-width:50px;">
+                                <label style="font-size: 0.7rem; color: #888;">Total</label>
+                                <div id="save-will-total" style="font-size: 1.3rem; font-weight: bold; color: #55f;">+0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1798,6 +1844,263 @@
                 console.log('Spell database (from data):', spellDatabase.length, 'spells');
             }
         });
+
+        // --- LEVEL-UP SYSTEM ---
+        let pendingLevelups = new Set();
+        socket.on('admin_levelup_status', (ids) => {
+            pendingLevelups = new Set(ids || []);
+            renderCharactersCards();
+        });
+
+        function toggleLevelUp(charId) {
+            if (pendingLevelups.has(charId)) {
+                socket.emit('gm_revoke_levelup', charId);
+            } else {
+                const char = cachedData.characters.find(c => c.id === charId);
+                if (char && char.vitals && char.vitals.level >= 20) {
+                    alert('Character is already at max level (20).');
+                    return;
+                }
+                socket.emit('gm_allow_levelup', charId);
+            }
+        }
+
+        // --- SHOP SYSTEM ---
+        let shopData = [];
+        socket.on('admin_shops_update', (data) => {
+            shopData = data || [];
+            renderShopManager();
+        });
+
+        function renderShopManager() {
+            const container = document.getElementById('shop-manager-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (shopData.length === 0) {
+                container.innerHTML = '<div style="color:#888; text-align:center; padding:20px;">No shops created yet. Click "New Shop" to create one.</div>';
+                return;
+            }
+
+            shopData.forEach((shop, i) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'background:#0d0d1a; border:1px solid #333; padding:14px; margin-bottom:8px; border-radius:4px;';
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <div>
+                            <span style="color:#ffd700; font-weight:bold; font-size:1.05rem;">${shop.name}</span>
+                            ${shop.isOpen ? '<span style="color:#0f0; font-size:0.7rem; margin-left:8px; border:1px solid #0f0; padding:1px 5px;">OPEN</span>' : ''}
+                        </div>
+                        <div style="display:flex; gap:5px;">
+                            <button class="action-btn" style="padding:4px 10px; font-size:0.8rem;" onclick="editShop('${shop.id}')">✎ Edit</button>
+                            <button class="action-btn" style="padding:4px 10px; font-size:0.8rem; color:#f55; border-color:#f55;" onclick="deleteShop('${shop.id}')">✕ Delete</button>
+                        </div>
+                    </div>
+                    <div style="color:#aaa; font-size:0.8rem; margin-bottom:6px; display:flex; gap:15px; flex-wrap:wrap;">
+                        <span>📍 ${shop.location || 'No location'}</span>
+                        <span>💰 Resale: ${shop.resalePercent || 10}%</span>
+                        <span>📦 ${shop.stock.length} items</span>
+                        ${shop.categories?.length ? '<span>🏷️ ' + shop.categories.join(', ') + '</span>' : ''}
+                    </div>
+                    ${shop.description ? `<div style="color:#666; font-size:0.75rem; margin-bottom:8px; font-style:italic;">${shop.description}</div>` : ''}
+                    <div style="display:flex; gap:5px; flex-wrap:wrap; padding-top:8px; border-top:1px solid #222;">
+                        ${(cachedData?.characters || []).filter(c => !c.isNPC && c.username).map(c => `
+                            <button class="action-btn" style="padding:4px 10px; font-size:0.75rem;" onclick="openShopForPlayer('${shop.id}', '${c.id}')">🛒 ${c.name}</button>
+                        `).join('')}
+                        <button class="action-btn" style="padding:4px 10px; font-size:0.75rem; color:#f55; border-color:#f55;" onclick="closeShopForAll('${shop.id}')">✕ Close All</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function createNewShop() {
+            const name = prompt('Shop name:');
+            if (!name) return;
+            const location = prompt('Location (e.g., Absalom Station - Arm 4):') || '';
+            const resale = parseInt(prompt('Resale percentage (default 10):')) || 10;
+            socket.emit('admin_shop_action', { type: 'create', name, location, resalePercent: resale });
+        }
+
+        function deleteShop(shopId) {
+            if (!confirm('Delete this shop?')) return;
+            socket.emit('admin_shop_action', { type: 'delete', id: shopId });
+        }
+
+        function openShopForPlayer(shopId, charId) {
+            socket.emit('admin_shop_action', { type: 'open', shopId, charIds: [charId] });
+            log('SHOP: Opened for ' + (cachedData.characters.find(c => c.id === charId)?.name || charId));
+        }
+
+        function closeShopForAll(shopId) {
+            socket.emit('admin_shop_action', { type: 'close', charIds: [] });
+        }
+
+        function editShop(shopId) {
+            const shop = shopData.find(s => s.id === shopId);
+            if (!shop) return;
+            openShopEditor(shop);
+        }
+
+        function openShopEditor(shop) {
+            const modal = document.getElementById('shop-editor-modal');
+            if (!modal) return;
+            document.getElementById('shop-edit-id').value = shop.id;
+            document.getElementById('shop-edit-name').value = shop.name || '';
+            document.getElementById('shop-edit-location').value = shop.location || '';
+            document.getElementById('shop-edit-description').value = shop.description || '';
+            document.getElementById('shop-edit-resale').value = shop.resalePercent || 10;
+            document.getElementById('shop-edit-categories').value = (shop.categories || []).join(', ');
+            editorShopStock = JSON.parse(JSON.stringify(shop.stock || []));
+            document.getElementById('bulk-preview-info').textContent = '';
+            renderShopStockEditor();
+            modal.classList.add('active');
+        }
+
+        let editorShopStock = [];
+
+        function renderShopStockEditor() {
+            const tbody = document.getElementById('shop-stock-tbody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            const filter = (document.getElementById('shop-stock-filter')?.value || '').toLowerCase();
+            const countEl = document.getElementById('shop-stock-count');
+            if (countEl) countEl.textContent = editorShopStock.length + ' items';
+
+            const filtered = editorShopStock.map((entry, i) => ({ entry, i })).filter(({ entry }) => {
+                if (!filter) return true;
+                const item = cachedData?.items?.find(it => it.id === entry.itemId);
+                return item && item.name.toLowerCase().includes(filter);
+            });
+
+            filtered.forEach(({ entry, i }) => {
+                const item = cachedData?.items?.find(it => it.id === entry.itemId);
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #1a1a1a';
+                tr.innerHTML = `
+                    <td style="color:#fff; padding:4px 8px; font-size:0.82rem;">${item ? item.name : entry.itemId}</td>
+                    <td style="color:#888; padding:4px; font-size:0.72rem; text-align:center;">${item ? (item.category || '-').substring(0, 4) : '-'}</td>
+                    <td style="color:#aaa; padding:4px; text-align:center; font-size:0.82rem;">${item ? (item.level || '-') : '-'}</td>
+                    <td><input type="number" class="no-spin" value="${entry.qty}" onchange="editorShopStock[${i}].qty=parseInt(this.value)" style="width:55px; background:#000; color:#fff; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" title="-1 = unlimited"></td>
+                    <td><input type="number" class="no-spin" value="${entry.priceOverride || ''}" onchange="editorShopStock[${i}].priceOverride=parseInt(this.value)||0" style="width:70px; background:#000; color:#ffd700; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" placeholder="${item?.price || 'def'}"></td>
+                    <td><button style="color:#f55; background:none; border:none; cursor:pointer; font-size:1rem; padding:2px;" onclick="editorShopStock.splice(${i},1); renderShopStockEditor();">✕</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (filtered.length === 0 && editorShopStock.length > 0) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td colspan="6" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items match filter (${editorShopStock.length} total in stock)</td>`;
+                tbody.appendChild(tr);
+            } else if (editorShopStock.length === 0) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td colspan="6" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items in stock. Use the tools above to add items.</td>`;
+                tbody.appendChild(tr);
+            }
+        }
+
+        function addItemToShopStock() {
+            const select = document.getElementById('shop-item-add-select');
+            if (!select || !select.value) return;
+            const itemId = select.value;
+            if (editorShopStock.find(s => s.itemId === itemId)) { alert('Item already in stock'); return; }
+            editorShopStock.push({ itemId, qty: -1, priceOverride: 0 });
+            renderShopStockEditor();
+            select.value = '';
+        }
+
+        function bulkPreviewShopItems() {
+            const category = document.getElementById('bulk-category').value;
+            const lvMin = parseInt(document.getElementById('bulk-level-min').value) || 0;
+            const lvMax = parseInt(document.getElementById('bulk-level-max').value) || 20;
+            const info = document.getElementById('bulk-preview-info');
+            if (!cachedData?.items) { info.textContent = 'No items loaded.'; return; }
+
+            const existing = new Set(editorShopStock.map(s => s.itemId));
+            const matching = cachedData.items.filter(i => {
+                if (category && i.category !== category) return false;
+                const lv = i.level || 0;
+                if (lv < lvMin || lv > lvMax) return false;
+                return true;
+            });
+            const newOnes = matching.filter(i => !existing.has(i.id));
+            info.innerHTML = `Found <strong style="color:#fff;">${matching.length}</strong> items (${newOnes.length} new, ${matching.length - newOnes.length} already in stock)`;
+            if (matching.length > 0) {
+                info.innerHTML += ` — ${category || 'All'} Lv${lvMin}–${lvMax}`;
+            }
+        }
+
+        function bulkAddShopItems() {
+            const category = document.getElementById('bulk-category').value;
+            const lvMin = parseInt(document.getElementById('bulk-level-min').value) || 0;
+            const lvMax = parseInt(document.getElementById('bulk-level-max').value) || 20;
+            const bulkQty = parseInt(document.getElementById('bulk-qty').value);
+            const qty = isNaN(bulkQty) ? -1 : bulkQty;
+            if (!cachedData?.items) return;
+
+            const existing = new Set(editorShopStock.map(s => s.itemId));
+            const matching = cachedData.items.filter(i => {
+                if (category && i.category !== category) return false;
+                const lv = i.level || 0;
+                if (lv < lvMin || lv > lvMax) return false;
+                if (existing.has(i.id)) return false;
+                return true;
+            });
+
+            if (matching.length === 0) {
+                document.getElementById('bulk-preview-info').textContent = 'No new items to add.';
+                return;
+            }
+            if (matching.length > 100 && !confirm(`This will add ${matching.length} items. Continue?`)) return;
+
+            matching.forEach(i => {
+                editorShopStock.push({ itemId: i.id, qty, priceOverride: 0 });
+            });
+
+            document.getElementById('bulk-preview-info').innerHTML = `<span style="color:#0f0;">Added ${matching.length} items!</span>`;
+            renderShopStockEditor();
+        }
+
+        function clearAllShopStock() {
+            if (!confirm(`Clear all ${editorShopStock.length} items from stock?`)) return;
+            editorShopStock = [];
+            renderShopStockEditor();
+        }
+
+        function saveShopEditor() {
+            const id = document.getElementById('shop-edit-id').value;
+            const shop = {
+                id,
+                name: document.getElementById('shop-edit-name').value,
+                location: document.getElementById('shop-edit-location').value,
+                description: document.getElementById('shop-edit-description').value,
+                resalePercent: parseInt(document.getElementById('shop-edit-resale').value) || 10,
+                categories: document.getElementById('shop-edit-categories').value.split(',').map(s => s.trim()).filter(s => s),
+                stock: editorShopStock
+            };
+            socket.emit('admin_shop_action', { type: 'update', shop });
+            document.getElementById('shop-editor-modal').classList.remove('active');
+        }
+
+        function closeShopEditor() {
+            document.getElementById('shop-editor-modal').classList.remove('active');
+        }
+
+        function filterShopItems() {
+            const search = (document.getElementById('shop-item-search')?.value || '').toLowerCase();
+            const select = document.getElementById('shop-item-add-select');
+            if (!select || !cachedData?.items) return;
+            select.innerHTML = '<option value="">-- Select item --</option>';
+            cachedData.items
+                .filter(i => i.name.toLowerCase().includes(search))
+                .slice(0, 50)
+                .forEach(i => {
+                    const opt = document.createElement('option');
+                    opt.value = i.id;
+                    opt.textContent = `${i.name} (Lv${i.level || '?'} ${i.category || ''}) - ${i.price || 0}cr`;
+                    select.appendChild(opt);
+                });
+        }
 
         function renderObjectsTable() {
             if (!cachedData || !cachedData.objects) return;
@@ -2153,6 +2456,10 @@
                     <input type="text" value="${char.tokenImage || ''}" onchange="updateCharacter(${index}, 'tokenImage', this.value)" placeholder="/media/..." style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 5px;">
                 </div>
                 <button class="action-btn" style="width: 100%; margin-top: 5px;" onclick="projectCharacter(${index})">${isRPOnly ? 'PROJECT TO MOOD' : 'PROJECT TO TABLE'}</button>
+                ${!isNPC && !isRPOnly ? `
+                <button class="action-btn" id="levelup-btn-${char.id}" style="width: 100%; margin-top: 3px; background: ${pendingLevelups.has(char.id) ? '#553300' : '#1a1a2e'}; color: ${pendingLevelups.has(char.id) ? '#ffd700' : '#00d2ff'}; border: 1px solid ${pendingLevelups.has(char.id) ? '#ffd700' : '#00d2ff'};" onclick="toggleLevelUp('${char.id}')">
+                    ${pendingLevelups.has(char.id) ? '⏳ LEVEL UP PENDING...' : '⬆ ALLOW LEVEL UP'}
+                </button>` : ''}
             `;
             return card;
         }
@@ -3052,12 +3359,19 @@
                 CHA: aTotal('charisma')
             };
 
-            // Combat
+            // Combat — derive misc bonuses by subtracting what the app auto-calculates
+            const bab = h.attackBonuses?.bab?.base || 0;
+            const strMod = Math.floor((aTotal('strength') - 10) / 2);
+            const dexMod = Math.floor((aTotal('dexterity') - 10) / 2);
+            const meleeTotal  = h.attackBonuses?.melee?.total  ?? (bab + strMod);
+            const rangedTotal = h.attackBonuses?.ranged?.total ?? (bab + dexMod);
+            const thrownTotal = h.attackBonuses?.thrown?.total ?? (bab + strMod);
+
             newChar.combat = {
-                bab: h.attackBonuses?.bab?.base || 0,
-                melee_misc: 0,
-                ranged_misc: 0,
-                thrown_misc: 0
+                bab: bab,
+                melee_misc:  meleeTotal  - bab - strMod,
+                ranged_misc: rangedTotal - bab - dexMod,
+                thrown_misc: thrownTotal - bab - strMod
             };
 
             // Saves
@@ -4443,6 +4757,38 @@
             return Math.floor((score - 10) / 2);
         }
 
+        function updateCombatTotals() {
+            const strScore = parseInt(document.getElementById('edit-str').value) || 10;
+            const dexScore = parseInt(document.getElementById('edit-dex').value) || 10;
+            const conScore = parseInt(document.getElementById('edit-con').value) || 10;
+            const wisScore = parseInt(document.getElementById('edit-wis').value) || 10;
+            const strMod = getAttrMod(strScore);
+            const dexMod = getAttrMod(dexScore);
+            const conMod = getAttrMod(conScore);
+            const wisMod = getAttrMod(wisScore);
+
+            const bab = parseInt(document.getElementById('edit-bab').value) || 0;
+            const meleeMisc = parseInt(document.getElementById('edit-melee-misc').value) || 0;
+            const rangedMisc = parseInt(document.getElementById('edit-ranged-misc').value) || 0;
+            const thrownMisc = parseInt(document.getElementById('edit-thrown-misc').value) || 0;
+
+            const fmt = v => (v >= 0 ? '+' : '') + v;
+            document.getElementById('combat-melee-total').innerText = fmt(bab + strMod + meleeMisc);
+            document.getElementById('combat-ranged-total').innerText = fmt(bab + dexMod + rangedMisc);
+            document.getElementById('combat-thrown-total').innerText = fmt(bab + strMod + thrownMisc);
+
+            const fortBase = parseInt(document.getElementById('edit-fort-base').value) || 0;
+            const fortMisc = parseInt(document.getElementById('edit-fort-misc').value) || 0;
+            const refBase = parseInt(document.getElementById('edit-ref-base').value) || 0;
+            const refMisc = parseInt(document.getElementById('edit-ref-misc').value) || 0;
+            const willBase = parseInt(document.getElementById('edit-will-base').value) || 0;
+            const willMisc = parseInt(document.getElementById('edit-will-misc').value) || 0;
+
+            document.getElementById('save-fort-total').innerText = fmt(fortBase + conMod + fortMisc);
+            document.getElementById('save-ref-total').innerText = fmt(refBase + dexMod + refMisc);
+            document.getElementById('save-will-total').innerText = fmt(willBase + wisMod + willMisc);
+        }
+
         function updateSkillTotals() {
             const stats = {
                 STR: parseInt(document.getElementById('edit-str').value) || 10,
@@ -4687,6 +5033,7 @@
             
             // Enhance inputs after a short delay to ensure DOM is ready/visible
             setTimeout(enhanceNumberInputs, 100);
+            updateCombatTotals();
         }
 
         let editorInventory = [];
@@ -5562,6 +5909,122 @@
                         Select a Quest to edit details
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOP EDITOR MODAL -->
+    <div id="shop-editor-modal" class="modal-overlay">
+        <div class="modal-box" style="width: 750px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header">
+                <h3>EDIT SHOP</h3>
+                <button class="btn-icon btn-icon--close" onclick="closeShopEditor()">&times;</button>
+            </div>
+            <div style="overflow-y: auto; flex: 1; padding-right: 5px;">
+                <input type="hidden" id="shop-edit-id">
+                
+                <!-- Basic Info Section -->
+                <div style="background:#0d0d1a; border:1px solid #222; padding:12px; margin-bottom:12px;">
+                    <div style="color:#ffd700; font-size:0.8rem; font-weight:bold; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;">Shop Details</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                        <div>
+                            <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Shop Name</label>
+                            <input type="text" id="shop-edit-name" placeholder="e.g. Kepper's Arms" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                        </div>
+                        <div>
+                            <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Location</label>
+                            <input type="text" id="shop-edit-location" placeholder="e.g. Absalom Station - Arm 4" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                        </div>
+                        <div>
+                            <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Resale %</label>
+                            <input type="number" id="shop-edit-resale" value="10" min="0" max="100" style="width:100%; padding:8px; background:#000; color:#ffd700; border:1px solid #333; font-family:inherit;">
+                        </div>
+                        <div>
+                            <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Categories (comma sep.)</label>
+                            <input type="text" id="shop-edit-categories" placeholder="weapons, armor, tech" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;">
+                        <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Description</label>
+                        <textarea id="shop-edit-description" rows="2" placeholder="Optional shop description..." style="width:100%; padding:8px; background:#000; color:#ccc; border:1px solid #333; resize:none; font-family:inherit;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Stock Management Section -->
+                <div style="background:#0d0d1a; border:1px solid #222; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <div style="color:#ffd700; font-size:0.8rem; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">Inventory / Stock</div>
+                        <span id="shop-stock-count" style="color:#888; font-size:0.75rem;">0 items</span>
+                    </div>
+                    
+                    <!-- Add Single Item -->
+                    <div style="background:#111; border:1px solid #2a2a2a; padding:10px; margin-bottom:10px;">
+                        <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">ADD ITEM</div>
+                        <div style="display:flex; gap:5px; align-items:center;">
+                            <input type="text" id="shop-item-search" placeholder="Search items..." oninput="filterShopItems()" style="flex:1; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                            <select id="shop-item-add-select" style="flex:2; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                                <option value="">-- Select item --</option>
+                            </select>
+                            <button class="action-btn" style="padding:6px 12px; white-space:nowrap;" onclick="addItemToShopStock()">+ Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Add Items -->
+                    <div style="background:#111; border:1px solid #2a2a2a; padding:10px; margin-bottom:10px;">
+                        <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">BULK ADD BY CATEGORY & LEVEL</div>
+                        <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
+                            <select id="bulk-category" style="flex:1; min-width:120px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                                <option value="">All Categories</option>
+                                <option value="Armor">Armor</option>
+                                <option value="Weapon">Weapon</option>
+                                <option value="Equipment">Equipment</option>
+                                <option value="Consumable">Consumable</option>
+                                <option value="Magic">Magic</option>
+                                <option value="Technological">Technological</option>
+                                <option value="Augmentation">Augmentation</option>
+                                <option value="Upgrade">Upgrade</option>
+                                <option value="Fusion">Fusion</option>
+                                <option value="Goods">Goods</option>
+                            </select>
+                            <div style="display:flex; align-items:center; gap:3px;">
+                                <span style="color:#888; font-size:0.75rem;">Lv</span>
+                                <input type="number" id="bulk-level-min" min="0" max="20" value="1" style="width:45px; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; text-align:center;">
+                                <span style="color:#888; font-size:0.75rem;">to</span>
+                                <input type="number" id="bulk-level-max" min="0" max="20" value="5" style="width:45px; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; text-align:center;">
+                            </div>
+                            <div style="display:flex; align-items:center; gap:3px;">
+                                <span style="color:#888; font-size:0.75rem;">Qty</span>
+                                <input type="number" id="bulk-qty" min="-1" value="-1" style="width:50px; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; text-align:center;" title="-1 = unlimited">
+                            </div>
+                            <button class="action-btn" style="padding:6px 12px; white-space:nowrap;" onclick="bulkPreviewShopItems()">Preview</button>
+                            <button class="action-btn" style="padding:6px 12px; white-space:nowrap; background:#1a3a1a; color:#0f0; border-color:#0f0;" onclick="bulkAddShopItems()">+ Add All</button>
+                        </div>
+                        <div id="bulk-preview-info" style="color:#888; font-size:0.75rem; margin-top:6px;"></div>
+                    </div>
+
+                    <!-- Current Stock Table -->
+                    <div style="display:flex; gap:5px; margin-bottom:6px;">
+                        <input type="text" id="shop-stock-filter" placeholder="Filter current stock..." oninput="renderShopStockEditor()" style="flex:1; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.8rem;">
+                        <button class="action-btn" style="padding:4px 10px; font-size:0.75rem; color:#f55; border-color:#f55;" onclick="clearAllShopStock()">Clear All</button>
+                    </div>
+                    <div style="max-height:250px; overflow-y:auto; border:1px solid #333;">
+                        <table style="width:100%; border-collapse:collapse;">
+                            <thead><tr style="background:#1a1a1a; position:sticky; top:0; z-index:1;">
+                                <th style="text-align:left; padding:5px 8px; color:#888; font-size:0.7rem;">Item</th>
+                                <th style="padding:5px; color:#888; font-size:0.7rem; width:50px;">Cat</th>
+                                <th style="padding:5px; color:#888; font-size:0.7rem; width:30px;">Lv</th>
+                                <th style="padding:5px; color:#888; font-size:0.7rem; width:65px;" title="-1 = unlimited stock">Qty</th>
+                                <th style="padding:5px; color:#888; font-size:0.7rem; width:80px;" title="Leave 0 or empty for default price">Price</th>
+                                <th style="width:28px;"></th>
+                            </tr></thead>
+                            <tbody id="shop-stock-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:12px; padding-top:10px; border-top:1px solid #333; flex-shrink:0;">
+                <button class="action-btn" onclick="closeShopEditor()">Cancel</button>
+                <button class="action-btn" style="background:#1a3a1a; color:#0f0; border-color:#0f0; padding:8px 20px;" onclick="saveShopEditor()">💾 SAVE SHOP</button>
             </div>
         </div>
     </div>
