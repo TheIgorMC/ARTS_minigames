@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header id="app-header">
+        <div id="header-brand">
+            <span class="brand-gem">◈</span>
+            <span class="brand-title">GEMINI ARCHITECT</span>
+            <span class="brand-sub">Campaign Map Editor v1.0</span>
+        </div>
+        <div id="header-campaign">
+            <span class="stat-label">CAMPAIGN:</span>
+            <span id="campaign-name-display">—</span>
+            <button class="btn btn-sm" id="btn-rename-campaign" title="Rename campaign">✎</button>
+        </div>
+        <div id="header-actions">
+            <button class="btn btn-sm" id="btn-validate" title="Check for broken links">⚑ VALIDATE</button>
+            <div id="connection-dot" class="status-dot" title="Server connected"></div>
+        </div>
+    </header>
+
+    <!-- ══════════════ MODULE TABS ══════════════ -->
+    <nav id="module-tabs">
+        <button class="module-tab active" data-module="galaxy">🌌 Galaxy Plotter</button>
+        <button class="module-tab" data-module="orrery">☀️ Orrery Builder</button>
+        <button class="module-tab" data-module="planet">🪐 Planetary Studio</button>
+        <button class="module-tab" data-module="carto">🗺️ Cartographer</button>
+    </nav>
+
+    <!-- ══════════════ BREADCRUMB ══════════════ -->
+    <nav id="breadcrumb-nav">
+        <span id="breadcrumb-chain"><span class="bc-crumb bc-active">Galaxy</span></span>
+    </nav>
+
+    <!-- ══════════════ MODULE PANELS ══════════════ -->
+    <main id="app-main">
+
+        <!-- ── MODULE A: Galaxy Plotter ──────────────────────────────────── -->
+        <section id="module-galaxy" class="module active">
+
+            <!-- ─── GALAXY VIEW Sidebar ─────────────────────────────────── -->
+            <div class="module-sidebar" id="gp-sidebar-galaxy">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">GALAXY VIEW</div>
+                    <div class="btn-row">
+                        <button class="btn" id="gp-galaxy-save">💾 SAVE ALL</button>
+                        <button class="btn" id="gp-galaxy-fit">⊡ FIT</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">TOOLS</div>
+                    <button class="btn tool-btn active" id="gp-gtool-select" data-gtool="select">↖ SELECT</button>
+                    <button class="btn tool-btn" id="gp-gtool-draw" data-gtool="draw">⬟ DRAW SECTOR</button>
+                    <button class="btn tool-btn btn-danger" id="gp-gtool-delete" data-gtool="gdelete">✕ DELETE SECTOR</button>
+                    <div style="margin-top:6px;font-size:0.7rem;color:#555">
+                        Draw: click vertices · dblclick to close · ESC cancel
+                    </div>
+                </div>
+
+                <!-- ─── DRAW OPTIONS ────────────────────────────────────── -->
+                <div class="sidebar-section">
+                    <div class="sidebar-header">DRAW OPTIONS</div>
+                    <label class="form-label" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                        <input type="checkbox" id="gp-snap-enabled" checked style="accent-color:var(--accent-color)" />
+                        SNAP TO VERTICES
+                    </label>
+                    <label class="form-label" style="margin-top:6px">SNAP DISTANCE (px)</label>
+                    <input class="form-input" id="gp-snap-thresh" type="number" min="4" max="80" value="18" style="width:70px" />
+                    <div style="margin-top:4px;font-size:0.68rem;color:#555">
+                        Snaps to corners of existing sectors<br>while drawing new polygons.
+                    </div>
+                </div>
+
+                <!-- ─── BACKGROUND REFERENCE ────────────────────────────── -->
+                <div class="sidebar-section">
+                    <div class="sidebar-header">BG REFERENCE</div>
+                    <input type="file" id="gp-ref-file" accept="image/*" style="display:none" />
+                    <button class="btn" id="gp-ref-load" style="width:100%">📂 LOAD IMAGE</button>
+                    <div id="gp-ref-controls" style="display:none;margin-top:8px">
+                        <label class="form-label">OPACITY</label>
+                        <div class="input-row" style="align-items:center;gap:6px">
+                            <input type="range" class="scatter-slider" id="gp-ref-opacity"
+                                   min="0" max="100" value="35" style="flex:1" />
+                            <span id="gp-ref-opacity-val" style="min-width:32px;color:var(--accent-color);font-size:0.75rem">35%</span>
+                        </div>
+                        <div class="btn-row" style="margin-top:6px">
+                            <button class="btn" id="gp-ref-toggle">👁 HIDE</button>
+                            <button class="btn btn-danger" id="gp-ref-clear">✕ CLEAR</button>
+                        </div>
+                    </div>
+                    <div style="margin-top:4px;font-size:0.68rem;color:#555">
+                        PNG / JPG galaxy map for tracing.<br>Not saved — session only.
+                    </div>
+                </div>
+
+                <div class="sidebar-section" id="gp-sector-props" style="display:none">
+                    <div class="sidebar-header">SECTOR PROPERTIES</div>
+                    <label class="form-label">NAME</label>
+                    <input class="form-input" id="gp-sec-name" placeholder="Sector 04" />
+                    <label class="form-label">COLOR</label>
+                    <div class="input-row">
+                        <input class="form-input flex-1" id="gp-sec-color" placeholder="#00d2ff" />
+                        <input type="color" id="gp-sec-color-picker" value="#00d2ff" class="color-picker" />
+                    </div>
+                    <label class="form-label">VERTICES</label>
+                    <span class="stat-value" id="gp-sec-vert-count">0</span>
+                    <div class="btn-row" style="margin-top:8px">
+                        <button class="btn" id="gp-sec-apply">✓ APPLY</button>
+                        <button class="btn" id="gp-sec-enter">▶ ENTER</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">SECTORS</div>
+                    <span class="stat-value" id="gp-count-sectors">0</span>
+                </div>
+            </div>
+
+            <!-- ─── SECTOR VIEW Sidebar ──────────────────────────────────── -->
+            <div class="module-sidebar" id="gp-sidebar-sector" style="display:none">
+                <div class="sidebar-section">
+                    <button class="btn" id="gp-back-galaxy" style="width:100%">◂ GALAXY VIEW</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">SECTOR</div>
+                    <div class="stat-value" id="gp-sector-title">—</div>
+                    <div class="btn-row" style="margin-top:6px">
+                        <button class="btn" id="gp-save-sector">💾 SAVE</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">TOOLS</div>
+                    <button class="btn tool-btn active" id="gp-tool-select" data-tool="select">↖ SELECT</button>
+                    <button class="btn tool-btn" id="gp-tool-add" data-tool="add">＋ ADD SYSTEM</button>
+                    <button class="btn tool-btn" id="gp-tool-lane" data-tool="lane">⟵ DRAW LANE</button>
+                    <button class="btn tool-btn" id="gp-tool-scatter" data-tool="scatter">🎲 SCATTER</button>
+                    <button class="btn tool-btn btn-danger" id="gp-tool-delete" data-tool="delete">✕ DELETE</button>
+                </div>
+
+                <div class="sidebar-section" id="gp-node-editor" style="display:none">
+                    <div class="sidebar-header">SYSTEM PROPERTIES</div>
+                    <label class="form-label">ID</label>
+                    <input class="form-input" id="gp-node-id" placeholder="sys_kilter" />
+                    <label class="form-label">NAME</label>
+                    <input class="form-input" id="gp-node-name" placeholder="Kilter System" />
+                    <label class="form-label">POLITICAL ALIGNMENT</label>
+                    <input class="form-input" id="gp-node-align" placeholder="Lower_Sympathizer" />
+                    <label class="form-label">STATUS</label>
+                    <select class="form-select" id="gp-node-status">
+                        <option>Colonized</option>
+                        <option>Frontier</option>
+                        <option>Contested</option>
+                        <option>Abandoned</option>
+                        <option>Unknown</option>
+                    </select>
+                    <label class="form-label">LINKED SYSTEM FILE</label>
+                    <div class="input-row">
+                        <input class="form-input flex-1" id="gp-node-file" placeholder="data/systems/sys_kilter.json" readonly />
+                        <button class="btn btn-sm" id="gp-node-open-system">→</button>
+                    </div>
+                    <div class="coord-row">
+                        <div>
+                            <label class="form-label">X</label>
+                            <input class="form-input coord-input" id="gp-node-x" readonly />
+                        </div>
+                        <div>
+                            <label class="form-label">Y</label>
+                            <input class="form-input coord-input" id="gp-node-y" readonly />
+                        </div>
+                    </div>
+                    <button class="btn" id="gp-node-apply" style="margin-top:8px">✓ APPLY</button>
+                </div>
+
+                <div class="sidebar-section" id="gp-lane-editor" style="display:none">
+                    <div class="sidebar-header">JUMP LANE</div>
+                    <label class="form-label">FROM → TO</label>
+                    <div id="gp-lane-endpoints" class="stat-value"></div>
+                    <label class="form-label">DISTANCE (ly)</label>
+                    <input class="form-input" id="gp-lane-dist" readonly />
+                    <label class="form-label">TYPE</label>
+                    <select class="form-select" id="gp-lane-type">
+                        <option>Stable</option>
+                        <option>Unstable</option>
+                        <option>Drift</option>
+                        <option>Restricted</option>
+                    </select>
+                    <button class="btn" id="gp-lane-apply" style="margin-top:8px">✓ APPLY</button>
+                    <button class="btn btn-danger" id="gp-lane-delete" style="margin-top:4px">✕ REMOVE LANE</button>
+                </div>
+
+                <!-- Scatter Panel -->
+                <div class="sidebar-section" id="gp-scatter-panel" style="display:none">
+                    <div class="sidebar-header">🎲 SCATTER SYSTEMS</div>
+
+                    <div class="scatter-param-group">
+                        <div class="scatter-row">
+                            <span class="form-label">BRUSH SIZE</span>
+                            <span class="stat-value" id="gp-scat-size-val">80</span>
+                        </div>
+                        <input type="range" class="scatter-slider" id="gp-scat-size" min="10" max="300" value="80" />
+                    </div>
+
+                    <div class="scatter-param-group">
+                        <div class="scatter-row">
+                            <span class="form-label">BRUSH STRENGTH</span>
+                            <span class="stat-value" id="gp-scat-strength-val">60%</span>
+                        </div>
+                        <input type="range" class="scatter-slider" id="gp-scat-strength" min="1" max="100" value="60" />
+                    </div>
+
+                    <div class="scatter-param-group scatter-divider">
+                        <label class="form-label">TOTAL SYSTEMS</label>
+                        <input class="form-input" id="gp-scat-count" type="number" min="1" max="500" value="30" />
+
+                        <label class="form-label">MIN SEPARATION (ly)</label>
+                        <input class="form-input" id="gp-scat-minsep" type="number" min="0" max="200" value="25" />
+
+                        <label class="form-label">NAME PREFIX</label>
+                        <input class="form-input" id="gp-scat-prefix" placeholder="sys" value="sys" />
+
+                        <label class="form-label">SEED</label>
+                        <div class="input-row">
+                            <input class="form-input flex-1" id="gp-scat-seed" type="number" value="42" />
+                            <button class="btn btn-sm" id="gp-scat-randseed" title="Random seed">⚄</button>
+                        </div>
+                    </div>
+
+                    <div class="scatter-param-group scatter-divider">
+                        <div class="form-label" style="margin-bottom:4px">LEFT DRAG: paint density · RIGHT DRAG: erase</div>
+                        <div class="btn-row">
+                            <button class="btn" id="gp-scat-preview">👁 PREVIEW</button>
+                            <button class="btn" id="gp-scat-clear-density">⌫ CLEAR</button>
+                        </div>
+                        <button class="btn" id="gp-scat-commit" style="margin-top:5px;width:100%;border-color:#00cc44;color:#00cc44" disabled>✓ COMMIT</button>
+                        <div id="gp-scat-info" style="margin-top:4px;font-size:0.7rem;color:#888">Paint a density map, then preview.</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">CANVAS</div>
+                    <button class="btn" id="gp-fit">⊡ FIT VIEW</button>
+                    <div class="coord-row" style="margin-top:6px">
+                        <div>
+                            <label class="form-label">SYSTEMS</label>
+                            <span class="stat-value" id="gp-count-systems">0</span>
+                        </div>
+                        <div>
+                            <label class="form-label">LANES</label>
+                            <span class="stat-value" id="gp-count-lanes">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── Canvas Area ──────────────────────────────────────────── -->
+            <div class="module-canvas-area" id="gp-canvas-container">
+                <div id="gp-canvas-hint">
+                    Use <b>⬟ DRAW SECTOR</b> to define sector polygons in the galaxy view.<br>
+                    Double-click a sector or press <b>▶ ENTER</b> to edit its systems.<br>
+                    <small>Pan: middle-mouse drag · Zoom: scroll wheel</small>
+                </div>
+                <div id="gp-canvas"></div>
+                <!-- Density overlay canvas for scatter painting -->
+                <canvas id="gp-density-canvas" style="position:absolute;top:0;left:0;pointer-events:none;opacity:0.55;display:none"></canvas>
+                <!-- Brush cursor indicator -->
+                <div id="gp-brush-cursor"></div>
+            </div>
+        </section>
+
+        <!-- ── MODULE B: Orrery Builder ───────────────────────────────────── -->
+        <section id="module-orrery" class="module">
+            <div class="module-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">SYSTEM FILE</div>
+                    <select id="ob-system-select" class="form-select">
+                        <option value="">— select system —</option>
+                    </select>
+                    <div class="btn-row">
+                        <button class="btn" id="ob-new-system">+ NEW</button>
+                        <button class="btn" id="ob-save-system">💾 SAVE</button>
+                        <button class="btn btn-danger" id="ob-delete-system">✕</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section" id="ob-star-editor" style="display:none">
+                    <div class="sidebar-header">STAR</div>
+                    <label class="form-label">NAME</label>
+                    <input class="form-input" id="ob-star-name" placeholder="Kilter Prime" />
+                    <label class="form-label">SPECTRAL CLASS</label>
+                    <input class="form-input" id="ob-star-class" placeholder="G2V" />
+                    <label class="form-label">COLOR</label>
+                    <input class="form-input" id="ob-star-color" placeholder="#ffcc00" />
+                    <button class="btn" id="ob-star-apply" style="margin-top:8px">✓ APPLY</button>
+                </div>
+
+                <div class="sidebar-section" id="ob-orbital-editor" style="display:none">
+                    <div class="sidebar-header">ORBITAL</div>
+                    <label class="form-label">ID</label>
+                    <input class="form-input" id="ob-orb-id" placeholder="body_tirra" />
+                    <label class="form-label">NAME</label>
+                    <input class="form-input" id="ob-orb-name" placeholder="Tirra" />
+                    <label class="form-label">TYPE</label>
+                    <select class="form-select" id="ob-orb-type">
+                        <option>Planet</option>
+                        <option>Moon</option>
+                        <option>Asteroid Belt</option>
+                        <option>Gas Giant</option>
+                        <option>Dwarf Planet</option>
+                        <option>Station</option>
+                    </select>
+                    <label class="form-label">ORBIT INDEX</label>
+                    <input class="form-input" id="ob-orb-index" type="number" min="1" placeholder="1" />
+                    <label class="form-label">LINKED BODY FILE</label>
+                    <div class="input-row">
+                        <input class="form-input flex-1" id="ob-orb-file" placeholder="data/bodies/body_tirra.json" />
+                        <button class="btn btn-sm" id="ob-orb-open">→</button>
+                    </div>
+                    <div class="btn-row" style="margin-top:8px">
+                        <button class="btn" id="ob-orb-apply">✓ APPLY</button>
+                        <button class="btn btn-danger" id="ob-orb-delete">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content-area" id="ob-content">
+                <div class="module-placeholder" id="ob-placeholder">
+                    Load or create a system file to build its orrery.
+                </div>
+                <div id="ob-tree-container" style="display:none">
+                    <div id="ob-orrery-header">
+                        <div id="ob-system-id-display" class="orrery-id"></div>
+                        <div id="ob-star-display" class="orrery-star" id="ob-star-node">
+                            <span class="orrery-icon">★</span>
+                            <span id="ob-star-name-display">—</span>
+                            <span id="ob-star-class-display" class="orrery-meta"></span>
+                            <button class="btn btn-sm" id="ob-star-edit-btn">EDIT</button>
+                        </div>
+                    </div>
+                    <div id="ob-orbitals-list"></div>
+                    <button class="btn" id="ob-add-orbital" style="margin-top:12px">+ ADD ORBITAL</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── MODULE C: Planetary Studio ────────────────────────────────── -->
+        <section id="module-planet" class="module">
+            <div class="module-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">BODY FILE</div>
+                    <select id="ps-body-select" class="form-select">
+                        <option value="">— select body —</option>
+                    </select>
+                    <div class="btn-row">
+                        <button class="btn" id="ps-new-body">+ NEW</button>
+                        <button class="btn" id="ps-save-body">💾 SAVE</button>
+                        <button class="btn btn-danger" id="ps-delete-body">✕</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section" id="ps-render-editor" style="display:none">
+                    <div class="sidebar-header">RENDER DATA</div>
+                    <label class="form-label">DIFFUSE TEXTURE (relative path)</label>
+                    <input class="form-input" id="ps-tex-diffuse" placeholder="assets/textures/tirra_diff.webp" />
+                    <label class="form-label">BUMP TEXTURE</label>
+                    <input class="form-input" id="ps-tex-bump" placeholder="assets/textures/tirra_bump.webp" />
+                    <label class="form-label">ATMOSPHERE COLOR</label>
+                    <div class="input-row">
+                        <input class="form-input flex-1" id="ps-atmo-color" placeholder="#88aaff" />
+                        <input type="color" id="ps-atmo-picker" value="#88aaff" class="color-picker" />
+                    </div>
+                    <label class="form-label">ROTATION SPEED</label>
+                    <input class="form-input" id="ps-rot-speed" type="number" step="0.001" placeholder="0.005" />
+                    <button class="btn" id="ps-render-apply" style="margin-top:8px">✓ APPLY</button>
+                </div>
+
+                <div class="sidebar-section" id="ps-poi-editor" style="display:none">
+                    <div class="sidebar-header">POINT OF INTEREST</div>
+                    <label class="form-label">ID</label>
+                    <input class="form-input" id="ps-poi-id" placeholder="loc_newhaven" />
+                    <label class="form-label">NAME</label>
+                    <input class="form-input" id="ps-poi-name" placeholder="Newhaven City" />
+                    <label class="form-label">TYPE</label>
+                    <select class="form-select" id="ps-poi-type">
+                        <option>Settlement</option>
+                        <option>Ruin</option>
+                        <option>Military Base</option>
+                        <option>Research Station</option>
+                        <option>Natural Feature</option>
+                        <option>Anomaly</option>
+                    </select>
+                    <label class="form-label">DESCRIPTION</label>
+                    <textarea class="form-input" id="ps-poi-desc" rows="3" placeholder="Brief description..."></textarea>
+                    <label class="form-label">LINKED LOCATION MAP</label>
+                    <input class="form-input" id="ps-poi-link" placeholder="data/locations/loc_newhaven.json" />
+                    <label class="form-label">COORDINATES (Lat / Lon)</label>
+                    <div class="coord-row">
+                        <div>
+                            <input class="form-input coord-input" id="ps-poi-lat" type="number" step="0.01" placeholder="45.12" />
+                        </div>
+                        <div>
+                            <input class="form-input coord-input" id="ps-poi-lon" type="number" step="0.01" placeholder="-12.4" />
+                        </div>
+                    </div>
+                    <div class="btn-row" style="margin-top:8px">
+                        <button class="btn" id="ps-poi-apply">✓ APPLY</button>
+                        <button class="btn btn-danger" id="ps-poi-delete">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content-area">
+                <div class="module-placeholder" id="ps-placeholder">
+                    Load or create a body file to manage its POIs and render data.
+                </div>
+                <div id="ps-body-container" style="display:none">
+                    <div id="ps-sphere-preview">
+                        <canvas id="ps-canvas" width="320" height="320"></canvas>
+                        <div id="ps-sphere-hint">Click on the sphere to pin a POI</div>
+                    </div>
+                    <div id="ps-poi-list-area">
+                        <div class="sidebar-header">POINTS OF INTEREST</div>
+                        <div id="ps-poi-list"></div>
+                        <button class="btn" id="ps-add-poi" style="margin-top:10px">+ ADD POI</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── MODULE D: Cartographer ─────────────────────────────────────── -->
+        <section id="module-carto" class="module">
+            <div class="module-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">SOURCE IMAGE</div>
+                    <label class="drop-zone" id="carto-drop-zone" for="carto-file-input">
+                        <span>Drop a map image here<br>or click to browse</span>
+                        <input type="file" id="carto-file-input" accept="image/*" style="display:none" />
+                    </label>
+                    <div id="carto-file-info" style="display:none">
+                        <div class="form-label">FILE</div>
+                        <div class="stat-value" id="carto-filename"></div>
+                        <div class="form-label">DIMENSIONS</div>
+                        <div class="stat-value" id="carto-dims"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">TILE SETTINGS</div>
+                    <label class="form-label">TILE SIZE (px)</label>
+                    <select class="form-select" id="carto-tile-size">
+                        <option value="128">128 × 128</option>
+                        <option value="256" selected>256 × 256</option>
+                        <option value="512">512 × 512</option>
+                    </select>
+                    <label class="form-label">MIN ZOOM</label>
+                    <input class="form-input" id="carto-min-zoom" type="number" min="0" max="3" value="0" />
+                    <label class="form-label">MAX ZOOM</label>
+                    <input class="form-input" id="carto-max-zoom" type="number" min="1" max="6" value="4" />
+                    <label class="form-label">OUTPUT NAME</label>
+                    <input class="form-input" id="carto-output-name" placeholder="newhaven" />
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-header">EXPORT</div>
+                    <button class="btn" id="carto-preview-btn">⊡ PREVIEW TILES</button>
+                    <button class="btn" id="carto-export-btn" style="margin-top:6px">⤓ EXPORT JSON</button>
+                    <div id="carto-status" style="margin-top:8px; font-size:0.75rem; color:#888;"></div>
+                </div>
+            </div>
+
+            <div class="module-content-area" id="carto-content">
+                <div class="module-placeholder" id="carto-placeholder">
+                    Upload a city or location map image to preview its tile structure.
+                </div>
+                <div id="carto-preview-container" style="display:none">
+                    <canvas id="carto-canvas"></canvas>
+                    <div id="carto-grid-overlay"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ══════════════ STATUS BAR ══════════════ -->
+    <footer id="status-bar">
+        <span id="status-text">Ready.</span>
+        <span id="status-path"></span>
+    </footer>
+
+    <!-- ══════════════ MODALS ══════════════ -->
+    <div class="modal-overlay" id="modal-overlay" style="display:none">
+        <div class="modal-box modal-box--sm" id="modal-box">
+            <div class="modal-title" id="modal-title">Title</div>
+            <div id="modal-body"></div>
+            <div class="btn-row" style="margin-top:12px">
+                <button class="btn" id="modal-confirm">CONFIRM</button>
+                <button class="btn btn-danger" id="modal-cancel">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════ NOTIFICATION ══════════════ -->
+    <div id="notification-area"></div>
+
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <!-- Konva.js for Galaxy Plotter canvas -->
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+    <!-- Three.js for Planetary Studio sphere preview -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+    <script src="modules/galaxy-plotter.js"></script>
+    <script src="modules/orrery-builder.js"></script>
+    <script src="modules/planetary-studio.js"></script>
+    <script src="modules/cartographer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
