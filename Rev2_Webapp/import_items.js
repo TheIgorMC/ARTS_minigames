@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('./config');
 
-const itemsFilePath = path.join(__dirname, 'data', 'items.json');
+const DATA_DIR = path.join(config.CAMPAIGN_DIR, config.DATA_SUBDIR);
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+const itemsFilePath = path.join(DATA_DIR, 'items.json');
 const sourceDir = path.join(__dirname, 'REFERENCE', 'foundryvtt-starfinder-development', 'src', 'items', 'equipment');
 
 // Helper to read existing items
@@ -175,6 +178,7 @@ function mapItem(sourceItem) {
         category: category,
         level: level,
         price: price,
+        source: system.source || '',
         details: details,
         description: description,
         stats: stats.join(', '),

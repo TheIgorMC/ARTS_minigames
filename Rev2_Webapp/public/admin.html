@@ -634,32 +634,37 @@
         </div>
         
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('live')">Live Ops</button>
+            <button class="tab-btn active" onclick="switchTab('live')">Actions</button>
             <button class="tab-btn" onclick="switchTab('map')">Scene</button>
-            <button class="tab-btn" onclick="switchTab('database')">Objects</button>
             <button class="tab-btn" onclick="switchTab('items')">Items</button>
             <button class="tab-btn" onclick="switchTab('characters')">Characters</button>
             <button class="tab-btn" onclick="switchTab('comms')">Comms</button>
-            <button class="tab-btn" onclick="switchTab('roleplay')">Roleplay</button>
+            <button class="tab-btn" onclick="switchTab('encounters')">Encounters</button>
+            <button class="tab-btn" onclick="switchTab('play')">Play</button>
+            <button class="tab-btn" onclick="switchTab('gameMap')">Map</button>
             <button class="tab-btn" onclick="switchTab('shops')">Shops</button>
-            <button class="tab-btn" onclick="switchTab('logs')">Logs</button>
+            <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
         </div>
 
         <!-- TIME DISPLAY & CONTROLS -->
-        <div style="display: flex; align-items: center; gap: 15px; position: relative;">
-            <div id="gm-time-display" style="font-size: 1.2rem; color: var(--accent-color); font-weight: bold; letter-spacing: 1px;">--:--</div>
-            <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleTimeControls()">EDIT</button>
-            <button class="action-btn" id="scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleScramble()">TIME SCRAMBLE</button>
-            <button class="action-btn" id="text-scramble-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="toggleTextScramble()">TEXT SCRAMBLE</button>
+        <div style="display: flex; align-items: center; gap: 8px; position: relative; background: rgba(0,0,0,0.4); padding: 4px 12px; border: 1px solid #222; border-radius: 4px;">
+            <div id="gm-time-display" style="font-size: 1.1rem; color: var(--accent-color); font-weight: bold; letter-spacing: 2px; text-shadow: 0 0 8px rgba(0,210,255,0.4); min-width: 120px;">--:--</div>
+            <div style="width:1px; height:20px; background:#333;"></div>
+            <button class="action-btn" style="padding: 3px 8px; font-size: 0.7rem; border-color:#555;" onclick="toggleTimeControls()" title="Edit Time">&#9998;</button>
+            <button class="action-btn" id="scramble-btn" style="padding: 3px 8px; font-size: 0.7rem; border-color:#555;" onclick="toggleScramble()" title="Time Scramble">&#8982;</button>
+            <button class="action-btn" id="text-scramble-btn" style="padding: 3px 8px; font-size: 0.7rem; border-color:#555;" onclick="toggleTextScramble()" title="Text Scramble">&#9641;</button>
             
-            <div id="header-time-controls" style="display: none; position: absolute; top: 50px; right: 0; background: #0f0f15; border: 1px solid var(--accent-color); padding: 15px; z-index: 100; box-shadow: 0 0 20px rgba(0,0,0,0.8); width: 300px;">
-                <h3 style="margin-top: 0; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px;">System Time</h3>
-                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
-                    <input type="number" id="time-year" placeholder="Y" style="width: 50px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-day" placeholder="D" style="width: 40px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-hour" placeholder="H" style="width: 35px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <input type="number" id="time-min" placeholder="M" style="width: 35px; padding: 5px; background: #111; color: #fff; border: 1px solid #444;">
-                    <button class="action-btn" style="padding: 5px;" onclick="setTime()">SET</button>
+            <div id="header-time-controls" style="display: none; position: absolute; top: 42px; right: 0; background: #0a0a14; border: 1px solid var(--accent-color); padding: 12px; z-index: 100; box-shadow: 0 0 20px rgba(0,210,255,0.15); width: 280px; border-radius: 4px;">
+                <div style="color:#888; font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Set System Time</div>
+                <div style="display: flex; gap: 4px; align-items: center;">
+                    <input type="number" id="time-year" placeholder="Y" style="width: 48px; padding: 5px; background: #000; color: var(--accent-color); border: 1px solid #333; text-align:center; font-family:inherit;">
+                    <span style="color:#555;">-</span>
+                    <input type="number" id="time-day" placeholder="D" style="width: 40px; padding: 5px; background: #000; color: var(--accent-color); border: 1px solid #333; text-align:center; font-family:inherit;">
+                    <span style="color:#555;">·</span>
+                    <input type="number" id="time-hour" placeholder="H" style="width: 36px; padding: 5px; background: #000; color: var(--accent-color); border: 1px solid #333; text-align:center; font-family:inherit;">
+                    <span style="color:#555;">:</span>
+                    <input type="number" id="time-min" placeholder="M" style="width: 36px; padding: 5px; background: #000; color: var(--accent-color); border: 1px solid #333; text-align:center; font-family:inherit;">
+                    <button class="action-btn" style="padding: 5px 10px; font-size:0.75rem;" onclick="setTime()">SET</button>
                 </div>
             </div>
         </div>
@@ -710,6 +715,15 @@
         </div>
 
         <div id="tab-map" class="panel hidden" style="padding: 0; overflow: hidden;">
+            <!-- Scene Sub-tabs -->
+            <div style="display:flex; gap:0; border-bottom:1px solid #333; background:#0a0a12;">
+                <button class="sub-tab-btn active" onclick="switchSceneSubTab('stage', this)">Stage</button>
+                <button class="sub-tab-btn" onclick="switchSceneSubTab('objects', this)">Objects</button>
+                <button class="sub-tab-btn" onclick="switchSceneSubTab('roleplay', this)">Roleplay</button>
+            </div>
+
+            <!-- SUB-TAB: STAGE -->
+            <div id="scene-sub-stage" class="scene-sub-panel" style="height:calc(100% - 36px); overflow:hidden;">
             <div class="map-layout">
                 <!-- LEFT: CONTROLS -->
                 <div class="map-controls" style="padding: 10px;">
@@ -784,9 +798,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div id="tab-database" class="panel hidden">
+            <!-- SUB-TAB: OBJECTS -->
+            <div id="scene-sub-objects" class="scene-sub-panel hidden" style="height:calc(100% - 36px); overflow-y:auto; padding:20px;">
             <div style="display: flex; flex-direction: column; height: 100%;">
                 
                 <!-- ADD NEW OBJECT FORM -->
@@ -856,6 +871,45 @@
                     </table>
                 </div>
                 <button class="action-btn" style="margin-top: 10px;" onclick="saveObjectsTable()">SAVE OBJECTS</button>
+            </div>
+            </div>
+
+            <!-- SUB-TAB: ROLEPLAY -->
+            <div id="scene-sub-roleplay" class="scene-sub-panel hidden" style="height:calc(100% - 36px); overflow:hidden; padding:20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%;">
+                <!-- LEFT: CONTROLS -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="control-group">
+                        <h3 style="margin-top: 0;">Mood Image</h3>
+                        <select id="rp-bg-select" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
+                            <option value="">Select Mood Image...</option>
+                        </select>
+                        <div style="display: flex; gap: 10px; margin-top:10px;">
+                            <button class="action-btn" style="flex:1;" onclick="applyRoleplayState()">SET BG</button>
+                            <button class="action-btn danger" style="flex:1;" onclick="clearRoleplayState()">CLEAR</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group" style="flex: 1; display: flex; flex-direction: column;">
+                        <h3>Characters</h3>
+                        <div id="rp-char-list" style="flex: 1; overflow-y: auto; border: 1px solid #333; padding: 10px; background: #000;">
+                            <!-- Checkboxes populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: PREVIEW -->
+                <div style="border: 1px solid #333; background: #000; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #111;">
+                        <h3 style="margin: 0; color: #fff;">Live Preview</h3>
+                    </div>
+                    <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #000;">
+                        <div style="width: 100%; aspect-ratio: 16/10; max-height: 100%;">
+                            <iframe src="/mood.html" style="width: 100%; height: 100%; border: 0;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -982,12 +1036,12 @@
             <button class="action-btn" style="margin-top: 20px; width: 100%;" onclick="saveCharactersCards()">SAVE CHARACTERS</button>
         </div>
 
-        <div id="tab-comms" class="panel hidden">
+        <div id="tab-comms" class="panel hidden" style="overflow: hidden;">
             <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px; height: 100%;">
                 <!-- LEFT: LIST -->
-                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #0f0f15;">
+                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #0f0f15; min-height: 0;">
                     <!-- IDENTITY HEADER -->
-                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #1a1a24;">
+                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #1a1a24; flex-shrink: 0;">
                         <div style="display: flex; gap: 5px; margin-bottom: 5px;">
                             <select id="identity-select" onchange="switchIdentity()" style="flex: 1; padding: 8px; background: #000; color: var(--accent-color); border: 1px solid var(--accent-color); font-weight: bold;">
                                 <option value="GM">GM</option>
@@ -997,19 +1051,19 @@
                         </div>
                     </div>
 
-                    <!-- CONVERSATION LIST -->
-                    <div id="conversation-list" style="flex: 1; overflow-y: auto;">
+                    <!-- CONVERSATION LIST (only this scrolls) -->
+                    <div id="conversation-list" style="flex: 1; overflow-y: auto; min-height: 0;">
                         <!-- Populated by JS -->
                     </div>
                 </div>
 
-                <!-- RIGHT: CHAT -->
-                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #000;">
+                <!-- RIGHT: CHAT (always visible, fixed) -->
+                <div style="display: flex; flex-direction: column; border: 1px solid #333; background: #000; min-height: 0;">
                     <!-- CHAT LOG -->
-                    <div id="chat-log" class="chat-log" style="flex: 1; border: none; margin: 0;"></div>
+                    <div id="chat-log" class="chat-log" style="flex: 1; border: none; margin: 0; min-height: 0;"></div>
                     
-                    <!-- INPUT AREA -->
-                    <div style="padding: 10px; background: #1a1a24; border-top: 1px solid #333;">
+                    <!-- INPUT AREA (always visible at bottom) -->
+                    <div style="padding: 10px; background: #1a1a24; border-top: 1px solid #333; flex-shrink: 0;">
                         <div style="display: flex; gap: 5px;">
                             <input type="text" id="chat-input" placeholder="Message..." style="flex: 1; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
                             <button class="action-btn" style="padding: 0 15px;" onclick="sendChat()">></button>
@@ -1019,41 +1073,22 @@
             </div>
         </div>
 
-        <div id="tab-roleplay" class="panel hidden">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%;">
-                <!-- LEFT: CONTROLS -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <div class="control-group">
-                        <h3 style="margin-top: 0;">Mood Image</h3>
-                        <select id="rp-bg-select" style="width: 100%; padding: 10px; background: #000; color: #fff; border: 1px solid #333;">
-                            <option value="">Select Mood Image...</option>
-                        </select>
-                        <div style="display: flex; gap: 10px; margin-top:10px;">
-                            <button class="action-btn" style="flex:1;" onclick="applyRoleplayState()">SET BG</button>
-                            <button class="action-btn danger" style="flex:1;" onclick="clearRoleplayState()">CLEAR</button>
-                        </div>
-                    </div>
-                    
-                    <div class="control-group" style="flex: 1; display: flex; flex-direction: column;">
-                        <h3>Characters</h3>
-                        <div id="rp-char-list" style="flex: 1; overflow-y: auto; border: 1px solid #333; padding: 10px; background: #000;">
-                            <!-- Checkboxes populated by JS -->
-                        </div>
-                    </div>
-                </div>
+        <!-- ENCOUNTERS TAB -->
+        <div id="tab-encounters" class="panel hidden">
+            <h2>Encounters</h2>
+            <p style="color: #666; font-style: italic;">Encounter management coming soon.</p>
+        </div>
 
-                <!-- RIGHT: PREVIEW -->
-                <div style="border: 1px solid #333; background: #000; display: flex; flex-direction: column; overflow: hidden;">
-                    <div style="padding: 10px; border-bottom: 1px solid #333; background: #111;">
-                        <h3 style="margin: 0; color: #fff;">Live Preview</h3>
-                    </div>
-                    <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #000;">
-                        <div style="width: 100%; aspect-ratio: 16/10; max-height: 100%;">
-                            <iframe src="/mood.html" style="width: 100%; height: 100%; border: 0;"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- PLAY TAB -->
+        <div id="tab-play" class="panel hidden">
+            <h2>Play</h2>
+            <p style="color: #666; font-style: italic;">Play mode coming soon.</p>
+        </div>
+
+        <!-- MAP TAB -->
+        <div id="tab-gameMap" class="panel hidden">
+            <h2>Map</h2>
+            <p style="color: #666; font-style: italic;">Map viewer coming soon.</p>
         </div>
 
         <!-- SHOPS TAB -->
@@ -1065,9 +1100,23 @@
             <div id="shop-manager-list"></div>
         </div>
 
-        <div id="tab-logs" class="panel hidden">
-            <h2>System Logs</h2>
-            <div id="log" style="height: calc(100vh - 200px); border: 1px solid #333; padding: 10px; background: #000;"></div>
+        <!-- CAMPAIGN SETTINGS & LOGS TAB -->
+        <div id="tab-settings" class="panel hidden">
+            <h2>Campaign Settings</h2>
+            <div style="background:#0d0d1a; border:1px solid #222; padding:16px; margin-bottom:15px;">
+                <div style="color:#ffd700; font-size:0.85rem; font-weight:bold; margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">Owned Source Books</div>
+                <p style="color:#888; font-size:0.8rem; margin:0 0 12px 0;">Only items and spells from checked sources will appear in shops, bulk-add, item tables, and player views. If none are checked, all sources are allowed.</p>
+                <div style="display:flex; gap:8px; margin-bottom:12px;">
+                    <button class="action-btn" style="padding:4px 12px; font-size:0.75rem;" onclick="selectAllSources(true)">Select All</button>
+                    <button class="action-btn" style="padding:4px 12px; font-size:0.75rem;" onclick="selectAllSources(false)">Deselect All</button>
+                    <button class="action-btn" style="padding:4px 12px; font-size:0.75rem; color:#0f0; border-color:#0f0; background:#1a3a1a;" onclick="saveCampaignSources()">Save</button>
+                    <span id="settings-save-status" style="color:#888; font-size:0.75rem; align-self:center;"></span>
+                </div>
+                <div id="source-checkboxes" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:6px;"></div>
+            </div>
+
+            <h2 style="margin-top:20px;">System Logs</h2>
+            <div id="log" style="height: 300px; border: 1px solid #333; padding: 10px; background: #000; overflow-y: auto;"></div>
         </div>
 
         <!-- RIGHT COLUMN: SIDEBAR REMOVED -->
@@ -1371,6 +1420,7 @@
                 <button class="tab-btn" onclick="switchEditorTab('feats')">Feats</button>
                 <button class="tab-btn" onclick="switchEditorTab('spells')">Spells</button>
                 <button class="tab-btn" onclick="switchEditorTab('inventory')">Inventory</button>
+                <button class="tab-btn" onclick="switchEditorTab('companions')">Companions</button>
             </div>
 
             <div id="editor-tab-details" class="editor-panel">
@@ -1400,7 +1450,11 @@
                     <div><label style="color:#888; font-size:0.8rem;">Group (Folder)</label><input type="text" id="edit-group" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                     <div class="full-width"><label style="color:#888; font-size:0.8rem;">Roles (comma sep)</label><input type="text" id="edit-roles" style="width:100%; padding:8px; background:#000; color:#fff; border:1px solid #333;"></div>
                 </div>
-                <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 10px;">
+                <div style="margin-top: 15px;">
+                    <label style="color:#888; font-size:0.8rem;">Backstory</label>
+                    <textarea id="edit-backstory" placeholder="Character backstory, history, secrets..." style="width:100%; min-height:120px; padding:10px; background:#000; color:#ccc; border:1px solid #333; resize:vertical; font-family:inherit; font-size:0.9rem;"></textarea>
+                </div>
+                <div style="margin-top: 15px; border-top: 1px solid #333; padding-top: 10px;">
                     <button class="action-btn danger" onclick="deleteCharacter(editingCharIndex); closeCharacterEditor();" style="width: 100%;">DELETE CHARACTER</button>
                 </div>
             </div>
@@ -1651,6 +1705,29 @@
                 </div>
             </div>
 
+            <!-- COMPANIONS TAB -->
+            <div id="editor-tab-companions" class="editor-panel hidden">
+                <h4 style="color:var(--accent-color); border-bottom:1px solid #333;">Companions / Pets / Drones</h4>
+                
+                <div style="background:#111; border:1px solid #333; padding:10px; margin-bottom:10px;">
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <input type="text" id="comp-add-name" placeholder="Companion name..." style="flex:1; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                        <select id="comp-add-type" style="padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                            <option value="Creature Companion">Creature Companion</option>
+                            <option value="Drone">Drone</option>
+                            <option value="Familiar">Familiar</option>
+                            <option value="Mount">Mount</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <button class="action-btn" style="white-space:nowrap;" onclick="addCompanion()">+ Add</button>
+                    </div>
+                </div>
+                
+                <div id="editor-companions-list" style="display:flex; flex-direction:column; gap:10px; max-height:400px; overflow-y:auto;">
+                    <div style="color:#666; padding:20px; text-align:center; font-style:italic;">No companions. Use the form above to add one.</div>
+                </div>
+            </div>
+
             <div style="display: flex; gap: 10px; margin-top: 20px;">
                 <button class="action-btn" onclick="saveCharacterEditor()">SAVE CHANGES</button>
                 <button class="action-btn danger" onclick="closeCharacterEditor()">CANCEL</button>
@@ -1688,12 +1765,25 @@
             });
             document.getElementById('tab-' + tabName).classList.remove('hidden');
             
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            // Only toggle header-level tab buttons
+            document.querySelectorAll('header .tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
 
             if (tabName === 'map') {
                 setTimeout(resizeMapPreview, 100);
             }
+        }
+
+        function switchSceneSubTab(subName, btn) {
+            document.querySelectorAll('.scene-sub-panel').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById('scene-sub-' + subName);
+            if (target) target.classList.remove('hidden');
+
+            // Toggle sub-tab buttons
+            document.querySelectorAll('#tab-map .sub-tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            if (subName === 'stage') setTimeout(resizeMapPreview, 100);
         }
 
         // --- MAP RESIZE LOGIC ---
@@ -1757,6 +1847,7 @@
             renderCharactersCards();
             if (typeof renderConversationList === 'function') renderConversationList();
             if (typeof renderRoleplayCharList === 'function') renderRoleplayCharList();
+            if (typeof renderSourceCheckboxes === 'function') renderSourceCheckboxes();
             
             updateSpawnSelect();
 
@@ -1904,10 +1995,11 @@
                     </div>
                     ${shop.description ? `<div style="color:#666; font-size:0.75rem; margin-bottom:8px; font-style:italic;">${shop.description}</div>` : ''}
                     <div style="display:flex; gap:5px; flex-wrap:wrap; padding-top:8px; border-top:1px solid #222;">
+                        ${shop.imageUrl ? `<button class="action-btn" style="padding:4px 10px; font-size:0.75rem; color:#4af; border-color:#4af;" onclick="projectShopImageById('${shop.id}')">\uD83D\uDCFA Project</button>` : ''}
                         ${(cachedData?.characters || []).filter(c => !c.isNPC && c.username).map(c => `
-                            <button class="action-btn" style="padding:4px 10px; font-size:0.75rem;" onclick="openShopForPlayer('${shop.id}', '${c.id}')">🛒 ${c.name}</button>
+                            <button class="action-btn" style="padding:4px 10px; font-size:0.75rem;" onclick="openShopForPlayer('${shop.id}', '${c.id}')">\uD83D\uDED2 ${c.name}</button>
                         `).join('')}
-                        <button class="action-btn" style="padding:4px 10px; font-size:0.75rem; color:#f55; border-color:#f55;" onclick="closeShopForAll('${shop.id}')">✕ Close All</button>
+                        <button class="action-btn" style="padding:4px 10px; font-size:0.75rem; color:#f55; border-color:#f55;" onclick="closeShopForAll('${shop.id}')">\u2715 Close All</button>
                     </div>
                 `;
                 container.appendChild(div);
@@ -1951,13 +2043,38 @@
             document.getElementById('shop-edit-description').value = shop.description || '';
             document.getElementById('shop-edit-resale').value = shop.resalePercent || 10;
             document.getElementById('shop-edit-categories').value = (shop.categories || []).join(', ');
+            document.getElementById('shop-edit-image').value = shop.imageUrl || '';
+            const imgPreview = document.getElementById('shop-image-preview');
+            if (imgPreview) { imgPreview.style.display = 'none'; }
             editorShopStock = JSON.parse(JSON.stringify(shop.stock || []));
             document.getElementById('bulk-preview-info').textContent = '';
+            document.getElementById('random-info').textContent = '';
+            populateBulkSourceDropdown();
             renderShopStockEditor();
             modal.classList.add('open');
         }
 
         let editorShopStock = [];
+        let expandedStockItemId = null;
+
+        function buildAdminItemDetail(item) {
+            if (!item) return '';
+            let html = '<tr><td colspan="7" style="padding:0;"><div style="background:#0a0a16; border-left:2px solid #ffd700; padding:8px 10px; margin:0 8px 4px 20px; font-size:0.72rem; color:#aaa;">';
+            if (item.stats) html += `<div style="margin-bottom:3px;"><span style="color:#888;">Stats:</span> <span style="color:#ccc;">${item.stats}</span></div>`;
+            if (item.details) {
+                const d = item.details;
+                if (d.damage) html += `<div><span style="color:#888;">Damage:</span> <span style="color:#ccc;">${d.damage}</span></div>`;
+                if (d.range) html += `<div><span style="color:#888;">Range:</span> <span style="color:#ccc;">${d.range}</span></div>`;
+                if (d.capacity) html += `<div><span style="color:#888;">Capacity:</span> <span style="color:#ccc;">${d.capacity} (${d.ammoType || 'charge'}, use ${d.usage || 1})</span></div>`;
+                if (d.critical) html += `<div><span style="color:#888;">Critical:</span> <span style="color:#ccc;">${d.critical}</span></div>`;
+                if (d.eac !== undefined) html += `<div><span style="color:#888;">EAC/KAC:</span> <span style="color:#ccc;">+${d.eac}/+${d.kac} | MaxDex:${d.maxDex ?? '-'} | ACP:${d.acp ?? '-'}</span></div>`;
+                if (d.special) html += `<div><span style="color:#888;">Special:</span> <span style="color:#ccc;">${d.special}</span></div>`;
+            }
+            if (item.source) html += `<div><span style="color:#888;">Source:</span> <span style="color:#ccc;">${item.source}</span></div>`;
+            if (item.description) html += `<div style="color:#777; margin-top:4px; font-size:0.7rem; max-height:80px; overflow-y:auto;">${item.description}</div>`;
+            html += '</div></td></tr>';
+            return html;
+        }
 
         function renderShopStockEditor() {
             const tbody = document.getElementById('shop-stock-tbody');
@@ -1975,26 +2092,35 @@
 
             filtered.forEach(({ entry, i }) => {
                 const item = cachedData?.items?.find(it => it.id === entry.itemId);
+                const src = item ? getItemSourceAbbr(item.source) : '-';
+                const isExpanded = expandedStockItemId === entry.itemId;
                 const tr = document.createElement('tr');
                 tr.style.borderBottom = '1px solid #1a1a1a';
+                tr.style.cursor = 'pointer';
                 tr.innerHTML = `
-                    <td style="color:#fff; padding:4px 8px; font-size:0.82rem;">${item ? item.name : entry.itemId}</td>
+                    <td style="color:#fff; padding:4px 8px; font-size:0.82rem;" onclick="expandedStockItemId = expandedStockItemId==='${entry.itemId}'?null:'${entry.itemId}'; renderShopStockEditor();">${isExpanded ? '▾ ' : ''}${item ? item.name : entry.itemId}</td>
                     <td style="color:#888; padding:4px; font-size:0.72rem; text-align:center;">${item ? (item.category || '-').substring(0, 4) : '-'}</td>
                     <td style="color:#aaa; padding:4px; text-align:center; font-size:0.82rem;">${item ? (item.level || '-') : '-'}</td>
-                    <td><input type="number" class="no-spin" value="${entry.qty}" onchange="editorShopStock[${i}].qty=parseInt(this.value)" style="width:55px; background:#000; color:#fff; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" title="-1 = unlimited"></td>
-                    <td><input type="number" class="no-spin" value="${entry.priceOverride || ''}" onchange="editorShopStock[${i}].priceOverride=parseInt(this.value)||0" style="width:70px; background:#000; color:#ffd700; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" placeholder="${item?.price || 'def'}"></td>
-                    <td><button style="color:#f55; background:none; border:none; cursor:pointer; font-size:1rem; padding:2px;" onclick="editorShopStock.splice(${i},1); renderShopStockEditor();">✕</button></td>
+                    <td style="color:#666; padding:4px; font-size:0.68rem; text-align:center;">${src || '-'}</td>
+                    <td><input type="number" class="no-spin" value="${entry.qty}" onchange="editorShopStock[${i}].qty=parseInt(this.value)" onclick="event.stopPropagation();" style="width:55px; background:#000; color:#fff; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" title="-1 = unlimited"></td>
+                    <td><input type="number" class="no-spin" value="${entry.priceOverride || ''}" onchange="editorShopStock[${i}].priceOverride=parseInt(this.value)||0" onclick="event.stopPropagation();" style="width:70px; background:#000; color:#ffd700; border:1px solid #333; padding:3px; text-align:center; font-family:inherit; font-size:0.8rem;" placeholder="${item?.price || 'def'}"></td>
+                    <td><button style="color:#f55; background:none; border:none; cursor:pointer; font-size:1rem; padding:2px;" onclick="event.stopPropagation(); editorShopStock.splice(${i},1); renderShopStockEditor();">✕</button></td>
                 `;
                 tbody.appendChild(tr);
+                if (isExpanded && item) {
+                    const detailTr = document.createElement('tr');
+                    detailTr.innerHTML = buildAdminItemDetail(item).replace(/<\/?tr>/g, '');
+                    tbody.appendChild(detailTr);
+                }
             });
 
             if (filtered.length === 0 && editorShopStock.length > 0) {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td colspan="6" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items match filter (${editorShopStock.length} total in stock)</td>`;
+                tr.innerHTML = `<td colspan="7" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items match filter (${editorShopStock.length} total in stock)</td>`;
                 tbody.appendChild(tr);
             } else if (editorShopStock.length === 0) {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td colspan="6" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items in stock. Use the tools above to add items.</td>`;
+                tr.innerHTML = `<td colspan="7" style="color:#888; text-align:center; padding:10px; font-size:0.8rem;">No items in stock. Use the tools above to add items.</td>`;
                 tbody.appendChild(tr);
             }
         }
@@ -2009,6 +2135,150 @@
             select.value = '';
         }
 
+        // Canonical book code mapping
+        const SOURCE_BOOK_MAP = {
+            'CRB': 'Core Rulebook',
+            'AR':  'Armory',
+            'AA1': 'Alien Archive',
+            'AA2': 'Alien Archive 2',
+            'AA3': 'Alien Archive 3',
+            'AA4': 'Alien Archive 4',
+            'COM': 'Character Operations Manual',
+            'PW':  'Pact Worlds',
+            'NS':  'Near Space',
+            'TR':  'Tech Revolution',
+            'GEM': 'Galactic Exploration Manual',
+            'GM':  'Galactic Magic',
+            'DC':  'Drift Crisis',
+            'IS':  'Interstellar Species',
+            'EN':  'Starfinder Enhanced',
+            'PoC': 'Ports of Call',
+            'AP':  'Adventure Path',
+            'SA':  'Starfinder Adventure',
+            'SFS': 'Starfinder Society',
+            'AotD':'Angels of the Drift',
+            'UNK': 'Unknown'
+        };
+
+        function getItemSourceAbbr(source) {
+            if (!source) return '';
+            const s = source.trim();
+            if (/^CRB\b|^Core Rulebook/i.test(s)) return 'CRB';
+            if (/^AR\b|^ARM\b|^Armory|^ARRM/i.test(s)) return 'AR';
+            if (/^AA1\b|^Alien Archive(?!\s*[2-4])/i.test(s)) return 'AA1';
+            if (/^AA2\b/i.test(s)) return 'AA2';
+            if (/^AA3\b/i.test(s) && !/^AA31/.test(s)) return 'AA3';
+            if (/^AA31/i.test(s)) return 'AA3';
+            if (/^AA4\b/i.test(s)) return 'AA4';
+            if (/^AA\b|^AA#/i.test(s)) return 'AA1'; // generic AA → AA1
+            if (/^COM\b|^Character Oper/i.test(s)) return 'COM';
+            if (/^PW\b|^Pact Worlds/i.test(s)) return 'PW';
+            if (/^NS\b/i.test(s)) return 'NS';
+            if (/^TR\b/i.test(s)) return 'TR';
+            if (/^GEM\b/i.test(s)) return 'GEM';
+            if (/^DC\b/i.test(s)) return 'DC';
+            if (/^IS\b|^IS,/i.test(s)) return 'IS';
+            if (/^GM\b/i.test(s)) return 'GM';
+            if (/^EN\b/i.test(s)) return 'EN';
+            if (/^PoC\b/i.test(s)) return 'PoC';
+            if (/^AP\b|^AP#/i.test(s)) return 'AP';
+            if (/^SA:/i.test(s)) return 'SA';
+            if (/^SFS\b/i.test(s)) return 'SFS';
+            if (/^AotD/i.test(s)) return 'AotD';
+            if (/^Escape|^King Xeros/i.test(s)) return 'AP'; // AP one-offs
+            return 'UNK';
+        }
+
+        function getSourceFullName(code) {
+            return SOURCE_BOOK_MAP[code] || code;
+        }
+
+        // --- CAMPAIGN SETTINGS: Global Source Filter ---
+        let campaignAllowedSources = []; // Empty = all allowed
+
+        function isSourceAllowed(source) {
+            if (!campaignAllowedSources || campaignAllowedSources.length === 0) return true;
+            const code = getItemSourceAbbr(source);
+            return campaignAllowedSources.includes(code);
+        }
+
+        socket.on('campaign_settings_update', (settings) => {
+            campaignAllowedSources = settings.allowedSources || [];
+            renderSourceCheckboxes();
+            // Refresh UIs that depend on source filtering
+            if (typeof renderItemsTable === 'function') renderItemsTable();
+            if (typeof populateBulkSourceDropdown === 'function') populateBulkSourceDropdown();
+        });
+
+        function renderSourceCheckboxes() {
+            const container = document.getElementById('source-checkboxes');
+            if (!container) return;
+            // Count items per source code
+            const counts = {};
+            (cachedData?.items || []).forEach(i => {
+                if (i.source) {
+                    const code = getItemSourceAbbr(i.source);
+                    counts[code] = (counts[code] || 0) + 1;
+                }
+            });
+            // Count spells per source (if available)
+            const spellCounts = {};
+            (cachedData?.spells || []).forEach(s => {
+                if (s.source) {
+                    const code = getItemSourceAbbr(s.source);
+                    spellCounts[code] = (spellCounts[code] || 0) + 1;
+                }
+            });
+            // All known book codes sorted by count
+            const allCodes = Object.keys(SOURCE_BOOK_MAP);
+            const sorted = allCodes.filter(c => (counts[c] || spellCounts[c]))
+                .sort((a, b) => ((counts[b]||0) + (spellCounts[b]||0)) - ((counts[a]||0) + (spellCounts[a]||0)));
+
+            const isAll = !campaignAllowedSources || campaignAllowedSources.length === 0;
+            container.innerHTML = sorted.map(code => {
+                const checked = isAll || campaignAllowedSources.includes(code);
+                const itemCount = counts[code] || 0;
+                const spellCount = spellCounts[code] || 0;
+                const meta = [itemCount ? `${itemCount} items` : '', spellCount ? `${spellCount} spells` : ''].filter(Boolean).join(', ');
+                return `<label style="display:flex; align-items:center; gap:8px; padding:5px 8px; background:#111; border:1px solid #222; cursor:pointer; font-size:0.82rem;">
+                    <input type="checkbox" value="${code}" ${checked ? 'checked' : ''} style="accent-color:#ffd700; width:16px; height:16px;">
+                    <span style="color:#ffd700; font-weight:bold; min-width:40px;">${code}</span>
+                    <span style="color:#ccc; flex:1;">${getSourceFullName(code)}</span>
+                    <span style="color:#666; font-size:0.72rem; white-space:nowrap;">${meta}</span>
+                </label>`;
+            }).join('');
+        }
+
+        function selectAllSources(selectAll) {
+            document.querySelectorAll('#source-checkboxes input[type=checkbox]').forEach(cb => cb.checked = selectAll);
+        }
+
+        function saveCampaignSources() {
+            const checked = [];
+            document.querySelectorAll('#source-checkboxes input[type=checkbox]:checked').forEach(cb => checked.push(cb.value));
+            // If all are checked, send empty array (= no filter)
+            const totalBoxes = document.querySelectorAll('#source-checkboxes input[type=checkbox]').length;
+            const allowedSources = checked.length === totalBoxes ? [] : checked;
+            socket.emit('admin_campaign_settings', { allowedSources });
+            const statusEl = document.getElementById('settings-save-status');
+            if (statusEl) { statusEl.textContent = 'Saved!'; setTimeout(() => statusEl.textContent = '', 2000); }
+        }
+
+        function bulkFilterItems(category, lvMin, lvMax) {
+            const sourceVal = document.getElementById('bulk-source')?.value || '';
+            return (cachedData?.items || []).filter(i => {
+                if (!isSourceAllowed(i.source)) return false;
+                if (category && i.category !== category) return false;
+                const lv = i.level || 0;
+                if (lv < lvMin || lv > lvMax) return false;
+                if (sourceVal) {
+                    const abbr = getItemSourceAbbr(i.source);
+                    if (abbr !== sourceVal) return false;
+                }
+                return true;
+            });
+        }
+
         function bulkPreviewShopItems() {
             const category = document.getElementById('bulk-category').value;
             const lvMin = parseInt(document.getElementById('bulk-level-min').value) || 0;
@@ -2017,17 +2287,11 @@
             if (!cachedData?.items) { info.textContent = 'No items loaded.'; return; }
 
             const existing = new Set(editorShopStock.map(s => s.itemId));
-            const matching = cachedData.items.filter(i => {
-                if (category && i.category !== category) return false;
-                const lv = i.level || 0;
-                if (lv < lvMin || lv > lvMax) return false;
-                return true;
-            });
+            const matching = bulkFilterItems(category, lvMin, lvMax);
             const newOnes = matching.filter(i => !existing.has(i.id));
+            const sourceVal = document.getElementById('bulk-source')?.value || 'All';
             info.innerHTML = `Found <strong style="color:#fff;">${matching.length}</strong> items (${newOnes.length} new, ${matching.length - newOnes.length} already in stock)`;
-            if (matching.length > 0) {
-                info.innerHTML += ` — ${category || 'All'} Lv${lvMin}–${lvMax}`;
-            }
+            info.innerHTML += ` — ${category || 'All'} Lv${lvMin}–${lvMax} [${sourceVal}]`;
         }
 
         function bulkAddShopItems() {
@@ -2039,13 +2303,7 @@
             if (!cachedData?.items) return;
 
             const existing = new Set(editorShopStock.map(s => s.itemId));
-            const matching = cachedData.items.filter(i => {
-                if (category && i.category !== category) return false;
-                const lv = i.level || 0;
-                if (lv < lvMin || lv > lvMax) return false;
-                if (existing.has(i.id)) return false;
-                return true;
-            });
+            const matching = bulkFilterItems(category, lvMin, lvMax).filter(i => !existing.has(i.id));
 
             if (matching.length === 0) {
                 document.getElementById('bulk-preview-info').textContent = 'No new items to add.';
@@ -2058,6 +2316,23 @@
             });
 
             document.getElementById('bulk-preview-info').innerHTML = `<span style="color:#0f0;">Added ${matching.length} items!</span>`;
+            renderShopStockEditor();
+        }
+
+        function randomizeShopStock() {
+            const base = parseInt(document.getElementById('random-base-qty').value) || 3;
+            const variance = parseInt(document.getElementById('random-variance').value) || 2;
+            const skipUnlimited = document.getElementById('random-skip-unlimited').checked;
+            let changed = 0;
+
+            editorShopStock.forEach(entry => {
+                if (skipUnlimited && entry.qty === -1) return;
+                const delta = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
+                entry.qty = Math.max(0, base + delta);
+                changed++;
+            });
+
+            document.getElementById('random-info').innerHTML = `<span style="color:#4af;">Randomized ${changed} items: base ${base} ± ${variance} (range ${Math.max(0, base - variance)}–${base + variance})</span>`;
             renderShopStockEditor();
         }
 
@@ -2074,6 +2349,7 @@
                 name: document.getElementById('shop-edit-name').value,
                 location: document.getElementById('shop-edit-location').value,
                 description: document.getElementById('shop-edit-description').value,
+                imageUrl: document.getElementById('shop-edit-image').value.trim(),
                 resalePercent: parseInt(document.getElementById('shop-edit-resale').value) || 10,
                 categories: document.getElementById('shop-edit-categories').value.split(',').map(s => s.trim()).filter(s => s),
                 stock: editorShopStock
@@ -2086,18 +2362,63 @@
             document.getElementById('shop-editor-modal').classList.remove('open');
         }
 
+        function previewShopImage() {
+            const url = document.getElementById('shop-edit-image').value.trim();
+            const preview = document.getElementById('shop-image-preview');
+            if (!url || !preview) { preview.style.display = 'none'; return; }
+            preview.style.display = 'block';
+            preview.querySelector('img').src = url;
+        }
+
+        function projectShopImage() {
+            const url = document.getElementById('shop-edit-image').value.trim();
+            if (!url) { alert('No image URL set'); return; }
+            socket.emit('admin_mood_action', { type: 'set', url });
+            log('SHOP: Projected shop image to mood display');
+        }
+
+        function projectShopImageById(shopId) {
+            const shop = shopData.find(s => s.id === shopId);
+            if (!shop || !shop.imageUrl) { alert('No image set for this shop. Edit the shop to add one.'); return; }
+            socket.emit('admin_mood_action', { type: 'set', url: shop.imageUrl });
+            log('SHOP: Projected ' + shop.name + ' image to mood display');
+        }
+
+        function populateBulkSourceDropdown() {
+            const select = document.getElementById('bulk-source');
+            if (!select || !cachedData?.items) return;
+            const sources = {};
+            cachedData.items.forEach(i => {
+                if (i.source && isSourceAllowed(i.source)) {
+                    const abbr = getItemSourceAbbr(i.source);
+                    if (abbr) sources[abbr] = (sources[abbr] || 0) + 1;
+                }
+            });
+            const sorted = Object.entries(sources).sort((a, b) => b[1] - a[1]);
+            select.innerHTML = '<option value="">All Sources</option>';
+            sorted.forEach(([abbr, count]) => {
+                const opt = document.createElement('option');
+                opt.value = abbr;
+                opt.textContent = `${abbr} — ${getSourceFullName(abbr)} (${count})`;
+                select.appendChild(opt);
+            });
+        }
+
         function filterShopItems() {
             const search = (document.getElementById('shop-item-search')?.value || '').toLowerCase();
             const select = document.getElementById('shop-item-add-select');
             if (!select || !cachedData?.items) return;
             select.innerHTML = '<option value="">-- Select item --</option>';
             cachedData.items
-                .filter(i => i.name.toLowerCase().includes(search))
+                .filter(i => isSourceAllowed(i.source) && i.name.toLowerCase().includes(search))
                 .slice(0, 50)
                 .forEach(i => {
+                    const src = i.source ? ` [${getItemSourceAbbr(i.source)}]` : '';
                     const opt = document.createElement('option');
                     opt.value = i.id;
-                    opt.textContent = `${i.name} (Lv${i.level || '?'} ${i.category || ''}) - ${i.price || 0}cr`;
+                    const label = `${i.name} (Lv${i.level || '?'} ${i.category || ''}) - ${i.price || 0}cr${src}`;
+                    opt.textContent = label.length > 70 ? label.substring(0, 67) + '...' : label;
+                    opt.title = label;
                     select.appendChild(opt);
                 });
         }
@@ -3924,6 +4245,17 @@
             closeGroupModal();
         }
 
+        function deleteGroupChat(groupId) {
+            const group = conversations.find(c => c.id === groupId);
+            const name = group ? group.name : groupId;
+            if (!confirm(`Delete group chat "${name}"? This cannot be undone.`)) return;
+            socket.emit('delete_conversation', { id: groupId });
+            if (currentConversation === groupId) {
+                currentConversation = 'global';
+                renderChatLog();
+            }
+        }
+
         socket.on('conversations_update', (convs) => {
             conversations = convs;
             renderConversationList();
@@ -3992,6 +4324,10 @@
             div.appendChild(span);
 
             if (isGroup) {
+                const btnWrap = document.createElement('div');
+                btnWrap.style.display = 'flex';
+                btnWrap.style.gap = '2px';
+
                 const editBtn = document.createElement('button');
                 editBtn.innerText = '⚙';
                 editBtn.style.background = 'none';
@@ -4002,7 +4338,22 @@
                     e.stopPropagation();
                     openGroupModal(channelId);
                 };
-                div.appendChild(editBtn);
+                btnWrap.appendChild(editBtn);
+
+                const delBtn = document.createElement('button');
+                delBtn.innerText = '🗑';
+                delBtn.style.background = 'none';
+                delBtn.style.border = 'none';
+                delBtn.style.color = '#555';
+                delBtn.style.cursor = 'pointer';
+                delBtn.title = 'Delete Group Chat';
+                delBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    deleteGroupChat(channelId);
+                };
+                btnWrap.appendChild(delBtn);
+
+                div.appendChild(btnWrap);
             }
             
             div.onclick = () => {
@@ -4359,6 +4710,7 @@
             
             // Filter
             let filteredItems = cachedData.items.filter(item => {
+                if (!isSourceAllowed(item.source)) return false;
                 if (filterName && !item.name.toLowerCase().includes(filterName)) return false;
                 if (currentItemCategory !== 'All' && item.category !== currentItemCategory) return false;
                 
@@ -4968,6 +5320,7 @@
             document.getElementById('edit-class').value = char.class || '';
             document.getElementById('edit-group').value = char.group || '';
             document.getElementById('edit-roles').value = (char.roles || []).join(', ');
+            document.getElementById('edit-backstory').value = char.backstory || '';
 
             // Populate Stats
             const vitals = char.vitals || {};
@@ -5028,6 +5381,10 @@
             renderEditorInventory();
             populateInvAddSelect();
 
+            // Populate Companions
+            editorCompanions = JSON.parse(JSON.stringify(char.companions || []));
+            renderEditorCompanions();
+
             document.getElementById('char-editor-modal').classList.add('open');
             switchEditorTab('details');
             
@@ -5037,6 +5394,271 @@
         }
 
         let editorInventory = [];
+        let editorCompanions = [];
+
+        // ─── COMPANION EDITOR ────────────────────────────────
+        function generateCompanionId() {
+            return 'comp_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+        }
+
+        function addCompanion() {
+            const nameInput = document.getElementById('comp-add-name');
+            const typeSelect = document.getElementById('comp-add-type');
+            const name = nameInput.value.trim();
+            if (!name) { alert('Enter a companion name'); return; }
+            editorCompanions.push({
+                id: generateCompanionId(),
+                name,
+                type: typeSelect.value,
+                image: '',
+                level: 1,
+                hp: 10, max_hp: 10,
+                eac: 10, kac: 10,
+                speed: 30,
+                stats: { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 },
+                attacks: [],
+                abilities: [],
+                skills: [],
+                notes: ''
+            });
+            nameInput.value = '';
+            renderEditorCompanions();
+        }
+
+        function removeCompanion(idx) {
+            if (!confirm(`Delete companion "${editorCompanions[idx]?.name}"?`)) return;
+            editorCompanions.splice(idx, 1);
+            renderEditorCompanions();
+        }
+
+        function toggleCompanionExpand(idx) {
+            const el = document.getElementById('comp-detail-' + idx);
+            if (el) el.classList.toggle('hidden');
+        }
+
+        function compFieldChanged(idx) {
+            const c = editorCompanions[idx];
+            if (!c) return;
+            c.name  = document.getElementById(`comp-name-${idx}`).value;
+            c.type  = document.getElementById(`comp-type-${idx}`).value;
+            c.image = document.getElementById(`comp-image-${idx}`).value;
+            c.level = parseInt(document.getElementById(`comp-level-${idx}`).value) || 1;
+            c.hp    = parseInt(document.getElementById(`comp-hp-${idx}`).value) || 0;
+            c.max_hp = parseInt(document.getElementById(`comp-maxhp-${idx}`).value) || 0;
+            c.eac   = parseInt(document.getElementById(`comp-eac-${idx}`).value) || 10;
+            c.kac   = parseInt(document.getElementById(`comp-kac-${idx}`).value) || 10;
+            c.speed = parseInt(document.getElementById(`comp-speed-${idx}`).value) || 30;
+            ['STR','DEX','CON','INT','WIS','CHA'].forEach(s => {
+                c.stats[s] = parseInt(document.getElementById(`comp-stat-${s}-${idx}`).value) || 10;
+            });
+            c.notes = document.getElementById(`comp-notes-${idx}`).value;
+        }
+
+        function addCompanionAttack(idx) {
+            compFieldChanged(idx);
+            saveCompanionInlineEdits(idx);
+            editorCompanions[idx].attacks.push({ name: 'New Attack', bonus: '+0', damage: '1d4' });
+            renderEditorCompanions([idx]);
+        }
+        function removeCompanionAttack(cIdx, aIdx) {
+            compFieldChanged(cIdx);
+            saveCompanionInlineEdits(cIdx);
+            editorCompanions[cIdx].attacks.splice(aIdx, 1);
+            renderEditorCompanions([cIdx]);
+        }
+
+        function addCompanionAbility(idx) {
+            compFieldChanged(idx);
+            saveCompanionInlineEdits(idx);
+            editorCompanions[idx].abilities.push('New Ability');
+            renderEditorCompanions([idx]);
+        }
+        function removeCompanionAbility(cIdx, aIdx) {
+            compFieldChanged(cIdx);
+            saveCompanionInlineEdits(cIdx);
+            editorCompanions[cIdx].abilities.splice(aIdx, 1);
+            renderEditorCompanions([cIdx]);
+        }
+
+        function addCompanionSkill(idx) {
+            compFieldChanged(idx);
+            saveCompanionInlineEdits(idx);
+            editorCompanions[idx].skills.push({ name: 'Skill', bonus: 0 });
+            renderEditorCompanions([idx]);
+        }
+        function removeCompanionSkill(cIdx, sIdx) {
+            compFieldChanged(cIdx);
+            saveCompanionInlineEdits(cIdx);
+            editorCompanions[cIdx].skills.splice(sIdx, 1);
+            renderEditorCompanions([cIdx]);
+        }
+
+        function saveCompanionInlineEdits(idx) {
+            const c = editorCompanions[idx];
+            // attacks
+            c.attacks.forEach((a, i) => {
+                const nameEl = document.getElementById(`comp-atk-name-${idx}-${i}`);
+                const bonusEl = document.getElementById(`comp-atk-bonus-${idx}-${i}`);
+                const dmgEl = document.getElementById(`comp-atk-dmg-${idx}-${i}`);
+                if (nameEl) a.name = nameEl.value;
+                if (bonusEl) a.bonus = bonusEl.value;
+                if (dmgEl) a.damage = dmgEl.value;
+            });
+            // abilities
+            c.abilities = c.abilities.map((_, i) => {
+                const el = document.getElementById(`comp-abil-${idx}-${i}`);
+                return el ? el.value : _;
+            });
+            // skills
+            c.skills.forEach((s, i) => {
+                const nameEl = document.getElementById(`comp-skill-name-${idx}-${i}`);
+                const bonusEl = document.getElementById(`comp-skill-bonus-${idx}-${i}`);
+                if (nameEl) s.name = nameEl.value;
+                if (bonusEl) s.bonus = parseInt(bonusEl.value) || 0;
+            });
+        }
+
+        function renderEditorCompanions(keepExpandedIndices) {
+            // Save inline edits from all expanded companions before re-rendering
+            const wasExpanded = [];
+            editorCompanions.forEach((c, i) => {
+                const det = document.getElementById('comp-detail-' + i);
+                if (det && !det.classList.contains('hidden')) {
+                    if (!keepExpandedIndices || !keepExpandedIndices.includes(i)) {
+                        compFieldChanged(i);
+                        saveCompanionInlineEdits(i);
+                    }
+                    wasExpanded.push(i);
+                }
+            });
+            // If explicitly passed, use those; otherwise use detected
+            const toExpand = keepExpandedIndices || wasExpanded;
+
+            const container = document.getElementById('editor-companions-list');
+            if (!container) return;
+            if (editorCompanions.length === 0) {
+                container.innerHTML = '<div style="color:#666; padding:20px; text-align:center; font-style:italic;">No companions. Use the form above to add one.</div>';
+                return;
+            }
+            container.innerHTML = editorCompanions.map((c, idx) => {
+                const statsHtml = ['STR','DEX','CON','INT','WIS','CHA'].map(s =>
+                    `<div style="text-align:center;">
+                        <div style="color:#888; font-size:10px;">${s}</div>
+                        <input type="number" id="comp-stat-${s}-${idx}" value="${c.stats?.[s] || 10}" style="width:45px; background:#000; color:#fff; border:1px solid #333; text-align:center; padding:4px;" onchange="compFieldChanged(${idx})">
+                    </div>`
+                ).join('');
+
+                const attacksHtml = (c.attacks || []).map((a, ai) =>
+                    `<div style="display:flex; gap:4px; align-items:center; margin-bottom:2px;">
+                        <input type="text" id="comp-atk-name-${idx}-${ai}" value="${a.name}" placeholder="Attack" style="flex:2; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <input type="text" id="comp-atk-bonus-${idx}-${ai}" value="${a.bonus}" placeholder="+0" style="width:50px; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <input type="text" id="comp-atk-dmg-${idx}-${ai}" value="${a.damage}" placeholder="1d6" style="width:60px; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <button style="background:#600; color:#fff; border:none; cursor:pointer; padding:2px 6px; font-size:11px;" onclick="removeCompanionAttack(${idx},${ai})">✕</button>
+                    </div>`
+                ).join('');
+
+                const abilitiesHtml = (c.abilities || []).map((ab, ai) =>
+                    `<div style="display:flex; gap:4px; align-items:center; margin-bottom:2px;">
+                        <input type="text" id="comp-abil-${idx}-${ai}" value="${typeof ab === 'string' ? ab : ab.name || ''}" style="flex:1; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <button style="background:#600; color:#fff; border:none; cursor:pointer; padding:2px 6px; font-size:11px;" onclick="removeCompanionAbility(${idx},${ai})">✕</button>
+                    </div>`
+                ).join('');
+
+                const skillsHtml = (c.skills || []).map((s, si) =>
+                    `<div style="display:flex; gap:4px; align-items:center; margin-bottom:2px;">
+                        <input type="text" id="comp-skill-name-${idx}-${si}" value="${s.name}" placeholder="Skill" style="flex:2; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <input type="number" id="comp-skill-bonus-${idx}-${si}" value="${s.bonus}" style="width:50px; padding:4px; background:#000; color:#fff; border:1px solid #333; font-size:12px;">
+                        <button style="background:#600; color:#fff; border:none; cursor:pointer; padding:2px 6px; font-size:11px;" onclick="removeCompanionSkill(${idx},${si})">✕</button>
+                    </div>`
+                ).join('');
+
+                return `<div style="background:#111; border:1px solid #333; padding:0;">
+                    <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; cursor:pointer; background:#1a1a1a;" onclick="toggleCompanionExpand(${idx})">
+                        <span style="color:var(--accent-color); font-weight:bold; flex:1;">${c.name}</span>
+                        <span style="color:#888; font-size:12px;">${c.type} · Lvl ${c.level} · HP ${c.hp}/${c.max_hp}</span>
+                        <button class="action-btn danger" style="font-size:11px; padding:2px 8px;" onclick="event.stopPropagation(); removeCompanion(${idx})">✕</button>
+                    </div>
+                    <div id="comp-detail-${idx}" class="${toExpand.includes(idx) ? '' : 'hidden'}" style="padding:10px; border-top:1px solid #333;">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+                            <div>
+                                <label style="color:#888; font-size:11px;">Name</label>
+                                <input type="text" id="comp-name-${idx}" value="${c.name}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333;" onchange="compFieldChanged(${idx})">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:11px;">Type</label>
+                                <select id="comp-type-${idx}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333;" onchange="compFieldChanged(${idx})">
+                                    <option value="Creature Companion" ${c.type==='Creature Companion'?'selected':''}>Creature Companion</option>
+                                    <option value="Drone" ${c.type==='Drone'?'selected':''}>Drone</option>
+                                    <option value="Familiar" ${c.type==='Familiar'?'selected':''}>Familiar</option>
+                                    <option value="Mount" ${c.type==='Mount'?'selected':''}>Mount</option>
+                                    <option value="Other" ${c.type==='Other'?'selected':''}>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-bottom:8px;">
+                            <label style="color:#888; font-size:11px;">Image URL</label>
+                            <input type="text" id="comp-image-${idx}" value="${c.image || ''}" placeholder="URL to image..." style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333;" onchange="compFieldChanged(${idx})">
+                        </div>
+                        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; margin-bottom:8px;">
+                            <div>
+                                <label style="color:#888; font-size:11px;">Level</label>
+                                <input type="number" id="comp-level-${idx}" value="${c.level}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:11px;">HP</label>
+                                <input type="number" id="comp-hp-${idx}" value="${c.hp}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:11px;">Max HP</label>
+                                <input type="number" id="comp-maxhp-${idx}" value="${c.max_hp}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:11px;">EAC</label>
+                                <input type="number" id="comp-eac-${idx}" value="${c.eac}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:11px;">KAC</label>
+                                <input type="number" id="comp-kac-${idx}" value="${c.kac}" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                            </div>
+                        </div>
+                        <div style="margin-bottom:8px;">
+                            <label style="color:#888; font-size:11px;">Speed (ft)</label>
+                            <input type="number" id="comp-speed-${idx}" value="${c.speed}" style="width:80px; padding:6px; background:#000; color:#fff; border:1px solid #333; text-align:center;" onchange="compFieldChanged(${idx})">
+                        </div>
+                        <div style="display:flex; gap:6px; margin-bottom:10px;">${statsHtml}</div>
+
+                        <div style="margin-bottom:8px;">
+                            <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                                <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">ATTACKS</span>
+                                <button style="background:#333; color:#fff; border:none; cursor:pointer; padding:2px 8px; font-size:11px;" onclick="addCompanionAttack(${idx})">+</button>
+                            </div>
+                            ${attacksHtml || '<div style="color:#555; font-size:12px;">No attacks</div>'}
+                        </div>
+
+                        <div style="margin-bottom:8px;">
+                            <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                                <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">ABILITIES</span>
+                                <button style="background:#333; color:#fff; border:none; cursor:pointer; padding:2px 8px; font-size:11px;" onclick="addCompanionAbility(${idx})">+</button>
+                            </div>
+                            ${abilitiesHtml || '<div style="color:#555; font-size:12px;">No abilities</div>'}
+                        </div>
+
+                        <div style="margin-bottom:8px;">
+                            <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                                <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">SKILLS</span>
+                                <button style="background:#333; color:#fff; border:none; cursor:pointer; padding:2px 8px; font-size:11px;" onclick="addCompanionSkill(${idx})">+</button>
+                            </div>
+                            ${skillsHtml || '<div style="color:#555; font-size:12px;">No skills</div>'}
+                        </div>
+
+                        <div>
+                            <label style="color:#888; font-size:11px;">Notes</label>
+                            <textarea id="comp-notes-${idx}" rows="3" style="width:100%; padding:6px; background:#000; color:#fff; border:1px solid #333; resize:vertical; font-family:inherit;" onchange="compFieldChanged(${idx})">${c.notes || ''}</textarea>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
 
         function populateInvAddSelect() {
             const select = document.getElementById('inv-add-select');
@@ -5581,6 +6203,7 @@
             char.group = document.getElementById('edit-group').value;
             char.class = document.getElementById('edit-class').value;
             char.roles = document.getElementById('edit-roles').value.split(',').map(r => r.trim()).filter(r => r.length > 0);
+            char.backstory = document.getElementById('edit-backstory').value;
 
             // Save Stats
             char.vitals = {
@@ -5639,6 +6262,16 @@
             // Save Inventory
             char.money = parseInt(document.getElementById('edit-money').value) || 0;
             char.inventory = editorInventory;
+
+            // Save Companions (flush inline edits first)
+            editorCompanions.forEach((c, i) => {
+                const det = document.getElementById('comp-detail-' + i);
+                if (det && !det.classList.contains('hidden')) {
+                    compFieldChanged(i);
+                    saveCompanionInlineEdits(i);
+                }
+            });
+            char.companions = editorCompanions;
 
             saveCharactersCards(); // Saves to server
             renderCharactersCards(); // Updates UI
@@ -5870,7 +6503,7 @@
     </script>
     <!-- QUEST MANAGER MODAL -->
     <div id="quest-manager-modal" class="modal-overlay" style="z-index: 2000;">
-        <div class="modal-box" style="width: 800px; height: 500px;">
+        <div class="modal-box" style="width: 950px; height: 600px;">
             <div class="modal-header">
                 <h3>QUEST LOG</h3>
                 <button class="btn-icon btn-icon--close" onclick="document.getElementById('quest-manager-modal').classList.remove('open')">&times;</button>
@@ -5878,29 +6511,80 @@
             
             <div style="flex: 1; display: flex; gap: 20px; min-height: 0;">
                 <!-- QUEST LIST -->
-                <div style="width: 250px; border-right: 1px solid #333; padding-right: 10px; display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px;">
-                        <button class="btn" onclick="createNewQuest()" style="width:100%;">+ NEW QUEST</button>
+                <div style="width: 280px; border-right: 1px solid #333; padding-right: 10px; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px; display: flex; gap: 5px;">
+                        <button class="btn" onclick="createNewQuest()" style="flex: 1;">+ NEW QUEST</button>
+                        <button class="btn" onclick="createNewQuest(editingQuestId)" title="Add Sub-Quest to selected" style="width: 40px; font-size: 0.7rem;">+SUB</button>
                     </div>
-                    <div id="quest-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 5px;">
+                    <div style="margin-bottom: 8px;">
+                        <select id="quest-list-filter" onchange="refreshQuestUI()" style="width:100%; padding:5px; background:#111; color:#aaa; border:1px solid #333; font-size:0.8rem;">
+                            <option value="all">All Quests</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="failed">Failed</option>
+                            <option value="hidden">Hidden</option>
+                        </select>
+                    </div>
+                    <div id="quest-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 2px;">
                         <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- QUEST EDITOR -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
-                    <div id="quest-editor-panel" style="display:none; flex-direction:column; height:100%;">
+                <div style="flex: 1; display: flex; flex-direction: column; min-height: 0; overflow-y: auto;">
+                    <div id="quest-editor-panel" style="display:none; flex-direction:column; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end;">
+                            <div>
+                                <label style="color:#888; font-size:0.8rem;">Quest Name</label>
+                                <input type="text" id="quest-edit-name" style="width:100%; padding:8px; background:#222; border:1px solid #444; color:#fff; font-size:1.1rem;">
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:0.8rem;">Priority</label>
+                                <select id="quest-edit-priority" style="padding:8px; background:#222; border:1px solid #444; color:#fff;">
+                                    <option value="main">🔶 Main</option>
+                                    <option value="side">🔹 Side</option>
+                                    <option value="personal">🔸 Personal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div>
+                                <label style="color:#888; font-size:0.8rem;">Status</label>
+                                <select id="quest-edit-status" style="width:100%; padding:8px; background:#222; border:1px solid #444; color:#fff;">
+                                    <option value="active">🟢 Active</option>
+                                    <option value="completed">✅ Completed</option>
+                                    <option value="failed">❌ Failed</option>
+                                    <option value="hidden">👁 Hidden (GM only)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="color:#888; font-size:0.8rem;">Parent Quest</label>
+                                <select id="quest-edit-parent" style="width:100%; padding:8px; background:#222; border:1px solid #444; color:#fff;">
+                                    <option value="">— None (Top-level) —</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div>
-                            <label style="color:#888; font-size:0.8rem;">Quest Name</label>
-                            <input type="text" id="quest-edit-name" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff; font-size:1.1rem;">
+                            <label style="color:#888; font-size:0.8rem;">Linked Quests</label>
+                            <div id="quest-linked-container" style="display:flex; flex-wrap:wrap; gap:5px; min-height:30px; padding:5px; background:#222; border:1px solid #444; border-radius:3px;">
+                                <!-- Tags populated by JS -->
+                            </div>
+                            <div style="display:flex; gap:5px; margin-top:4px;">
+                                <select id="quest-link-select" style="flex:1; padding:5px; background:#111; color:#ccc; border:1px solid #333; font-size:0.8rem;">
+                                    <option value="">— Add Link —</option>
+                                </select>
+                                <button class="btn" onclick="addQuestLink()" style="padding:5px 10px; font-size:0.8rem;">+</button>
+                            </div>
                         </div>
                         
                         <div style="flex:1; display:flex; flex-direction:column;">
-                            <label style="color:#888; font-size:0.8rem; margin-top:10px;">Description / Notes</label>
-                            <textarea id="quest-edit-desc" style="flex:1; width:100%; padding:10px; background:#222; border:1px solid #444; color:#ccc; resize:none; font-family:inherit;"></textarea>
+                            <label style="color:#888; font-size:0.8rem;">Description / Notes</label>
+                            <textarea id="quest-edit-desc" style="flex:1; min-height:120px; width:100%; padding:10px; background:#222; border:1px solid #444; color:#ccc; resize:none; font-family:inherit;"></textarea>
                         </div>
 
-                        <div style="margin-top: 20px; display:flex; justify-content:space-between;">
+                        <div style="display:flex; justify-content:space-between; padding-top: 5px;">
                             <button class="btn red" onclick="deleteCurrentQuest()">DELETE QUEST</button>
                             <button class="btn" onclick="saveCurrentQuest()">SAVE CHANGES</button>
                         </div>
@@ -5915,7 +6599,7 @@
 
     <!-- SHOP EDITOR MODAL -->
     <div id="shop-editor-modal" class="modal-overlay">
-        <div class="modal-box" style="width: 750px; max-height: 85vh; display: flex; flex-direction: column;">
+        <div class="modal-box" style="width: 950px; max-width:95vw; max-height: 90vh; display: flex; flex-direction: column;">
             <div class="modal-header">
                 <h3>EDIT SHOP</h3>
                 <button class="btn-icon btn-icon--close" onclick="closeShopEditor()">&times;</button>
@@ -5948,6 +6632,15 @@
                         <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Description</label>
                         <textarea id="shop-edit-description" rows="2" placeholder="Optional shop description..." style="width:100%; padding:8px; background:#000; color:#ccc; border:1px solid #333; resize:none; font-family:inherit;"></textarea>
                     </div>
+                    <div style="margin-top:10px;">
+                        <label style="color:#888; font-size:0.75rem; display:block; margin-bottom:3px;">Shop Image URL (for mood display projection)</label>
+                        <div style="display:flex; gap:5px; align-items:center;">
+                            <input type="text" id="shop-edit-image" placeholder="/media/[00]Global/shop.jpg or external URL" style="flex:1; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+                            <button class="action-btn" style="padding:6px 10px; font-size:0.75rem; white-space:nowrap;" onclick="previewShopImage()">Preview</button>
+                            <button class="action-btn" style="padding:6px 10px; font-size:0.75rem; white-space:nowrap; color:#4af; border-color:#4af;" onclick="projectShopImage()">📺 Project</button>
+                        </div>
+                        <div id="shop-image-preview" style="margin-top:6px; display:none;"><img style="max-width:200px; max-height:120px; border:1px solid #333; border-radius:3px;"></div>
+                    </div>
                 </div>
 
                 <!-- Stock Management Section -->
@@ -5960,9 +6653,9 @@
                     <!-- Add Single Item -->
                     <div style="background:#111; border:1px solid #2a2a2a; padding:10px; margin-bottom:10px;">
                         <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">ADD ITEM</div>
-                        <div style="display:flex; gap:5px; align-items:center;">
-                            <input type="text" id="shop-item-search" placeholder="Search items..." oninput="filterShopItems()" style="flex:1; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
-                            <select id="shop-item-add-select" style="flex:2; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                        <div style="display:flex; gap:5px; align-items:center; overflow:hidden;">
+                            <input type="text" id="shop-item-search" placeholder="Search items..." oninput="filterShopItems()" style="flex:1; min-width:100px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                            <select id="shop-item-add-select" style="flex:2; min-width:0; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem; overflow:hidden; text-overflow:ellipsis;">
                                 <option value="">-- Select item --</option>
                             </select>
                             <button class="action-btn" style="padding:6px 12px; white-space:nowrap;" onclick="addItemToShopStock()">+ Add</button>
@@ -5971,7 +6664,7 @@
 
                     <!-- Bulk Add Items -->
                     <div style="background:#111; border:1px solid #2a2a2a; padding:10px; margin-bottom:10px;">
-                        <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">BULK ADD BY CATEGORY & LEVEL</div>
+                        <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">BULK ADD BY CATEGORY, LEVEL & SOURCE</div>
                         <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
                             <select id="bulk-category" style="flex:1; min-width:120px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
                                 <option value="">All Categories</option>
@@ -5985,6 +6678,9 @@
                                 <option value="Upgrade">Upgrade</option>
                                 <option value="Fusion">Fusion</option>
                                 <option value="Goods">Goods</option>
+                            </select>
+                            <select id="bulk-source" style="flex:1; min-width:100px; padding:6px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.85rem;">
+                                <option value="">All Sources</option>
                             </select>
                             <div style="display:flex; align-items:center; gap:3px;">
                                 <span style="color:#888; font-size:0.75rem;">Lv</span>
@@ -6002,6 +6698,27 @@
                         <div id="bulk-preview-info" style="color:#888; font-size:0.75rem; margin-top:6px;"></div>
                     </div>
 
+                    <!-- Randomize Quantities -->
+                    <div style="background:#111; border:1px solid #2a2a2a; padding:10px; margin-bottom:10px;">
+                        <div style="color:#aaa; font-size:0.75rem; margin-bottom:6px; font-weight:bold;">RANDOMIZE STOCK QUANTITIES</div>
+                        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                            <div style="display:flex; align-items:center; gap:4px;">
+                                <span style="color:#888; font-size:0.75rem;">Base Qty</span>
+                                <input type="number" id="random-base-qty" min="1" value="3" style="width:50px; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; text-align:center;">
+                            </div>
+                            <div style="display:flex; align-items:center; gap:4px;">
+                                <span style="color:#888; font-size:0.75rem;">Variance ±</span>
+                                <input type="number" id="random-variance" min="0" value="2" style="width:50px; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; text-align:center;" title="e.g. variance 2 on base 3 = qty 1–5">
+                            </div>
+                            <div style="display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" id="random-skip-unlimited" style="accent-color:#ffd700;">
+                                <span style="color:#888; font-size:0.75rem;">Skip unlimited (-1)</span>
+                            </div>
+                            <button class="action-btn" style="padding:6px 14px; white-space:nowrap; background:#1a2a3a; color:#4af; border-color:#4af;" onclick="randomizeShopStock()">🎲 Randomize</button>
+                        </div>
+                        <div id="random-info" style="color:#888; font-size:0.75rem; margin-top:4px;"></div>
+                    </div>
+
                     <!-- Current Stock Table -->
                     <div style="display:flex; gap:5px; margin-bottom:6px;">
                         <input type="text" id="shop-stock-filter" placeholder="Filter current stock..." oninput="renderShopStockEditor()" style="flex:1; padding:5px; background:#000; color:#fff; border:1px solid #333; font-family:inherit; font-size:0.8rem;">
@@ -6013,6 +6730,7 @@
                                 <th style="text-align:left; padding:5px 8px; color:#888; font-size:0.7rem;">Item</th>
                                 <th style="padding:5px; color:#888; font-size:0.7rem; width:50px;">Cat</th>
                                 <th style="padding:5px; color:#888; font-size:0.7rem; width:30px;">Lv</th>
+                                <th style="padding:5px; color:#888; font-size:0.7rem; width:45px;">Src</th>
                                 <th style="padding:5px; color:#888; font-size:0.7rem; width:65px;" title="-1 = unlimited stock">Qty</th>
                                 <th style="padding:5px; color:#888; font-size:0.7rem; width:80px;" title="Leave 0 or empty for default price">Price</th>
                                 <th style="width:28px;"></th>
@@ -6034,6 +6752,28 @@
         let activeQuestId = localStorage.getItem('gm_active_quest') || '';
         let editingQuestId = null;
 
+        function getQuestChildren(parentId) {
+            if (!cachedData || !cachedData.quests) return [];
+            return cachedData.quests.filter(q => q.parentId === parentId);
+        }
+
+        function getQuestStatusIcon(status) {
+            switch (status) {
+                case 'completed': return '✅';
+                case 'failed': return '❌';
+                case 'hidden': return '👁';
+                default: return '🟢';
+            }
+        }
+
+        function getQuestPriorityIcon(priority) {
+            switch (priority) {
+                case 'main': return '🔶';
+                case 'personal': return '🔸';
+                default: return '🔹';
+            }
+        }
+
         function refreshQuestUI() {
             // Update Header Select
             const select = document.getElementById('active-quest-select');
@@ -6043,7 +6783,8 @@
                 cachedData.quests.forEach(q => {
                     const opt = document.createElement('option');
                     opt.value = q.id;
-                    opt.innerText = q.name;
+                    const indent = q.parentId ? '  ↳ ' : '';
+                    opt.innerText = `${indent}${getQuestStatusIcon(q.status)} ${q.name}`;
                     select.appendChild(opt);
                 });
             }
@@ -6052,22 +6793,57 @@
             // Update List in Manager
             const list = document.getElementById('quest-list');
             list.innerHTML = '';
+            const filterSel = document.getElementById('quest-list-filter');
+            const statusFilter = filterSel ? filterSel.value : 'all';
+
             if (cachedData && cachedData.quests) {
-                cachedData.quests.forEach(q => {
-                    const div = document.createElement('div');
-                    div.style.padding = '10px';
-                    div.style.cursor = 'pointer';
-                    div.style.background = (editingQuestId === q.id) ? '#333' : '#1a1a1a';
-                    div.style.border = (activeQuestId === q.id) ? '1px solid #00d2ff' : '1px solid #333';
-                    
-                    div.innerHTML = `
-                        <div style="font-weight:bold; color:${activeQuestId === q.id ? '#00d2ff' : '#fff'}">${q.name}</div>
-                        <div style="font-size:0.8rem; color:#888;">${q.id === activeQuestId ? '[ACTIVE]' : ''}</div>
-                    `;
-                    div.onclick = () => loadQuestForEdit(q.id);
-                    list.appendChild(div);
-                });
+                // Build tree: top-level first, then children
+                const topLevel = cachedData.quests.filter(q => !q.parentId);
+                topLevel.forEach(q => renderQuestListItem(q, list, 0, statusFilter));
             }
+        }
+
+        function renderQuestListItem(quest, container, depth, statusFilter) {
+            const status = quest.status || 'active';
+            if (statusFilter !== 'all' && status !== statusFilter) {
+                // Still render children if they match
+                const children = getQuestChildren(quest.id);
+                children.forEach(c => renderQuestListItem(c, container, depth + 1, statusFilter));
+                return;
+            }
+
+            const div = document.createElement('div');
+            div.style.padding = '8px 10px';
+            div.style.paddingLeft = (10 + depth * 18) + 'px';
+            div.style.cursor = 'pointer';
+            div.style.background = (editingQuestId === quest.id) ? '#333' : '#1a1a1a';
+            div.style.border = (activeQuestId === quest.id) ? '1px solid #00d2ff' : '1px solid transparent';
+            div.style.borderRadius = '3px';
+            div.style.transition = 'background 0.15s';
+            
+            const statusIcon = getQuestStatusIcon(status);
+            const priorityIcon = getQuestPriorityIcon(quest.priority);
+            const nameColor = activeQuestId === quest.id ? '#00d2ff' : (status === 'completed' ? '#6a6' : status === 'failed' ? '#a66' : '#fff');
+            const nameStyle = status === 'completed' ? 'text-decoration: line-through;' : '';
+            const children = getQuestChildren(quest.id);
+            const subLabel = children.length > 0 ? `<span style="color:#555; font-size:0.7rem; margin-left:5px;">(${children.length})</span>` : '';
+            
+            div.innerHTML = `
+                <div style="display:flex; align-items:center; gap:6px;">
+                    ${depth > 0 ? '<span style="color:#444; font-size:0.7rem;">↳</span>' : ''}
+                    <span style="font-size:0.8rem;">${statusIcon}</span>
+                    <span style="font-weight:bold; color:${nameColor}; font-size:0.85rem; ${nameStyle}">${quest.name}</span>
+                    ${subLabel}
+                </div>
+                <div style="font-size:0.7rem; color:#555; margin-top:2px; padding-left:${depth > 0 ? 18 : 0}px;">
+                    ${priorityIcon} ${quest.priority || 'side'} ${quest.id === activeQuestId ? ' • ACTIVE' : ''}
+                </div>
+            `;
+            div.onclick = () => loadQuestForEdit(quest.id);
+            container.appendChild(div);
+
+            // Render children
+            children.forEach(c => renderQuestListItem(c, container, depth + 1, statusFilter));
         }
 
         function changeActiveQuest() {
@@ -6077,7 +6853,6 @@
             log(`Active Quest changed to: ${activeQuestId || 'NONE'}`);
             
             // Re-render views to apply filter
-            // Depending on which tab is active
             renderObjectsTable();
             renderCharactersCards();
             renderMediaFiles(); 
@@ -6089,21 +6864,24 @@
             refreshQuestUI();
         }
 
-        function createNewQuest() {
+        function createNewQuest(parentId = null) {
             const newId = 'quest_' + Date.now();
             const newQuest = {
                 id: newId,
-                name: 'New Quest',
-                description: ''
+                name: parentId ? 'New Sub-Quest' : 'New Quest',
+                description: '',
+                status: 'active',
+                priority: parentId ? 'side' : 'main',
+                parentId: parentId || '',
+                linkedQuestIds: []
             };
             socket.emit('admin_quest_action', { type: 'create', quest: newQuest });
             editingQuestId = newId; 
-            // The update loop will refresh UI and we can select it then
         }
 
         function loadQuestForEdit(id) {
             editingQuestId = id;
-            refreshQuestUI(); // Update selection highlight
+            refreshQuestUI();
             
             const q = cachedData.quests.find(x => x.id === id);
             if (!q) return;
@@ -6113,22 +6891,135 @@
             
             document.getElementById('quest-edit-name').value = q.name;
             document.getElementById('quest-edit-desc').value = q.description || '';
+            document.getElementById('quest-edit-status').value = q.status || 'active';
+            document.getElementById('quest-edit-priority').value = q.priority || 'side';
+
+            // Populate parent select (exclude self and descendants)
+            const parentSelect = document.getElementById('quest-edit-parent');
+            parentSelect.innerHTML = '<option value="">— None (Top-level) —</option>';
+            const descendants = getAllDescendants(id);
+            cachedData.quests.forEach(oq => {
+                if (oq.id === id) return; // Can't be own parent
+                if (descendants.includes(oq.id)) return; // Can't be child of self
+                const opt = document.createElement('option');
+                opt.value = oq.id;
+                opt.innerText = oq.name;
+                parentSelect.appendChild(opt);
+            });
+            parentSelect.value = q.parentId || '';
+
+            // Populate linked quests
+            renderLinkedQuests(q);
+
+            // Populate link-add select
+            const linkSelect = document.getElementById('quest-link-select');
+            linkSelect.innerHTML = '<option value="">— Add Link —</option>';
+            const currentLinks = q.linkedQuestIds || [];
+            cachedData.quests.forEach(oq => {
+                if (oq.id === id) return;
+                if (currentLinks.includes(oq.id)) return;
+                const opt = document.createElement('option');
+                opt.value = oq.id;
+                opt.innerText = oq.name;
+                linkSelect.appendChild(opt);
+            });
+        }
+
+        function getAllDescendants(questId) {
+            const result = [];
+            const children = getQuestChildren(questId);
+            children.forEach(c => {
+                result.push(c.id);
+                result.push(...getAllDescendants(c.id));
+            });
+            return result;
+        }
+
+        function renderLinkedQuests(quest) {
+            const container = document.getElementById('quest-linked-container');
+            container.innerHTML = '';
+            const links = quest.linkedQuestIds || [];
+            if (links.length === 0) {
+                container.innerHTML = '<span style="color:#555; font-size:0.8rem; padding:3px;">No linked quests</span>';
+                return;
+            }
+            links.forEach(lid => {
+                const lq = cachedData.quests.find(q => q.id === lid);
+                const tag = document.createElement('span');
+                tag.style.cssText = 'display:inline-flex; align-items:center; gap:4px; padding:3px 8px; background:#1a2a3a; border:1px solid #2a4a6a; border-radius:12px; font-size:0.8rem; color:#6af;';
+                tag.innerHTML = `${lq ? lq.name : lid} <span style="cursor:pointer; color:#f55; font-weight:bold;" onclick="removeQuestLink('${lid}')">&times;</span>`;
+                container.appendChild(tag);
+            });
+        }
+
+        function addQuestLink() {
+            const sel = document.getElementById('quest-link-select');
+            if (!sel.value || !editingQuestId) return;
+            const q = cachedData.quests.find(x => x.id === editingQuestId);
+            if (!q) return;
+            if (!q.linkedQuestIds) q.linkedQuestIds = [];
+            if (!q.linkedQuestIds.includes(sel.value)) {
+                q.linkedQuestIds.push(sel.value);
+                // Also add reverse link
+                const target = cachedData.quests.find(x => x.id === sel.value);
+                if (target) {
+                    if (!target.linkedQuestIds) target.linkedQuestIds = [];
+                    if (!target.linkedQuestIds.includes(editingQuestId)) target.linkedQuestIds.push(editingQuestId);
+                }
+            }
+            loadQuestForEdit(editingQuestId); // Refresh
+        }
+
+        function removeQuestLink(linkedId) {
+            if (!editingQuestId) return;
+            const q = cachedData.quests.find(x => x.id === editingQuestId);
+            if (!q || !q.linkedQuestIds) return;
+            q.linkedQuestIds = q.linkedQuestIds.filter(id => id !== linkedId);
+            // Remove reverse link too
+            const target = cachedData.quests.find(x => x.id === linkedId);
+            if (target && target.linkedQuestIds) {
+                target.linkedQuestIds = target.linkedQuestIds.filter(id => id !== editingQuestId);
+            }
+            loadQuestForEdit(editingQuestId); // Refresh
         }
 
         function saveCurrentQuest() {
             if (!editingQuestId) return;
-            const q = {
+            const q = cachedData.quests.find(x => x.id === editingQuestId);
+            const quest = {
                 id: editingQuestId,
                 name: document.getElementById('quest-edit-name').value,
-                description: document.getElementById('quest-edit-desc').value
+                description: document.getElementById('quest-edit-desc').value,
+                status: document.getElementById('quest-edit-status').value,
+                priority: document.getElementById('quest-edit-priority').value,
+                parentId: document.getElementById('quest-edit-parent').value,
+                linkedQuestIds: q ? (q.linkedQuestIds || []) : []
             };
-            socket.emit('admin_quest_action', { type: 'update', quest: q });
+            socket.emit('admin_quest_action', { type: 'update', quest: quest });
             log('Quest updated.');
         }
 
         function deleteCurrentQuest() {
             if (!editingQuestId) return;
-            if(!confirm('Delete this quest? Items associated to it will NOT be deleted, just unlinked.')) return;
+            const children = getQuestChildren(editingQuestId);
+            const msg = children.length > 0 
+                ? `Delete this quest and orphan its ${children.length} sub-quest(s)? Associated items will NOT be deleted.`
+                : 'Delete this quest? Items associated to it will NOT be deleted, just unlinked.';
+            if(!confirm(msg)) return;
+
+            // Orphan children (set parentId to '')
+            children.forEach(c => {
+                c.parentId = '';
+                socket.emit('admin_quest_action', { type: 'update', quest: c });
+            });
+
+            // Remove links referencing this quest
+            cachedData.quests.forEach(q => {
+                if (q.linkedQuestIds && q.linkedQuestIds.includes(editingQuestId)) {
+                    q.linkedQuestIds = q.linkedQuestIds.filter(id => id !== editingQuestId);
+                    socket.emit('admin_quest_action', { type: 'update', quest: q });
+                }
+            });
             
             socket.emit('admin_quest_action', { type: 'delete', id: editingQuestId });
             

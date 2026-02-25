@@ -1,18 +1,22 @@
 {
   "name": "starfinder-table",
-  "version": "1.0.0",
-  "description": "Starfinder Interactive Table",
+  "version": "2.0.0",
+  "description": "Starfinder Interactive Table (SIT) — Drop-in RPG session manager",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "node --watch server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["starfinder", "rpg", "tabletop", "interactive"],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "socket.io": "^4.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

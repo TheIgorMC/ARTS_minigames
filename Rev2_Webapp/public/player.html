@@ -570,13 +570,27 @@
         }
 
         /* Shop styles */
-        .shop-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #222; }
-        .shop-item-name { color: #ccc; font-size: 0.85rem; flex: 1; }
-        .shop-item-price { color: #ffd700; font-size: 0.85rem; min-width: 70px; text-align: right; }
-        .shop-item-btn { background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 4px 10px; cursor: pointer; font-family: inherit; font-size: 0.8rem; }
+        .shop-item-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 8px; border-bottom: 1px solid #222; gap: 12px; }
+        .shop-item-name { color: #ccc; font-size: 0.85rem; }
+        .shop-item-price { color: #ffd700; font-size: 0.85rem; min-width: 70px; text-align: right; margin-right: 6px; flex-shrink: 0; }
+        .shop-item-btn { background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.8rem; flex-shrink: 0; }
         .shop-item-btn:active { background: var(--primary-color); color: #000; }
         .shop-item-btn.sell { border-color: #f55; color: #f55; }
         .shop-item-btn.sell:active { background: #f55; color: #000; }
+        .shop-item-btn.info-btn { border-color: #888; color: #888; padding: 6px 8px; font-size: 0.7rem; }
+        .shop-item-btn.info-btn:active { background: #888; color: #000; }
+        .shop-item-row.above-level { opacity: 0.35; }
+        .shop-owned-badge { display: inline-block; background: #1a2a1a; color: #6f6; border: 1px solid #3a3; padding: 0 5px; font-size: 0.65rem; margin-left: 6px; vertical-align: middle; }
+        .shop-filter-bar { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; align-items: center; }
+        .shop-filter-bar select, .shop-filter-bar label { font-family: inherit; font-size: 0.75rem; }
+        .shop-filter-bar select { padding: 5px; background: #000; color: #fff; border: 1px solid #333; }
+        .shop-filter-bar label { color: #888; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+        .shop-filter-bar input[type='checkbox'] { accent-color: var(--primary-color); }
+        .shop-item-detail { background: #0a0a16; border-left: 2px solid var(--primary-color); padding: 8px 10px; margin: 0 8px 8px 8px; font-size: 0.75rem; color: #aaa; }
+        .shop-item-detail .detail-row { display: flex; gap: 12px; margin-bottom: 3px; flex-wrap: wrap; }
+        .shop-item-detail .detail-label { color: #888; min-width: 60px; }
+        .shop-item-detail .detail-value { color: #ccc; }
+        .shop-item-detail .detail-desc { color: #999; margin-top: 6px; font-size: 0.72rem; line-height: 1.4; }
 
     </style>
     <script src="/socket.io/socket.io.js"></script>
@@ -729,6 +743,12 @@
             <div class="section-title" id="spells-section-title" style="display: none;">SPELLS</div>
             <div id="spell-slots-summary" style="display: none; margin-bottom: 10px;"></div>
             <div id="spells-list" style="display: none; flex-direction: column; gap: 2px;"></div>
+
+            <!-- COMPANIONS SECTION -->
+            <div id="companions-section" style="display: none;">
+                <div class="section-title" style="cursor:pointer;" onclick="document.getElementById('companions-list').classList.toggle('hidden')">COMPANIONS ▾</div>
+                <div id="companions-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
         </div>
 
     </div>
@@ -780,7 +800,23 @@
                 <button class="btn" id="shop-tab-buy" onclick="switchShopTab('buy')" style="flex:1; padding:8px; margin:0; font-size:0.9rem;">BUY</button>
                 <button class="btn" id="shop-tab-sell" onclick="switchShopTab('sell')" style="flex:1; padding:8px; margin:0; font-size:0.9rem;">SELL</button>
             </div>
-            <input type="text" id="shop-search" placeholder="Search items..." oninput="renderShopItems()" style="width:100%; margin-bottom:10px; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+            <input type="text" id="shop-search" placeholder="Search items..." oninput="renderShopItems()" style="width:100%; margin-bottom:6px; padding:8px; background:#000; color:#fff; border:1px solid #333; font-family:inherit;">
+            <div class="shop-filter-bar" id="shop-filter-bar">
+                <select id="shop-cat-filter" onchange="renderShopItems()">
+                    <option value="">All Categories</option>
+                    <option value="Armor">Armor</option>
+                    <option value="Weapon">Weapon</option>
+                    <option value="Equipment">Equipment</option>
+                    <option value="Consumable">Consumable</option>
+                    <option value="Magic">Magic</option>
+                    <option value="Technological">Technological</option>
+                    <option value="Augmentation">Augmentation</option>
+                    <option value="Upgrade">Upgrade</option>
+                    <option value="Fusion">Fusion</option>
+                    <option value="Goods">Goods</option>
+                </select>
+                <label><input type="checkbox" id="shop-level-filter" onchange="renderShopItems()"> My level only</label>
+            </div>
             <div id="shop-items-list" style="max-height:50vh; overflow-y:auto;">
                 <!-- Populated by JS -->
             </div>
@@ -969,10 +1005,58 @@
             renderSkills(char);
             renderPlayerInventory(char);
             renderPlayerSpells(char);
+            renderPlayerCompanions(char);
         }
 
         let playerItemsDb = [];  // Items database sent by server
         let playerSpellsDb = []; // Spells database sent by server
+        let campaignAllowedSources = []; // Empty = all allowed
+
+        // Source normalization (mirrors admin logic)
+        function getItemSourceAbbr(source) {
+            if (!source) return '';
+            const s = source.trim();
+            if (/^CRB\b|^Core Rulebook/i.test(s)) return 'CRB';
+            if (/^AR\b|^ARM\b|^Armory|^ARRM/i.test(s)) return 'AR';
+            if (/^AA1\b|^Alien Archive(?!\s*[2-4])/i.test(s)) return 'AA1';
+            if (/^AA2\b/i.test(s)) return 'AA2';
+            if (/^AA3\b/i.test(s) && !/^AA31/.test(s)) return 'AA3';
+            if (/^AA31/i.test(s)) return 'AA3';
+            if (/^AA4\b/i.test(s)) return 'AA4';
+            if (/^AA\b|^AA#/i.test(s)) return 'AA1';
+            if (/^COM\b|^Character Oper/i.test(s)) return 'COM';
+            if (/^PW\b|^Pact Worlds/i.test(s)) return 'PW';
+            if (/^NS\b/i.test(s)) return 'NS';
+            if (/^TR\b/i.test(s)) return 'TR';
+            if (/^GEM\b/i.test(s)) return 'GEM';
+            if (/^DC\b/i.test(s)) return 'DC';
+            if (/^IS\b|^IS,/i.test(s)) return 'IS';
+            if (/^GM\b/i.test(s)) return 'GM';
+            if (/^EN\b/i.test(s)) return 'EN';
+            if (/^PoC\b/i.test(s)) return 'PoC';
+            if (/^AP\b|^AP#/i.test(s)) return 'AP';
+            if (/^SA:/i.test(s)) return 'SA';
+            if (/^SFS\b/i.test(s)) return 'SFS';
+            if (/^AotD/i.test(s)) return 'AotD';
+            if (/^Escape|^King Xeros/i.test(s)) return 'AP';
+            return 'UNK';
+        }
+
+        function isSourceAllowed(source) {
+            if (!campaignAllowedSources || campaignAllowedSources.length === 0) return true;
+            return campaignAllowedSources.includes(getItemSourceAbbr(source));
+        }
+
+        function getOwnedQty(itemId) {
+            if (!myCharacter?.inventory) return 0;
+            const entry = myCharacter.inventory.find(e => (e.itemId || e.id) === itemId);
+            if (!entry) return 0;
+            return typeof entry.quantity === 'number' ? entry.quantity : (typeof entry.qty === 'number' ? entry.qty : 1);
+        }
+
+        socket.on('campaign_settings_update', (settings) => {
+            campaignAllowedSources = settings.allowedSources || [];
+        });
 
         socket.on('player_items_db', (data) => {
             playerItemsDb = data || [];
@@ -1109,6 +1193,88 @@
             if (!sp) return;
             const desc = (sp.description || '').replace(/<[^>]*>/g, '').substring(0, 500);
             alert(`${sp.name} (${sp.school}, Level ${sp.level})\n\nCasting Time: ${sp.castingTime || '-'}\nRange: ${sp.range || '-'}\nTarget: ${sp.target || sp.area || '-'}\nDuration: ${sp.duration || '-'}\nSave: ${sp.save || 'None'}\nSR: ${sp.sr ? 'Yes' : 'No'}\n\n${desc}`);
+        }
+
+        // ─── COMPANIONS ──────────────────────────────────────
+        function renderPlayerCompanions(char) {
+            const section = document.getElementById('companions-section');
+            const list = document.getElementById('companions-list');
+            if (!section || !list) return;
+
+            const companions = char.companions || [];
+            if (companions.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            section.style.display = 'block';
+
+            list.innerHTML = companions.map((c, idx) => {
+                const hpPct = c.max_hp > 0 ? Math.min(100, Math.max(0, (c.hp / c.max_hp) * 100)) : 0;
+                const hpColor = hpPct > 50 ? '#0f0' : hpPct > 25 ? '#fa0' : '#f00';
+                const modStr = s => { const v = Math.floor(((c.stats?.[s] || 10) - 10) / 2); return v >= 0 ? '+' + v : '' + v; };
+
+                const statsRow = ['STR','DEX','CON','INT','WIS','CHA'].map(s =>
+                    `<div style="text-align:center; min-width:32px;">
+                        <div style="color:#666; font-size:9px;">${s}</div>
+                        <div style="color:#fff; font-size:13px; font-weight:bold;">${modStr(s)}</div>
+                        <div style="color:#555; font-size:10px;">${c.stats?.[s] || 10}</div>
+                    </div>`
+                ).join('');
+
+                const attacksHtml = (c.attacks || []).map(a =>
+                    `<div style="display:flex; gap:8px; padding:3px 0; border-bottom:1px solid #222;">
+                        <span style="color:var(--primary-color); flex:2;">${a.name}</span>
+                        <span style="color:#ffa500; width:50px; text-align:center;">${a.bonus}</span>
+                        <span style="color:#fff; width:60px; text-align:center;">${a.damage}</span>
+                    </div>`
+                ).join('');
+
+                const abilitiesHtml = (c.abilities || []).map(a =>
+                    `<div style="color:#ccc; padding:2px 0; border-bottom:1px solid #222;">• ${typeof a === 'string' ? a : a.name || a}</div>`
+                ).join('');
+
+                const skillsHtml = (c.skills || []).map(s =>
+                    `<span style="color:#aaa; margin-right:10px;">${s.name} <span style="color:var(--primary-color);">${s.bonus >= 0 ? '+' : ''}${s.bonus}</span></span>`
+                ).join('');
+
+                return `<div style="background: rgba(0,20,20,0.6); border: 1px solid #333; margin-bottom: 4px;">
+                    <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; cursor:pointer; border-bottom:1px solid #222;" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        ${c.image ? `<img src="${c.image}" style="width:32px; height:32px; border-radius:4px; object-fit:cover; border:1px solid #444;">` : ''}
+                        <div style="flex:1;">
+                            <div style="color:var(--primary-color); font-weight:bold; font-size:14px;">${c.name}</div>
+                            <div style="color:#666; font-size:11px;">${c.type} · Level ${c.level}</div>
+                        </div>
+                        <div style="text-align:right; min-width:80px;">
+                            <div style="color:${hpColor}; font-size:13px; font-weight:bold;">HP ${c.hp}/${c.max_hp}</div>
+                            <div style="background:#222; height:4px; border-radius:2px; overflow:hidden; margin-top:2px;">
+                                <div style="background:${hpColor}; height:100%; width:${hpPct}%; transition:width .3s;"></div>
+                            </div>
+                        </div>
+                        <span style="color:#555; font-size:16px;">▾</span>
+                    </div>
+                    <div class="hidden" style="padding:10px;">
+                        <div style="display:flex; gap:16px; margin-bottom:8px; flex-wrap:wrap;">
+                            <div><span style="color:#666; font-size:11px;">EAC</span> <span style="color:#fff; font-weight:bold;">${c.eac}</span></div>
+                            <div><span style="color:#666; font-size:11px;">KAC</span> <span style="color:#fff; font-weight:bold;">${c.kac}</span></div>
+                            <div><span style="color:#666; font-size:11px;">Speed</span> <span style="color:#fff;">${c.speed} ft</span></div>
+                        </div>
+                        <div style="display:flex; gap:4px; margin-bottom:10px; justify-content:space-around;">${statsRow}</div>
+                        ${attacksHtml ? `<div style="margin-bottom:8px;">
+                            <div style="color:var(--primary-color); font-size:11px; font-weight:bold; margin-bottom:4px;">ATTACKS</div>
+                            ${attacksHtml}
+                        </div>` : ''}
+                        ${abilitiesHtml ? `<div style="margin-bottom:8px;">
+                            <div style="color:var(--primary-color); font-size:11px; font-weight:bold; margin-bottom:4px;">ABILITIES</div>
+                            ${abilitiesHtml}
+                        </div>` : ''}
+                        ${skillsHtml ? `<div style="margin-bottom:8px;">
+                            <div style="color:var(--primary-color); font-size:11px; font-weight:bold; margin-bottom:4px;">SKILLS</div>
+                            <div style="display:flex; flex-wrap:wrap;">${skillsHtml}</div>
+                        </div>` : ''}
+                        ${c.notes ? `<div style="color:#888; font-size:12px; border-top:1px solid #222; padding-top:6px; margin-top:4px; white-space:pre-wrap;">${c.notes}</div>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         function getAttrMod(score) {
@@ -2563,6 +2729,7 @@
         let currentShop = null;
         let currentResalePercent = 10;
         let shopTab = 'buy';
+        let expandedShopItemId = null;
 
         socket.on('shop_open', (data) => {
             currentShop = data.shop;
@@ -2624,10 +2791,36 @@
             renderShopItems();
         }
 
+        function buildItemDetailPanel(item) {
+            if (!item) return '';
+            let rows = '';
+            if (item.stats) rows += `<div class="detail-row"><span class="detail-label">Stats:</span><span class="detail-value">${item.stats}</span></div>`;
+            if (item.details) {
+                const d = item.details;
+                if (d.damage) rows += `<div class="detail-row"><span class="detail-label">Damage:</span><span class="detail-value">${d.damage}</span></div>`;
+                if (d.range) rows += `<div class="detail-row"><span class="detail-label">Range:</span><span class="detail-value">${d.range}</span></div>`;
+                if (d.capacity) rows += `<div class="detail-row"><span class="detail-label">Capacity:</span><span class="detail-value">${d.capacity} (${d.ammoType || 'charge'}, use ${d.usage || 1})</span></div>`;
+                if (d.critical) rows += `<div class="detail-row"><span class="detail-label">Critical:</span><span class="detail-value">${d.critical}</span></div>`;
+                if (d.eac !== undefined) rows += `<div class="detail-row"><span class="detail-label">EAC/KAC:</span><span class="detail-value">+${d.eac} / +${d.kac}  |  Max Dex: ${d.maxDex ?? '-'}  |  ACP: ${d.acp ?? '-'}</span></div>`;
+                if (d.special) rows += `<div class="detail-row"><span class="detail-label">Special:</span><span class="detail-value">${d.special}</span></div>`;
+            }
+            if (item.source) rows += `<div class="detail-row"><span class="detail-label">Source:</span><span class="detail-value">${item.source}</span></div>`;
+            const desc = item.description ? `<div class="detail-desc">${item.description}</div>` : '';
+            return `<div class="shop-item-detail">${rows}${desc}</div>`;
+        }
+
+        function toggleShopItemDetail(itemId) {
+            expandedShopItemId = expandedShopItemId === itemId ? null : itemId;
+            renderShopItems();
+        }
+
         function renderShopItems() {
             const container = document.getElementById('shop-items-list');
             if (!container) return;
             const search = (document.getElementById('shop-search')?.value || '').toLowerCase();
+            const catFilter = document.getElementById('shop-cat-filter')?.value || '';
+            const levelOnly = document.getElementById('shop-level-filter')?.checked || false;
+            const playerLevel = myCharacter?.level || 1;
 
             if (shopTab === 'buy') {
                 if (!currentShop || !currentShop.stock) { container.innerHTML = '<div style="color:#888; padding:10px;">No items available.</div>'; return; }
@@ -2636,6 +2829,9 @@
                     const item = s.item;
                     if (!item) return false;
                     if (search && !item.name.toLowerCase().includes(search)) return false;
+                    if (catFilter && item.category !== catFilter) return false;
+                    if (item.source && !isSourceAllowed(item.source)) return false;
+                    if (levelOnly && (item.level || 0) > playerLevel) return false;
                     return true;
                 });
                 container.innerHTML = items.map(s => {
@@ -2643,13 +2839,20 @@
                     const price = s.priceOverride || item.price || 0;
                     const qtyText = s.qty === -1 ? '∞' : s.qty;
                     const canAfford = (myCharacter?.money || 0) >= price;
-                    return `<div class="shop-item-row">
-                        <div style="flex:1;">
-                            <div class="shop-item-name">${item.name}</div>
-                            <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Stock: ${qtyText}</div>
+                    const isExpanded = expandedShopItemId === item.id;
+                    const aboveLevel = (item.level || 0) > playerLevel;
+                    const ownedQty = getOwnedQty(item.id);
+                    const ownedBadge = ownedQty > 0 ? `<span class="shop-owned-badge">Owned: ${ownedQty}</span>` : '';
+                    return `<div>
+                        <div class="shop-item-row${aboveLevel ? ' above-level' : ''}" style="cursor:pointer;" onclick="toggleShopItemDetail('${item.id}')">
+                            <div style="flex:1; min-width:0;">
+                                <div class="shop-item-name">${item.name}${ownedBadge}</div>
+                                <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Stock: ${qtyText}</div>
+                            </div>
+                            <span class="shop-item-price">${price} CR</span>
+                            <button class="shop-item-btn" ${!canAfford ? 'disabled style="opacity:0.3;"' : ''} onclick="event.stopPropagation(); buyItem('${item.id}')">BUY</button>
                         </div>
-                        <span class="shop-item-price">${price} CR</span>
-                        <button class="shop-item-btn" ${!canAfford ? 'disabled style="opacity:0.3;"' : ''} onclick="buyItem('${item.id}')">BUY</button>
+                        ${isExpanded ? buildItemDetailPanel(item) : ''}
                     </div>`;
                 }).join('') || '<div style="color:#888; padding:10px;">No items match.</div>';
             } else {
@@ -2662,6 +2865,7 @@
                     const item = playerItemsDb.find(i => i.id === entryId);
                     if (!item) return false;
                     if (search && !item.name.toLowerCase().includes(search)) return false;
+                    if (catFilter && item.category !== catFilter) return false;
                     return true;
                 });
                 container.innerHTML = items.map(entry => {
@@ -2670,13 +2874,17 @@
                     const qty = typeof entry.quantity === 'number' ? entry.quantity : (typeof entry.qty === 'number' ? entry.qty : 1);
                     const fullPrice = item?.price || 0;
                     const sellPrice = Math.floor(fullPrice * currentResalePercent / 100);
-                    return `<div class="shop-item-row">
-                        <div style="flex:1;">
-                            <div class="shop-item-name">${item.name}</div>
-                            <div style="color:#666; font-size:0.7rem;">Qty: ${qty} | ${item.category || ''} | Value: ${fullPrice} CR</div>
+                    const isExpanded = expandedShopItemId === entryId;
+                    return `<div>
+                        <div class="shop-item-row" style="cursor:pointer;" onclick="toggleShopItemDetail('${entryId}')">
+                            <div style="flex:1; min-width:0;">
+                                <div class="shop-item-name">${item.name}</div>
+                                <div style="color:#666; font-size:0.7rem;">Qty: ${qty} | ${item.category || ''} | Value: ${fullPrice} CR</div>
+                            </div>
+                            <span class="shop-item-price" style="color:#f55;">${sellPrice} CR</span>
+                            <button class="shop-item-btn sell" onclick="event.stopPropagation(); sellItem('${entryId}')">SELL</button>
                         </div>
-                        <span class="shop-item-price" style="color:#f55;">${sellPrice} CR</span>
-                        <button class="shop-item-btn sell" onclick="sellItem('${entryId}')">SELL</button>
+                        ${isExpanded ? buildItemDetailPanel(item) : ''}
                     </div>`;
                 }).join('') || '<div style="color:#888; padding:10px;">No items to sell.</div>';
             }

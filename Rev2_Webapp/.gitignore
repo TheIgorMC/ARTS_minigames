@@ -1,0 +1,23 @@
+# ─── SIT .gitignore ────────────────────────────────
+
+# Campaign data (user data — never overwritten by git pull)
+campaign/
+
+# Node
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Legacy data folders (if still present during migration)
+# Remove these lines once you've moved everything to campaign/
+data/
+media/

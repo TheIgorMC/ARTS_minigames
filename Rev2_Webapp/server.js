@@ -10,13 +10,66 @@ const io = require('socket.io')(http, {
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const config = require('./config');
 
 app.use(cors());
 
-// Servi i file statici dalla cartella 'public'
+// ─── Path Resolution ─────────────────────────────────
+// All campaign data lives under one folder (campaign/)
+const CAMPAIGN_DIR = config.CAMPAIGN_DIR;
+const DATA_DIR = path.join(CAMPAIGN_DIR, config.DATA_SUBDIR);
+const MEDIA_DIR = path.join(CAMPAIGN_DIR, config.MEDIA_SUBDIR);
+
+// Bootstrap: if campaign/ doesn't exist, create from defaults
+function bootstrapCampaign() {
+    if (!fs.existsSync(CAMPAIGN_DIR)) {
+        console.log('First run detected — creating campaign folder from defaults...');
+        fs.mkdirSync(CAMPAIGN_DIR, { recursive: true });
+    }
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(MEDIA_DIR)) fs.mkdirSync(MEDIA_DIR, { recursive: true });
+
+    // Copy default data files if they don't exist in campaign/data/
+    const defaultsDir = config.DEFAULTS_DIR;
+    if (fs.existsSync(defaultsDir)) {
+        const defaultDataDir = path.join(defaultsDir, 'data');
+        if (fs.existsSync(defaultDataDir)) {
+            fs.readdirSync(defaultDataDir).forEach(file => {
+                const dest = path.join(DATA_DIR, file);
+                if (!fs.existsSync(dest)) {
+                    fs.copyFileSync(path.join(defaultDataDir, file), dest);
+                    console.log(`  Copied default: ${file}`);
+                }
+            });
+        }
+        // Copy default media structure
+        const defaultMediaDir = path.join(defaultsDir, 'media');
+        if (fs.existsSync(defaultMediaDir)) {
+            copyDirRecursive(defaultMediaDir, MEDIA_DIR);
+        }
+    }
+}
+
+function copyDirRecursive(src, dest) {
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+    fs.readdirSync(src).forEach(item => {
+        const srcPath = path.join(src, item);
+        const destPath = path.join(dest, item);
+        if (fs.statSync(srcPath).isDirectory()) {
+            copyDirRecursive(srcPath, destPath);
+        } else if (!fs.existsSync(destPath)) {
+            fs.copyFileSync(srcPath, destPath);
+            console.log(`  Copied default: ${item}`);
+        }
+    });
+}
+
+bootstrapCampaign();
+
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-// Servi i file media dalla cartella 'media'
-app.use('/media', express.static(path.join(__dirname, 'media')));
+// Serve media from campaign/media/ at /media URL
+app.use('/media', express.static(MEDIA_DIR));
 
 // Redirects per comodità
 app.get('/mood', (req, res) => res.sendFile(path.join(__dirname, 'public/mood.html')));
@@ -24,7 +77,6 @@ app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public/admin.
 app.get('/player', (req, res) => res.sendFile(path.join(__dirname, 'public/player.html')));
 
 // Carica i dati JSON
-const DATA_DIR = path.join(__dirname, 'data');
 let objects = [];
 let characters = [];
 let items = [];
@@ -63,6 +115,9 @@ let currentSceneId = null; // Track currently loaded scene for autosave
 let conversations = []; // { id, name, type: 'group'|'dm', participants: [] }
 let quests = []; // { id, name, description, active }
 let shops = []; // { id, name, location, description, categories[], stock: [{itemId, qty, priceOverride?}], isOpen }
+let campaignSettings = {
+    allowedSources: [] // Empty = all sources allowed. Array of codes like ['CRB','AR','COM']
+};
 let levelupPending = new Set(); // Character IDs that are allowed to level up
 let shopSessions = {}; // { charId: shopId } - maps which shop a player has open
 
@@ -107,7 +162,8 @@ function saveStatus() {
         mood: moodState,
         roleplay: roleplayState,
         identities: gmIdentities,
-        conversations: conversations
+        conversations: conversations,
+        campaignSettings: campaignSettings
     };
     fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
 }
@@ -121,6 +177,7 @@ function loadStatus() {
             if (status.roleplay) roleplayState = status.roleplay;
             if (status.identities) gmIdentities = status.identities;
             if (status.conversations) conversations = status.conversations;
+            if (status.campaignSettings) campaignSettings = status.campaignSettings;
             console.log('Status loaded:', status);
         } catch (e) {
             console.error('Error loading status:', e);
@@ -179,7 +236,7 @@ setInterval(() => {
 
 // Helper per leggere i file media (ricorsivo)
 function getMediaFiles(dir = '', fileList = []) {
-    const mediaDir = path.join(__dirname, 'media');
+    const mediaDir = MEDIA_DIR;
     const currentDir = path.join(mediaDir, dir);
     
     if (!fs.existsSync(currentDir)) return [];
@@ -220,7 +277,7 @@ function getMediaFiles(dir = '', fileList = []) {
 }
 
 function loadScenes() {
-    const mediaDir = path.join(__dirname, 'media');
+    const mediaDir = MEDIA_DIR;
     if (!fs.existsSync(mediaDir)) return [];
     
     const loadedScenes = [];
@@ -257,7 +314,7 @@ function loadScenes() {
 function loadData() {
     try {
         // Ensure [00]Global exists
-        const globalDir = path.join(DATA_DIR, '../media/[00]Global');
+        const globalDir = path.join(MEDIA_DIR, '[00]Global');
         if (!fs.existsSync(globalDir)) {
             fs.mkdirSync(globalDir, { recursive: true });
         }
@@ -395,7 +452,7 @@ function saveData() {
 
 function saveSceneData(sceneId, data) {
     try {
-        const mediaDir = path.join(__dirname, 'media');
+        const mediaDir = MEDIA_DIR;
         const sceneDir = path.resolve(mediaDir, sceneId);
         
         // Prevent path traversal
@@ -473,6 +530,7 @@ io.on('connection', (socket) => {
             // Send level-up pending status and shops to GM
             socket.emit('admin_levelup_status', Array.from(levelupPending));
             socket.emit('admin_shops_update', shops);
+            socket.emit('campaign_settings_update', campaignSettings);
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
@@ -539,6 +597,21 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('delete_conversation', (data) => {
+        // data: { id }
+        const convIndex = conversations.findIndex(c => c.id === data.id);
+        if (convIndex !== -1) {
+            conversations.splice(convIndex, 1);
+            saveStatus();
+            
+            // Notify GM
+            socket.emit('conversations_update', conversations);
+            
+            // Notify Players
+            io.to('player').emit('conversations_update', conversations);
+        }
+    });
+
     // --- LOGIN PLAYER ---
     socket.on('player_login', (credentials) => {
         const user = characters.find(c => c.username === credentials.username && c.password === credentials.password);
@@ -549,7 +622,8 @@ io.on('connection', (socket) => {
             socket.emit('login_success', user);
             
             // Send items DB + spells DB so player can resolve inventory and spells
-            socket.emit('player_items_db', items.map(i => ({ id: i.id, name: i.name, category: i.category, level: i.level, price: i.price, details: i.details })));
+            socket.emit('player_items_db', items.map(i => ({ id: i.id, name: i.name, category: i.category, level: i.level, price: i.price, details: i.details, source: i.source })));
+            socket.emit('campaign_settings_update', campaignSettings);
             socket.emit('player_spells_db', spells);
 
             // Send safe character list for Roleplay Mode
@@ -678,7 +752,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('admin_scan_chars', () => {
-        const charDir = path.join(__dirname, 'media', '[CHAR] Character pictures');
+        const charDir = path.join(MEDIA_DIR, '[CHAR] Character pictures');
         if (!fs.existsSync(charDir)) {
             socket.emit('gm_hacking_log', 'Error: Character folder not found');
             return;
@@ -854,7 +928,7 @@ io.on('connection', (socket) => {
             quests.push(action.quest);
         } else if (action.type === 'update') {
             const idx = quests.findIndex(q => q.id === action.quest.id);
-            if (idx >= 0) quests[idx] = action.quest;
+            if (idx >= 0) quests[idx] = { ...quests[idx], ...action.quest };
         } else if (action.type === 'delete') {
             quests = quests.filter(q => q.id !== action.id);
         }
@@ -1459,6 +1533,16 @@ io.on('connection', (socket) => {
             autosaveCurrentScene();
         }
     });
+
+    // --- CAMPAIGN SETTINGS ---
+    socket.on('admin_campaign_settings', (settings) => {
+        if (settings.allowedSources !== undefined) {
+            campaignSettings.allowedSources = settings.allowedSources;
+        }
+        saveStatus();
+        io.emit('campaign_settings_update', campaignSettings);
+        console.log('Campaign settings updated:', campaignSettings);
+    });
     
     // --- CHAT & TIME ---
     socket.on('chat_message', (msg) => {
@@ -1504,8 +1588,30 @@ io.on('connection', (socket) => {
     socket.emit('chat_history', chatHistory);
 });
 
-// Avvia il server sulla porta 3000
-// '0.0.0.0' permette connessioni dalla rete locale
-http.listen(3000, '0.0.0.0', () => {
-    console.log('Server attivo su porta 3000');
+// Start server
+const PORT = config.PORT;
+const HOST = config.HOST;
+http.listen(PORT, HOST, () => {
+    const os = require('os');
+    const nets = os.networkInterfaces();
+    let lanIP = 'localhost';
+    for (const name of Object.keys(nets)) {
+        for (const net of nets[name]) {
+            if (net.family === 'IPv4' && !net.internal) { lanIP = net.address; break; }
+        }
+        if (lanIP !== 'localhost') break;
+    }
+    const pad = (s, n) => s + ' '.repeat(Math.max(0, n - s.length));
+    console.log(`\n  ┌─────────────────────────────────────────────┐`);
+    console.log(`  │  SIT Server running                         │`);
+    console.log(`  │                                             │`);
+    console.log(`  │  ${pad('Local:   http://localhost:' + PORT, 42)}│`);
+    console.log(`  │  ${pad('Network: http://' + lanIP + ':' + PORT, 42)}│`);
+    console.log(`  │                                             │`);
+    console.log(`  │  Admin:   /admin.html                       │`);
+    console.log(`  │  Player:  /player.html                      │`);
+    console.log(`  │  Mood:    /mood.html                        │`);
+    console.log(`  │                                             │`);
+    console.log(`  │  ${pad('Campaign: ' + path.relative(process.cwd(), CAMPAIGN_DIR) + '/', 42)}│`);
+    console.log(`  └─────────────────────────────────────────────┘\n`);
 });

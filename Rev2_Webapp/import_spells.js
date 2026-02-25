@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('./config');
 
-const spellsFilePath = path.join(__dirname, 'data', 'spells.json');
+const DATA_DIR = path.join(config.CAMPAIGN_DIR, config.DATA_SUBDIR);
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+const spellsFilePath = path.join(DATA_DIR, 'spells.json');
 const sourceDir = path.join(__dirname, 'REFERENCE', 'foundryvtt-starfinder-development', 'src', 'items', 'spells');
 
 // Clean Foundry-formatted text
