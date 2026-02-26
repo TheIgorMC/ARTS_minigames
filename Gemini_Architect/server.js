@@ -22,6 +22,7 @@ const REQUIRED_DIRS = [
     'assets/textures',
     'assets/tiles',
     'assets/icons',
+    'assets/models',
 ];
 
 function ensureDir(dir) {
@@ -30,6 +31,14 @@ function ensureDir(dir) {
 
 ensureDir(TMP_DIR);
 REQUIRED_DIRS.forEach(sub => ensureDir(path.join(CAMPAIGN, sub)));
+
+// Bootstrap assets/models/manifest.json if absent
+const manifestPath = path.join(CAMPAIGN, 'assets', 'models', 'manifest.json');
+if (!fs.existsSync(manifestPath)) {
+    const seedManifest = { models_library: [] };
+    fs.writeFileSync(manifestPath, JSON.stringify(seedManifest, null, 2));
+    console.log('  [init] Created campaign_root/assets/models/manifest.json');
+}
 
 // Bootstrap universe.json if absent
 const universePath = path.join(CAMPAIGN, 'data', 'universe.json');
@@ -78,6 +87,27 @@ app.get('/api/universe', (_req, res) => {
 app.post('/api/universe', (req, res) => {
     try {
         fs.writeFileSync(universePath, JSON.stringify(req.body, null, 2));
+        res.json({ ok: true });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// ── API: Assets Manifest ─────────────────────────────────────────────────────
+
+// GET /api/manifest
+app.get('/api/manifest', (_req, res) => {
+    try {
+        res.json(JSON.parse(fs.readFileSync(manifestPath, 'utf8')));
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// POST /api/manifest  body: { ...manifest object }
+app.post('/api/manifest', (req, res) => {
+    try {
+        fs.writeFileSync(manifestPath, JSON.stringify(req.body, null, 2));
         res.json({ ok: true });
     } catch (e) {
         res.status(500).json({ error: e.message });

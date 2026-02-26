@@ -72,7 +72,7 @@ const GalaxyPlotter = (() => {
             'gp-galaxy-save','gp-galaxy-fit',
             'gp-gtool-select','gp-gtool-draw','gp-gtool-delete',
             'gp-sector-props','gp-sec-name','gp-sec-color','gp-sec-color-picker',
-            'gp-sec-vert-count','gp-sec-apply','gp-sec-enter',
+            'gp-sec-vert-count','gp-sec-apply','gp-sec-enter','gp-sec-forge',
             'gp-count-sectors',
             // Sector sidebar
             'gp-back-galaxy','gp-sector-title','gp-save-sector',
@@ -80,7 +80,8 @@ const GalaxyPlotter = (() => {
             'gp-tool-scatter','gp-tool-delete',
             'gp-node-editor','gp-node-id','gp-node-name','gp-node-align',
             'gp-node-status','gp-node-file','gp-node-x','gp-node-y',
-            'gp-node-apply','gp-node-open-system',
+            'gp-node-apply','gp-node-open-system','gp-node-forge',
+            'gp-forge-all','gp-forge-progress',
             'gp-lane-editor','gp-lane-endpoints','gp-lane-dist',
             'gp-lane-type','gp-lane-apply','gp-lane-delete',
             // Scatter panel
@@ -327,6 +328,61 @@ const GalaxyPlotter = (() => {
             x: polygon.reduce((s,v) => s + v.x, 0) / polygon.length,
             y: polygon.reduce((s,v) => s + v.y, 0) / polygon.length,
         };
+    }
+
+    // Ray-casting point-in-polygon test (polygon = [{x,y}])
+    function pointInPolygon(px, py, poly) {
+        let inside = false;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            const xi = poly[i].x, yi = poly[i].y;
+            const xj = poly[j].x, yj = poly[j].y;
+            if (((yi > py) !== (yj > py)) &&
+                (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) {
+                inside = !inside;
+            }
+        }
+        return inside;
+    }
+
+    // Shoelace polygon area
+    function polygonArea(poly) {
+        let area = 0;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            area += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
+        }
+        return Math.abs(area / 2);
+    }
+
+    // Scatter N points inside a polygon with area-adaptive minimum separation
+    // Uses Poisson-disk rejection sampling so no two nodes are closer than minDist
+    function scatterInPolygon(poly, n, margin) {
+        if (!poly || poly.length < 3) return [];
+        const xs   = poly.map(v => v.x), ys = poly.map(v => v.y);
+        const minX = Math.min(...xs) + margin, maxX = Math.max(...xs) - margin;
+        const minY = Math.min(...ys) + margin, maxY = Math.max(...ys) - margin;
+        if (maxX <= minX || maxY <= minY) return [];
+
+        // Adaptive minimum distance: fill the polygon area evenly
+        const area    = polygonArea(poly);
+        const minDist = Math.max(margin * 1.5, Math.sqrt(area / Math.max(n, 1)) * 0.72);
+
+        const pts  = [];
+        let tries  = 0;
+        const maxTries = n * 500;
+
+        while (pts.length < n && tries < maxTries) {
+            tries++;
+            const x = minX + Math.random() * (maxX - minX);
+            const y = minY + Math.random() * (maxY - minY);
+            if (!pointInPolygon(x, y, poly)) continue;
+            // Reject if too close to an existing node
+            let tooClose = false;
+            for (const p of pts) {
+                if (Math.hypot(x - p.x, y - p.y) < minDist) { tooClose = true; break; }
+            }
+            if (!tooClose) pts.push({ x: Math.round(x), y: Math.round(y) });
+        }
+        return pts;
     }
 
     function createSectorPolygon(entry, color) {
@@ -896,6 +952,96 @@ const GalaxyPlotter = (() => {
         }
     }
 
+    // ── Forge helpers ──────────────────────────────────────────────────────────
+    async function forgeCurrentSector(sd) {
+        const n = sd.systems?.length || 0;
+        if (!n) { notify('No systems in this sector.', 'warning'); return; }
+        const ok = await showModal(
+            'Forge Sector Systems',
+            `<p>Generate system + body files for all <strong>${n}</strong> nodes?</p>` +
+            `<p style="color:#ffaa00;margin-top:8px">⚠ Existing files will be overwritten.</p>`
+        );
+        if (!ok) return;
+        const prog = e['gp-forge-progress'];
+        if (prog) { prog.textContent = 'Starting forge…'; prog.style.display = ''; }
+        await SystemForge.populateSector(
+            sd,
+            (done, total) => { if (prog) prog.textContent = `Forging… ${done} / ${total}`; },
+            async () => {
+                if (viewMode === 'sector') renderSector();
+                await saveSector();
+                if (prog) {
+                    prog.textContent = `✓ ${n} systems forged.`;
+                    setTimeout(() => { prog.style.display = 'none'; }, 5000);
+                }
+                notify(`Forged ${n} systems.`, 'success');
+            }
+        );
+    }
+
+    async function forgeGalaxySector() {
+        if (!selectedSectorId) { notify('Select a sector first.', 'warning'); return; }
+        if (typeof SystemForge === 'undefined') { notify('System Forge not loaded.', 'error'); return; }
+        const entry = universe.sectors_index.find(s => s.id === selectedSectorId);
+        if (!entry?.file) return;
+        let sd;
+        try { sd = await API.getFile(entry.file); }
+        catch(err) { notify('Could not load sector: ' + err.message, 'error'); return; }
+        if (!sd.systems) sd.systems = [];
+
+        // If no nodes exist yet, offer to scatter them first
+        if (!sd.systems.length) {
+            const countStr = await promptModal(
+                'No Systems Found',
+                'This sector has no system nodes.\nHow many should be scattered + forged?',
+                '8'
+            );
+            if (!countStr) return;
+            const num = Math.max(1, Math.min(50, parseInt(countStr) || 8));
+            const polygon   = entry.polygon || [];
+            const positions = scatterInPolygon(polygon, num, 30);
+            const fallback  = polygon.length ? sectorCentroid(polygon) : { x: 500, y: 500 };
+            const ts        = Date.now();
+            for (let i = 0; i < num; i++) {
+                const sysId = `sys_${ts.toString(36)}_${i.toString(16)}`;
+                const pos   = positions[i] || {
+                    x: Math.round(fallback.x + (Math.random() - 0.5) * 40),
+                    y: Math.round(fallback.y + (Math.random() - 0.5) * 40),
+                };
+                sd.systems.push({
+                    id: sysId,
+                    name: `System ${i + 1}`,
+                    coordinates: { x: pos.x, y: pos.y },
+                    political_alignment: '',
+                    status: 'Unknown',
+                    file: '',
+                });
+            }
+        }
+
+        const n = sd.systems.length;
+        const ok = await showModal(
+            'Forge Sector Systems',
+            `<p>Generate system + body files for all <strong>${n}</strong> nodes in <b>${entry.name || entry.id}</b>?</p>` +
+            `<p style="color:#ffaa00;margin-top:8px">⚠ Existing files will be overwritten.</p>`
+        );
+        if (!ok) return;
+        const prog = e['gp-forge-progress'];
+        if (prog) { prog.textContent = 'Starting forge…'; prog.style.display = ''; }
+        await SystemForge.populateSector(
+            sd,
+            (done, total) => { if (prog) prog.textContent = `Forging… ${done} / ${total}`; },
+            async () => {
+                await API.saveFile(entry.file, sd);
+                if (prog) {
+                    prog.textContent = `✓ ${n} systems forged.`;
+                    setTimeout(() => { prog.style.display = 'none'; }, 5000);
+                }
+                notify(`Forged ${n} systems in ${entry.name || entry.id}.`, 'success');
+            }
+        );
+    }
+
     // ── Fit helpers ────────────────────────────────────────────────────────────
     function fitPoints(pts) {
         if (!pts.length) return;
@@ -1178,6 +1324,7 @@ const GalaxyPlotter = (() => {
         e['gp-sec-enter']?.addEventListener('click', () => {
             if (selectedSectorId) enterSectorView(selectedSectorId);
         });
+        e['gp-sec-forge']?.addEventListener('click', forgeGalaxySector);
 
         // ── Snap options ────────────────────────────────────────────────────
         e['gp-snap-enabled']?.addEventListener('change', () => {
@@ -1238,6 +1385,31 @@ const GalaxyPlotter = (() => {
                 OrreryBuilder.loadByFile(file);
             }
         });
+
+        e['gp-node-forge']?.addEventListener('click', async () => {
+            if (!selectedNode || !sectorData) { notify('Select a system node first.', 'warning'); return; }
+            if (typeof SystemForge === 'undefined') { notify('System Forge module not loaded.', 'error'); return; }
+            const sysId = selectedNode.id;
+            const sys   = sectorData.systems.find(s => s.id === sysId);
+            if (!sys) return;
+            await SystemForge.generateAndLink(sysId, {}, (filePath, starName) => {
+                sys.name = starName;
+                sys.file = filePath;
+                if (e['gp-node-name']) e['gp-node-name'].value = starName;
+                if (e['gp-node-file']) e['gp-node-file'].value = filePath;
+                const old = nodeLayer.findOne('#' + sysId);
+                if (old) old.destroy();
+                createNodeShape(sys);
+                const grp = nodeLayer.findOne('#' + sysId);
+                if (grp) selectNode(sysId, grp);
+            });
+        });
+
+        e['gp-forge-all']?.addEventListener('click', async () => {
+            if (!sectorData) { notify('No sector loaded.', 'warning'); return; }
+            if (typeof SystemForge === 'undefined') { notify('System Forge not loaded.', 'error'); return; }
+            await forgeCurrentSector(sectorData);
+        });
     }
 
     function wireScatterEvents() {
@@ -1267,8 +1439,9 @@ const GalaxyPlotter = (() => {
             wireScatterEvents();
             enterGalaxyView().catch(err => notify('Galaxy Plotter: ' + err.message, 'error'));
         },
-        reload:      enterGalaxyView,
-        enterSector: enterSectorView,
+        reload:        enterGalaxyView,
+        enterSector:   enterSectorView,
+        renderSector() { renderSector(); },
     };
 
 })();

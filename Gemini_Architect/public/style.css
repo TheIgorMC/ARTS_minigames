@@ -774,7 +774,177 @@ textarea.form-input {
     box-shadow: 0 0 6px var(--accent-color);
 }
 
-/* ── Galaxy View — sector polygon labels on canvas (Konva text, no CSS needed)  */
+/* ── System Forge ─────────────────────────────────────────────────────────── */
+#sf-sidebar {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#sf-panel-genesis,
+#sf-panel-manifest,
+#sf-panel-drop {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sf-result-header {
+    font-size: var(--text-lg);
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--gray-700);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.sf-result-pre {
+    background: #000;
+    border: 1px solid var(--gray-700);
+    color: #0f0;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+}
+
+.sf-empty {
+    color: var(--color-muted);
+    font-size: var(--text-xs);
+    padding: 12px 0;
+    text-align: center;
+}
+
+/* Manifest rows */
+.sf-manifest-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--gray-700);
+    font-size: var(--text-xs);
+}
+.sf-model-type {
+    color: var(--color-warning);
+    min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sf-model-id {
+    color: var(--accent-color);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sf-model-file {
+    color: var(--color-muted);
+    min-width: 0;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Asset Dropper rows */
+.sf-asset-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 6px;
+    border: 1px solid var(--gray-700);
+    background: var(--gray-850);
+    margin-bottom: 3px;
+    cursor: grab;
+    transition: all 0.15s;
+}
+.sf-asset-row:hover {
+    border-color: var(--accent-color);
+    background: rgba(0,210,255,0.05);
+}
+.sf-asset-row:active { cursor: grabbing; }
+.sf-asset-icon { font-size: 1rem; }
+.sf-asset-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+.sf-asset-id {
+    color: var(--gray-300);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sf-asset-type {
+    color: var(--color-warning);
+    font-size: 0.65rem;
+}
+.sf-asset-scale {
+    color: var(--color-muted);
+    font-size: var(--text-xs);
+    min-width: 24px;
+    text-align: right;
+}
+
+/* ── Orrery child items ────────────────────────────────────────────────────── */
+.orbital-children-list {
+    margin-left: 44px;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.orbital-child-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border: 1px solid var(--gray-700);
+    background: #0a0a12;
+    font-size: var(--text-xs);
+    position: relative;
+}
+
+.orbital-child-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    width: 16px;
+    height: 1px;
+    background: var(--gray-700);
+}
+
+.orbital-child-icon { color: var(--color-warning); }
+.orbital-child-name { flex: 1; color: var(--gray-400); }
+.orbital-child-faction {
+    font-size: 0.65rem;
+    color: var(--color-muted);
+    border: 1px solid var(--gray-600);
+    padding: 0 4px;
+}
+
+.orbital-children-badge {
+    font-size: 0.65rem;
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning);
+    padding: 0 4px;
+    white-space: nowrap;
+}
+
+.orbital-locked-badge {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
 /* ── But we do need the cursor indicator for draw mode                           */
 #gp-canvas-container.draw-mode {
     cursor: crosshair;
@@ -793,4 +963,68 @@ textarea.form-input {
     display: none;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 8px rgba(0, 210, 255, 0.3) inset;
+}
+
+/* ── Orrery orbit canvas ─────────────────────────────────────────────────── */
+.ob-orbit-canvas {
+    display: block;
+    width: 100%;
+    height: 420px;
+    background: #06060e;
+    border: 1px solid rgba(0,210,255,0.15);
+    box-shadow: 0 0 24px rgba(0,210,255,0.08) inset;
+    margin-bottom: 16px;
+    cursor: crosshair;
+}
+
+/* ── Forge orbit canvas ──────────────────────────────────────────────────── */
+.sf-orbit-canvas {
+    display: block;
+    width: 100%;
+    height: 400px;
+    background: #06060e;
+    border: 1px solid rgba(0,210,255,0.15);
+    box-shadow: 0 0 20px rgba(0,210,255,0.08) inset;
+}
+
+/* ── JSON details/summary ─────────────────────────────────────────────────── */
+.sf-json-details {
+    border: 1px solid rgba(0,210,255,0.15);
+}
+.sf-json-details summary {
+    padding: 6px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: #00d2ff;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    user-select: none;
+    background: rgba(0,210,255,0.04);
+    list-style: none;
+}
+.sf-json-details summary::-webkit-details-marker { display: none; }
+.sf-json-details summary::before { content: '▶  '; font-size: 0.6rem; }
+.sf-json-details[open] summary::before { content: '▼  '; }
+.sf-json-details .sf-result-pre { margin: 0; border-top: 1px solid rgba(0,210,255,0.1); }
+
+/* ── Forge result box (flex column layout set by JS) ─────────────────────── */
+#sf-result-box { flex-direction: column; gap: 12px; }
+
+/* ── Forge progress bar ─────────────────────────────────────────────────── */
+.gp-forge-progress {
+    margin-top: 6px;
+    padding: 6px 8px;
+    font-size: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    color: #00d2ff;
+    background: rgba(0, 210, 255, 0.06);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    text-align: center;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 6px rgba(0, 210, 255, 0.2);
+    animation: forge-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes forge-pulse {
+    from { opacity: 0.6; }
+    to   { opacity: 1.0; }
 }

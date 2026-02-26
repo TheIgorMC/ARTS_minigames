@@ -235,3 +235,185 @@ The tool must have a "Deploy" or "Build" button that performs the following:
 2. **Phase 2:** Build the "Galaxy Plotter" (2D) in the PC Tool to generate Sector JSONs.
 3. **Phase 3:** Build the "Planetary Studio" to handle textures and lat/lon coordinates visually.
 4. **Phase 4:** Implement the Tile Slicer for city maps.
+
+# PART 3: Procedural Generation & 3D Asset Management
+
+**Context:** This module is strictly for the **PC Tool ("Gemini Architect")**. The tool will use these algorithms to generate static JSON files. The RPi viewer simply renders what the JSON dictates, ensuring performance remains high.
+
+## 1. The 3D Asset Manifest (`assets_manifest.json`)
+
+To allow the procedural engine to place stations and ships intelligently, it needs to know what files are available and what they represent.
+
+**Location:** `/assets/models/manifest.json`
+
+**Structure:**
+
+```json
+{
+  "models_library": [
+    {
+      "file": "station_outpost_01.glb",
+      "id": "model_outpost_alpha",
+      "type": "Civilian_Outpost",
+      "tags": ["trade", "low_security", "common"],
+      "default_scale": 1.0,
+      "docking_ports": 4
+    },
+    {
+      "file": "mil_fortress_heavy.glb",
+      "id": "model_mil_fortress",
+      "type": "Military_Base",
+      "tags": ["high_security", "rare", "gemini_defense_force"],
+      "default_scale": 2.5,
+      "is_unique": false
+    },
+    {
+      "file": "wreckage_capital.glb",
+      "id": "model_wreck_01",
+      "type": "Debris",
+      "tags": ["hazard", "scavenge"],
+      "default_scale": 0.8
+    }
+  ]
+}
+
+```
+
+## 2. PC Tool Module: The "System Forge" (Procedural Engine)
+
+This module allows the GM to generate a full star system with a single click based on a seed or specific parameters.
+
+### A. Star Generation Logic
+
+The engine selects a Spectral Class (O, B, A, F, G, K, M) based on a weighted probability (M-class Red Dwarfs are common, O-class Giants are rare) or user selection.
+
+* **Output:** Sets the `star.color_hex`, `star.radius_km`, and defines the **"Habitable Zone"** (Goldilocks Zone) distance range for the system.
+
+### B. Planetary Architect (Orbit Slots)
+
+The engine divides the system into three zones based on distance from the star:
+
+1. **The Furnace (Inner Zone):** High probability of *Barren*, *Lava*, or *Rock* planets. No moons.
+2. **The Cradle (Habitable Zone):** High probability of *Terran*, *Ocean*, *Jungle*, or *Desert* planets. Chance for moons.
+3. **The Deep (Outer Zone):** High probability of *Gas Giants* or *Ice Giants*. High chance of multiple moons and rings.
+
+**Texture Selection:**
+The tool must have a local folder `library/textures/planets/` categorized by type (e.g., `terran_01.jpg`, `gas_red_02.jpg`). The engine randomly assigns a texture matching the generated planet type.
+
+### C. Asteroid Belt Generation
+
+Instead of individual 3D rocks (too heavy), Belts are generated as a logical ring.
+
+* **Data Structure:** Added to `sys_XX.json`.
+* **Visuals:** Rendered in the client as a particle system or a translucent textured ring geometry.
+
+### D. Station & Ship Placement Algorithm
+
+This logic distributes the GLB files from the Manifest into the system.
+
+**The Algorithm Steps:**
+
+1. **Determine System "Wealth/Tech Level":** (Random 1-10).
+* *Low Tech:* Few stations, mostly "Debris" or "Outpost" types.
+* *High Tech:* Many stations, "Military" and "Trade" types.
+
+
+2. **Filter Manifest:**
+* If the system is marked "Anarchy", filter for Pirate/Debris models.
+* If the system is "Corporate", filter for Trade/Refinery models.
+
+
+3. **Orbit Assignment:**
+* *Gas Giants:* High chance of "Refinery" stations in orbit.
+* *Habitable Worlds:* High chance of "Trade Docks" or "Defense Platforms".
+* *Asteroid Belts:* High chance of "Mining Outposts".
+
+
+4. **Instantiation:** Create an entry in the JSON `orbitals` array linking to the GLB file.
+
+## 3. Handling "Special" vs. Random Assets
+
+The Tool UI must distinguish between **Procedural Filling** and **Manual Override**.
+
+* **Random Filling:** The GM clicks "Populate System". The tool fills empty orbits with generic stations based on the algorithm above.
+* **Unique/Manual Placement:**
+* The GM can drag a "Special" model (e.g., *The Black Yanta*) from the asset library manually into an orbit.
+* **Locking:** These manual entries receive a flag `"locked": true` in the JSON editor, preventing the Procedural Engine from overwriting them if the GM clicks "Regenerate" later.
+
+
+
+## 4. Updated JSON Data Structure (`sys_XX.json`)
+
+The System file structure is updated to support GLB models and procedural belts.
+
+```json
+{
+  "id": "sys_kilter",
+  "star": { ... }, 
+  "orbitals": [
+    {
+      "id": "planet_p1",
+      "name": "Tirra",
+      "type": "Planet",
+      "texture": "assets/textures/planets/terran_04.webp",
+      "orbit_radius": 1.2,
+      "children": [
+        {
+          "id": "station_alpha",
+          "name": "Kilter Trade Hub",
+          "type": "Station",
+          "model_3d": "assets/models/station_ring_02.glb",
+          "scale": 1.5,
+          "orbit_distance": 0.005,
+          "faction": "Merchant_Guild"
+        }
+      ]
+    },
+    {
+      "id": "belt_b1",
+      "name": "The Iron Ring",
+      "type": "Belt",
+      "orbit_radius": 2.8,
+      "width": 0.2,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_outpost_09",
+          "name": "Deep Dig 09",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.8
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+## 5. UI Requirements for the PC Tool (Procedural Tab)
+
+**Panel: The Genesis Engine**
+
+* **Seed Input:** Text field (e.g., "Campaign2026"). Same seed = Same system result.
+* **System Archetype:** Dropdown (Random, Red Dwarf, Binary, Nebula-Rich, Dead System).
+* **Density Sliders:**
+* *Planets:* [Sparse <-> Crowded]
+* *Civilization:* [Empty <-> Core World] (Controls station count).
+
+
+* **Button:** `GENERATE SYSTEM`
+* *Action:* Clears current JSON (except Locked items), runs logic, refreshes 3D Preview.
+
+
+
+**Panel: Asset Dropper**
+
+* List of all GLB files from `manifest.json`, filtered by Type.
+* Drag & Drop functionality to place a specific ship/station into a specific Planet's orbit in the hierarchy tree.
+
+## 6. Performance Note for RPi 3B
+
+* **GLB Optimization:** Ensure models used for procedural generation are **Low Poly**. High-detail models should be reserved for "Special" unique locations.
+* **Instancing:** If the same "Mining Outpost" GLB is used 10 times in a system, the WebGL client (Three.js) should use **InstancedMesh** to render them. The JSON structure supports this naturally by referencing the same `model_3d` path multiple times.

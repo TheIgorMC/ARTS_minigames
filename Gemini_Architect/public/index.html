@@ -34,6 +34,7 @@
         <button class="module-tab" data-module="orrery">☀️ Orrery Builder</button>
         <button class="module-tab" data-module="planet">🪐 Planetary Studio</button>
         <button class="module-tab" data-module="carto">🗺️ Cartographer</button>
+        <button class="module-tab" data-module="forge">⚙️ System Forge</button>
     </nav>
 
     <!-- ══════════════ BREADCRUMB ══════════════ -->
@@ -118,6 +119,7 @@
                         <button class="btn" id="gp-sec-apply">✓ APPLY</button>
                         <button class="btn" id="gp-sec-enter">▶ ENTER</button>
                     </div>
+                    <button class="btn" id="gp-sec-forge" style="margin-top:6px;width:100%;border-color:#aa44ff;color:#aa44ff" title="Procedurally generate system files for all nodes in this sector">🔮 FORGE SYSTEMS</button>
                 </div>
 
                 <div class="sidebar-section">
@@ -138,6 +140,8 @@
                     <div class="btn-row" style="margin-top:6px">
                         <button class="btn" id="gp-save-sector">💾 SAVE</button>
                     </div>
+                    <button class="btn" id="gp-forge-all" style="margin-top:6px;width:100%;border-color:#aa44ff;color:#aa44ff" title="Auto-generate system + body files for every node in this sector">🔮 FORGE SECTOR</button>
+                    <div id="gp-forge-progress" class="gp-forge-progress" style="display:none"></div>
                 </div>
 
                 <div class="sidebar-section">
@@ -168,7 +172,8 @@
                     <label class="form-label">LINKED SYSTEM FILE</label>
                     <div class="input-row">
                         <input class="form-input flex-1" id="gp-node-file" placeholder="data/systems/sys_kilter.json" readonly />
-                        <button class="btn btn-sm" id="gp-node-open-system">→</button>
+                        <button class="btn btn-sm" id="gp-node-forge" title="Procedurally generate this system with the Forge">🎲</button>
+                        <button class="btn btn-sm" id="gp-node-open-system" title="Open in Orrery Builder">→</button>
                     </div>
                     <div class="coord-row">
                         <div>
@@ -322,6 +327,19 @@
                     </select>
                     <label class="form-label">ORBIT INDEX</label>
                     <input class="form-input" id="ob-orb-index" type="number" min="1" placeholder="1" />
+                    <label class="form-label">ORBIT RADIUS (AU)</label>
+                    <input class="form-input" id="ob-orb-radius" type="number" step="0.01" placeholder="1.2" />
+                    <label class="form-label">3D MODEL PATH</label>
+                    <input class="form-input" id="ob-orb-model" placeholder="assets/models/station_ring_01.glb" />
+                    <label class="form-label">SCALE</label>
+                    <input class="form-input" id="ob-orb-scale" type="number" step="0.1" value="1.0" />
+                    <label class="form-label">FACTION</label>
+                    <input class="form-input" id="ob-orb-faction" placeholder="Merchant_Guild" />
+                    <label class="form-label">LOCKED (prevent procedural override)</label>
+                    <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:2px">
+                        <input type="checkbox" id="ob-orb-locked" style="accent-color:var(--accent-color)" />
+                        <span class="form-label" style="margin-top:0">LOCKED</span>
+                    </label>
                     <label class="form-label">LINKED BODY FILE</label>
                     <div class="input-row">
                         <input class="form-input flex-1" id="ob-orb-file" placeholder="data/bodies/body_tirra.json" />
@@ -339,6 +357,7 @@
                     Load or create a system file to build its orrery.
                 </div>
                 <div id="ob-tree-container" style="display:none">
+                    <canvas id="ob-orbit-canvas" class="ob-orbit-canvas"></canvas>
                     <div id="ob-orrery-header">
                         <div id="ob-system-id-display" class="orrery-id"></div>
                         <div id="ob-star-display" class="orrery-star" id="ob-star-node">
@@ -490,6 +509,106 @@
             </div>
         </section>
 
+        <!-- ── MODULE E: System Forge ────────────────────────────────────── -->
+        <section id="module-forge" class="module">
+
+            <!-- Sidebar: sub-tabs -->
+            <div class="module-sidebar" id="sf-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">SYSTEM FORGE</div>
+                    <div class="btn-row">
+                        <button class="btn tool-btn active" id="sf-tab-genesis" data-sftab="genesis">⚙ GENESIS</button>
+                        <button class="btn tool-btn" id="sf-tab-manifest" data-sftab="manifest">📦 MANIFEST</button>
+                        <button class="btn tool-btn" id="sf-tab-drop" data-sftab="drop">🎯 DROPPER</button>
+                    </div>
+                </div>
+
+                <!-- ── GENESIS ENGINE panel ─────── -->
+                <div id="sf-panel-genesis">
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">SEED</div>
+                        <input class="form-input" id="sf-seed" placeholder="Campaign2026" value="Campaign2026" />
+                        <div style="font-size:0.68rem;color:#555;margin-top:2px">Same seed → same result</div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">SYSTEM ARCHETYPE</div>
+                        <select class="form-select" id="sf-archetype">
+                            <option>Random</option>
+                            <option>Red Dwarf</option>
+                            <option>Blue Giant</option>
+                            <option>Binary</option>
+                            <option>Dead System</option>
+                        </select>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">DENSITY SLIDERS</div>
+                        <div class="scatter-row">
+                            <span class="form-label">PLANETS</span>
+                            <span class="stat-value" id="sf-density-planets-val">AVERAGE</span>
+                        </div>
+                        <input type="range" class="scatter-slider" id="sf-density-planets" min="0" max="100" value="50" />
+                        <div class="scatter-row" style="margin-top:8px">
+                            <span class="form-label">CIVILIZATION</span>
+                            <span class="stat-value" id="sf-density-civ-val">FRONTIER</span>
+                        </div>
+                        <input type="range" class="scatter-slider" id="sf-density-civ" min="0" max="100" value="40" />
+                    </div>
+
+                    <div class="sidebar-section">
+                        <button class="btn" id="sf-generate-btn" style="width:100%;border-color:#00cc44;color:#00cc44">⚙ GENERATE SYSTEM</button>
+                    </div>
+
+                    <div class="sidebar-section" id="sf-save-section" style="display:none">
+                        <div class="sidebar-header">SAVE &amp; OPEN</div>
+                        <label class="form-label">SYSTEM FILE ID</label>
+                        <input class="form-input" id="sf-save-name" placeholder="sys_generated" />
+                        <button class="btn" id="sf-save-btn" style="margin-top:6px;width:100%">💾 SAVE + OPEN IN ORRERY</button>
+                    </div>
+                </div>
+
+                <!-- ── MANIFEST panel ─────────────── -->
+                <div id="sf-panel-manifest" style="display:none">
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">FILTER</div>
+                        <input class="form-input" id="sf-manifest-filter" placeholder="type or id…" />
+                    </div>
+                    <div class="sidebar-section">
+                        <button class="btn" id="sf-manifest-add-btn" style="width:100%">+ ADD MODEL</button>
+                    </div>
+                    <div class="sidebar-section" style="flex:1;overflow-y:auto;max-height:calc(100vh - 320px)">
+                        <div id="sf-manifest-list"></div>
+                    </div>
+                </div>
+
+                <!-- ── ASSET DROPPER panel ──────────── -->
+                <div id="sf-panel-drop" style="display:none">
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">FILTER BY TYPE / TAG</div>
+                        <input class="form-input" id="sf-ad-filter" placeholder="trade, mining, military…" />
+                        <div style="font-size:0.68rem;color:#555;margin-top:2px">Drag to timeline · or click → Orrery</div>
+                    </div>
+                    <div class="sidebar-section" style="flex:1;overflow-y:auto;max-height:calc(100vh - 260px)">
+                        <div id="sf-ad-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result / Preview area -->
+            <div class="module-content-area" style="overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px">
+                <div class="module-placeholder" id="sf-placeholder">Press ⚙ GENERATE SYSTEM to see results.</div>
+                <div id="sf-result-box" style="display:none;flex-direction:column;gap:12px;flex:1">
+                    <div class="sf-result-header" id="sf-result-title">Generated System</div>
+                    <canvas id="sf-orbit-canvas" class="sf-orbit-canvas"></canvas>
+                    <details class="sf-json-details">
+                        <summary>JSON DATA</summary>
+                        <pre id="sf-result-json" class="sf-result-pre"></pre>
+                    </details>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ══════════════ STATUS BAR ══════════════ -->
@@ -523,6 +642,7 @@
     <script src="modules/orrery-builder.js"></script>
     <script src="modules/planetary-studio.js"></script>
     <script src="modules/cartographer.js"></script>
+    <script src="modules/system-forge.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
