@@ -2,8 +2,8 @@
   "time": {
     "year": 2556,
     "day": 3,
-    "hour": 3,
-    "minute": 40,
+    "hour": 4,
+    "minute": 5,
     "scrambled": false,
     "textScrambled": false
   },
@@ -48,7 +48,7 @@
     "gridCols": 24,
     "gridRows": 13,
     "gridColor": "#ffffff",
-    "gridOpacity": 0.3,
+    "gridOpacity": 0.25,
     "physicalCols": 24,
     "physicalRows": 14,
     "tokens": [

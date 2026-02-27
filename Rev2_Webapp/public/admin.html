@@ -4870,6 +4870,8 @@
         socket.on('media_list_update', (files) => {
             cachedMediaFiles = files;
             renderMediaFiles();
+            // Refresh battlemap selector now that we have the file list
+            if (typeof bmPopulateMapSelect === 'function') bmPopulateMapSelect();
         });
 
         function renderMediaFiles() {
@@ -7542,9 +7544,9 @@
                 if (state.geo) bmGeoData = state.geo;
                 if (state.mapUrl && state.mapUrl !== prevUrl) {
                     bmLoadMapImage(state.mapUrl);
-                } else {
-                    bmScheduleRender();
                 }
+                // Always schedule a render so tokens/FOW update immediately
+                bmScheduleRender();
                 bmSyncUI();
             });
 
@@ -8377,10 +8379,8 @@
         }
         function bmSetMap(url) {
             socket.emit('admin_battlemap_config', { mapUrl: url });
-            if (url) {
-                bmLoadMapImage(url);
-                socket.emit('admin_get_battlemap_json', { mapUrl: url });
-            } else {
+            // geo, tokens and FOW are returned inside battlemap_state — no separate fetch needed
+            if (!url) {
                 bmGeoData = { walls: [], doors: [], lights: [] };
                 bmScheduleRender();
             }

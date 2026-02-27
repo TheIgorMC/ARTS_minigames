@@ -1163,5 +1163,319 @@
     "isOpen": false,
     "resalePercent": 12,
     "imageUrl": ""
+  },
+  {
+    "id": "mm53gxfkhs59",
+    "name": "Seran Corner",
+    "location": "Lower Gemini - Firaw sector",
+    "description": "",
+    "categories": [
+      "goods"
+    ],
+    "stock": [
+      {
+        "itemId": "Q0N5OCF3vglpM6fi",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "WQAM1V84zi5KuzzT",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "QC9JVBKb4iTTaOxk",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "hpKptB0zP287X255",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "62ff45eQdRwIE4cK",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "GAL8IImHAhtvU8Gk",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "lYW4kKeCAnFt5RML",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "iIsrT88K5PTUnjHf",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "y5o1FyLqRFdYcJUz",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "lDRdRhbAgQuPZpyt",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "BUKPrUKmcnckTJEW",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "vv3Uw4rufnkbDhhi",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "ozUIux1kwjBz9fwz",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "qarLlZI6tl8lEmaP",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "k4uhCOLBmuO1nxQy",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "OieigX24Ng2puEws",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "RixS54YHX2X2lcyt",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "i4BcTJAAlrx7B3lC",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "JEadVvpd66j25ZrI",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "5Wsn2CtqVQpVBzgY",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "XW4Nb1dyOLvLIXZN",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "xUhtzVcnVkIaGi6j",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "gEYnV3NIFQV9jYRB",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "mQ7n1yibCtY0QJHG",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "jUJoYVmSHQAVp5CF",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "DlhLioGmU0J2x2rE",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "uAOuoT6PjLYJgcJ3",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "jZFGyxM9YIigTeIK",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "nS2c4lZiu2BX8Xyr",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "fY44Tyb8YsMrvAqB",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "qgY6jRuXMLKQKZRn",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "HR97t8Ay34JaOcmY",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "knq8nJCkYT937KFO",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "kp5sWle0oPmWYUTf",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "rtoCmnoJ1hjmzBTu",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "rIyjNiEEOKA4j1v7",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "2gijUu1WYtyXLbNe",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "Uyzu97tbep06rvQw",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "IslFV5lHl7f7lWXw",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "IE1ROjGUmu0AS0OE",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "nqi8ZaKYRaFg9xyY",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "TpVlN24y9Z1Hzz4L",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "aSbKvtX5o259enSg",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "SzRNcMmtwMzhOlfP",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "pZQW2ChgHj8KVwro",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "jrxI6vuCfjTnasD0",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "tMrwA3ojCACiTdoq",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "o4093AMosCWmWFWW",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "WHEMWxpk73WaDBvp",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "SW1b3H0IKAMObpAR",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "Rvl8tGyJ2hHrween",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "fsd6ZEgQPK3fdnVy",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "KF7ltBV698hPOQz8",
+        "qty": 4,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "zOvF12YES7pyom6I",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "XOQLBRv2pYoV1e57",
+        "qty": 1,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "jP7JYkz9KacczDhu",
+        "qty": 0,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "qqLIJsu5ETlGoI51",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "BWxgUiDEy01rCzOK",
+        "qty": 2,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "w7Pr2KvjSnqYuLeG",
+        "qty": 3,
+        "priceOverride": 0
+      },
+      {
+        "itemId": "ChPrZHR9Jkt87IDz",
+        "qty": 1,
+        "priceOverride": 0
+      }
+    ],
+    "isOpen": false,
+    "resalePercent": 11,
+    "imageUrl": ""
   }
 ]
