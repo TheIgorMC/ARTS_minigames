@@ -1,0 +1,108 @@
+{
+  "time": {
+    "year": 2556,
+    "day": 3,
+    "hour": 3,
+    "minute": 40,
+    "scrambled": false,
+    "textScrambled": false
+  },
+  "mood": {
+    "imageUrl": "/media/%5B00%5DGlobal/%5BMOOD%5DIdle.jpg"
+  },
+  "roleplay": {
+    "active": true,
+    "background": "",
+    "characters": []
+  },
+  "identities": [
+    "GM",
+    "Jose Milly"
+  ],
+  "conversations": [
+    {
+      "id": "group_1767086476444",
+      "name": "The squad",
+      "type": "group",
+      "participants": [
+        "joe",
+        "spark",
+        "Jose Milly"
+      ]
+    }
+  ],
+  "campaignSettings": {
+    "allowedSources": [
+      "AR",
+      "CRB",
+      "COM",
+      "GEM",
+      "AA2",
+      "AA1"
+    ]
+  },
+  "battlemap": {
+    "active": true,
+    "mapUrl": "/media/%5B01%5DVerros%20Office/%5BBG%5D%20Table%20night.jpg",
+    "gridType": "square",
+    "gridCols": 24,
+    "gridRows": 13,
+    "gridColor": "#ffffff",
+    "gridOpacity": 0.3,
+    "physicalCols": 24,
+    "physicalRows": 14,
+    "tokens": [
+      {
+        "id": "tok_1772198597395_r7n",
+        "type": "pc",
+        "charId": null,
+        "name": "Spark",
+        "image": "",
+        "col": 6,
+        "row": 1,
+        "size": 1,
+        "hp": 37,
+        "maxHp": 37,
+        "sp": 42,
+        "maxSp": 42,
+        "hpMode": "hidden",
+        "damageTaken": 0,
+        "conditions": [],
+        "hidden": false,
+        "color": "#00d2ff",
+        "initiative": 13,
+        "elevation": 0
+      },
+      {
+        "id": "tok_1772199835011_qa2",
+        "type": "enemy",
+        "charId": null,
+        "name": "Sol.1",
+        "image": "",
+        "col": 6,
+        "row": 5,
+        "size": 1,
+        "hp": 46,
+        "maxHp": 56,
+        "sp": 0,
+        "maxSp": 0,
+        "hpMode": "damage_dealt",
+        "damageTaken": 0,
+        "conditions": [],
+        "hidden": false,
+        "color": "#ff3333",
+        "initiative": 8,
+        "elevation": 0
+      }
+    ],
+    "initiativeOrder": [
+      "tok_1772198597395_r7n",
+      "tok_1772199835011_qa2"
+    ],
+    "initiativeCurrent": 0,
+    "fowEnabled": true,
+    "fowCells": {},
+    "tableOffsetX": 0,
+    "tableOffsetY": 0
+  }
+}

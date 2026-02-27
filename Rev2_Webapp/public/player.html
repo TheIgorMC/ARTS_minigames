@@ -2975,11 +2975,29 @@
                     if (!tok || tok.hidden) return '';
                     const isActive = idx === pbState.initiativeCurrent;
                     const isMe = myTok && tok.id === myTok.id;
+                    // HP/damage info for non-player tokens
+                    let hpInfo = '';
+                    if (!isMe) {
+                        const mode = tok.hpMode || 'hidden';
+                        if (mode === 'hp_bar' && tok.maxHp > 0) {
+                            const pct = Math.max(0, Math.min(1, tok.hp / tok.maxHp));
+                            const col = pct > 0.5 ? '#0c0' : pct > 0.25 ? '#fc0' : '#f33';
+                            hpInfo = `<div style="background:#222; border-radius:2px; height:4px; width:52px; margin-top:4px;">
+                                <div style="background:${col}; height:100%; width:${Math.round(pct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
+                            </div>`;
+                        } else if (mode === 'damage_dealt') {
+                            const dmg = (tok.maxHp || 0) - (tok.hp || 0);
+                            if (dmg > 0) hpInfo = `<span style="color:#f55; font-size:0.72rem; margin-top:3px; display:block;">-${dmg} DMG</span>`;
+                        }
+                    }
                     return `<div style="padding:7px 10px; border-radius:3px; display:flex; justify-content:space-between; align-items:center;
                         background:${isActive ? 'rgba(255,215,0,0.1)' : 'rgba(255,255,255,0.03)'};
                         border-left:3px solid ${isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : '#333')};">
                         <span style="color:${isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : '#aaa')}; font-weight:${isActive?'bold':'normal'}">${isActive ? '▶ ' : ''}${tok.name}</span>
-                        <span style="color:#555; font-size:0.78rem;">init ${tok.initiative ?? '—'}</span>
+                        <div style="text-align:right;">
+                            <span style="color:#555; font-size:0.78rem;">init ${tok.initiative ?? '—'}</span>
+                            ${hpInfo}
+                        </div>
                     </div>`;
                 }).join('');
             } else {

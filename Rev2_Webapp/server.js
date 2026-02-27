@@ -139,6 +139,7 @@ let battlemapState = {
     initiativeCurrent: -1, // Index of current actor (-1 = not started)
     fowEnabled: false,
     fowCells: {},           // 'col,row' -> 'visible'|'explored' (missing = hidden)
+    autoVision: true,       // When true, fowCells are auto-computed from PC token positions
     geo: { walls: [], doors: [], lights: [] }, // Geometry: walls, doors, lights
 };
 
@@ -201,6 +202,11 @@ function loadStatus() {
             if (status.conversations) conversations = status.conversations;
             if (status.campaignSettings) campaignSettings = status.campaignSettings;
             if (status.battlemap) battlemapState = status.battlemap;
+            // Ensure fields added after initial release always exist
+            if (battlemapState.autoVision == null)  battlemapState.autoVision = true;
+            if (!battlemapState.geo)       battlemapState.geo = { walls: [], doors: [], lights: [] };
+            if (!battlemapState.fowCells)  battlemapState.fowCells = {};
+            if (!battlemapState.tokens)    battlemapState.tokens = [];
             console.log('Status loaded:', status);
         } catch (e) {
             console.error('Error loading status:', e);
@@ -521,8 +527,102 @@ function autosaveCurrentScene() {
     };
     
     saveSceneData(currentSceneId, sceneData);
-    // We don't emit admin_data_update here to avoid spamming the GM client with full reloads
-    // But we might want to notify that save happened?
+}
+
+// ─── PER-SCENE BATTLEMAP PERSISTENCE ───────────────────────────────────────
+function bmGetJsonPath(mapUrl) {
+    if (!mapUrl) return null;
+    try {
+        const relPath = decodeURIComponent(mapUrl.replace(/^\/media\//, ''));
+        const imgPath = path.resolve(MEDIA_DIR, relPath);
+        if (!imgPath.startsWith(MEDIA_DIR + path.sep) && imgPath !== MEDIA_DIR) return null;
+        return imgPath.replace(/\.[^.]+$/, '.json');
+    } catch(e) { return null; }
+}
+function bmLoadSceneData(mapUrl) {
+    const jsonPath = bmGetJsonPath(mapUrl);
+    if (!jsonPath || !fs.existsSync(jsonPath)) return null;
+    try { return JSON.parse(fs.readFileSync(jsonPath, 'utf8')); }
+    catch(e) { console.error('bmLoadSceneData error:', e); return null; }
+}
+function bmSaveSceneData(mapUrl) {
+    const jsonPath = bmGetJsonPath(mapUrl);
+    if (!jsonPath) return;
+    try {
+        const data = {
+            walls:      battlemapState.geo?.walls  || [],
+            doors:      battlemapState.geo?.doors  || [],
+            lights:     battlemapState.geo?.lights || [],
+            tokens:     battlemapState.tokens      || [],
+            fowCells:   battlemapState.fowCells    || {},
+            fowEnabled: battlemapState.fowEnabled  || false,
+        };
+        fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2));
+    } catch(e) { console.error('bmSaveSceneData error:', e); }
+}
+// Combined save helper used by all battlemap handlers
+function bmSave() {
+    bmSaveSceneData(battlemapState.mapUrl);
+    saveStatus();
+}
+
+// ─── AUTO-VISION / RAYCASTING ────────────────────────────────────────────────
+// Returns true if segment AB intersects segment CD (strict, not at endpoints of AB)
+function bmSegsIntersect(ax, ay, bx, by, cx, cy, dx, dy) {
+    const dABx = bx - ax, dABy = by - ay;
+    const dCDx = dx - cx, dCDy = dy - cy;
+    const denom = dABx * dCDy - dABy * dCDx;
+    if (Math.abs(denom) < 1e-10) return false; // Parallel
+    const t = ((cx - ax) * dCDy - (cy - ay) * dCDx) / denom;
+    const u = ((cx - ax) * dABy - (cy - ay) * dABx) / denom;
+    return t > 1e-6 && t < 1 - 1e-6 && u >= 0 && u <= 1;
+}
+
+function bmAutoComputeVision() {
+    if (!battlemapState.autoVision) return;
+    const geo = battlemapState.geo || { walls: [], doors: [], lights: [] };
+    const walls   = geo.walls  || [];
+    const doors   = geo.doors  || [];
+    const blockers = [...walls, ...doors.filter(d => d.state !== 'open')];
+    const gCols = battlemapState.gridCols || 20;
+    const gRows = battlemapState.gridRows || 12;
+    if (!gCols || !gRows) return;
+
+    // Step 1: downgrade all currently 'visible' cells to 'explored'
+    const newFow = {};
+    Object.entries(battlemapState.fowCells).forEach(([k, v]) => {
+        newFow[k] = v === 'visible' ? 'explored' : v;
+    });
+
+    // Step 2: find all PC tokens on the map and cast vision
+    const pcTokens = battlemapState.tokens.filter(t =>
+        !t.hidden && t.type === 'pc' &&
+        typeof t.col === 'number' && t.col >= 0 && typeof t.row === 'number' && t.row >= 0
+    );
+
+    pcTokens.forEach(tok => {
+        const vr = (tok.vision != null ? tok.vision : 12); // cells (12 = 60ft)
+        const px = tok.col + 0.5, py = tok.row + 0.5;
+        const vr2 = (vr + 0.5) * (vr + 0.5);
+
+        for (let r = 0; r < gRows; r++) {
+            for (let c = 0; c < gCols; c++) {
+                const dx = c - tok.col, dy = r - tok.row;
+                if (dx * dx + dy * dy > vr2) continue;
+                const cx = c + 0.5, cy = r + 0.5;
+                let blocked = false;
+                for (const seg of blockers) {
+                    if (bmSegsIntersect(px, py, cx, cy, seg.x1, seg.y1, seg.x2, seg.y2)) {
+                        blocked = true;
+                        break;
+                    }
+                }
+                if (!blocked) newFow[c + ',' + r] = 'visible';
+            }
+        }
+    });
+
+    battlemapState.fowCells = newFow;
 }
 
 // Gestione connessioni Socket.io
@@ -1577,13 +1677,43 @@ io.on('connection', (socket) => {
     // BATTLEMAP
     // ─────────────────────────────────────────────────────────────────────────
     socket.on('admin_battlemap_config', (cfg) => {
-        const allowed = ['active','mapUrl','gridType','gridCols','gridRows','gridColor','gridOpacity','physicalCols','physicalRows','tableOffsetX','tableOffsetY','fowEnabled'];
+        const allowed = ['active','gridType','gridCols','gridRows','gridColor','gridOpacity','physicalCols','physicalRows','tableOffsetX','tableOffsetY','fowEnabled','autoVision'];
+        if (cfg.mapUrl !== undefined && cfg.mapUrl !== battlemapState.mapUrl) {
+            // ── Map change: save current scene, load new one ──
+            bmSaveSceneData(battlemapState.mapUrl);     // persist old map state
+            battlemapState.mapUrl = cfg.mapUrl;
+            const sd = bmLoadSceneData(cfg.mapUrl);    // load new map state
+            if (sd) {
+                battlemapState.geo       = { walls: sd.walls||[], doors: sd.doors||[], lights: sd.lights||[] };
+                battlemapState.tokens    = sd.tokens    || [];
+                battlemapState.fowCells  = sd.fowCells  || {};
+                if (sd.fowEnabled !== undefined) battlemapState.fowEnabled = sd.fowEnabled;
+            } else {
+                battlemapState.geo      = { walls: [], doors: [], lights: [] };
+                battlemapState.tokens   = [];
+                battlemapState.fowCells = {};
+            }
+            // Apply any other fields sent in the same message
+            allowed.forEach(k => { if (cfg[k] !== undefined) battlemapState[k] = cfg[k]; });
+            bmAutoComputeVision();
+            bmSave();
+            io.emit('battlemap_state', battlemapState);
+            return;
+        }
+        // ── Normal config update (no map change) ──
         allowed.forEach(k => { if (cfg[k] !== undefined) battlemapState[k] = cfg[k]; });
-        saveStatus();
+        if (cfg.gridCols !== undefined || cfg.gridRows !== undefined || cfg.autoVision !== undefined) bmAutoComputeVision();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
     socket.on('admin_battlemap_token_add', (tok) => {
+        // Try to get vision range from linked character
+        let vision = tok.vision != null ? tok.vision : 12;
+        if (tok.charId) {
+            const linkedChar = characters.find(c => c.id === tok.charId);
+            if (linkedChar?.combat?.vision != null) vision = linkedChar.combat.vision;
+        }
         const newTok = {
             id: 'tok_' + Date.now() + '_' + Math.random().toString(36).slice(2,5),
             type: tok.type || 'enemy',
@@ -1603,33 +1733,38 @@ io.on('connection', (socket) => {
             hidden: tok.hidden || false,
             color: tok.color || null,
             initiative: tok.initiative || 0,
+            vision: vision,
             elevation: 0,
         };
         battlemapState.tokens.push(newTok);
-        saveStatus();
+        if (newTok.type === 'pc') bmAutoComputeVision();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
     socket.on('admin_battlemap_token_update', (data) => {
         const tok = battlemapState.tokens.find(t => t.id === data.id);
         if (!tok) return;
-        const safe = ['type','name','image','size','hp','maxHp','sp','maxSp','hpMode','damageTaken','conditions','hidden','color','initiative','elevation','col','row','charId'];
+        const safe = ['type','name','image','size','hp','maxHp','sp','maxSp','hpMode','damageTaken','conditions','hidden','color','initiative','elevation','col','row','charId','vision'];
         safe.forEach(k => { if (data[k] !== undefined) tok[k] = data[k]; });
-        saveStatus();
+        // Recompute vision if PC token position or visibility changed
+        if (tok.type === 'pc' && (data.col !== undefined || data.row !== undefined || data.hidden !== undefined || data.vision !== undefined)) bmAutoComputeVision();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
     socket.on('admin_battlemap_token_remove', (data) => {
         battlemapState.tokens = battlemapState.tokens.filter(t => t.id !== data.id);
         battlemapState.initiativeOrder = battlemapState.initiativeOrder.filter(id => id !== data.id);
-        saveStatus();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
     socket.on('admin_battlemap_token_move', (data) => {
         const tok = battlemapState.tokens.find(t => t.id === data.id);
         if (tok) { tok.col = data.col; tok.row = data.row; }
-        saveStatus();
+        if (tok && tok.type === 'pc') bmAutoComputeVision();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
@@ -1639,13 +1774,13 @@ io.on('connection', (socket) => {
             if (val === null || val === 'hidden') delete battlemapState.fowCells[key];
             else battlemapState.fowCells[key] = val;
         });
-        saveStatus();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
     socket.on('admin_battlemap_fow_clear', () => {
         battlemapState.fowCells = {};
-        saveStatus();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
@@ -1655,7 +1790,7 @@ io.on('connection', (socket) => {
             for (let r = 0; r < battlemapState.gridRows; r++)
                 cells[c + ',' + r] = 'visible';
         battlemapState.fowCells = cells;
-        saveStatus();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 
@@ -1692,9 +1827,9 @@ io.on('connection', (socket) => {
             const imgPath = path.resolve(MEDIA_DIR, relPath);
             if (!imgPath.startsWith(MEDIA_DIR + path.sep) && imgPath !== MEDIA_DIR) { console.error('Path traversal blocked'); return; }
             const jsonPath = imgPath.replace(/\.[^\.]+$/, '.json');
-            fs.writeFileSync(jsonPath, JSON.stringify(data.geo, null, 2));
             battlemapState.geo = data.geo;
-            saveStatus();
+            bmAutoComputeVision();
+            bmSave();  // bmSaveSceneData writes geo+tokens+fowCells to the JSON file
             io.emit('battlemap_state', battlemapState);
             socket.emit('gm_hacking_log', 'Battlemap geometry saved.');
         } catch (e) {
@@ -1708,14 +1843,8 @@ io.on('connection', (socket) => {
         const door = battlemapState.geo.doors[data.doorIndex];
         if (!door) return;
         door.state = data.state || 'closed';
-        if (battlemapState.mapUrl) {
-            try {
-                const relPath = decodeURIComponent(battlemapState.mapUrl.replace(/^\/media\//, ''));
-                const jsonPath = path.resolve(MEDIA_DIR, relPath).replace(/\.[^\.]+$/, '.json');
-                fs.writeFileSync(jsonPath, JSON.stringify(battlemapState.geo, null, 2));
-            } catch (e) { console.error('door toggle save error:', e); }
-        }
-        saveStatus();
+        bmAutoComputeVision();
+        bmSave();
         io.emit('battlemap_state', battlemapState);
     });
 

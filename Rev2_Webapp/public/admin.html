@@ -1173,7 +1173,14 @@
 
                     <!-- FOG panel -->
                     <div id="bm-side-fog" class="bm-side-panel hidden">
-                        <div class="form-label-sm">PAINT TOOL <span id="bm-tool-active-label" style="color:#00d2ff; float:right;">SELECT</span></div>
+                        <div style="padding:5px 6px; background:rgba(0,210,255,0.06); border:1px solid #1a3a44; border-radius:3px; margin-bottom:8px;">
+                            <label style="font-size:0.78rem; color:#00d2ff; cursor:pointer;">
+                                <input type="checkbox" id="bm-auto-vision" checked onchange="bmSetAutoVision(this.checked)">
+                                AUTO VISION (from PC tokens)
+                            </label>
+                            <div style="font-size:0.7rem; color:#555; margin-top:2px;">Tokens of type PC auto-reveal FOW based on vision range + walls.</div>
+                        </div>
+                        <div class="form-label-sm">MANUAL PAINT TOOL <span id="bm-tool-active-label" style="color:#00d2ff; float:right;">SELECT</span></div>
                         <div style="display:flex; gap:3px;">
                             <button class="btn bm-fog-tool-btn" id="bm-fog-reveal" onclick="bmSetFogTool('reveal')" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#0f0; color:#0f0;">REVEAL</button>
                             <button class="btn bm-fog-tool-btn" id="bm-fog-explore" onclick="bmSetFogTool('explore')" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#888; color:#888;">PARTIAL</button>
@@ -1399,6 +1406,12 @@
                         <div>
                             <div class="form-label">INITIATIVE</div>
                             <input type="number" id="bm-tok-initiative" class="form-input" value="0">
+                        </div>
+                        <div>
+                            <div class="form-label">VISION &nbsp;<span id="bm-tok-vision-ft" style="color:#888; font-weight:normal; font-size:0.75rem;">= 60 ft</span></div>
+                            <input type="number" id="bm-tok-vision" class="form-input" value="12" min="0" max="120"
+                                title="Vision range in grid cells. 1 cell = 5 ft (e.g. 12 = 60 ft). Only applies to PC tokens."
+                                oninput="document.getElementById('bm-tok-vision-ft').textContent='= '+(this.value*5)+' ft'">
                         </div>
                         <div>
                             <div class="form-label">TOKEN COLOR</div>
@@ -7473,7 +7486,7 @@
             gridCols: 20, gridRows: 12, gridColor: '#ffffff', gridOpacity: 0.3,
             physicalCols: 20, physicalRows: 12,
             tokens: [], initiativeOrder: [], initiativeCurrent: -1,
-            fowEnabled: false, fowCells: {},
+            fowEnabled: false, fowCells: {}, autoVision: true,
             geo: { walls: [], doors: [], lights: [] }
         };
         let bmCanvas = null, bmCtx = null;
@@ -7501,6 +7514,8 @@
         let bmGeoDrawEnd   = null;      // grid corner { cx, cy } for wall/door drag end
         let bmGeoIsDragging = false;
         let bmGeoSelected  = null;      // { type: 'wall'|'door'|'light', index }
+        // Viewport (cyan box) drag state
+        let bmVpDrag = null;            // { startX, startY, origOffX, origOffY } while dragging cyan box
 
         // ── Init ─────────────────────────────────────────────────────────────
         function bmInit() {
@@ -7570,6 +7585,14 @@
             if (physC) physC.value = s.physicalCols;
             if (physR) physR.value = s.physicalRows;
 
+            const tblOx = document.getElementById('bm-tbl-ox');
+            const tblOy = document.getElementById('bm-tbl-oy');
+            if (tblOx) tblOx.value = s.tableOffsetX || 0;
+            if (tblOy) tblOy.value = s.tableOffsetY || 0;
+
+            const avChk = document.getElementById('bm-auto-vision');
+            if (avChk) avChk.checked = s.autoVision !== false;
+
             const gcol = document.getElementById('bm-grid-color');
             const gopa = document.getElementById('bm-grid-opacity');
             const gopv = document.getElementById('bm-opacity-val');
@@ -7612,10 +7635,10 @@
             if (!sel) return;
             sel.innerHTML = '<option value="">— no map —</option>';
             if (!cachedMediaFiles) return;
-            cachedMediaFiles.filter(f => f.type === 'background' || f.type === 'battlemap').forEach(f => {
+            cachedMediaFiles.filter(f => f.type === 'battlemap').forEach(f => {
                 const o = document.createElement('option');
                 o.value = '/media/' + f.path;
-                o.textContent = (f.type === 'battlemap' ? '[BM] ' : '') + f.name;
+                o.textContent = f.name;
                 sel.appendChild(o);
             });
             sel.value = bmState.mapUrl || '';
@@ -7910,11 +7933,31 @@
         }
 
         // ── Mouse events ─────────────────────────────────────────────────────
+        function bmIsInViewport(px, py) {
+            const W = bmCanvas.width, H = bmCanvas.height;
+            const { cs: bmCs, ox: bmOx, oy: bmOy } = bmAdminMetrics(W, H);
+            const vpX = bmOx + (bmState.tableOffsetX || 0) * bmCs;
+            const vpY = bmOy + (bmState.tableOffsetY || 0) * bmCs;
+            const vpW = (bmState.physicalCols || bmState.gridCols) * bmCs;
+            const vpH = (bmState.physicalRows || bmState.gridRows) * bmCs;
+            // Check if within the border area (8px band) of the cyan rectangle
+            const inX = px >= vpX - 6 && px <= vpX + vpW + 6;
+            const inY = py >= vpY - 6 && py <= vpY + vpH + 6;
+            const innerX = px >= vpX + 8 && px <= vpX + vpW - 8;
+            const innerY = py >= vpY + 8 && py <= vpY + vpH - 8;
+            return inX && inY && !(innerX && innerY);
+        }
         function bmOnMouseDown(e) {
             const { x, y } = bmCanvasXY(e);
             const W = bmCanvas.width, H = bmCanvas.height;
             if (bmTool === 'geo') {
                 bmGeoHandleMouseDown(x, y);
+                return;
+            }
+            // Viewport (cyan box) drag — only in select mode
+            if (bmTool === 'select' && bmIsInViewport(x, y)) {
+                bmVpDrag = { startX: x, startY: y, origOffX: bmState.tableOffsetX || 0, origOffY: bmState.tableOffsetY || 0 };
+                bmCanvas.style.cursor = 'move';
                 return;
             }
             if (bmTool === 'fog') {
@@ -7946,6 +7989,23 @@
                 bmGeoHandleMouseMove(x, y);
                 return;
             }
+            // Viewport drag
+            if (bmVpDrag) {
+                const { cs } = bmAdminMetrics(W, H);
+                const dx = Math.round((x - bmVpDrag.startX) / cs);
+                const dy = Math.round((y - bmVpDrag.startY) / cs);
+                const newOx = Math.max(0, bmVpDrag.origOffX + dx);
+                const newOy = Math.max(0, bmVpDrag.origOffY + dy);
+                // Update preview live (optimistic)
+                bmState.tableOffsetX = newOx;
+                bmState.tableOffsetY = newOy;
+                const tblOx = document.getElementById('bm-tbl-ox');
+                const tblOy = document.getElementById('bm-tbl-oy');
+                if (tblOx) tblOx.value = newOx;
+                if (tblOy) tblOy.value = newOy;
+                bmScheduleRender();
+                return;
+            }
             if (bmIsPainting && bmTool === 'fog') {
                 const key = cell.col + ',' + cell.row;
                 const lastKey = bmLastPaintCell ? bmLastPaintCell.col + ',' + bmLastPaintCell.row : null;
@@ -7961,13 +8021,23 @@
                 bmCanvas.style.cursor = 'grabbing';
             } else {
                 const hover = bmGetTokenAtPoint(x, y);
-                bmCanvas.style.cursor = hover ? 'grab' : '';
+                bmCanvas.style.cursor = hover ? 'grab' : (bmIsInViewport(x, y) ? 'move' : '');
             }
         }
         function bmOnMouseUp(e) {
             if (bmTool === 'geo') {
                 const { x, y } = bmCanvasXY(e);
                 bmGeoHandleMouseUp(x, y);
+                return;
+            }
+            // Commit viewport drag
+            if (bmVpDrag) {
+                socket.emit('admin_battlemap_config', {
+                    tableOffsetX: bmState.tableOffsetX || 0,
+                    tableOffsetY: bmState.tableOffsetY || 0
+                });
+                bmVpDrag = null;
+                bmCanvas.style.cursor = '';
                 return;
             }
             if (bmIsPainting) {
@@ -8162,21 +8232,24 @@
                 const lr = lt.radius * cs;
                 const col = lt.color || '#ffeeaa';
                 const isSelected = bmGeoSelected && bmGeoSelected.type === 'light' && bmGeoSelected.index === i;
-                // Radial glow
+                // Subtle radial glow (GM view — don't obscure map)
                 ctx.save();
                 const grad = ctx.createRadialGradient(lx, ly, 0, lx, ly, lr);
-                grad.addColorStop(0, col + 'aa');
+                grad.addColorStop(0, col + '28');
+                grad.addColorStop(0.5, col + '10');
                 grad.addColorStop(1, col + '00');
                 ctx.fillStyle = grad;
                 ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI*2); ctx.fill();
                 ctx.restore();
                 // Centre dot
                 ctx.fillStyle = col;
-                ctx.beginPath(); ctx.arc(lx, ly, 5, 0, Math.PI*2); ctx.fill();
+                ctx.globalAlpha = 0.85;
+                ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI*2); ctx.fill();
+                ctx.globalAlpha = 1;
                 if (isSelected) {
-                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.setLineDash([3,3]); ctx.globalAlpha = 0.5;
                     ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI*2); ctx.stroke();
-                    ctx.setLineDash([]);
+                    ctx.setLineDash([]); ctx.globalAlpha = 1;
                 }
             });
 
@@ -8325,10 +8398,15 @@
         function bmApplyScale() {
             const pc = parseInt(document.getElementById('bm-phys-cols').value) || 20;
             const pr = parseInt(document.getElementById('bm-phys-rows').value) || 12;
-            socket.emit('admin_battlemap_config', { physicalCols: pc, physicalRows: pr });
+            const ox = parseInt(document.getElementById('bm-tbl-ox').value) || 0;
+            const oy = parseInt(document.getElementById('bm-tbl-oy').value) || 0;
+            socket.emit('admin_battlemap_config', { physicalCols: pc, physicalRows: pr, tableOffsetX: ox, tableOffsetY: oy });
         }
         function bmFogRevealAll() { socket.emit('admin_battlemap_fow_reveal_all', {}); }
         function bmFogHideAll()   { socket.emit('admin_battlemap_fow_clear', {}); }
+        function bmSetAutoVision(checked) {
+            socket.emit('admin_battlemap_config', { autoVision: checked });
+        }
 
         // ── Side-tab switching ────────────────────────────────────────────────
         function bmSetSideTab(name, btn) {
@@ -8553,6 +8631,8 @@
             document.getElementById('bm-tok-maxsp').value = ch.vitals?.max_sp ?? ch.vitals?.sp ?? 0;
             document.getElementById('bm-tok-color').value = BM_TYPE_COLORS[tokType] || '#888';
             document.getElementById('bm-tok-initiative').value = 0;
+            document.getElementById('bm-tok-vision').value    = ch.combat?.vision ?? 12;
+            document.getElementById('bm-tok-vision-ft').textContent = '= ' + ((ch.combat?.vision ?? 12) * 5) + ' ft';
             const imgUrl = ch.tokenImage || ch.image || '';
             if (imgUrl) {
                 document.getElementById('bm-tok-image').value = imgUrl;
@@ -8584,6 +8664,8 @@
             document.getElementById('bm-tok-sp').value     = tok.sp    ?? 0;
             document.getElementById('bm-tok-maxsp').value  = tok.maxSp ?? 0;
             document.getElementById('bm-tok-initiative').value = tok.initiative ?? 0;
+            document.getElementById('bm-tok-vision').value    = tok.vision ?? 12;
+            document.getElementById('bm-tok-vision-ft').textContent = '= ' + ((tok.vision ?? 12) * 5) + ' ft';
             document.getElementById('bm-tok-color').value  = tok.color || '#ff3333';
             document.getElementById('bm-tok-hidden').checked = !!tok.hidden;
             bmPopulateTokenImageSelect(tok.image || tok.imageUrl);
@@ -8609,6 +8691,8 @@
             document.getElementById('bm-tok-sp').value   = 0;
             document.getElementById('bm-tok-maxsp').value = 0;
             document.getElementById('bm-tok-initiative').value = 0;
+            document.getElementById('bm-tok-vision').value    = 12;
+            document.getElementById('bm-tok-vision-ft').textContent = '= 60 ft';
             document.getElementById('bm-tok-color').value = '#ff3333';
             document.getElementById('bm-tok-hidden').checked = false;
             document.querySelector('input[name="bm-tok-hpmode"][value="hidden"]').checked = true;
@@ -8631,6 +8715,7 @@
                 sp:         parseInt(document.getElementById('bm-tok-sp').value)   || 0,
                 maxSp:      parseInt(document.getElementById('bm-tok-maxsp').value)|| 0,
                 initiative: parseInt(document.getElementById('bm-tok-initiative').value) || 0,
+                vision:     parseInt(document.getElementById('bm-tok-vision').value) || 12,
                 color:      document.getElementById('bm-tok-color').value,
                 image:      document.getElementById('bm-tok-image').value,
                 hidden:     document.getElementById('bm-tok-hidden').checked,

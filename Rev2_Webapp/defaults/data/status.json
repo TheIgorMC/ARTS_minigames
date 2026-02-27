@@ -1,0 +1,8 @@
+{
+    "time": { "year": 320, "day": 1, "hour": 12, "minute": 0, "scrambled": false, "textScrambled": false },
+    "mood": { "imageUrl": "" },
+    "roleplay": { "active": false, "background": "", "characters": [] },
+    "identities": ["GM"],
+    "conversations": [],
+    "campaignSettings": { "allowedSources": [] }
+}

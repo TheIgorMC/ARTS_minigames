@@ -443,6 +443,11 @@
             // Tokens
             s.tokens.forEach(tok => {
                 if (tok.hidden) return;
+                // Hide tokens that are not in a visible cell (FOW)
+                if (s.fowEnabled) {
+                    const cellKey = tok.col + ',' + tok.row;
+                    if ((s.fowCells || {})[cellKey] !== 'visible') return;
+                }
                 const center = bmProjTokenCenter(tok, W, H, m);
                 if (center) bmProjDrawToken(tok, center, ctx);
             });
@@ -452,8 +457,13 @@
                 const tid = s.initiativeOrder[s.initiativeCurrent];
                 const tok = s.tokens.find(t => t.id === tid && !t.hidden);
                 if (tok) {
-                    const center = bmProjTokenCenter(tok, W, H, m);
-                    if (center) bmProjInitRing(center, ctx);
+                    // Don't show ring if token is hidden by FOW
+                    const cellKey = tok.col + ',' + tok.row;
+                    const inFog = s.fowEnabled && (s.fowCells || {})[cellKey] !== 'visible';
+                    if (!inFog) {
+                        const center = bmProjTokenCenter(tok, W, H, m);
+                        if (center) bmProjInitRing(center, ctx);
+                    }
                 }
             }
 
@@ -513,7 +523,7 @@
                 for (let c = 0; c < m.pCols; c++) {
                     const key = (c + ox2) + ',' + (r + oy2);
                     const st = cells[key];
-                    const alpha = !st ? 0.92 : st === 'explored' ? 0.55 : 0;
+                    const alpha = !st ? 1.0 : st === 'explored' ? 0.55 : 0;
                     if (alpha > 0) {
                         ctx.fillStyle = `rgba(0,0,0,${alpha})`;
                         ctx.fillRect(m.ox + c * m.cs, m.oy + r * m.cs, m.cs, m.cs);
