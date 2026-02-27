@@ -614,6 +614,36 @@
             margin-bottom: 10px;
         }
         .section-heading:first-child { margin-top: 0; }
+
+        /* ── Battlemap / Play Tab ─────────────────────────────────── */
+        #tab-play { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+        .play-toolbar {
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+            padding: 8px 12px; background: #0a0a12; border-bottom: 1px solid #333; flex-shrink: 0;
+        }
+        .play-toolbar-sep { width: 1px; height: 22px; background: #333; flex-shrink: 0; }
+        .play-toolbar label { color: #888; font-size: 0.78rem; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+        .play-toolbar input[type=number] { width: 46px; padding: 4px 5px; background: #000; color: #fff; border: 1px solid #444; font-family: inherit; font-size: 0.8rem; text-align: center; }
+        .play-layout { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+        .play-sidebar { width: 265px; flex-shrink: 0; border-right: 1px solid #333; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+        .play-sidebar-tabs { display: flex; gap: 3px; flex-wrap: wrap; }
+        .bm-side-panel { display: flex; flex-direction: column; gap: 6px; }
+        .play-canvas-area { flex: 1; background: #000; position: relative; overflow: hidden; }
+        .bm-token-item {
+            display: flex; align-items: center; gap: 5px; padding: 5px 7px;
+            border: 1px solid #1a1a24; background: #080808; cursor: pointer; transition: background 0.12s;
+        }
+        .bm-token-item:hover { background: rgba(0,210,255,0.04); }
+        .bm-token-item.selected { border-color: var(--accent-color); background: rgba(0,210,255,0.08); }
+        .bm-token-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+        .bm-token-name { flex: 1; font-size: 0.8rem; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bm-token-pos { font-size: 0.7rem; color: #444; min-width: 36px; text-align: right; }
+        .bm-live-active { background: #c00 !important; color: #fff !important; border-color: #f33 !important; box-shadow: 0 0 12px rgba(255,30,30,0.4) !important; }
+        .bm-tool-active { filter: brightness(1.4); border-width: 2px !important; }
+        #bm-com-log { background: #000; border: 1px solid #1a1a24; padding: 5px; font-size: 0.72rem; color: #0f0; height: 110px; overflow-y: auto; font-family: monospace; }
+        .bm-cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; margin-top: 4px; }
+        .bm-cond-grid label { font-size: 0.75rem; color: #888; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+        .form-label-sm { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: .5px; margin-top: 8px; margin-bottom: 2px; }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -1080,9 +1110,346 @@
         </div>
 
         <!-- PLAY TAB -->
+        <!-- PLAY TAB — Tactical Battlemap -->
         <div id="tab-play" class="panel hidden">
-            <h2>Play</h2>
-            <p style="color: #666; font-style: italic;">Play mode coming soon.</p>
+
+            <!-- TOP TOOLBAR -->
+            <div class="play-toolbar">
+                <button id="bm-live-btn" class="action-btn" style="padding:6px 14px; font-size:0.78rem;" onclick="bmToggleActive()">▶ PROJECT</button>
+                <div class="play-toolbar-sep"></div>
+                <div style="display:flex; gap:3px;">
+                    <button class="sub-tab-btn" id="bm-grid-sq" onclick="bmSetGridType('square')">SQ</button>
+                    <button class="sub-tab-btn" id="bm-grid-hex" onclick="bmSetGridType('hex-pointy')">HEX</button>
+                </div>
+                <label>IMG W <input type="number" id="bm-cols" value="20" min="1" max="200" onchange="bmUpdateGridDims('w')"></label>
+                <label>IMG H <input type="number" id="bm-rows" value="12" min="1" max="200" onchange="bmUpdateGridDims('h')"></label>
+                <div class="play-toolbar-sep"></div>
+                <label><input type="checkbox" id="bm-fow-check" onchange="bmToggleFOW(this.checked)"> FOG</label>
+                <div class="play-toolbar-sep"></div>
+                <button class="sub-tab-btn" onclick="bmInitPrev()" title="Previous">◀</button>
+                <span id="bm-init-current" style="font-size:0.78rem; color:#ffaa00; min-width:90px; text-align:center;">INIT OFF</span>
+                <button class="sub-tab-btn" onclick="bmInitNext()" title="Next">▶</button>
+                <button class="sub-tab-btn" onclick="bmStartInitiative()" style="font-size:0.72rem;" title="Sort by initiative and start">START</button>
+                <button class="sub-tab-btn" onclick="bmClearInitiative()" style="font-size:0.72rem; color:#888;" title="Clear initiative">CLR</button>
+            </div>
+
+            <!-- MAIN LAYOUT -->
+            <div class="play-layout">
+
+                <!-- SIDEBAR -->
+                <div class="play-sidebar">
+                    <div class="play-sidebar-tabs">
+                        <button class="sub-tab-btn active bm-subtab-btn" onclick="bmSetSideTab('map', this)">MAP</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('tokens', this)">TOKENS</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('fog', this)">FOG</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('scale', this)">SCALE</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('init', this)">INIT</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('combat', this)">CMB</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('com', this)">COM</button>
+                        <button class="sub-tab-btn bm-subtab-btn" onclick="bmSetSideTab('geo', this)">GEO</button>
+                    </div>
+
+                    <!-- MAP panel -->
+                    <div id="bm-side-map" class="bm-side-panel">
+                        <div class="form-label-sm">MAP IMAGE</div>
+                        <select id="bm-map-select" class="form-input" onchange="bmSetMap(this.value)" style="font-size:0.78rem;"></select>
+                        <div class="form-label-sm">GRID COLOR</div>
+                        <div style="display:flex; gap:6px; align-items:center;">
+                            <input type="color" id="bm-grid-color" value="#ffffff" style="width:36px; height:24px; border:none; background:none; cursor:pointer;" onchange="bmSetGridColor(this.value)">
+                            <span style="color:#888; font-size:0.75rem;">Opacity</span>
+                            <input type="range" id="bm-grid-opacity" min="0" max="1" step="0.05" value="0.3" style="flex:1;" onchange="bmSetGridOpacity(this.value)">
+                            <span id="bm-opacity-val" style="color:#888; font-size:0.72rem; min-width:28px;">30%</span>
+                        </div>
+                    </div>
+
+                    <!-- TOKENS panel -->
+                    <div id="bm-side-tokens" class="bm-side-panel hidden">
+                        <div style="display:flex; gap:4px;">
+                            <button class="btn" style="font-size:0.73rem; padding:5px 8px; flex:1;" onclick="bmAddTokenFromChar()">+ CHAR</button>
+                            <button class="btn" style="font-size:0.73rem; padding:5px 8px; flex:1;" onclick="bmAddCustomToken()">+ CUSTOM</button>
+                        </div>
+                        <div id="bm-token-list" style="display:flex; flex-direction:column; gap:2px;"></div>
+                    </div>
+
+                    <!-- FOG panel -->
+                    <div id="bm-side-fog" class="bm-side-panel hidden">
+                        <div class="form-label-sm">PAINT TOOL <span id="bm-tool-active-label" style="color:#00d2ff; float:right;">SELECT</span></div>
+                        <div style="display:flex; gap:3px;">
+                            <button class="btn bm-fog-tool-btn" id="bm-fog-reveal" onclick="bmSetFogTool('reveal')" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#0f0; color:#0f0;">REVEAL</button>
+                            <button class="btn bm-fog-tool-btn" id="bm-fog-explore" onclick="bmSetFogTool('explore')" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#888; color:#888;">PARTIAL</button>
+                            <button class="btn bm-fog-tool-btn" id="bm-fog-hide" onclick="bmSetFogTool('hide')" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#f33; color:#f33;">HIDE</button>
+                        </div>
+                        <button class="btn" onclick="bmSetSelectTool()" style="font-size:0.72rem; padding:4px 8px; border-color:#555; color:#888;">✦ SELECT TOOL</button>
+                        <div class="form-label-sm">BRUSH SIZE</div>
+                        <input type="range" id="bm-fog-brush" min="1" max="5" step="1" value="1" style="width:100%;">
+                        <div style="display:flex; gap:4px; margin-top:4px;">
+                            <button class="btn" onclick="bmFogRevealAll()" style="font-size:0.72rem; padding:4px 6px; flex:1; border-color:#0f0; color:#0f0;">ALL REVEALED</button>
+                            <button class="btn red" onclick="bmFogHideAll()" style="font-size:0.72rem; padding:4px 6px; flex:1;">ALL HIDDEN</button>
+                        </div>
+                    </div>
+
+                    <!-- SCALE panel -->
+                    <div id="bm-side-scale" class="bm-side-panel hidden">
+                        <p style="color:#888; font-size:0.77rem; line-height:1.5; margin:0 0 6px 0;">
+                            Set the image grid size via the toolbar (IMG W × IMG H).
+                            Then define how many of those cells the physical table covers, and where it sits on the image.
+                        </p>
+                        <div class="form-label-sm">TABLE VIEWPORT — COLS × ROWS</div>
+                        <div style="display:flex; gap:4px; align-items:center;">
+                            <input type="number" id="bm-phys-cols" value="20" min="1" class="form-input" style="font-size:0.82rem; width:60px;">
+                            <span style="color:#555;">×</span>
+                            <input type="number" id="bm-phys-rows" value="12" min="1" class="form-input" style="font-size:0.82rem; width:60px;">
+                        </div>
+                        <div class="form-label-sm">VIEWPORT OFFSET (CELLS FROM TOP-LEFT)</div>
+                        <div style="display:flex; gap:4px; align-items:center;">
+                            <span style="color:#888; font-size:0.75rem;">X</span>
+                            <input type="number" id="bm-tbl-ox" value="0" min="0" class="form-input" style="font-size:0.82rem; flex:1;">
+                            <span style="color:#888; font-size:0.75rem;">Y</span>
+                            <input type="number" id="bm-tbl-oy" value="0" min="0" class="form-input" style="font-size:0.82rem; flex:1;">
+                        </div>
+                        <p style="color:#444; font-size:0.72rem; margin:2px 0 0 0; line-height:1.4;">↑ Or drag the cyan outline directly on the preview canvas.</p>
+                        <button class="btn" onclick="bmApplyScale()" style="margin-top:4px; width:100%; font-size:0.78rem;">APPLY</button>
+                    </div>
+
+                    <!-- INITIATIVE panel -->
+                    <div id="bm-side-init" class="bm-side-panel hidden">
+                        <div class="form-label-sm">INITIATIVE — set values then press START</div>
+                        <div id="bm-init-panel" style="display:flex; flex-direction:column; gap:3px; max-height:260px; overflow-y:auto;"></div>
+                        <div style="display:flex; gap:4px; margin-top:6px;">
+                            <button class="btn" onclick="bmStartInitiative()" style="flex:1; font-size:0.72rem; padding:4px 6px; border-color:#ffd700; color:#ffd700;">▶ START</button>
+                            <button class="btn" onclick="bmClearInitiative()" style="flex:1; font-size:0.72rem; padding:4px 6px; color:#888;">CLR</button>
+                        </div>
+                    </div>
+
+                    <!-- COMBAT panel -->
+                    <div id="bm-side-combat" class="bm-side-panel hidden">
+                        <!-- current turn indicator -->
+                        <div id="bm-cmb-turn" style="font-size:0.82rem; color:#ffd700; font-weight:bold;
+                            padding:5px 6px; background:rgba(255,215,0,0.07); border:1px solid #332;
+                            border-radius:3px; margin-bottom:6px; min-height:26px;">
+                            — no initiative —
+                        </div>
+                        <!-- turn nav -->
+                        <div style="display:flex; gap:4px; margin-bottom:8px;">
+                            <button class="btn" onclick="bmInitPrev()" style="flex:1; font-size:0.72rem; padding:4px;">&#9664; PREV</button>
+                            <button class="btn" onclick="bmInitNext()" style="flex:1; font-size:0.72rem; padding:4px; border-color:#ffd700; color:#ffd700;">END TURN &#9654;</button>
+                        </div>
+                        <!-- damage / heal quick bar -->
+                        <div class="form-label-sm">QUICK DAMAGE / HEAL</div>
+                        <div style="display:flex; gap:4px; align-items:center; margin-bottom:4px;">
+                            <select id="bm-cmb-target" class="form-input" style="flex:1; font-size:0.75rem; padding:3px 4px;"></select>
+                        </div>
+                        <div style="display:flex; gap:4px; align-items:center; margin-bottom:6px;">
+                            <input type="number" id="bm-cmb-amount" min="0" value="5" class="form-input"
+                                style="width:60px; font-size:0.85rem; text-align:center;">
+                            <button class="btn" onclick="bmCmbApply('dmgSp')" style="flex:1; font-size:0.7rem; padding:3px; border-color:#55f; color:#55f;" title="Damage SP first">DMG SP</button>
+                            <button class="btn" onclick="bmCmbApply('dmgHp')" style="flex:1; font-size:0.7rem; padding:3px; border-color:#f44; color:#f44;" title="Damage HP">DMG HP</button>
+                            <button class="btn" onclick="bmCmbApply('heal')" style="flex:1; font-size:0.7rem; padding:3px; border-color:#0c0; color:#0c0;">HEAL</button>
+                        </div>
+                        <!-- token HP list -->
+                        <div class="form-label-sm">HP / SP STATUS</div>
+                        <div id="bm-cmb-list" style="display:flex; flex-direction:column; gap:4px; overflow-y:auto; max-height:240px;"></div>
+                    </div>
+
+                    <!-- COM PORT panel -->
+                    <div id="bm-side-com" class="bm-side-panel hidden">
+                        <p style="color:#888; font-size:0.77rem; margin:0 0 6px 0; line-height:1.5;">USB serial connection to physical tabletop tracker.<br>Protocol: <code style="color:#00d2ff;">[col;row]-[col;row]\n</code></p>
+                        <div style="display:flex; align-items:center; gap:8px; padding:6px 8px; border:1px solid #1a1a24; background:#080808;">
+                            <span id="bm-com-dot" style="width:8px; height:8px; border-radius:50%; background:#333; flex-shrink:0;"></span>
+                            <span id="bm-com-status" style="color:#888; font-size:0.78rem;">DISCONNECTED</span>
+                        </div>
+                        <div style="display:flex; gap:4px; align-items:center;">
+                            <span style="color:#888; font-size:0.75rem;">BAUD</span>
+                            <select id="bm-com-baud" class="form-input" style="flex:1; font-size:0.75rem; padding:4px;">
+                                <option value="9600">9600</option><option value="19200">19200</option>
+                                <option value="57600">57600</option><option value="115200" selected>115200</option>
+                            </select>
+                        </div>
+                        <button class="btn" id="bm-com-btn" onclick="bmConnectSerial()" style="width:100%; font-size:0.78rem;">CONNECT PORT</button>
+                        <button class="btn red" id="bm-com-disc" onclick="bmDisconnectSerial()" style="width:100%; font-size:0.78rem; display:none;">DISCONNECT</button>
+                        <div class="form-label-sm">EVENT LOG</div>
+                        <div id="bm-com-log"></div>
+                        <div style="display:flex; gap:4px; margin-top:4px;">
+                            <input type="text" id="bm-com-test" placeholder="[10;3]-[11;5]" class="form-input" style="flex:1; font-size:0.73rem; padding:4px;">
+                            <button class="btn" onclick="bmTestSerial()" style="font-size:0.73rem; padding:4px 8px;">TEST</button>
+                        </div>
+                    </div>
+
+                    <!-- GEO panel -->
+                    <div id="bm-side-geo" class="bm-side-panel hidden">
+                        <div class="form-label-sm">GEOMETRY TOOL</div>
+                        <div style="display:flex; gap:3px; flex-wrap:wrap;">
+                            <button class="btn bm-geo-tool-btn" id="bm-geo-tool-select" onclick="bmSetGeoTool('select')" style="font-size:0.72rem; padding:4px 6px; border-color:#00d2ff; color:#00d2ff;">SELECT</button>
+                            <button class="btn bm-geo-tool-btn" id="bm-geo-tool-wall"   onclick="bmSetGeoTool('wall')"   style="font-size:0.72rem; padding:4px 6px; border-color:#f55; color:#f55;">WALL</button>
+                            <button class="btn bm-geo-tool-btn" id="bm-geo-tool-door"   onclick="bmSetGeoTool('door')"   style="font-size:0.72rem; padding:4px 6px; border-color:#fa0; color:#fa0;">DOOR</button>
+                            <button class="btn bm-geo-tool-btn" id="bm-geo-tool-light"  onclick="bmSetGeoTool('light')"  style="font-size:0.72rem; padding:4px 6px; border-color:#ff0; color:#ff0;">LIGHT</button>
+                            <button class="btn bm-geo-tool-btn" id="bm-geo-tool-erase"  onclick="bmSetGeoTool('erase')"  style="font-size:0.72rem; padding:4px 6px; border-color:#888; color:#888;">ERASE</button>
+                        </div>
+                        <!-- Door options -->
+                        <div id="bm-geo-door-opts" style="display:none; margin-top:6px; padding:5px; background:#111; border:1px solid #333;">
+                            <div class="form-label-sm">DOOR STATE</div>
+                            <select id="bm-geo-door-state" class="form-input" style="font-size:0.75rem;">
+                                <option value="closed">Closed</option>
+                                <option value="open">Open</option>
+                                <option value="locked">Locked</option>
+                            </select>
+                            <div class="form-label-sm">LOCK TYPE</div>
+                            <select id="bm-geo-door-lock" class="form-input" style="font-size:0.75rem;">
+                                <option value="">None</option>
+                                <option value="mechanical">Mechanical</option>
+                                <option value="software">Software</option>
+                            </select>
+                        </div>
+                        <!-- Light options -->
+                        <div id="bm-geo-light-opts" style="display:none; margin-top:6px; padding:5px; background:#111; border:1px solid #333;">
+                            <div class="form-label-sm">LIGHT RADIUS (cells)</div>
+                            <input type="number" id="bm-geo-light-radius" class="form-input" value="4" min="1" max="20" style="font-size:0.75rem;">
+                            <div class="form-label-sm">LIGHT COLOR</div>
+                            <input type="color" id="bm-geo-light-color" value="#ffeeaa" style="width:100%; height:24px; border:none; background:none; cursor:pointer;">
+                        </div>
+                        <div style="display:flex; gap:4px; margin-top:8px;">
+                            <button class="btn" onclick="bmGeoSave()" style="flex:1; font-size:0.78rem; border-color:#0f0; color:#0f0;">SAVE GEO</button>
+                            <button class="btn red" onclick="bmGeoClear()" style="flex:1; font-size:0.78rem;">CLEAR ALL</button>
+                        </div>
+                        <div style="margin-top:4px;">
+                            <label style="font-size:0.72rem; color:#888;"><input type="checkbox" id="bm-geo-show" checked onchange="bmScheduleRender()"> Show geometry on canvas</label>
+                        </div>
+                        <div id="bm-geo-sel-info" style="margin-top:8px; display:none; padding:5px; background:#111; border:1px solid #333; font-size:0.75rem; color:#aaa;"></div>
+                    </div>
+
+                </div><!-- /play-sidebar -->
+
+                <!-- CANVAS AREA -->
+                <div class="play-canvas-area">
+                    <canvas id="battlemap-canvas" style="width:100%; height:100%; display:block;"></canvas>
+                    <div id="bm-coords" style="position:absolute; bottom:6px; right:8px; color:#555; font-size:0.7rem; font-family:monospace; background:rgba(0,0,0,0.6); padding:1px 5px; pointer-events:none;"></div>
+                    <div id="bm-sel-info" style="position:absolute; top:6px; right:8px; color:#00d2ff; font-size:0.75rem; font-family:monospace; background:rgba(0,0,0,0.8); padding:3px 9px; border:1px solid #222; display:none; pointer-events:none;"></div>
+                    <div id="bm-tool-indicator" style="position:absolute; top:6px; left:8px; font-size:0.72rem; color:#888; background:rgba(0,0,0,0.7); padding:2px 7px; pointer-events:none;">MODE: SELECT</div>
+                </div>
+
+            </div><!-- /play-layout -->
+        </div><!-- /#tab-play -->
+
+        <!-- TOKEN EDITOR MODAL -->
+        <div id="bm-token-modal" class="modal-overlay" style="display:none; z-index:250;">
+            <div class="modal-box modal-box--md" style="max-height:88vh;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                    <span style="color:var(--accent-color); font-size:1rem; text-transform:uppercase; letter-spacing:1px;">Token Editor</span>
+                    <button class="btn-icon" onclick="bmCloseTokenModal()" style="color:#888; font-size:1.1rem;">✕</button>
+                </div>
+                <div id="bm-token-form">
+                    <!-- Character picker (visible in char-add mode) -->
+                    <div id="bm-tok-char-row" style="margin-bottom:10px; display:none;">
+                        <div class="form-label">LINK CHARACTER</div>
+                        <select id="bm-tok-char-sel" class="form-input"></select>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                        <div>
+                            <div class="form-label">NAME</div>
+                            <input type="text" id="bm-tok-name" class="form-input" placeholder="Token name">
+                        </div>
+                        <div>
+                            <div class="form-label">TYPE</div>
+                            <select id="bm-tok-type" class="form-input">
+                                <option value="pc">PC</option>
+                                <option value="npc">NPC (Friendly)</option>
+                                <option value="creature">Creature / Alien</option>
+                                <option value="enemy" selected>Enemy</option>
+                                <option value="neutral">Neutral</option>
+                                <option value="object">Object</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="form-label">IMAGE</div>
+                            <select id="bm-tok-image" class="form-input" style="font-size:0.78rem;"></select>
+                        </div>
+                        <div>
+                            <div class="form-label">SIZE (grid cells)</div>
+                            <select id="bm-tok-size" class="form-input">
+                                <option value="1">1 — Small/Medium</option>
+                                <option value="2">2 — Large</option>
+                                <option value="3">3 — Huge</option>
+                                <option value="4">4 — Gargantuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="form-label">HP</div>
+                            <input type="number" id="bm-tok-hp" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">MAX HP</div>
+                            <input type="number" id="bm-tok-maxhp" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">SP</div>
+                            <input type="number" id="bm-tok-sp" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">MAX SP</div>
+                            <input type="number" id="bm-tok-maxsp" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">GRID COL</div>
+                            <input type="number" id="bm-tok-col" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">GRID ROW</div>
+                            <input type="number" id="bm-tok-row" class="form-input" value="0" min="0">
+                        </div>
+                        <div>
+                            <div class="form-label">INITIATIVE</div>
+                            <input type="number" id="bm-tok-initiative" class="form-input" value="0">
+                        </div>
+                        <div>
+                            <div class="form-label">TOKEN COLOR</div>
+                            <input type="color" id="bm-tok-color" value="#ff3333" style="width:100%; height:34px; border:1px solid #333; background:#000; cursor:pointer;">
+                        </div>
+                    </div>
+                    <!-- HP visibility -->
+                    <div style="margin-top:10px; padding:8px; border:1px solid #222; background:#080808;">
+                        <div class="form-label" style="margin-bottom:6px;">HP VISIBILITY FOR PLAYERS</div>
+                        <div style="display:flex; gap:15px;">
+                            <label style="font-size:0.8rem; color:#888; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                <input type="radio" name="bm-tok-hpmode" id="bm-tok-hpmode-bar" value="hp_bar"> HP Bar
+                            </label>
+                            <label style="font-size:0.8rem; color:#888; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                <input type="radio" name="bm-tok-hpmode" id="bm-tok-hpmode-dmg" value="damage_dealt"> Damage Dealt
+                            </label>
+                            <label style="font-size:0.8rem; color:#888; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                <input type="radio" name="bm-tok-hpmode" id="bm-tok-hpmode-hide" value="hidden" checked> Hidden
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Conditions -->
+                    <div style="margin-top:10px;">
+                        <div class="form-label" style="margin-bottom:6px;">CONDITIONS</div>
+                        <div class="bm-cond-grid">
+                            <label><input type="checkbox" id="bm-cond-prone"> Prone</label>
+                            <label><input type="checkbox" id="bm-cond-flat-footed"> Flat-footed</label>
+                            <label><input type="checkbox" id="bm-cond-shaken"> Shaken</label>
+                            <label><input type="checkbox" id="bm-cond-staggered"> Staggered</label>
+                            <label><input type="checkbox" id="bm-cond-stunned"> Stunned</label>
+                            <label><input type="checkbox" id="bm-cond-burning"> Burning</label>
+                            <label><input type="checkbox" id="bm-cond-bleeding"> Bleeding</label>
+                            <label><input type="checkbox" id="bm-cond-exhausted"> Exhausted</label>
+                            <label><input type="checkbox" id="bm-cond-fatigued"> Fatigued</label>
+                            <label><input type="checkbox" id="bm-cond-blinded"> Blinded</label>
+                            <label><input type="checkbox" id="bm-cond-deafened"> Deafened</label>
+                            <label><input type="checkbox" id="bm-cond-off-target"> Off-target</label>
+                        </div>
+                    </div>
+                    <!-- Hidden toggle -->
+                    <div style="margin-top:10px; display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" id="bm-tok-hidden">
+                        <label for="bm-tok-hidden" style="font-size:0.82rem; color:#888; cursor:pointer;">Hide this token from players (still tracked, not rendered on player display)</label>
+                    </div>
+                    <!-- Buttons -->
+                    <div style="display:flex; gap:8px; margin-top:14px; justify-content:flex-end;">
+                        <button class="action-btn danger" id="bm-tok-delete-btn" onclick="bmDeleteFromModal()" style="padding:8px 16px; font-size:0.8rem; display:none;">DELETE TOKEN</button>
+                        <button class="action-btn" onclick="bmSaveTokenModal()" style="padding:8px 20px; font-size:0.8rem;">SAVE</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- MAP TAB -->
@@ -1771,6 +2138,18 @@
 
             if (tabName === 'map') {
                 setTimeout(resizeMapPreview, 100);
+            }
+            if (tabName === 'play') {
+                setTimeout(() => {
+                    if (!bmCanvas) {
+                        bmInit();
+                    } else {
+                        const area = bmCanvas.parentElement;
+                        bmCanvas.width  = area.offsetWidth;
+                        bmCanvas.height = area.offsetHeight;
+                        bmScheduleRender();
+                    }
+                }, 80);
             }
         }
 
@@ -7075,6 +7454,1289 @@
             if (itemType === 'object') renderObjectsTable();
             if (itemType === 'character') renderCharactersCards();
         }
+
+        // ═══════════════════════════════════════════════════════════════════
+        //  BATTLEMAP ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+
+        const BM_TYPE_COLORS = {
+            pc: '#00d2ff', npc: '#00cc44', creature: '#ffaa00',
+            enemy: '#ff3333', neutral: '#888888', object: '#cc88ff'
+        };
+        const BM_CONDITIONS = [
+            'prone','flat-footed','shaken','staggered','stunned',
+            'burning','bleeding','exhausted','fatigued','blinded','deafened','off-target'
+        ];
+
+        let bmState = {
+            active: false, mapUrl: '', gridType: 'square',
+            gridCols: 20, gridRows: 12, gridColor: '#ffffff', gridOpacity: 0.3,
+            physicalCols: 20, physicalRows: 12,
+            tokens: [], initiativeOrder: [], initiativeCurrent: -1,
+            fowEnabled: false, fowCells: {},
+            geo: { walls: [], doors: [], lights: [] }
+        };
+        let bmCanvas = null, bmCtx = null;
+        let bmMapImage = null, bmMapLoadedUrl = '';
+        let bmImageAspect = null;        // naturalWidth / naturalHeight of loaded map
+        let bmSelectedTokenId = null;
+        let bmDragTok = null, bmDragCell = null;  // token being dragged
+        let bmTool = 'select';          // 'select' | 'fog' | 'geo'
+        let bmFogTool = 'reveal';       // 'reveal' | 'explore' | 'hide'
+        let bmIsPainting = false;
+        let bmLastPaintCell = null;
+        let bmFowPendingCells = {};
+        let bmFowDebounceTimer = null;
+        let bmRafId = null;
+        let bmModalMode = 'add';        // 'add' | 'edit'
+        let bmEditTokenId = null;
+        let bmSerialPort = null;
+        let bmSerialReader = null;
+        let bmSerialActive = false;
+        let bmTokenImgCache = {};       // url → Image
+        // Geometry editor state
+        let bmGeoTool = 'select';       // 'select'|'wall'|'door'|'light'|'erase'
+        let bmGeoData = { walls: [], doors: [], lights: [] };
+        let bmGeoDrawStart = null;      // grid corner { cx, cy } for wall/door drag start
+        let bmGeoDrawEnd   = null;      // grid corner { cx, cy } for wall/door drag end
+        let bmGeoIsDragging = false;
+        let bmGeoSelected  = null;      // { type: 'wall'|'door'|'light', index }
+
+        // ── Init ─────────────────────────────────────────────────────────────
+        function bmInit() {
+            bmCanvas = document.getElementById('battlemap-canvas');
+            bmCtx = bmCanvas.getContext('2d');
+            const area = bmCanvas.parentElement;
+            bmCanvas.width  = area.offsetWidth;
+            bmCanvas.height = area.offsetHeight;
+
+            new ResizeObserver(() => {
+                bmCanvas.width  = area.offsetWidth;
+                bmCanvas.height = area.offsetHeight;
+                bmScheduleRender();
+            }).observe(area);
+
+            bmCanvas.addEventListener('mousedown',  bmOnMouseDown);
+            bmCanvas.addEventListener('mousemove',  bmOnMouseMove);
+            bmCanvas.addEventListener('mouseup',    bmOnMouseUp);
+            bmCanvas.addEventListener('mouseleave', bmOnMouseUp);
+
+            socket.on('battlemap_state', (state) => {
+                const prevUrl = bmState.mapUrl;
+                bmState = state;
+                if (state.geo) bmGeoData = state.geo;
+                if (state.mapUrl && state.mapUrl !== prevUrl) {
+                    bmLoadMapImage(state.mapUrl);
+                } else {
+                    bmScheduleRender();
+                }
+                bmSyncUI();
+            });
+
+            socket.on('battlemap_json_loaded', (geo) => {
+                bmGeoData = geo || { walls: [], doors: [], lights: [] };
+                bmScheduleRender();
+            });
+
+            bmSyncUI();
+            bmPopulateMapSelect();
+            bmPopulateTokenImageSelect(null);
+            bmScheduleRender();
+        }
+
+        // ── State sync ───────────────────────────────────────────────────────
+        function bmSyncUI() {
+            const s = bmState;
+            const liveBtn = document.getElementById('bm-live-btn');
+            if (liveBtn) {
+                liveBtn.textContent = s.active ? '■ UNPROJECT' : '▶ PROJECT';
+                liveBtn.classList.toggle('bm-live-active', s.active);
+            }
+            const sqBtn  = document.getElementById('bm-grid-sq');
+            const hexBtn = document.getElementById('bm-grid-hex');
+            if (sqBtn && hexBtn) {
+                sqBtn.classList.toggle('active',  s.gridType === 'square');
+                hexBtn.classList.toggle('active', s.gridType === 'hex-pointy');
+            }
+            const colsEl = document.getElementById('bm-cols');
+            const rowsEl = document.getElementById('bm-rows');
+            if (colsEl) colsEl.value = s.gridCols;
+            if (rowsEl) rowsEl.value = s.gridRows;
+            const fowCheck = document.getElementById('bm-fow-check');
+            if (fowCheck) fowCheck.checked = s.fowEnabled;
+
+            const physC = document.getElementById('bm-phys-cols');
+            const physR = document.getElementById('bm-phys-rows');
+            if (physC) physC.value = s.physicalCols;
+            if (physR) physR.value = s.physicalRows;
+
+            const gcol = document.getElementById('bm-grid-color');
+            const gopa = document.getElementById('bm-grid-opacity');
+            const gopv = document.getElementById('bm-opacity-val');
+            if (gcol) gcol.value = s.gridColor;
+            if (gopa) {
+                gopa.value = s.gridOpacity;
+                if (gopv) gopv.textContent = Math.round(s.gridOpacity * 100) + '%';
+            }
+            const mapSel = document.getElementById('bm-map-select');
+            if (mapSel) mapSel.value = s.mapUrl || '';
+
+            // Initiative label
+            const initLbl = document.getElementById('bm-init-current');
+            if (initLbl) {
+                if (s.initiativeCurrent >= 0 && s.initiativeOrder.length > 0) {
+                    const tid = s.initiativeOrder[s.initiativeCurrent];
+                    const tok = s.tokens.find(t => t.id === tid);
+                    initLbl.textContent = tok ? tok.name.substring(0, 14) : '—';
+                    initLbl.style.color = '#ffd700';
+                } else {
+                    initLbl.textContent = 'INIT OFF';
+                    initLbl.style.color = '#555';
+                }
+            }
+            bmRenderTokenList();
+            bmRenderInitPanel();
+            bmRenderCombatPanel();
+        }
+
+        // ── Map image ────────────────────────────────────────────────────────
+        function bmLoadMapImage(url) {
+            bmMapLoadedUrl = url;
+            const img = new Image();
+            img.onload  = () => { bmMapImage = img; bmImageAspect = img.naturalWidth / img.naturalHeight; bmScheduleRender(); };
+            img.onerror = () => { bmMapImage = null; bmScheduleRender(); };
+            img.src = url;
+        }
+        function bmPopulateMapSelect() {
+            const sel = document.getElementById('bm-map-select');
+            if (!sel) return;
+            sel.innerHTML = '<option value="">— no map —</option>';
+            if (!cachedMediaFiles) return;
+            cachedMediaFiles.filter(f => f.type === 'background' || f.type === 'battlemap').forEach(f => {
+                const o = document.createElement('option');
+                o.value = '/media/' + f.path;
+                o.textContent = (f.type === 'battlemap' ? '[BM] ' : '') + f.name;
+                sel.appendChild(o);
+            });
+            sel.value = bmState.mapUrl || '';
+        }
+
+        // ── Render pipeline ──────────────────────────────────────────────────
+        function bmScheduleRender() {
+            if (bmRafId) return;
+            bmRafId = requestAnimationFrame(() => { bmRafId = null; bmRender(); });
+        }
+        function bmRender() {
+            if (!bmCanvas || !bmCtx) return;
+            const W = bmCanvas.width, H = bmCanvas.height;
+            const ctx = bmCtx;
+            ctx.clearRect(0, 0, W, H);
+
+            // Background map — drawn in the centered square-cell area
+            const { cs: bmCs, ox: bmOx, oy: bmOy } = bmAdminMetrics(W, H);
+            const bmGw = bmCs * bmState.gridCols, bmGh = bmCs * bmState.gridRows;
+            ctx.fillStyle = '#080808'; ctx.fillRect(0, 0, W, H); // letterbox bg
+            if (bmMapImage) {
+                ctx.drawImage(bmMapImage, bmOx, bmOy, bmGw, bmGh);
+            } else {
+                ctx.fillStyle = '#111118';
+                ctx.fillRect(bmOx, bmOy, bmGw, bmGh);
+            }
+
+            // Grid
+            if (bmState.gridType === 'hex-pointy') {
+                bmDrawHexGrid(W, H);
+            } else {
+                bmDrawSquareGrid(W, H);
+            }
+
+            // Fog
+            if (bmState.fowEnabled) bmDrawFog(W, H);
+
+            // Tokens
+            bmState.tokens.forEach(tok => {
+                if (bmDragTok && tok.id === bmDragTok.id) return; // skip original while dragging
+                bmDrawToken(tok, W, H);
+            });
+
+            // Initiative ring on current actor
+            if (bmState.initiativeCurrent >= 0 && bmState.initiativeOrder.length > 0) {
+                const tid = bmState.initiativeOrder[bmState.initiativeCurrent];
+                const tok = bmState.tokens.find(t => t.id === tid);
+                if (tok && !(bmDragTok && tok.id === bmDragTok.id)) bmDrawInitiativeRing(tok, W, H);
+            }
+
+            // Drag ghost
+            if (bmDragTok && bmDragCell) {
+                const ghost = { ...bmDragTok, col: bmDragCell.col, row: bmDragCell.row };
+                ctx.globalAlpha = 0.55;
+                bmDrawToken(ghost, W, H);
+                ctx.globalAlpha = 1;
+            }
+
+            // Physical viewport overlay — dashed cyan box = what the projector shows
+            const pOx = bmOx + (bmState.tableOffsetX || 0) * bmCs;
+            const pOy = bmOy + (bmState.tableOffsetY || 0) * bmCs;
+            const pW  = (bmState.physicalCols || bmState.gridCols) * bmCs;
+            const pH  = (bmState.physicalRows || bmState.gridRows) * bmCs;
+            ctx.strokeStyle = '#00d2ff';
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.75;
+            ctx.setLineDash([8, 4]);
+            ctx.strokeRect(pOx, pOy, pW, pH);
+            ctx.setLineDash([]);
+            ctx.globalAlpha = 1;
+
+            // Geometry overlay (walls, doors, lights)
+            if (document.getElementById('bm-geo-show')?.checked !== false) {
+                bmDrawGeometry(W, H);
+            }
+        }
+
+        function bmAdminMetrics(W, H) {
+            const cs = Math.min(W / bmState.gridCols, H / bmState.gridRows);
+            const ox = (W - cs * bmState.gridCols) / 2;
+            const oy = (H - cs * bmState.gridRows) / 2;
+            return { cs, ox, oy };
+        }
+        function bmCellW(W) { return bmAdminMetrics(W, bmCanvas ? bmCanvas.height : W).cs; }
+        function bmCellH(H) { return bmAdminMetrics(bmCanvas ? bmCanvas.width : H, H).cs; }
+
+        function bmDrawSquareGrid(W, H) {
+            const ctx = bmCtx;
+            const { cs, ox, oy } = bmAdminMetrics(W, H);
+            const gw = cs * bmState.gridCols, gh = cs * bmState.gridRows;
+            ctx.strokeStyle = bmState.gridColor;
+            ctx.globalAlpha = bmState.gridOpacity;
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            for (let c = 0; c <= bmState.gridCols; c++) {
+                const x = ox + c * cs;
+                ctx.moveTo(x, oy); ctx.lineTo(x, oy + gh);
+            }
+            for (let r = 0; r <= bmState.gridRows; r++) {
+                const y = oy + r * cs;
+                ctx.moveTo(ox, y); ctx.lineTo(ox + gw, y);
+            }
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+
+        function bmHexR(W, H) {
+            const cols = bmState.gridCols, rows = bmState.gridRows;
+            return Math.min(W / ((cols + 0.5) * Math.sqrt(3)), H / (rows * 1.5 + 0.5));
+        }
+        function bmHexCenter(col, row, W, H) {
+            const R = bmHexR(W, H), sq3 = Math.sqrt(3);
+            const cx = (col + 0.5) * sq3 * R + (row % 2 === 1 ? sq3 / 2 * R : 0);
+            const cy = R + row * 1.5 * R;
+            return { cx, cy, R };
+        }
+        function bmDrawHexGrid(W, H) {
+            const ctx = bmCtx;
+            ctx.strokeStyle = bmState.gridColor;
+            ctx.globalAlpha = bmState.gridOpacity;
+            ctx.lineWidth = 0.7;
+            for (let r = 0; r < bmState.gridRows; r++) {
+                for (let c = 0; c < bmState.gridCols; c++) {
+                    const { cx, cy, R } = bmHexCenter(c, r, W, H);
+                    ctx.beginPath();
+                    for (let i = 0; i < 6; i++) {
+                        const a = Math.PI / 180 * (60 * i - 30);
+                        const x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+                        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function bmDrawFog(W, H) {
+            const ctx = bmCtx;
+            const { cs, ox, oy } = bmAdminMetrics(W, H);
+            const cells = bmState.fowCells || {};
+            for (let r = 0; r < bmState.gridRows; r++) {
+                for (let c = 0; c < bmState.gridCols; c++) {
+                    const key = c + ',' + r;
+                    const state = cells[key];
+                    let alpha = 0;
+                    if (!state)             alpha = 0.25;  // hidden (dim for GM — players get full fog)
+                    else if (state === 'explored') alpha = 0.10;  // explored (barely tinted for GM)
+                    else                    alpha = 0;     // visible
+                    if (alpha > 0) {
+                        ctx.fillStyle = 'rgba(0,0,0,' + alpha + ')';
+                        ctx.fillRect(ox + c * cs, oy + r * cs, cs, cs);
+                    }
+                }
+            }
+        }
+
+        function bmGetTokenCenter(tok, W, H) {
+            const c = tok.col || 0, r = tok.row || 0, sz = tok.size || 1;
+            if (bmState.gridType === 'hex-pointy') {
+                const { cx, cy, R } = bmHexCenter(c, r, W, H);
+                return { cx, cy, radius: R * 0.45 * sz };
+            } else {
+                const { cs, ox, oy } = bmAdminMetrics(W, H);
+                return {
+                    cx: ox + (c + sz / 2) * cs,
+                    cy: oy + (r + sz / 2) * cs,
+                    radius: cs * 0.42 * sz
+                };
+            }
+        }
+
+        function bmGetTokenImg(tok) {
+            const url = tok.image || tok.imageUrl || '';
+            if (!url) return null;
+            if (bmTokenImgCache[url]) return bmTokenImgCache[url];
+            const img = new Image();
+            img.onload = bmScheduleRender;
+            img.src = url;
+            bmTokenImgCache[url] = img;
+            return img;
+        }
+
+        function bmDrawToken(tok, W, H) {
+            if (tok.hidden && bmEditTokenId !== tok.id) return; // admin shows dim ring
+            const ctx = bmCtx;
+            const { cx, cy, radius: rad } = bmGetTokenCenter(tok, W, H);
+            const color = tok.color || BM_TYPE_COLORS[tok.type] || '#888';
+            ctx.globalAlpha = tok.hidden ? 0.4 : 1;
+
+            // Token ring
+            ctx.strokeStyle = (tok.id === bmSelectedTokenId) ? '#ffffff' : color;
+            ctx.lineWidth = tok.id === bmSelectedTokenId ? 2.5 : 1.8;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Token image or fill
+            const img = bmGetTokenImg(tok);
+            if (img && img.complete) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(cx, cy, rad - 1, 0, Math.PI * 2);
+                ctx.clip();
+                ctx.drawImage(img, cx - rad, cy - rad, rad * 2, rad * 2);
+                ctx.restore();
+            } else {
+                ctx.fillStyle = color + '44';
+                ctx.beginPath();
+                ctx.arc(cx, cy, rad - 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Name label — drawn inside the circle
+            const fontSize = Math.max(7, Math.min(12, rad * 0.55));
+            ctx.font = `bold ${fontSize}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.globalAlpha = tok.hidden ? 0.4 : 1;
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = 'rgba(0,0,0,0.85)';
+            ctx.strokeText(tok.name.substring(0, 8), cx, cy);
+            ctx.fillStyle = '#fff';
+            ctx.fillText(tok.name.substring(0, 8), cx, cy);
+            ctx.textBaseline = 'alphabetic';
+
+            // Initiative badge
+            if (tok.initiative !== undefined && bmState.initiativeOrder.length > 0) {
+                const idx = bmState.initiativeOrder.indexOf(tok.id);
+                if (idx >= 0) {
+                    const bx = cx + rad * 0.6, by = cy - rad * 0.6;
+                    ctx.fillStyle = '#111';
+                    ctx.beginPath();
+                    ctx.arc(bx, by, 7, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = '#ffd700';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    ctx.font = 'bold 7px sans-serif';
+                    ctx.fillStyle = '#ffd700';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(tok.initiative, bx, by + 2.5);
+                }
+            }
+
+            ctx.globalAlpha = 1;
+            ctx.textAlign = 'left';
+        }
+
+        function bmDrawInitiativeRing(tok, W, H) {
+            const ctx = bmCtx;
+            const { cx, cy, radius: rad } = bmGetTokenCenter(tok, W, H);
+            ctx.shadowBlur = 18;
+            ctx.shadowColor = '#ffd700';
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rad + 5, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
+
+        // ── Hit testing ──────────────────────────────────────────────────────
+        function bmGetCellFromPoint(px, py, W, H) {
+            if (bmState.gridType === 'hex-pointy') {
+                // Find nearest hex center
+                let best = null, bestD = Infinity;
+                for (let r = 0; r < bmState.gridRows; r++) {
+                    for (let c = 0; c < bmState.gridCols; c++) {
+                        const { cx, cy, R } = bmHexCenter(c, r, W, H);
+                        const d = (px - cx) ** 2 + (py - cy) ** 2;
+                        if (d < bestD) { bestD = d; best = { col: c, row: r }; }
+                    }
+                }
+                return best || { col: 0, row: 0 };
+            } else {
+                const { cs, ox, oy } = bmAdminMetrics(W, H);
+                return {
+                    col: Math.max(0, Math.min(bmState.gridCols - 1, Math.floor((px - ox) / cs))),
+                    row: Math.max(0, Math.min(bmState.gridRows - 1, Math.floor((py - oy) / cs)))
+                };
+            }
+        }
+        function bmGetTokenAtPoint(px, py) {
+            const W = bmCanvas.width, H = bmCanvas.height;
+            for (let i = bmState.tokens.length - 1; i >= 0; i--) {
+                const tok = bmState.tokens[i];
+                const { cx, cy, radius } = bmGetTokenCenter(tok, W, H);
+                if ((px - cx) ** 2 + (py - cy) ** 2 <= radius ** 2) return tok;
+            }
+            return null;
+        }
+
+        // ── Mouse events ─────────────────────────────────────────────────────
+        function bmOnMouseDown(e) {
+            const { x, y } = bmCanvasXY(e);
+            const W = bmCanvas.width, H = bmCanvas.height;
+            if (bmTool === 'geo') {
+                bmGeoHandleMouseDown(x, y);
+                return;
+            }
+            if (bmTool === 'fog') {
+                bmIsPainting = true;
+                const cell = bmGetCellFromPoint(x, y, W, H);
+                bmPaintFogAt(cell.col, cell.row);
+                bmLastPaintCell = cell;
+            } else {
+                const tok = bmGetTokenAtPoint(x, y);
+                if (tok) {
+                    bmSelectedTokenId = tok.id;
+                    bmDragTok = tok;
+                    bmDragCell = { col: tok.col, row: tok.row };
+                    bmShowSelInfo(tok);
+                    bmScheduleRender();
+                } else {
+                    bmDragTok = null;
+                    bmDragCell = null;
+                }
+            }
+        }
+        function bmOnMouseMove(e) {
+            const { x, y } = bmCanvasXY(e);
+            const W = bmCanvas.width, H = bmCanvas.height;
+            const cell = bmGetCellFromPoint(x, y, W, H);
+            const coordEl = document.getElementById('bm-coords');
+            if (coordEl) coordEl.textContent = `${cell.col},${cell.row}`;
+            if (bmTool === 'geo') {
+                bmGeoHandleMouseMove(x, y);
+                return;
+            }
+            if (bmIsPainting && bmTool === 'fog') {
+                const key = cell.col + ',' + cell.row;
+                const lastKey = bmLastPaintCell ? bmLastPaintCell.col + ',' + bmLastPaintCell.row : null;
+                if (key !== lastKey) {
+                    bmPaintFogAt(cell.col, cell.row);
+                    bmLastPaintCell = cell;
+                }
+            } else if (bmDragTok) {
+                if (cell.col !== bmDragCell.col || cell.row !== bmDragCell.row) {
+                    bmDragCell = cell;
+                    bmScheduleRender();
+                }
+                bmCanvas.style.cursor = 'grabbing';
+            } else {
+                const hover = bmGetTokenAtPoint(x, y);
+                bmCanvas.style.cursor = hover ? 'grab' : '';
+            }
+        }
+        function bmOnMouseUp(e) {
+            if (bmTool === 'geo') {
+                const { x, y } = bmCanvasXY(e);
+                bmGeoHandleMouseUp(x, y);
+                return;
+            }
+            if (bmIsPainting) {
+                bmIsPainting = false;
+                bmLastPaintCell = null;
+                bmFlushFogPaint();
+            }
+            if (bmDragTok && bmDragCell) {
+                if (bmDragCell.col !== bmDragTok.col || bmDragCell.row !== bmDragTok.row) {
+                    socket.emit('admin_battlemap_token_move', { id: bmDragTok.id, col: bmDragCell.col, row: bmDragCell.row });
+                }
+                bmDragTok = null;
+                bmDragCell = null;
+                bmCanvas.style.cursor = '';
+                bmScheduleRender();
+            }
+        }
+        function bmCanvasXY(e) {
+            const rect = bmCanvas.getBoundingClientRect();
+            const scaleX = bmCanvas.width  / rect.width;
+            const scaleY = bmCanvas.height / rect.height;
+            return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+        }
+
+        // ── FOG painting ─────────────────────────────────────────────────────
+        function bmPaintFogAt(col, row) {
+            const brushSize = parseInt(document.getElementById('bm-fog-brush')?.value || 1);
+            const half = Math.floor(brushSize / 2);
+            for (let dr = -half; dr <= half; dr++) {
+                for (let dc = -half; dc <= half; dc++) {
+                    const c2 = col + dc, r2 = row + dr;
+                    if (c2 < 0 || r2 < 0 || c2 >= bmState.gridCols || r2 >= bmState.gridRows) continue;
+                    const key = c2 + ',' + r2;
+                    const val = bmFogTool === 'reveal' ? 'visible' : bmFogTool === 'explore' ? 'explored' : null;
+                    bmFowPendingCells[key] = val;
+                    // Optimistic local update
+                    if (val === null) {
+                        delete bmState.fowCells[key];
+                    } else {
+                        bmState.fowCells[key] = val;
+                    }
+                }
+            }
+            bmScheduleRender();
+            if (bmFowDebounceTimer) clearTimeout(bmFowDebounceTimer);
+            bmFowDebounceTimer = setTimeout(bmFlushFogPaint, 200);
+        }
+        function bmFlushFogPaint() {
+            if (Object.keys(bmFowPendingCells).length === 0) return;
+            socket.emit('admin_battlemap_fow_paint', { cells: { ...bmFowPendingCells } });
+            bmFowPendingCells = {};
+        }
+
+        // ── Tool selection ───────────────────────────────────────────────────
+        function bmSetFogTool(tool) {
+            bmTool = 'fog';
+            bmFogTool = tool;
+            document.querySelectorAll('.bm-fog-tool-btn').forEach(b => b.classList.remove('bm-tool-active'));
+            const btn = document.getElementById('bm-fog-' + tool);
+            if (btn) btn.classList.add('bm-tool-active');
+            const ind = document.getElementById('bm-tool-indicator');
+            if (ind) ind.textContent = 'MODE: FOG/' + tool.toUpperCase();
+            const lbl = document.getElementById('bm-tool-active-label');
+            if (lbl) lbl.textContent = 'FOG/' + tool.toUpperCase();
+        }
+        function bmSetSelectTool() {
+            bmTool = 'select';
+            document.querySelectorAll('.bm-fog-tool-btn').forEach(b => b.classList.remove('bm-tool-active'));
+            const ind = document.getElementById('bm-tool-indicator');
+            if (ind) ind.textContent = 'MODE: SELECT';
+            const lbl = document.getElementById('bm-tool-active-label');
+            if (lbl) lbl.textContent = 'SELECT';
+        }
+
+        // ── Geometry editor ───────────────────────────────────────────────────
+        function bmSetGeoTool(tool) {
+            bmTool = 'geo';
+            bmGeoTool = tool;
+            document.querySelectorAll('.bm-geo-tool-btn').forEach(b => b.classList.remove('bm-tool-active'));
+            const btn = document.getElementById('bm-geo-tool-' + tool);
+            if (btn) btn.classList.add('bm-tool-active');
+            const ind = document.getElementById('bm-tool-indicator');
+            if (ind) ind.textContent = 'MODE: GEO/' + tool.toUpperCase();
+            document.getElementById('bm-geo-door-opts').style.display  = tool === 'door'  ? '' : 'none';
+            document.getElementById('bm-geo-light-opts').style.display = tool === 'light' ? '' : 'none';
+        }
+
+        // Snap pixel coordinates to nearest grid intersection corner
+        function bmGetCornerFromPoint(px, py) {
+            const { cs, ox, oy } = bmAdminMetrics(bmCanvas.width, bmCanvas.height);
+            return {
+                cx: Math.max(0, Math.min(bmState.gridCols, Math.round((px - ox) / cs))),
+                cy: Math.max(0, Math.min(bmState.gridRows, Math.round((py - oy) / cs)))
+            };
+        }
+
+        // Squared distance from point to segment
+        function bmPtSegDist2(px, py, x1, y1, x2, y2) {
+            const dx = x2 - x1, dy = y2 - y1, lenSq = dx*dx + dy*dy;
+            if (lenSq < 0.001) return (px-x1)**2 + (py-y1)**2;
+            const t = Math.max(0, Math.min(1, ((px-x1)*dx + (py-y1)*dy) / lenSq));
+            return (px - x1 - t*dx)**2 + (py - y1 - t*dy)**2;
+        }
+
+        // Find nearest geometry element near screen point
+        function bmGeoFindNearest(px, py, thresh = 12) {
+            const { cs, ox, oy } = bmAdminMetrics(bmCanvas.width, bmCanvas.height);
+            const thSq = thresh * thresh;
+            let best = null, bestD = Infinity;
+            // lights
+            bmGeoData.lights.forEach((lt, i) => {
+                const lx = ox + (lt.col + 0.5)*cs, ly = oy + (lt.row + 0.5)*cs;
+                const d = (px-lx)**2 + (py-ly)**2;
+                if (d < bestD && d < thSq) { bestD = d; best = { type:'light', index:i }; }
+            });
+            // walls
+            bmGeoData.walls.forEach((w, i) => {
+                const d = bmPtSegDist2(px, py, ox+w.x1*cs, oy+w.y1*cs, ox+w.x2*cs, oy+w.y2*cs);
+                if (d < bestD && d < thSq) { bestD = d; best = { type:'wall', index:i }; }
+            });
+            // doors
+            bmGeoData.doors.forEach((dv, i) => {
+                const d = bmPtSegDist2(px, py, ox+dv.x1*cs, oy+dv.y1*cs, ox+dv.x2*cs, oy+dv.y2*cs);
+                if (d < bestD && d < thSq) { bestD = d; best = { type:'door', index:i }; }
+            });
+            return best;
+        }
+
+        function bmGeoHandleMouseDown(x, y) {
+            if (bmGeoTool === 'wall' || bmGeoTool === 'door') {
+                bmGeoDrawStart = bmGetCornerFromPoint(x, y);
+                bmGeoDrawEnd   = { ...bmGeoDrawStart };
+                bmGeoIsDragging = true;
+            } else if (bmGeoTool === 'light') {
+                const W = bmCanvas.width, H = bmCanvas.height;
+                const cell = bmGetCellFromPoint(x, y, W, H);
+                const radius = parseInt(document.getElementById('bm-geo-light-radius')?.value || 4);
+                const color  = document.getElementById('bm-geo-light-color')?.value || '#ffeeaa';
+                bmGeoData.lights.push({ col: cell.col, row: cell.row, radius, color, intensity: 1.0 });
+                bmScheduleRender();
+            } else if (bmGeoTool === 'erase') {
+                const hit = bmGeoFindNearest(x, y);
+                if (hit) {
+                    bmGeoData[hit.type + 's'].splice(hit.index, 1);
+                    if (bmGeoSelected && bmGeoSelected.type === hit.type && bmGeoSelected.index === hit.index) {
+                        bmGeoSelected = null;
+                    }
+                    bmGeoUpdateSelInfo();
+                    bmScheduleRender();
+                }
+            } else { // select
+                bmGeoSelected = bmGeoFindNearest(x, y, 15);
+                bmGeoUpdateSelInfo();
+                bmScheduleRender();
+            }
+        }
+
+        function bmGeoHandleMouseMove(x, y) {
+            if (!bmGeoIsDragging) return;
+            bmGeoDrawEnd = bmGetCornerFromPoint(x, y);
+            bmScheduleRender();
+        }
+
+        function bmGeoHandleMouseUp(x, y) {
+            if (!bmGeoIsDragging) return;
+            bmGeoIsDragging = false;
+            const s = bmGeoDrawStart;
+            const e = bmGeoDrawEnd || bmGetCornerFromPoint(x, y);
+            bmGeoDrawStart = null; bmGeoDrawEnd = null;
+            if (s.cx === e.cx && s.cy === e.cy) { bmScheduleRender(); return; } // zero-length
+            const seg = { x1: s.cx, y1: s.cy, x2: e.cx, y2: e.cy };
+            if (bmGeoTool === 'wall') {
+                bmGeoData.walls.push(seg);
+            } else if (bmGeoTool === 'door') {
+                const state    = document.getElementById('bm-geo-door-state')?.value || 'closed';
+                const lockType = document.getElementById('bm-geo-door-lock')?.value || null;
+                bmGeoData.doors.push({ ...seg, state, lockType: lockType || null });
+            }
+            bmScheduleRender();
+        }
+
+        function bmDrawGeometry(W, H) {
+            const ctx = bmCtx;
+            const { cs, ox, oy } = bmAdminMetrics(W, H);
+            const geo = bmGeoData;
+            ctx.globalAlpha = 1;
+
+            // ── Lights ─────────────────────────────────────────────────────
+            geo.lights.forEach((lt, i) => {
+                const lx = ox + (lt.col + 0.5) * cs;
+                const ly = oy + (lt.row + 0.5) * cs;
+                const lr = lt.radius * cs;
+                const col = lt.color || '#ffeeaa';
+                const isSelected = bmGeoSelected && bmGeoSelected.type === 'light' && bmGeoSelected.index === i;
+                // Radial glow
+                ctx.save();
+                const grad = ctx.createRadialGradient(lx, ly, 0, lx, ly, lr);
+                grad.addColorStop(0, col + 'aa');
+                grad.addColorStop(1, col + '00');
+                ctx.fillStyle = grad;
+                ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI*2); ctx.fill();
+                ctx.restore();
+                // Centre dot
+                ctx.fillStyle = col;
+                ctx.beginPath(); ctx.arc(lx, ly, 5, 0, Math.PI*2); ctx.fill();
+                if (isSelected) {
+                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+                    ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI*2); ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            });
+
+            // ── Walls ──────────────────────────────────────────────────────
+            geo.walls.forEach((w, i) => {
+                const isSelected = bmGeoSelected && bmGeoSelected.type === 'wall' && bmGeoSelected.index === i;
+                ctx.strokeStyle = isSelected ? '#ffffff' : '#ff4444';
+                ctx.lineWidth = 3; ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(ox + w.x1*cs, oy + w.y1*cs);
+                ctx.lineTo(ox + w.x2*cs, oy + w.y2*cs);
+                ctx.stroke();
+            });
+
+            // ── Doors ──────────────────────────────────────────────────────
+            geo.doors.forEach((dv, i) => {
+                const state = dv.state || 'closed';
+                const ltype = dv.lockType || null;
+                let col = '#ffaa00'; // closed
+                if (state === 'open') col = '#00ff88';
+                else if (state === 'locked') col = (ltype === 'software') ? '#4488ff' : '#ff2222';
+                const isSelected = bmGeoSelected && bmGeoSelected.type === 'door' && bmGeoSelected.index === i;
+                ctx.strokeStyle = isSelected ? '#ffffff' : col;
+                ctx.lineWidth = 4; ctx.lineCap = 'round';
+                ctx.setLineDash(state === 'open' ? [5,5] : []);
+                ctx.beginPath();
+                ctx.moveTo(ox + dv.x1*cs, oy + dv.y1*cs);
+                ctx.lineTo(ox + dv.x2*cs, oy + dv.y2*cs);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                // Midpoint knob
+                const mx = (ox + dv.x1*cs + ox + dv.x2*cs) / 2;
+                const my = (oy + dv.y1*cs + oy + dv.y2*cs) / 2;
+                ctx.fillStyle = col;
+                ctx.beginPath(); ctx.arc(mx, my, 5, 0, Math.PI*2); ctx.fill();
+            });
+
+            // ── Drag preview (wall/door being drawn) ───────────────────────
+            if (bmGeoDrawStart && bmGeoDrawEnd && (bmGeoTool === 'wall' || bmGeoTool === 'door')) {
+                ctx.strokeStyle = bmGeoTool === 'wall' ? '#ff8888' : '#ffcc44';
+                ctx.lineWidth = 2; ctx.lineCap = 'round';
+                ctx.setLineDash([4,4]);
+                ctx.beginPath();
+                ctx.moveTo(ox + bmGeoDrawStart.cx * cs, oy + bmGeoDrawStart.cy * cs);
+                ctx.lineTo(ox + bmGeoDrawEnd.cx   * cs, oy + bmGeoDrawEnd.cy   * cs);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+        }
+
+        function bmGeoUpdateSelInfo() {
+            const el = document.getElementById('bm-geo-sel-info');
+            if (!el) return;
+            if (!bmGeoSelected) { el.style.display = 'none'; return; }
+            const { type, index } = bmGeoSelected;
+            const item = bmGeoData[type + 's']?.[index];
+            if (!item) { el.style.display = 'none'; return; }
+            el.style.display = '';
+            if (type === 'wall') {
+                el.innerHTML = `<b style="color:#f55">WALL</b> (${item.x1},${item.y1})→(${item.x2},${item.y2})`;
+            } else if (type === 'door') {
+                const lstr = item.lockType ? ` [${item.lockType}]` : '';
+                el.innerHTML = `<b style="color:#fa0">DOOR</b> <em>${item.state}${lstr}</em><br>
+                    <div style="display:flex;gap:3px;margin-top:4px;">
+                        <button class="btn" onclick="bmGeoDoorSetState(${index},'open')" style="flex:1;font-size:0.68rem;padding:2px;border-color:#0f0;color:#0f0;">Open</button>
+                        <button class="btn" onclick="bmGeoDoorSetState(${index},'closed')" style="flex:1;font-size:0.68rem;padding:2px;border-color:#fa0;color:#fa0;">Close</button>
+                        <button class="btn" onclick="bmGeoDoorSetState(${index},'locked')" style="flex:1;font-size:0.68rem;padding:2px;border-color:#f33;color:#f33;">Lock</button>
+                    </div>`;
+            } else if (type === 'light') {
+                el.innerHTML = `<b style="color:#ff0">LIGHT</b> col:${item.col} row:${item.row} r:${item.radius}`;
+            }
+        }
+
+        function bmGeoDoorSetState(index, state) {
+            if (!bmGeoData.doors[index]) return;
+            bmGeoData.doors[index].state = state;
+            socket.emit('admin_battlemap_door_toggle', { doorIndex: index, state });
+            bmGeoUpdateSelInfo();
+            bmScheduleRender();
+        }
+
+        function bmGeoSave() {
+            if (!bmState.mapUrl) { alert('Load a map first.'); return; }
+            socket.emit('admin_save_battlemap_json', { mapUrl: bmState.mapUrl, geo: bmGeoData });
+        }
+
+        function bmGeoClear() {
+            if (!confirm('Clear all geometry? This cannot be undone.')) return;
+            bmGeoData = { walls: [], doors: [], lights: [] };
+            bmGeoSelected = null;
+            bmGeoUpdateSelInfo();
+            bmScheduleRender();
+        }
+
+        function bmShowSelInfo(tok) {
+            const el = document.getElementById('bm-sel-info');
+            if (!el) return;
+            el.style.display = 'block';
+            el.textContent = `[${tok.name}] HP ${tok.hp}/${tok.maxHp}  col:${tok.col} row:${tok.row}`;
+        }
+
+        // ── Config emitters ───────────────────────────────────────────────────
+        function bmToggleActive() {
+            socket.emit('admin_battlemap_config', { active: !bmState.active });
+        }
+        function bmSetGridType(type) {
+            socket.emit('admin_battlemap_config', { gridType: type });
+        }
+        function bmUpdateGridDims(which) {
+            let cols = parseInt(document.getElementById('bm-cols').value) || 20;
+            let rows = parseInt(document.getElementById('bm-rows').value) || 12;
+            if (bmImageAspect) {
+                if (which === 'w') {
+                    rows = Math.max(1, Math.round(cols / bmImageAspect));
+                    document.getElementById('bm-rows').value = rows;
+                } else if (which === 'h') {
+                    cols = Math.max(1, Math.round(rows * bmImageAspect));
+                    document.getElementById('bm-cols').value = cols;
+                }
+            }
+            socket.emit('admin_battlemap_config', { gridCols: cols, gridRows: rows });
+        }
+        function bmToggleFOW(checked) {
+            socket.emit('admin_battlemap_config', { fowEnabled: checked });
+        }
+        function bmSetMap(url) {
+            socket.emit('admin_battlemap_config', { mapUrl: url });
+            if (url) {
+                bmLoadMapImage(url);
+                socket.emit('admin_get_battlemap_json', { mapUrl: url });
+            } else {
+                bmGeoData = { walls: [], doors: [], lights: [] };
+                bmScheduleRender();
+            }
+        }
+        function bmSetGridColor(val) {
+            socket.emit('admin_battlemap_config', { gridColor: val });
+            bmScheduleRender();
+        }
+        function bmSetGridOpacity(val) {
+            const v = parseFloat(val);
+            document.getElementById('bm-opacity-val').textContent = Math.round(v * 100) + '%';
+            socket.emit('admin_battlemap_config', { gridOpacity: v });
+            bmScheduleRender();
+        }
+        function bmApplyScale() {
+            const pc = parseInt(document.getElementById('bm-phys-cols').value) || 20;
+            const pr = parseInt(document.getElementById('bm-phys-rows').value) || 12;
+            socket.emit('admin_battlemap_config', { physicalCols: pc, physicalRows: pr });
+        }
+        function bmFogRevealAll() { socket.emit('admin_battlemap_fow_reveal_all', {}); }
+        function bmFogHideAll()   { socket.emit('admin_battlemap_fow_clear', {}); }
+
+        // ── Side-tab switching ────────────────────────────────────────────────
+        function bmSetSideTab(name, btn) {
+            document.querySelectorAll('.bm-side-panel').forEach(p => p.classList.add('hidden'));
+            const panel = document.getElementById('bm-side-' + name);
+            if (panel) panel.classList.remove('hidden');
+            document.querySelectorAll('.bm-subtab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            if (name === 'map') { bmPopulateMapSelect(); bmPopulateTokenImageSelect(null); }
+            if (name === 'combat') bmRenderCombatPanel();
+            if (name === 'geo') { bmSetGeoTool('select'); }
+            else if (bmTool === 'geo') { bmSetSelectTool(); }
+        }
+
+        // ── Token list rendering ──────────────────────────────────────────────
+        function bmRenderTokenList() {
+            const el = document.getElementById('bm-token-list');
+            if (!el) return;
+            if (!bmState.tokens.length) {
+                el.innerHTML = '<div style="color:#444; font-size:0.77rem; padding:8px 0;">No tokens. Add one above.</div>';
+                return;
+            }
+            el.innerHTML = bmState.tokens.map(tok => {
+                const color = tok.color || BM_TYPE_COLORS[tok.type] || '#888';
+                const sel = tok.id === bmSelectedTokenId ? ' selected' : '';
+                const hiddenTag = tok.hidden ? ' <span style="color:#555;">[H]</span>' : '';
+                return `<div class="bm-token-item${sel}" onclick="bmSelectToken('${tok.id}')" ondblclick="bmOpenEditModal('${tok.id}')">
+                    <span class="bm-token-dot" style="background:${color};"></span>
+                    <span class="bm-token-name">${tok.name}${hiddenTag}</span>
+                    <span class="bm-token-pos">${tok.col},${tok.row}</span>
+                    <button class="btn-icon" onclick="bmOpenEditModal('${tok.id}'); event.stopPropagation();" style="font-size:0.75rem; color:#555;">✎</button>
+                </div>`;
+            }).join('');
+        }
+        function bmSelectToken(id) {
+            bmSelectedTokenId = id;
+            const tok = bmState.tokens.find(t => t.id === id);
+            if (tok) bmShowSelInfo(tok);
+            bmRenderTokenList();
+            bmScheduleRender();
+        }
+
+        // ── Initiative ────────────────────────────────────────────────────────
+        function bmRenderInitPanel() {
+            const el = document.getElementById('bm-init-panel');
+            if (!el) return;
+            if (!bmState.tokens.length) {
+                el.innerHTML = '<div style="color:#444; font-size:0.77rem; padding:4px 0;">No tokens on map.</div>';
+                return;
+            }
+            el.innerHTML = bmState.tokens.map(tok => {
+                const color = tok.color || BM_TYPE_COLORS[tok.type] || '#888';
+                const isActive = bmState.initiativeOrder.length > 0 &&
+                    bmState.initiativeOrder[bmState.initiativeCurrent] === tok.id;
+                return `<div style="display:flex; align-items:center; gap:6px; padding:3px 4px;
+                    background:${isActive ? 'rgba(255,215,0,0.08)' : 'transparent'};
+                    border-left:2px solid ${isActive ? '#ffd700' : color};">
+                    <span style="flex:1; font-size:0.77rem; color:${isActive ? '#ffd700' : '#aaa'};
+                        white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                        title="${tok.name}">${isActive ? '▶ ' : ''}${tok.name}</span>
+                    <input type="number" value="${tok.initiative ?? 0}"
+                        style="width:46px; font-size:0.78rem; background:#111; border:1px solid #333;
+                            color:#fff; padding:2px 4px; border-radius:2px; text-align:center;"
+                        onchange="bmSetTokenInitiative('${tok.id}', this.value)"
+                        onclick="event.stopPropagation()">
+                </div>`;
+            }).join('');
+        }
+        function bmSetTokenInitiative(id, value) {
+            socket.emit('admin_battlemap_token_update', { id, initiative: parseInt(value) || 0 });
+        }
+        function bmStartInitiative() {
+            const sorted = [...bmState.tokens]
+                .filter(t => !t.hidden)
+                .sort((a, b) => (b.initiative || 0) - (a.initiative || 0))
+                .map(t => t.id);
+            socket.emit('admin_battlemap_initiative', { order: sorted, current: 0 });
+        }
+        function bmInitNext() {
+            if (!bmState.initiativeOrder.length) return;
+            const next = (bmState.initiativeCurrent + 1) % bmState.initiativeOrder.length;
+            socket.emit('admin_battlemap_initiative', { order: bmState.initiativeOrder, current: next });
+        }
+        function bmInitPrev() {
+            if (!bmState.initiativeOrder.length) return;
+            const prev = (bmState.initiativeCurrent - 1 + bmState.initiativeOrder.length) % bmState.initiativeOrder.length;
+            socket.emit('admin_battlemap_initiative', { order: bmState.initiativeOrder, current: prev });
+        }
+        function bmClearInitiative() {
+            socket.emit('admin_battlemap_initiative', { order: [], current: -1 });
+        }
+
+        // ── Combat panel ──────────────────────────────────────────────────
+        function bmRenderCombatPanel() {
+            // Current turn label
+            const turnEl = document.getElementById('bm-cmb-turn');
+            if (turnEl) {
+                if (bmState.initiativeCurrent >= 0 && bmState.initiativeOrder.length > 0) {
+                    const tid = bmState.initiativeOrder[bmState.initiativeCurrent];
+                    const tok = bmState.tokens.find(t => t.id === tid);
+                    turnEl.textContent = tok ? '▶ ' + tok.name.toUpperCase() + ' — TURN ' + (bmState.initiativeCurrent + 1) + '/' + bmState.initiativeOrder.length : '—';
+                } else {
+                    turnEl.textContent = '— no initiative —';
+                }
+            }
+
+            // Target dropdown
+            const sel = document.getElementById('bm-cmb-target');
+            if (sel) {
+                const prev = sel.value;
+                sel.innerHTML = bmState.tokens
+                    .filter(t => !t.hidden)
+                    .map(t => `<option value="${t.id}">${t.name} (HP ${t.hp}/${t.maxHp})</option>`)
+                    .join('');
+                if (prev && sel.querySelector(`option[value="${prev}"]`)) sel.value = prev;
+                // Auto-select current initiative token
+                else if (bmState.initiativeCurrent >= 0 && bmState.initiativeOrder.length > 0) {
+                    sel.value = bmState.initiativeOrder[bmState.initiativeCurrent];
+                }
+            }
+
+            // HP/SP list
+            const listEl = document.getElementById('bm-cmb-list');
+            if (!listEl) return;
+            if (!bmState.tokens.length) { listEl.innerHTML = '<div style="color:#444; font-size:0.77rem;">No tokens.</div>'; return; }
+            listEl.innerHTML = bmState.tokens.filter(t => !t.hidden).map(tok => {
+                const color = tok.color || BM_TYPE_COLORS[tok.type] || '#888';
+                const isActive = bmState.initiativeOrder.length > 0 && bmState.initiativeOrder[bmState.initiativeCurrent] === tok.id;
+                const hpPct  = tok.maxHp  > 0 ? Math.max(0, Math.min(1, tok.hp  / tok.maxHp))  * 100 : 0;
+                const spPct  = tok.maxSp  > 0 ? Math.max(0, Math.min(1, tok.sp  / tok.maxSp))  * 100 : 0;
+                const hpCol  = hpPct > 50 ? '#2d2' : hpPct > 25 ? '#fc0' : '#f33';
+                return `<div style="padding:5px 6px; border-radius:3px; cursor:pointer;
+                    background:${isActive ? 'rgba(255,215,0,0.07)' : 'rgba(255,255,255,0.02)'};
+                    border-left:2px solid ${isActive ? '#ffd700' : color};"
+                    onclick="document.getElementById('bm-cmb-target').value='${tok.id}'">
+                  <div style="display:flex; justify-content:space-between; font-size:0.77rem; margin-bottom:3px;">
+                    <span style="color:${isActive ? '#ffd700' : '#ccc'}; font-weight:${isActive ? 'bold' : 'normal'}">${isActive ? '▶ ' : ''}${tok.name}</span>
+                    <span style="color:#555; font-size:0.7rem;">${tok.hp}/${tok.maxHp} HP</span>
+                  </div>
+                  <div style="height:5px; background:#1a1a2a; border-radius:2px; margin-bottom:2px;">
+                    <div style="height:100%; width:${hpPct}%; background:${hpCol}; border-radius:2px;"></div>
+                  </div>
+                  <div style="height:4px; background:#1a1a2a; border-radius:2px;">
+                    <div style="height:100%; width:${spPct}%; background:#55f; border-radius:2px;"></div>
+                  </div>
+                </div>`;
+            }).join('');
+        }
+        function bmCmbApply(mode) {
+            const sel = document.getElementById('bm-cmb-target');
+            const amtEl = document.getElementById('bm-cmb-amount');
+            if (!sel || !amtEl) return;
+            const tid = sel.value;
+            const amount = parseInt(amtEl.value) || 0;
+            if (!tid || amount <= 0) return;
+            const tok = bmState.tokens.find(t => t.id === tid);
+            if (!tok) return;
+            let newHp = tok.hp, newSp = tok.sp;
+            if (mode === 'dmgSp') {
+                // Damage SP first, overflow to HP
+                const spDmg = Math.min(tok.sp, amount);
+                const hpDmg = amount - spDmg;
+                newSp = Math.max(0, tok.sp - spDmg);
+                newHp = Math.max(0, tok.hp - hpDmg);
+            } else if (mode === 'dmgHp') {
+                newHp = Math.max(0, tok.hp - amount);
+            } else if (mode === 'heal') {
+                newHp = Math.min(tok.maxHp, tok.hp + amount);
+                newSp = Math.min(tok.maxSp, tok.sp + amount);
+            }
+            socket.emit('admin_battlemap_token_update', { id: tid, hp: newHp, sp: newSp });
+        }
+
+        // ── Token add/edit modal ──────────────────────────────────────────────
+        function bmPopulateTokenImageSelect(currentUrl) {
+            const sel = document.getElementById('bm-tok-image');
+            if (!sel) return;
+            sel.innerHTML = '<option value="">— no image —</option>';
+            if (!cachedMediaFiles) return;
+            cachedMediaFiles.filter(f => f.folder?.includes('[CHAR]') || f.folder?.toLowerCase().includes('char')).forEach(f => {
+                const o = document.createElement('option');
+                o.value = '/media/' + f.path;
+                o.textContent = f.name;
+                sel.appendChild(o);
+            });
+            if (currentUrl) sel.value = currentUrl;
+        }
+        function bmAddTokenFromChar() {
+            bmModalMode = 'add-char';
+            bmEditTokenId = null;
+            bmResetTokenForm();
+            // Populate char selector
+            const charSel = document.getElementById('bm-tok-char-sel');
+            const charRow = document.getElementById('bm-tok-char-row');
+            charRow.style.display = '';
+            charSel.innerHTML = '<option value="">— pick character —</option>';
+            if (cachedData?.characters) {
+                cachedData.characters
+                    .filter(ch => !ch.isNPC || ch.npcType === 'combat' || ch.npcType === 'both')
+                    .forEach(ch => {
+                        const o = document.createElement('option');
+                        o.value = ch.id || ch.name;
+                        o.textContent = ch.name + (ch.isNPC ? ' [NPC]' : '');
+                        charSel.appendChild(o);
+                    });
+            }
+            charSel.onchange = () => bmFillFromChar(charSel.value);
+            document.getElementById('bm-tok-delete-btn').style.display = 'none';
+            document.getElementById('bm-token-modal').style.display = 'flex';
+        }
+        function bmFillFromChar(charId) {
+            if (!charId || !cachedData?.characters) return;
+            const ch = cachedData.characters.find(c => (c.id || c.name) === charId);
+            if (!ch) return;
+            document.getElementById('bm-tok-name').value = ch.name || '';
+            const isNpc = ch.isNPC && ch.npcType !== 'rp';
+            const tokType = isNpc ? 'npc' : 'pc';
+            document.getElementById('bm-tok-type').value = tokType;
+            document.getElementById('bm-tok-hp').value    = ch.vitals?.hp     ?? 0;
+            document.getElementById('bm-tok-maxhp').value = ch.vitals?.max_hp ?? ch.vitals?.hp ?? 0;
+            document.getElementById('bm-tok-sp').value    = ch.vitals?.sp     ?? 0;
+            document.getElementById('bm-tok-maxsp').value = ch.vitals?.max_sp ?? ch.vitals?.sp ?? 0;
+            document.getElementById('bm-tok-color').value = BM_TYPE_COLORS[tokType] || '#888';
+            document.getElementById('bm-tok-initiative').value = 0;
+            const imgUrl = ch.tokenImage || ch.image || '';
+            if (imgUrl) {
+                document.getElementById('bm-tok-image').value = imgUrl;
+                bmPopulateTokenImageSelect(imgUrl);
+            }
+        }
+        function bmAddCustomToken() {
+            bmModalMode = 'add';
+            bmEditTokenId = null;
+            bmResetTokenForm();
+            document.getElementById('bm-tok-char-row').style.display = 'none';
+            document.getElementById('bm-tok-delete-btn').style.display = 'none';
+            document.getElementById('bm-token-modal').style.display = 'flex';
+        }
+        function bmOpenEditModal(id) {
+            const tok = bmState.tokens.find(t => t.id === id);
+            if (!tok) return;
+            bmModalMode = 'edit';
+            bmEditTokenId = id;
+            bmResetTokenForm();
+            document.getElementById('bm-tok-char-row').style.display = 'none';
+            document.getElementById('bm-tok-name').value   = tok.name  || '';
+            document.getElementById('bm-tok-type').value   = tok.type  || 'enemy';
+            document.getElementById('bm-tok-col').value    = tok.col   ?? 0;
+            document.getElementById('bm-tok-row').value    = tok.row   ?? 0;
+            document.getElementById('bm-tok-size').value   = tok.size  || 1;
+            document.getElementById('bm-tok-hp').value     = tok.hp    ?? 0;
+            document.getElementById('bm-tok-maxhp').value  = tok.maxHp ?? 0;
+            document.getElementById('bm-tok-sp').value     = tok.sp    ?? 0;
+            document.getElementById('bm-tok-maxsp').value  = tok.maxSp ?? 0;
+            document.getElementById('bm-tok-initiative').value = tok.initiative ?? 0;
+            document.getElementById('bm-tok-color').value  = tok.color || '#ff3333';
+            document.getElementById('bm-tok-hidden').checked = !!tok.hidden;
+            bmPopulateTokenImageSelect(tok.image || tok.imageUrl);
+            document.getElementById('bm-tok-image').value  = tok.image || tok.imageUrl || '';
+            const hpMode = tok.hpMode || 'hidden';
+            const radio = document.querySelector(`input[name="bm-tok-hpmode"][value="${hpMode}"]`);
+            if (radio) radio.checked = true;
+            BM_CONDITIONS.forEach(cond => {
+                const el = document.getElementById('bm-cond-' + cond);
+                if (el) el.checked = !!(tok.conditions && tok.conditions.includes(cond));
+            });
+            document.getElementById('bm-tok-delete-btn').style.display = '';
+            document.getElementById('bm-token-modal').style.display = 'flex';
+        }
+        function bmResetTokenForm() {
+            document.getElementById('bm-tok-name').value = '';
+            document.getElementById('bm-tok-type').value = 'enemy';
+            document.getElementById('bm-tok-col').value  = 0;
+            document.getElementById('bm-tok-row').value  = 0;
+            document.getElementById('bm-tok-size').value = 1;
+            document.getElementById('bm-tok-hp').value   = 0;
+            document.getElementById('bm-tok-maxhp').value = 0;
+            document.getElementById('bm-tok-sp').value   = 0;
+            document.getElementById('bm-tok-maxsp').value = 0;
+            document.getElementById('bm-tok-initiative').value = 0;
+            document.getElementById('bm-tok-color').value = '#ff3333';
+            document.getElementById('bm-tok-hidden').checked = false;
+            document.querySelector('input[name="bm-tok-hpmode"][value="hidden"]').checked = true;
+            BM_CONDITIONS.forEach(cond => {
+                const el = document.getElementById('bm-cond-' + cond);
+                if (el) el.checked = false;
+            });
+            bmPopulateTokenImageSelect(null);
+        }
+        function bmBuildTokenData() {
+            const conditions = BM_CONDITIONS.filter(c => document.getElementById('bm-cond-' + c)?.checked);
+            return {
+                name:       document.getElementById('bm-tok-name').value.trim() || 'Token',
+                type:       document.getElementById('bm-tok-type').value,
+                col:        parseInt(document.getElementById('bm-tok-col').value)  || 0,
+                row:        parseInt(document.getElementById('bm-tok-row').value)  || 0,
+                size:       parseInt(document.getElementById('bm-tok-size').value) || 1,
+                hp:         parseInt(document.getElementById('bm-tok-hp').value)   || 0,
+                maxHp:      parseInt(document.getElementById('bm-tok-maxhp').value)|| 0,
+                sp:         parseInt(document.getElementById('bm-tok-sp').value)   || 0,
+                maxSp:      parseInt(document.getElementById('bm-tok-maxsp').value)|| 0,
+                initiative: parseInt(document.getElementById('bm-tok-initiative').value) || 0,
+                color:      document.getElementById('bm-tok-color').value,
+                image:      document.getElementById('bm-tok-image').value,
+                hidden:     document.getElementById('bm-tok-hidden').checked,
+                hpMode:     document.querySelector('input[name="bm-tok-hpmode"]:checked')?.value || 'hidden',
+                conditions
+            };
+        }
+        function bmSaveTokenModal() {
+            const data = bmBuildTokenData();
+            if (bmModalMode === 'edit' && bmEditTokenId) {
+                socket.emit('admin_battlemap_token_update', { id: bmEditTokenId, ...data });
+            } else {
+                socket.emit('admin_battlemap_token_add', data);
+            }
+            bmCloseTokenModal();
+        }
+        function bmDeleteFromModal() {
+            if (!bmEditTokenId) return;
+            socket.emit('admin_battlemap_token_remove', { id: bmEditTokenId });
+            if (bmSelectedTokenId === bmEditTokenId) bmSelectedTokenId = null;
+            bmCloseTokenModal();
+        }
+        function bmCloseTokenModal() {
+            document.getElementById('bm-token-modal').style.display = 'none';
+            bmEditTokenId = null;
+        }
+
+        // ── Web Serial (COM port) ────────────────────────────────────────────
+        function bmComLog(msg) {
+            const el = document.getElementById('bm-com-log');
+            if (!el) return;
+            const line = document.createElement('div');
+            line.style.cssText = 'color:#888; font-size:0.73rem; font-family:monospace; white-space:pre;';
+            line.textContent = new Date().toLocaleTimeString() + ' ' + msg;
+            el.insertBefore(line, el.firstChild);
+            while (el.children.length > 30) el.removeChild(el.lastChild);
+        }
+        function bmSetComStatus(connected) {
+            const dot  = document.getElementById('bm-com-dot');
+            const lbl  = document.getElementById('bm-com-status');
+            const btn  = document.getElementById('bm-com-btn');
+            const disc = document.getElementById('bm-com-disc');
+            if (dot)  dot.style.background  = connected ? '#0c0' : '#333';
+            if (lbl)  lbl.textContent = connected ? 'CONNECTED' : 'DISCONNECTED';
+            if (lbl)  lbl.style.color = connected ? '#0c0'      : '#888';
+            if (btn)  btn.style.display  = connected ? 'none' : '';
+            if (disc) disc.style.display = connected ? '' : 'none';
+        }
+        async function bmConnectSerial() {
+            if (!('serial' in navigator)) {
+                bmComLog('ERROR: Web Serial not supported (use Chrome/Edge)');
+                return;
+            }
+            try {
+                bmSerialPort = await navigator.serial.requestPort();
+                const baud = parseInt(document.getElementById('bm-com-baud')?.value || 115200);
+                await bmSerialPort.open({ baudRate: baud });
+                bmSerialActive = true;
+                bmSetComStatus(true);
+                bmComLog('Connected @ ' + baud + ' baud');
+                bmSerialReadLoop();
+            } catch (e) {
+                bmComLog('ERROR: ' + e.message);
+            }
+        }
+        async function bmDisconnectSerial() {
+            bmSerialActive = false;
+            try {
+                if (bmSerialReader) { await bmSerialReader.cancel(); bmSerialReader = null; }
+                if (bmSerialPort)   { await bmSerialPort.close();    bmSerialPort = null; }
+            } catch (e) {}
+            bmSetComStatus(false);
+            bmComLog('Disconnected');
+        }
+        async function bmSerialReadLoop() {
+            const decoder = new TextDecoderStream();
+            bmSerialPort.readable.pipeTo(decoder.writable);
+            bmSerialReader = decoder.readable.getReader();
+            let buf = '';
+            while (bmSerialActive) {
+                try {
+                    const { value, done } = await bmSerialReader.read();
+                    if (done) break;
+                    buf += value;
+                    const lines = buf.split('\n');
+                    buf = lines.pop();
+                    lines.forEach(line => { if (line.trim()) bmParseSerialLine(line.trim()); });
+                } catch (e) {
+                    if (bmSerialActive) bmComLog('ERROR: ' + e.message);
+                    break;
+                }
+            }
+        }
+        function bmParseSerialLine(line) {
+            const m = line.match(/\[(\d+);(\d+)\]-\[(\d+);(\d+)\]/);
+            if (!m) return;
+            const fromC = parseInt(m[1]), fromR = parseInt(m[2]);
+            const toC   = parseInt(m[3]), toR   = parseInt(m[4]);
+            bmComLog(line);
+            socket.emit('admin_battlemap_serial_move', { fromC, fromR, toC, toR });
+        }
+        function bmTestSerial() {
+            const val = document.getElementById('bm-com-test')?.value?.trim() || '';
+            if (val) bmParseSerialLine(val);
+        }
+
     </script>
 </body>
 </html>

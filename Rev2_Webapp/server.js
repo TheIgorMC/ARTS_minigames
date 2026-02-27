@@ -121,6 +121,27 @@ let campaignSettings = {
 let levelupPending = new Set(); // Character IDs that are allowed to level up
 let shopSessions = {}; // { charId: shopId } - maps which shop a player has open
 
+// ─── BATTLEMAP STATE ──────────────────────────────────────────────────────────
+let battlemapState = {
+    active: false,          // Is battlemap projected to the display?
+    mapUrl: '',             // /media/... URL of current map image
+    gridType: 'square',     // 'square' | 'hex-pointy'
+    gridCols: 20,
+    gridRows: 12,
+    gridColor: '#ffffff',
+    gridOpacity: 0.3,
+    physicalCols: 20,       // Physical table viewport size (in map grid cells)
+    physicalRows: 12,
+    tableOffsetX: 0,        // Where the physical table viewport starts on the map (col)
+    tableOffsetY: 0,        // Where the physical table viewport starts on the map (row)
+    tokens: [],             // Array of token objects (see admin for schema)
+    initiativeOrder: [],    // [tokenId, ...] sorted by initiative
+    initiativeCurrent: -1, // Index of current actor (-1 = not started)
+    fowEnabled: false,
+    fowCells: {},           // 'col,row' -> 'visible'|'explored' (missing = hidden)
+    geo: { walls: [], doors: [], lights: [] }, // Geometry: walls, doors, lights
+};
+
 // --- STARFINDER PROGRESSION TABLES ---
 const SF_BAB = {
     full:     [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
@@ -163,7 +184,8 @@ function saveStatus() {
         roleplay: roleplayState,
         identities: gmIdentities,
         conversations: conversations,
-        campaignSettings: campaignSettings
+        campaignSettings: campaignSettings,
+        battlemap: battlemapState
     };
     fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
 }
@@ -178,6 +200,7 @@ function loadStatus() {
             if (status.identities) gmIdentities = status.identities;
             if (status.conversations) conversations = status.conversations;
             if (status.campaignSettings) campaignSettings = status.campaignSettings;
+            if (status.battlemap) battlemapState = status.battlemap;
             console.log('Status loaded:', status);
         } catch (e) {
             console.error('Error loading status:', e);
@@ -262,6 +285,11 @@ function getMediaFiles(dir = '', fileList = []) {
                 let type = 'item';
                 if (fileName.startsWith('[BG]')) type = 'background';
                 else if (fileName.startsWith('[MOOD]')) type = 'mood';
+                else {
+                    // Check any parent folder for [BATTLE] tag
+                    const folderParts = dir.replace(/\\/g, '/').split('/');
+                    if (folderParts.some(p => p.startsWith('[BATTLE]'))) type = 'battlemap';
+                }
                 
                 fileList.push({
                     path: urlPath, // Use encoded path for URL
@@ -531,6 +559,7 @@ io.on('connection', (socket) => {
             socket.emit('admin_levelup_status', Array.from(levelupPending));
             socket.emit('admin_shops_update', shops);
             socket.emit('campaign_settings_update', campaignSettings);
+            socket.emit('battlemap_state', battlemapState);
         }
         // Se è il Tavolo, invia lo stato attuale
         if (role === 'table') {
@@ -1544,6 +1573,174 @@ io.on('connection', (socket) => {
         console.log('Campaign settings updated:', campaignSettings);
     });
     
+    // ─────────────────────────────────────────────────────────────────────────
+    // BATTLEMAP
+    // ─────────────────────────────────────────────────────────────────────────
+    socket.on('admin_battlemap_config', (cfg) => {
+        const allowed = ['active','mapUrl','gridType','gridCols','gridRows','gridColor','gridOpacity','physicalCols','physicalRows','tableOffsetX','tableOffsetY','fowEnabled'];
+        allowed.forEach(k => { if (cfg[k] !== undefined) battlemapState[k] = cfg[k]; });
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_token_add', (tok) => {
+        const newTok = {
+            id: 'tok_' + Date.now() + '_' + Math.random().toString(36).slice(2,5),
+            type: tok.type || 'enemy',
+            charId: tok.charId || null,
+            name: tok.name || 'Token',
+            image: tok.image || '',
+            col: typeof tok.col === 'number' ? tok.col : 0,
+            row: typeof tok.row === 'number' ? tok.row : 0,
+            size: tok.size || 1,
+            hp: tok.hp || 0,
+            maxHp: tok.maxHp || 0,
+            sp: tok.sp || 0,
+            maxSp: tok.maxSp || 0,
+            hpMode: tok.hpMode || 'hidden', // 'hp_bar'|'damage_dealt'|'hidden'
+            damageTaken: 0,
+            conditions: tok.conditions || [],
+            hidden: tok.hidden || false,
+            color: tok.color || null,
+            initiative: tok.initiative || 0,
+            elevation: 0,
+        };
+        battlemapState.tokens.push(newTok);
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_token_update', (data) => {
+        const tok = battlemapState.tokens.find(t => t.id === data.id);
+        if (!tok) return;
+        const safe = ['type','name','image','size','hp','maxHp','sp','maxSp','hpMode','damageTaken','conditions','hidden','color','initiative','elevation','col','row','charId'];
+        safe.forEach(k => { if (data[k] !== undefined) tok[k] = data[k]; });
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_token_remove', (data) => {
+        battlemapState.tokens = battlemapState.tokens.filter(t => t.id !== data.id);
+        battlemapState.initiativeOrder = battlemapState.initiativeOrder.filter(id => id !== data.id);
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_token_move', (data) => {
+        const tok = battlemapState.tokens.find(t => t.id === data.id);
+        if (tok) { tok.col = data.col; tok.row = data.row; }
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_fow_paint', (data) => {
+        // data.cells: { 'col,row': 'visible'|'explored'|null } (null = hide)
+        Object.entries(data.cells).forEach(([key, val]) => {
+            if (val === null || val === 'hidden') delete battlemapState.fowCells[key];
+            else battlemapState.fowCells[key] = val;
+        });
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_fow_clear', () => {
+        battlemapState.fowCells = {};
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_fow_reveal_all', () => {
+        const cells = {};
+        for (let c = 0; c < battlemapState.gridCols; c++)
+            for (let r = 0; r < battlemapState.gridRows; r++)
+                cells[c + ',' + r] = 'visible';
+        battlemapState.fowCells = cells;
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    socket.on('admin_battlemap_initiative', (data) => {
+        battlemapState.initiativeOrder = data.order || [];
+        battlemapState.initiativeCurrent = typeof data.current === 'number' ? data.current : -1;
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    // ─── BATTLEMAP GEOMETRY JSON ─────────────────────────────────────────────────
+    socket.on('admin_get_battlemap_json', (data) => {
+        if (!data || !data.mapUrl) return;
+        try {
+            const relPath = decodeURIComponent(data.mapUrl.replace(/^\/media\//, ''));
+            const imgPath = path.resolve(MEDIA_DIR, relPath);
+            if (!imgPath.startsWith(MEDIA_DIR + path.sep) && imgPath !== MEDIA_DIR) { console.error('Path traversal blocked'); return; }
+            const jsonPath = imgPath.replace(/\.[^\.]+$/, '.json');
+            let geoData = { walls: [], doors: [], lights: [] };
+            if (fs.existsSync(jsonPath)) {
+                geoData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+            }
+            socket.emit('battlemap_json_loaded', geoData);
+        } catch (e) {
+            console.error('Error loading battlemap JSON:', e);
+            socket.emit('battlemap_json_loaded', { walls: [], doors: [], lights: [] });
+        }
+    });
+
+    socket.on('admin_save_battlemap_json', (data) => {
+        if (!data || !data.mapUrl || !data.geo) return;
+        try {
+            const relPath = decodeURIComponent(data.mapUrl.replace(/^\/media\//, ''));
+            const imgPath = path.resolve(MEDIA_DIR, relPath);
+            if (!imgPath.startsWith(MEDIA_DIR + path.sep) && imgPath !== MEDIA_DIR) { console.error('Path traversal blocked'); return; }
+            const jsonPath = imgPath.replace(/\.[^\.]+$/, '.json');
+            fs.writeFileSync(jsonPath, JSON.stringify(data.geo, null, 2));
+            battlemapState.geo = data.geo;
+            saveStatus();
+            io.emit('battlemap_state', battlemapState);
+            socket.emit('gm_hacking_log', 'Battlemap geometry saved.');
+        } catch (e) {
+            console.error('Error saving battlemap JSON:', e);
+        }
+    });
+
+    socket.on('admin_battlemap_door_toggle', (data) => {
+        // data: { doorIndex, state } — updates door state in live geo
+        if (!battlemapState.geo || !Array.isArray(battlemapState.geo.doors)) return;
+        const door = battlemapState.geo.doors[data.doorIndex];
+        if (!door) return;
+        door.state = data.state || 'closed';
+        if (battlemapState.mapUrl) {
+            try {
+                const relPath = decodeURIComponent(battlemapState.mapUrl.replace(/^\/media\//, ''));
+                const jsonPath = path.resolve(MEDIA_DIR, relPath).replace(/\.[^\.]+$/, '.json');
+                fs.writeFileSync(jsonPath, JSON.stringify(battlemapState.geo, null, 2));
+            } catch (e) { console.error('door toggle save error:', e); }
+        }
+        saveStatus();
+        io.emit('battlemap_state', battlemapState);
+    });
+
+    // From COM port: physical coords [fromCol;fromRow]-[toCol;toRow]
+    // Physical coords are 0-indexed within the table viewport.
+    // Map coords = tableOffset + physical coords.
+    // [0;0] destination = miniature removed from table (hidden)
+    socket.on('admin_battlemap_serial_move', (data) => {
+        const ox = battlemapState.tableOffsetX || 0;
+        const oy = battlemapState.tableOffsetY || 0;
+        const fromC = ox + data.fromC;
+        const fromR = oy + data.fromR;
+        const tok = battlemapState.tokens.find(t => t.col === fromC && t.row === fromR);
+        if (tok) {
+            if (data.toC === 0 && data.toR === 0) {
+                tok.hidden = true; tok.col = -1; tok.row = -1; // Removed from play
+            } else {
+                tok.col = ox + data.toC;
+                tok.row = oy + data.toR;
+            }
+            saveStatus();
+            io.emit('battlemap_state', battlemapState);
+        }
+    });
+
     // --- CHAT & TIME ---
     socket.on('chat_message', (msg) => {
         // msg: { sender: 'GM' | 'PlayerName', text: '...', channel: 'global' }
@@ -1586,6 +1783,7 @@ io.on('connection', (socket) => {
     socket.emit('mood_state_update', moodState.imageUrl);
     socket.emit('time_update', timeState);
     socket.emit('chat_history', chatHistory);
+    socket.emit('battlemap_state', battlemapState);
 });
 
 // Start server

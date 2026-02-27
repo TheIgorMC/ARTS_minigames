@@ -9,9 +9,40 @@
     </style>
     <script src="https://unpkg.com/konva@9/konva.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <style>
+        #bm-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 100;
+            background: #000;
+        }
+        #bm-overlay.active { display: block; }
+        #bm-canvas { display: block; width: 100%; height: 100%; }
+        #bm-init-banner {
+            position: absolute;
+            bottom: 18px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.82);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            padding: 8px 32px;
+            font-family: monospace;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="container"></div>
+
+    <!-- BATTLEMAP FULLSCREEN OVERLAY -->
+    <div id="bm-overlay">
+        <canvas id="bm-canvas"></canvas>
+        <div id="bm-init-banner"></div>
+    </div>
 
     <script>
         // 1. Connessione al Server
@@ -312,16 +343,303 @@
             }
         });
 
-        // Messaggio di benvenuto / Standby
-        var text = new Konva.Text({
-            x: 50, y: 50,
-            text: 'TERMINALE IN ATTESA DI INPUT...',
-            fontSize: 40,
-            fontFamily: 'Courier New',
-            fill: '#00D2FF'
+        // ═══════════════════════════════════════════════════════════════════
+        //  BATTLEMAP PROJECTOR ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+        const BM_COLORS = {
+            pc: '#00d2ff', npc: '#00cc44', creature: '#ffaa00',
+            enemy: '#ff3333', neutral: '#888888', object: '#cc88ff'
+        };
+        let bmProjCanvas = null, bmProjCtx = null;
+        let bmProjState  = null;
+        let bmProjMapImg = null, bmProjMapUrl = '';
+        let bmProjImgCache = {};
+        let bmProjRafId = null;
+        let bmProjImgAspect = null;
+
+        socket.on('battlemap_state', (state) => {
+            bmProjState = state;
+            const overlay = document.getElementById('bm-overlay');
+            if (state.active) {
+                overlay.classList.add('active');
+                if (!bmProjCanvas) bmProjInit();
+                if (state.mapUrl && state.mapUrl !== bmProjMapUrl) {
+                    bmProjLoadMap(state.mapUrl);
+                } else {
+                    bmProjSchedule();
+                }
+            } else {
+                overlay.classList.remove('active');
+            }
+            bmProjUpdateBanner();
         });
-        layer.add(text);
-        layer.draw();
+
+        function bmProjInit() {
+            bmProjCanvas = document.getElementById('bm-canvas');
+            bmProjCtx    = bmProjCanvas.getContext('2d');
+            const resize = () => {
+                bmProjCanvas.width  = window.innerWidth;
+                bmProjCanvas.height = window.innerHeight;
+                bmProjSchedule();
+            };
+            resize();
+            window.addEventListener('resize', resize);
+        }
+
+        function bmProjLoadMap(url) {
+            bmProjMapUrl = url;
+            const img = new Image();
+            img.onload  = () => { bmProjMapImg = img; bmProjImgAspect = img.naturalWidth / img.naturalHeight; bmProjSchedule(); };
+            img.onerror = () => { bmProjMapImg = null; bmProjSchedule(); };
+            img.src = url;
+        }
+
+        function bmProjSchedule() {
+            if (bmProjRafId) return;
+            bmProjRafId = requestAnimationFrame(() => { bmProjRafId = null; bmProjRender(); });
+        }
+
+        function bmProjGetMetrics(W, H) {
+            const s = bmProjState;
+            const pCols = s.physicalCols || s.gridCols || 20;
+            const pRows = s.physicalRows || s.gridRows || 12;
+            // Math.min: maintain aspect ratio with black bars (letterbox)
+            const cs = Math.min(W / pCols, H / pRows);
+            const tw = cs * pCols, th = cs * pRows;
+            const ox = (W - tw) / 2, oy = (H - th) / 2; // centred — positive margin = black bar
+            return { cs, tw, th, ox, oy, pCols, pRows };
+        }
+
+        function bmProjRender() {
+            if (!bmProjCanvas || !bmProjCtx || !bmProjState) return;
+            const W = bmProjCanvas.width, H = bmProjCanvas.height;
+            const ctx = bmProjCtx;
+            const s = bmProjState;
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = '#111118';
+            ctx.fillRect(0, 0, W, H);
+
+            const m = bmProjGetMetrics(W, H);
+
+            // Map image — cropped to viewport
+            if (bmProjMapImg) {
+                const ox2 = s.tableOffsetX || 0, oy2 = s.tableOffsetY || 0;
+                const gCols = s.gridCols || 20, gRows = s.gridRows || 12;
+                const iW = bmProjMapImg.naturalWidth, iH = bmProjMapImg.naturalHeight;
+                const srcX = (ox2 / gCols) * iW;
+                const srcY = (oy2 / gRows) * iH;
+                const srcW = (m.pCols / gCols) * iW;
+                const srcH = (m.pRows / gRows) * iH;
+                ctx.drawImage(bmProjMapImg, srcX, srcY, srcW, srcH, m.ox, m.oy, m.tw, m.th);
+            }
+
+            // Grid
+            if (s.gridType === 'hex-pointy') bmProjHexGrid(W, H, m);
+            else bmProjSquareGrid(W, H, m);
+
+            // Fog (full opacity — players see real fog)
+            if (s.fowEnabled) bmProjFog(W, H, m);
+
+            // Tokens
+            s.tokens.forEach(tok => {
+                if (tok.hidden) return;
+                const center = bmProjTokenCenter(tok, W, H, m);
+                if (center) bmProjDrawToken(tok, center, ctx);
+            });
+
+            // Initiative ring
+            if (s.initiativeCurrent >= 0 && s.initiativeOrder.length > 0) {
+                const tid = s.initiativeOrder[s.initiativeCurrent];
+                const tok = s.tokens.find(t => t.id === tid && !t.hidden);
+                if (tok) {
+                    const center = bmProjTokenCenter(tok, W, H, m);
+                    if (center) bmProjInitRing(center, ctx);
+                }
+            }
+
+            // Geometry: walls, doors, lights
+            if (s.geo) bmProjDrawGeometry(s.geo, m, ctx);
+        }
+
+        function bmProjSquareGrid(W, H, m) {
+            const ctx = bmProjCtx;
+            const s = bmProjState;
+            ctx.strokeStyle = s.gridColor || '#fff';
+            ctx.globalAlpha = s.gridOpacity ?? 0.3;
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            for (let c = 0; c <= m.pCols; c++) { const x = m.ox + c * m.cs; ctx.moveTo(x, m.oy); ctx.lineTo(x, m.oy + m.th); }
+            for (let r = 0; r <= m.pRows; r++) { const y = m.oy + r * m.cs; ctx.moveTo(m.ox, y); ctx.lineTo(m.ox + m.tw, y); }
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+
+        function bmProjHexR(m) { return m.cs / Math.sqrt(3); }
+        function bmProjHexCenter(col, row, m) {
+            const R = bmProjHexR(m), sq3 = Math.sqrt(3);
+            return {
+                cx: m.ox + (col + 0.5) * sq3 * R + (row % 2 === 1 ? sq3 / 2 * R : 0),
+                cy: m.oy + R + row * 1.5 * R,
+                R
+            };
+        }
+        function bmProjHexGrid(W, H, m) {
+            const ctx = bmProjCtx;
+            const s = bmProjState;
+            ctx.strokeStyle = s.gridColor || '#fff';
+            ctx.globalAlpha = s.gridOpacity ?? 0.3;
+            ctx.lineWidth = 0.7;
+            for (let r = 0; r < m.pRows; r++) {
+                for (let c = 0; c < m.pCols; c++) {
+                    const { cx, cy, R } = bmProjHexCenter(c, r, m);
+                    ctx.beginPath();
+                    for (let i = 0; i < 6; i++) {
+                        const a = Math.PI / 180 * (60 * i - 30);
+                        i === 0 ? ctx.moveTo(cx + R * Math.cos(a), cy + R * Math.sin(a))
+                                : ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
+                    }
+                    ctx.closePath(); ctx.stroke();
+                }
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function bmProjFog(W, H, m) {
+            const ctx = bmProjCtx;
+            const s = bmProjState;
+            const cells = s.fowCells || {};
+            const ox2 = s.tableOffsetX || 0, oy2 = s.tableOffsetY || 0;
+            for (let r = 0; r < m.pRows; r++) {
+                for (let c = 0; c < m.pCols; c++) {
+                    const key = (c + ox2) + ',' + (r + oy2);
+                    const st = cells[key];
+                    const alpha = !st ? 0.92 : st === 'explored' ? 0.55 : 0;
+                    if (alpha > 0) {
+                        ctx.fillStyle = `rgba(0,0,0,${alpha})`;
+                        ctx.fillRect(m.ox + c * m.cs, m.oy + r * m.cs, m.cs, m.cs);
+                    }
+                }
+            }
+        }
+
+        function bmProjDrawGeometry(geo, m, ctx) {
+            const s = bmProjState;
+            const ox2 = s.tableOffsetX || 0, oy2 = s.tableOffsetY || 0;
+            // Offset grid-corner coordinates from full-map space to viewport space
+            const toSx = (col) => m.ox + (col - ox2) * m.cs;
+            const toSy = (row) => m.oy + (row - oy2) * m.cs;
+            const toSCx = (col) => m.ox + (col + 0.5 - ox2) * m.cs;
+            const toSCy = (row) => m.oy + (row + 0.5 - oy2) * m.cs;
+
+            // Lights — visible glow
+            (geo.lights || []).forEach(lt => {
+                const lx = toSCx(lt.col), ly = toSCy(lt.row);
+                const lr = lt.radius * m.cs;
+                const col = lt.color || '#ffeeaa';
+                ctx.save();
+                const grad = ctx.createRadialGradient(lx, ly, 0, lx, ly, lr);
+                grad.addColorStop(0, col + '33');
+                grad.addColorStop(1, col + '00');
+                ctx.fillStyle = grad;
+                ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI*2); ctx.fill();
+                ctx.restore();
+            });
+
+            // Walls
+            (geo.walls || []).forEach(w => {
+                ctx.strokeStyle = '#ff4444';
+                ctx.lineWidth = 3; ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(toSx(w.x1), toSy(w.y1));
+                ctx.lineTo(toSx(w.x2), toSy(w.y2));
+                ctx.stroke();
+            });
+
+            // Doors
+            (geo.doors || []).forEach(dv => {
+                const state = dv.state || 'closed';
+                const ltype = dv.lockType || null;
+                let col = '#ffaa00';
+                if (state === 'open') col = '#00ff88';
+                else if (state === 'locked') col = (ltype === 'software') ? '#4488ff' : '#ff2222';
+                ctx.strokeStyle = col;
+                ctx.lineWidth = 4; ctx.lineCap = 'round';
+                ctx.setLineDash(state === 'open' ? [5,5] : []);
+                ctx.beginPath();
+                ctx.moveTo(toSx(dv.x1), toSy(dv.y1));
+                ctx.lineTo(toSx(dv.x2), toSy(dv.y2));
+                ctx.stroke();
+                ctx.setLineDash([]);
+                // Knob
+                const mx = (toSx(dv.x1) + toSx(dv.x2)) / 2;
+                const my = (toSy(dv.y1) + toSy(dv.y2)) / 2;
+                ctx.fillStyle = col;
+                ctx.beginPath(); ctx.arc(mx, my, 4, 0, Math.PI*2); ctx.fill();
+            });
+        }
+
+        function bmProjTokenCenter(tok, W, H, m) {
+            const s = bmProjState;
+            const ox2 = s.tableOffsetX || 0, oy2 = s.tableOffsetY || 0;
+            const vc = (tok.col || 0) - ox2, vr = (tok.row || 0) - oy2;
+            const sz = tok.size || 1;
+            if (vc < 0 || vr < 0 || vc + sz > m.pCols || vr + sz > m.pRows) return null;
+            const cx = m.ox + (vc + sz / 2) * m.cs;
+            const cy = m.oy + (vr + sz / 2) * m.cs;
+            return { cx, cy, radius: Math.min(m.cs, m.cs) * 0.42 * sz };
+        }
+
+        function bmProjGetImg(tok) {
+            const url = tok.image || tok.imageUrl || '';
+            if (!url) return null;
+            if (bmProjImgCache[url]) return bmProjImgCache[url];
+            const img = new Image();
+            img.onload = bmProjSchedule;
+            img.src = url;
+            bmProjImgCache[url] = img;
+            return img;
+        }
+
+        function bmProjDrawToken(tok, center, ctx) {
+            const { cx, cy, radius: rad } = center;
+            const color = tok.color || BM_COLORS[tok.type] || '#888';
+            ctx.strokeStyle = color; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.stroke();
+
+            const img = bmProjGetImg(tok);
+            if (img && img.complete && img.naturalWidth > 0) {
+                ctx.save();
+                ctx.beginPath(); ctx.arc(cx, cy, rad - 1, 0, Math.PI * 2); ctx.clip();
+                ctx.drawImage(img, cx - rad, cy - rad, rad * 2, rad * 2);
+                ctx.restore();
+            } else {
+                ctx.fillStyle = color + '44';
+                ctx.beginPath(); ctx.arc(cx, cy, rad - 1, 0, Math.PI * 2); ctx.fill();
+            }
+            // No name label on projector screen
+        }
+
+        function bmProjInitRing(center, ctx) {
+            const { cx, cy, radius: rad } = center;
+            ctx.shadowBlur = 24; ctx.shadowColor = '#ffd700';
+            ctx.strokeStyle = '#ffd700'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.arc(cx, cy, rad + 7, 0, Math.PI * 2); ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
+
+        function bmProjUpdateBanner() {
+            const banner = document.getElementById('bm-init-banner');
+            if (!banner || !bmProjState) return;
+            const s = bmProjState;
+            if (s.initiativeCurrent >= 0 && s.initiativeOrder.length > 0) {
+                const tid = s.initiativeOrder[s.initiativeCurrent];
+                const tok = s.tokens.find(t => t.id === tid && !t.hidden);
+                banner.style.display = tok ? 'block' : 'none';
+                if (tok) banner.textContent = '\u25b6 ' + tok.name.toUpperCase();
+            } else {
+                banner.style.display = 'none';
+            }
+        }
 
     </script>
 </body>
