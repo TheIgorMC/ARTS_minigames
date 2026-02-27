@@ -838,6 +838,17 @@
         </div>
     </div>
 
+    <!-- INFO DETAIL MODAL (spells, items, etc.) -->
+    <div id="info-modal" class="player-modal-overlay" onclick="if(event.target===this)closeInfoModal()">
+        <div class="player-modal-box" style="max-height:85vh; overflow-y:auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h2 style="margin:0;" id="info-modal-title">INFO</h2>
+                <button class="btn btn-red" style="padding:5px 12px; margin:0; font-size:0.8rem;" onclick="closeInfoModal()">✕</button>
+            </div>
+            <div id="info-modal-body"></div>
+        </div>
+    </div>
+
     <!-- BOTTOM NAV -->
     <nav id="bottom-nav">
         <button class="nav-btn active" id="nav-home" onclick="switchScreen('home')">HOME</button>
@@ -925,6 +936,7 @@
             if (menuName) menuName.innerText = charData.name.toUpperCase();
             
             updateStats(charData);
+            if (pbState) pbUpdateCombatPanel();
         });
 
         socket.on('login_error', (msg) => {
@@ -1086,6 +1098,7 @@
         socket.on('player_char_update', (charData) => {
             myCharacter = charData;
             updateStats(charData);
+            if (pbState) pbUpdateCombatPanel();
         });
 
         function renderPlayerInventory(char) {
@@ -1102,23 +1115,28 @@
 
             let html = '';
             inv.forEach(entry => {
-                let name, category, level;
+                let name, category, level, itemId;
+                let itemRef = null;
                 if (entry.itemId && itemMap.has(entry.itemId)) {
-                    const db = itemMap.get(entry.itemId);
-                    name = db.name;
-                    category = db.category || '';
-                    level = db.level;
+                    itemRef = itemMap.get(entry.itemId);
+                    name = itemRef.name;
+                    category = itemRef.category || '';
+                    level = itemRef.level;
+                    itemId = entry.itemId;
                 } else if (entry._inline) {
                     name = entry._inline.name || 'Unknown Item';
                     category = entry._inline.category || '';
                     level = entry._inline.level;
+                    itemId = null;
                 } else {
                     name = entry.itemId || 'Unknown';
                     category = '';
                     level = null;
+                    itemId = null;
                 }
                 const qty = entry.quantity || 1;
-                html += `<div class="inv-item">
+                const clickable = itemId ? `style="cursor:pointer;" onclick="showInventoryItemDetail('${itemId}')"` : '';
+                html += `<div class="inv-item" ${clickable}>
                     <div>
                         <span class="inv-item-name">${name}</span>
                         <span class="inv-item-meta">${category}${level != null ? ' Lvl ' + level : ''}</span>
@@ -1206,8 +1224,44 @@
             });
             const sp = byLevel[lvl] && byLevel[lvl][idx];
             if (!sp) return;
-            const desc = (sp.description || '').replace(/<[^>]*>/g, '').substring(0, 500);
-            alert(`${sp.name} (${sp.school}, Level ${sp.level})\n\nCasting Time: ${sp.castingTime || '-'}\nRange: ${sp.range || '-'}\nTarget: ${sp.target || sp.area || '-'}\nDuration: ${sp.duration || '-'}\nSave: ${sp.save || 'None'}\nSR: ${sp.sr ? 'Yes' : 'No'}\n\n${desc}`);
+            const desc = (sp.description || '').replace(/<[^>]*>/g, '');
+            const body = `
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-bottom:10px;">
+                    <div><span style="color:#888;font-size:0.78rem;">School</span><br><span style="color:#ccc;">${sp.school || '—'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Level</span><br><span style="color:var(--primary-color);font-weight:bold;">Lvl ${sp.level ?? '0'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Casting</span><br><span style="color:#ccc;">${sp.castingTime || '—'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Range</span><br><span style="color:#ccc;">${sp.range || '—'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Target/Area</span><br><span style="color:#ccc;">${sp.target || sp.area || '—'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Duration</span><br><span style="color:#ccc;">${sp.duration || '—'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">Save</span><br><span style="color:#ccc;">${sp.save || 'None'}</span></div>
+                    <div><span style="color:#888;font-size:0.78rem;">SR</span><br><span style="color:#ccc;">${sp.sr ? 'Yes' : 'No'}</span></div>
+                </div>
+                ${desc ? `<div style="border-top:1px solid #333; padding-top:8px; color:#aaa; font-size:0.82rem; line-height:1.5;">${desc}</div>` : ''}
+            `;
+            showInfoModal(sp.name, body);
+        }
+
+        // ─── INFO / DESCRIPTION MODAL ────────────────────────────────────
+        function showInfoModal(title, bodyHtml) {
+            const modal = document.getElementById('info-modal');
+            const titleEl = document.getElementById('info-modal-title');
+            const bodyEl  = document.getElementById('info-modal-body');
+            if (!modal || !titleEl || !bodyEl) return;
+            titleEl.innerText = title;
+            bodyEl.innerHTML  = bodyHtml;
+            modal.classList.add('active');
+        }
+        function closeInfoModal() {
+            const modal = document.getElementById('info-modal');
+            if (modal) modal.classList.remove('active');
+        }
+        function showInventoryItemDetail(itemId) {
+            const item = playerItemsDb.find(i => i.id === itemId);
+            if (!item) return;
+            const rows = buildItemDetailPanel(item)
+                .replace(/^<div class="shop-item-detail">/, '')
+                .replace(/<\/div>$/, '');
+            showInfoModal(item.name + (item.level != null ? ` (Lvl ${item.level})` : ''), rows);
         }
 
         // ─── COMPANIONS ──────────────────────────────────────
@@ -2116,6 +2170,9 @@
             
             // Process channels now that we know who we are
             processChannels();
+
+            // Re-run combat panel so token lookup uses the now-known character
+            if (pbState) pbUpdateCombatPanel();
         });
 
         // --- TIME LOGIC ---
@@ -2825,8 +2882,15 @@
         }
 
         function toggleShopItemDetail(itemId) {
-            expandedShopItemId = expandedShopItemId === itemId ? null : itemId;
-            renderShopItems();
+            // Find item in DB (works for both buy and sell tabs)
+            let item = playerItemsDb.find(i => i.id === itemId);
+            // Also check shop stock's embedded item objects
+            if (!item && currentShop?.stock) {
+                const stockEntry = currentShop.stock.find(s => s.item && s.item.id === itemId);
+                if (stockEntry) item = stockEntry.item;
+            }
+            if (!item) { expandedShopItemId = expandedShopItemId === itemId ? null : itemId; renderShopItems(); return; }
+            showInfoModal(item.name + (item.level != null ? ` (Lvl ${item.level})` : ''), buildItemDetailPanel(item));
         }
 
         function renderShopItems() {
@@ -2975,26 +3039,68 @@
                     if (!tok || tok.hidden) return '';
                     const isActive = idx === pbState.initiativeCurrent;
                     const isMe = myTok && tok.id === myTok.id;
-                    // HP/damage info for non-player tokens
+                    const tokType = (tok.type || '').toLowerCase();
+                    const isEnemy = tokType === 'enemy' || tokType === 'creature';
+                    const isAllyPc = !isMe && tokType === 'pc';
+                    const isNpcFriendly = tokType === 'npc';
+
+                    // HP/damage info for non-self tokens
                     let hpInfo = '';
                     if (!isMe) {
                         const mode = tok.hpMode || 'hidden';
-                        if (mode === 'hp_bar' && tok.maxHp > 0) {
-                            const pct = Math.max(0, Math.min(1, tok.hp / tok.maxHp));
-                            const col = pct > 0.5 ? '#0c0' : pct > 0.25 ? '#fc0' : '#f33';
-                            hpInfo = `<div style="background:#222; border-radius:2px; height:4px; width:52px; margin-top:4px;">
-                                <div style="background:${col}; height:100%; width:${Math.round(pct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
-                            </div>`;
-                        } else if (mode === 'damage_dealt') {
+                        if (isAllyPc || isNpcFriendly) {
+                            // Ally: always show compact HP/SP bars
+                            if (tok.maxHp > 0) {
+                                const hpPct = Math.max(0, Math.min(1, tok.hp / tok.maxHp));
+                                const hpCol = hpPct > 0.5 ? '#0c0' : hpPct > 0.25 ? '#fc0' : '#f33';
+                                const spPct = tok.maxSp > 0 ? Math.max(0, Math.min(1, tok.sp / tok.maxSp)) : 0;
+                                hpInfo = `<div style="margin-top:4px;">
+                                    <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#888;"><span>HP</span><span style="color:${hpCol}">${tok.hp}/${tok.maxHp}</span></div>
+                                    <div style="background:#222; border-radius:2px; height:4px; width:80px; margin-bottom:3px;">
+                                        <div style="background:${hpCol}; height:100%; width:${Math.round(hpPct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
+                                    </div>
+                                    ${tok.maxSp > 0 ? `<div style="background:#221; border-radius:2px; height:3px; width:80px;">
+                                        <div style="background:#5af; height:100%; width:${Math.round(spPct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
+                                    </div>` : ''}
+                                </div>`;
+                            }
+                        } else if (isEnemy) {
+                            // Enemy: always show damage dealt
                             const dmg = (tok.maxHp || 0) - (tok.hp || 0);
-                            if (dmg > 0) hpInfo = `<span style="color:#f55; font-size:0.72rem; margin-top:3px; display:block;">-${dmg} DMG</span>`;
+                            if (mode === 'hp_bar' && tok.maxHp > 0) {
+                                const pct = Math.max(0, Math.min(1, tok.hp / tok.maxHp));
+                                const col = pct > 0.5 ? '#0c0' : pct > 0.25 ? '#fc0' : '#f33';
+                                hpInfo = `<div style="background:#222; border-radius:2px; height:4px; width:52px; margin-top:4px;">
+                                    <div style="background:${col}; height:100%; width:${Math.round(pct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
+                                </div>`;
+                            } else if (dmg > 0) {
+                                hpInfo = `<span style="color:#f55; font-size:0.72rem; margin-top:3px; display:block;">-${dmg} DMG</span>`;
+                            }
+                        } else {
+                            // Other tokens: respect hpMode setting
+                            if (mode === 'hp_bar' && tok.maxHp > 0) {
+                                const pct = Math.max(0, Math.min(1, tok.hp / tok.maxHp));
+                                const col = pct > 0.5 ? '#0c0' : pct > 0.25 ? '#fc0' : '#f33';
+                                hpInfo = `<div style="background:#222; border-radius:2px; height:4px; width:52px; margin-top:4px;">
+                                    <div style="background:${col}; height:100%; width:${Math.round(pct*100)}%; border-radius:2px; transition:width 0.3s;"></div>
+                                </div>`;
+                            } else if (mode === 'damage_dealt') {
+                                const dmg = (tok.maxHp || 0) - (tok.hp || 0);
+                                if (dmg > 0) hpInfo = `<span style="color:#f55; font-size:0.72rem; margin-top:3px; display:block;">-${dmg} DMG</span>`;
+                            }
                         }
                     }
-                    return `<div style="padding:7px 10px; border-radius:3px; display:flex; justify-content:space-between; align-items:center;
-                        background:${isActive ? 'rgba(255,215,0,0.1)' : 'rgba(255,255,255,0.03)'};
-                        border-left:3px solid ${isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : '#333')};">
-                        <span style="color:${isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : '#aaa')}; font-weight:${isActive?'bold':'normal'}">${isActive ? '▶ ' : ''}${tok.name}</span>
-                        <div style="text-align:right;">
+
+                    // Ally PC row gets a slightly tinted background to stand out
+                    const rowBg = isActive ? 'rgba(255,215,0,0.1)' : (isMe ? 'rgba(0,243,255,0.06)' : isAllyPc ? 'rgba(0,200,100,0.05)' : 'rgba(255,255,255,0.03)');
+                    const borderCol = isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : isAllyPc ? '#0c0' : '#333');
+                    const nameCol = isActive ? '#ffd700' : (isMe ? 'var(--primary-color)' : isAllyPc ? '#8f8' : '#aaa');
+
+                    return `<div style="padding:7px 10px; border-radius:3px; display:flex; justify-content:space-between; align-items:flex-start;
+                        background:${rowBg};
+                        border-left:3px solid ${borderCol};">
+                        <span style="color:${nameCol}; font-weight:${isActive||isMe?'bold':'normal'}; font-size:${isAllyPc?'0.85rem':'0.9rem'}">${isActive ? '▶ ' : ''}${tok.name}${isAllyPc ? ' <span style="color:#5a5; font-size:0.65rem;">[ALLY]</span>' : ''}</span>
+                        <div style="text-align:right; flex-shrink:0; margin-left:8px;">
                             <span style="color:#555; font-size:0.78rem;">init ${tok.initiative ?? '—'}</span>
                             ${hpInfo}
                         </div>

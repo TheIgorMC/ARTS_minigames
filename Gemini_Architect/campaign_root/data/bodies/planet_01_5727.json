@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_5727",
+  "render_data": {
+    "texture_diffuse": "assets/textures/planets/desert_06_diffuse.png",
+    "texture_bump": "assets/textures/planets/desert_06_bump.png",
+    "texture_specular": "assets/textures/planets/desert_06_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.01
+  },
+  "pois": []
+}

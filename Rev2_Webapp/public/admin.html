@@ -1126,6 +1126,8 @@
                 <div class="play-toolbar-sep"></div>
                 <label><input type="checkbox" id="bm-fow-check" onchange="bmToggleFOW(this.checked)"> FOG</label>
                 <div class="play-toolbar-sep"></div>
+                <button class="sub-tab-btn" id="bm-rotate-btn" onclick="bmRotateMap()" title="Rotate map view 90°">⟳ ROT</button>
+                <div class="play-toolbar-sep"></div>
                 <button class="sub-tab-btn" onclick="bmInitPrev()" title="Previous">◀</button>
                 <span id="bm-init-current" style="font-size:0.78rem; color:#ffaa00; min-width:90px; text-align:center;">INIT OFF</span>
                 <button class="sub-tab-btn" onclick="bmInitNext()" title="Next">▶</button>
@@ -7492,6 +7494,7 @@
             geo: { walls: [], doors: [], lights: [] }
         };
         let bmCanvas = null, bmCtx = null;
+        let bmDisplayRotation = 0; // 0, 90, 180, 270 — local display-only rotation
         let bmMapImage = null, bmMapLoadedUrl = '';
         let bmImageAspect = null;        // naturalWidth / naturalHeight of loaded map
         let bmSelectedTokenId = null;
@@ -7632,6 +7635,19 @@
             img.onerror = () => { bmMapImage = null; bmScheduleRender(); };
             img.src = url;
         }
+        function bmRotateMap() {
+            bmDisplayRotation = (bmDisplayRotation + 90) % 360;
+            const btn = document.getElementById('bm-rotate-btn');
+            if (btn) btn.textContent = bmDisplayRotation === 0 ? '⟳ ROT' : `⟳ ${bmDisplayRotation}°`;
+            bmScheduleRender();
+        }
+        // Returns effective canvas dimensions after rotation (swapped when 90/270)
+        function bmEffectiveWH() {
+            if (!bmCanvas) return { W: 800, H: 600 };
+            if (bmDisplayRotation === 90 || bmDisplayRotation === 270)
+                return { W: bmCanvas.height, H: bmCanvas.width };
+            return { W: bmCanvas.width, H: bmCanvas.height };
+        }
         function bmPopulateMapSelect() {
             const sel = document.getElementById('bm-map-select');
             if (!sel) return;
@@ -7653,9 +7669,24 @@
         }
         function bmRender() {
             if (!bmCanvas || !bmCtx) return;
-            const W = bmCanvas.width, H = bmCanvas.height;
+            const cW = bmCanvas.width, cH = bmCanvas.height;
             const ctx = bmCtx;
-            ctx.clearRect(0, 0, W, H);
+            ctx.clearRect(0, 0, cW, cH);
+
+            // Apply display rotation around canvas center
+            ctx.save();
+            if (bmDisplayRotation !== 0) {
+                ctx.translate(cW / 2, cH / 2);
+                ctx.rotate(bmDisplayRotation * Math.PI / 180);
+                if (bmDisplayRotation === 90 || bmDisplayRotation === 270) {
+                    ctx.translate(-cH / 2, -cW / 2);
+                } else {
+                    ctx.translate(-cW / 2, -cH / 2);
+                }
+            }
+
+            // Effective dimensions after rotation
+            const { W, H } = bmEffectiveWH();
 
             // Background map — drawn in the centered square-cell area
             const { cs: bmCs, ox: bmOx, oy: bmOy } = bmAdminMetrics(W, H);
@@ -7716,6 +7747,8 @@
             if (document.getElementById('bm-geo-show')?.checked !== false) {
                 bmDrawGeometry(W, H);
             }
+
+            ctx.restore();
         }
 
         function bmAdminMetrics(W, H) {
@@ -7925,7 +7958,7 @@
             }
         }
         function bmGetTokenAtPoint(px, py) {
-            const W = bmCanvas.width, H = bmCanvas.height;
+            const { W, H } = bmEffectiveWH();
             for (let i = bmState.tokens.length - 1; i >= 0; i--) {
                 const tok = bmState.tokens[i];
                 const { cx, cy, radius } = bmGetTokenCenter(tok, W, H);
@@ -7936,7 +7969,7 @@
 
         // ── Mouse events ─────────────────────────────────────────────────────
         function bmIsInViewport(px, py) {
-            const W = bmCanvas.width, H = bmCanvas.height;
+            const { W, H } = bmEffectiveWH();
             const { cs: bmCs, ox: bmOx, oy: bmOy } = bmAdminMetrics(W, H);
             const vpX = bmOx + (bmState.tableOffsetX || 0) * bmCs;
             const vpY = bmOy + (bmState.tableOffsetY || 0) * bmCs;
@@ -7951,7 +7984,7 @@
         }
         function bmOnMouseDown(e) {
             const { x, y } = bmCanvasXY(e);
-            const W = bmCanvas.width, H = bmCanvas.height;
+            const { W, H } = bmEffectiveWH();
             if (bmTool === 'geo') {
                 bmGeoHandleMouseDown(x, y);
                 return;
@@ -7983,7 +8016,7 @@
         }
         function bmOnMouseMove(e) {
             const { x, y } = bmCanvasXY(e);
-            const W = bmCanvas.width, H = bmCanvas.height;
+            const { W, H } = bmEffectiveWH();
             const cell = bmGetCellFromPoint(x, y, W, H);
             const coordEl = document.getElementById('bm-coords');
             if (coordEl) coordEl.textContent = `${cell.col},${cell.row}`;
@@ -8061,7 +8094,20 @@
             const rect = bmCanvas.getBoundingClientRect();
             const scaleX = bmCanvas.width  / rect.width;
             const scaleY = bmCanvas.height / rect.height;
-            return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+            let x = (e.clientX - rect.left) * scaleX;
+            let y = (e.clientY - rect.top)  * scaleY;
+            // Apply inverse rotation to map mouse coords into effective content space
+            const rot = bmDisplayRotation;
+            if (rot !== 0) {
+                const cW = bmCanvas.width, cH = bmCanvas.height;
+                const rx = x - cW / 2, ry = y - cH / 2;
+                const rad = -rot * Math.PI / 180;
+                const nx = rx * Math.cos(rad) - ry * Math.sin(rad);
+                const ny = rx * Math.sin(rad) + ry * Math.cos(rad);
+                if (rot === 90 || rot === 270) { x = nx + cH / 2; y = ny + cW / 2; }
+                else                           { x = nx + cW / 2; y = ny + cH / 2; }
+            }
+            return { x, y };
         }
 
         // ── FOG painting ─────────────────────────────────────────────────────

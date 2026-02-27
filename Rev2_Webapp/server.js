@@ -755,6 +755,9 @@ io.on('connection', (socket) => {
             socket.emit('campaign_settings_update', campaignSettings);
             socket.emit('player_spells_db', spells);
 
+            // Resend battlemap so player can find their token (character now known)
+            socket.emit('battlemap_state', battlemapState);
+
             // Send safe character list for Roleplay Mode
             const safeChars = characters.map(c => ({
                 id: c.id,
