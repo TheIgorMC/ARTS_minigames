@@ -12,21 +12,25 @@
 #        #     User git
 #        #     IdentityFile ~/.ssh/sit_deploy
 #
-#   2. Clone (once):
-#        git clone git@github-sit:YOUR_USER/ARTS_minigames.git /opt/arts-minigames
+#   2. Clone (once) directly into Dockge's stacks directory:
+#        git clone --filter=blob:none --no-checkout --depth=1 \
+#            git@github-sit:TheIgorMC/ARTS_minigames.git /opt/stacks/sit
+#        cd /opt/stacks/sit
+#        git sparse-checkout set Rev2_Webapp compose.yaml .env.example
+#        git checkout
+#        # compose.yaml is now at /opt/stacks/sit/compose.yaml — Dockge will find it.
 #
 #   3. Create env file:
-#        cp /opt/arts-minigames/Rev2_Webapp/.env.example \
-#           /opt/arts-minigames/Rev2_Webapp/.env
-#        nano /opt/arts-minigames/Rev2_Webapp/.env   # fill in CAMPAIGN_PATH etc.
+#        cp /opt/stacks/sit/.env.example /opt/stacks/sit/.env
+#        nano /opt/stacks/sit/.env   # fill in CAMPAIGN_PATH etc.
 #
 #   4. Create campaign dir on SSD and seed defaults (first run only):
 #        mkdir -p /mnt/ssd/sit-campaign
-#        cp -rn /opt/arts-minigames/Rev2_Webapp/defaults/. /mnt/ssd/sit-campaign/
+#        cp -rn /opt/stacks/sit/Rev2_Webapp/defaults/. /mnt/ssd/sit-campaign/
 #
 #   5. Run this script:
-#        chmod +x /opt/arts-minigames/Rev2_Webapp/deploy-docker.sh
-#        /opt/arts-minigames/Rev2_Webapp/deploy-docker.sh
+#        chmod +x /opt/stacks/sit/Rev2_Webapp/deploy-docker.sh
+#        /opt/stacks/sit/Rev2_Webapp/deploy-docker.sh
 #
 # Subsequent updates: just run this script again.
 # =============================================================
@@ -34,6 +38,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$SCRIPT_DIR"
 
 echo ""
@@ -48,13 +53,13 @@ if [ ! -f "server.js" ]; then
     exit 1
 fi
 
-if [ ! -f ".env" ]; then
-    echo "ERROR: .env file not found."
-    echo "  cp .env.example .env  then fill in CAMPAIGN_PATH."
+if [ ! -f "$REPO_ROOT/.env" ]; then
+    echo "ERROR: .env file not found at $REPO_ROOT/.env"
+    echo "  cp $REPO_ROOT/.env.example $REPO_ROOT/.env  then fill in CAMPAIGN_PATH."
     exit 1
 fi
 
-source .env
+source "$REPO_ROOT/.env"
 
 if [ -z "$CAMPAIGN_PATH" ]; then
     echo "ERROR: CAMPAIGN_PATH is not set in .env"
@@ -63,8 +68,6 @@ fi
 
 # ── Pull latest code from private repo ────────────────────────────────────────
 echo "  → Pulling latest code (requires deploy key / SSH agent)..."
-# Pull from the repo root to get all subfolders
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 git -C "$REPO_ROOT" pull --ff-only
 echo "  ✓ Code up to date"
 
@@ -81,12 +84,12 @@ fi
 
 # ── Build & restart container ─────────────────────────────────────────────────
 echo "  → Building Docker image..."
-docker compose build --no-cache
+docker compose -f "$REPO_ROOT/compose.yaml" --env-file "$REPO_ROOT/.env" build --no-cache
 
 echo "  → Restarting container..."
-docker compose up -d --remove-orphans
+docker compose -f "$REPO_ROOT/compose.yaml" --env-file "$REPO_ROOT/.env" up -d --remove-orphans
 
 echo ""
-echo "  ✓ SIT is running on port ${SIT_PORT:-3000}"
-echo "  → Logs: docker compose logs -f sit"
+echo "  ✓ SIT is running on port ${SIT_PORT:-7600}"
+echo "  → Logs: docker compose -f $REPO_ROOT/compose.yaml logs -f sit"
 echo ""

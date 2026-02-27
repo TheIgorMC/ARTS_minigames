@@ -1,14 +1,15 @@
 # =============================================================
 # SIT (Starfinder Interactive Table) — Dockge / Docker Compose
 # =============================================================
-# Copy .env.example → .env and fill in your values before
-# running `docker compose up -d` or adding to Dockge.
+# This file lives at the repo root so Dockge finds it when the
+# repo is cloned into /opt/stacks/sit.
+# Build context points into the Rev2_Webapp subfolder.
 # =============================================================
 
 services:
   sit:
     build:
-      context: .
+      context: ./Rev2_Webapp
       dockerfile: Dockerfile
     image: sit-rev2:latest
     container_name: sit-rev2
