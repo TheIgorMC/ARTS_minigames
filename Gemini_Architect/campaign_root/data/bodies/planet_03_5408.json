@@ -1,0 +1,11 @@
+{
+  "id": "planet_03_5408",
+  "render_data": {
+    "texture_diffuse": "assets/textures/planets/gas_giant_05.webp",
+    "texture_bump": "assets/textures/planets/gas_giant_bump_05.webp",
+    "texture_specular": "assets/textures/planets/gas_giant_spec_05.webp",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.007
+  },
+  "pois": []
+}

@@ -527,8 +527,13 @@
                 <div id="sf-panel-genesis">
                     <div class="sidebar-section">
                         <div class="sidebar-header">SEED</div>
-                        <input class="form-input" id="sf-seed" placeholder="Campaign2026" value="Campaign2026" />
-                        <div style="font-size:0.68rem;color:#555;margin-top:2px">Same seed → same result</div>
+                        <input class="form-input" id="sf-seed" placeholder="Campaign2026" value="Campaign2026" style="margin-bottom:4px" />
+                        <div style="font-size:0.68rem;color:#667;margin-bottom:4px">Campaign seed — same base → same star types &amp; names</div>
+                        <div class="btn-row" style="gap:4px;align-items:center">
+                            <input class="form-input" id="sf-seed-variation" placeholder="Variation (auto)" style="flex:1;min-width:0" />
+                            <button class="btn" id="sf-seed-roll" title="Randomize variation" style="padding:4px 8px;flex-shrink:0">🎲</button>
+                        </div>
+                        <div style="font-size:0.68rem;color:#667;margin-top:2px">Variation — change for different result from same campaign</div>
                     </div>
 
                     <div class="sidebar-section">

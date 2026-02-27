@@ -96,16 +96,19 @@ const SystemForge = (() => {
         'Dwarf Planet': '#555555',
     };
 
+    // Maps forge planet types → texturizer output types
+    // Texturizer produces: terran, ocean, desert, volcanic, ice, jungle
     const TEXTURE_PREFIX = {
-        Terran:         'terran',
-        Ocean:          'ocean',
-        Jungle:         'jungle',
-        Desert:         'desert',
-        'Gas Giant':    'gas_giant',
-        'Ice Giant':    'ice_giant',
-        Lava:           'lava',
-        Barren:         'barren',
-        Rock:           'rock',
+        Terran:           'terran',
+        Ocean:            'ocean',
+        Jungle:           'jungle',
+        Desert:           'desert',
+        'Gas Giant':      'volcanic',   // closest available — colourful swirling
+        'Ice Giant':      'ice',
+        Lava:             'volcanic',
+        Barren:           'desert',     // driest/rocky fallback
+        Rock:             'desert',
+        'Dwarf Planet':   'desert',
     };
 
     // ── Default Station Templates (fallback when manifest is empty) ────────────
@@ -280,7 +283,7 @@ const SystemForge = (() => {
             planet_type:  pType,
             orbit_index:  index,
             orbit_radius: slot.radius,
-            texture:      `assets/textures/planets/${TEXTURE_PREFIX[pType] || 'barren'}_${String(randInt(rng, 1, 6)).padStart(2, '0')}.webp`,
+            texture:      `assets/textures/planets/${TEXTURE_PREFIX[pType] || 'desert'}_${String(randInt(rng, 1, 20)).padStart(2, '0')}_diffuse.png`,
             file:         `data/bodies/${id}.json`,
             children:     [],
         };
@@ -332,15 +335,15 @@ const SystemForge = (() => {
     // ── Body File Construction ────────────────────────────────────────────────
     function buildBodyFile(orbital, rng) {
         const pType  = orbital.planet_type || orbital.type || 'Barren';
-        const prefix = TEXTURE_PREFIX[pType] || 'barren';
-        const tidx   = String(randInt(rng, 1, 8)).padStart(2, '0');
+        const prefix = TEXTURE_PREFIX[pType] || 'desert';
+        const tidx   = String(randInt(rng, 1, 20)).padStart(2, '0');
         const atmo   = ATMOSPHERE_COLOR[pType] || '#888888';
         return {
             id:          orbital.id,
             render_data: {
-                texture_diffuse:  `assets/textures/planets/${prefix}_${tidx}.webp`,
-                texture_bump:     `assets/textures/planets/${prefix}_bump_${tidx}.webp`,
-                texture_specular: `assets/textures/planets/${prefix}_spec_${tidx}.webp`,
+                texture_diffuse:  `assets/textures/planets/${prefix}_${tidx}_diffuse.png`,
+                texture_bump:     `assets/textures/planets/${prefix}_${tidx}_bump.png`,
+                texture_specular: `assets/textures/planets/${prefix}_${tidx}_specular.png`,
                 atmosphere_color: atmo,
                 rotation_speed:   +(0.001 + rng() * 0.009).toFixed(4),
             },
@@ -385,11 +388,11 @@ const SystemForge = (() => {
 
     function cacheEls() {
         [
-            'sf-seed', 'sf-archetype',
+            'sf-seed', 'sf-seed-variation', 'sf-seed-roll', 'sf-archetype',
             'sf-density-planets', 'sf-density-planets-val',
             'sf-density-civ', 'sf-density-civ-val',
             'sf-generate-btn', 'sf-result-box', 'sf-result-json',
-            'sf-save-name', 'sf-save-btn',
+            'sf-placeholder', 'sf-save-name', 'sf-save-btn',
             'sf-manifest-filter', 'sf-manifest-list', 'sf-manifest-add-btn',
             'sf-ad-filter', 'sf-ad-list',
         ].forEach(id => { el[id] = document.getElementById(id); });
@@ -544,15 +547,18 @@ const SystemForge = (() => {
     //  Generation
     // ─────────────────────────────────────────────────────────────────────────
     function doGenerate() {
-        const seed          = el['sf-seed']?.value?.trim() || 'Campaign2026';
+        const base          = el['sf-seed']?.value?.trim() || 'Campaign2026';
+        const variation     = el['sf-seed-variation']?.value?.trim() || String(Math.floor(Math.random() * 65536));
+        const seed          = base + ':' + variation;
+        if (el['sf-seed-variation']) el['sf-seed-variation'].value = variation; // persist used variation
         const archetype     = el['sf-archetype']?.value    || 'Random';
         const planetDensity = parseFloat(el['sf-density-planets']?.value || 50) / 100;
         const civDensity    = parseFloat(el['sf-density-civ']?.value    || 50) / 100;
         try {
             lastGenerated = generateSystem({ seed, archetype, planetDensity, civDensity }, manifest);
             el['sf-result-json'].textContent = JSON.stringify(lastGenerated, null, 2);
-            el['sf-result-box'].style.display = 'flex';
-            el['sf-placeholder'].style.display = 'none';
+            if (el['sf-result-box'])   el['sf-result-box'].style.display   = 'flex';
+            if (el['sf-placeholder'])  el['sf-placeholder'].style.display  = 'none';
             // Default save name to star name
             const starName = lastGenerated.star?.name || lastGenerated.id;
             el['sf-save-name'].value = starName.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/__+/g, '_');
@@ -658,6 +664,10 @@ const SystemForge = (() => {
         });
         el['sf-generate-btn']?.addEventListener('click', doGenerate);
         el['sf-save-btn']?.addEventListener('click', doSave);
+        el['sf-seed-roll']?.addEventListener('click', () => {
+            if (el['sf-seed-variation'])
+                el['sf-seed-variation'].value = String(Math.floor(Math.random() * 65536));
+        });
         el['sf-manifest-add-btn']?.addEventListener('click', addModelToManifest);
         el['sf-manifest-filter']?.addEventListener('input', renderManifestList);
         el['sf-ad-filter']?.addEventListener('input', renderAssetDropper);

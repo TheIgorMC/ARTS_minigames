@@ -1,0 +1,14 @@
+﻿{
+    "id":  "sec_sector_1",
+    "name":  "Sector 1",
+    "dimensions":  {
+                       "width":  1000,
+                       "height":  1000
+                   },
+    "systems":  [
+
+                ],
+    "jump_lanes":  [
+
+                   ]
+}

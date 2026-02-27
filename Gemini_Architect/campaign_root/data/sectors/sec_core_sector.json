@@ -1,0 +1,14 @@
+﻿{
+    "id":  "sec_core_sector",
+    "name":  "Core Sector",
+    "dimensions":  {
+                       "width":  1000,
+                       "height":  1000
+                   },
+    "systems":  [
+
+                ],
+    "jump_lanes":  [
+
+                   ]
+}
