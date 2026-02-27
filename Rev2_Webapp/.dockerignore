@@ -1,0 +1,27 @@
+# Dependencies (rebuilt inside image)
+node_modules/
+
+# Campaign data lives on the SSD, not inside the image
+campaign/
+
+# Env files — never bake secrets into the image
+.env
+.env.*
+!.env.example
+
+# Git metadata
+.git/
+.gitignore
+
+# Dev / OS noise
+*.log
+tmp/
+.DS_Store
+Thumbs.db
+
+# Local scripts not needed in image
+update.sh
+update.ps1
+setup-rpi.sh
+setup-rpi-display.sh
+deploy-docker.sh

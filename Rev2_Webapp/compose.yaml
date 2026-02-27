@@ -1,0 +1,35 @@
+# =============================================================
+# SIT (Starfinder Interactive Table) — Dockge / Docker Compose
+# =============================================================
+# Copy .env.example → .env and fill in your values before
+# running `docker compose up -d` or adding to Dockge.
+# =============================================================
+
+services:
+  sit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sit-rev2:latest
+    container_name: sit-rev2
+    restart: unless-stopped
+
+    ports:
+      - "${SIT_PORT:-3000}:3000"
+
+    volumes:
+      # SSD campaign data → container mount point
+      # Set CAMPAIGN_PATH in .env to your SSD path, e.g. /mnt/ssd/sit-campaign
+      - ${CAMPAIGN_PATH:-/opt/sit-campaign}:/data/campaign
+
+    environment:
+      - SIT_CAMPAIGN_DIR=/data/campaign
+      - SIT_HOST=0.0.0.0
+      - SIT_PORT=3000
+      - SIT_LOG_LEVEL=${SIT_LOG_LEVEL:-normal}
+
+    # Optional: uncomment to limit resource usage on the OrangePi
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 256M

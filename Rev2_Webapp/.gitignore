@@ -4,6 +4,11 @@
 node_modules/
 package-lock.json
 
+# Environment / secrets (use .env.example as the template)
+.env
+.env.local
+.env.production
+
 # OS
 .DS_Store
 Thumbs.db
