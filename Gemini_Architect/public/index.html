@@ -48,28 +48,34 @@
         <!-- ── MODULE A: Galaxy Plotter ──────────────────────────────────── -->
         <section id="module-galaxy" class="module active">
 
-            <!-- ─── GALAXY VIEW Sidebar ─────────────────────────────────── -->
-            <div class="module-sidebar" id="gp-sidebar-galaxy">
+            <!-- ─── Unified Galaxy Plotter Sidebar ─────────────────────── -->
+            <div class="module-sidebar" id="gp-sidebar">
+
+                <!-- Header + Save/Fit -->
                 <div class="sidebar-section">
-                    <div class="sidebar-header">GALAXY VIEW</div>
+                    <div class="sidebar-header">GALAXY PLOTTER</div>
                     <div class="btn-row">
-                        <button class="btn" id="gp-galaxy-save">💾 SAVE ALL</button>
-                        <button class="btn" id="gp-galaxy-fit">⊡ FIT</button>
+                        <button class="btn" id="gp-save-all">💾 SAVE ALL</button>
+                        <button class="btn" id="gp-fit-view">⊡ FIT</button>
                     </div>
                 </div>
 
+                <!-- Tools -->
                 <div class="sidebar-section">
                     <div class="sidebar-header">TOOLS</div>
-                    <button class="btn tool-btn active" id="gp-gtool-select" data-gtool="select">↖ SELECT</button>
-                    <button class="btn tool-btn" id="gp-gtool-draw" data-gtool="draw">⬟ DRAW SECTOR</button>
-                    <button class="btn tool-btn btn-danger" id="gp-gtool-delete" data-gtool="gdelete">✕ DELETE SECTOR</button>
-                    <div style="margin-top:6px;font-size:0.7rem;color:#555">
-                        Draw: click vertices · dblclick to close · ESC cancel
+                    <button class="btn tool-btn active" data-gtool="select">↖ SELECT</button>
+                    <button class="btn tool-btn" data-gtool="draw">⬟ DRAW SECTOR</button>
+                    <button class="btn tool-btn" data-gtool="add">＋ ADD SYSTEM</button>
+                    <button class="btn tool-btn" data-gtool="lane">⟵ DRAW LANE</button>
+                    <button class="btn tool-btn" data-gtool="scatter">🎲 SCATTER</button>
+                    <button class="btn tool-btn btn-danger" data-gtool="delete">✕ DELETE</button>
+                    <div style="margin-top:6px;font-size:0.7rem;color:#555" id="gp-tool-hint">
+                        Click to select sectors / systems.
                     </div>
                 </div>
 
-                <!-- ─── DRAW OPTIONS ────────────────────────────────────── -->
-                <div class="sidebar-section">
+                <!-- Draw Options (shown when draw tool active) -->
+                <div class="sidebar-section" id="gp-draw-options" style="display:none">
                     <div class="sidebar-header">DRAW OPTIONS</div>
                     <label class="form-label" style="display:flex;align-items:center;gap:6px;cursor:pointer">
                         <input type="checkbox" id="gp-snap-enabled" checked style="accent-color:var(--accent-color)" />
@@ -77,12 +83,9 @@
                     </label>
                     <label class="form-label" style="margin-top:6px">SNAP DISTANCE (px)</label>
                     <input class="form-input" id="gp-snap-thresh" type="number" min="4" max="80" value="18" style="width:70px" />
-                    <div style="margin-top:4px;font-size:0.68rem;color:#555">
-                        Snaps to corners of existing sectors<br>while drawing new polygons.
-                    </div>
                 </div>
 
-                <!-- ─── BACKGROUND REFERENCE ────────────────────────────── -->
+                <!-- BG Reference -->
                 <div class="sidebar-section">
                     <div class="sidebar-header">BG REFERENCE</div>
                     <input type="file" id="gp-ref-file" accept="image/*" style="display:none" />
@@ -99,11 +102,9 @@
                             <button class="btn btn-danger" id="gp-ref-clear">✕ CLEAR</button>
                         </div>
                     </div>
-                    <div style="margin-top:4px;font-size:0.68rem;color:#555">
-                        PNG / JPG galaxy map for tracing.<br>Not saved — session only.
-                    </div>
                 </div>
 
+                <!-- Sector Properties (shown when sector selected) -->
                 <div class="sidebar-section" id="gp-sector-props" style="display:none">
                     <div class="sidebar-header">SECTOR PROPERTIES</div>
                     <label class="form-label">NAME</label>
@@ -117,46 +118,22 @@
                     <span class="stat-value" id="gp-sec-vert-count">0</span>
                     <div class="btn-row" style="margin-top:8px">
                         <button class="btn" id="gp-sec-apply">✓ APPLY</button>
-                        <button class="btn" id="gp-sec-enter">▶ ENTER</button>
                     </div>
-                    <button class="btn" id="gp-sec-forge" style="margin-top:6px;width:100%;border-color:#aa44ff;color:#aa44ff" title="Procedurally generate system files for all nodes in this sector">🔮 FORGE SYSTEMS</button>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-header">SECTORS</div>
-                    <span class="stat-value" id="gp-count-sectors">0</span>
-                </div>
-            </div>
-
-            <!-- ─── SECTOR VIEW Sidebar ──────────────────────────────────── -->
-            <div class="module-sidebar" id="gp-sidebar-sector" style="display:none">
-                <div class="sidebar-section">
-                    <button class="btn" id="gp-back-galaxy" style="width:100%">◂ GALAXY VIEW</button>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-header">SECTOR</div>
-                    <div class="stat-value" id="gp-sector-title">—</div>
-                    <div class="btn-row" style="margin-top:6px">
-                        <button class="btn" id="gp-save-sector">💾 SAVE</button>
-                    </div>
-                    <button class="btn" id="gp-forge-all" style="margin-top:6px;width:100%;border-color:#aa44ff;color:#aa44ff" title="Auto-generate system + body files for every node in this sector">🔮 FORGE SECTOR</button>
+                    <button class="btn" id="gp-sec-forge" style="margin-top:6px;width:100%;border-color:#aa44ff;color:#aa44ff">🔮 FORGE SYSTEMS</button>
                     <div id="gp-forge-progress" class="gp-forge-progress" style="display:none"></div>
                 </div>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-header">TOOLS</div>
-                    <button class="btn tool-btn active" id="gp-tool-select" data-tool="select">↖ SELECT</button>
-                    <button class="btn tool-btn" id="gp-tool-add" data-tool="add">＋ ADD SYSTEM</button>
-                    <button class="btn tool-btn" id="gp-tool-lane" data-tool="lane">⟵ DRAW LANE</button>
-                    <button class="btn tool-btn" id="gp-tool-scatter" data-tool="scatter">🎲 SCATTER</button>
-                    <button class="btn tool-btn btn-danger" id="gp-tool-delete" data-tool="delete">✕ DELETE</button>
-                </div>
-
+                <!-- System Properties (shown when system selected) -->
                 <div class="sidebar-section" id="gp-node-editor" style="display:none">
                     <div class="sidebar-header">SYSTEM PROPERTIES</div>
+                    <label class="form-label" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                        <input type="checkbox" id="gp-node-main" style="accent-color:#ffd700" />
+                        MAIN SYSTEM (always visible)
+                    </label>
                     <label class="form-label">ID</label>
-                    <input class="form-input" id="gp-node-id" placeholder="sys_kilter" />
+                    <input class="form-input" id="gp-node-id" readonly />
+                    <label class="form-label">SECTOR</label>
+                    <input class="form-input" id="gp-node-sector" readonly />
                     <label class="form-label">NAME</label>
                     <input class="form-input" id="gp-node-name" placeholder="Kilter System" />
                     <label class="form-label">POLITICAL ALIGNMENT</label>
@@ -172,7 +149,7 @@
                     <label class="form-label">LINKED SYSTEM FILE</label>
                     <div class="input-row">
                         <input class="form-input flex-1" id="gp-node-file" placeholder="data/systems/sys_kilter.json" readonly />
-                        <button class="btn btn-sm" id="gp-node-forge" title="Procedurally generate this system with the Forge">🎲</button>
+                        <button class="btn btn-sm" id="gp-node-forge" title="Forge this system">🎲</button>
                         <button class="btn btn-sm" id="gp-node-open-system" title="Open in Orrery Builder">→</button>
                     </div>
                     <div class="coord-row">
@@ -188,6 +165,7 @@
                     <button class="btn" id="gp-node-apply" style="margin-top:8px">✓ APPLY</button>
                 </div>
 
+                <!-- Lane Properties (shown when lane selected) -->
                 <div class="sidebar-section" id="gp-lane-editor" style="display:none">
                     <div class="sidebar-header">JUMP LANE</div>
                     <label class="form-label">FROM → TO</label>
@@ -208,7 +186,6 @@
                 <!-- Scatter Panel -->
                 <div class="sidebar-section" id="gp-scatter-panel" style="display:none">
                     <div class="sidebar-header">🎲 SCATTER SYSTEMS</div>
-
                     <div class="scatter-param-group">
                         <div class="scatter-row">
                             <span class="form-label">BRUSH SIZE</span>
@@ -216,7 +193,6 @@
                         </div>
                         <input type="range" class="scatter-slider" id="gp-scat-size" min="10" max="300" value="80" />
                     </div>
-
                     <div class="scatter-param-group">
                         <div class="scatter-row">
                             <span class="form-label">BRUSH STRENGTH</span>
@@ -224,24 +200,19 @@
                         </div>
                         <input type="range" class="scatter-slider" id="gp-scat-strength" min="1" max="100" value="60" />
                     </div>
-
                     <div class="scatter-param-group scatter-divider">
                         <label class="form-label">TOTAL SYSTEMS</label>
                         <input class="form-input" id="gp-scat-count" type="number" min="1" max="500" value="30" />
-
                         <label class="form-label">MIN SEPARATION (ly)</label>
                         <input class="form-input" id="gp-scat-minsep" type="number" min="0" max="200" value="25" />
-
                         <label class="form-label">NAME PREFIX</label>
                         <input class="form-input" id="gp-scat-prefix" placeholder="sys" value="sys" />
-
                         <label class="form-label">SEED</label>
                         <div class="input-row">
                             <input class="form-input flex-1" id="gp-scat-seed" type="number" value="42" />
                             <button class="btn btn-sm" id="gp-scat-randseed" title="Random seed">⚄</button>
                         </div>
                     </div>
-
                     <div class="scatter-param-group scatter-divider">
                         <div class="form-label" style="margin-bottom:4px">LEFT DRAG: paint density · RIGHT DRAG: erase</div>
                         <div class="btn-row">
@@ -253,10 +224,14 @@
                     </div>
                 </div>
 
+                <!-- Stats -->
                 <div class="sidebar-section">
-                    <div class="sidebar-header">CANVAS</div>
-                    <button class="btn" id="gp-fit">⊡ FIT VIEW</button>
+                    <div class="sidebar-header">STATS</div>
                     <div class="coord-row" style="margin-top:6px">
+                        <div>
+                            <label class="form-label">SECTORS</label>
+                            <span class="stat-value" id="gp-count-sectors">0</span>
+                        </div>
                         <div>
                             <label class="form-label">SYSTEMS</label>
                             <span class="stat-value" id="gp-count-systems">0</span>
@@ -266,15 +241,17 @@
                             <span class="stat-value" id="gp-count-lanes">0</span>
                         </div>
                     </div>
+                    <button class="btn btn-danger" id="gp-clear-systems" style="margin-top:10px;width:100%">🗑 CLEAR ALL SYSTEMS &amp; BODIES</button>
                 </div>
             </div>
 
             <!-- ─── Canvas Area ──────────────────────────────────────────── -->
             <div class="module-canvas-area" id="gp-canvas-container">
                 <div id="gp-canvas-hint">
-                    Use <b>⬟ DRAW SECTOR</b> to define sector polygons in the galaxy view.<br>
-                    Double-click a sector or press <b>▶ ENTER</b> to edit its systems.<br>
-                    <small>Pan: middle-mouse drag · Zoom: scroll wheel</small>
+                    Use <b>⬟ DRAW SECTOR</b> to define sector polygons.<br>
+                    Use <b>＋ ADD SYSTEM</b> to place systems inside sectors.<br>
+                    Zoom in to reveal more systems · Double-click a system to open in Orrery.<br>
+                    <small>Pan: middle-mouse drag · Zoom: scroll wheel · Ctrl+S: save</small>
                 </div>
                 <div id="gp-canvas"></div>
                 <!-- Density overlay canvas for scatter painting -->
@@ -377,7 +354,13 @@
         <section id="module-planet" class="module">
             <div class="module-sidebar">
                 <div class="sidebar-section">
-                    <div class="sidebar-header">BODY FILE</div>
+                    <div class="sidebar-header">SYSTEM</div>
+                    <select id="ps-system-select" class="form-select">
+                        <option value="">— select system —</option>
+                    </select>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-header">BODY</div>
                     <select id="ps-body-select" class="form-select">
                         <option value="">— select body —</option>
                     </select>

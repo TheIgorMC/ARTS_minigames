@@ -1,6 +1,6 @@
 // =============================================================================
 //  GEMINI ARCHITECT — Module C: Planetary Studio
-//  Body file editor: render data, POI list, 2D sphere preview with pin dropper
+//  Body file editor: render data, POI list, 3D sphere preview with pin dropper
 // =============================================================================
 
 const PlanetaryStudio = (() => {
@@ -10,20 +10,29 @@ const PlanetaryStudio = (() => {
     let activeFile  = null;
     let selectedPOI = null;  // index into bodyData.pois
     let isAddingPOI = false;
+    let currentSystemData = null;  // loaded system JSON for system→body flow
 
-    // 2D canvas sphere preview
-    let canvas = null;
-    let ctx    = null;
+    // ── Three.js 3D state ──────────────────────────────────────────────────────
+    let renderer = null, scene = null, camera = null;
+    let sphereMesh = null, atmoMesh = null;
+    let poiGroup = null;            // THREE.Group for POI marker meshes
+    let threeAnimId = null;
+    let autoRotateSpeed = 0.002;    // radians / frame
 
-    const SPHERE_R  = 140; // radius in canvas pixels
-    const SPHERE_CX = 160;
-    const SPHERE_CY = 160;
+    // Orbit control state
+    const orbit = { phi: Math.PI * 0.4, theta: 0, dist: 3.2 };
+    let orbDrag = false, orbPrev = { x: 0, y: 0 };
+
+    // Texture loader
+    const texLoader = typeof THREE !== 'undefined' ? new THREE.TextureLoader() : null;
+    let loadedDiffuse = null; // THREE.Texture
+    let loadedBump    = null;
 
     // ── DOM refs ───────────────────────────────────────────────────────────────
     const els = {};
 
     function cacheEls() {
-        ['ps-body-select','ps-new-body','ps-save-body','ps-delete-body',
+        ['ps-system-select','ps-body-select','ps-new-body','ps-save-body','ps-delete-body',
          'ps-render-editor','ps-tex-diffuse','ps-tex-bump','ps-atmo-color',
          'ps-atmo-picker','ps-rot-speed','ps-render-apply',
          'ps-poi-editor','ps-poi-id','ps-poi-name','ps-poi-type',
@@ -34,7 +43,48 @@ const PlanetaryStudio = (() => {
         ].forEach(id => { els[id] = document.getElementById(id); });
     }
 
-    // ── File list ──────────────────────────────────────────────────────────────
+    // ── System list (new flow: system → body selection) ───────────────────────
+    async function refreshSystemList() {
+        const sel = els['ps-system-select'];
+        sel.innerHTML = '<option value="">— select system —</option>';
+        try {
+            const files = await API.listDir('data/systems');
+            files.filter(f => !f.isDir && f.name.endsWith('.json')).forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = `data/systems/${f.name}`;
+                opt.textContent = f.name.replace('.json', '');
+                sel.appendChild(opt);
+            });
+        } catch (e) {
+            // No systems yet — that's OK
+        }
+    }
+
+    async function loadSystem(rel) {
+        try {
+            currentSystemData = await API.getFile(rel);
+            populateBodyListFromSystem(currentSystemData);
+        } catch (e) {
+            notify(`Failed to load system: ${e.message}`, 'error');
+        }
+    }
+
+    function populateBodyListFromSystem(sysData) {
+        const sel = els['ps-body-select'];
+        sel.innerHTML = '<option value="">— select body —</option>';
+        const orbitals = (sysData.orbitals || [])
+            .filter(o => o.file && o.type !== 'Asteroid Belt' && o.type !== 'Companion Star')
+            .sort((a, b) => (a.orbit_index || 0) - (b.orbit_index || 0));
+        for (const orb of orbitals) {
+            const opt = document.createElement('option');
+            opt.value = orb.file;
+            opt.textContent = orb.name || orb.id;
+            sel.appendChild(opt);
+        }
+        if (activeFile) sel.value = activeFile;
+    }
+
+    // ── File list (fallback: list all bodies directly) ─────────────────────────
     async function refreshBodyList() {
         const sel = els['ps-body-select'];
         sel.innerHTML = '<option value="">— select body —</option>';
@@ -64,8 +114,11 @@ const PlanetaryStudio = (() => {
                 rotation_speed:   0.005,
             };
             populateRenderEditor();
+            autoRotateSpeed = bodyData.render_data.rotation_speed || 0.005;
+            loadTexture3D(bodyData.render_data.texture_diffuse, bodyData.render_data.texture_bump);
+            updateAtmosphere();
             renderPOIList();
-            drawSphere();
+            updatePOIMarkers();
             els['ps-placeholder'].style.display    = 'none';
             els['ps-body-container'].style.display  = 'flex';
             setStatus(`Body loaded: ${bodyData.id}`, rel);
@@ -90,127 +143,262 @@ const PlanetaryStudio = (() => {
         bodyData.render_data.texture_bump     = els['ps-tex-bump'].value.trim();
         bodyData.render_data.atmosphere_color = els['ps-atmo-color'].value.trim();
         bodyData.render_data.rotation_speed   = parseFloat(els['ps-rot-speed'].value) || 0.005;
-        drawSphere();
+        autoRotateSpeed = bodyData.render_data.rotation_speed;
+        loadTexture3D(bodyData.render_data.texture_diffuse, bodyData.render_data.texture_bump);
+        updateAtmosphere();
+        updatePOIMarkers();
         notify('Render data updated.', 'success');
     }
 
-    // ── 2D Sphere preview ──────────────────────────────────────────────────────
-    function drawSphere() {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ── Three.js 3D Scene ──────────────────────────────────────────────────────
+    function init3DScene() {
+        if (typeof THREE === 'undefined') return;
+        const container = document.getElementById('ps-sphere-preview');
+        const width = 320, height = 320;
 
-        const atmoColor = bodyData?.render_data?.atmosphere_color || '#88aaff';
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000);
 
-        // Background
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Replace old canvas
+        const oldCanvas = els['ps-canvas'];
+        if (oldCanvas && oldCanvas.parentNode) {
+            oldCanvas.parentNode.insertBefore(renderer.domElement, oldCanvas);
+            oldCanvas.style.display = 'none';
+        }
+        renderer.domElement.id = 'ps-3d-canvas';
+        renderer.domElement.style.cursor = 'grab';
 
-        // Atmosphere glow
-        const atmoGrad = ctx.createRadialGradient(
-            SPHERE_CX, SPHERE_CY, SPHERE_R - 5,
-            SPHERE_CX, SPHERE_CY, SPHERE_R + 25
-        );
-        atmoGrad.addColorStop(0,   hexWithAlpha(atmoColor, 0.4));
-        atmoGrad.addColorStop(1,   'transparent');
-        ctx.beginPath();
-        ctx.arc(SPHERE_CX, SPHERE_CY, SPHERE_R + 25, 0, Math.PI * 2);
-        ctx.fillStyle = atmoGrad;
-        ctx.fill();
+        scene  = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+        updateCamera();
 
-        // Planet surface gradient
-        const surfGrad = ctx.createRadialGradient(
-            SPHERE_CX - 40, SPHERE_CY - 40, 10,
-            SPHERE_CX, SPHERE_CY, SPHERE_R
-        );
-        surfGrad.addColorStop(0,   '#2a3a4a');
-        surfGrad.addColorStop(0.6, '#1a2030');
-        surfGrad.addColorStop(1,   '#0a0010');
-        ctx.beginPath();
-        ctx.arc(SPHERE_CX, SPHERE_CY, SPHERE_R, 0, Math.PI * 2);
-        ctx.fillStyle = surfGrad;
-        ctx.fill();
+        // Lights
+        scene.add(new THREE.AmbientLight(0x444444));
+        const sun = new THREE.DirectionalLight(0xffffff, 1.4);
+        sun.position.set(5, 3, 5);
+        scene.add(sun);
 
-        // Outline
-        ctx.beginPath();
-        ctx.arc(SPHERE_CX, SPHERE_CY, SPHERE_R, 0, Math.PI * 2);
-        ctx.strokeStyle = atmoColor;
-        ctx.lineWidth = 1.5;
-        ctx.globalAlpha = 0.5;
-        ctx.stroke();
-        ctx.globalAlpha = 1;
+        // Planet sphere
+        const geo = new THREE.SphereGeometry(1, 64, 64);
+        const mat = new THREE.MeshPhongMaterial({ color: 0x888888 });
+        sphereMesh = new THREE.Mesh(geo, mat);
+        scene.add(sphereMesh);
 
-        // Draw POI pins
-        (bodyData?.pois || []).forEach((poi, i) => {
-            drawPOIPin(poi, i === selectedPOI);
+        // Atmosphere shell (slightly larger, transparent)
+        const atmoGeo = new THREE.SphereGeometry(1.04, 48, 48);
+        const atmoMat = new THREE.MeshPhongMaterial({
+            color: 0x88aaff, transparent: true, opacity: 0.12,
+            side: THREE.FrontSide, depthWrite: false,
         });
+        atmoMesh = new THREE.Mesh(atmoGeo, atmoMat);
+        scene.add(atmoMesh);
 
-        // If adding POI, show cursor hint
-        if (isAddingPOI) {
-            ctx.strokeStyle = '#ffd700';
-            ctx.lineWidth   = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.strokeRect(2, 2, canvas.width - 4, canvas.height - 4);
-            ctx.setLineDash([]);
+        // POI marker group
+        poiGroup = new THREE.Group();
+        scene.add(poiGroup);
+
+        // Manual orbit controls
+        setupOrbitControl(renderer.domElement);
+
+        // Start animation loop
+        animate3D();
+    }
+
+    function updateCamera() {
+        if (!camera) return;
+        const sp = Math.sin(orbit.phi);
+        camera.position.set(
+            orbit.dist * sp * Math.sin(orbit.theta),
+            orbit.dist * Math.cos(orbit.phi),
+            orbit.dist * sp * Math.cos(orbit.theta)
+        );
+        camera.lookAt(0, 0, 0);
+    }
+
+    function setupOrbitControl(el) {
+        let dragDist = 0;
+        el.addEventListener('mousedown', e => {
+            if (isAddingPOI) return; // POI placement mode
+            orbDrag = true;
+            dragDist = 0;
+            orbPrev = { x: e.clientX, y: e.clientY };
+            el.style.cursor = 'grabbing';
+        });
+        el.addEventListener('mousemove', e => {
+            if (!orbDrag) return;
+            const dx = e.clientX - orbPrev.x;
+            const dy = e.clientY - orbPrev.y;
+            dragDist += Math.abs(dx) + Math.abs(dy);
+            orbit.theta -= dx * 0.005;
+            orbit.phi   += dy * 0.005;
+            orbit.phi    = Math.max(0.1, Math.min(Math.PI - 0.1, orbit.phi));
+            orbPrev = { x: e.clientX, y: e.clientY };
+            updateCamera();
+        });
+        const endDrag = () => { orbDrag = false; el.style.cursor = isAddingPOI ? 'crosshair' : 'grab'; };
+        window.addEventListener('mouseup', endDrag);
+        el.addEventListener('wheel', e => {
+            e.preventDefault();
+            orbit.dist = Math.max(1.5, Math.min(8, orbit.dist + e.deltaY * 0.005));
+            updateCamera();
+        }, { passive: false });
+
+        // Click for POI placement / selection (only if not a drag)
+        el.addEventListener('click', e => {
+            if (dragDist > 5) return; // was a drag, not a click
+            handle3DClick(e);
+        });
+    }
+
+    function handle3DClick(e) {
+        if (orbDrag) return; // was dragging
+        if (!renderer || !camera || !sphereMesh) return;
+
+        const rect = renderer.domElement.getBoundingClientRect();
+        const mouse = new THREE.Vector2(
+            ((e.clientX - rect.left) / rect.width) * 2 - 1,
+            -((e.clientY - rect.top) / rect.height) * 2 + 1
+        );
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObject(sphereMesh);
+
+        if (isAddingPOI && intersects.length > 0) {
+            const point = intersects[0].point;
+            // Convert world point to lat/lon (sphere is centered at origin, radius 1)
+            const lat = Math.asin(Math.max(-1, Math.min(1, point.y))) * 180 / Math.PI;
+            const lon = Math.atan2(point.x, point.z) * 180 / Math.PI;
+            placePOIAt(parseFloat(lat.toFixed(2)), parseFloat(lon.toFixed(2)));
+        } else {
+            // Try to select nearest POI via raycasting on markers
+            if (poiGroup && poiGroup.children.length > 0) {
+                const poiHits = raycaster.intersectObjects(poiGroup.children, false);
+                if (poiHits.length > 0) {
+                    const idx = poiHits[0].object.userData.poiIdx;
+                    if (idx !== undefined) { selectPOI(idx); return; }
+                }
+            }
+            // Click on sphere surface but no POI
+            if (intersects.length > 0) {
+                selectedPOI = null;
+                els['ps-poi-editor'].style.display = 'none';
+                renderPOIList();
+                updatePOIMarkers();
+            }
         }
     }
 
-    function drawPOIPin(poi, isSelected) {
-        const { x, y, valid } = latLonToCanvas(poi.coordinates_3d?.lat ?? 0, poi.coordinates_3d?.lon ?? 0);
-        if (!valid) return;
+    function placePOIAt(lat, lon) {
+        const id = `loc_${Date.now()}`;
+        bodyData.pois.push({
+            id,
+            name:           'New POI',
+            type:           'Settlement',
+            coordinates_3d: { lat, lon },
+            description:    '',
+            link_to_map:    `data/locations/${id}.json`,
+        });
+        isAddingPOI = false;
+        document.getElementById('ps-sphere-hint').textContent = 'Click on the sphere to pin a POI';
+        if (renderer?.domElement) renderer.domElement.style.cursor = 'grab';
+        selectedPOI = bodyData.pois.length - 1;
+        els['ps-poi-editor'].style.display = '';
+        renderPOIList();
+        updatePOIMarkers();
+        selectPOI(selectedPOI);
+        notify('POI placed. Edit its properties in the sidebar.', 'info');
+    }
 
-        ctx.beginPath();
-        ctx.arc(x, y, isSelected ? 7 : 5, 0, Math.PI * 2);
-        ctx.fillStyle = isSelected ? '#ffd700' : '#ff6633';
-        ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth   = 1;
-        ctx.stroke();
+    function animate3D() {
+        threeAnimId = requestAnimationFrame(animate3D);
+        if (!renderer || !scene || !camera) return;
 
-        if (isSelected && poi.name) {
-            ctx.fillStyle   = '#fff';
-            ctx.font        = '10px Share Tech Mono, monospace';
-            ctx.fillText(poi.name, x + 8, y + 4);
+        // Auto-rotate the planet
+        if (!orbDrag && sphereMesh) {
+            sphereMesh.rotation.y += autoRotateSpeed;
+            // POI group must rotate with the sphere
+            if (poiGroup) poiGroup.rotation.y = sphereMesh.rotation.y;
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    // ── 3D Texture loader ──────────────────────────────────────────────────────
+    function loadTexture3D(diffusePath, bumpPath) {
+        if (!texLoader || !sphereMesh) return;
+
+        const mat = sphereMesh.material;
+
+        // Diffuse
+        if (diffusePath) {
+            const url = `/campaign-assets/${diffusePath.replace(/^\//, '')}`;
+            texLoader.load(url, tex => {
+                mat.map = tex;
+                mat.color.set(0xffffff);
+                mat.needsUpdate = true;
+            }, undefined, () => {
+                mat.map = null;
+                mat.color.set(0x888888);
+                mat.needsUpdate = true;
+            });
+        } else {
+            mat.map = null;
+            mat.color.set(0x888888);
+            mat.needsUpdate = true;
+        }
+
+        // Bump map
+        if (bumpPath) {
+            const bUrl = `/campaign-assets/${bumpPath.replace(/^\//, '')}`;
+            texLoader.load(bUrl, tex => {
+                mat.bumpMap = tex;
+                mat.bumpScale = 0.04;
+                mat.needsUpdate = true;
+            });
+        } else {
+            mat.bumpMap = null;
+            mat.needsUpdate = true;
         }
     }
 
-    function latLonToCanvas(lat, lon) {
-        // Convert lat/lon to 2D Mercator-like projection on sphere face
-        // lat: -90..90, lon: -180..180
-        const normLon = ((lon + 180) / 360);   // 0..1
-        const normLat = ((90 - lat) / 180);    // 0..1
-
-        // Map to sphere surface (simple orthographic-ish)
-        const angle = (normLon - 0.5) * Math.PI;  // -PI/2..PI/2 visible half
-        const vAngle= (normLat - 0.5) * Math.PI;
-
-        const x = SPHERE_CX + Math.sin(angle) * SPHERE_R * Math.cos(vAngle);
-        const y = SPHERE_CY + Math.sin(vAngle) * SPHERE_R;
-
-        // Check if on visible hemisphere
-        const depth = Math.cos(angle) * Math.cos(vAngle);
-        return { x, y, valid: depth >= 0 };
+    function updateAtmosphere() {
+        if (!atmoMesh || !bodyData) return;
+        const hex = bodyData.render_data?.atmosphere_color || '#88aaff';
+        atmoMesh.material.color.set(hex);
     }
 
-    function canvasToLatLon(cx, cy) {
-        const dx = (cx - SPHERE_CX) / SPHERE_R;
-        const dy = (cy - SPHERE_CY) / SPHERE_R;
-        if (dx*dx + dy*dy > 1) return null;  // outside sphere
+    function updatePOIMarkers() {
+        if (!poiGroup) return;
+        // Clear old markers
+        while (poiGroup.children.length) poiGroup.remove(poiGroup.children[0]);
 
-        const vAngle  = Math.asin(Math.max(-1, Math.min(1, dy)));
-        const cosV    = Math.cos(vAngle);
-        const angle   = cosV < 0.01 ? 0 : Math.asin(Math.max(-1, Math.min(1, dx / cosV)));
+        (bodyData?.pois || []).forEach((poi, i) => {
+            const lat = (poi.coordinates_3d?.lat ?? 0) * Math.PI / 180;
+            const lon = (poi.coordinates_3d?.lon ?? 0) * Math.PI / 180;
+            // Spherical to Cartesian (Y-up, radius slightly above surface)
+            const sr = 1.02;
+            const y  = sr * Math.sin(lat);
+            const xz = sr * Math.cos(lat);
+            const x  = xz * Math.sin(lon);
+            const z  = xz * Math.cos(lon);
 
-        const lon = (angle / Math.PI) * 180;
-        const lat = 90 - ((vAngle / Math.PI + 0.5) * 180);
-
-        return { lat: parseFloat(lat.toFixed(2)), lon: parseFloat(lon.toFixed(2)) };
+            const isSel = i === selectedPOI;
+            const geo   = new THREE.SphereGeometry(isSel ? 0.04 : 0.03, 8, 8);
+            const mat   = new THREE.MeshBasicMaterial({ color: isSel ? 0xffd700 : 0xff6633 });
+            const marker = new THREE.Mesh(geo, mat);
+            marker.position.set(x, y, z);
+            marker.userData.poiIdx = i;
+            poiGroup.add(marker);
+        });
+        // Reset rotation to match sphere
+        poiGroup.rotation.y = sphereMesh ? sphereMesh.rotation.y : 0;
     }
 
-    function hexWithAlpha(hex, alpha) {
-        const r = parseInt(hex.slice(1,3),16);
-        const g = parseInt(hex.slice(3,5),16);
-        const b = parseInt(hex.slice(5,7),16);
-        return `rgba(${r},${g},${b},${alpha})`;
+    function hexToInt(hex) {
+        return parseInt((hex || '#888888').replace('#', ''), 16);
     }
 
     // ── POI List ───────────────────────────────────────────────────────────────
@@ -247,7 +435,7 @@ const PlanetaryStudio = (() => {
         els['ps-poi-lon'].value   = poi.coordinates_3d?.lon ?? '';
 
         renderPOIList();
-        drawSphere();
+        updatePOIMarkers();
         setStatus(`POI: ${poi.name}`, `${poi.type} @ ${poi.coordinates_3d?.lat}°, ${poi.coordinates_3d?.lon}°`);
     }
 
@@ -265,7 +453,7 @@ const PlanetaryStudio = (() => {
             lon: parseFloat(els['ps-poi-lon'].value) || 0,
         };
         renderPOIList();
-        drawSphere();
+        updatePOIMarkers();
         notify('POI updated.', 'success');
     }
 
@@ -275,61 +463,21 @@ const PlanetaryStudio = (() => {
         selectedPOI = null;
         els['ps-poi-editor'].style.display = 'none';
         renderPOIList();
-        drawSphere();
+        updatePOIMarkers();
         notify('POI removed.', 'warning');
     }
 
     function addPOI() {
         isAddingPOI = true;
         document.getElementById('ps-sphere-hint').textContent = 'Click on the sphere to place the POI';
-        drawSphere();
+        if (renderer?.domElement) renderer.domElement.style.cursor = 'crosshair';
         notify('Click on the sphere to place a POI.', 'info', 4000);
     }
 
-    // ── Canvas click → place POI ───────────────────────────────────────────────
+    // ── Legacy 2D click handler (kept for fallback if Three.js unavailable) ───
     function handleCanvasClick(e) {
-        const rect   = canvas.getBoundingClientRect();
-        const cx = (e.clientX - rect.left) * (canvas.width  / rect.width);
-        const cy = (e.clientY - rect.top)  * (canvas.height / rect.height);
-
-        if (isAddingPOI) {
-            const coords = canvasToLatLon(cx, cy);
-            if (!coords) { notify('Click inside the sphere.', 'warning'); return; }
-            const id = `loc_${Date.now()}`;
-            bodyData.pois.push({
-                id,
-                name:           'New POI',
-                type:           'Settlement',
-                coordinates_3d: coords,
-                description:    '',
-                link_to_map:    `data/locations/${id}.json`,
-            });
-            isAddingPOI = false;
-            document.getElementById('ps-sphere-hint').textContent = 'Click on the sphere to pin a POI';
-            selectedPOI = bodyData.pois.length - 1;
-            els['ps-poi-editor'].style.display = '';
-            renderPOIList();
-            drawSphere();
-            selectPOI(selectedPOI);
-            notify('POI placed. Edit its properties in the sidebar.', 'info');
-        } else {
-            // Try to select nearest POI
-            let best = null, bestDist = 12;
-            (bodyData?.pois || []).forEach((poi, i) => {
-                const { x, y, valid } = latLonToCanvas(poi.coordinates_3d?.lat ?? 0, poi.coordinates_3d?.lon ?? 0);
-                if (!valid) return;
-                const d = Math.hypot(cx - x, cy - y);
-                if (d < bestDist) { bestDist = d; best = i; }
-            });
-            if (best !== null) {
-                selectPOI(best);
-            } else {
-                selectedPOI = null;
-                els['ps-poi-editor'].style.display = 'none';
-                renderPOIList();
-                drawSphere();
-            }
-        }
+        // 3D click is handled by handle3DClick via Three.js raycasting.
+        // This is only reached if the old hidden canvas somehow gets a click.
     }
 
     // ── CRUD ───────────────────────────────────────────────────────────────────
@@ -385,6 +533,14 @@ const PlanetaryStudio = (() => {
 
     // ── Event wiring ───────────────────────────────────────────────────────────
     function wireEvents() {
+        els['ps-system-select'].addEventListener('change', e => {
+            if (e.target.value) {
+                loadSystem(e.target.value);
+            } else {
+                // No system selected — fall back to listing all bodies
+                refreshBodyList();
+            }
+        });
         els['ps-body-select'].addEventListener('change', e => {
             if (e.target.value) loadBodyFile(e.target.value);
         });
@@ -408,7 +564,7 @@ const PlanetaryStudio = (() => {
             if (e.key === 'Escape' && isAddingPOI) {
                 isAddingPOI = false;
                 document.getElementById('ps-sphere-hint').textContent = 'Click on the sphere to pin a POI';
-                drawSphere();
+                if (renderer?.domElement) renderer.domElement.style.cursor = 'grab';
             }
             if ((e.key === 'Delete' || e.key === 'Backspace') && selectedPOI !== null) deletePOI();
             if (e.key === 's' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); saveBody(); }
@@ -419,19 +575,32 @@ const PlanetaryStudio = (() => {
     return {
         init() {
             cacheEls();
-            canvas = els['ps-canvas'];
-            ctx    = canvas.getContext('2d');
             wireEvents();
+            init3DScene();
+            refreshSystemList();
             refreshBodyList();
-            // Initial sphere draw (empty)
-            drawSphere();
         },
         async loadByFile(rel) {
-            await refreshBodyList();
+            await refreshSystemList();
+            // Try to find which system contains this body and select it
+            try {
+                const sysFiles = await API.listDir('data/systems');
+                for (const f of sysFiles.filter(f => !f.isDir && f.name.endsWith('.json'))) {
+                    const sysRel = `data/systems/${f.name}`;
+                    const sysData = await API.getFile(sysRel);
+                    const match = (sysData.orbitals || []).find(o => o.file === rel);
+                    if (match) {
+                        els['ps-system-select'].value = sysRel;
+                        currentSystemData = sysData;
+                        populateBodyListFromSystem(sysData);
+                        break;
+                    }
+                }
+            } catch (_) { /* fall through */ }
             if (els['ps-body-select']) els['ps-body-select'].value = rel;
             await loadBodyFile(rel);
         },
-        reload: refreshBodyList,
+        reload() { refreshSystemList(); refreshBodyList(); },
     };
 
 })();

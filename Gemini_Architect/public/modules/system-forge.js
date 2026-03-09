@@ -96,20 +96,23 @@ const SystemForge = (() => {
         'Dwarf Planet': '#555555',
     };
 
-    // Maps forge planet types → texturizer output types
-    // Texturizer produces: terran, ocean, desert, volcanic, ice, jungle
-    const TEXTURE_PREFIX = {
-        Terran:           'terran',
-        Ocean:            'ocean',
-        Jungle:           'jungle',
-        Desert:           'desert',
-        'Gas Giant':      'volcanic',   // closest available — colourful swirling
-        'Ice Giant':      'ice',
-        Lava:             'volcanic',
-        Barren:           'desert',     // driest/rocky fallback
-        Rock:             'desert',
-        'Dwarf Planet':   'desert',
+    // Maps forge planet types → { folder, names[] } matching texturizer output.
+    //   planets/  – terran, ocean, jungle, desert, volcanic, ice
+    //   rocky/   – ashen, barren, frozen, glacial, martian, mercurian, methane, nitrogen, sulfurous
+    //   gas/     – jovian, saturnian, neptunian, uranian, toxic, crimson
+    const TEXTURE_MAP = {
+        Terran:         { folder: 'planets', names: ['terran'] },
+        Ocean:          { folder: 'planets', names: ['ocean'] },
+        Jungle:         { folder: 'planets', names: ['jungle'] },
+        Desert:         { folder: 'planets', names: ['desert'] },
+        'Gas Giant':    { folder: 'gas',     names: ['jovian', 'saturnian', 'crimson', 'toxic'] },
+        'Ice Giant':    { folder: 'gas',     names: ['neptunian', 'uranian'] },
+        Lava:           { folder: 'rocky',   names: ['ashen', 'sulfurous'] },
+        Barren:         { folder: 'rocky',   names: ['barren', 'martian', 'mercurian'] },
+        Rock:           { folder: 'rocky',   names: ['mercurian', 'ashen', 'martian'] },
+        'Dwarf Planet': { folder: 'rocky',   names: ['frozen', 'glacial', 'barren'] },
     };
+    const FALLBACK_TEX = { folder: 'planets', names: ['desert'] };
 
     // ── Default Station Templates (fallback when manifest is empty) ────────────
     const STATION_TEMPLATES = {
@@ -127,18 +130,22 @@ const SystemForge = (() => {
     const SYL2 = ['ara','ix','on','ax','us','an','or','el','is','ar','en','ox','ia','ex','ath','eon','ion','ux','os','eth'];
     const GREEK = ['Alpha','Beta','Gamma','Delta','Epsilon','Zeta','Eta','Theta','Kappa','Lambda',
                    'Mu','Nu','Sigma','Tau','Upsilon','Phi','Chi','Psi','Omega','Iota','Pi','Rho'];
-    const SF_CONSTELLATIONS = ['Arconis','Velara','Dravus','Serpenix','Kethis','Mordain','Tylath','Nexara',
-                               'Glorian','Velphos','Tharux','Zimon','Corvath','Ixelon','Praelar','Suneth',
-                               'Orrath','Belnyx','Solvaer','Hyparis','Draventis','Caelux'];
+    const SF_CONSTELLATIONS = ['Arcon','Velar','Dravus','Serpen','Kethis','Mordai','Tylath','Nexar',
+                               'Gloris','Velpho','Tharux','Zimon','Corvat','Ixelon','Prael','Suneth',
+                               'Orrath','Belnyx','Solvar','Hypar','Draven','Caelux'];
     const CATALOG_PFXS = ['HX','GJ','KIC','BD','HD','VT','TYC','XR','NZ','RG'];
 
-    function genStarName(rng) {
+    function genStarName(rng, suffixes) {
         const pattern = randInt(rng, 0, 2);
         if (pattern === 0) {
-            return pick(rng, SYL) + pick(rng, SYL2);
+            // Syllable name + suffix: "Kilara Prime"
+            const sfx = suffixes ? ' ' + pick(rng, suffixes) : '';
+            return pick(rng, SYL) + pick(rng, SYL2) + sfx;
         } else if (pattern === 1) {
-            return `${pick(rng, CATALOG_PFXS)}-${randInt(rng, 100, 9999)}`;
+            // Catalog designation: "HX-423"
+            return `${pick(rng, CATALOG_PFXS)}-${randInt(rng, 100, 999)}`;
         } else {
+            // Greek + constellation (no extra suffix): "Epsilon Arcon"
             return `${pick(rng, GREEK)} ${pick(rng, SF_CONSTELLATIONS)}`;
         }
     }
@@ -167,7 +174,7 @@ const SystemForge = (() => {
         const isDead     = archetype === 'Dead System';
         const starName   = isDead
             ? (pick(rng, ['Cinder', 'Ash', 'Null', 'Void']) + ' ' + pick(rng, ['Zero', 'Wraith', 'End']))
-            : (genStarName(rng) + ' ' + pick(rng, starDef.suffixes));
+            : genStarName(rng, starDef.suffixes);
 
         const hz_inner   = starDef.hz_inner;
         const hz_outer   = starDef.hz_outer;
@@ -230,7 +237,7 @@ const SystemForge = (() => {
             const def2 = STAR_CLASSES[cls2];
             orbitals.push({
                 id:           `companion_star`,
-                name:         genStarName(rng) + ' (Companion)',
+                name:         genStarName(rng, null) + ' (Companion)',
                 type:         'Companion Star',
                 orbit_index:  orbitals.length + 1,
                 orbit_radius: +(hz_outer * (8 + rng() * 4)).toFixed(2),
@@ -283,7 +290,7 @@ const SystemForge = (() => {
             planet_type:  pType,
             orbit_index:  index,
             orbit_radius: slot.radius,
-            texture:      `assets/textures/planets/${TEXTURE_PREFIX[pType] || 'desert'}_${String(randInt(rng, 1, 20)).padStart(2, '0')}_diffuse.png`,
+            texture:      texPathFor(rng, pType, 'diffuse'),
             file:         `data/bodies/${id}.json`,
             children:     [],
         };
@@ -333,17 +340,28 @@ const SystemForge = (() => {
     }
 
     // ── Body File Construction ────────────────────────────────────────────────
+    /** Build texture path: assets/textures/<folder>/<name>_<idx>_<mapType>.png */
+    function texPathFor(rng, pType, mapType) {
+        const tm    = TEXTURE_MAP[pType] || FALLBACK_TEX;
+        const name  = pick(rng, tm.names);
+        const idx   = String(randInt(rng, 1, 20)).padStart(2, '0');
+        return `assets/textures/${tm.folder}/${name}_${idx}_${mapType}.png`;
+    }
+
     function buildBodyFile(orbital, rng) {
         const pType  = orbital.planet_type || orbital.type || 'Barren';
-        const prefix = TEXTURE_PREFIX[pType] || 'desert';
-        const tidx   = String(randInt(rng, 1, 20)).padStart(2, '0');
         const atmo   = ATMOSPHERE_COLOR[pType] || '#888888';
+        // Pick one consistent set (same name + index) for all three maps
+        const tm     = TEXTURE_MAP[pType] || FALLBACK_TEX;
+        const tName  = pick(rng, tm.names);
+        const tidx   = String(randInt(rng, 1, 20)).padStart(2, '0');
+        const base   = `assets/textures/${tm.folder}/${tName}_${tidx}`;
         return {
             id:          orbital.id,
             render_data: {
-                texture_diffuse:  `assets/textures/planets/${prefix}_${tidx}_diffuse.png`,
-                texture_bump:     `assets/textures/planets/${prefix}_${tidx}_bump.png`,
-                texture_specular: `assets/textures/planets/${prefix}_${tidx}_specular.png`,
+                texture_diffuse:  `${base}_diffuse.png`,
+                texture_bump:     `${base}_bump.png`,
+                texture_specular: `${base}_specular.png`,
                 atmosphere_color: atmo,
                 rotation_speed:   +(0.001 + rng() * 0.009).toFixed(4),
             },

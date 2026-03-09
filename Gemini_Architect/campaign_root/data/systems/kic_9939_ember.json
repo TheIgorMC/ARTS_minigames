@@ -1,0 +1,149 @@
+{
+  "id": "kic_9939_ember",
+  "name": "KIC-9939 Ember",
+  "star": {
+    "name": "KIC-9939 Ember",
+    "spectral_class": "K2V",
+    "radius_km": 506398,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7569",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 4.94,
+      "texture": "assets/textures/gas/toxic_15_diffuse.png",
+      "file": "data/bodies/planet_01_7569.json",
+      "children": [
+        {
+          "id": "moon_0_993",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_1_544",
+          "name": "Nebular II",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6789",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 7.07,
+      "texture": "assets/textures/gas/saturnian_13_diffuse.png",
+      "file": "data/bodies/planet_02_6789.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_6787",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 9.54,
+      "texture": "assets/textures/gas/neptunian_04_diffuse.png",
+      "file": "data/bodies/planet_03_6787.json",
+      "children": [
+        {
+          "id": "moon_0_467",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_711",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        }
+      ]
+    },
+    {
+      "id": "planet_04_3081",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 14.49,
+      "texture": "assets/textures/gas/neptunian_15_diffuse.png",
+      "file": "data/bodies/planet_04_3081.json",
+      "children": [
+        {
+          "id": "moon_0_404",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        },
+        {
+          "id": "moon_1_172",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "planet_05_1090",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 19.06,
+      "texture": "assets/textures/gas/saturnian_20_diffuse.png",
+      "file": "data/bodies/planet_05_1090.json",
+      "children": [
+        {
+          "id": "moon_0_499",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_1_923",
+          "name": "Jovara II",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_2_930",
+          "name": "Jovara III",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_3_573",
+          "name": "Jovara IV",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1344",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 22.01,
+      "texture": "assets/textures/gas/crimson_19_diffuse.png",
+      "file": "data/bodies/planet_06_1344.json",
+      "children": [
+        {
+          "id": "moon_0_271",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        }
+      ]
+    }
+  ]
+}

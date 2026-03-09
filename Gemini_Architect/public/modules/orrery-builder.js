@@ -52,6 +52,7 @@ const OrreryBuilder = (() => {
             els['ob-placeholder'].style.display   = 'none';
             els['ob-tree-container'].style.display = '';
             resetCam();
+            preloadTextures();
             startOrrery();
             renderTree();
             setStatus(`System loaded: ${systemData.id}`, rel);
@@ -72,6 +73,25 @@ const OrreryBuilder = (() => {
         Barren:'#778888', Rock:'#998866', Planet:'#00d2ff',
         'Asteroid Belt':'#887755', 'Companion Star':'#ffcc88',
     };
+
+    // Texture cache for orbital body images
+    const texCache = new Map();  // path → { img, loaded }
+
+    function loadOrbTex(path) {
+        if (!path || texCache.has(path)) return;
+        const img   = new Image();
+        const entry = { img, loaded: false };
+        texCache.set(path, entry);
+        img.onload  = () => { entry.loaded = true; };
+        img.onerror = () => { /* leave loaded=false */ };
+        img.src     = `/campaign-assets/${path.replace(/^\//, '')}`;
+    }
+
+    function preloadTextures() {
+        for (const orb of (systemData?.orbitals || [])) {
+            if (orb.texture) loadOrbTex(orb.texture);
+        }
+    }
 
     function orbPhase(id) {
         let h = 0x811c9dc5;
@@ -102,6 +122,7 @@ const OrreryBuilder = (() => {
         if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
         const ctx = canvas.getContext('2d');
         const CX = W / 2, CY = H / 2;
+        const now = performance.now() * 0.001; // seconds for orbit animation
 
         // lerp camera
         const L = 0.1;
@@ -155,7 +176,8 @@ const OrreryBuilder = (() => {
 
             if (isBelt) continue;
 
-            const angle = orbPhase(orb.id || '');
+            // Animated orbit position
+            const angle = orbPhase(orb.id || '') + now * orbSpeed(r);
             const px    = Math.cos(angle) * r;
             const py    = Math.sin(angle) * r;
             const pType = orb.planet_type || orb.type || 'Planet';
@@ -164,9 +186,8 @@ const OrreryBuilder = (() => {
 
             // selection pulse ring
             if (isSel) {
-                const pulse = 1;
                 ctx.beginPath();
-                ctx.arc(px, py, sz * 2.8 * pulse, 0, Math.PI * 2);
+                ctx.arc(px, py, sz * 2.8, 0, Math.PI * 2);
                 ctx.strokeStyle = 'rgba(255,255,255,0.35)';
                 ctx.lineWidth   = 1.5 * inv;
                 ctx.stroke();
@@ -181,15 +202,41 @@ const OrreryBuilder = (() => {
             ctx.fillStyle = grd;
             ctx.fill();
 
-            // body
-            ctx.beginPath();
-            ctx.arc(px, py, sz, 0, Math.PI * 2);
-            ctx.fillStyle = col;
-            ctx.fill();
+            // body — textured if available, else flat color
+            const tex = orb.texture ? texCache.get(orb.texture) : null;
+            if (tex?.loaded) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(px, py, sz, 0, Math.PI * 2);
+                ctx.clip();
+                // Horizontal scroll to simulate axis rotation
+                const texW    = sz * 2;
+                const texH    = sz * 2;
+                const scrollT = (now * 0.08) % 1;
+                const shiftX  = scrollT * texW;
+                ctx.drawImage(tex.img, px - sz - shiftX,          py - sz, texW, texH);
+                ctx.drawImage(tex.img, px - sz - shiftX + texW,   py - sz, texW, texH);
+                // Sphere shading overlay
+                const shade = ctx.createRadialGradient(
+                    px - sz * 0.3, py - sz * 0.3, 0,
+                    px, py, sz
+                );
+                shade.addColorStop(0,   'rgba(255,255,255,0.08)');
+                shade.addColorStop(0.5, 'rgba(0,0,0,0)');
+                shade.addColorStop(1,   'rgba(0,0,0,0.55)');
+                ctx.fillStyle = shade;
+                ctx.fillRect(px - sz, py - sz, texW, texH);
+                ctx.restore();
+            } else {
+                ctx.beginPath();
+                ctx.arc(px, py, sz, 0, Math.PI * 2);
+                ctx.fillStyle = col;
+                ctx.fill();
+            }
 
             // children orbiting
             (orb.children || []).forEach((child, ci) => {
-                const ca = ci * (Math.PI * 2 / Math.max(orb.children.length, 1));
+                const ca = ci * (Math.PI * 2 / Math.max(orb.children.length, 1)) + now * 0.5;
                 const mr = sz + (5 + ci * 2.5) * inv;
                 ctx.beginPath();
                 ctx.arc(px + Math.cos(ca) * mr, py + Math.sin(ca) * mr, 1.5 * inv, 0, Math.PI * 2);
@@ -250,7 +297,8 @@ const OrreryBuilder = (() => {
         const toSc = getToScreen();
         if (!toSc) return;
         const r     = toSc(orb.orbit_radius);
-        const angle = orbPhase(orb.id || '');
+        const now   = performance.now() * 0.001;
+        const angle = orbPhase(orb.id || '') + now * orbSpeed(r);
         cam.tx = -(Math.cos(angle) * r);
         cam.ty = -(Math.sin(angle) * r);
         const c   = els['ob-orbit-canvas'];
@@ -274,10 +322,14 @@ const OrreryBuilder = (() => {
             const wx   = (cssX - CX - cam.x) / cam.s;
             const wy   = (cssY - CY - cam.y) / cam.s;
 
+            // Minimum 18 screen-px hit area, converted to world units
+            const minHitWorld = 18 / cam.s;
+
             let best = null, bestD = Infinity;
             for (const h of orbitHits) {
                 const d = Math.hypot(wx - h.px, wy - h.py);
-                if (d <= h.r && d < bestD) { best = h; bestD = d; }
+                const hitR = Math.max(h.r, minHitWorld);
+                if (d <= hitR && d < bestD) { best = h; bestD = d; }
             }
 
             if (best?.type === 'star') {

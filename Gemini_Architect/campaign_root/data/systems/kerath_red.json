@@ -1,0 +1,165 @@
+{
+  "id": "kerath_red",
+  "name": "Kerath Red",
+  "star": {
+    "name": "Kerath Red",
+    "spectral_class": "M2V",
+    "radius_km": 137586,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5643",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.76,
+      "texture": "assets/textures/gas/uranian_19_diffuse.png",
+      "file": "data/bodies/planet_01_5643.json",
+      "children": [
+        {
+          "id": "moon_0_170",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5010",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.34,
+      "texture": "assets/textures/gas/saturnian_16_diffuse.png",
+      "file": "data/bodies/planet_02_5010.json",
+      "children": [
+        {
+          "id": "moon_0_473",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_1_881",
+          "name": "Colossex II",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3603",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.55,
+      "texture": "assets/textures/gas/neptunian_07_diffuse.png",
+      "file": "data/bodies/planet_03_3603.json",
+      "children": [
+        {
+          "id": "moon_0_912",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        }
+      ]
+    },
+    {
+      "id": "planet_04_3587",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.33,
+      "texture": "assets/textures/gas/neptunian_12_diffuse.png",
+      "file": "data/bodies/planet_04_3587.json",
+      "children": [
+        {
+          "id": "moon_0_646",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_1_809",
+          "name": "Frostia II",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "moon_2_555",
+          "name": "Frostia III",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "moon_3_384",
+          "name": "Frostia IV",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    },
+    {
+      "id": "planet_05_2737",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.16,
+      "texture": "assets/textures/gas/saturnian_16_diffuse.png",
+      "file": "data/bodies/planet_05_2737.json",
+      "children": [
+        {
+          "id": "moon_0_867",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "refinery_5241",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 1.04,
+          "orbit_distance": 0.0055,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_06_5058",
+      "name": "Cinder",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 6,
+      "orbit_radius": 5.35,
+      "texture": "assets/textures/rocky/mercurian_08_diffuse.png",
+      "file": "data/bodies/planet_06_5058.json",
+      "children": [
+        {
+          "id": "moon_0_191",
+          "name": "Cinder I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_195",
+          "name": "Cinder II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_883",
+          "name": "Cinder III",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        }
+      ]
+    }
+  ]
+}

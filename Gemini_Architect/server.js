@@ -72,12 +72,18 @@ function safePath(rel) {
     return abs;
 }
 
+// Strip UTF-8 BOM that PowerShell ConvertTo-Json / Windows editors sometimes add
+function readJSON(filePath) {
+    const raw = fs.readFileSync(filePath, 'utf8').replace(/^\uFEFF/, '');
+    return JSON.parse(raw);
+}
+
 // ── API: Universe ─────────────────────────────────────────────────────────────
 
 // GET /api/universe
 app.get('/api/universe', (_req, res) => {
     try {
-        res.json(JSON.parse(fs.readFileSync(universePath, 'utf8')));
+        res.json(readJSON(universePath));
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
@@ -98,7 +104,7 @@ app.post('/api/universe', (req, res) => {
 // GET /api/manifest
 app.get('/api/manifest', (_req, res) => {
     try {
-        res.json(JSON.parse(fs.readFileSync(manifestPath, 'utf8')));
+        res.json(readJSON(manifestPath));
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
@@ -121,7 +127,7 @@ app.get('/api/file', (req, res) => {
     const abs = safePath(req.query.rel);
     if (!abs) return res.status(400).json({ error: 'Invalid path' });
     try {
-        res.json(JSON.parse(fs.readFileSync(abs, 'utf8')));
+        res.json(readJSON(abs));
     } catch (e) {
         res.status(404).json({ error: 'File not found or invalid JSON' });
     }
@@ -202,28 +208,28 @@ app.post('/api/upload-map', upload.single('image'), (req, res) => {
 app.get('/api/validate', (_req, res) => {
     const errors = [];
     try {
-        const universe = JSON.parse(fs.readFileSync(universePath, 'utf8'));
+        const universe = readJSON(universePath);
         for (const entry of (universe.sectors_index || [])) {
             const secPath = safePath(entry.file);
             if (!secPath || !fs.existsSync(secPath)) {
                 errors.push({ type: 'missing_file', ref: entry.file, from: 'universe.json' });
                 continue;
             }
-            const sector = JSON.parse(fs.readFileSync(secPath, 'utf8'));
+            const sector = readJSON(secPath);
             for (const sys of (sector.systems || [])) {
                 const sysPath = safePath(sys.file);
                 if (!sysPath || !fs.existsSync(sysPath)) {
                     errors.push({ type: 'missing_file', ref: sys.file, from: entry.file });
                     continue;
                 }
-                const system = JSON.parse(fs.readFileSync(sysPath, 'utf8'));
+                const system = readJSON(sysPath);
                 for (const orbital of (system.orbitals || [])) {
                     const bodyPath = safePath(orbital.file);
                     if (!bodyPath || !fs.existsSync(bodyPath)) {
                         errors.push({ type: 'missing_file', ref: orbital.file, from: sys.file });
                         continue;
                     }
-                    const body = JSON.parse(fs.readFileSync(bodyPath, 'utf8'));
+                    const body = readJSON(bodyPath);
                     for (const poi of (body.pois || [])) {
                         if (poi.link_to_map) {
                             const locPath = safePath(poi.link_to_map);
@@ -236,6 +242,27 @@ app.get('/api/validate', (_req, res) => {
             }
         }
         res.json({ ok: errors.length === 0, errors });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// ── API: Clear directory (delete all files, keep folder) ─────────────────────
+
+// DELETE /api/clear-dir?dir=data/systems
+app.delete('/api/clear-dir', (req, res) => {
+    const abs = safePath(req.query.dir || '');
+    if (!abs) return res.status(400).json({ error: 'Invalid path' });
+    try {
+        let count = 0;
+        if (fs.existsSync(abs)) {
+            const entries = fs.readdirSync(abs);
+            entries.forEach(name => {
+                const full = path.join(abs, name);
+                if (fs.statSync(full).isFile()) { fs.unlinkSync(full); count++; }
+            });
+        }
+        res.json({ ok: true, deleted: count });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

@@ -62,6 +62,11 @@ const API = {
         if (!r.ok) throw new Error(await r.text());
         return r.json();
     },
+    async clearDir(dir) {
+        const r = await fetch(`/api/clear-dir?dir=${encodeURIComponent(dir)}`, { method: 'DELETE' });
+        if (!r.ok) throw new Error(await r.text());
+        return r.json();
+    },
 };
 
 // ── Notifications ──────────────────────────────────────────────────────────────

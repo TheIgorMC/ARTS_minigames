@@ -1,13 +1,17 @@
 ﻿// =============================================================================
-//  GEMINI ARCHITECT — Module A: Galaxy Plotter  (v2 — Full Hierarchy)
+//  GEMINI ARCHITECT — Module A: Galaxy Plotter  (v3 — Unified Canvas)
 //
-//  Navigation:
-//    Galaxy View  →  double-click sector polygon  →  Sector View
-//    ←  Back button  ←
+//  One continuous canvas with zoom-based LOD:
+//    • Sector polygons + sector names — always visible
+//    • Main systems (flagged) — always visible (name at moderate zoom)
+//    • Secondary systems — appear as you zoom in
+//    • Jump lanes, detail labels — appear at higher zoom
 //
-//  Galaxy view : sector polygons on infinite canvas (Konva)
-//  Sector view : system nodes + jump lanes (Konva)
-//  Scatter     : density-brush painting → weighted random placement
+//  Tools: Select · Draw Sector · Add System · Draw Lane · Scatter · Delete
+//
+//  System coordinates are stored in GALAXY SPACE (same coordinate system as
+//  sector polygon vertices).  A system "belongs to" a sector when it sits
+//  inside that sector's polygon.
 // =============================================================================
 
 const GalaxyPlotter = (() => {
@@ -16,75 +20,82 @@ const GalaxyPlotter = (() => {
     let stage        = null;
     let bgLayer      = null;   // infinite grid
     let refLayer     = null;   // background reference image
-    let polyLayer    = null;   // sector polygons  (galaxy view)
-    let laneLayer    = null;   // jump lanes       (sector view)
-    let nodeLayer    = null;   // system nodes / labels
-    let previewLayer = null;   // in-progress polygon draw preview
-    let refImageNode = null;   // Konva.Image for the reference
+    let polyLayer    = null;   // sector polygons (always visible)
+    let laneLayer    = null;   // jump lanes
+    let nodeLayer    = null;   // system nodes + sector labels
+    let previewLayer = null;   // polygon draw / scatter preview
+    let refImageNode = null;
 
-    // ── View state ─────────────────────────────────────────────────────────────
-    let viewMode = 'galaxy';   // 'galaxy' | 'sector'
+    // ── Core state ─────────────────────────────────────────────────────────────
+    let universe = null;
+    const sectorCache  = new Map();   // sectorId → sectorData (JSON)
+    const dirtySectors = new Set();   // sectors modified since last save
 
-    // Galaxy view state
-    let universe         = null;
+    let activeTool       = 'select';  // 'select'|'draw'|'add'|'lane'|'scatter'|'delete'
     let selectedSectorId = null;
-    let galaxyTool       = 'select';  // 'select' | 'draw' | 'gdelete'
-    let polyVertices     = [];        // [{x,y}] in-progress polygon
+    let selectedNode     = null;      // { id, sectorId, group }
+    let selectedLane     = null;      // { from, to, sectorId, line }
+    let laneSource       = null;      // { sysId, sectorId } — first click in lane mode
 
-    // Vertex snap (draw mode)
+    // Polygon draw state
+    let polyVertices = [];
     let snapEnabled  = true;
-    let snapThreshPx = 18;   // screen-pixel radius for snap
-
-    // Sector view state
-    let sectorData     = null;
-    let activeSectorId = null;
-    let sectorTool     = 'select';    // 'select'|'add'|'lane'|'scatter'|'delete'
-    let selectedNode   = null;        // { id, group }
-    let selectedLane   = null;        // { from, to, line }
-    let laneSource     = null;
+    let snapThreshPx = 18;
 
     // Scatter state
     const DENSITY_W     = 256;
     const DENSITY_H     = 256;
     let densityGrid     = new Float32Array(DENSITY_W * DENSITY_H);
-    let previewSystems  = null;   // [{x,y,name}] | null
+    let previewSystems  = null;       // [{x,y,name}] | null
     let scatterPainting = false;
     let scatterErasing  = false;
 
-    // Distinct palette for sectors
+    // ── LOD thresholds ─────────────────────────────────────────────────────────
+    const LOD_MAIN_LBL = 0.5;   // main system name labels
+    const LOD_LANES    = 0.8;   // jump lanes become visible
+    const LOD_MINOR    = 1.0;   // non-main systems appear
+    const LOD_LABELS   = 1.5;   // name labels for non-main systems
+    const LOD_DETAIL   = 2.5;   // political alignment / status text
+
+    // ── Palettes ───────────────────────────────────────────────────────────────
     const SECTOR_PALETTE = [
         '#00d2ff','#ff6600','#aa44ff','#00cc44',
         '#ffaa00','#ff3366','#44aaff','#cc88ff',
         '#ff8800','#00ffaa','#ff44dd','#88ff00',
     ];
-
     const STATUS_COLORS = {
-        'Colonized':'#00cc44','Frontier':'#00d2ff','Contested':'#ffaa00',
-        'Abandoned':'#555','Unknown':'#444',
+        Colonized:'#00cc44', Frontier:'#00d2ff', Contested:'#ffaa00',
+        Abandoned:'#555',    Unknown:'#444',
+    };
+    const LANE_COLORS = {
+        Stable:'#00d2ff', Unstable:'#ffaa00', Drift:'#aa44ff', Restricted:'#ff3333',
     };
 
     // ── DOM cache ──────────────────────────────────────────────────────────────
-    const e = {};
+    const el = {};
     function cacheEls() {
         [
-            // Galaxy sidebar
-            'gp-sidebar-galaxy','gp-sidebar-sector',
-            'gp-galaxy-save','gp-galaxy-fit',
-            'gp-gtool-select','gp-gtool-draw','gp-gtool-delete',
+            'gp-sidebar',
+            'gp-save-all','gp-fit-view',
+            'gp-tool-hint',
+            // Draw options
+            'gp-draw-options','gp-snap-enabled','gp-snap-thresh',
+            // BG reference
+            'gp-ref-file','gp-ref-load','gp-ref-controls',
+            'gp-ref-opacity','gp-ref-opacity-val','gp-ref-toggle','gp-ref-clear',
+            // Sector props
             'gp-sector-props','gp-sec-name','gp-sec-color','gp-sec-color-picker',
-            'gp-sec-vert-count','gp-sec-apply','gp-sec-enter','gp-sec-forge',
-            'gp-count-sectors',
-            // Sector sidebar
-            'gp-back-galaxy','gp-sector-title','gp-save-sector',
-            'gp-tool-select','gp-tool-add','gp-tool-lane',
-            'gp-tool-scatter','gp-tool-delete',
-            'gp-node-editor','gp-node-id','gp-node-name','gp-node-align',
-            'gp-node-status','gp-node-file','gp-node-x','gp-node-y',
-            'gp-node-apply','gp-node-open-system','gp-node-forge',
-            'gp-forge-all','gp-forge-progress',
+            'gp-sec-vert-count','gp-sec-apply','gp-sec-forge',
+            'gp-forge-progress',
+            // System props
+            'gp-node-editor','gp-node-main','gp-node-id','gp-node-sector',
+            'gp-node-name','gp-node-align','gp-node-status','gp-node-file',
+            'gp-node-x','gp-node-y','gp-node-apply',
+            'gp-node-open-system','gp-node-forge',
+            // Lane props
             'gp-lane-editor','gp-lane-endpoints','gp-lane-dist',
             'gp-lane-type','gp-lane-apply','gp-lane-delete',
-            // Scatter panel
+            // Scatter
             'gp-scatter-panel',
             'gp-scat-size','gp-scat-size-val',
             'gp-scat-strength','gp-scat-strength-val',
@@ -92,23 +103,19 @@ const GalaxyPlotter = (() => {
             'gp-scat-seed','gp-scat-randseed',
             'gp-scat-preview','gp-scat-clear-density','gp-scat-commit',
             'gp-scat-info',
-            // Canvas / misc
-            'gp-fit','gp-count-systems','gp-count-lanes',
+            // Canvas / stats
+            'gp-count-sectors','gp-count-systems','gp-count-lanes',
             'gp-canvas-hint','gp-canvas-container',
             'gp-density-canvas','gp-brush-cursor',
-            // Draw options + background reference
-            'gp-snap-enabled','gp-snap-thresh',
-            'gp-ref-file','gp-ref-load','gp-ref-controls',
-            'gp-ref-opacity','gp-ref-opacity-val','gp-ref-toggle','gp-ref-clear',
-        ].forEach(id => { e[id] = document.getElementById(id); });
+            'gp-clear-systems',
+        ].forEach(id => { el[id] = document.getElementById(id); });
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
-    //  KONVA SETUP
+    //  KONVA SETUP + INPUT
     // ═══════════════════════════════════════════════════════════════════════════
     function setupStage() {
-        const parent = e['gp-canvas-container'];
-
+        const parent = el['gp-canvas-container'];
         stage = new Konva.Stage({
             container: 'gp-canvas',
             width:  parent.clientWidth,
@@ -116,12 +123,11 @@ const GalaxyPlotter = (() => {
         });
 
         bgLayer      = new Konva.Layer();
-        refLayer     = new Konva.Layer();   // background reference image
+        refLayer     = new Konva.Layer();
         polyLayer    = new Konva.Layer();
         laneLayer    = new Konva.Layer();
         nodeLayer    = new Konva.Layer();
         previewLayer = new Konva.Layer();
-
         stage.add(bgLayer, refLayer, polyLayer, laneLayer, nodeLayer, previewLayer);
         drawGrid();
 
@@ -130,7 +136,7 @@ const GalaxyPlotter = (() => {
         stage.on('mousedown', ev => {
             if (ev.evt.button === 1 || ev.evt.button === 2) {
                 isPanning = true;
-                panStart  = { x: ev.evt.clientX - nodeLayer.x(), y: ev.evt.clientY - nodeLayer.y() };
+                panStart = { x: ev.evt.clientX - nodeLayer.x(), y: ev.evt.clientY - nodeLayer.y() };
                 stage.container().style.cursor = 'grabbing';
                 ev.evt.preventDefault();
             }
@@ -156,57 +162,44 @@ const GalaxyPlotter = (() => {
             const ptr      = stage.getPointerPosition();
             const mpx = (ptr.x - nodeLayer.x()) / oldScale;
             const mpy = (ptr.y - nodeLayer.y()) / oldScale;
-            const ns  = Math.max(0.05, Math.min(6, ev.evt.deltaY < 0 ? oldScale * factor : oldScale / factor));
+            const ns  = Math.max(0.05, Math.min(60, ev.evt.deltaY < 0 ? oldScale * factor : oldScale / factor));
             [bgLayer, refLayer, polyLayer, laneLayer, nodeLayer, previewLayer].forEach(l => {
-                l.scale({x:ns,y:ns});
-                l.position({x: ptr.x - mpx*ns, y: ptr.y - mpy*ns});
+                l.scale({ x: ns, y: ns });
+                l.position({ x: ptr.x - mpx * ns, y: ptr.y - mpy * ns });
             });
             syncDensityCanvasSize();
+            updateLOD(ns);
         });
 
-        // ── Stage click / mousemove dispatch ──────────────────────────────────
+        // ── Click dispatch ────────────────────────────────────────────────────
         stage.on('click', ev => {
             if (ev.evt.button !== 0) return;
-            const pos = scenePos(ev.evt);
-            if (viewMode === 'galaxy') {
-                handleGalaxyClick(pos, ev);
-            } else {
-                if (sectorTool === 'add' && sectorData) { addSystem(pos.x, pos.y); return; }
-                if (ev.target === stage || ev.target.getLayer() === bgLayer) deselectAll();
-            }
+            handleCanvasClick(scenePos(ev.evt), ev);
         });
 
         stage.on('dblclick', ev => {
-            if (viewMode === 'galaxy' && galaxyTool === 'draw') {
-                finishPolygon();
-                ev.evt.preventDefault();
-            }
+            if (activeTool === 'draw') { finishPolygon(); ev.evt.preventDefault(); }
         });
 
         stage.on('mousemove', ev => {
-            const pos  = scenePos(ev.evt);
-            if (viewMode === 'galaxy' && galaxyTool === 'draw') {
+            if (activeTool === 'draw') {
+                const pos  = scenePos(ev.evt);
                 const snap = getSnapTarget(pos.x, pos.y);
                 const cur  = snap || pos;
-                if (polyVertices.length > 0) {
-                    drawPolyPreview(cur, snap);
-                } else {
-                    // No vertices yet — just show snap indicator if near a vertex
-                    previewLayer.destroyChildren();
-                    if (snap) drawSnapIndicator(snap.x, snap.y);
-                }
+                if (polyVertices.length > 0) drawPolyPreview(cur, snap);
+                else { previewLayer.destroyChildren(); if (snap) drawSnapIndicator(snap.x, snap.y); }
             }
         });
 
         // ── Scatter paint ─────────────────────────────────────────────────────
         stage.on('mousedown', ev => {
-            if (viewMode !== 'sector' || sectorTool !== 'scatter') return;
+            if (activeTool !== 'scatter' || !selectedSectorId) return;
             scatterErasing  = ev.evt.button === 2;
             scatterPainting = true;
             paintAtEvent(ev.evt);
         });
         window.addEventListener('mousemove', ev => {
-            if (viewMode !== 'sector' || sectorTool !== 'scatter') return;
+            if (activeTool !== 'scatter') return;
             updateBrushCursor(ev);
             if (scatterPainting) paintAtEvent(ev);
         });
@@ -215,20 +208,15 @@ const GalaxyPlotter = (() => {
         // ── Keyboard ──────────────────────────────────────────────────────────
         window.addEventListener('keydown', ev => {
             if (ev.key === 'Escape') {
-                if (viewMode === 'galaxy' && galaxyTool === 'draw') cancelPolygon();
-                scatterPainting = false;
+                if (activeTool === 'draw') cancelPolygon();
+                if (activeTool === 'scatter') scatterPainting = false;
+                if (activeTool === 'lane') { laneSource = null; setTool('lane'); }
             }
-            if ((ev.ctrlKey || ev.metaKey) && ev.key === 's') {
-                ev.preventDefault();
-                if (viewMode === 'galaxy') saveAll();
-                else saveSector();
-            }
+            if ((ev.ctrlKey || ev.metaKey) && ev.key === 's') { ev.preventDefault(); saveAll(); }
             if (ev.key === 'Delete' || ev.key === 'Backspace') {
-                if (viewMode === 'galaxy' && selectedSectorId) deleteGalaxySectorById(selectedSectorId);
-                if (viewMode === 'sector') {
-                    if (selectedNode) deleteSystem(selectedNode.id);
-                    else if (selectedLane) deleteLane(selectedLane.from, selectedLane.to);
-                }
+                if (selectedNode) deleteSystem(selectedNode.id);
+                else if (selectedLane) deleteLane(selectedLane.from, selectedLane.to, selectedLane.sectorId);
+                else if (selectedSectorId && !selectedNode && !selectedLane) deleteGalaxySectorById(selectedSectorId);
             }
         });
 
@@ -283,111 +271,85 @@ const GalaxyPlotter = (() => {
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
-    //  GALAXY VIEW
+    //  LOAD & RENDER
     // ═══════════════════════════════════════════════════════════════════════════
-    async function enterGalaxyView() {
-        viewMode = 'galaxy';
-        if(e['gp-sidebar-galaxy']) e['gp-sidebar-galaxy'].style.display = '';
-        if(e['gp-sidebar-sector']) e['gp-sidebar-sector'].style.display = 'none';
-        const cc = e['gp-canvas-container'];
-        if(cc) { cc.classList.remove('scatter-mode','draw-mode'); }
-        hideDensityCanvas();
-        hideBrushCursor();
-        if(polyLayer) polyLayer.show();
-        if(refLayer)  refLayer.show();
-
+    async function loadGalaxy() {
         universe = await API.getUniverse();
         const cnd = document.getElementById('campaign-name-display');
-        if(cnd) cnd.textContent = universe.campaign_name || '—';
+        if (cnd) cnd.textContent = universe.campaign_name || '—';
 
-        renderGalaxy();
+        // Load every sector JSON into cache
+        sectorCache.clear();
+        dirtySectors.clear();
+        const sectors = universe.sectors_index ?? [];
+        await Promise.all(sectors.map(async entry => {
+            if (!entry.file) return;
+            try {
+                const sd = await API.getFile(entry.file);
+                sectorCache.set(entry.id, sd);
+            } catch (err) { console.warn('Could not load sector', entry.id, err); }
+        }));
+
+        renderAll();
         setBreadcrumb([{ label: 'Galaxy' }]);
-        setStatus('Galaxy view — ' + (universe.sectors_index?.length ?? 0) + ' sectors');
-        const hint = e['gp-canvas-hint'];
-        if(hint) hint.style.display = universe.sectors_index?.length ? 'none' : '';
+        setStatus('Galaxy — ' + sectors.length + ' sectors, ' + totalSystemCount() + ' systems');
+        const hint = el['gp-canvas-hint'];
+        if (hint) hint.style.display = sectors.length ? 'none' : '';
     }
 
-    function renderGalaxy() {
+    function totalSystemCount() {
+        let n = 0;
+        for (const sd of sectorCache.values()) n += (sd.systems?.length ?? 0);
+        return n;
+    }
+
+    /** Full re-render: polygons, systems, lanes. */
+    function renderAll() {
         polyLayer.destroyChildren();
         laneLayer.destroyChildren();
         nodeLayer.destroyChildren();
         previewLayer.destroyChildren();
 
         const sectors = universe?.sectors_index ?? [];
+        const scale   = nodeLayer.scaleX();
+
+        // 1 — Sector polygons + labels
         sectors.forEach((entry, i) => {
             if (!entry.color) entry.color = SECTOR_PALETTE[i % SECTOR_PALETTE.length];
             if (!entry.polygon || entry.polygon.length < 3) return;
             createSectorPolygon(entry, entry.color);
         });
 
-        if(e['gp-count-sectors']) e['gp-count-sectors'].textContent = sectors.length;
-    }
-
-    function sectorCentroid(polygon) {
-        return {
-            x: polygon.reduce((s,v) => s + v.x, 0) / polygon.length,
-            y: polygon.reduce((s,v) => s + v.y, 0) / polygon.length,
-        };
-    }
-
-    // Ray-casting point-in-polygon test (polygon = [{x,y}])
-    function pointInPolygon(px, py, poly) {
-        let inside = false;
-        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-            const xi = poly[i].x, yi = poly[i].y;
-            const xj = poly[j].x, yj = poly[j].y;
-            if (((yi > py) !== (yj > py)) &&
-                (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) {
-                inside = !inside;
-            }
+        // 2 — Lanes (one Konva.Group per sector)
+        for (const [secId, sd] of sectorCache) {
+            const grp = new Konva.Group({ id: 'lg_' + secId });
+            (sd.jump_lanes ?? []).forEach(lane => {
+                const f = sd.systems?.find(s => s.id === lane.from);
+                const t = sd.systems?.find(s => s.id === lane.to);
+                if (f && t) createLaneShape(lane, f, t, secId, grp);
+            });
+            grp.visible(scale >= LOD_LANES);
+            laneLayer.add(grp);
         }
-        return inside;
-    }
 
-    // Shoelace polygon area
-    function polygonArea(poly) {
-        let area = 0;
-        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-            area += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
+        // 3 — System nodes (all sectors)
+        for (const [secId, sd] of sectorCache) {
+            const entry = sectors.find(s => s.id === secId);
+            const color = entry?.color || '#00d2ff';
+            (sd.systems ?? []).forEach(sys => createSystemNode(sys, secId, color));
         }
-        return Math.abs(area / 2);
+
+        // 4 — Scatter preview dots
+        if (previewSystems) previewSystems.forEach(ps => drawPreviewDot(ps));
+
+        updateCounts();
+        updateLOD(scale);
     }
 
-    // Scatter N points inside a polygon with area-adaptive minimum separation
-    // Uses Poisson-disk rejection sampling so no two nodes are closer than minDist
-    function scatterInPolygon(poly, n, margin) {
-        if (!poly || poly.length < 3) return [];
-        const xs   = poly.map(v => v.x), ys = poly.map(v => v.y);
-        const minX = Math.min(...xs) + margin, maxX = Math.max(...xs) - margin;
-        const minY = Math.min(...ys) + margin, maxY = Math.max(...ys) - margin;
-        if (maxX <= minX || maxY <= minY) return [];
-
-        // Adaptive minimum distance: fill the polygon area evenly
-        const area    = polygonArea(poly);
-        const minDist = Math.max(margin * 1.5, Math.sqrt(area / Math.max(n, 1)) * 0.72);
-
-        const pts  = [];
-        let tries  = 0;
-        const maxTries = n * 500;
-
-        while (pts.length < n && tries < maxTries) {
-            tries++;
-            const x = minX + Math.random() * (maxX - minX);
-            const y = minY + Math.random() * (maxY - minY);
-            if (!pointInPolygon(x, y, poly)) continue;
-            // Reject if too close to an existing node
-            let tooClose = false;
-            for (const p of pts) {
-                if (Math.hypot(x - p.x, y - p.y) < minDist) { tooClose = true; break; }
-            }
-            if (!tooClose) pts.push({ x: Math.round(x), y: Math.round(y) });
-        }
-        return pts;
-    }
-
+    // ── Sector polygon ─────────────────────────────────────────────────────────
     function createSectorPolygon(entry, color) {
-        const pts      = entry.polygon.flatMap(v => [v.x, v.y]);
-        const isSel    = entry.id === selectedSectorId;
+        const pts   = entry.polygon.flatMap(v => [v.x, v.y]);
+        const isSel = entry.id === selectedSectorId;
 
         const poly = new Konva.Line({
             points: pts, closed: true,
@@ -398,7 +360,7 @@ const GalaxyPlotter = (() => {
         });
 
         poly.on('mouseenter', () => {
-            stage.container().style.cursor = galaxyTool === 'gdelete' ? 'not-allowed' : 'pointer';
+            stage.container().style.cursor = activeTool === 'delete' ? 'not-allowed' : 'pointer';
             poly.fill(hexAlpha(color, 0.22));
             poly.strokeWidth(2.5);
         });
@@ -408,16 +370,21 @@ const GalaxyPlotter = (() => {
             poly.strokeWidth(isSel ? 2.5 : 1.5);
         });
         poly.on('click', ev => {
+            if (activeTool === 'scatter' || activeTool === 'draw') return;
+            if (activeTool === 'add') {
+                ev.cancelBubble = true;
+                const pos = scenePos(ev.evt);
+                addSystemAtPoint(pos.x, pos.y);
+                return;
+            }
             ev.cancelBubble = true;
-            if (galaxyTool === 'gdelete') { deleteGalaxySectorById(entry.id); return; }
-            selectGalaxySector(entry.id);
-        });
-        poly.on('dblclick', ev => {
-            ev.cancelBubble = true;
-            enterSectorView(entry.id);
+            if (activeTool === 'delete') { deleteGalaxySectorById(entry.id); return; }
+            if (activeTool === 'lane') { selectSector(entry.id); return; }
+            selectSector(entry.id);
         });
         polyLayer.add(poly);
 
+        // Sector name at centroid
         const c   = sectorCentroid(entry.polygon);
         const lbl = new Konva.Text({
             x: c.x, y: c.y,
@@ -425,37 +392,701 @@ const GalaxyPlotter = (() => {
             fontSize: 14,
             fontFamily: 'Share Tech Mono, monospace',
             fill: color, opacity: 0.9, listening: false,
+            name: 'sector-label',
         });
-        lbl.offsetX(lbl.width()/2);
-        lbl.offsetY(lbl.height()/2);
+        lbl.offsetX(lbl.width() / 2);
+        lbl.offsetY(lbl.height() / 2);
         nodeLayer.add(lbl);
     }
 
-    function selectGalaxySector(id) {
+    // ── System node ────────────────────────────────────────────────────────────
+    function createSystemNode(sys, sectorId, sectorColor) {
+        const isMain = sys.main === true;
+        const color  = STATUS_COLORS[sys.status] || sectorColor;
+        const radius = isMain ? 10 : 6;
+        const scale  = nodeLayer.scaleX();
+
+        const group = new Konva.Group({
+            x: sys.coordinates.x, y: sys.coordinates.y,
+            id: sys.id,
+            draggable: activeTool === 'select',
+            name: isMain ? 'sys-node sys-main' : 'sys-node',
+        });
+
+        // Glow for main systems
+        if (isMain) {
+            group.add(new Konva.Circle({
+                radius: radius + 8, fill: 'transparent',
+                stroke: color, strokeWidth: 1, opacity: 0.3, listening: false,
+                name: 'glow',
+            }));
+        }
+
+        // Main circle
+        const circle = new Konva.Circle({
+            radius, fill: isMain ? '#0f1520' : '#0a0a12',
+            stroke: color, strokeWidth: isMain ? 2.5 : 1.5,
+            name: 'circle',
+        });
+
+        // Diamond icon for main systems
+        if (isMain) {
+            group.add(new Konva.RegularPolygon({
+                sides: 4, radius: 3,
+                fill: color, listening: false, name: 'star-icon',
+            }));
+        }
+
+        // Name label
+        const lbl = new Konva.Text({
+            text: sys.name || sys.id,
+            y: radius + 6,
+            fontSize: isMain ? 11 : 9,
+            fontFamily: 'Share Tech Mono,monospace',
+            fill: color, listening: false, name: 'name-label',
+            visible: isMain ? scale >= LOD_MAIN_LBL : scale >= LOD_LABELS,
+        });
+        lbl.offsetX(lbl.width() / 2);
+
+        // Detail label
+        const detailText = [sys.political_alignment, sys.status].filter(Boolean).join(' · ');
+        const detailLbl = new Konva.Text({
+            name: 'detail-label',
+            text: detailText,
+            y: radius + 18, fontSize: 8,
+            fontFamily: 'Share Tech Mono,monospace',
+            fill: '#667788', listening: false,
+            visible: scale >= LOD_DETAIL,
+        });
+        detailLbl.offsetX(detailLbl.width() / 2);
+
+        group.add(circle, lbl, detailLbl);
+
+        // Visibility (non-main hidden at low zoom)
+        if (!isMain) group.visible(scale >= LOD_MINOR);
+
+        // ── Interaction ──
+        group.on('mouseenter', () => {
+            if (activeTool === 'scatter') return;
+            stage.container().style.cursor = activeTool === 'delete' ? 'not-allowed' : 'pointer';
+            circle.strokeWidth(isMain ? 3.5 : 2.5);
+            const glow = group.findOne('.glow');
+            if (glow) glow.opacity(0.6);
+        });
+        group.on('mouseleave', () => {
+            if (activeTool === 'scatter') return;
+            stage.container().style.cursor = 'default';
+            const sel = selectedNode?.id === sys.id;
+            circle.strokeWidth(sel ? (isMain ? 3.5 : 2.5) : (isMain ? 2.5 : 1.5));
+            const glow = group.findOne('.glow');
+            if (glow) glow.opacity(sel ? 0.5 : 0.3);
+        });
+        group.on('click', ev => {
+            if (activeTool === 'scatter') return;
+            ev.cancelBubble = true;
+            handleNodeClick(sys.id, sectorId, group);
+        });
+        group.on('dblclick', ev => {
+            ev.cancelBubble = true;
+            const file = sys.file || `data/systems/${sys.id}.json`;
+            const tab = document.querySelector('[data-module="orrery"]');
+            if (tab) tab.click();
+            if (typeof OrreryBuilder !== 'undefined') OrreryBuilder.loadByFile(file);
+        });
+        group.on('dragmove', () => {
+            sys.coordinates.x = Math.round(group.x());
+            sys.coordinates.y = Math.round(group.y());
+            dirtySectors.add(sectorId);
+            if (selectedNode?.id === sys.id) {
+                if (el['gp-node-x']) el['gp-node-x'].value = sys.coordinates.x;
+                if (el['gp-node-y']) el['gp-node-y'].value = sys.coordinates.y;
+            }
+            redrawLanesForSector(sectorId);
+        });
+
+        nodeLayer.add(group);
+    }
+
+    // ── Lane shape ─────────────────────────────────────────────────────────────
+    function createLaneShape(lane, fromSys, toSys, sectorId, parentGroup) {
+        const color = LANE_COLORS[lane.type] || '#444';
+        const line = new Konva.Line({
+            points: [fromSys.coordinates.x, fromSys.coordinates.y,
+                     toSys.coordinates.x,   toSys.coordinates.y],
+            stroke: color, strokeWidth: 1.5, opacity: 0.6,
+            dash: lane.type === 'Drift' ? [8, 4] : undefined,
+        });
+        const mx = (fromSys.coordinates.x + toSys.coordinates.x) / 2;
+        const my = (fromSys.coordinates.y + toSys.coordinates.y) / 2;
+        const dLabel = new Konva.Text({
+            x: mx, y: my - 10,
+            text: (lane.distance || 0).toFixed(1) + ' ly',
+            fontSize: 9, fontFamily: 'Share Tech Mono,monospace',
+            fill: color, opacity: 0.7, listening: false,
+        });
+        line.on('click', ev => {
+            ev.cancelBubble = true;
+            if (activeTool === 'delete') { deleteLane(lane.from, lane.to, sectorId); return; }
+            selectLane(lane, sectorId, line);
+        });
+        line.on('mouseenter', () => { line.strokeWidth(3); line.opacity(1); });
+        line.on('mouseleave', () => {
+            line.strokeWidth(1.5);
+            line.opacity(selectedLane?.from === lane.from && selectedLane?.to === lane.to ? 1 : 0.6);
+        });
+        parentGroup.add(line, dLabel);
+    }
+
+    /** Redraw only lanes for one sector (e.g. after a system drag). */
+    function redrawLanesForSector(sectorId) {
+        // Find existing group by iterating (safe for any id format)
+        laneLayer.children.forEach(c => { if (c.id() === 'lg_' + sectorId) c.destroy(); });
+
+        const sd = sectorCache.get(sectorId);
+        if (!sd) return;
+        const grp = new Konva.Group({ id: 'lg_' + sectorId });
+        (sd.jump_lanes ?? []).forEach(lane => {
+            const f = sd.systems?.find(s => s.id === lane.from);
+            const t = sd.systems?.find(s => s.id === lane.to);
+            if (f && t) createLaneShape(lane, f, t, sectorId, grp);
+        });
+        grp.visible(nodeLayer.scaleX() >= LOD_LANES);
+        laneLayer.add(grp);
+    }
+
+    // ── LOD update ─────────────────────────────────────────────────────────────
+    function updateLOD(scale) {
+        // Inverse-scale factor so labels stay a constant size on screen
+        const inv = 1 / Math.max(scale, 0.05);
+
+        nodeLayer.children.forEach(grp => {
+            if (!grp.hasName('sys-node')) return;
+            const isMain = grp.hasName('sys-main');
+            const radius = isMain ? 10 : 6;
+
+            // Whole group visibility
+            if (!isMain) grp.visible(scale >= LOD_MINOR);
+
+            // Name label — constant screen-size text
+            const nameLbl = grp.findOne('.name-label');
+            if (nameLbl) {
+                nameLbl.visible(isMain ? scale >= LOD_MAIN_LBL : scale >= LOD_LABELS);
+                const baseFontSize = isMain ? 11 : 9;
+                nameLbl.fontSize(baseFontSize * inv);
+                nameLbl.y(radius + 4 * inv);
+                nameLbl.offsetX(nameLbl.width() / 2);
+            }
+
+            // Detail label — constant screen-size text
+            const detailLbl = grp.findOne('.detail-label');
+            if (detailLbl) {
+                detailLbl.visible(scale >= LOD_DETAIL);
+                detailLbl.fontSize(8 * inv);
+                detailLbl.y(radius + 16 * inv);
+                detailLbl.offsetX(detailLbl.width() / 2);
+            }
+        });
+
+        // Sector name labels — constant screen-size
+        nodeLayer.children.forEach(lbl => {
+            if (lbl.className === 'Text' && lbl.name() === 'sector-label') {
+                lbl.fontSize(14 * inv);
+                lbl.offsetX(lbl.width() / 2);
+                lbl.offsetY(lbl.height() / 2);
+            }
+        });
+
+        // Lane groups
+        laneLayer.children.forEach(grp => grp.visible(scale >= LOD_LANES));
+    }
+
+    // ── Preview dot (scatter) ──────────────────────────────────────────────────
+    function drawPreviewDot(ps) {
+        const dot = new Konva.Circle({
+            x: ps.x, y: ps.y, radius: 8,
+            fill: 'rgba(255,215,0,0.12)', stroke: '#ffd700', strokeWidth: 1, dash: [3, 3],
+            listening: false, name: 'preview-dot',
+        });
+        const lbl = new Konva.Text({
+            x: ps.x, y: ps.y + 12, text: ps.name,
+            fontSize: 8, fontFamily: 'Share Tech Mono,monospace',
+            fill: '#ffd700', opacity: 0.6, listening: false, name: 'preview-dot',
+        });
+        lbl.offsetX(lbl.width() / 2);
+        nodeLayer.add(dot, lbl);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  HELPERS
+    // ═══════════════════════════════════════════════════════════════════════════
+    function findSystem(sysId) {
+        for (const [secId, sd] of sectorCache) {
+            const sys = sd.systems?.find(s => s.id === sysId);
+            if (sys) return { sys, sectorId: secId, sd };
+        }
+        return null;
+    }
+
+    function findSectorForPoint(x, y) {
+        return (universe?.sectors_index ?? []).find(entry =>
+            entry.polygon?.length >= 3 && pointInPolygon(x, y, entry.polygon)
+        );
+    }
+
+    function sectorCentroid(polygon) {
+        return {
+            x: polygon.reduce((s, v) => s + v.x, 0) / polygon.length,
+            y: polygon.reduce((s, v) => s + v.y, 0) / polygon.length,
+        };
+    }
+
+    function pointInPolygon(px, py, poly) {
+        let inside = false;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            const xi = poly[i].x, yi = poly[i].y;
+            const xj = poly[j].x, yj = poly[j].y;
+            if (((yi > py) !== (yj > py)) && (px < (xj - xi) * (py - yi) / (yj - yi) + xi))
+                inside = !inside;
+        }
+        return inside;
+    }
+
+    function polygonArea(poly) {
+        let area = 0;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++)
+            area += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
+        return Math.abs(area / 2);
+    }
+
+    function polyBBox(polygon) {
+        const xs = polygon.map(v => v.x), ys = polygon.map(v => v.y);
+        return { minX: Math.min(...xs), maxX: Math.max(...xs),
+                 minY: Math.min(...ys), maxY: Math.max(...ys) };
+    }
+
+    function calcDistance(a, b) { return Math.hypot(a.x - b.x, a.y - b.y) * 0.1; }
+
+    function hexAlpha(hex, alpha) {
+        const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+        return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+    }
+
+    function scatterInPolygon(poly, n, margin) {
+        if (!poly || poly.length < 3) return [];
+        const xs = poly.map(v => v.x), ys = poly.map(v => v.y);
+        const minX = Math.min(...xs) + margin, maxX = Math.max(...xs) - margin;
+        const minY = Math.min(...ys) + margin, maxY = Math.max(...ys) - margin;
+        if (maxX <= minX || maxY <= minY) return [];
+        const area    = polygonArea(poly);
+        const minDist = Math.max(margin * 1.5, Math.sqrt(area / Math.max(n, 1)) * 0.72);
+        const pts = [];
+        let tries = 0;
+        const maxTries = n * 500;
+        while (pts.length < n && tries < maxTries) {
+            tries++;
+            const x = minX + Math.random() * (maxX - minX);
+            const y = minY + Math.random() * (maxY - minY);
+            if (!pointInPolygon(x, y, poly)) continue;
+            let tooClose = false;
+            for (const p of pts) {
+                if (Math.hypot(x - p.x, y - p.y) < minDist) { tooClose = true; break; }
+            }
+            if (!tooClose) pts.push({ x: Math.round(x), y: Math.round(y) });
+        }
+        return pts;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  SELECTION
+    // ═══════════════════════════════════════════════════════════════════════════
+    function selectSector(id) {
+        deselectAll();
         selectedSectorId = id;
-        const entry = universe.sectors_index.find(s => s.id === id);
+        showSectorProps(id);
+        renderAll();
+        setStatus('Sector: ' + ((universe.sectors_index.find(s => s.id === id))?.name || id));
+    }
+
+    function showSectorProps(sectorId) {
+        const entry = universe.sectors_index.find(s => s.id === sectorId);
         if (!entry) return;
-        if(e['gp-sector-props'])   e['gp-sector-props'].style.display   = '';
-        if(e['gp-sec-name'])       e['gp-sec-name'].value                = entry.name || '';
-        if(e['gp-sec-color'])      e['gp-sec-color'].value               = entry.color || '#00d2ff';
-        try { if(e['gp-sec-color-picker']) e['gp-sec-color-picker'].value = entry.color || '#00d2ff'; } catch(_){}
-        if(e['gp-sec-vert-count']) e['gp-sec-vert-count'].textContent    = entry.polygon?.length ?? 0;
-        renderGalaxy();
-        setStatus('Sector: ' + (entry.name || entry.id));
+        if (el['gp-sector-props'])   el['gp-sector-props'].style.display   = '';
+        if (el['gp-sec-name'])       el['gp-sec-name'].value               = entry.name || '';
+        if (el['gp-sec-color'])      el['gp-sec-color'].value              = entry.color || '#00d2ff';
+        try { if (el['gp-sec-color-picker']) el['gp-sec-color-picker'].value = entry.color || '#00d2ff'; } catch (_) {}
+        if (el['gp-sec-vert-count']) el['gp-sec-vert-count'].textContent   = entry.polygon?.length ?? 0;
     }
 
-    function deselectGalaxySector() {
-        selectedSectorId = null;
-        if(e['gp-sector-props']) e['gp-sector-props'].style.display = 'none';
-        renderGalaxy();
+    function selectNode(sysId, sectorId, group) {
+        deselectAll();
+        selectedNode = { id: sysId, sectorId, group };
+        const circle = group.findOne('.circle');
+        if (circle) circle.strokeWidth(group.hasName('sys-main') ? 3.5 : 2.5);
+
+        // Also select containing sector (without full renderAll)
+        selectedSectorId = sectorId;
+        showSectorProps(sectorId);
+
+        const sd  = sectorCache.get(sectorId);
+        const sys = sd?.systems?.find(s => s.id === sysId);
+        if (!sys) return;
+
+        if (el['gp-node-editor'])  el['gp-node-editor'].style.display = '';
+        if (el['gp-lane-editor'])  el['gp-lane-editor'].style.display = 'none';
+        if (el['gp-node-main'])    el['gp-node-main'].checked         = sys.main === true;
+        if (el['gp-node-id'])      el['gp-node-id'].value             = sys.id;
+        if (el['gp-node-sector'])  el['gp-node-sector'].value         = sectorId;
+        if (el['gp-node-name'])    el['gp-node-name'].value           = sys.name || '';
+        if (el['gp-node-align'])   el['gp-node-align'].value          = sys.political_alignment || '';
+        if (el['gp-node-status'])  el['gp-node-status'].value         = sys.status || 'Unknown';
+        if (el['gp-node-file'])    el['gp-node-file'].value           = sys.file || 'data/systems/' + sys.id + '.json';
+        if (el['gp-node-x'])       el['gp-node-x'].value              = Math.round(sys.coordinates.x);
+        if (el['gp-node-y'])       el['gp-node-y'].value              = Math.round(sys.coordinates.y);
     }
 
-    // ── Polygon drawing ────────────────────────────────────────────────────────
+    function selectLane(lane, sectorId, line) {
+        deselectAll();
+        selectedSectorId = sectorId;
+        showSectorProps(sectorId);
+        selectedLane = { from: lane.from, to: lane.to, sectorId, line };
+        line.strokeWidth(3); line.opacity(1);
+        if (el['gp-node-editor'])    el['gp-node-editor'].style.display = 'none';
+        if (el['gp-lane-editor'])    el['gp-lane-editor'].style.display = '';
+        if (el['gp-lane-endpoints']) el['gp-lane-endpoints'].textContent = lane.from + ' → ' + lane.to;
+        if (el['gp-lane-dist'])      el['gp-lane-dist'].value           = (lane.distance || 0).toFixed(2);
+        if (el['gp-lane-type'])      el['gp-lane-type'].value           = lane.type || 'Stable';
+    }
 
-    /**
-     * Return the nearest existing sector vertex within snapThreshPx screen
-     * pixels of (sceneX, sceneY), or null if nothing is close enough.
-     */
+    function deselectAll() {
+        if (selectedNode?.group) {
+            const c = selectedNode.group.findOne('.circle');
+            if (c) c.strokeWidth(selectedNode.group.hasName('sys-main') ? 2.5 : 1.5);
+        }
+        if (selectedLane?.line) { selectedLane.line.strokeWidth(1.5); selectedLane.line.opacity(0.6); }
+        selectedNode = null;
+        selectedLane = null;
+        if (el['gp-node-editor']) el['gp-node-editor'].style.display = 'none';
+        if (el['gp-lane-editor']) el['gp-lane-editor'].style.display = 'none';
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  TOOLS
+    // ═══════════════════════════════════════════════════════════════════════════
+    function setTool(tool) {
+        activeTool = tool;
+        document.querySelectorAll('[data-gtool]').forEach(b => b.classList.remove('active'));
+        const btn = document.querySelector('[data-gtool="' + tool + '"]');
+        if (btn) btn.classList.add('active');
+        laneSource = null;
+
+        const cc = el['gp-canvas-container'];
+
+        // Draw options panel
+        if (el['gp-draw-options']) el['gp-draw-options'].style.display = tool === 'draw' ? '' : 'none';
+        if (tool !== 'draw' && cc) cc.classList.remove('draw-mode');
+        if (tool === 'draw' && cc) cc.classList.add('draw-mode');
+
+        // Scatter panel
+        const isScatter = tool === 'scatter';
+        if (el['gp-scatter-panel']) el['gp-scatter-panel'].style.display = isScatter ? '' : 'none';
+        if (isScatter && selectedSectorId) {
+            if (cc) cc.classList.add('scatter-mode');
+            syncDensityCanvasSize();
+            renderDensityCanvas();
+            showDensityCanvas();
+            showBrushCursor();
+        } else {
+            if (cc) cc.classList.remove('scatter-mode');
+            previewSystems = null;
+            hideDensityCanvas();
+            hideBrushCursor();
+        }
+
+        // Draggable only in select mode
+        nodeLayer.children.forEach(grp => {
+            if (grp.hasName('sys-node')) grp.draggable(tool === 'select');
+        });
+
+        // Hint
+        const hints = {
+            select:  'Click sectors, systems, or lanes to select. Drag systems to move.',
+            draw:    'Click vertices · dblclick to close · ESC cancel.',
+            add:     'Click inside a sector polygon to place a new system.',
+            lane:    'Click first system, then second to create a lane.',
+            scatter: selectedSectorId
+                       ? 'LMB: paint density · RMB: erase.'
+                       : '⚠ Select a sector first, then use scatter.',
+            delete:  'Click a sector, system, or lane to delete.',
+        };
+        if (el['gp-tool-hint']) el['gp-tool-hint'].textContent = hints[tool] || '';
+    }
+
+    function handleCanvasClick(pos, ev) {
+        switch (activeTool) {
+            case 'select':
+                if (ev.target === stage || ev.target.getLayer() === bgLayer) {
+                    deselectAll();
+                    selectedSectorId = null;
+                    if (el['gp-sector-props']) el['gp-sector-props'].style.display = 'none';
+                    renderAll();
+                }
+                break;
+            case 'draw':
+                handleDrawClick(pos);
+                break;
+            case 'add':
+                addSystemAtPoint(pos.x, pos.y);
+                break;
+            case 'lane':
+                // Clicking empty canvas resets lane source
+                if (ev.target === stage || ev.target.getLayer() === bgLayer) {
+                    laneSource = null;
+                    setStatus('Lane cancelled.');
+                }
+                break;
+        }
+    }
+
+    function handleNodeClick(sysId, sectorId, group) {
+        if (activeTool === 'delete') { deleteSystem(sysId); return; }
+        if (activeTool === 'lane') {
+            if (!laneSource) {
+                laneSource = { sysId, sectorId };
+                const c = group.findOne('.circle');
+                if (c) { c.stroke('#ffd700'); c.strokeWidth(3); }
+                setStatus('Lane: click target system…');
+            } else {
+                if (laneSource.sectorId !== sectorId) {
+                    notify('Cannot create lanes across different sectors.', 'warning');
+                    laneSource = null;
+                    setTool('lane');
+                    return;
+                }
+                if (laneSource.sysId !== sysId) {
+                    addLane(laneSource.sysId, sysId, sectorId);
+                }
+                // Reset source highlight
+                const srcGrp = nodeLayer.findOne('#' + laneSource.sysId);
+                if (srcGrp) {
+                    const f = findSystem(laneSource.sysId);
+                    const c = srcGrp.findOne('.circle');
+                    if (c && f) {
+                        c.stroke(STATUS_COLORS[f.sys.status] || '#00d2ff');
+                        c.strokeWidth(srcGrp.hasName('sys-main') ? 2.5 : 1.5);
+                    }
+                }
+                laneSource = null;
+                setTool('lane');
+            }
+            return;
+        }
+        selectNode(sysId, sectorId, group);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  CRUD
+    // ═══════════════════════════════════════════════════════════════════════════
+    function addSystemAtPoint(x, y) {
+        const entry = findSectorForPoint(x, y);
+        if (!entry) { notify('Click inside a sector polygon to place a system.', 'warning'); return; }
+        const sd = sectorCache.get(entry.id);
+        if (!sd) { notify('Sector data not loaded.', 'error'); return; }
+
+        const id  = 'sys_' + Date.now();
+        const sys = {
+            id, name: 'New System',
+            coordinates: { x: Math.round(x), y: Math.round(y) },
+            political_alignment: '', status: 'Unknown',
+            file: 'data/systems/' + id + '.json',
+            main: false,
+        };
+        if (!sd.systems) sd.systems = [];
+        sd.systems.push(sys);
+        dirtySectors.add(entry.id);
+
+        createSystemNode(sys, entry.id, entry.color || '#00d2ff');
+        updateLOD(nodeLayer.scaleX());
+        updateCounts();
+        const grp = nodeLayer.findOne('#' + id);
+        if (grp) selectNode(id, entry.id, grp);
+        notify('System added to ' + (entry.name || entry.id) + '.', 'info');
+    }
+
+    function deleteSystem(sysId) {
+        const found = findSystem(sysId);
+        if (!found) return;
+        const { sd, sectorId } = found;
+        sd.systems    = sd.systems.filter(s => s.id !== sysId);
+        sd.jump_lanes = (sd.jump_lanes ?? []).filter(l => l.from !== sysId && l.to !== sysId);
+        dirtySectors.add(sectorId);
+        const grp = nodeLayer.findOne('#' + sysId);
+        if (grp) grp.destroy();
+        redrawLanesForSector(sectorId);
+        deselectAll();
+        updateCounts();
+        notify('System deleted.', 'warning');
+    }
+
+    function addLane(fromId, toId, sectorId) {
+        const sd = sectorCache.get(sectorId);
+        if (!sd) return;
+        if (!sd.jump_lanes) sd.jump_lanes = [];
+        const exists = sd.jump_lanes.find(l =>
+            (l.from === fromId && l.to === toId) || (l.from === toId && l.to === fromId));
+        if (exists) { notify('Lane already exists.', 'warning'); return; }
+        const f = sd.systems.find(s => s.id === fromId);
+        const t = sd.systems.find(s => s.id === toId);
+        if (!f || !t) return;
+        const dist = calcDistance(f.coordinates, t.coordinates);
+        sd.jump_lanes.push({ from: fromId, to: toId, type: 'Stable', distance: +dist.toFixed(2) });
+        dirtySectors.add(sectorId);
+        redrawLanesForSector(sectorId);
+        updateCounts();
+        notify('Lane added (' + dist.toFixed(1) + ' ly)', 'success');
+    }
+
+    function deleteLane(fromId, toId, sectorId) {
+        const sd = sectorCache.get(sectorId);
+        if (!sd) return;
+        sd.jump_lanes = (sd.jump_lanes ?? []).filter(l =>
+            !((l.from === fromId && l.to === toId) || (l.from === toId && l.to === fromId)));
+        dirtySectors.add(sectorId);
+        redrawLanesForSector(sectorId);
+        deselectAll();
+        updateCounts();
+        notify('Lane removed.', 'warning');
+    }
+
+    function applyNodeEdit() {
+        if (!selectedNode) return;
+        const sd  = sectorCache.get(selectedNode.sectorId);
+        const sys = sd?.systems?.find(s => s.id === selectedNode.id);
+        if (!sys) return;
+        sys.name                = (el['gp-node-name']?.value.trim())  || sys.name;
+        sys.political_alignment = el['gp-node-align']?.value.trim()   || '';
+        sys.status              = el['gp-node-status']?.value         || sys.status;
+        sys.file                = (el['gp-node-file']?.value.trim())  || sys.file;
+        sys.main                = el['gp-node-main']?.checked === true;
+        dirtySectors.add(selectedNode.sectorId);
+
+        // Rebuild the Konva node
+        const oldGrp = nodeLayer.findOne('#' + sys.id);
+        if (oldGrp) oldGrp.destroy();
+        const entry = universe.sectors_index.find(s => s.id === selectedNode.sectorId);
+        createSystemNode(sys, selectedNode.sectorId, entry?.color || '#00d2ff');
+        updateLOD(nodeLayer.scaleX());
+        const newGrp = nodeLayer.findOne('#' + sys.id);
+        if (newGrp) selectNode(sys.id, selectedNode.sectorId, newGrp);
+        notify('System updated.', 'success');
+    }
+
+    function applyLaneEdit() {
+        if (!selectedLane) return;
+        const sd = sectorCache.get(selectedLane.sectorId);
+        if (!sd) return;
+        const lane = sd.jump_lanes?.find(l =>
+            (l.from === selectedLane.from && l.to === selectedLane.to) ||
+            (l.from === selectedLane.to && l.to === selectedLane.from));
+        if (!lane) return;
+        lane.type     = el['gp-lane-type']?.value  || lane.type;
+        lane.distance = parseFloat(el['gp-lane-dist']?.value) || lane.distance;
+        dirtySectors.add(selectedLane.sectorId);
+        redrawLanesForSector(selectedLane.sectorId);
+        deselectAll();
+        notify('Lane updated.', 'success');
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  POLYGON DRAWING
+    // ═══════════════════════════════════════════════════════════════════════════
+    function startDrawMode() {
+        setTool('draw');
+        polyVertices = [];
+        previewLayer.destroyChildren();
+        setStatus('Draw sector: click vertices, double-click or click first vertex to close, ESC to cancel');
+    }
+
+    function handleDrawClick(pos) {
+        if (polyVertices.length >= 3) {
+            const fv = polyVertices[0];
+            const pxDst = Math.hypot(pos.x - fv.x, pos.y - fv.y) * nodeLayer.scaleX();
+            if (pxDst < 15) { finishPolygon(); return; }
+        }
+        const snap = getSnapTarget(pos.x, pos.y);
+        const vx = snap ? snap.x : Math.round(pos.x);
+        const vy = snap ? snap.y : Math.round(pos.y);
+        polyVertices.push({ x: vx, y: vy });
+        drawPolyPreview({ x: vx, y: vy }, snap);
+        if (snap) setStatus('⊝ Snapped to existing vertex (' + vx + ', ' + vy + ')');
+    }
+
+    function drawPolyPreview(cursor, snapTarget) {
+        previewLayer.destroyChildren();
+        if (!polyVertices.length) return;
+
+        const allPts = polyVertices.flatMap(v => [v.x, v.y]);
+        previewLayer.add(new Konva.Line({
+            points: allPts, stroke: '#ffd700', strokeWidth: 1.5, dash: [6, 3], listening: false,
+        }));
+        if (cursor) {
+            const last = polyVertices[polyVertices.length - 1];
+            previewLayer.add(new Konva.Line({
+                points: [last.x, last.y, cursor.x, cursor.y],
+                stroke: snapTarget ? '#00ffcc' : '#ffaa00',
+                strokeWidth: 1, dash: [4, 4], listening: false,
+            }));
+        }
+        polyVertices.forEach((v, i) => {
+            previewLayer.add(new Konva.Circle({
+                x: v.x, y: v.y,
+                radius: i === 0 ? 7 : 4,
+                fill: i === 0 ? '#ffd700' : '#ffaa00',
+                stroke: '#fff', strokeWidth: 1, listening: false,
+            }));
+        });
+        const fv = polyVertices[0];
+        previewLayer.add(new Konva.Text({
+            x: fv.x + 10, y: fv.y - 14,
+            text: polyVertices.length + ' pts — dblclick or click ● to close',
+            fontSize: 10, fontFamily: 'Share Tech Mono,monospace', fill: '#ffd700', listening: false,
+        }));
+        if (snapTarget && cursor) drawSnapIndicator(cursor.x, cursor.y);
+    }
+
+    async function finishPolygon() {
+        if (polyVertices.length < 3) { notify('Need at least 3 vertices.', 'warning'); return; }
+        const name = await promptModal('New Sector', 'SECTOR NAME', 'New Sector');
+        if (!name) { cancelPolygon(); return; }
+
+        const id    = 'sec_' + name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const file  = 'data/sectors/' + id + '.json';
+        const color = SECTOR_PALETTE[(universe.sectors_index?.length ?? 0) % SECTOR_PALETTE.length];
+
+        try {
+            const sd = { id, name, dimensions: { width: 1000, height: 1000 }, systems: [], jump_lanes: [] };
+            await API.saveFile(file, sd);
+            if (!universe.sectors_index) universe.sectors_index = [];
+            universe.sectors_index.push({ id, name, file, color, polygon: [...polyVertices] });
+            await API.saveUniverse(universe);
+            sectorCache.set(id, sd);
+            cancelPolygon();
+            renderAll();
+            selectSector(id);
+            notify('Sector "' + name + '" created.', 'success');
+        } catch (err) {
+            notify('Error: ' + err.message, 'error');
+            cancelPolygon();
+        }
+    }
+
+    function cancelPolygon() {
+        polyVertices = [];
+        previewLayer.destroyChildren();
+        const cc = el['gp-canvas-container'];
+        if (cc) cc.classList.remove('draw-mode');
+        setTool('select');
+    }
+
     function getSnapTarget(sceneX, sceneY) {
         if (!snapEnabled) return null;
         const scale = nodeLayer.scaleX();
@@ -473,8 +1104,7 @@ const GalaxyPlotter = (() => {
         const sz = 9;
         previewLayer.add(new Konva.Rect({
             x: x - sz / 2, y: y - sz / 2, width: sz, height: sz,
-            stroke: '#00ffcc', strokeWidth: 1.5,
-            fill: 'rgba(0,255,204,0.18)', listening: false,
+            stroke: '#00ffcc', strokeWidth: 1.5, fill: 'rgba(0,255,204,0.18)', listening: false,
         }));
         previewLayer.add(new Konva.Text({
             x: x + sz, y: y - 7,
@@ -484,510 +1114,114 @@ const GalaxyPlotter = (() => {
         }));
     }
 
-    function startDrawMode() {
-        setGalaxyTool('draw');
-        polyVertices = [];
-        previewLayer.destroyChildren();
-        const cc = e['gp-canvas-container'];
-        if(cc) cc.classList.add('draw-mode');
-        setStatus('Draw sector: click vertices, double-click or click first vertex to close, ESC to cancel');
-    }
-
-    function handleGalaxyClick(pos, ev) {
-        if (galaxyTool === 'select' && (ev.target === stage || ev.target.getLayer() === bgLayer)) {
-            deselectGalaxySector(); return;
-        }
-        if (galaxyTool !== 'draw') return;
-
-        // Click near first vertex → close
-        if (polyVertices.length >= 3) {
-            const fv    = polyVertices[0];
-            const pxDst = Math.hypot(pos.x - fv.x, pos.y - fv.y) * nodeLayer.scaleX();
-            if (pxDst < 15) { finishPolygon(); return; }
-        }
-        // Snap to nearest existing sector vertex
-        const snap = getSnapTarget(pos.x, pos.y);
-        const vx   = snap ? snap.x : Math.round(pos.x);
-        const vy   = snap ? snap.y : Math.round(pos.y);
-        polyVertices.push({ x: vx, y: vy });
-        drawPolyPreview({ x: vx, y: vy }, snap);
-        if (snap) setStatus('⊝ Snapped to existing vertex (' + vx + ', ' + vy + ')');
-    }
-
-    function drawPolyPreview(cursor, snapTarget) {
-        previewLayer.destroyChildren();
-        if (!polyVertices.length) return;
-
-        const allPts = polyVertices.flatMap(v => [v.x, v.y]);
-        previewLayer.add(new Konva.Line({
-            points: allPts, stroke:'#ffd700', strokeWidth:1.5, dash:[6,3], listening:false,
-        }));
-
-        if (cursor) {
-            const last = polyVertices[polyVertices.length - 1];
-            previewLayer.add(new Konva.Line({
-                points:[last.x, last.y, cursor.x, cursor.y],
-                stroke: snapTarget ? '#00ffcc' : '#ffaa00',
-                strokeWidth:1, dash:[4,4], listening:false,
-            }));
-        }
-
-        polyVertices.forEach((v, i) => {
-            previewLayer.add(new Konva.Circle({
-                x:v.x, y:v.y,
-                radius: i===0 ? 7 : 4,
-                fill:   i===0 ? '#ffd700' : '#ffaa00',
-                stroke:'#fff', strokeWidth:1, listening:false,
-            }));
-        });
-
-        const fv = polyVertices[0];
-        previewLayer.add(new Konva.Text({
-            x: fv.x+10, y: fv.y-14,
-            text: polyVertices.length + ' pts — dblclick or click ● to close',
-            fontSize:10, fontFamily:'Share Tech Mono,monospace', fill:'#ffd700', listening:false,
-        }));
-
-        // Snap indicator at cursor position
-        if (snapTarget && cursor) drawSnapIndicator(cursor.x, cursor.y);
-    }
-
-    async function finishPolygon() {
-        if (polyVertices.length < 3) { notify('Need at least 3 vertices.','warning'); return; }
-        const name = await promptModal('New Sector','SECTOR NAME','New Sector');
-        if (!name) { cancelPolygon(); return; }
-
-        const id    = 'sec_' + name.toLowerCase().replace(/[^a-z0-9]+/g,'_');
-        const file  = 'data/sectors/' + id + '.json';
-        const color = SECTOR_PALETTE[(universe.sectors_index?.length ?? 0) % SECTOR_PALETTE.length];
-
-        try {
-            await API.saveFile(file, {
-                id, name,
-                dimensions: { width:1000, height:1000 },
-                systems:[], jump_lanes:[],
-            });
-            if (!universe.sectors_index) universe.sectors_index = [];
-            universe.sectors_index.push({ id, name, file, color, polygon:[...polyVertices] });
-            await API.saveUniverse(universe);
-            cancelPolygon();
-            renderGalaxy();
-            selectGalaxySector(id);
-            notify('Sector "' + name + '" created.', 'success');
-        } catch(err) {
-            notify('Error: ' + err.message,'error');
-            cancelPolygon();
-        }
-    }
-
-    function cancelPolygon() {
-        polyVertices = [];
-        previewLayer.destroyChildren();
-        const cc = e['gp-canvas-container'];
-        if(cc) cc.classList.remove('draw-mode');
-        setGalaxyTool('select');
-    }
-
-    // ── Galaxy CRUD ────────────────────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  SAVE
+    // ═══════════════════════════════════════════════════════════════════════════
     async function saveAll() {
-        try { await API.saveUniverse(universe); notify('Universe saved.','success'); }
-        catch(err) { notify(err.message,'error'); }
+        try {
+            await API.saveUniverse(universe);
+            for (const secId of dirtySectors) {
+                const entry = universe.sectors_index.find(s => s.id === secId);
+                const sd    = sectorCache.get(secId);
+                if (entry?.file && sd) await API.saveFile(entry.file, sd);
+            }
+            dirtySectors.clear();
+            notify('Everything saved.', 'success');
+        } catch (err) { notify('Save failed: ' + err.message, 'error'); }
     }
 
+    async function saveSector(sectorId) {
+        const entry = universe.sectors_index.find(s => s.id === sectorId);
+        const sd    = sectorCache.get(sectorId);
+        if (!entry?.file || !sd) return;
+        try {
+            await API.saveFile(entry.file, sd);
+            dirtySectors.delete(sectorId);
+            notify('Sector saved.', 'success');
+        } catch (err) { notify('Save failed: ' + err.message, 'error'); }
+    }
+
+    // ── Clear all systems & bodies (keep sectors) ──────────────────────────────
+    async function clearAllSystems() {
+        const ok = await showModal(
+            '🗑 Clear All Systems & Bodies',
+            '<b>This will delete ALL systems and body files from every sector.</b><br>' +
+            'Sector polygons and names are preserved.<br><br>' +
+            '<span style="color:#ff4444">This cannot be undone.</span>'
+        );
+        if (!ok) return;
+        try {
+            setStatus('Clearing systems & bodies...');
+            // 1. Clear systems + jump_lanes from every cached sector
+            for (const [secId, sd] of sectorCache) {
+                sd.systems    = [];
+                sd.jump_lanes = [];
+                dirtySectors.add(secId);
+            }
+            // 2. Save all sectors
+            await saveAll();
+            // 3. Delete all files in data/systems/ and data/bodies/
+            await API.clearDir('data/systems');
+            await API.clearDir('data/bodies');
+            // 4. Re-render
+            selectedNode   = null;
+            selectedLane   = null;
+            renderAll();
+            notify('All systems and bodies cleared.', 'warning', 5000);
+            setStatus('Systems & bodies cleared. Sectors preserved.');
+        } catch (err) {
+            notify('Clear failed: ' + err.message, 'error');
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  DELETE SECTOR
+    // ═══════════════════════════════════════════════════════════════════════════
     async function deleteGalaxySectorById(id) {
         const entry = universe.sectors_index.find(s => s.id === id);
         const ok = await showModal(
             'Delete Sector',
             'Remove <b>' + (entry?.name || id) + '</b> from the galaxy?<br>' +
-            '<small style="color:#888">The sector JSON file is kept.</small>'
+            '<small style="color:#888">The sector JSON file is kept on disk.</small>'
         );
         if (!ok) return;
         universe.sectors_index = universe.sectors_index.filter(s => s.id !== id);
+        sectorCache.delete(id);
+        dirtySectors.delete(id);
         await API.saveUniverse(universe);
-        if (selectedSectorId === id) { selectedSectorId = null; if(e['gp-sector-props']) e['gp-sector-props'].style.display='none'; }
-        renderGalaxy();
-        notify('Sector removed from galaxy.','warning');
-    }
-
-    function fitGalaxy() {
-        const pts = (universe?.sectors_index ?? []).flatMap(s => s.polygon ?? []);
-        if (pts.length) fitPoints(pts);
-    }
-
-    function setGalaxyTool(tool) {
-        galaxyTool = tool;
-        document.querySelectorAll('[data-gtool]').forEach(b => b.classList.remove('active'));
-        const btn = document.querySelector('[data-gtool="' + tool + '"]');
-        if(btn) btn.classList.add('active');
-        const cc = e['gp-canvas-container'];
-        if (tool !== 'draw' && cc) cc.classList.remove('draw-mode');
+        if (selectedSectorId === id) {
+            selectedSectorId = null;
+            deselectAll();
+            if (el['gp-sector-props']) el['gp-sector-props'].style.display = 'none';
+        }
+        renderAll();
+        notify('Sector removed from galaxy.', 'warning');
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
-    //  SECTOR VIEW
+    //  FORGE
     // ═══════════════════════════════════════════════════════════════════════════
-    async function enterSectorView(sectorId) {
-        const entry = universe.sectors_index.find(s => s.id === sectorId);
-        if (!entry) { notify('Sector not found: ' + sectorId,'error'); return; }
-
-        viewMode       = 'sector';
-        activeSectorId = sectorId;
-
-        if(e['gp-sidebar-galaxy']) e['gp-sidebar-galaxy'].style.display = 'none';
-        if(e['gp-sidebar-sector']) e['gp-sidebar-sector'].style.display = '';
-        if(e['gp-sector-title'])   e['gp-sector-title'].textContent     = entry.name || sectorId;
-        if(e['gp-canvas-hint'])    e['gp-canvas-hint'].style.display    = 'none';
-
-        try {
-            sectorData = await API.getFile(entry.file);
-        } catch(err) {
-            notify('Could not load sector: ' + err.message,'error'); return;
-        }
-
-        polyLayer.hide();
-        if(refLayer) refLayer.hide();
-
-        setBreadcrumb([
-            { label:'Galaxy', onClick: goBackToGalaxy },
-            { label: entry.name || sectorId },
-        ]);
-
-        setSectorTool('select');
-        renderSector();
-        fitSector();
-        setStatus('Sector: ' + entry.name, entry.file);
-    }
-
-    async function goBackToGalaxy() {
-        deselectAll();
-        clearDensity();
-        hideDensityCanvas();
-        hideBrushCursor();
-        if(e['gp-scatter-panel']) e['gp-scatter-panel'].style.display = 'none';
-        await enterGalaxyView();
-    }
-
-    // ── Sector render ──────────────────────────────────────────────────────────
-    function renderSector() {
-        laneLayer.destroyChildren();
-        nodeLayer.destroyChildren();
-        if (!sectorData) return;
-
-        (sectorData.jump_lanes ?? []).forEach(lane => {
-            const f = sectorData.systems.find(s => s.id === lane.from);
-            const t = sectorData.systems.find(s => s.id === lane.to);
-            if (f && t) createLaneShape(lane, f, t);
-        });
-
-        (sectorData.systems ?? []).forEach(sys => createNodeShape(sys));
-
-        if (previewSystems) previewSystems.forEach(ps => drawPreviewDot(ps));
-
-        updateCounts();
-    }
-
-    function createNodeShape(sys) {
-        const color = STATUS_COLORS[sys.status] || '#00d2ff';
-        const group = new Konva.Group({ x:sys.coordinates.x, y:sys.coordinates.y, id:sys.id, draggable:true });
-
-        const glow   = new Konva.Circle({ radius:20, fill:'transparent', stroke:color, strokeWidth:1, opacity:0.3, listening:false });
-        const circle = new Konva.Circle({ radius:16, fill:'#0a0a12', stroke:color, strokeWidth:2 });
-        const lbl    = new Konva.Text({ text:sys.name, y:22, fontSize:11, fontFamily:'Share Tech Mono,monospace', fill:color, listening:false });
-        lbl.offsetX(lbl.width()/2);
-
-        group.add(glow, circle, lbl);
-
-        group.on('mouseenter', () => {
-            if (sectorTool === 'scatter') return;
-            stage.container().style.cursor = sectorTool === 'delete' ? 'not-allowed' : 'pointer';
-            circle.strokeWidth(3); glow.opacity(0.6);
-        });
-        group.on('mouseleave', () => {
-            if (sectorTool === 'scatter') return;
-            stage.container().style.cursor = 'default';
-            circle.strokeWidth( selectedNode?.id === sys.id ? 3 : 2 );
-            glow.opacity( selectedNode?.id === sys.id ? 0.5 : 0.3 );
-        });
-        group.on('click', ev => {
-            if (sectorTool === 'scatter') return;
-            ev.cancelBubble = true;
-            handleNodeClick(sys.id, group);
-        });
-        group.on('dragmove', () => {
-            sys.coordinates.x = Math.round(group.x());
-            sys.coordinates.y = Math.round(group.y());
-            if (selectedNode?.id === sys.id) {
-                if(e['gp-node-x']) e['gp-node-x'].value = sys.coordinates.x;
-                if(e['gp-node-y']) e['gp-node-y'].value = sys.coordinates.y;
-            }
-            redrawLanes();
-        });
-
-        nodeLayer.add(group);
-    }
-
-    function drawPreviewDot(ps) {
-        const dot = new Konva.Circle({
-            x:ps.x, y:ps.y, radius:8,
-            fill:'rgba(255,215,0,0.12)', stroke:'#ffd700', strokeWidth:1, dash:[3,3],
-            listening:false, name:'preview-dot',
-        });
-        const lbl = new Konva.Text({
-            x:ps.x, y:ps.y+12, text:ps.name,
-            fontSize:8, fontFamily:'Share Tech Mono,monospace',
-            fill:'#ffd700', opacity:0.6, listening:false, name:'preview-dot',
-        });
-        lbl.offsetX(lbl.width()/2);
-        nodeLayer.add(dot, lbl);
-    }
-
-    function createLaneShape(lane, fromSys, toSys) {
-        const LCOL = { Stable:'#00d2ff',Unstable:'#ffaa00',Drift:'#aa44ff',Restricted:'#ff3333' };
-        const color = LCOL[lane.type] || '#444';
-        const line  = new Konva.Line({
-            points:[fromSys.coordinates.x,fromSys.coordinates.y, toSys.coordinates.x,toSys.coordinates.y],
-            stroke:color, strokeWidth:1.5, opacity:0.6,
-            dash: lane.type === 'Drift' ? [8,4] : undefined,
-        });
-        const mx = (fromSys.coordinates.x + toSys.coordinates.x)/2;
-        const my = (fromSys.coordinates.y + toSys.coordinates.y)/2;
-        const dLabel = new Konva.Text({
-            x:mx, y:my-10,
-            text: (lane.distance||0).toFixed(1) + ' ly',
-            fontSize:9, fontFamily:'Share Tech Mono,monospace', fill:color, opacity:0.7, listening:false,
-        });
-        line.on('click', ev => {
-            ev.cancelBubble = true;
-            if (sectorTool === 'delete') { deleteLane(lane.from, lane.to); return; }
-            selectLane(lane, line);
-        });
-        line.on('mouseenter', () => { line.strokeWidth(3); line.opacity(1); });
-        line.on('mouseleave', () => {
-            line.strokeWidth(1.5);
-            line.opacity(selectedLane?.from===lane.from && selectedLane?.to===lane.to ? 1 : 0.6);
-        });
-        laneLayer.add(line, dLabel);
-        return line;
-    }
-
-    function redrawLanes() {
-        laneLayer.destroyChildren();
-        (sectorData.jump_lanes ?? []).forEach(lane => {
-            const f = sectorData.systems.find(s => s.id === lane.from);
-            const t = sectorData.systems.find(s => s.id === lane.to);
-            if (f && t) createLaneShape(lane, f, t);
-        });
-    }
-
-    // ── Selection ──────────────────────────────────────────────────────────────
-    function handleNodeClick(sysId, group) {
-        if (sectorTool === 'delete') { deleteSystem(sysId); return; }
-        if (sectorTool === 'lane') {
-            if (!laneSource) {
-                laneSource = sysId;
-                group.findOne('Circle')?.stroke('#ffd700');
-                group.findOne('Circle')?.strokeWidth(3);
-                setStatus('Lane: click target system…');
-            } else if (laneSource !== sysId) {
-                addLane(laneSource, sysId);
-                const srcG = nodeLayer.findOne('#' + laneSource);
-                if (srcG) {
-                    const srcSys = sectorData.systems.find(s => s.id === laneSource);
-                    const c = srcG.findOne('Circle');
-                    if (c && srcSys) { c.stroke(STATUS_COLORS[srcSys.status]||'#00d2ff'); c.strokeWidth(2); }
-                }
-                laneSource = null; setSectorTool('lane');
-            }
-            return;
-        }
-        selectNode(sysId, group);
-    }
-
-    function selectNode(sysId, group) {
-        deselectAll();
-        selectedNode = { id:sysId, group };
-        group.findOne('Circle')?.strokeWidth(3);
-        const sys = sectorData.systems.find(s => s.id === sysId);
-        if (!sys) return;
-        if(e['gp-node-editor']) e['gp-node-editor'].style.display  = '';
-        if(e['gp-lane-editor']) e['gp-lane-editor'].style.display   = 'none';
-        if(e['gp-node-id'])     e['gp-node-id'].value    = sys.id;
-        if(e['gp-node-name'])   e['gp-node-name'].value  = sys.name;
-        if(e['gp-node-align'])  e['gp-node-align'].value = sys.political_alignment||'';
-        if(e['gp-node-status']) e['gp-node-status'].value= sys.status||'Colonized';
-        if(e['gp-node-file'])   e['gp-node-file'].value  = sys.file||'data/systems/'+sys.id+'.json';
-        if(e['gp-node-x'])      e['gp-node-x'].value     = Math.round(sys.coordinates.x);
-        if(e['gp-node-y'])      e['gp-node-y'].value     = Math.round(sys.coordinates.y);
-    }
-
-    function selectLane(lane, line) {
-        deselectAll();
-        selectedLane = { from:lane.from, to:lane.to, line };
-        line.strokeWidth(3); line.opacity(1);
-        if(e['gp-node-editor'])     e['gp-node-editor'].style.display  = 'none';
-        if(e['gp-lane-editor'])     e['gp-lane-editor'].style.display   = '';
-        if(e['gp-lane-endpoints'])  e['gp-lane-endpoints'].textContent  = lane.from + ' → ' + lane.to;
-        if(e['gp-lane-dist'])       e['gp-lane-dist'].value            = (lane.distance||0).toFixed(2);
-        if(e['gp-lane-type'])       e['gp-lane-type'].value            = lane.type||'Stable';
-    }
-
-    function deselectAll() {
-        if (selectedNode?.group) selectedNode.group.findOne('Circle')?.strokeWidth(2);
-        if (selectedLane?.line)  { selectedLane.line.strokeWidth(1.5); selectedLane.line.opacity(0.6); }
-        selectedNode = null; selectedLane = null;
-        if(e['gp-node-editor']) e['gp-node-editor'].style.display = 'none';
-        if(e['gp-lane-editor']) e['gp-lane-editor'].style.display  = 'none';
-    }
-
-    // ── Sector CRUD ────────────────────────────────────────────────────────────
-    function addSystem(x, y) {
-        const id  = 'sys_' + Date.now();
-        const sys = {
-            id, name:'New System',
-            coordinates:{ x:Math.round(x), y:Math.round(y) },
-            political_alignment:'', status:'Unknown',
-            file: 'data/systems/' + id + '.json',
-        };
-        sectorData.systems.push(sys);
-        createNodeShape(sys);
-        updateCounts();
-        const grp = nodeLayer.findOne('#' + id);
-        if (grp) selectNode(id, grp);
-        notify('System added.','info');
-    }
-
-    function deleteSystem(sysId) {
-        sectorData.systems    = sectorData.systems.filter(s => s.id !== sysId);
-        sectorData.jump_lanes = sectorData.jump_lanes.filter(l => l.from!==sysId && l.to!==sysId);
-        renderSector(); deselectAll();
-        notify('System ' + sysId + ' deleted.','warning');
-    }
-
-    function addLane(fromId, toId) {
-        const exists = sectorData.jump_lanes.find(l =>
-            (l.from===fromId&&l.to===toId)||(l.from===toId&&l.to===fromId));
-        if (exists) { notify('Lane already exists.','warning'); return; }
-        const f = sectorData.systems.find(s => s.id===fromId);
-        const t = sectorData.systems.find(s => s.id===toId);
-        const dist = calcDistance(f.coordinates, t.coordinates);
-        sectorData.jump_lanes.push({ from:fromId, to:toId, type:'Stable', distance:+dist.toFixed(2) });
-        redrawLanes(); updateCounts();
-        notify('Lane added (' + dist.toFixed(1) + ' ly)', 'success');
-    }
-
-    function deleteLane(fromId, toId) {
-        sectorData.jump_lanes = sectorData.jump_lanes.filter(l =>
-            !((l.from===fromId&&l.to===toId)||(l.from===toId&&l.to===fromId)));
-        redrawLanes(); deselectAll(); updateCounts();
-        notify('Lane removed.','warning');
-    }
-
-    function applyNodeEdit() {
-        if (!selectedNode) return;
-        const sys = sectorData.systems.find(s => s.id === selectedNode.id);
-        if (!sys) return;
-        sys.name               = (e['gp-node-name']?.value.trim()) || sys.name;
-        sys.political_alignment= e['gp-node-align']?.value.trim()  || '';
-        sys.status             = e['gp-node-status']?.value         || sys.status;
-        sys.file               = (e['gp-node-file']?.value.trim())  || sys.file;
-        const old = nodeLayer.findOne('#' + sys.id);
-        if (old) old.destroy();
-        createNodeShape(sys);
-        const newGrp = nodeLayer.findOne('#' + sys.id);
-        if (newGrp) selectNode(sys.id, newGrp);
-        notify('System updated.','success');
-    }
-
-    function applyLaneEdit() {
-        if (!selectedLane) return;
-        const lane = sectorData.jump_lanes.find(l =>
-            (l.from===selectedLane.from&&l.to===selectedLane.to)||
-            (l.from===selectedLane.to&&l.to===selectedLane.from));
-        if (!lane) return;
-        lane.type     = e['gp-lane-type']?.value || lane.type;
-        lane.distance = parseFloat(e['gp-lane-dist']?.value) || lane.distance;
-        redrawLanes(); deselectAll();
-        notify('Lane updated.','success');
-    }
-
-    async function saveSector() {
-        if (!sectorData || !activeSectorId) { notify('No sector loaded.','warning'); return; }
-        const entry = universe.sectors_index.find(s => s.id === activeSectorId);
-        if (!entry) return;
-        try {
-            await API.saveFile(entry.file, sectorData);
-            notify('Sector saved.','success');
-            setStatus('Saved: ' + entry.file);
-        } catch(err) { notify('Save failed: ' + err.message,'error'); }
-    }
-
-    function calcDistance(a, b) { return Math.hypot(a.x-b.x, a.y-b.y) * 0.1; }
-
-    function updateCounts() {
-        if(e['gp-count-systems']) e['gp-count-systems'].textContent = sectorData?.systems?.length ?? 0;
-        if(e['gp-count-lanes'])   e['gp-count-lanes'].textContent   = sectorData?.jump_lanes?.length ?? 0;
-    }
-
-    function setSectorTool(tool) {
-        sectorTool = tool;
-        document.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
-        const btn = document.querySelector('[data-tool="' + tool + '"]');
-        if(btn) btn.classList.add('active');
-        laneSource = null;
-
-        const isScatter = tool === 'scatter';
-        if(e['gp-scatter-panel']) e['gp-scatter-panel'].style.display = isScatter ? '' : 'none';
-        const cc = e['gp-canvas-container'];
-        if (isScatter) {
-            if(cc) cc.classList.add('scatter-mode');
-            syncDensityCanvasSize();
-            renderDensityCanvas();
-            showDensityCanvas();
-            showBrushCursor();
-        } else {
-            if(cc) cc.classList.remove('scatter-mode');
-            previewSystems = null;
-            hideDensityCanvas();
-            hideBrushCursor();
-        }
-    }
-
-    // ── Forge helpers ──────────────────────────────────────────────────────────
-    async function forgeCurrentSector(sd) {
-        const n = sd.systems?.length || 0;
-        if (!n) { notify('No systems in this sector.', 'warning'); return; }
-        const ok = await showModal(
-            'Forge Sector Systems',
-            `<p>Generate system + body files for all <strong>${n}</strong> nodes?</p>` +
-            `<p style="color:#ffaa00;margin-top:8px">⚠ Existing files will be overwritten.</p>`
-        );
-        if (!ok) return;
-        const prog = e['gp-forge-progress'];
-        if (prog) { prog.textContent = 'Starting forge…'; prog.style.display = ''; }
-        await SystemForge.populateSector(
-            sd,
-            (done, total) => { if (prog) prog.textContent = `Forging… ${done} / ${total}`; },
-            async () => {
-                if (viewMode === 'sector') renderSector();
-                await saveSector();
-                if (prog) {
-                    prog.textContent = `✓ ${n} systems forged.`;
-                    setTimeout(() => { prog.style.display = 'none'; }, 5000);
-                }
-                notify(`Forged ${n} systems.`, 'success');
-            }
-        );
-    }
-
-    async function forgeGalaxySector() {
+    async function forgeSector() {
         if (!selectedSectorId) { notify('Select a sector first.', 'warning'); return; }
         if (typeof SystemForge === 'undefined') { notify('System Forge not loaded.', 'error'); return; }
+
         const entry = universe.sectors_index.find(s => s.id === selectedSectorId);
         if (!entry?.file) return;
-        let sd;
-        try { sd = await API.getFile(entry.file); }
-        catch(err) { notify('Could not load sector: ' + err.message, 'error'); return; }
+
+        let sd = sectorCache.get(selectedSectorId);
+        if (!sd) {
+            try { sd = await API.getFile(entry.file); sectorCache.set(selectedSectorId, sd); }
+            catch (err) { notify('Could not load sector: ' + err.message, 'error'); return; }
+        }
         if (!sd.systems) sd.systems = [];
+
+        // Only keep systems that actually fall inside this sector's polygon
+        const polygon = entry.polygon || [];
+        if (polygon.length >= 3) {
+            sd.systems = sd.systems.filter(sys =>
+                pointInPolygon(sys.coordinates.x, sys.coordinates.y, polygon)
+            );
+        }
 
         // If no nodes exist yet, offer to scatter them first
         if (!sd.systems.length) {
@@ -998,23 +1232,20 @@ const GalaxyPlotter = (() => {
             );
             if (!countStr) return;
             const num = Math.max(1, Math.min(50, parseInt(countStr) || 8));
-            const polygon   = entry.polygon || [];
             const positions = scatterInPolygon(polygon, num, 30);
             const fallback  = polygon.length ? sectorCentroid(polygon) : { x: 500, y: 500 };
-            const ts        = Date.now();
+            const ts = Date.now();
             for (let i = 0; i < num; i++) {
                 const sysId = `sys_${ts.toString(36)}_${i.toString(16)}`;
-                const pos   = positions[i] || {
+                const pos = positions[i] || {
                     x: Math.round(fallback.x + (Math.random() - 0.5) * 40),
                     y: Math.round(fallback.y + (Math.random() - 0.5) * 40),
                 };
                 sd.systems.push({
-                    id: sysId,
-                    name: `System ${i + 1}`,
+                    id: sysId, name: `System ${i + 1}`,
                     coordinates: { x: pos.x, y: pos.y },
-                    political_alignment: '',
-                    status: 'Unknown',
-                    file: '',
+                    political_alignment: '', status: 'Unknown', file: '',
+                    main: false,
                 });
             }
         }
@@ -1026,13 +1257,18 @@ const GalaxyPlotter = (() => {
             `<p style="color:#ffaa00;margin-top:8px">⚠ Existing files will be overwritten.</p>`
         );
         if (!ok) return;
-        const prog = e['gp-forge-progress'];
+
+        const prog = el['gp-forge-progress'];
         if (prog) { prog.textContent = 'Starting forge…'; prog.style.display = ''; }
+
         await SystemForge.populateSector(
             sd,
             (done, total) => { if (prog) prog.textContent = `Forging… ${done} / ${total}`; },
             async () => {
-                await API.saveFile(entry.file, sd);
+                sectorCache.set(selectedSectorId, sd);
+                dirtySectors.add(selectedSectorId);
+                await saveSector(selectedSectorId);
+                renderAll();
                 if (prog) {
                     prog.textContent = `✓ ${n} systems forged.`;
                     setTimeout(() => { prog.style.display = 'none'; }, 5000);
@@ -1042,72 +1278,109 @@ const GalaxyPlotter = (() => {
         );
     }
 
-    // ── Fit helpers ────────────────────────────────────────────────────────────
+    async function forgeSystem() {
+        if (!selectedNode) { notify('Select a system node first.', 'warning'); return; }
+        if (typeof SystemForge === 'undefined') { notify('System Forge module not loaded.', 'error'); return; }
+
+        const sysId    = selectedNode.id;
+        const sectorId = selectedNode.sectorId;
+        const sd  = sectorCache.get(sectorId);
+        const sys = sd?.systems?.find(s => s.id === sysId);
+        if (!sys) return;
+
+        await SystemForge.generateAndLink(sysId, {}, (filePath, starName) => {
+            sys.name = starName;
+            sys.file = filePath;
+            dirtySectors.add(sectorId);
+            if (el['gp-node-name']) el['gp-node-name'].value = starName;
+            if (el['gp-node-file']) el['gp-node-file'].value = filePath;
+            const old = nodeLayer.findOne('#' + sysId);
+            if (old) old.destroy();
+            const entry = universe.sectors_index.find(s => s.id === sectorId);
+            createSystemNode(sys, sectorId, entry?.color || '#00d2ff');
+            updateLOD(nodeLayer.scaleX());
+            const grp = nodeLayer.findOne('#' + sysId);
+            if (grp) selectNode(sysId, sectorId, grp);
+        });
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  FIT
+    // ═══════════════════════════════════════════════════════════════════════════
     function fitPoints(pts) {
         if (!pts.length) return;
         const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
         const minX = Math.min(...xs), maxX = Math.max(...xs);
         const minY = Math.min(...ys), maxY = Math.max(...ys);
         const pw = stage.width(), ph = stage.height();
-        const dw = maxX-minX || 400, dh = maxY-minY || 400;
-        const sc = Math.min(pw/(dw+200), ph/(dh+200), 2);
-        const cx = (minX+maxX)/2, cy = (minY+maxY)/2;
-        [bgLayer,refLayer,polyLayer,laneLayer,nodeLayer,previewLayer].forEach(l => {
-            l.scale({x:sc,y:sc});
-            l.position({x: pw/2-cx*sc, y: ph/2-cy*sc});
+        const dw = maxX - minX || 400, dh = maxY - minY || 400;
+        const sc = Math.min(pw / (dw + 200), ph / (dh + 200), 2);
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+        [bgLayer, refLayer, polyLayer, laneLayer, nodeLayer, previewLayer].forEach(l => {
+            l.scale({ x: sc, y: sc });
+            l.position({ x: pw / 2 - cx * sc, y: ph / 2 - cy * sc });
         });
         syncDensityCanvasSize();
+        updateLOD(sc);
     }
 
-    function fitSector() {
-        const pts = (sectorData?.systems ?? []).map(s => s.coordinates).filter(Boolean);
-        if (!pts.length) {
-            const dim = sectorData?.dimensions ?? {width:1000,height:1000};
-            fitPoints([{x:0,y:0},{x:dim.width,y:dim.height}]);
-        } else { fitPoints(pts); }
+    function fitGalaxy() {
+        const pts = (universe?.sectors_index ?? []).flatMap(s => s.polygon ?? []);
+        if (pts.length) fitPoints(pts);
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
-    //  DENSITY CANVAS & SCATTER
+    //  SCATTER (galaxy-space within selected sector polygon)
     // ═══════════════════════════════════════════════════════════════════════════
+    function scatterBBox() {
+        const entry = (universe?.sectors_index ?? []).find(s => s.id === selectedSectorId);
+        if (!entry?.polygon?.length) return null;
+        return polyBBox(entry.polygon);
+    }
+
     function gridToScene(gx, gy) {
-        const dim = sectorData?.dimensions ?? {width:1000,height:1000};
-        return { x:(gx/DENSITY_W)*dim.width, y:(gy/DENSITY_H)*dim.height };
+        const bb = scatterBBox();
+        if (!bb) return { x: 0, y: 0 };
+        const w = (bb.maxX - bb.minX) || 1, h = (bb.maxY - bb.minY) || 1;
+        return { x: bb.minX + (gx / DENSITY_W) * w, y: bb.minY + (gy / DENSITY_H) * h };
     }
+
     function sceneToGrid(sx, sy) {
-        const dim = sectorData?.dimensions ?? {width:1000,height:1000};
-        return { gx:Math.round((sx/dim.width)*DENSITY_W), gy:Math.round((sy/dim.height)*DENSITY_H) };
+        const bb = scatterBBox();
+        if (!bb) return { gx: 0, gy: 0 };
+        const w = (bb.maxX - bb.minX) || 1, h = (bb.maxY - bb.minY) || 1;
+        return {
+            gx: Math.round(((sx - bb.minX) / w) * DENSITY_W),
+            gy: Math.round(((sy - bb.minY) / h) * DENSITY_H),
+        };
     }
 
     function syncDensityCanvasSize() {
-        const dc = e['gp-density-canvas'];
+        const dc = el['gp-density-canvas'];
         if (!dc || !stage) return;
         dc.width  = stage.width();
         dc.height = stage.height();
         renderDensityCanvas();
     }
 
-    function showDensityCanvas() { if(e['gp-density-canvas']) e['gp-density-canvas'].style.display = ''; }
-    function hideDensityCanvas() { if(e['gp-density-canvas']) e['gp-density-canvas'].style.display = 'none'; }
-    function showBrushCursor()   { if(e['gp-brush-cursor'])   e['gp-brush-cursor'].style.display   = ''; }
-    function hideBrushCursor()   { if(e['gp-brush-cursor'])   e['gp-brush-cursor'].style.display   = 'none'; }
+    function showDensityCanvas() { if (el['gp-density-canvas']) el['gp-density-canvas'].style.display = ''; }
+    function hideDensityCanvas() { if (el['gp-density-canvas']) el['gp-density-canvas'].style.display = 'none'; }
+    function showBrushCursor()   { if (el['gp-brush-cursor'])   el['gp-brush-cursor'].style.display   = ''; }
+    function hideBrushCursor()   { if (el['gp-brush-cursor'])   el['gp-brush-cursor'].style.display   = 'none'; }
 
     function updateBrushCursor(ev) {
-        const bc = e['gp-brush-cursor'];
+        const bc = el['gp-brush-cursor'];
         if (!bc) return;
-        const rect = (e['gp-canvas-container'] || stage.container()).getBoundingClientRect();
-        const cx   = ev.clientX - rect.left;
-        const cy   = ev.clientY - rect.top;
-        const pxR  = brushSceneToPx();
-        bc.style.left   = cx + 'px';
-        bc.style.top    = cy + 'px';
+        const rect = (el['gp-canvas-container'] || stage.container()).getBoundingClientRect();
+        bc.style.left   = (ev.clientX - rect.left) + 'px';
+        bc.style.top    = (ev.clientY - rect.top)  + 'px';
+        const pxR = brushSceneToPx();
         bc.style.width  = (pxR * 2) + 'px';
         bc.style.height = (pxR * 2) + 'px';
     }
 
     function brushSceneToPx() {
-        const r = parseFloat(e['gp-scat-size']?.value ?? 80);
-        return r * nodeLayer.scaleX();
+        return parseFloat(el['gp-scat-size']?.value ?? 80) * nodeLayer.scaleX();
     }
 
     function paintAtEvent(ev) {
@@ -1115,93 +1388,104 @@ const GalaxyPlotter = (() => {
         const scale  = nodeLayer.scaleX();
         const sceneX = (ev.clientX - rect.left - nodeLayer.x()) / scale;
         const sceneY = (ev.clientY - rect.top  - nodeLayer.y()) / scale;
-        const brushR = parseFloat(e['gp-scat-size']?.value ?? 80);
-        const str    = parseFloat(e['gp-scat-strength']?.value ?? 60) / 100;
+        const brushR = parseFloat(el['gp-scat-size']?.value ?? 80);
+        const str    = parseFloat(el['gp-scat-strength']?.value ?? 60) / 100;
         paintDensity(sceneX, sceneY, brushR, str, scatterErasing);
         renderDensityCanvas();
     }
 
     function paintDensity(sx, sy, radiusScene, strength, erase) {
-        const dim  = sectorData?.dimensions ?? {width:1000,height:1000};
-        const {gx:gcx, gy:gcy} = sceneToGrid(sx, sy);
-        const grR  = Math.max(1, Math.round((radiusScene/dim.width)*DENSITY_W));
+        const bb = scatterBBox();
+        if (!bb) return;
+        const w = (bb.maxX - bb.minX) || 1;
+        const { gx: gcx, gy: gcy } = sceneToGrid(sx, sy);
+        const grR = Math.max(1, Math.round((radiusScene / w) * DENSITY_W));
         for (let dy = -grR; dy <= grR; dy++) {
             for (let dx = -grR; dx <= grR; dx++) {
-                const gx = gcx+dx, gy = gcy+dy;
-                if (gx<0||gx>=DENSITY_W||gy<0||gy>=DENSITY_H) continue;
-                const d = Math.hypot(dx,dy)/grR;
-                if (d>1) continue;
-                const g   = Math.exp(-d*d*2.5);
-                const idx = gy*DENSITY_W + gx;
-                if (erase) densityGrid[idx] = Math.max(0, densityGrid[idx] - g*strength*0.6);
-                else       densityGrid[idx] = Math.min(1, densityGrid[idx] + g*strength*0.3);
+                const gx = gcx + dx, gy = gcy + dy;
+                if (gx < 0 || gx >= DENSITY_W || gy < 0 || gy >= DENSITY_H) continue;
+                const d = Math.hypot(dx, dy) / grR;
+                if (d > 1) continue;
+                const g   = Math.exp(-d * d * 2.5);
+                const idx = gy * DENSITY_W + gx;
+                if (erase) densityGrid[idx] = Math.max(0, densityGrid[idx] - g * strength * 0.6);
+                else       densityGrid[idx] = Math.min(1, densityGrid[idx] + g * strength * 0.3);
             }
         }
     }
 
     function renderDensityCanvas() {
-        const dc = e['gp-density-canvas'];
-        if (!dc || !sectorData) return;
+        const dc = el['gp-density-canvas'];
+        const bb = scatterBBox();
+        if (!dc || !bb) return;
         const ctx = dc.getContext('2d');
         const w = dc.width, h = dc.height;
-        ctx.clearRect(0,0,w,h);
-        const dim   = sectorData?.dimensions ?? {width:1000,height:1000};
+        ctx.clearRect(0, 0, w, h);
+        const bw = (bb.maxX - bb.minX) || 1, bh = (bb.maxY - bb.minY) || 1;
         const scale = nodeLayer.scaleX();
         const offX  = nodeLayer.x(), offY = nodeLayer.y();
         const img   = ctx.createImageData(w, h);
-        const pxW   = Math.ceil((dim.width /DENSITY_W)*scale)+2;
-        const pxH   = Math.ceil((dim.height/DENSITY_H)*scale)+2;
+        const pxW = Math.ceil((bw / DENSITY_W) * scale) + 2;
+        const pxH = Math.ceil((bh / DENSITY_H) * scale) + 2;
 
         for (let gy = 0; gy < DENSITY_H; gy++) {
             for (let gx = 0; gx < DENSITY_W; gx++) {
-                const v = densityGrid[gy*DENSITY_W+gx];
+                const v = densityGrid[gy * DENSITY_W + gx];
                 if (v < 0.01) continue;
-                const px = Math.round((gx+0.5)/DENSITY_W*dim.width*scale + offX);
-                const py = Math.round((gy+0.5)/DENSITY_H*dim.height*scale + offY);
-                const r = 255, g = Math.round(80+v*175), b = Math.round(v*40), a = Math.round(v*180);
-                for (let ry=0; ry<pxH; ry++) {
-                    for (let rx=0; rx<pxW; rx++) {
-                        const pixx = px+rx-Math.floor(pxW/2);
-                        const pixy = py+ry-Math.floor(pxH/2);
-                        if (pixx<0||pixx>=w||pixy<0||pixy>=h) continue;
-                        const i = (pixy*w+pixx)*4;
-                        if (a > img.data[i+3]) { img.data[i]=r; img.data[i+1]=g; img.data[i+2]=b; img.data[i+3]=a; }
+                const sceneX = bb.minX + ((gx + 0.5) / DENSITY_W) * bw;
+                const sceneY = bb.minY + ((gy + 0.5) / DENSITY_H) * bh;
+                const px = Math.round(sceneX * scale + offX);
+                const py = Math.round(sceneY * scale + offY);
+                const r = 255, g = Math.round(80 + v * 175), b = Math.round(v * 40), a = Math.round(v * 180);
+                for (let ry = 0; ry < pxH; ry++) {
+                    for (let rx = 0; rx < pxW; rx++) {
+                        const pixx = px + rx - Math.floor(pxW / 2);
+                        const pixy = py + ry - Math.floor(pxH / 2);
+                        if (pixx < 0 || pixx >= w || pixy < 0 || pixy >= h) continue;
+                        const i = (pixy * w + pixx) * 4;
+                        if (a > img.data[i + 3]) { img.data[i] = r; img.data[i+1] = g; img.data[i+2] = b; img.data[i+3] = a; }
                     }
                 }
             }
         }
-        ctx.putImageData(img,0,0);
+        ctx.putImageData(img, 0, 0);
     }
 
     function clearDensity() {
         densityGrid.fill(0);
         previewSystems = null;
         renderDensityCanvas();
-        if(e['gp-scat-commit']) e['gp-scat-commit'].disabled = true;
-        if(e['gp-scat-info'])   e['gp-scat-info'].textContent = 'Paint a density map, then preview.';
+        if (el['gp-scat-commit']) el['gp-scat-commit'].disabled = true;
+        if (el['gp-scat-info'])   el['gp-scat-info'].textContent = 'Paint a density map, then preview.';
     }
 
     function makePRNG(seed) {
         let s = seed >>> 0;
-        return () => { s = (Math.imul(s,1664525)+1013904223)>>>0; return s/4294967296; };
+        return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
     }
 
     function previewScatter() {
-        if (!sectorData) return;
-        const count  = Math.max(1, parseInt(e['gp-scat-count']?.value   ?? 30));
-        const minSep = parseFloat(e['gp-scat-minsep']?.value ?? 25);
-        const prefix = (e['gp-scat-prefix']?.value ?? 'sys').trim() || 'sys';
-        const seed   = parseInt(e['gp-scat-seed']?.value ?? 42);
-        const dim    = sectorData.dimensions ?? {width:1000,height:1000};
-        const rng    = makePRNG(seed);
+        if (!selectedSectorId) { notify('Select a sector first.', 'warning'); return; }
+        const bb = scatterBBox();
+        if (!bb) { notify('No polygon for selected sector.', 'warning'); return; }
+        const entry   = universe.sectors_index.find(s => s.id === selectedSectorId);
+        const polygon = entry?.polygon;
+
+        const count  = Math.max(1, parseInt(el['gp-scat-count']?.value ?? 30));
+        const minSep = parseFloat(el['gp-scat-minsep']?.value ?? 25);
+        const prefix = (el['gp-scat-prefix']?.value ?? 'sys').trim() || 'sys';
+        const seed   = parseInt(el['gp-scat-seed']?.value ?? 42);
+        const bw = (bb.maxX - bb.minX) || 1, bh = (bb.maxY - bb.minY) || 1;
+        const rng = makePRNG(seed);
 
         let total = 0;
-        const cum = new Float64Array(DENSITY_W*DENSITY_H);
-        for (let i=0;i<densityGrid.length;i++) { total+=densityGrid[i]; cum[i]=total; }
+        const cum = new Float64Array(DENSITY_W * DENSITY_H);
+        for (let i = 0; i < densityGrid.length; i++) { total += densityGrid[i]; cum[i] = total; }
         const useUniform = total < 0.001;
 
-        const existing = (sectorData.systems ?? []).map(s => s.coordinates);
-        const placed   = [], results = [];
+        const sd = sectorCache.get(selectedSectorId);
+        const existing = (sd?.systems ?? []).map(s => s.coordinates);
+        const placed = [], results = [];
         const maxTries = count * 40;
         let tries = 0;
 
@@ -1209,73 +1493,78 @@ const GalaxyPlotter = (() => {
             tries++;
             let gx, gy;
             if (useUniform) {
-                gx = rng()*DENSITY_W; gy = rng()*DENSITY_H;
+                gx = rng() * DENSITY_W; gy = rng() * DENSITY_H;
             } else {
-                const r = rng()*total;
-                let lo=0, hi=cum.length-1;
-                while(lo<hi){const m=(lo+hi)>>1; cum[m]<r?(lo=m+1):(hi=m);}
-                gx = lo%DENSITY_W + rng()-0.5;
-                gy = Math.floor(lo/DENSITY_W) + rng()-0.5;
-                gx = Math.min(DENSITY_W-1, Math.max(0,gx));
-                gy = Math.min(DENSITY_H-1, Math.max(0,gy));
+                const r = rng() * total;
+                let lo = 0, hi = cum.length - 1;
+                while (lo < hi) { const m = (lo + hi) >> 1; cum[m] < r ? (lo = m + 1) : (hi = m); }
+                gx = lo % DENSITY_W + rng() - 0.5;
+                gy = Math.floor(lo / DENSITY_W) + rng() - 0.5;
+                gx = Math.min(DENSITY_W - 1, Math.max(0, gx));
+                gy = Math.min(DENSITY_H - 1, Math.max(0, gy));
             }
-            const sx = ((gx+rng()*0.8-0.4)/DENSITY_W)*dim.width;
-            const sy = ((gy+rng()*0.8-0.4)/DENSITY_H)*dim.height;
-            const tooClose = [...existing,...placed].some(p => Math.hypot(p.x-sx,p.y-sy)*0.1 < minSep);
+            const sx = bb.minX + ((gx + rng() * 0.8 - 0.4) / DENSITY_W) * bw;
+            const sy = bb.minY + ((gy + rng() * 0.8 - 0.4) / DENSITY_H) * bh;
+            if (polygon?.length >= 3 && !pointInPolygon(sx, sy, polygon)) continue;
+            const tooClose = [...existing, ...placed].some(p => Math.hypot(p.x - sx, p.y - sy) < minSep);
             if (tooClose) continue;
-            placed.push({x:sx,y:sy});
-            results.push({x:Math.round(sx),y:Math.round(sy), name:prefix+'_'+(results.length+1)});
+            placed.push({ x: sx, y: sy });
+            results.push({ x: Math.round(sx), y: Math.round(sy), name: prefix + '_' + (results.length + 1) });
         }
 
         previewSystems = results;
-        renderSector();
+        renderAll();
         const n = results.length;
-        if(e['gp-scat-info'])  e['gp-scat-info'].textContent = 'Preview: '+n+'/'+count+' placed ('+tries+' tries)';
-        if(e['gp-scat-commit']) e['gp-scat-commit'].disabled = n === 0;
-        notify('Scatter preview: '+n+' systems.'+(useUniform?' No density — used uniform.':''), n>0?'info':'warning', 5000);
+        if (el['gp-scat-info'])   el['gp-scat-info'].textContent = 'Preview: ' + n + '/' + count + ' placed (' + tries + ' tries)';
+        if (el['gp-scat-commit']) el['gp-scat-commit'].disabled = n === 0;
+        notify('Scatter preview: ' + n + ' systems.' + (useUniform ? ' No density — used uniform.' : ''), n > 0 ? 'info' : 'warning', 5000);
     }
 
     function commitScatter() {
-        if (!previewSystems?.length) { notify('Nothing to commit.','warning'); return; }
+        if (!previewSystems?.length || !selectedSectorId) { notify('Nothing to commit.', 'warning'); return; }
+        const sd = sectorCache.get(selectedSectorId);
+        if (!sd) return;
+        if (!sd.systems) sd.systems = [];
         const ts = Date.now();
         previewSystems.forEach((ps, i) => {
-            const id = ps.name+'_'+ts+'_'+i;
-            sectorData.systems.push({
-                id, name:ps.name,
-                coordinates:{x:ps.x,y:ps.y},
-                political_alignment:'', status:'Unknown',
-                file:'data/systems/'+id+'.json',
+            const id = ps.name + '_' + ts + '_' + i;
+            sd.systems.push({
+                id, name: ps.name,
+                coordinates: { x: ps.x, y: ps.y },
+                political_alignment: '', status: 'Unknown',
+                file: 'data/systems/' + id + '.json',
+                main: false,
             });
         });
+        dirtySectors.add(selectedSectorId);
         const added = previewSystems.length;
         previewSystems = null;
         clearDensity();
-        renderSector();
+        renderAll();
         updateCounts();
-        notify(added+' systems committed.','success');
-        if(e['gp-scat-commit']) e['gp-scat-commit'].disabled = true;
-        if(e['gp-scat-info'])   e['gp-scat-info'].textContent = added+' systems added.';
+        notify(added + ' systems committed.', 'success');
+        if (el['gp-scat-commit']) el['gp-scat-commit'].disabled = true;
+        if (el['gp-scat-info'])   el['gp-scat-info'].textContent = added + ' systems added.';
     }
 
-    // ── Utility ────────────────────────────────────────────────────
-    // ── Reference image ────────────────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  REFERENCE IMAGE
+    // ═══════════════════════════════════════════════════════════════════════════
     function drawRefImage(src) {
         refLayer.destroyChildren();
         refImageNode = null;
         const img = new window.Image();
         img.onload = () => {
             refImageNode = new Konva.Image({
-                image:   img,
-                x: 0, y: 0,
-                width:   img.naturalWidth,
-                height:  img.naturalHeight,
-                opacity: parseFloat(e['gp-ref-opacity']?.value ?? 35) / 100,
+                image: img, x: 0, y: 0,
+                width: img.naturalWidth, height: img.naturalHeight,
+                opacity: parseFloat(el['gp-ref-opacity']?.value ?? 35) / 100,
                 listening: false,
             });
             refLayer.add(refImageNode);
-            if(e['gp-ref-controls']) e['gp-ref-controls'].style.display = '';
-            if(e['gp-ref-toggle'])   e['gp-ref-toggle'].textContent    = '👁 HIDE';
-            notify('Reference image loaded (' + img.naturalWidth + '×' + img.naturalHeight + ')','info');
+            if (el['gp-ref-controls']) el['gp-ref-controls'].style.display = '';
+            if (el['gp-ref-toggle'])   el['gp-ref-toggle'].textContent     = '👁 HIDE';
+            notify('Reference loaded (' + img.naturalWidth + '×' + img.naturalHeight + ')', 'info');
         };
         img.src = src;
     }
@@ -1283,148 +1572,114 @@ const GalaxyPlotter = (() => {
     function clearRefImage() {
         refLayer.destroyChildren();
         refImageNode = null;
-        if(e['gp-ref-controls']) e['gp-ref-controls'].style.display = 'none';
-        notify('Reference image cleared.','info');
+        if (el['gp-ref-controls']) el['gp-ref-controls'].style.display = 'none';
+        notify('Reference cleared.', 'info');
     }
 
-    function hexAlpha(hex, alpha) {
-        const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
-        return 'rgba('+r+','+g+','+b+','+alpha+')';
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  COUNTS
+    // ═══════════════════════════════════════════════════════════════════════════
+    function updateCounts() {
+        if (el['gp-count-sectors']) el['gp-count-sectors'].textContent = universe?.sectors_index?.length ?? 0;
+        if (el['gp-count-systems']) el['gp-count-systems'].textContent = totalSystemCount();
+        let lanes = 0;
+        for (const sd of sectorCache.values()) lanes += (sd.jump_lanes?.length ?? 0);
+        if (el['gp-count-lanes']) el['gp-count-lanes'].textContent = lanes;
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
     //  EVENT WIRING
     // ═══════════════════════════════════════════════════════════════════════════
-    function wireGalaxyEvents() {
+    function wireEvents() {
+        // ── Tool buttons ──────────────────────────────────────────────────────
         document.querySelectorAll('[data-gtool]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const t = btn.dataset.gtool;
                 if (t === 'draw') { startDrawMode(); return; }
                 cancelPolygon();
-                setGalaxyTool(t);
+                setTool(t);
             });
         });
 
-        e['gp-galaxy-save']?.addEventListener('click', saveAll);
-        e['gp-galaxy-fit']?.addEventListener('click',  fitGalaxy);
+        // ── Save + Fit ────────────────────────────────────────────────────────
+        el['gp-save-all']?.addEventListener('click', saveAll);
+        el['gp-fit-view']?.addEventListener('click', fitGalaxy);
+        el['gp-clear-systems']?.addEventListener('click', clearAllSystems);
 
-        e['gp-sec-color-picker']?.addEventListener('input', ev => {
-            if(e['gp-sec-color']) e['gp-sec-color'].value = ev.target.value;
+        // ── Snap options ──────────────────────────────────────────────────────
+        el['gp-snap-enabled']?.addEventListener('change', () => { snapEnabled = el['gp-snap-enabled'].checked; });
+        el['gp-snap-thresh']?.addEventListener('input',   () => { snapThreshPx = parseInt(el['gp-snap-thresh'].value) || 18; });
+
+        // ── Sector properties ─────────────────────────────────────────────────
+        el['gp-sec-color-picker']?.addEventListener('input', ev => {
+            if (el['gp-sec-color']) el['gp-sec-color'].value = ev.target.value;
         });
-        e['gp-sec-apply']?.addEventListener('click', async () => {
+        el['gp-sec-apply']?.addEventListener('click', async () => {
             if (!selectedSectorId) return;
             const entry = universe.sectors_index.find(s => s.id === selectedSectorId);
             if (!entry) return;
-            entry.name  = e['gp-sec-name']?.value.trim() || entry.name;
-            entry.color = e['gp-sec-color']?.value.trim() || entry.color;
-            await saveAll();
-            renderGalaxy();
-            notify('Sector updated.','success');
+            entry.name  = el['gp-sec-name']?.value.trim()  || entry.name;
+            entry.color = el['gp-sec-color']?.value.trim() || entry.color;
+            await API.saveUniverse(universe);
+            renderAll();
+            selectSector(selectedSectorId);
+            notify('Sector updated.', 'success');
         });
-        e['gp-sec-enter']?.addEventListener('click', () => {
-            if (selectedSectorId) enterSectorView(selectedSectorId);
-        });
-        e['gp-sec-forge']?.addEventListener('click', forgeGalaxySector);
+        el['gp-sec-forge']?.addEventListener('click', forgeSector);
 
-        // ── Snap options ────────────────────────────────────────────────────
-        e['gp-snap-enabled']?.addEventListener('change', () => {
-            snapEnabled = e['gp-snap-enabled'].checked;
-        });
-        e['gp-snap-thresh']?.addEventListener('input', () => {
-            snapThreshPx = parseInt(e['gp-snap-thresh'].value) || 18;
-        });
-
-        // ── Background reference image ──────────────────────────────────────
-        e['gp-ref-load']?.addEventListener('click', () => e['gp-ref-file']?.click());
-
-        e['gp-ref-file']?.addEventListener('change', ev => {
-            const file = ev.target.files?.[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = evt => drawRefImage(evt.target.result);
-            reader.readAsDataURL(file);
-            ev.target.value = '';   // allow re-selecting same file
-        });
-
-        e['gp-ref-opacity']?.addEventListener('input', () => {
-            const v = parseFloat(e['gp-ref-opacity'].value) / 100;
-            if(e['gp-ref-opacity-val']) e['gp-ref-opacity-val'].textContent = e['gp-ref-opacity'].value + '%';
-            if(refImageNode) refImageNode.opacity(v);
-        });
-
-        e['gp-ref-toggle']?.addEventListener('click', () => {
-            if (!refImageNode) return;
-            const nowVisible = refImageNode.visible();
-            refImageNode.visible(!nowVisible);
-            e['gp-ref-toggle'].textContent = nowVisible ? '👁 SHOW' : '👁 HIDE';
-        });
-
-        e['gp-ref-clear']?.addEventListener('click', clearRefImage);
-    }
-
-    function wireSectorEvents() {
-        e['gp-back-galaxy']?.addEventListener('click', goBackToGalaxy);
-        e['gp-save-sector']?.addEventListener('click', saveSector);
-
-        document.querySelectorAll('[data-tool]').forEach(btn => {
-            btn.addEventListener('click', () => setSectorTool(btn.dataset.tool));
-        });
-
-        e['gp-node-apply']?.addEventListener('click',  applyNodeEdit);
-        e['gp-lane-apply']?.addEventListener('click',  applyLaneEdit);
-        e['gp-lane-delete']?.addEventListener('click', () => {
-            if (selectedLane) deleteLane(selectedLane.from, selectedLane.to);
-        });
-
-        e['gp-fit']?.addEventListener('click', fitSector);
-
-        e['gp-node-open-system']?.addEventListener('click', () => {
-            const file = e['gp-node-file']?.value;
+        // ── System properties ─────────────────────────────────────────────────
+        el['gp-node-apply']?.addEventListener('click', applyNodeEdit);
+        el['gp-node-open-system']?.addEventListener('click', () => {
+            const file = el['gp-node-file']?.value;
             if (file && typeof OrreryBuilder !== 'undefined') {
                 document.querySelector('[data-module="orrery"]')?.click();
                 OrreryBuilder.loadByFile(file);
             }
         });
+        el['gp-node-forge']?.addEventListener('click', forgeSystem);
 
-        e['gp-node-forge']?.addEventListener('click', async () => {
-            if (!selectedNode || !sectorData) { notify('Select a system node first.', 'warning'); return; }
-            if (typeof SystemForge === 'undefined') { notify('System Forge module not loaded.', 'error'); return; }
-            const sysId = selectedNode.id;
-            const sys   = sectorData.systems.find(s => s.id === sysId);
-            if (!sys) return;
-            await SystemForge.generateAndLink(sysId, {}, (filePath, starName) => {
-                sys.name = starName;
-                sys.file = filePath;
-                if (e['gp-node-name']) e['gp-node-name'].value = starName;
-                if (e['gp-node-file']) e['gp-node-file'].value = filePath;
-                const old = nodeLayer.findOne('#' + sysId);
-                if (old) old.destroy();
-                createNodeShape(sys);
-                const grp = nodeLayer.findOne('#' + sysId);
-                if (grp) selectNode(sysId, grp);
-            });
+        // ── Lane properties ───────────────────────────────────────────────────
+        el['gp-lane-apply']?.addEventListener('click', applyLaneEdit);
+        el['gp-lane-delete']?.addEventListener('click', () => {
+            if (selectedLane) deleteLane(selectedLane.from, selectedLane.to, selectedLane.sectorId);
         });
 
-        e['gp-forge-all']?.addEventListener('click', async () => {
-            if (!sectorData) { notify('No sector loaded.', 'warning'); return; }
-            if (typeof SystemForge === 'undefined') { notify('System Forge not loaded.', 'error'); return; }
-            await forgeCurrentSector(sectorData);
+        // ── Scatter ───────────────────────────────────────────────────────────
+        el['gp-scat-size']?.addEventListener('input', () => {
+            if (el['gp-scat-size-val']) el['gp-scat-size-val'].textContent = el['gp-scat-size'].value;
         });
-    }
+        el['gp-scat-strength']?.addEventListener('input', () => {
+            if (el['gp-scat-strength-val']) el['gp-scat-strength-val'].textContent = el['gp-scat-strength'].value + '%';
+        });
+        el['gp-scat-randseed']?.addEventListener('click', () => {
+            if (el['gp-scat-seed']) el['gp-scat-seed'].value = Math.floor(Math.random() * 99999);
+        });
+        el['gp-scat-preview']?.addEventListener('click',       previewScatter);
+        el['gp-scat-commit']?.addEventListener('click',        commitScatter);
+        el['gp-scat-clear-density']?.addEventListener('click', () => { clearDensity(); notify('Density cleared.', 'info'); });
 
-    function wireScatterEvents() {
-        e['gp-scat-size']?.addEventListener('input', () => {
-            if(e['gp-scat-size-val']) e['gp-scat-size-val'].textContent = e['gp-scat-size'].value;
+        // ── BG Reference ──────────────────────────────────────────────────────
+        el['gp-ref-load']?.addEventListener('click', () => el['gp-ref-file']?.click());
+        el['gp-ref-file']?.addEventListener('change', ev => {
+            const file = ev.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = evt => drawRefImage(evt.target.result);
+            reader.readAsDataURL(file);
+            ev.target.value = '';
         });
-        e['gp-scat-strength']?.addEventListener('input', () => {
-            if(e['gp-scat-strength-val']) e['gp-scat-strength-val'].textContent = e['gp-scat-strength'].value + '%';
+        el['gp-ref-opacity']?.addEventListener('input', () => {
+            const v = parseFloat(el['gp-ref-opacity'].value) / 100;
+            if (el['gp-ref-opacity-val']) el['gp-ref-opacity-val'].textContent = el['gp-ref-opacity'].value + '%';
+            if (refImageNode) refImageNode.opacity(v);
         });
-        e['gp-scat-randseed']?.addEventListener('click', () => {
-            if(e['gp-scat-seed']) e['gp-scat-seed'].value = Math.floor(Math.random()*99999);
+        el['gp-ref-toggle']?.addEventListener('click', () => {
+            if (!refImageNode) return;
+            const vis = refImageNode.visible();
+            refImageNode.visible(!vis);
+            el['gp-ref-toggle'].textContent = vis ? '👁 SHOW' : '👁 HIDE';
         });
-        e['gp-scat-preview']?.addEventListener('click',        previewScatter);
-        e['gp-scat-commit']?.addEventListener('click',         commitScatter);
-        e['gp-scat-clear-density']?.addEventListener('click',  () => { clearDensity(); notify('Density cleared.','info'); });
+        el['gp-ref-clear']?.addEventListener('click', clearRefImage);
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -1434,14 +1689,10 @@ const GalaxyPlotter = (() => {
         init() {
             cacheEls();
             setupStage();
-            wireGalaxyEvents();
-            wireSectorEvents();
-            wireScatterEvents();
-            enterGalaxyView().catch(err => notify('Galaxy Plotter: ' + err.message, 'error'));
+            wireEvents();
+            loadGalaxy().catch(err => notify('Galaxy Plotter: ' + err.message, 'error'));
         },
-        reload:        enterGalaxyView,
-        enterSector:   enterSectorView,
-        renderSector() { renderSector(); },
+        reload: loadGalaxy,
     };
 
 })();

@@ -1,0 +1,11 @@
+{
+  "id": "planet_05_1921",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/uranian_19_diffuse.png",
+    "texture_bump": "assets/textures/gas/uranian_19_bump.png",
+    "texture_specular": "assets/textures/gas/uranian_19_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0034
+  },
+  "pois": []
+}

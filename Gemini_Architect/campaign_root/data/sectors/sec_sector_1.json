@@ -1,14 +1,275 @@
-﻿{
-    "id":  "sec_sector_1",
-    "name":  "Sector 1",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_1",
+  "name": "Sector 1",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1773072749374",
+      "name": "KIC-9939 Ember",
+      "coordinates": {
+        "x": 723,
+        "y": 176
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_9939_ember.json",
+      "main": false
+    },
+    {
+      "id": "sys_1773072750686",
+      "name": "Oriux Sol",
+      "coordinates": {
+        "x": 770,
+        "y": 209
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/oriux_sol.json",
+      "main": false
+    },
+    {
+      "id": "sys_1773072751454",
+      "name": "Theta Ixelon Dwarf",
+      "coordinates": {
+        "x": 800,
+        "y": 155
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/theta_ixelon_dwarf.json",
+      "main": false
+    },
+    {
+      "id": "sys_1773072752366",
+      "name": "Beta Kethis Dim",
+      "coordinates": {
+        "x": 770,
+        "y": 100
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/beta_kethis_dim.json",
+      "main": false
+    },
+    {
+      "id": "sys_1_1773072826462_0",
+      "name": "Rynara Dim",
+      "coordinates": {
+        "x": 805,
+        "y": 100
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rynara_dim.json",
+      "main": false
+    },
+    {
+      "id": "sys_2_1773072826462_1",
+      "name": "Kerath Red",
+      "coordinates": {
+        "x": 799,
+        "y": 259
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kerath_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_3_1773072826462_2",
+      "name": "Eta Nexara Blaze",
+      "coordinates": {
+        "x": 749,
+        "y": 182
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/eta_nexara_blaze.json",
+      "main": false
+    },
+    {
+      "id": "sys_4_1773072826462_3",
+      "name": "Aexia Sol",
+      "coordinates": {
+        "x": 733,
+        "y": 57
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/aexia_sol.json",
+      "main": false
+    },
+    {
+      "id": "sys_5_1773072826462_4",
+      "name": "BD-650 Red",
+      "coordinates": {
+        "x": 700,
+        "y": 55
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/bd_650_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_6_1773072826462_5",
+      "name": "VT-2365 Ember",
+      "coordinates": {
+        "x": 766,
+        "y": 127
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/vt_2365_ember.json",
+      "main": false
+    },
+    {
+      "id": "sys_7_1773072826462_6",
+      "name": "Delta Kethis Ember",
+      "coordinates": {
+        "x": 852,
+        "y": 71
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/delta_kethis_ember.json",
+      "main": false
+    },
+    {
+      "id": "sys_8_1773072826462_7",
+      "name": "KIC-377 Red",
+      "coordinates": {
+        "x": 776,
+        "y": 242
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_377_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_9_1773072826462_8",
+      "name": "Gamma Dravus Prime",
+      "coordinates": {
+        "x": 806,
+        "y": 40
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gamma_dravus_prime.json",
+      "main": false
+    },
+    {
+      "id": "sys_10_1773072826462_9",
+      "name": "Saxeth Dwarf",
+      "coordinates": {
+        "x": 819,
+        "y": 196
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/saxeth_dwarf.json",
+      "main": false
+    },
+    {
+      "id": "sys_11_1773072826462_10",
+      "name": "NZ-8210 Red",
+      "coordinates": {
+        "x": 793,
+        "y": 183
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/nz_8210_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_12_1773072826462_11",
+      "name": "Eta Tylath Ember",
+      "coordinates": {
+        "x": 765,
+        "y": 159
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/eta_tylath_ember.json",
+      "main": false
+    },
+    {
+      "id": "sys_13_1773072826462_12",
+      "name": "Theta Ixelon Red",
+      "coordinates": {
+        "x": 725,
+        "y": 151
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/theta_ixelon_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_14_1773072826462_13",
+      "name": "Nexath Dwarf",
+      "coordinates": {
+        "x": 766,
+        "y": 267
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/nexath_dwarf.json",
+      "main": false
+    },
+    {
+      "id": "sys_15_1773072826462_14",
+      "name": "XR-9206 Red",
+      "coordinates": {
+        "x": 752,
+        "y": 79
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/xr_9206_red.json",
+      "main": false
+    },
+    {
+      "id": "sys_16_1773072826462_15",
+      "name": "Beta Caelux Ember",
+      "coordinates": {
+        "x": 728,
+        "y": 223
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/beta_caelux_ember.json",
+      "main": false
+    },
+    {
+      "id": "sys_17_1773072826462_16",
+      "name": "Upsilon Arconis Glow",
+      "coordinates": {
+        "x": 827,
+        "y": 72
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/upsilon_arconis_glow.json",
+      "main": false
+    },
+    {
+      "id": "sys_18_1773072826462_17",
+      "name": "Theta Serpenix Dim",
+      "coordinates": {
+        "x": 709,
+        "y": 95
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/theta_serpenix_dim.json",
+      "main": false
+    }
+  ],
+  "jump_lanes": []
 }
