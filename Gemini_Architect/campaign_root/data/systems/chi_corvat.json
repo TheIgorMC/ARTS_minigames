@@ -1,0 +1,188 @@
+{
+  "id": "chi_corvat",
+  "name": "Chi Corvat",
+  "star": {
+    "name": "Chi Corvat",
+    "spectral_class": "M2V",
+    "radius_km": 57040,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9804",
+      "name": "Shivren",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.08,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_01_9804.json",
+      "children": [
+        {
+          "id": "moon_0_116",
+          "name": "Shivren I",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_1_547",
+          "name": "Shivren II",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_2_913",
+          "name": "Shivren III",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5533",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.1,
+      "texture": "assets/textures/gas/jovian_19_diffuse.png",
+      "file": "data/bodies/planet_02_5533.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_6351",
+      "name": "Remnant",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.76,
+      "texture": "assets/textures/rocky/martian_12_diffuse.png",
+      "file": "data/bodies/planet_03_6351.json",
+      "children": [
+        {
+          "id": "moon_0_797",
+          "name": "Remnant I",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        },
+        {
+          "id": "moon_1_911",
+          "name": "Remnant II",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        },
+        {
+          "id": "moon_2_952",
+          "name": "Remnant III",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5429",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.51,
+      "texture": "assets/textures/gas/neptunian_09_diffuse.png",
+      "file": "data/bodies/planet_04_5429.json",
+      "children": [
+        {
+          "id": "moon_0_834",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_941",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_2_158",
+          "name": "Gelida III",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_3_168",
+          "name": "Gelida IV",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3717",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.55,
+      "texture": "assets/textures/gas/crimson_16_diffuse.png",
+      "file": "data/bodies/planet_05_3717.json",
+      "children": [
+        {
+          "id": "moon_0_829",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        }
+      ]
+    },
+    {
+      "id": "planet_06_9637",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.21,
+      "texture": "assets/textures/gas/neptunian_16_diffuse.png",
+      "file": "data/bodies/planet_06_9637.json",
+      "children": [
+        {
+          "id": "moon_0_463",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_1_634",
+          "name": "Arcturus II",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_2_433",
+          "name": "Arcturus III",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        }
+      ]
+    },
+    {
+      "id": "belt_8216",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 0.98,
+      "width": 0.16,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_853",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.97,
+          "orbit_distance": 0.0044,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

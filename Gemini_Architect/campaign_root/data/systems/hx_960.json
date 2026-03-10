@@ -1,0 +1,144 @@
+{
+  "id": "hx_960",
+  "name": "HX-960",
+  "star": {
+    "name": "HX-960",
+    "spectral_class": "K2V",
+    "radius_km": 458363,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6421",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.77,
+      "texture": "assets/textures/gas/uranian_05_diffuse.png",
+      "file": "data/bodies/planet_01_6421.json",
+      "children": [
+        {
+          "id": "moon_0_885",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_1_350",
+          "name": "Arcturus II",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_2_187",
+          "name": "Arcturus III",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_3_493",
+          "name": "Arcturus IV",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6807",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 12.99,
+      "texture": "assets/textures/gas/saturnian_20_diffuse.png",
+      "file": "data/bodies/planet_02_6807.json",
+      "children": [
+        {
+          "id": "moon_0_334",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "moon_1_374",
+          "name": "Gravitus II",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_2_191",
+          "name": "Gravitus III",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_3_903",
+          "name": "Gravitus IV",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        }
+      ]
+    },
+    {
+      "id": "planet_03_2119",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 18.42,
+      "texture": "assets/textures/gas/crimson_18_diffuse.png",
+      "file": "data/bodies/planet_03_2119.json",
+      "children": [
+        {
+          "id": "moon_0_918",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_752",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_2_946",
+          "name": "Nimbus III",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        }
+      ]
+    },
+    {
+      "id": "belt_8372",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 3.09,
+      "width": 0.37,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_405",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.71,
+          "orbit_distance": 0.0025,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_648",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.85,
+          "orbit_distance": 0.0044,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

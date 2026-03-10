@@ -1,0 +1,78 @@
+{
+  "id": "nz_621",
+  "name": "NZ-621",
+  "star": {
+    "name": "NZ-621",
+    "spectral_class": "M2V",
+    "radius_km": 310350,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6593",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.14,
+      "texture": "assets/textures/gas/neptunian_16_diffuse.png",
+      "file": "data/bodies/planet_01_6593.json",
+      "children": [
+        {
+          "id": "moon_0_685",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8125",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.64,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_02_8125.json",
+      "children": [
+        {
+          "id": "moon_0_691",
+          "name": "Galedon I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_520",
+          "name": "Galedon II",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8288",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.79,
+      "texture": "assets/textures/gas/neptunian_15_diffuse.png",
+      "file": "data/bodies/planet_03_8288.json",
+      "children": [
+        {
+          "id": "moon_0_822",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_1_638",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    }
+  ]
+}

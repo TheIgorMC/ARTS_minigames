@@ -358,7 +358,9 @@ const OrreryBuilder = (() => {
             if (ev.button !== 0) return;
             drag.on   = true; drag.moved = false;
             drag.sx   = ev.clientX; drag.sy  = ev.clientY;
-            drag.cx0  = cam.tx;     drag.cy0 = cam.ty;
+            // Snap target to current visual position so drag starts from where the view actually is
+            cam.tx = cam.x; cam.ty = cam.y;
+            drag.cx0  = cam.x;      drag.cy0 = cam.y;
             canvas.style.cursor = 'grabbing';
         });
         window.addEventListener('mousemove', ev => {

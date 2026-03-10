@@ -1,0 +1,70 @@
+{
+  "id": "tarath_ember",
+  "name": "Tarath Ember",
+  "star": {
+    "name": "Tarath Ember",
+    "spectral_class": "M2V",
+    "radius_km": 83244,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9137",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.23,
+      "texture": "assets/textures/gas/crimson_14_diffuse.png",
+      "file": "data/bodies/planet_01_9137.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_1805",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 4.25,
+      "texture": "assets/textures/gas/jovian_06_diffuse.png",
+      "file": "data/bodies/planet_02_1805.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_4781",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 6.67,
+      "texture": "assets/textures/gas/uranian_12_diffuse.png",
+      "file": "data/bodies/planet_03_4781.json",
+      "children": [
+        {
+          "id": "moon_0_844",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_1_440",
+          "name": "Sleetmaw II",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_2_547",
+          "name": "Sleetmaw III",
+          "type": "Moon",
+          "orbit_distance": 0.057
+        },
+        {
+          "id": "moon_3_797",
+          "name": "Sleetmaw IV",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        }
+      ]
+    }
+  ]
+}

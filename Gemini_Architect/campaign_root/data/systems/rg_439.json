@@ -1,0 +1,163 @@
+{
+  "id": "rg_439",
+  "name": "RG-439",
+  "star": {
+    "name": "RG-439",
+    "spectral_class": "M2V",
+    "radius_km": 350978,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7086",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.06,
+      "texture": "assets/textures/gas/uranian_20_diffuse.png",
+      "file": "data/bodies/planet_01_7086.json",
+      "children": [
+        {
+          "id": "moon_0_941",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_1_543",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_2_787",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_3_781",
+          "name": "Tundris IV",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6999",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.66,
+      "texture": "assets/textures/gas/jovian_19_diffuse.png",
+      "file": "data/bodies/planet_02_6999.json",
+      "children": [
+        {
+          "id": "moon_0_181",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_1_502",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6837",
+      "name": "Wither",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 3.84,
+      "texture": "assets/textures/rocky/martian_06_diffuse.png",
+      "file": "data/bodies/planet_03_6837.json",
+      "children": [
+        {
+          "id": "moon_0_910",
+          "name": "Wither I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_473",
+          "name": "Wither II",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ],
+      "scale": 1
+    },
+    {
+      "id": "planet_04_6478",
+      "name": "Shardfield",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 5.49,
+      "texture": "assets/textures/rocky/barren_11_diffuse.png",
+      "file": "data/bodies/planet_04_6478.json",
+      "children": [
+        {
+          "id": "moon_0_602",
+          "name": "Shardfield I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_1_742",
+          "name": "Shardfield II",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_2_698",
+          "name": "Shardfield III",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        },
+        {
+          "id": "moon_3_923",
+          "name": "Shardfield IV",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "belt_7245",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.5,
+      "width": 0.3,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_647",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.8,
+          "orbit_distance": 0.0031,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_501",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.75,
+          "orbit_distance": 0.0052,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

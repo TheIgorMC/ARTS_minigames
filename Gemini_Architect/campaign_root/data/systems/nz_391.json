@@ -1,0 +1,141 @@
+{
+  "id": "nz_391",
+  "name": "NZ-391",
+  "star": {
+    "name": "NZ-391",
+    "spectral_class": "M2V",
+    "radius_km": 412771,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1178",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.81,
+      "texture": "assets/textures/gas/uranian_08_diffuse.png",
+      "file": "data/bodies/planet_01_1178.json",
+      "children": [
+        {
+          "id": "moon_0_945",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_1_115",
+          "name": "Boreas II",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_2_899",
+          "name": "Boreas III",
+          "type": "Moon",
+          "orbit_distance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3249",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.51,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_02_3249.json",
+      "children": [
+        {
+          "id": "moon_0_712",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_1_286",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9669",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.09,
+      "texture": "assets/textures/gas/toxic_11_diffuse.png",
+      "file": "data/bodies/planet_03_9669.json",
+      "children": [
+        {
+          "id": "moon_0_348",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_1_729",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_2_647",
+          "name": "Jotunheim III",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2687",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.08,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_04_2687.json",
+      "children": [
+        {
+          "id": "moon_0_410",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_324",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        }
+      ]
+    },
+    {
+      "id": "belt_1548",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.46,
+      "width": 0.31,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_761",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.98,
+          "orbit_distance": 0.0064,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

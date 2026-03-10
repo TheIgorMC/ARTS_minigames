@@ -1,0 +1,11 @@
+{
+  "id": "planet_03_6612",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/uranian_12_diffuse.png",
+    "texture_bump": "assets/textures/gas/uranian_12_bump.png",
+    "texture_specular": "assets/textures/gas/uranian_12_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0039
+  },
+  "pois": []
+}

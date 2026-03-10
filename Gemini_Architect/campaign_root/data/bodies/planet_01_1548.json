@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_1548",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/saturnian_06_diffuse.png",
+    "texture_bump": "assets/textures/gas/saturnian_06_bump.png",
+    "texture_specular": "assets/textures/gas/saturnian_06_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0084
+  },
+  "pois": []
+}

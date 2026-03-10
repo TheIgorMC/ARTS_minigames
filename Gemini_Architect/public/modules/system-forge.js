@@ -71,15 +71,33 @@ const SystemForge = (() => {
 
     // ── Planet Name Pools ──────────────────────────────────────────────────────
     const PLANET_NAMES = {
-        Terran:      ['Vitara', 'Neova', 'Greenmere', 'Arcadia', 'Verdun', 'Hallava', 'Ternex'],
-        Ocean:       ['Oceanus', 'Mareas', 'Poseidon', 'Undine', 'Deluge', 'Pelagis', 'Abyssia'],
-        Jungle:      ['Ferox', 'Verdax', 'Sylvara', 'Thornveil', 'Canopy', 'Deeproot', 'Overia'],
-        Desert:      ['Saren', 'Dune', 'Aethon', 'Ashveil', 'Scorch', 'Sandara', 'Ariden'],
-        Barren:      ['Cinder', 'Grit', 'Ashen', 'Desolus', 'Rubble', 'Pebrix', 'Dusthaven'],
-        Lava:        ['Ignar', 'Pyroc', 'Scald', 'Moltis', 'Flare', 'Caldera', 'Embrix'],
-        Rock:        ['Chert', 'Gravel', 'Obsid', 'Flint', 'Slag', 'Quarrite', 'Ironrock'],
-        'Gas Giant': ['Jovara', 'Magnax', 'Stratum', 'Nebular', 'Galex', 'Colossex', 'Vortania'],
-        'Ice Giant': ['Cryox', 'Frostia', 'Glacian', 'Iceval', 'Brine', 'Polaris', 'Winteris'],
+        Terran:      ['Vitara', 'Neova', 'Greenmere', 'Arcadia', 'Verdun', 'Hallava', 'Ternex',
+                      'Elysium', 'Gaiara', 'Meridia', 'Solhaven', 'Tempera', 'Cascara', 'Borealis',
+                      'Cerula', 'Sylvanis', 'Prairia', 'Equinox', 'Anthea', 'Vespera'],
+        Ocean:       ['Oceanus', 'Mareas', 'Poseidon', 'Undine', 'Deluge', 'Pelagis', 'Abyssia',
+                      'Tidara', 'Nereid', 'Marinus', 'Coralith', 'Aquilon', 'Thalassa', 'Syrene',
+                      'Deepwell', 'Atollis', 'Brinefall', 'Wavecrest', 'Salacia', 'Azurion'],
+        Jungle:      ['Ferox', 'Verdax', 'Sylvara', 'Thornveil', 'Canopy', 'Deeproot', 'Overia',
+                      'Pangora', 'Briarth', 'Rootholme', 'Viridis', 'Mossheim', 'Tanglewood', 'Faunis',
+                      'Venara', 'Sporefall', 'Chlora', 'Wildthorn', 'Orchida', 'Everbloom'],
+        Desert:      ['Saren', 'Dune', 'Aethon', 'Ashveil', 'Scorch', 'Sandara', 'Ariden',
+                      'Miraga', 'Khamsin', 'Dustral', 'Solarion', 'Sahael', 'Bleakwind', 'Erosia',
+                      'Parched', 'Sirocca', 'Drymouth', 'Ember', 'Zephyrus', 'Nomadis'],
+        Barren:      ['Cinder', 'Grit', 'Ashen', 'Desolus', 'Rubble', 'Pebrix', 'Dusthaven',
+                      'Voidreach', 'Scabland', 'Hollowrock', 'Graymere', 'Forsaken', 'Null', 'Wither',
+                      'Shardfield', 'Bleachbone', 'Errata', 'Remnant', 'Pallor', 'Barraxis'],
+        Lava:        ['Ignar', 'Pyroc', 'Scald', 'Moltis', 'Flare', 'Caldera', 'Embrix',
+                      'Magmus', 'Vulcara', 'Cinderfall', 'Scorian', 'Infernis', 'Ashfall', 'Furnace',
+                      'Brimveil', 'Lavarith', 'Obsidion', 'Crucible', 'Smeltar', 'Hearthstone'],
+        Rock:        ['Chert', 'Gravel', 'Obsid', 'Flint', 'Slag', 'Quarrite', 'Ironrock',
+                      'Basaltis', 'Granix', 'Feldspar', 'Craton', 'Talus', 'Regolith', 'Schist',
+                      'Cobblestone', 'Breccia', 'Geode', 'Cairn', 'Bedrock', 'Monolith'],
+        'Gas Giant': ['Jovara', 'Magnax', 'Stratum', 'Nebular', 'Galex', 'Colossex', 'Vortania',
+                      'Titanis', 'Cyclonis', 'Bellows', 'Gravitus', 'Aether', 'Cumulus', 'Nimbus',
+                      'Tempestia', 'Galedon', 'Expansia', 'Jotunheim', 'Leviathan', 'Goliath'],
+        'Ice Giant': ['Cryox', 'Frostia', 'Glacian', 'Iceval', 'Brine', 'Polaris', 'Winteris',
+                      'Tundris', 'Boreas', 'Permafrost', 'Crystallis', 'Hailmark', 'Gelida', 'Shivren',
+                      'Arcturus', 'Rimfall', 'Sleetmaw', 'Frostholme', 'Icebreak', 'Aurorax'],
     };
 
     // ── Body render metadata by planet type ────────────────────────────────────
@@ -633,7 +651,7 @@ const SystemForge = (() => {
             await saveBodyFiles(saveData);
             await API.saveFile(rel, saveData);
             notify(`Forged "${starName}" (${saveData.orbitals?.length} orbitals).`, 'success');
-            if (callback) callback(rel, starName);
+            if (callback) callback(rel, starName, systemData.star?.color_hex || null);
         } catch (err) {
             notify(`Forge failed for ${nodeId}: ${err.message}`, 'error');
             console.error(err);
@@ -659,6 +677,7 @@ const SystemForge = (() => {
                 await API.saveFile(rel, saveData);
                 sys.file = rel;
                 sys.name = starName;   // update node label to match star name
+                sys.star_color = systemData.star?.color_hex || null;
             } catch (err) {
                 console.error(`Failed to forge ${nodeId}:`, err);
             }

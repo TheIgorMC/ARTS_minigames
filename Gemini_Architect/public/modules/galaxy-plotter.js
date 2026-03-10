@@ -402,8 +402,8 @@ const GalaxyPlotter = (() => {
     // ── System node ────────────────────────────────────────────────────────────
     function createSystemNode(sys, sectorId, sectorColor) {
         const isMain = sys.main === true;
-        const color  = STATUS_COLORS[sys.status] || sectorColor;
-        const radius = isMain ? 10 : 6;
+        const color  = sys.star_color || STATUS_COLORS[sys.status] || sectorColor;
+        const radius = isMain ? 5 : 3;
         const scale  = nodeLayer.scaleX();
 
         const group = new Konva.Group({
@@ -416,24 +416,24 @@ const GalaxyPlotter = (() => {
         // Glow for main systems
         if (isMain) {
             group.add(new Konva.Circle({
-                radius: radius + 8, fill: 'transparent',
+                radius: radius + 4, fill: 'transparent',
                 stroke: color, strokeWidth: 1, opacity: 0.3, listening: false,
                 name: 'glow',
             }));
         }
 
-        // Main circle
+        // Main circle — filled with star color
         const circle = new Konva.Circle({
-            radius, fill: isMain ? '#0f1520' : '#0a0a12',
-            stroke: color, strokeWidth: isMain ? 2.5 : 1.5,
+            radius, fill: color,
+            stroke: color, strokeWidth: isMain ? 1.5 : 1,
             name: 'circle',
         });
 
         // Diamond icon for main systems
         if (isMain) {
             group.add(new Konva.RegularPolygon({
-                sides: 4, radius: 3,
-                fill: color, listening: false, name: 'star-icon',
+                sides: 4, radius: 2,
+                fill: '#fff', listening: false, name: 'star-icon',
             }));
         }
 
@@ -469,7 +469,7 @@ const GalaxyPlotter = (() => {
         group.on('mouseenter', () => {
             if (activeTool === 'scatter') return;
             stage.container().style.cursor = activeTool === 'delete' ? 'not-allowed' : 'pointer';
-            circle.strokeWidth(isMain ? 3.5 : 2.5);
+            circle.strokeWidth(isMain ? 2.5 : 2);
             const glow = group.findOne('.glow');
             if (glow) glow.opacity(0.6);
         });
@@ -477,7 +477,7 @@ const GalaxyPlotter = (() => {
             if (activeTool === 'scatter') return;
             stage.container().style.cursor = 'default';
             const sel = selectedNode?.id === sys.id;
-            circle.strokeWidth(sel ? (isMain ? 3.5 : 2.5) : (isMain ? 2.5 : 1.5));
+            circle.strokeWidth(sel ? (isMain ? 2.5 : 2) : (isMain ? 1.5 : 1));
             const glow = group.findOne('.glow');
             if (glow) glow.opacity(sel ? 0.5 : 0.3);
         });
@@ -556,41 +556,42 @@ const GalaxyPlotter = (() => {
 
     // ── LOD update ─────────────────────────────────────────────────────────────
     function updateLOD(scale) {
-        // Inverse-scale factor so labels stay a constant size on screen
+        // Inverse-scale with slight growth: labels get a bit bigger as you zoom in
         const inv = 1 / Math.max(scale, 0.05);
+        const grow = Math.pow(Math.max(scale, 0.05), 0.3);  // mild growth factor
 
         nodeLayer.children.forEach(grp => {
             if (!grp.hasName('sys-node')) return;
             const isMain = grp.hasName('sys-main');
-            const radius = isMain ? 10 : 6;
+            const radius = isMain ? 5 : 3;
 
             // Whole group visibility
             if (!isMain) grp.visible(scale >= LOD_MINOR);
 
-            // Name label — constant screen-size text
+            // Name label — grows slightly with zoom
             const nameLbl = grp.findOne('.name-label');
             if (nameLbl) {
                 nameLbl.visible(isMain ? scale >= LOD_MAIN_LBL : scale >= LOD_LABELS);
                 const baseFontSize = isMain ? 11 : 9;
-                nameLbl.fontSize(baseFontSize * inv);
+                nameLbl.fontSize(baseFontSize * inv * grow);
                 nameLbl.y(radius + 4 * inv);
                 nameLbl.offsetX(nameLbl.width() / 2);
             }
 
-            // Detail label — constant screen-size text
+            // Detail label — grows slightly with zoom
             const detailLbl = grp.findOne('.detail-label');
             if (detailLbl) {
                 detailLbl.visible(scale >= LOD_DETAIL);
-                detailLbl.fontSize(8 * inv);
-                detailLbl.y(radius + 16 * inv);
+                detailLbl.fontSize(8 * inv * grow);
+                detailLbl.y(radius + 14 * inv);
                 detailLbl.offsetX(detailLbl.width() / 2);
             }
         });
 
-        // Sector name labels — constant screen-size
+        // Sector name labels — grows slightly with zoom
         nodeLayer.children.forEach(lbl => {
             if (lbl.className === 'Text' && lbl.name() === 'sector-label') {
-                lbl.fontSize(14 * inv);
+                lbl.fontSize(14 * inv * grow);
                 lbl.offsetX(lbl.width() / 2);
                 lbl.offsetY(lbl.height() / 2);
             }
@@ -1288,9 +1289,10 @@ const GalaxyPlotter = (() => {
         const sys = sd?.systems?.find(s => s.id === sysId);
         if (!sys) return;
 
-        await SystemForge.generateAndLink(sysId, {}, (filePath, starName) => {
+        await SystemForge.generateAndLink(sysId, {}, (filePath, starName, starColor) => {
             sys.name = starName;
             sys.file = filePath;
+            sys.star_color = starColor;
             dirtySectors.add(sectorId);
             if (el['gp-node-name']) el['gp-node-name'].value = starName;
             if (el['gp-node-file']) el['gp-node-file'].value = filePath;

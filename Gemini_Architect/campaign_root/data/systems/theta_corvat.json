@@ -1,0 +1,128 @@
+{
+  "id": "theta_corvat",
+  "name": "Theta Corvat",
+  "star": {
+    "name": "Theta Corvat",
+    "spectral_class": "M2V",
+    "radius_km": 224946,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5466",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.78,
+      "texture": "assets/textures/gas/uranian_09_diffuse.png",
+      "file": "data/bodies/planet_01_5466.json",
+      "children": [
+        {
+          "id": "moon_0_306",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        },
+        {
+          "id": "moon_1_197",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8580",
+      "name": "Shardfield",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2,
+      "texture": "assets/textures/rocky/mercurian_01_diffuse.png",
+      "file": "data/bodies/planet_02_8580.json",
+      "children": [
+        {
+          "id": "moon_0_123",
+          "name": "Shardfield I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_1_715",
+          "name": "Shardfield II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_596",
+          "name": "Shardfield III",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5826",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.31,
+      "texture": "assets/textures/gas/saturnian_08_diffuse.png",
+      "file": "data/bodies/planet_03_5826.json",
+      "children": [
+        {
+          "id": "moon_0_866",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_681",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "moon_2_568",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        }
+      ]
+    },
+    {
+      "id": "planet_04_7313",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.13,
+      "texture": "assets/textures/gas/toxic_10_diffuse.png",
+      "file": "data/bodies/planet_04_7313.json",
+      "children": []
+    },
+    {
+      "id": "belt_1928",
+      "name": "Shattered Mantle",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.61,
+      "width": 0.14,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_769",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.82,
+          "orbit_distance": 0.0033,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

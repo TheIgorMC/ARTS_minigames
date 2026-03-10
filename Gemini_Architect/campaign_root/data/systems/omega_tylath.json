@@ -1,0 +1,99 @@
+{
+  "id": "omega_tylath",
+  "name": "Omega Tylath",
+  "star": {
+    "name": "Omega Tylath",
+    "spectral_class": "M2V",
+    "radius_km": 376351,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3944",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.07,
+      "texture": "assets/textures/gas/crimson_11_diffuse.png",
+      "file": "data/bodies/planet_01_3944.json",
+      "children": [
+        {
+          "id": "moon_0_688",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7344",
+      "name": "Grit",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.69,
+      "texture": "assets/textures/rocky/mercurian_06_diffuse.png",
+      "file": "data/bodies/planet_02_7344.json",
+      "children": [
+        {
+          "id": "moon_0_202",
+          "name": "Grit I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_214",
+          "name": "Grit II",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_2_230",
+          "name": "Grit III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8020",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.99,
+      "texture": "assets/textures/gas/uranian_02_diffuse.png",
+      "file": "data/bodies/planet_03_8020.json",
+      "children": [
+        {
+          "id": "moon_0_641",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        }
+      ]
+    },
+    {
+      "id": "belt_6941",
+      "name": "The Debris Field",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.17,
+      "width": 0.4,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_760",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.94,
+          "orbit_distance": 0.0061,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

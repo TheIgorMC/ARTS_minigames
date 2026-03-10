@@ -110,12 +110,17 @@ const PlanetaryStudio = (() => {
             if (!bodyData.render_data) bodyData.render_data = {
                 texture_diffuse:  '',
                 texture_bump:     '',
+                texture_specular: '',
                 atmosphere_color: '#88aaff',
                 rotation_speed:   0.005,
             };
             populateRenderEditor();
-            autoRotateSpeed = bodyData.render_data.rotation_speed || 0.005;
-            loadTexture3D(bodyData.render_data.texture_diffuse, bodyData.render_data.texture_bump);
+            loadTexture3D(
+                bodyData.render_data.texture_diffuse,
+                bodyData.render_data.texture_bump,
+                bodyData.render_data.texture_specular,
+                bodyData.render_data.texture_emissive
+            );
             updateAtmosphere();
             renderPOIList();
             updatePOIMarkers();
@@ -143,8 +148,12 @@ const PlanetaryStudio = (() => {
         bodyData.render_data.texture_bump     = els['ps-tex-bump'].value.trim();
         bodyData.render_data.atmosphere_color = els['ps-atmo-color'].value.trim();
         bodyData.render_data.rotation_speed   = parseFloat(els['ps-rot-speed'].value) || 0.005;
-        autoRotateSpeed = bodyData.render_data.rotation_speed;
-        loadTexture3D(bodyData.render_data.texture_diffuse, bodyData.render_data.texture_bump);
+        loadTexture3D(
+            bodyData.render_data.texture_diffuse,
+            bodyData.render_data.texture_bump,
+            bodyData.render_data.texture_specular,
+            bodyData.render_data.texture_emissive
+        );
         updateAtmosphere();
         updatePOIMarkers();
         notify('Render data updated.', 'success');
@@ -315,19 +324,11 @@ const PlanetaryStudio = (() => {
     function animate3D() {
         threeAnimId = requestAnimationFrame(animate3D);
         if (!renderer || !scene || !camera) return;
-
-        // Auto-rotate the planet
-        if (!orbDrag && sphereMesh) {
-            sphereMesh.rotation.y += autoRotateSpeed;
-            // POI group must rotate with the sphere
-            if (poiGroup) poiGroup.rotation.y = sphereMesh.rotation.y;
-        }
-
         renderer.render(scene, camera);
     }
 
     // ── 3D Texture loader ──────────────────────────────────────────────────────
-    function loadTexture3D(diffusePath, bumpPath) {
+    function loadTexture3D(diffusePath, bumpPath, specPath, emissivePath) {
         if (!texLoader || !sphereMesh) return;
 
         const mat = sphereMesh.material;
@@ -360,6 +361,34 @@ const PlanetaryStudio = (() => {
             });
         } else {
             mat.bumpMap = null;
+            mat.needsUpdate = true;
+        }
+
+        // Specular map
+        if (specPath) {
+            const sUrl = `/campaign-assets/${specPath.replace(/^\//, '')}`;
+            texLoader.load(sUrl, tex => {
+                mat.specularMap = tex;
+                mat.specular = new THREE.Color(0x333333);
+                mat.needsUpdate = true;
+            });
+        } else {
+            mat.specularMap = null;
+            mat.needsUpdate = true;
+        }
+
+        // Emissive map (e.g. city lights, lava glow)
+        if (emissivePath) {
+            const eUrl = `/campaign-assets/${emissivePath.replace(/^\//, '')}`;
+            texLoader.load(eUrl, tex => {
+                mat.emissiveMap = tex;
+                mat.emissive = new THREE.Color(0xffffff);
+                mat.emissiveIntensity = 0.6;
+                mat.needsUpdate = true;
+            });
+        } else {
+            mat.emissiveMap = null;
+            mat.emissive = new THREE.Color(0x000000);
             mat.needsUpdate = true;
         }
     }

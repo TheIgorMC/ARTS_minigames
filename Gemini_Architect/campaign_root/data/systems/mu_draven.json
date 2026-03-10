@@ -1,0 +1,210 @@
+{
+  "id": "mu_draven",
+  "name": "Mu Draven",
+  "star": {
+    "name": "Mu Draven",
+    "spectral_class": "M2V",
+    "radius_km": 160666,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2657",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.78,
+      "texture": "assets/textures/gas/crimson_09_diffuse.png",
+      "file": "data/bodies/planet_01_2657.json",
+      "children": [
+        {
+          "id": "moon_0_684",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_812",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_2_856",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "refinery_699",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.91,
+          "orbit_distance": 0.0083,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6513",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.81,
+      "texture": "assets/textures/gas/neptunian_05_diffuse.png",
+      "file": "data/bodies/planet_02_6513.json",
+      "children": [
+        {
+          "id": "moon_0_315",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4636",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.45,
+      "texture": "assets/textures/gas/jovian_03_diffuse.png",
+      "file": "data/bodies/planet_03_4636.json",
+      "children": [
+        {
+          "id": "moon_0_368",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        },
+        {
+          "id": "moon_1_210",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_2_465",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_3_145",
+          "name": "Tempestia IV",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2673",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.21,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_04_2673.json",
+      "children": [
+        {
+          "id": "moon_0_991",
+          "name": "Stratum I",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_1_901",
+          "name": "Stratum II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_850",
+          "name": "Stratum III",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_3_220",
+          "name": "Stratum IV",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6039",
+      "name": "Voidreach",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 5,
+      "orbit_radius": 3.9,
+      "texture": "assets/textures/rocky/martian_08_diffuse.png",
+      "file": "data/bodies/planet_05_6039.json",
+      "children": [
+        {
+          "id": "moon_0_532",
+          "name": "Voidreach I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_601",
+          "name": "Voidreach II",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        }
+      ]
+    },
+    {
+      "id": "planet_06_2095",
+      "name": "Barraxis",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 6,
+      "orbit_radius": 5.11,
+      "texture": "assets/textures/rocky/martian_15_diffuse.png",
+      "file": "data/bodies/planet_06_2095.json",
+      "children": [
+        {
+          "id": "moon_0_191",
+          "name": "Barraxis I",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_1_149",
+          "name": "Barraxis II",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        }
+      ]
+    },
+    {
+      "id": "belt_8501",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.29,
+      "width": 0.14,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_381",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.89,
+          "orbit_distance": 0.0063,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

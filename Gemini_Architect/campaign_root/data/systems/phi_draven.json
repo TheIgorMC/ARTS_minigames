@@ -1,0 +1,127 @@
+{
+  "id": "phi_draven",
+  "name": "Phi Draven",
+  "star": {
+    "name": "Phi Draven",
+    "spectral_class": "M2V",
+    "radius_km": 100469,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8024",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.57,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_01_8024.json",
+      "children": [
+        {
+          "id": "moon_0_137",
+          "name": "Brine I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4990",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.31,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_02_4990.json",
+      "children": [
+        {
+          "id": "moon_0_858",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_1_278",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "outpost_4376",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.7,
+          "orbit_distance": 0.0085,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6023",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.36,
+      "texture": "assets/textures/gas/uranian_01_diffuse.png",
+      "file": "data/bodies/planet_03_6023.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_2807",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.24,
+      "texture": "assets/textures/gas/uranian_05_diffuse.png",
+      "file": "data/bodies/planet_04_2807.json",
+      "children": [
+        {
+          "id": "moon_0_971",
+          "name": "Brine I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        }
+      ]
+    },
+    {
+      "id": "planet_05_1672",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.49,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_05_1672.json",
+      "children": []
+    },
+    {
+      "id": "planet_06_2496",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.94,
+      "texture": "assets/textures/gas/uranian_20_diffuse.png",
+      "file": "data/bodies/planet_06_2496.json",
+      "children": [
+        {
+          "id": "moon_0_319",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        },
+        {
+          "id": "moon_1_745",
+          "name": "Boreas II",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "xr_571",
+  "name": "XR-571",
+  "star": {
+    "name": "XR-571",
+    "spectral_class": "M2V",
+    "radius_km": 212583,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2931",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.6,
+      "texture": "assets/textures/gas/saturnian_01_diffuse.png",
+      "file": "data/bodies/planet_01_2931.json",
+      "children": [
+        {
+          "id": "moon_0_712",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_1_595",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_2_948",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_3_121",
+          "name": "Titanis IV",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9086",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.48,
+      "texture": "assets/textures/gas/toxic_10_diffuse.png",
+      "file": "data/bodies/planet_02_9086.json",
+      "children": [
+        {
+          "id": "moon_0_590",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8382",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.67,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_03_8382.json",
+      "children": [
+        {
+          "id": "moon_0_186",
+          "name": "Polaris I",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_1_668",
+          "name": "Polaris II",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_2_888",
+          "name": "Polaris III",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        }
+      ]
+    }
+  ]
+}

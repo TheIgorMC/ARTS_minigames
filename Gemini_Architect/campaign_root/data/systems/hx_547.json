@@ -1,0 +1,152 @@
+{
+  "id": "hx_547",
+  "name": "HX-547",
+  "star": {
+    "name": "HX-547",
+    "spectral_class": "M2V",
+    "radius_km": 391789,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7484",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.81,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_01_7484.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_5922",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.01,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_02_5922.json",
+      "children": [
+        {
+          "id": "moon_0_308",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6831",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.53,
+      "texture": "assets/textures/gas/uranian_12_diffuse.png",
+      "file": "data/bodies/planet_03_6831.json",
+      "children": [
+        {
+          "id": "moon_0_754",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_688",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "outpost_1071",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.68,
+          "orbit_distance": 0.01,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2087",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.71,
+      "texture": "assets/textures/gas/jovian_07_diffuse.png",
+      "file": "data/bodies/planet_04_2087.json",
+      "children": [
+        {
+          "id": "moon_0_319",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "moon_1_629",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        },
+        {
+          "id": "moon_2_377",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_05_2616",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.71,
+      "texture": "assets/textures/gas/neptunian_01_diffuse.png",
+      "file": "data/bodies/planet_05_2616.json",
+      "children": [
+        {
+          "id": "moon_0_974",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_825",
+          "name": "Hailmark II",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1741",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.88,
+      "texture": "assets/textures/gas/toxic_08_diffuse.png",
+      "file": "data/bodies/planet_06_1741.json",
+      "children": [
+        {
+          "id": "moon_0_317",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        },
+        {
+          "id": "moon_1_720",
+          "name": "Magnax II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        }
+      ]
+    }
+  ]
+}

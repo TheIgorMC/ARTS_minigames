@@ -1,0 +1,71 @@
+{
+  "id": "palux_red",
+  "name": "Palux Red",
+  "star": {
+    "name": "Palux Red",
+    "spectral_class": "M2V",
+    "radius_km": 392444,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6540",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.93,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_01_6540.json",
+      "children": [
+        {
+          "id": "moon_0_168",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_1_373",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6747",
+      "name": "Rubble",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.17,
+      "texture": "assets/textures/rocky/mercurian_09_diffuse.png",
+      "file": "data/bodies/planet_02_6747.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_6955",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.6,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_03_6955.json",
+      "children": [
+        {
+          "id": "moon_0_783",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_216",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        }
+      ]
+    }
+  ]
+}

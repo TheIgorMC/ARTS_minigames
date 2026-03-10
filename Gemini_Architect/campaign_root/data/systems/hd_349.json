@@ -1,0 +1,107 @@
+{
+  "id": "hd_349",
+  "name": "HD-349",
+  "star": {
+    "name": "HD-349",
+    "spectral_class": "M2V",
+    "radius_km": 297056,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6969",
+      "name": "Remnant",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.06,
+      "texture": "assets/textures/rocky/mercurian_16_diffuse.png",
+      "file": "data/bodies/planet_01_6969.json",
+      "children": [
+        {
+          "id": "moon_0_268",
+          "name": "Remnant I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_859",
+          "name": "Remnant II",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8685",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.45,
+      "texture": "assets/textures/gas/crimson_20_diffuse.png",
+      "file": "data/bodies/planet_02_8685.json",
+      "children": [
+        {
+          "id": "moon_0_681",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_1_356",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_2_628",
+          "name": "Aether III",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5205",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.69,
+      "texture": "assets/textures/gas/saturnian_18_diffuse.png",
+      "file": "data/bodies/planet_03_5205.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_4700",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.65,
+      "texture": "assets/textures/gas/toxic_01_diffuse.png",
+      "file": "data/bodies/planet_04_4700.json",
+      "children": [
+        {
+          "id": "moon_0_771",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_420",
+          "name": "Jovara II",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_2_404",
+          "name": "Jovara III",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        }
+      ]
+    }
+  ]
+}

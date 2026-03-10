@@ -1,0 +1,135 @@
+{
+  "id": "bd_258",
+  "name": "BD-258",
+  "star": {
+    "name": "BD-258",
+    "spectral_class": "K2V",
+    "radius_km": 551877,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1548",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.26,
+      "texture": "assets/textures/gas/saturnian_16_diffuse.png",
+      "file": "data/bodies/planet_01_1548.json",
+      "children": [
+        {
+          "id": "moon_0_135",
+          "name": "Stratum I",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2098",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 9.79,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_02_2098.json",
+      "children": [
+        {
+          "id": "moon_0_515",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5604",
+      "name": "Pallor",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 15.06,
+      "texture": "assets/textures/rocky/martian_04_diffuse.png",
+      "file": "data/bodies/planet_03_5604.json",
+      "children": [
+        {
+          "id": "moon_0_828",
+          "name": "Pallor I",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2349",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 19.94,
+      "texture": "assets/textures/gas/neptunian_16_diffuse.png",
+      "file": "data/bodies/planet_04_2349.json",
+      "children": [
+        {
+          "id": "moon_0_953",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_342",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        },
+        {
+          "id": "outpost_6731",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.84,
+          "orbit_distance": 0.0049,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_05_5340",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 25.69,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_05_5340.json",
+      "children": [
+        {
+          "id": "moon_0_866",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        },
+        {
+          "id": "moon_1_432",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_2_451",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        },
+        {
+          "id": "moon_3_541",
+          "name": "Tundris IV",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        }
+      ]
+    }
+  ]
+}
