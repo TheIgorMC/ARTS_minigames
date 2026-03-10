@@ -26,8 +26,8 @@
         "x": 769,
         "y": 642
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/hx_740.json",
       "main": false,
       "star_color": "#cc2200"
@@ -53,7 +53,7 @@
         "y": 725
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Abandoned",
       "file": "data/systems/gj_682.json",
       "main": false,
       "star_color": "#ffcc00"
@@ -79,7 +79,7 @@
         "y": 674
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Contested",
       "file": "data/systems/tyc_141.json",
       "main": false,
       "star_color": "#ffe0a0"
@@ -92,7 +92,7 @@
         "y": 592
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/cassux_red.json",
       "main": false,
       "star_color": "#ff6600"
@@ -118,7 +118,7 @@
         "y": 611
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/fexix_ember.json",
       "main": false,
       "star_color": "#ff4400"
@@ -169,8 +169,8 @@
         "x": 784,
         "y": 725
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Frontier",
       "file": "data/systems/tyc_749.json",
       "main": false,
       "star_color": "#ffe0a0"
@@ -183,7 +183,7 @@
         "y": 607
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/kic_813.json",
       "main": false,
       "star_color": "#ffcc00"
@@ -196,7 +196,7 @@
         "y": 574
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/rho_tharux.json",
       "main": false,
       "star_color": "#ff6600"
@@ -235,7 +235,7 @@
         "y": 632
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/dorix_ember.json",
       "main": false,
       "star_color": "#cc2200"
@@ -247,8 +247,8 @@
         "x": 780,
         "y": 675
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/kic_299.json",
       "main": false,
       "star_color": "#ff6600"

@@ -625,6 +625,18 @@ const PlanetaryStudio = (() => {
         if (!bodyData || !activeFile) { notify('No body loaded.', 'warning'); return; }
         try {
             await API.saveFile(activeFile, bodyData);
+            // Sync diffuse texture back to the parent system's orbital entry
+            const sysRel = els['ps-system-select']?.value;
+            if (sysRel && bodyData.render_data?.texture_diffuse) {
+                try {
+                    const sysData = await API.getFile(sysRel);
+                    const orb = (sysData.orbitals || []).find(o => o.file === activeFile);
+                    if (orb) {
+                        orb.texture = bodyData.render_data.texture_diffuse;
+                        await API.saveFile(sysRel, sysData);
+                    }
+                } catch (_) {}
+            }
             notify('Body saved.', 'success');
             setStatus(`Saved: ${activeFile}`);
         } catch (e) {

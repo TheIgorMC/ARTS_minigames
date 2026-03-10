@@ -14,7 +14,7 @@
         "y": 483
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Contested",
       "file": "data/systems/solax_dwarf.json",
       "main": false,
       "star_color": "#ff4400"
@@ -27,7 +27,7 @@
         "y": 512
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/kilon_ember.json",
       "main": false,
       "star_color": "#ff6600"
@@ -40,7 +40,7 @@
         "y": 559
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/nu_zimon.json",
       "main": false,
       "star_color": "#ff6600"
@@ -53,7 +53,7 @@
         "y": 597
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Frontier",
       "file": "data/systems/vorus_ember.json",
       "main": false,
       "star_color": "#ff6600"
@@ -65,8 +65,8 @@
         "x": 689,
         "y": 625
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/xr_575.json",
       "main": false,
       "star_color": "#ff4400"
@@ -79,7 +79,7 @@
         "y": 621
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Abandoned",
       "file": "data/systems/mu_orrath.json",
       "main": false,
       "star_color": "#ff4400"
@@ -92,7 +92,7 @@
         "y": 738
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Frontier",
       "file": "data/systems/lyreon_prime.json",
       "main": false,
       "star_color": "#ffcc00"
@@ -104,8 +104,8 @@
         "x": 627,
         "y": 674
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Contested",
       "file": "data/systems/lambda_ixelon.json",
       "main": false,
       "star_color": "#ff4400"
@@ -118,7 +118,7 @@
         "y": 760
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Abandoned",
       "file": "data/systems/hd_752.json",
       "main": false,
       "star_color": "#ff9944"
@@ -131,7 +131,7 @@
         "y": 483
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/eta_velar.json",
       "main": false,
       "star_color": "#ff9944"
@@ -143,8 +143,8 @@
         "x": 704,
         "y": 684
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/kappa_prael.json",
       "main": false,
       "star_color": "#ff9944"
@@ -157,7 +157,7 @@
         "y": 714
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/beta_mordai.json",
       "main": false,
       "star_color": "#cc2200"
@@ -170,7 +170,7 @@
         "y": 580
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/wynex_red.json",
       "main": false,
       "star_color": "#ff6600"
@@ -182,8 +182,8 @@
         "x": 651,
         "y": 625
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/upsilon_serpen.json",
       "main": false,
       "star_color": "#ff4400"
@@ -195,8 +195,8 @@
         "x": 670,
         "y": 713
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Frontier",
       "file": "data/systems/upsilon_ixelon.json",
       "main": false,
       "star_color": "#ff4400"
@@ -209,7 +209,7 @@
         "y": 665
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/nz_358.json",
       "main": false,
       "star_color": "#ff4400"
@@ -222,7 +222,7 @@
         "y": 458
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Frontier",
       "file": "data/systems/phi_kethis.json",
       "main": false,
       "star_color": "#ffae66"
@@ -234,8 +234,8 @@
         "x": 671,
         "y": 597
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/kilar_dwarf.json",
       "main": false,
       "star_color": "#ff4400"
@@ -248,7 +248,7 @@
         "y": 582
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Frontier",
       "file": "data/systems/nz_765.json",
       "main": false,
       "star_color": "#ff4400"
@@ -261,7 +261,7 @@
         "y": 696
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Contested",
       "file": "data/systems/omega_arcon.json",
       "main": false,
       "star_color": "#ffae66"
@@ -273,11 +273,24 @@
         "x": 594,
         "y": 648
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
       "file": "data/systems/hoxax_ember.json",
       "main": false,
       "star_color": "#ffae66"
+    },
+    {
+      "id": "eelo",
+      "name": "Eelo",
+      "coordinates": {
+        "x": 697,
+        "y": 660
+      },
+      "political_alignment": "Revolutionists of Eelo",
+      "status": "Colonized",
+      "file": "data/systems/eelo.json",
+      "main": false,
+      "star_color": "#ff6600"
     }
   ],
   "jump_lanes": [
@@ -436,6 +449,12 @@
       "to": "sys_1_1773150763271_0",
       "type": "Stable",
       "distance": 9.44
+    },
+    {
+      "from": "eelo",
+      "to": "sys_11_1773150763271_10",
+      "type": "Stable",
+      "distance": 2.5
     }
   ]
 }

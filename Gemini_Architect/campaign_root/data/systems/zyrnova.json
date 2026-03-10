@@ -16,7 +16,8 @@
       "children": [],
       "file": "data/bodies/body_1773151170032.json",
       "scale": 1.3,
-      "locked": true
+      "locked": true,
+      "texture": "assets/textures/rocky/martian_17_diffuse.png"
     },
     {
       "id": "banelor",

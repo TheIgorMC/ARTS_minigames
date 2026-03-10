@@ -87,8 +87,16 @@ const OrreryBuilder = (() => {
         img.src     = `/campaign-assets/${path.replace(/^\//, '')}`;
     }
 
-    function preloadTextures() {
+    async function preloadTextures() {
         for (const orb of (systemData?.orbitals || [])) {
+            // If orbital has a body file, read its render_data and sync the texture path
+            if (orb.file) {
+                try {
+                    const body = await API.getFile(orb.file);
+                    const diff = body?.render_data?.texture_diffuse;
+                    if (diff) orb.texture = diff;
+                } catch (_) { /* body file may not exist yet */ }
+            }
             if (orb.texture) loadOrbTex(orb.texture);
         }
     }
@@ -252,7 +260,7 @@ const OrreryBuilder = (() => {
                 ctx.fillText(orb.name || orb.id, px, py + sz + 11 * inv);
             }
 
-            orbitHits.push({ px, py, r: sz + 6, idx: origIdx, type: 'orbital' });
+            orbitHits.push({ sx: CX + cam.x + px * cam.s, sy: CY + cam.y + py * cam.s, r: (sz + 6) * cam.s, idx: origIdx, type: 'orbital' });
         }
 
         // central star
@@ -274,7 +282,7 @@ const OrreryBuilder = (() => {
             ctx.font      = `${8 * inv}px "Share Tech Mono",monospace`;
             ctx.fillText(systemData.star?.spectral_class || '', 0, sR + 24 * inv);
         }
-        orbitHits.push({ px: 0, py: 0, r: sR + 8, idx: null, type: 'star' });
+        orbitHits.push({ sx: CX + cam.x, sy: CY + cam.y, r: (sR + 8) * cam.s, idx: null, type: 'star' });
 
         ctx.restore();
         animHandle = requestAnimationFrame(drawFrame);
@@ -317,18 +325,12 @@ const OrreryBuilder = (() => {
             const rect = canvas.getBoundingClientRect();
             const cssX = ev.clientX - rect.left;
             const cssY = ev.clientY - rect.top;
-            const CX   = canvas.offsetWidth  / 2;
-            const CY   = canvas.offsetHeight / 2;
-            const wx   = (cssX - CX - cam.x) / cam.s;
-            const wy   = (cssY - CY - cam.y) / cam.s;
 
-            // Minimum 18 screen-px hit area, converted to world units
-            const minHitWorld = 18 / cam.s;
-
+            // Hit-test in screen-space (orbitHits stores screen positions from last draw)
             let best = null, bestD = Infinity;
             for (const h of orbitHits) {
-                const d = Math.hypot(wx - h.px, wy - h.py);
-                const hitR = Math.max(h.r, minHitWorld);
+                const d = Math.hypot(cssX - h.sx, cssY - h.sy);
+                const hitR = Math.max(h.r, 18);  // 18 CSS-px minimum
                 if (d <= hitR && d < bestD) { best = h; bestD = d; }
             }
 
@@ -345,7 +347,6 @@ const OrreryBuilder = (() => {
                 }
             } else if (best?.type === 'orbital') {
                 selectOrbital(best.idx);
-                focusOrb(systemData.orbitals[best.idx]);
             } else {
                 selectedOrbIdx = null;
                 deselectOrbital(true);
@@ -695,6 +696,8 @@ const OrreryBuilder = (() => {
             const activeModule = document.querySelector('.module.active');
             if (!activeModule || activeModule.id !== 'module-orrery') return;
             if ((e.key === 'Delete' || e.key === 'Backspace') && selectedOrbIdx !== null) {
+                const tag = e.target.tagName;
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target.isContentEditable) return;
                 deleteOrbital();
             }
             if (e.key === 's' && (e.ctrlKey || e.metaKey)) {

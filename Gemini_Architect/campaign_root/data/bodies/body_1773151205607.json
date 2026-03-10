@@ -11,5 +11,13 @@
   "biome": "Barren",
   "texture": "",
   "rings": false,
-  "description": ""
+  "description": "",
+  "pois": [],
+  "render_data": {
+    "texture_diffuse": "assets/textures/planets/jungle_16_diffuse.png",
+    "texture_bump": "assets/textures/planets/jungle_16_bump.png",
+    "texture_specular": "",
+    "atmosphere_color": "#88aaff",
+    "rotation_speed": 0.005
+  }
 }
