@@ -1,0 +1,159 @@
+{
+  "id": "alpha_tylath",
+  "name": "Alpha Tylath",
+  "star": {
+    "name": "Alpha Tylath",
+    "spectral_class": "M2V",
+    "radius_km": 332007,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8267",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.63,
+      "texture": "assets/textures/gas/crimson_14_diffuse.png",
+      "file": "data/bodies/planet_01_8267.json",
+      "children": [
+        {
+          "id": "moon_0_358",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6912",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.13,
+      "texture": "assets/textures/gas/neptunian_10_diffuse.png",
+      "file": "data/bodies/planet_02_6912.json",
+      "children": [
+        {
+          "id": "moon_0_588",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_1_806",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_2_115",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8352",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.39,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_03_8352.json",
+      "children": [
+        {
+          "id": "moon_0_485",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_1_492",
+          "name": "Colossex II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_117",
+          "name": "Colossex III",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_3_552",
+          "name": "Colossex IV",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        }
+      ]
+    },
+    {
+      "id": "planet_04_3773",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.93,
+      "texture": "assets/textures/gas/jovian_20_diffuse.png",
+      "file": "data/bodies/planet_04_3773.json",
+      "children": [
+        {
+          "id": "moon_0_364",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.042
+        },
+        {
+          "id": "refinery_1046",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.72,
+          "orbit_distance": 0.0058,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7237",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.62,
+      "texture": "assets/textures/gas/neptunian_03_diffuse.png",
+      "file": "data/bodies/planet_05_7237.json",
+      "children": [
+        {
+          "id": "moon_0_792",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_1_809",
+          "name": "Frostholme II",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        },
+        {
+          "id": "moon_2_253",
+          "name": "Frostholme III",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_3_288",
+          "name": "Frostholme IV",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        }
+      ]
+    }
+  ]
+}

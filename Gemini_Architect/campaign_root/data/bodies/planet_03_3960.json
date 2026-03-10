@@ -1,0 +1,11 @@
+{
+  "id": "planet_03_3960",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/toxic_09_diffuse.png",
+    "texture_bump": "assets/textures/gas/toxic_09_bump.png",
+    "texture_specular": "assets/textures/gas/toxic_09_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0056
+  },
+  "pois": []
+}

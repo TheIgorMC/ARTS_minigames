@@ -1,0 +1,213 @@
+{
+  "id": "hx_639",
+  "name": "HX-639",
+  "star": {
+    "name": "HX-639",
+    "spectral_class": "M2V",
+    "radius_km": 214298,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5328",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.58,
+      "texture": "assets/textures/gas/crimson_11_diffuse.png",
+      "file": "data/bodies/planet_01_5328.json",
+      "children": [
+        {
+          "id": "moon_0_714",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "refinery_670",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.87,
+          "orbit_distance": 0.006,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9340",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.7,
+      "texture": "assets/textures/gas/neptunian_09_diffuse.png",
+      "file": "data/bodies/planet_02_9340.json",
+      "children": [
+        {
+          "id": "moon_0_423",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_529",
+          "name": "Permafrost II",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9358",
+      "name": "Bleachbone",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.74,
+      "texture": "assets/textures/rocky/martian_06_diffuse.png",
+      "file": "data/bodies/planet_03_9358.json",
+      "children": [
+        {
+          "id": "moon_0_379",
+          "name": "Bleachbone I",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2949",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.94,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_04_2949.json",
+      "children": [
+        {
+          "id": "moon_0_949",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_1_190",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        },
+        {
+          "id": "moon_2_669",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_3_539",
+          "name": "Iceval IV",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "outpost_6912",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.72,
+          "orbit_distance": 0.0093,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6971",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.45,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_05_6971.json",
+      "children": [
+        {
+          "id": "moon_0_258",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_703",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_2_970",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_3_651",
+          "name": "Tempestia IV",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        }
+      ]
+    },
+    {
+      "id": "planet_06_8203",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.09,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_06_8203.json",
+      "children": [
+        {
+          "id": "moon_0_502",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        },
+        {
+          "id": "moon_1_653",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "moon_2_567",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "belt_9289",
+      "name": "Shattered Mantle",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 0.78,
+      "width": 0.17,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_444",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.86,
+          "orbit_distance": 0.0029,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

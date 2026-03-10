@@ -1,0 +1,171 @@
+{
+  "id": "wurath_ember",
+  "name": "Wurath Ember",
+  "star": {
+    "name": "Wurath Ember",
+    "spectral_class": "M2V",
+    "radius_km": 211093,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5419",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.05,
+      "texture": "assets/textures/gas/saturnian_08_diffuse.png",
+      "file": "data/bodies/planet_01_5419.json",
+      "children": [
+        {
+          "id": "moon_0_587",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_1_294",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_2_981",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_3_958",
+          "name": "Titanis IV",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "refinery_470",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.79,
+          "orbit_distance": 0.0095,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2585",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.66,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_02_2585.json",
+      "children": [
+        {
+          "id": "moon_0_787",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_1_346",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_2_495",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    },
+    {
+      "id": "planet_03_2423",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.71,
+      "texture": "assets/textures/gas/uranian_14_diffuse.png",
+      "file": "data/bodies/planet_03_2423.json",
+      "children": [
+        {
+          "id": "moon_0_951",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_119",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        }
+      ]
+    },
+    {
+      "id": "planet_04_6634",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.55,
+      "texture": "assets/textures/gas/toxic_08_diffuse.png",
+      "file": "data/bodies/planet_04_6634.json",
+      "children": [
+        {
+          "id": "moon_0_674",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7071",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.3,
+      "texture": "assets/textures/gas/saturnian_16_diffuse.png",
+      "file": "data/bodies/planet_05_7071.json",
+      "children": [
+        {
+          "id": "moon_0_306",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_1_265",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_06_7476",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.2,
+      "texture": "assets/textures/gas/crimson_20_diffuse.png",
+      "file": "data/bodies/planet_06_7476.json",
+      "children": [
+        {
+          "id": "moon_0_372",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        }
+      ]
+    }
+  ]
+}

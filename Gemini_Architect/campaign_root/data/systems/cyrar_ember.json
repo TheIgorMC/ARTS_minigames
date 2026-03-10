@@ -1,0 +1,162 @@
+{
+  "id": "cyrar_ember",
+  "name": "Cyrar Ember",
+  "star": {
+    "name": "Cyrar Ember",
+    "spectral_class": "M2V",
+    "radius_km": 169119,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9900",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.5,
+      "texture": "assets/textures/gas/saturnian_08_diffuse.png",
+      "file": "data/bodies/planet_01_9900.json",
+      "children": [
+        {
+          "id": "moon_0_358",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_190",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_2_836",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_3_563",
+          "name": "Galex IV",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3737",
+      "name": "Forsaken",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.92,
+      "texture": "assets/textures/rocky/mercurian_20_diffuse.png",
+      "file": "data/bodies/planet_02_3737.json",
+      "children": [
+        {
+          "id": "moon_0_145",
+          "name": "Forsaken I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_1_449",
+          "name": "Forsaken II",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8281",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.15,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_03_8281.json",
+      "children": [
+        {
+          "id": "moon_0_617",
+          "name": "Polaris I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_746",
+          "name": "Polaris II",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_04_7274",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.28,
+      "texture": "assets/textures/gas/jovian_15_diffuse.png",
+      "file": "data/bodies/planet_04_7274.json",
+      "children": [
+        {
+          "id": "moon_0_735",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_395",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_2_487",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_3_865",
+          "name": "Galex IV",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6229",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 6.61,
+      "texture": "assets/textures/gas/uranian_18_diffuse.png",
+      "file": "data/bodies/planet_05_6229.json",
+      "children": [
+        {
+          "id": "moon_0_332",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        },
+        {
+          "id": "moon_1_885",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        },
+        {
+          "id": "moon_2_816",
+          "name": "Glacian III",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        }
+      ]
+    }
+  ]
+}

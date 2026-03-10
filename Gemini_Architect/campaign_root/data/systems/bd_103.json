@@ -1,0 +1,77 @@
+{
+  "id": "bd_103",
+  "name": "BD-103",
+  "star": {
+    "name": "BD-103",
+    "spectral_class": "M2V",
+    "radius_km": 382259,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6624",
+      "name": "Barraxis",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.99,
+      "texture": "assets/textures/rocky/martian_19_diffuse.png",
+      "file": "data/bodies/planet_01_6624.json",
+      "children": [
+        {
+          "id": "moon_0_907",
+          "name": "Barraxis I",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_1_816",
+          "name": "Barraxis II",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_2_828",
+          "name": "Barraxis III",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7287",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.92,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_02_7287.json",
+      "children": [
+        {
+          "id": "moon_0_826",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_1_712",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7094",
+      "name": "Remnant",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 5.5,
+      "texture": "assets/textures/rocky/barren_17_diffuse.png",
+      "file": "data/bodies/planet_03_7094.json",
+      "children": []
+    }
+  ]
+}

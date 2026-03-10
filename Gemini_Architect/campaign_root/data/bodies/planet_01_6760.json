@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_6760",
+  "render_data": {
+    "texture_diffuse": "",
+    "texture_bump": "",
+    "texture_specular": "",
+    "atmosphere_color": "#88aaff",
+    "rotation_speed": 0.005
+  },
+  "pois": []
+}

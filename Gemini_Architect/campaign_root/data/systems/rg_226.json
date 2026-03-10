@@ -1,0 +1,92 @@
+{
+  "id": "rg_226",
+  "name": "RG-226",
+  "star": {
+    "name": "RG-226",
+    "spectral_class": "K2V",
+    "radius_km": 593246,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9032",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 6.23,
+      "texture": "assets/textures/gas/toxic_05_diffuse.png",
+      "file": "data/bodies/planet_01_9032.json",
+      "children": [
+        {
+          "id": "moon_0_911",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "moon_1_323",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        },
+        {
+          "id": "moon_2_412",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_3_159",
+          "name": "Titanis IV",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2628",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 11.48,
+      "texture": "assets/textures/gas/jovian_10_diffuse.png",
+      "file": "data/bodies/planet_02_2628.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_8991",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 17.86,
+      "texture": "assets/textures/gas/crimson_17_diffuse.png",
+      "file": "data/bodies/planet_03_8991.json",
+      "children": [
+        {
+          "id": "moon_0_106",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_1_674",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "refinery_2407",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.96,
+          "orbit_distance": 0.0035,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

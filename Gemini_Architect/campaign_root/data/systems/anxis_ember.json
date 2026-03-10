@@ -1,0 +1,203 @@
+{
+  "id": "anxis_ember",
+  "name": "Anxis Ember",
+  "star": {
+    "name": "Anxis Ember",
+    "spectral_class": "M2V",
+    "radius_km": 395287,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9091",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.09,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_01_9091.json",
+      "children": [
+        {
+          "id": "moon_0_711",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_1_552",
+          "name": "Boreas II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_2_442",
+          "name": "Boreas III",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        },
+        {
+          "id": "moon_3_750",
+          "name": "Boreas IV",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2210",
+      "name": "Pebrix",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.05,
+      "texture": "assets/textures/rocky/barren_18_diffuse.png",
+      "file": "data/bodies/planet_02_2210.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_5154",
+      "name": "Pebrix",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.71,
+      "texture": "assets/textures/rocky/martian_01_diffuse.png",
+      "file": "data/bodies/planet_03_5154.json",
+      "children": [
+        {
+          "id": "moon_0_130",
+          "name": "Pebrix I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_876",
+          "name": "Pebrix II",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        },
+        {
+          "id": "moon_2_746",
+          "name": "Pebrix III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        },
+        {
+          "id": "moon_3_310",
+          "name": "Pebrix IV",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4716",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.33,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_04_4716.json",
+      "children": [
+        {
+          "id": "moon_0_884",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "planet_05_2737",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.05,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_05_2737.json",
+      "children": [
+        {
+          "id": "moon_0_561",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_1_932",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_2_321",
+          "name": "Icebreak III",
+          "type": "Moon",
+          "orbit_distance": 0.042
+        },
+        {
+          "id": "moon_3_227",
+          "name": "Icebreak IV",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_06_4649",
+      "name": "Cinder",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 6,
+      "orbit_radius": 4.49,
+      "texture": "assets/textures/rocky/martian_12_diffuse.png",
+      "file": "data/bodies/planet_06_4649.json",
+      "children": [
+        {
+          "id": "moon_0_462",
+          "name": "Cinder I",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_1_340",
+          "name": "Cinder II",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        }
+      ]
+    },
+    {
+      "id": "belt_4087",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.43,
+      "width": 0.2,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_403",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.93,
+          "orbit_distance": 0.0046,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_247",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.87,
+          "orbit_distance": 0.007,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_8054",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/uranian_17_diffuse.png",
+    "texture_bump": "assets/textures/gas/uranian_17_bump.png",
+    "texture_specular": "assets/textures/gas/uranian_17_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0022
+  },
+  "pois": []
+}

@@ -1,0 +1,83 @@
+{
+  "id": "hd_752",
+  "name": "HD-752",
+  "star": {
+    "name": "HD-752",
+    "spectral_class": "K2V",
+    "radius_km": 611598,
+    "color_hex": "#ff9944"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7958",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 3.84,
+      "texture": "assets/textures/gas/saturnian_20_diffuse.png",
+      "file": "data/bodies/planet_01_7958.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_2873",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 8.6,
+      "texture": "assets/textures/gas/jovian_01_diffuse.png",
+      "file": "data/bodies/planet_02_2873.json",
+      "children": [
+        {
+          "id": "moon_0_519",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_1_849",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        },
+        {
+          "id": "moon_2_537",
+          "name": "Nimbus III",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8811",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 18.54,
+      "texture": "assets/textures/gas/saturnian_13_diffuse.png",
+      "file": "data/bodies/planet_03_8811.json",
+      "children": [
+        {
+          "id": "moon_0_378",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_285",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_2_144",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        }
+      ]
+    }
+  ]
+}

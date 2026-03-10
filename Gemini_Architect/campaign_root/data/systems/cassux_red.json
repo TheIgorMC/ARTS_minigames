@@ -1,0 +1,102 @@
+{
+  "id": "cassux_red",
+  "name": "Cassux Red",
+  "star": {
+    "name": "Cassux Red",
+    "spectral_class": "M2V",
+    "radius_km": 227020,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2722",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.58,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_01_2722.json",
+      "children": [
+        {
+          "id": "moon_0_790",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_287",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_2_772",
+          "name": "Crystallis III",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9547",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.51,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_02_9547.json",
+      "children": [
+        {
+          "id": "moon_0_194",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_556",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_2_241",
+          "name": "Crystallis III",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_3_862",
+          "name": "Crystallis IV",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4317",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.02,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_03_4317.json",
+      "children": [
+        {
+          "id": "moon_0_720",
+          "name": "Brine I",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_1_438",
+          "name": "Brine II",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        }
+      ]
+    }
+  ]
+}

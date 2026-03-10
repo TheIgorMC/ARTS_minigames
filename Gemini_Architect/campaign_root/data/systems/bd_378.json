@@ -1,0 +1,96 @@
+{
+  "id": "bd_378",
+  "name": "BD-378",
+  "star": {
+    "name": "BD-378",
+    "spectral_class": "M2V",
+    "radius_km": 92572,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1061",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.48,
+      "texture": "assets/textures/gas/neptunian_13_diffuse.png",
+      "file": "data/bodies/planet_01_1061.json",
+      "children": [
+        {
+          "id": "moon_0_357",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_800",
+          "name": "Winteris II",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_2_650",
+          "name": "Winteris III",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8901",
+      "name": "Scabland",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 3.97,
+      "texture": "assets/textures/rocky/barren_09_diffuse.png",
+      "file": "data/bodies/planet_02_8901.json",
+      "children": [
+        {
+          "id": "moon_0_254",
+          "name": "Scabland I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_1_844",
+          "name": "Scabland II",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7431",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.4,
+      "texture": "assets/textures/gas/neptunian_01_diffuse.png",
+      "file": "data/bodies/planet_03_7431.json",
+      "children": [
+        {
+          "id": "moon_0_310",
+          "name": "Polaris I",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_1_955",
+          "name": "Polaris II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_700",
+          "name": "Polaris III",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        }
+      ]
+    }
+  ]
+}

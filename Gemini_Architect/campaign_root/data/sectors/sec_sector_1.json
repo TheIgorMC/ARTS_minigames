@@ -76,7 +76,7 @@
       "name": "GJ-194",
       "coordinates": {
         "x": 728,
-        "y": 33
+        "y": 43
       },
       "political_alignment": "",
       "status": "Unknown",
@@ -192,8 +192,8 @@
       "id": "sys_15_1773131294094_14",
       "name": "Chi Corvat",
       "coordinates": {
-        "x": 710,
-        "y": 151
+        "x": 717,
+        "y": 148
       },
       "political_alignment": "",
       "status": "Unknown",
@@ -218,8 +218,8 @@
       "id": "sys_17_1773131294094_16",
       "name": "NZ-621",
       "coordinates": {
-        "x": 779,
-        "y": 258
+        "x": 775,
+        "y": 253
       },
       "political_alignment": "",
       "status": "Unknown",
@@ -349,6 +349,48 @@
       "to": "sys_7_1773131294094_6",
       "type": "Stable",
       "distance": 5.64
+    },
+    {
+      "from": "sys_7_1773131294094_6",
+      "to": "sys_5_1773148788031_4",
+      "type": "Stable",
+      "distance": 3.51
+    },
+    {
+      "from": "sys_5_1773131294094_4",
+      "to": "sys_3_1773148788031_2",
+      "type": "Stable",
+      "distance": 4.96
+    },
+    {
+      "from": "sys_11_1773131294094_10",
+      "to": "sys_3_1773148788031_2",
+      "type": "Stable",
+      "distance": 3.26
+    },
+    {
+      "from": "sys_11_1773131294094_10",
+      "to": "sys_8_1773148788031_7",
+      "type": "Stable",
+      "distance": 6.65
+    },
+    {
+      "from": "sys_17_1773131294094_16",
+      "to": "sys_2_1773135988318_1",
+      "type": "Stable",
+      "distance": 3.32
+    },
+    {
+      "from": "sys_15_1773131294094_14",
+      "to": "sys_4_1773158354935_3",
+      "type": "Stable",
+      "distance": 3.3
+    },
+    {
+      "from": "sys_14_1773131294094_13",
+      "to": "sys_11_1773158354935_10",
+      "type": "Stable",
+      "distance": 5.02
     }
   ]
 }

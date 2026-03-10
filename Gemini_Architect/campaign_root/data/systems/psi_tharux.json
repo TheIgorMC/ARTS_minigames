@@ -1,0 +1,135 @@
+{
+  "id": "psi_tharux",
+  "name": "Psi Tharux",
+  "star": {
+    "name": "Psi Tharux",
+    "spectral_class": "G2V",
+    "radius_km": 779917,
+    "color_hex": "#ffcc00"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5392",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.57,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_01_5392.json",
+      "children": [
+        {
+          "id": "moon_0_941",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        },
+        {
+          "id": "moon_1_280",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8023",
+      "name": "Graymere",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 18.8,
+      "texture": "assets/textures/rocky/barren_20_diffuse.png",
+      "file": "data/bodies/planet_02_8023.json",
+      "children": [
+        {
+          "id": "outpost_9058",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.58,
+          "orbit_distance": 0.0108,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6107",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 27.08,
+      "texture": "assets/textures/gas/uranian_12_diffuse.png",
+      "file": "data/bodies/planet_03_6107.json",
+      "children": [
+        {
+          "id": "moon_0_103",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_1_910",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_2_798",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        },
+        {
+          "id": "moon_3_183",
+          "name": "Tundris IV",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "planet_04_6016",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 36.94,
+      "texture": "assets/textures/gas/saturnian_01_diffuse.png",
+      "file": "data/bodies/planet_04_6016.json",
+      "children": [
+        {
+          "id": "moon_0_357",
+          "name": "Galedon I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        }
+      ]
+    },
+    {
+      "id": "planet_05_9976",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 48.52,
+      "texture": "assets/textures/gas/neptunian_04_diffuse.png",
+      "file": "data/bodies/planet_05_9976.json",
+      "children": [
+        {
+          "id": "moon_0_308",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        },
+        {
+          "id": "moon_1_275",
+          "name": "Hailmark II",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        }
+      ]
+    }
+  ]
+}

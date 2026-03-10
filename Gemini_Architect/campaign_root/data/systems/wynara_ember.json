@@ -1,0 +1,99 @@
+{
+  "id": "wynara_ember",
+  "name": "Wynara Ember",
+  "star": {
+    "name": "Wynara Ember",
+    "spectral_class": "M2V",
+    "radius_km": 267701,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3884",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.19,
+      "texture": "assets/textures/gas/saturnian_15_diffuse.png",
+      "file": "data/bodies/planet_01_3884.json",
+      "children": [
+        {
+          "id": "moon_0_514",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_1_868",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6990",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.84,
+      "texture": "assets/textures/gas/neptunian_01_diffuse.png",
+      "file": "data/bodies/planet_02_6990.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_2815",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.09,
+      "texture": "assets/textures/gas/uranian_04_diffuse.png",
+      "file": "data/bodies/planet_03_2815.json",
+      "children": [
+        {
+          "id": "moon_0_388",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_1_331",
+          "name": "Permafrost II",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_2_946",
+          "name": "Permafrost III",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        }
+      ]
+    },
+    {
+      "id": "planet_04_9798",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.06,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_04_9798.json",
+      "children": []
+    },
+    {
+      "id": "planet_05_1622",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 5.23,
+      "texture": "assets/textures/gas/neptunian_08_diffuse.png",
+      "file": "data/bodies/planet_05_1622.json",
+      "children": []
+    }
+  ]
+}

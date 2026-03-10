@@ -1,0 +1,155 @@
+{
+  "id": "iota_tylath",
+  "name": "Iota Tylath",
+  "star": {
+    "name": "Iota Tylath",
+    "spectral_class": "M2V",
+    "radius_km": 78861,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6131",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.76,
+      "texture": "assets/textures/gas/uranian_02_diffuse.png",
+      "file": "data/bodies/planet_01_6131.json",
+      "children": [
+        {
+          "id": "moon_0_159",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_1_814",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3204",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.58,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_02_3204.json",
+      "children": [
+        {
+          "id": "moon_0_698",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3697",
+      "name": "Errata",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.41,
+      "texture": "assets/textures/rocky/barren_18_diffuse.png",
+      "file": "data/bodies/planet_03_3697.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_6432",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.43,
+      "texture": "assets/textures/gas/jovian_02_diffuse.png",
+      "file": "data/bodies/planet_04_6432.json",
+      "children": [
+        {
+          "id": "moon_0_843",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3376",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.57,
+      "texture": "assets/textures/gas/uranian_11_diffuse.png",
+      "file": "data/bodies/planet_05_3376.json",
+      "children": [
+        {
+          "id": "moon_0_239",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        },
+        {
+          "id": "moon_1_552",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        }
+      ]
+    },
+    {
+      "id": "planet_06_9891",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.06,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_06_9891.json",
+      "children": [
+        {
+          "id": "moon_0_143",
+          "name": "Leviathan I",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        }
+      ]
+    },
+    {
+      "id": "belt_4979",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.41,
+      "width": 0.16,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_200",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.78,
+          "orbit_distance": 0.0042,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_317",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.7,
+          "orbit_distance": 0.0048,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

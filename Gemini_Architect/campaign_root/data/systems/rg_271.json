@@ -1,0 +1,116 @@
+{
+  "id": "rg_271",
+  "name": "RG-271",
+  "star": {
+    "name": "RG-271",
+    "spectral_class": "M2V",
+    "radius_km": 409137,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2785",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.95,
+      "texture": "assets/textures/gas/toxic_19_diffuse.png",
+      "file": "data/bodies/planet_01_2785.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_8271",
+      "name": "Errata",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.11,
+      "texture": "assets/textures/rocky/mercurian_15_diffuse.png",
+      "file": "data/bodies/planet_02_8271.json",
+      "children": [
+        {
+          "id": "moon_0_799",
+          "name": "Errata I",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7305",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.3,
+      "texture": "assets/textures/gas/neptunian_05_diffuse.png",
+      "file": "data/bodies/planet_03_7305.json",
+      "children": [
+        {
+          "id": "moon_0_805",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "outpost_4658",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.68,
+          "orbit_distance": 0.0098,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_1615",
+      "name": "Errata",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 4.16,
+      "texture": "assets/textures/rocky/mercurian_03_diffuse.png",
+      "file": "data/bodies/planet_04_1615.json",
+      "children": [
+        {
+          "id": "moon_0_346",
+          "name": "Errata I",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_1_817",
+          "name": "Errata II",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_2_513",
+          "name": "Errata III",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7381",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 5.35,
+      "texture": "assets/textures/gas/jovian_08_diffuse.png",
+      "file": "data/bodies/planet_05_7381.json",
+      "children": [
+        {
+          "id": "moon_0_889",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_8661",
+  "render_data": {
+    "texture_diffuse": "assets/textures/planets/jungle_05_diffuse.png",
+    "texture_bump": "assets/textures/planets/jungle_05_bump.png",
+    "texture_specular": "assets/textures/planets/jungle_05_specular.png",
+    "atmosphere_color": "#44aa44",
+    "rotation_speed": 0.009
+  },
+  "pois": []
+}

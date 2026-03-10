@@ -1,0 +1,98 @@
+{
+  "id": "beta_nexar",
+  "name": "Beta Nexar",
+  "star": {
+    "name": "Beta Nexar",
+    "spectral_class": "M2V",
+    "radius_km": 282999,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8523",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.06,
+      "texture": "assets/textures/gas/crimson_07_diffuse.png",
+      "file": "data/bodies/planet_01_8523.json",
+      "children": [
+        {
+          "id": "moon_0_582",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_1_834",
+          "name": "Colossex II",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_2_384",
+          "name": "Colossex III",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_3_550",
+          "name": "Colossex IV",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9837",
+      "name": "Voidreach",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 3.84,
+      "texture": "assets/textures/rocky/barren_07_diffuse.png",
+      "file": "data/bodies/planet_02_9837.json",
+      "children": [
+        {
+          "id": "moon_0_975",
+          "name": "Voidreach I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9789",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.95,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_03_9789.json",
+      "children": []
+    },
+    {
+      "id": "belt_2983",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.24,
+      "width": 0.39,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_693",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.8,
+          "orbit_distance": 0.0036,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

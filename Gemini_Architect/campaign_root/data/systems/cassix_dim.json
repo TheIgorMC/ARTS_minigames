@@ -1,0 +1,125 @@
+{
+  "id": "cassix_dim",
+  "name": "Cassix Dim",
+  "star": {
+    "name": "Cassix Dim",
+    "spectral_class": "K2V",
+    "radius_km": 527947,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6927",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 3.35,
+      "texture": "assets/textures/gas/neptunian_20_diffuse.png",
+      "file": "data/bodies/planet_01_6927.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_1485",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 6.52,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_02_1485.json",
+      "children": [
+        {
+          "id": "moon_0_745",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        },
+        {
+          "id": "moon_1_342",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_2_323",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        }
+      ]
+    },
+    {
+      "id": "planet_03_2941",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 9.39,
+      "texture": "assets/textures/gas/uranian_11_diffuse.png",
+      "file": "data/bodies/planet_03_2941.json",
+      "children": [
+        {
+          "id": "moon_0_235",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_1_102",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4422",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 12.39,
+      "texture": "assets/textures/gas/jovian_09_diffuse.png",
+      "file": "data/bodies/planet_04_4422.json",
+      "children": [
+        {
+          "id": "moon_0_487",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        },
+        {
+          "id": "moon_1_707",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_2_170",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        }
+      ]
+    },
+    {
+      "id": "planet_05_4906",
+      "name": "Pallor",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 5,
+      "orbit_radius": 14.45,
+      "texture": "assets/textures/rocky/martian_18_diffuse.png",
+      "file": "data/bodies/planet_05_4906.json",
+      "children": [
+        {
+          "id": "moon_0_949",
+          "name": "Pallor I",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        }
+      ]
+    }
+  ]
+}

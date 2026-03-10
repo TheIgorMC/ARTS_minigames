@@ -1,0 +1,112 @@
+{
+  "id": "kappa_prael",
+  "name": "Kappa Prael",
+  "star": {
+    "name": "Kappa Prael",
+    "spectral_class": "K2V",
+    "radius_km": 530929,
+    "color_hex": "#ff9944"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5305",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.3,
+      "texture": "assets/textures/gas/crimson_06_diffuse.png",
+      "file": "data/bodies/planet_01_5305.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_5864",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 7.03,
+      "texture": "assets/textures/gas/crimson_03_diffuse.png",
+      "file": "data/bodies/planet_02_5864.json",
+      "children": [
+        {
+          "id": "moon_0_619",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        },
+        {
+          "id": "moon_1_436",
+          "name": "Jovara II",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_2_645",
+          "name": "Jovara III",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        },
+        {
+          "id": "moon_3_313",
+          "name": "Jovara IV",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6929",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 10.59,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_03_6929.json",
+      "children": [
+        {
+          "id": "moon_0_110",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_04_3709",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 15.76,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_04_3709.json",
+      "children": [
+        {
+          "id": "moon_0_203",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "moon_1_331",
+          "name": "Expansia II",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7854",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 18.53,
+      "texture": "assets/textures/gas/saturnian_06_diffuse.png",
+      "file": "data/bodies/planet_05_7854.json",
+      "children": []
+    }
+  ]
+}

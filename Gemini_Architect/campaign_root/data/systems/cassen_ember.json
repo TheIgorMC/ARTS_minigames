@@ -1,0 +1,147 @@
+{
+  "id": "cassen_ember",
+  "name": "Cassen Ember",
+  "star": {
+    "name": "Cassen Ember",
+    "spectral_class": "M2V",
+    "radius_km": 292318,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9195",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.37,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_01_9195.json",
+      "children": [
+        {
+          "id": "moon_0_715",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_1_964",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_2_457",
+          "name": "Glacian III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6321",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.01,
+      "texture": "assets/textures/gas/crimson_08_diffuse.png",
+      "file": "data/bodies/planet_02_6321.json",
+      "children": [
+        {
+          "id": "moon_0_955",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_1_471",
+          "name": "Vortania II",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_2_714",
+          "name": "Vortania III",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_3_388",
+          "name": "Vortania IV",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "refinery_228",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.88,
+          "orbit_distance": 0.0078,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4342",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.73,
+      "texture": "assets/textures/gas/toxic_04_diffuse.png",
+      "file": "data/bodies/planet_03_4342.json",
+      "children": [
+        {
+          "id": "moon_0_711",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_434",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_2_886",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        }
+      ]
+    },
+    {
+      "id": "belt_2593",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 0.76,
+      "width": 0.18,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_420",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.83,
+          "orbit_distance": 0.0049,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_263",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.82,
+          "orbit_distance": 0.0057,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

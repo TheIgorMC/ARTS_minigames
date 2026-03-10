@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_3247",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/jovian_20_diffuse.png",
+    "texture_bump": "assets/textures/gas/jovian_20_bump.png",
+    "texture_specular": "assets/textures/gas/jovian_20_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0079
+  },
+  "pois": []
+}

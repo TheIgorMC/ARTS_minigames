@@ -1,0 +1,96 @@
+{
+  "id": "fexeon_prime",
+  "name": "Fexeon Prime",
+  "star": {
+    "name": "Fexeon Prime",
+    "spectral_class": "G2V",
+    "radius_km": 594080,
+    "color_hex": "#ffe0a0"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2831",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 15.03,
+      "texture": "assets/textures/gas/neptunian_03_diffuse.png",
+      "file": "data/bodies/planet_01_2831.json",
+      "children": [
+        {
+          "id": "moon_0_314",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4323",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 24.83,
+      "texture": "assets/textures/gas/saturnian_15_diffuse.png",
+      "file": "data/bodies/planet_02_4323.json",
+      "children": [
+        {
+          "id": "moon_0_471",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_1_465",
+          "name": "Expansia II",
+          "type": "Moon",
+          "orbit_distance": 0.1
+        },
+        {
+          "id": "moon_2_867",
+          "name": "Expansia III",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "moon_3_694",
+          "name": "Expansia IV",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7232",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 39.1,
+      "texture": "assets/textures/gas/toxic_12_diffuse.png",
+      "file": "data/bodies/planet_03_7232.json",
+      "children": [
+        {
+          "id": "moon_0_103",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_509",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_2_987",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        }
+      ]
+    }
+  ]
+}

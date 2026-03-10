@@ -1,0 +1,177 @@
+{
+  "id": "kilus_ember",
+  "name": "Kilus Ember",
+  "star": {
+    "name": "Kilus Ember",
+    "spectral_class": "M2V",
+    "radius_km": 163086,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3959",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1,
+      "texture": "assets/textures/gas/saturnian_05_diffuse.png",
+      "file": "data/bodies/planet_01_3959.json",
+      "children": [
+        {
+          "id": "moon_0_199",
+          "name": "Jovara I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_261",
+          "name": "Jovara II",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_2_938",
+          "name": "Jovara III",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7574",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.85,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_02_7574.json",
+      "children": [
+        {
+          "id": "moon_0_518",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9566",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.33,
+      "texture": "assets/textures/gas/jovian_05_diffuse.png",
+      "file": "data/bodies/planet_03_9566.json",
+      "children": [
+        {
+          "id": "moon_0_124",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_1_415",
+          "name": "Magnax II",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_2_836",
+          "name": "Magnax III",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        }
+      ]
+    },
+    {
+      "id": "planet_04_1789",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.03,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_04_1789.json",
+      "children": [
+        {
+          "id": "moon_0_136",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_1_294",
+          "name": "Vortania II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_613",
+          "name": "Vortania III",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_3_614",
+          "name": "Vortania IV",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        }
+      ]
+    },
+    {
+      "id": "planet_05_5491",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.85,
+      "texture": "assets/textures/gas/jovian_02_diffuse.png",
+      "file": "data/bodies/planet_05_5491.json",
+      "children": [
+        {
+          "id": "refinery_3484",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.88,
+          "orbit_distance": 0.0066,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "belt_4760",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 6,
+      "orbit_radius": 1.58,
+      "width": 0.2,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_640",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.9,
+          "orbit_distance": 0.0058,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_151",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.73,
+          "orbit_distance": 0.0039,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

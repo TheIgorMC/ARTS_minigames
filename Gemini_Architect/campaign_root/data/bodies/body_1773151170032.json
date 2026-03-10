@@ -1,0 +1,23 @@
+{
+  "id": "body_1773151170032",
+  "name": "New Body",
+  "type": "Planet",
+  "planet_type": "Rocky",
+  "radius_km": 6371,
+  "mass_earth": 1,
+  "gravity_g": 1,
+  "atmosphere": "Thin",
+  "temperature_k": 288,
+  "biome": "Barren",
+  "texture": "",
+  "rings": false,
+  "description": "",
+  "pois": [],
+  "render_data": {
+    "texture_diffuse": "assets/textures/rocky/martian_17_diffuse.png",
+    "texture_bump": "assets/textures/rocky/martian_17_bump.png",
+    "texture_specular": "",
+    "atmosphere_color": "#ec7265",
+    "rotation_speed": 0.005
+  }
+}

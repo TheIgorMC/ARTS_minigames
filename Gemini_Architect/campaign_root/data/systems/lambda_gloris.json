@@ -1,0 +1,78 @@
+{
+  "id": "lambda_gloris",
+  "name": "Lambda Gloris",
+  "star": {
+    "name": "Lambda Gloris",
+    "spectral_class": "M2V",
+    "radius_km": 342670,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4349",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.58,
+      "texture": "assets/textures/gas/jovian_03_diffuse.png",
+      "file": "data/bodies/planet_01_4349.json",
+      "children": [
+        {
+          "id": "moon_0_868",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1427",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.27,
+      "texture": "assets/textures/gas/neptunian_01_diffuse.png",
+      "file": "data/bodies/planet_02_1427.json",
+      "children": [
+        {
+          "id": "moon_0_240",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_1_913",
+          "name": "Frostia II",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        },
+        {
+          "id": "moon_2_427",
+          "name": "Frostia III",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8095",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.13,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_03_8095.json",
+      "children": [
+        {
+          "id": "moon_0_438",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        }
+      ]
+    }
+  ]
+}

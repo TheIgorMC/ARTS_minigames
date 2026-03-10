@@ -1,0 +1,84 @@
+{
+  "id": "beta_mordai",
+  "name": "Beta Mordai",
+  "star": {
+    "name": "Beta Mordai",
+    "spectral_class": "M2V",
+    "radius_km": 173512,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6875",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.64,
+      "texture": "assets/textures/gas/neptunian_15_diffuse.png",
+      "file": "data/bodies/planet_01_6875.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_7706",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.48,
+      "texture": "assets/textures/gas/saturnian_14_diffuse.png",
+      "file": "data/bodies/planet_02_7706.json",
+      "children": [
+        {
+          "id": "moon_0_830",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1513",
+      "name": "Rubble",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.07,
+      "texture": "assets/textures/rocky/barren_14_diffuse.png",
+      "file": "data/bodies/planet_03_1513.json",
+      "children": [
+        {
+          "id": "outpost_6588",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.71,
+          "orbit_distance": 0.0045,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_8301",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.26,
+      "texture": "assets/textures/gas/toxic_20_diffuse.png",
+      "file": "data/bodies/planet_04_8301.json",
+      "children": []
+    },
+    {
+      "id": "planet_05_7036",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 3.91,
+      "texture": "assets/textures/gas/saturnian_19_diffuse.png",
+      "file": "data/bodies/planet_05_7036.json",
+      "children": []
+    }
+  ]
+}

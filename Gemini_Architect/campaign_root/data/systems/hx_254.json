@@ -1,0 +1,117 @@
+{
+  "id": "hx_254",
+  "name": "HX-254",
+  "star": {
+    "name": "HX-254",
+    "spectral_class": "M2V",
+    "radius_km": 290939,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2168",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.65,
+      "texture": "assets/textures/gas/toxic_14_diffuse.png",
+      "file": "data/bodies/planet_01_2168.json",
+      "children": [
+        {
+          "id": "moon_0_641",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_1_304",
+          "name": "Colossex II",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_2_834",
+          "name": "Colossex III",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_3_156",
+          "name": "Colossex IV",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2620",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.89,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_02_2620.json",
+      "children": [
+        {
+          "id": "moon_0_925",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8726",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.66,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_03_8726.json",
+      "children": [
+        {
+          "id": "outpost_2910",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.69,
+          "orbit_distance": 0.0085,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4971",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 6.31,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_04_4971.json",
+      "children": [
+        {
+          "id": "moon_0_900",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_1_324",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_2_891",
+          "name": "Rimfall III",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    }
+  ]
+}

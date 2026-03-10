@@ -1,14 +1,415 @@
-﻿{
-    "id":  "sec_sector_4",
-    "name":  "Sector 4",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_4",
+  "name": "Sector 4",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773149002879_0",
+      "name": "HD-455",
+      "coordinates": {
+        "x": 1150,
+        "y": 318
+      },
+      "political_alignment": "",
+      "status": "Colonized",
+      "file": "data/systems/hd_455.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_2_1773149002879_1",
+      "name": "NZ-549",
+      "coordinates": {
+        "x": 1062,
+        "y": 371
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/nz_549.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_3_1773149002879_2",
+      "name": "KIC-218",
+      "coordinates": {
+        "x": 1183,
+        "y": 410
+      },
+      "political_alignment": "",
+      "status": "Colonized",
+      "file": "data/systems/kic_218.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_4_1773149002879_3",
+      "name": "RG-769",
+      "coordinates": {
+        "x": 928,
+        "y": 318
+      },
+      "political_alignment": "Faret Corporation",
+      "status": "Contested",
+      "file": "data/systems/rg_769.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_5_1773149002879_4",
+      "name": "Palara Prime",
+      "coordinates": {
+        "x": 913,
+        "y": 355
+      },
+      "political_alignment": "Faret Corporation",
+      "status": "Contested",
+      "file": "data/systems/palara_prime.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_6_1773149002879_5",
+      "name": "Tau Hypar",
+      "coordinates": {
+        "x": 1130,
+        "y": 394
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/tau_hypar.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_7_1773149002879_6",
+      "name": "Nu Corvat",
+      "coordinates": {
+        "x": 1145,
+        "y": 368
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Abandoned",
+      "file": "data/systems/nu_corvat.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_8_1773149002879_7",
+      "name": "Belor Sol",
+      "coordinates": {
+        "x": 1016,
+        "y": 371
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/belor_sol.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_9_1773149002879_8",
+      "name": "Kilax Red",
+      "coordinates": {
+        "x": 959,
+        "y": 331
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/kilax_red.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_10_1773149002879_9",
+      "name": "Thalel Dwarf",
+      "coordinates": {
+        "x": 1224,
+        "y": 422
+      },
+      "political_alignment": "",
+      "status": "Frontier",
+      "file": "data/systems/thalel_dwarf.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_11_1773149002879_10",
+      "name": "Solox Ember",
+      "coordinates": {
+        "x": 1094,
+        "y": 313
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/solox_ember.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_12_1773149002879_11",
+      "name": "TYC-896",
+      "coordinates": {
+        "x": 1142,
+        "y": 421
+      },
+      "political_alignment": "",
+      "status": "Abandoned",
+      "file": "data/systems/tyc_896.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_13_1773149002879_12",
+      "name": "BD-383",
+      "coordinates": {
+        "x": 1231,
+        "y": 356
+      },
+      "political_alignment": "",
+      "status": "Frontier",
+      "file": "data/systems/bd_383.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_14_1773149002879_13",
+      "name": "Kilus Ember",
+      "coordinates": {
+        "x": 959,
+        "y": 389
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/kilus_ember.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_15_1773149002879_14",
+      "name": "Rho Mordai",
+      "coordinates": {
+        "x": 1166,
+        "y": 285
+      },
+      "political_alignment": "",
+      "status": "Frontier",
+      "file": "data/systems/rho_mordai.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_16_1773149002879_15",
+      "name": "Gamma Serpen",
+      "coordinates": {
+        "x": 1218,
+        "y": 311
+      },
+      "political_alignment": "",
+      "status": "Abandoned",
+      "file": "data/systems/gamma_serpen.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_17_1773149002879_16",
+      "name": "Sigma Solvar",
+      "coordinates": {
+        "x": 1116,
+        "y": 348
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/sigma_solvar.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_18_1773149002879_17",
+      "name": "XR-492",
+      "coordinates": {
+        "x": 1180,
+        "y": 349
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/xr_492.json",
+      "main": false,
+      "star_color": "#cad7ff"
+    },
+    {
+      "id": "sys_19_1773149002879_18",
+      "name": "TYC-197",
+      "coordinates": {
+        "x": 1039,
+        "y": 335
+      },
+      "political_alignment": "Shadow Trade Union",
+      "status": "Colonized",
+      "file": "data/systems/tyc_197.json",
+      "main": false,
+      "star_color": "#ffae66"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_4_1773149002879_3",
+      "to": "sys_3_1773148879247_2",
+      "type": "Stable",
+      "distance": 4.24
+    },
+    {
+      "from": "sys_5_1773149002879_4",
+      "to": "sys_9_1773149002879_8",
+      "type": "Stable",
+      "distance": 5.19
+    },
+    {
+      "from": "sys_4_1773149002879_3",
+      "to": "sys_9_1773149002879_8",
+      "type": "Stable",
+      "distance": 3.36
+    },
+    {
+      "from": "sys_9_1773149002879_8",
+      "to": "sys_14_1773149002879_13",
+      "type": "Stable",
+      "distance": 5.8
+    },
+    {
+      "from": "sys_14_1773149002879_13",
+      "to": "sys_8_1773149002879_7",
+      "type": "Stable",
+      "distance": 5.98
+    },
+    {
+      "from": "sys_9_1773149002879_8",
+      "to": "sys_19_1773149002879_18",
+      "type": "Stable",
+      "distance": 8.01
+    },
+    {
+      "from": "sys_8_1773149002879_7",
+      "to": "sys_2_1773149002879_1",
+      "type": "Stable",
+      "distance": 4.6
+    },
+    {
+      "from": "sys_2_1773149002879_1",
+      "to": "sys_19_1773149002879_18",
+      "type": "Stable",
+      "distance": 4.27
+    },
+    {
+      "from": "sys_19_1773149002879_18",
+      "to": "sys_11_1773149002879_10",
+      "type": "Stable",
+      "distance": 4.81
+    },
+    {
+      "from": "sys_2_1773149002879_1",
+      "to": "sys_6_1773149002879_5",
+      "type": "Stable",
+      "distance": 7.18
+    },
+    {
+      "from": "sys_2_1773149002879_1",
+      "to": "sys_17_1773149002879_16",
+      "type": "Stable",
+      "distance": 5.87
+    },
+    {
+      "from": "sys_17_1773149002879_16",
+      "to": "sys_7_1773149002879_6",
+      "type": "Stable",
+      "distance": 3.52
+    },
+    {
+      "from": "sys_6_1773149002879_5",
+      "to": "sys_7_1773149002879_6",
+      "type": "Stable",
+      "distance": 3
+    },
+    {
+      "from": "sys_11_1773149002879_10",
+      "to": "sys_1_1773149002879_0",
+      "type": "Stable",
+      "distance": 6.7
+    },
+    {
+      "from": "sys_1_1773149002879_0",
+      "to": "sys_15_1773149002879_14",
+      "type": "Stable",
+      "distance": 3.89
+    },
+    {
+      "from": "sys_15_1773149002879_14",
+      "to": "sys_16_1773149002879_15",
+      "type": "Stable",
+      "distance": 2.72
+    },
+    {
+      "from": "sys_1_1773149002879_0",
+      "to": "sys_18_1773149002879_17",
+      "type": "Stable",
+      "distance": 3.49
+    },
+    {
+      "from": "sys_18_1773149002879_17",
+      "to": "sys_13_1773149002879_12",
+      "type": "Stable",
+      "distance": 4.23
+    },
+    {
+      "from": "sys_7_1773149002879_6",
+      "to": "sys_3_1773149002879_2",
+      "type": "Stable",
+      "distance": 5.66
+    },
+    {
+      "from": "sys_6_1773149002879_5",
+      "to": "sys_12_1773149002879_11",
+      "type": "Stable",
+      "distance": 2.95
+    },
+    {
+      "from": "sys_12_1773149002879_11",
+      "to": "sys_3_1773149002879_2",
+      "type": "Stable",
+      "distance": 4.24
+    },
+    {
+      "from": "sys_3_1773149002879_2",
+      "to": "sys_10_1773149002879_9",
+      "type": "Stable",
+      "distance": 5.36
+    },
+    {
+      "from": "sys_13_1773149002879_12",
+      "to": "sys_10_1773149002879_9",
+      "type": "Stable",
+      "distance": 6.56
+    },
+    {
+      "from": "sys_17_1773149002879_16",
+      "to": "sys_18_1773149002879_17",
+      "type": "Stable",
+      "distance": 6.4
+    },
+    {
+      "from": "sys_12_1773149002879_11",
+      "to": "sys_15_1773150684903_14",
+      "type": "Stable",
+      "distance": 3.44
+    },
+    {
+      "from": "sys_10_1773149002879_9",
+      "to": "sys_2_1773150684903_1",
+      "type": "Stable",
+      "distance": 5.83
+    }
+  ]
 }

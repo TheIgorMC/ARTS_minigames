@@ -1,0 +1,117 @@
+{
+  "id": "gamma_serpen",
+  "name": "Gamma Serpen",
+  "star": {
+    "name": "Gamma Serpen",
+    "spectral_class": "M2V",
+    "radius_km": 67847,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4580",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.89,
+      "texture": "assets/textures/gas/crimson_20_diffuse.png",
+      "file": "data/bodies/planet_01_4580.json",
+      "children": [
+        {
+          "id": "moon_0_134",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_1_918",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_2_171",
+          "name": "Aether III",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_3_630",
+          "name": "Aether IV",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4032",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 4.1,
+      "texture": "assets/textures/gas/uranian_08_diffuse.png",
+      "file": "data/bodies/planet_02_4032.json",
+      "children": [
+        {
+          "id": "moon_0_169",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        },
+        {
+          "id": "moon_1_925",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_2_158",
+          "name": "Cryox III",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        },
+        {
+          "id": "moon_3_400",
+          "name": "Cryox IV",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7542",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 6.48,
+      "texture": "assets/textures/gas/jovian_16_diffuse.png",
+      "file": "data/bodies/planet_03_7542.json",
+      "children": [
+        {
+          "id": "moon_0_860",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_1_257",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "refinery_1191",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.89,
+          "orbit_distance": 0.0033,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

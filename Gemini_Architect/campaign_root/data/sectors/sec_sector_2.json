@@ -1,14 +1,251 @@
-﻿{
-    "id":  "sec_sector_2",
-    "name":  "Sector 2",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_2",
+  "name": "Sector 2",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773148788031_0",
+      "name": "HD-727",
+      "coordinates": {
+        "x": 952,
+        "y": 163
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hd_727.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_2_1773148788031_1",
+      "name": "TYC-351",
+      "coordinates": {
+        "x": 884,
+        "y": 170
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_351.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_3_1773148788031_2",
+      "name": "Hoxox Dawn",
+      "coordinates": {
+        "x": 858,
+        "y": 109
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hoxox_dawn.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_4_1773148788031_3",
+      "name": "VT-600",
+      "coordinates": {
+        "x": 840,
+        "y": 243
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/vt_600.json",
+      "main": false,
+      "star_color": "#ff9944"
+    },
+    {
+      "id": "sys_5_1773148788031_4",
+      "name": "Eta Arcon",
+      "coordinates": {
+        "x": 854,
+        "y": 206
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/eta_arcon.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_6_1773148788031_5",
+      "name": "Thalos Dwarf",
+      "coordinates": {
+        "x": 872,
+        "y": 233
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/thalos_dwarf.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_7_1773148788031_6",
+      "name": "Alpha Draven",
+      "coordinates": {
+        "x": 909,
+        "y": 116
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/alpha_draven.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_8_1773148788031_7",
+      "name": "Lambda Arcon",
+      "coordinates": {
+        "x": 899,
+        "y": 60
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/lambda_arcon.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_9_1773148788031_8",
+      "name": "Tau Kethis",
+      "coordinates": {
+        "x": 966,
+        "y": 139
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tau_kethis.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_10_1773148788031_9",
+      "name": "GJ-424",
+      "coordinates": {
+        "x": 976,
+        "y": 113
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gj_424.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_11_1773148788031_10",
+      "name": "Fexeth Dwarf",
+      "coordinates": {
+        "x": 1003,
+        "y": 131
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/fexeth_dwarf.json",
+      "main": false,
+      "star_color": "#cc2200"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_5_1773148788031_4",
+      "to": "sys_2_1773148788031_1",
+      "type": "Stable",
+      "distance": 4.69
+    },
+    {
+      "from": "sys_5_1773148788031_4",
+      "to": "sys_6_1773148788031_5",
+      "type": "Stable",
+      "distance": 3.24
+    },
+    {
+      "from": "sys_6_1773148788031_5",
+      "to": "sys_4_1773148788031_3",
+      "type": "Stable",
+      "distance": 3.35
+    },
+    {
+      "from": "sys_2_1773148788031_1",
+      "to": "sys_1_1773148788031_0",
+      "type": "Stable",
+      "distance": 6.84
+    },
+    {
+      "from": "sys_1_1773148788031_0",
+      "to": "sys_9_1773148788031_8",
+      "type": "Stable",
+      "distance": 2.78
+    },
+    {
+      "from": "sys_9_1773148788031_8",
+      "to": "sys_10_1773148788031_9",
+      "type": "Stable",
+      "distance": 2.79
+    },
+    {
+      "from": "sys_9_1773148788031_8",
+      "to": "sys_11_1773148788031_10",
+      "type": "Stable",
+      "distance": 3.7
+    },
+    {
+      "from": "sys_3_1773148788031_2",
+      "to": "sys_7_1773148788031_6",
+      "type": "Stable",
+      "distance": 5.15
+    },
+    {
+      "from": "sys_7_1773148788031_6",
+      "to": "sys_1_1773148788031_0",
+      "type": "Stable",
+      "distance": 6.37
+    },
+    {
+      "from": "sys_7_1773148788031_6",
+      "to": "sys_8_1773148788031_7",
+      "type": "Stable",
+      "distance": 5.69
+    },
+    {
+      "from": "sys_4_1773148788031_3",
+      "to": "sys_14_1773135988318_13",
+      "type": "Stable",
+      "distance": 6.13
+    },
+    {
+      "from": "sys_6_1773148788031_5",
+      "to": "sys_13_1773148879247_12",
+      "type": "Stable",
+      "distance": 4.83
+    },
+    {
+      "from": "sys_1_1773148788031_0",
+      "to": "sys_4_1773148879247_3",
+      "type": "Stable",
+      "distance": 5.61
+    },
+    {
+      "from": "sys_11_1773148788031_10",
+      "to": "sys_1_1773148879247_0",
+      "type": "Stable",
+      "distance": 5.22
+    },
+    {
+      "from": "sys_6_1773148788031_5",
+      "to": "sys_9_1773148879247_8",
+      "type": "Stable",
+      "distance": 3.39
+    },
+    {
+      "from": "sys_3_1773148788031_2",
+      "to": "sys_2_1773148788031_1",
+      "type": "Stable",
+      "distance": 6.63
+    }
+  ]
 }

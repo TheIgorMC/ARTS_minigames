@@ -1,0 +1,164 @@
+{
+  "id": "kic_583",
+  "name": "KIC-583",
+  "star": {
+    "name": "KIC-583",
+    "spectral_class": "M2V",
+    "radius_km": 416156,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9754",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.49,
+      "texture": "assets/textures/gas/toxic_16_diffuse.png",
+      "file": "data/bodies/planet_01_9754.json",
+      "children": [
+        {
+          "id": "moon_0_133",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "moon_1_685",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_2_154",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1538",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.56,
+      "texture": "assets/textures/gas/jovian_16_diffuse.png",
+      "file": "data/bodies/planet_02_1538.json",
+      "children": [
+        {
+          "id": "moon_0_189",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_1_720",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_2_709",
+          "name": "Aether III",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        },
+        {
+          "id": "moon_3_669",
+          "name": "Aether IV",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "refinery_1474",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.91,
+          "orbit_distance": 0.0052,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6616",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.98,
+      "texture": "assets/textures/gas/jovian_16_diffuse.png",
+      "file": "data/bodies/planet_03_6616.json",
+      "children": [
+        {
+          "id": "moon_0_878",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_1_237",
+          "name": "Expansia II",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        },
+        {
+          "id": "moon_2_185",
+          "name": "Expansia III",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_3_982",
+          "name": "Expansia IV",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2215",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.47,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_04_2215.json",
+      "children": []
+    },
+    {
+      "id": "planet_05_7826",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 6.73,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_05_7826.json",
+      "children": [
+        {
+          "id": "moon_0_488",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_1_913",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_2_964",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        }
+      ]
+    }
+  ]
+}

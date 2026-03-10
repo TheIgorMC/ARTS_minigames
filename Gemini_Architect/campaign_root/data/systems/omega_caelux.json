@@ -1,0 +1,171 @@
+{
+  "id": "omega_caelux",
+  "name": "Omega Caelux",
+  "star": {
+    "name": "Omega Caelux",
+    "spectral_class": "M2V",
+    "radius_km": 73346,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2886",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.26,
+      "texture": "assets/textures/gas/neptunian_07_diffuse.png",
+      "file": "data/bodies/planet_01_2886.json",
+      "children": [
+        {
+          "id": "moon_0_931",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_1_505",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_2_879",
+          "name": "Cryox III",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4417",
+      "name": "Null",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 2.56,
+      "texture": "assets/textures/rocky/mercurian_01_diffuse.png",
+      "file": "data/bodies/planet_02_4417.json",
+      "children": [
+        {
+          "id": "moon_0_489",
+          "name": "Null I",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_1_419",
+          "name": "Null II",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_2_619",
+          "name": "Null III",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8533",
+      "name": "Ashen",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 3.58,
+      "texture": "assets/textures/rocky/martian_05_diffuse.png",
+      "file": "data/bodies/planet_03_8533.json",
+      "children": [
+        {
+          "id": "moon_0_692",
+          "name": "Ashen I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_1_633",
+          "name": "Ashen II",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_2_330",
+          "name": "Ashen III",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "outpost_9744",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.58,
+          "orbit_distance": 0.0041,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4142",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.23,
+      "texture": "assets/textures/gas/jovian_18_diffuse.png",
+      "file": "data/bodies/planet_04_4142.json",
+      "children": [
+        {
+          "id": "moon_0_217",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_1_820",
+          "name": "Nebular II",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_2_924",
+          "name": "Nebular III",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    },
+    {
+      "id": "belt_6411",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.61,
+      "width": 0.15,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_929",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.75,
+          "orbit_distance": 0.0034,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_532",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.71,
+          "orbit_distance": 0.0024,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "kilon_ember",
+  "name": "Kilon Ember",
+  "star": {
+    "name": "Kilon Ember",
+    "spectral_class": "M2V",
+    "radius_km": 75493,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4730",
+      "name": "Pallor",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.13,
+      "texture": "assets/textures/rocky/barren_18_diffuse.png",
+      "file": "data/bodies/planet_01_4730.json",
+      "children": [
+        {
+          "id": "moon_0_444",
+          "name": "Pallor I",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        },
+        {
+          "id": "outpost_6025",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.81,
+          "orbit_distance": 0.0049,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5621",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.53,
+      "texture": "assets/textures/gas/saturnian_09_diffuse.png",
+      "file": "data/bodies/planet_02_5621.json",
+      "children": [
+        {
+          "id": "moon_0_424",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        },
+        {
+          "id": "moon_1_277",
+          "name": "Magnax II",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_2_361",
+          "name": "Magnax III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_3_486",
+          "name": "Magnax IV",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1699",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.02,
+      "texture": "assets/textures/gas/neptunian_04_diffuse.png",
+      "file": "data/bodies/planet_03_1699.json",
+      "children": [
+        {
+          "id": "moon_0_693",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_1_188",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_2_991",
+          "name": "Cryox III",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "belt_8681",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.35,
+      "width": 0.27,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_363",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.96,
+          "orbit_distance": 0.0023,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

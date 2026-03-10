@@ -1,0 +1,222 @@
+{
+  "id": "rg_769",
+  "name": "RG-769",
+  "star": {
+    "name": "RG-769",
+    "spectral_class": "M2V",
+    "radius_km": 361192,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8661",
+      "name": "Sylvara",
+      "type": "Planet",
+      "planet_type": "Jungle",
+      "orbit_index": 1,
+      "orbit_radius": 0.45,
+      "texture": "assets/textures/planets/jungle_19_diffuse.png",
+      "file": "data/bodies/planet_01_8661.json",
+      "children": [
+        {
+          "id": "moon_0_309",
+          "name": "Sylvara I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4090",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.02,
+      "texture": "assets/textures/gas/toxic_12_diffuse.png",
+      "file": "data/bodies/planet_02_4090.json",
+      "children": [
+        {
+          "id": "moon_0_229",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_1_521",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_2_603",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_3_284",
+          "name": "Cumulus IV",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4027",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 1.77,
+      "texture": "assets/textures/gas/uranian_17_diffuse.png",
+      "file": "data/bodies/planet_03_4027.json",
+      "children": [
+        {
+          "id": "moon_0_361",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        },
+        {
+          "id": "moon_1_133",
+          "name": "Frostia II",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_2_378",
+          "name": "Frostia III",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_3_256",
+          "name": "Frostia IV",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        }
+      ]
+    },
+    {
+      "id": "planet_04_1208",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 2.82,
+      "texture": "assets/textures/gas/uranian_05_diffuse.png",
+      "file": "data/bodies/planet_04_1208.json",
+      "children": [
+        {
+          "id": "moon_0_369",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_1_529",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_2_604",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3274",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 3.72,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_05_3274.json",
+      "children": [
+        {
+          "id": "moon_0_807",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        },
+        {
+          "id": "moon_1_628",
+          "name": "Frostia II",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_2_862",
+          "name": "Frostia III",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        }
+      ]
+    },
+    {
+      "id": "planet_06_8565",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.61,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_06_8565.json",
+      "children": [
+        {
+          "id": "moon_0_741",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_765",
+          "name": "Sleetmaw II",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_2_349",
+          "name": "Sleetmaw III",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        }
+      ]
+    },
+    {
+      "id": "belt_8124",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 0.92,
+      "width": 0.1,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_911",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.83,
+          "orbit_distance": 0.0059,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_813",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.83,
+          "orbit_distance": 0.0054,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

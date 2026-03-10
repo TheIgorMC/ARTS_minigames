@@ -1,0 +1,134 @@
+{
+  "id": "epsilon_tylath",
+  "name": "Epsilon Tylath",
+  "star": {
+    "name": "Epsilon Tylath",
+    "spectral_class": "G2V",
+    "radius_km": 790101,
+    "color_hex": "#ffe0a0"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5267",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 9.56,
+      "texture": "assets/textures/gas/crimson_05_diffuse.png",
+      "file": "data/bodies/planet_01_5267.json",
+      "children": [
+        {
+          "id": "moon_0_459",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "refinery_8050",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.84,
+          "orbit_distance": 0.0043,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9593",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 23.17,
+      "texture": "assets/textures/gas/toxic_04_diffuse.png",
+      "file": "data/bodies/planet_02_9593.json",
+      "children": [
+        {
+          "id": "moon_0_916",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_423",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        },
+        {
+          "id": "moon_2_260",
+          "name": "Nimbus III",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9218",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 28.95,
+      "texture": "assets/textures/gas/uranian_17_diffuse.png",
+      "file": "data/bodies/planet_03_9218.json",
+      "children": [
+        {
+          "id": "moon_0_209",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5199",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 35.08,
+      "texture": "assets/textures/gas/uranian_20_diffuse.png",
+      "file": "data/bodies/planet_04_5199.json",
+      "children": [
+        {
+          "id": "moon_0_902",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_870",
+          "name": "Sleetmaw II",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_2_573",
+          "name": "Sleetmaw III",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_3_142",
+          "name": "Sleetmaw IV",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3209",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 41.53,
+      "texture": "assets/textures/gas/neptunian_09_diffuse.png",
+      "file": "data/bodies/planet_05_3209.json",
+      "children": []
+    }
+  ]
+}

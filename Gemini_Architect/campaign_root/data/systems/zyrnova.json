@@ -1,0 +1,34 @@
+{
+  "id": "zyrnova",
+  "star": {
+    "name": "Zyrnova",
+    "spectral_class": "G2V",
+    "radius_km": 696000,
+    "color_hex": "#ffcc00"
+  },
+  "orbitals": [
+    {
+      "id": "Verces",
+      "name": "Verces",
+      "type": "Planet",
+      "orbit_index": 1,
+      "orbit_radius": 13.7,
+      "children": [],
+      "file": "data/bodies/body_1773151170032.json",
+      "scale": 1.3,
+      "locked": true
+    },
+    {
+      "id": "banelor",
+      "name": "Banelor",
+      "type": "Planet",
+      "orbit_index": 2,
+      "orbit_radius": 15.9,
+      "children": [],
+      "file": "data/bodies/body_1773151205607.json",
+      "scale": 1,
+      "locked": true
+    }
+  ],
+  "name": "Zyrnova"
+}

@@ -1,0 +1,122 @@
+{
+  "id": "gj_406",
+  "name": "GJ-406",
+  "star": {
+    "name": "GJ-406",
+    "spectral_class": "M2V",
+    "radius_km": 153616,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8163",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.79,
+      "texture": "assets/textures/gas/saturnian_11_diffuse.png",
+      "file": "data/bodies/planet_01_8163.json",
+      "children": [
+        {
+          "id": "moon_0_871",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_1_866",
+          "name": "Gravitus II",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_2_275",
+          "name": "Gravitus III",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        },
+        {
+          "id": "refinery_7614",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.94,
+          "orbit_distance": 0.0038,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5411",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.23,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_02_5411.json",
+      "children": [
+        {
+          "id": "moon_0_856",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_1_375",
+          "name": "Aurorax II",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_2_247",
+          "name": "Aurorax III",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        },
+        {
+          "id": "moon_3_803",
+          "name": "Aurorax IV",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5195",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.86,
+      "texture": "assets/textures/gas/saturnian_14_diffuse.png",
+      "file": "data/bodies/planet_03_5195.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_4811",
+      "name": "Nimbus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.69,
+      "texture": "assets/textures/gas/jovian_12_diffuse.png",
+      "file": "data/bodies/planet_04_4811.json",
+      "children": [
+        {
+          "id": "moon_0_738",
+          "name": "Nimbus I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_1_432",
+          "name": "Nimbus II",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    }
+  ]
+}

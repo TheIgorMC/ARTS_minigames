@@ -1,0 +1,155 @@
+{
+  "id": "chi_tylath",
+  "name": "Chi Tylath",
+  "star": {
+    "name": "Chi Tylath",
+    "spectral_class": "M2V",
+    "radius_km": 413212,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1795",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.99,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_01_1795.json",
+      "children": [
+        {
+          "id": "moon_0_871",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_1_793",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_2_129",
+          "name": "Gelida III",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9693",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.59,
+      "texture": "assets/textures/gas/toxic_04_diffuse.png",
+      "file": "data/bodies/planet_02_9693.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_4726",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.65,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_03_4726.json",
+      "children": [
+        {
+          "id": "moon_0_695",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_04_8719",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.22,
+      "texture": "assets/textures/gas/saturnian_12_diffuse.png",
+      "file": "data/bodies/planet_04_8719.json",
+      "children": [
+        {
+          "id": "moon_0_619",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        },
+        {
+          "id": "moon_1_519",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3120",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 3.89,
+      "texture": "assets/textures/gas/jovian_08_diffuse.png",
+      "file": "data/bodies/planet_05_3120.json",
+      "children": [
+        {
+          "id": "moon_0_304",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_661",
+          "name": "Magnax II",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1778",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.49,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_06_1778.json",
+      "children": [
+        {
+          "id": "moon_0_975",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        },
+        {
+          "id": "moon_1_183",
+          "name": "Permafrost II",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        },
+        {
+          "id": "moon_2_377",
+          "name": "Permafrost III",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_3_368",
+          "name": "Permafrost IV",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    }
+  ]
+}

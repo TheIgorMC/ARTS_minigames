@@ -1,0 +1,88 @@
+{
+  "id": "gamma_solvar",
+  "name": "Gamma Solvar",
+  "star": {
+    "name": "Gamma Solvar",
+    "spectral_class": "M2V",
+    "radius_km": 249861,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2828",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.88,
+      "texture": "assets/textures/gas/uranian_18_diffuse.png",
+      "file": "data/bodies/planet_01_2828.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_1075",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.87,
+      "texture": "assets/textures/gas/jovian_05_diffuse.png",
+      "file": "data/bodies/planet_02_1075.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_1524",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.28,
+      "texture": "assets/textures/gas/neptunian_05_diffuse.png",
+      "file": "data/bodies/planet_03_1524.json",
+      "children": [
+        {
+          "id": "moon_0_870",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4404",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.29,
+      "texture": "assets/textures/gas/saturnian_05_diffuse.png",
+      "file": "data/bodies/planet_04_4404.json",
+      "children": [
+        {
+          "id": "moon_0_379",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_205",
+          "name": "Nebular II",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_2_927",
+          "name": "Nebular III",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_3_297",
+          "name": "Nebular IV",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    }
+  ]
+}

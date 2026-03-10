@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_7562",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/neptunian_04_diffuse.png",
+    "texture_bump": "assets/textures/gas/neptunian_04_bump.png",
+    "texture_specular": "assets/textures/gas/neptunian_04_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0098
+  },
+  "pois": []
+}

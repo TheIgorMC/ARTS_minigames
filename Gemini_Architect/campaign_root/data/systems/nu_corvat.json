@@ -1,0 +1,80 @@
+{
+  "id": "nu_corvat",
+  "name": "Nu Corvat",
+  "star": {
+    "name": "Nu Corvat",
+    "spectral_class": "M2V",
+    "radius_km": 317964,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3934",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.75,
+      "texture": "assets/textures/gas/crimson_18_diffuse.png",
+      "file": "data/bodies/planet_01_3934.json",
+      "children": [
+        {
+          "id": "moon_0_569",
+          "name": "Stratum I",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_1_603",
+          "name": "Stratum II",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1142",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 4.05,
+      "texture": "assets/textures/gas/neptunian_06_diffuse.png",
+      "file": "data/bodies/planet_02_1142.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_4952",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.63,
+      "texture": "assets/textures/gas/jovian_05_diffuse.png",
+      "file": "data/bodies/planet_03_4952.json",
+      "children": [
+        {
+          "id": "moon_0_588",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_1_719",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "refinery_2046",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.88,
+          "orbit_distance": 0.0054,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

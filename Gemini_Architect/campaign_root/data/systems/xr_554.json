@@ -1,0 +1,119 @@
+{
+  "id": "xr_554",
+  "name": "XR-554",
+  "star": {
+    "name": "XR-554",
+    "spectral_class": "M2V",
+    "radius_km": 323554,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8914",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.45,
+      "texture": "assets/textures/gas/neptunian_09_diffuse.png",
+      "file": "data/bodies/planet_01_8914.json",
+      "children": [
+        {
+          "id": "moon_0_497",
+          "name": "Brine I",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_1_351",
+          "name": "Brine II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3602",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.47,
+      "texture": "assets/textures/gas/saturnian_17_diffuse.png",
+      "file": "data/bodies/planet_02_3602.json",
+      "children": [
+        {
+          "id": "moon_0_172",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_1_161",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        },
+        {
+          "id": "moon_2_671",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9022",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.25,
+      "texture": "assets/textures/gas/crimson_01_diffuse.png",
+      "file": "data/bodies/planet_03_9022.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_2727",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.07,
+      "texture": "assets/textures/gas/neptunian_11_diffuse.png",
+      "file": "data/bodies/planet_04_2727.json",
+      "children": [
+        {
+          "id": "moon_0_479",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_767",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3326",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 5.4,
+      "texture": "assets/textures/gas/uranian_18_diffuse.png",
+      "file": "data/bodies/planet_05_3326.json",
+      "children": [
+        {
+          "id": "moon_0_912",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        }
+      ]
+    }
+  ]
+}

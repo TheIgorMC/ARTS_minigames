@@ -1,0 +1,99 @@
+{
+  "id": "palara_prime",
+  "name": "Palara Prime",
+  "star": {
+    "name": "Palara Prime",
+    "spectral_class": "G2V",
+    "radius_km": 587385,
+    "color_hex": "#ffe0a0"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5439",
+      "name": "Colossex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 14.42,
+      "texture": "assets/textures/gas/jovian_15_diffuse.png",
+      "file": "data/bodies/planet_01_5439.json",
+      "children": [
+        {
+          "id": "moon_0_211",
+          "name": "Colossex I",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_1_982",
+          "name": "Colossex II",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        },
+        {
+          "id": "refinery_6140",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.93,
+          "orbit_distance": 0.0049,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6451",
+      "name": "Wither",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 2,
+      "orbit_radius": 29.36,
+      "texture": "assets/textures/rocky/mercurian_08_diffuse.png",
+      "file": "data/bodies/planet_02_6451.json",
+      "children": [
+        {
+          "id": "moon_0_777",
+          "name": "Wither I",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3256",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 45.07,
+      "texture": "assets/textures/gas/toxic_06_diffuse.png",
+      "file": "data/bodies/planet_03_3256.json",
+      "children": [
+        {
+          "id": "moon_0_834",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_1_366",
+          "name": "Vortania II",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_2_492",
+          "name": "Vortania III",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_3_922",
+          "name": "Vortania IV",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        }
+      ]
+    }
+  ]
+}

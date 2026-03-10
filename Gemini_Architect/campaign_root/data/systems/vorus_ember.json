@@ -1,0 +1,125 @@
+{
+  "id": "vorus_ember",
+  "name": "Vorus Ember",
+  "star": {
+    "name": "Vorus Ember",
+    "spectral_class": "M2V",
+    "radius_km": 196308,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6171",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.82,
+      "texture": "assets/textures/gas/crimson_06_diffuse.png",
+      "file": "data/bodies/planet_01_6171.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_6834",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.03,
+      "texture": "assets/textures/gas/neptunian_13_diffuse.png",
+      "file": "data/bodies/planet_02_6834.json",
+      "children": [
+        {
+          "id": "moon_0_716",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_816",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.1
+        },
+        {
+          "id": "moon_2_337",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1569",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.77,
+      "texture": "assets/textures/gas/neptunian_20_diffuse.png",
+      "file": "data/bodies/planet_03_1569.json",
+      "children": [
+        {
+          "id": "moon_0_789",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_1_718",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_2_324",
+          "name": "Icebreak III",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_3_556",
+          "name": "Icebreak IV",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        }
+      ]
+    },
+    {
+      "id": "planet_04_8035",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.16,
+      "texture": "assets/textures/gas/neptunian_15_diffuse.png",
+      "file": "data/bodies/planet_04_8035.json",
+      "children": [
+        {
+          "id": "moon_0_920",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_756",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_2_347",
+          "name": "Cryox III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_3_751",
+          "name": "Cryox IV",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        }
+      ]
+    }
+  ]
+}

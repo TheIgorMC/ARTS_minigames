@@ -741,5 +741,15 @@
         }
       ]
     }
+  ],
+  "factions": [
+    "Revolutionists of Eelo",
+    "Armada of Yamas",
+    "I Risvegliati",
+    "Shadow Trade Union",
+    "Faret Corporation",
+    "Ascensionists of Karas",
+    "Libertarian of Verces",
+    "Conservatives of Banelor"
   ]
 }

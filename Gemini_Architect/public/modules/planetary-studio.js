@@ -241,7 +241,7 @@ const PlanetaryStudio = (() => {
             const dy = e.clientY - orbPrev.y;
             dragDist += Math.abs(dx) + Math.abs(dy);
             orbit.theta -= dx * 0.005;
-            orbit.phi   += dy * 0.005;
+            orbit.phi   -= dy * 0.005;
             orbit.phi    = Math.max(0.1, Math.min(Math.PI - 0.1, orbit.phi));
             orbPrev = { x: e.clientX, y: e.clientY };
             updateCamera();
@@ -426,6 +426,96 @@ const PlanetaryStudio = (() => {
         poiGroup.rotation.y = sphereMesh ? sphereMesh.rotation.y : 0;
     }
 
+    // ── Texture Picker Popup ───────────────────────────────────────────────
+    async function openTexturePicker(targetField) {
+        // Scan all texture sub-directories
+        const FOLDERS = ['planets','rocky','gas','stars'];
+        const groups = [];  // { folder, sets: [{ base, diffuse, thumb }] }
+
+        for (const folder of FOLDERS) {
+            try {
+                const files = await API.listDir('assets/textures/' + folder);
+                const diffuseFiles = files.filter(f => !f.isDir && f.name.endsWith('_diffuse.png'));
+                const sets = diffuseFiles.map(f => {
+                    const base = f.name.replace('_diffuse.png','');
+                    return {
+                        base,
+                        diffuse: `assets/textures/${folder}/${f.name}`,
+                        bump:    `assets/textures/${folder}/${base}_bump.png`,
+                        specular:`assets/textures/${folder}/${base}_specular.png`,
+                    };
+                }).sort((a,b) => a.base.localeCompare(b.base));
+                if (sets.length) groups.push({ folder, sets });
+            } catch (_) {}
+        }
+
+        return new Promise(resolve => {
+            const overlay = document.getElementById('modal-overlay');
+            const box     = document.getElementById('modal-box');
+            // Temporarily widen modal
+            box.classList.remove('modal-box--sm');
+            box.classList.add('modal-box--md');
+
+            let html = '<div style="max-height:60vh;overflow-y:auto">';
+            for (const g of groups) {
+                html += `<div class="form-label" style="margin:8px 0 4px;font-size:0.85rem;color:var(--accent-color)">${g.folder.toUpperCase()}</div>`;
+                html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+                for (const s of g.sets) {
+                    html += `<div class="tex-pick-item" data-diff="${s.diffuse}" data-bump="${s.bump}" data-spec="${s.specular}" `
+                         +  `style="cursor:pointer;width:72px;text-align:center;border:1px solid var(--gray-700);border-radius:4px;padding:3px;transition:border-color .15s" `
+                         +  `title="${s.base}">`
+                         +  `<img src="/campaign-assets/${s.diffuse}" style="width:64px;height:64px;object-fit:cover;border-radius:2px;display:block" loading="lazy" />`
+                         +  `<span style="font-size:0.55rem;color:#aaa;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.base}</span>`
+                         +  '</div>';
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+
+            document.getElementById('modal-title').textContent = 'Pick Texture';
+            document.getElementById('modal-body').innerHTML = html;
+            overlay.style.display = 'flex';
+
+            function cleanup(result) {
+                overlay.style.display = 'none';
+                box.classList.remove('modal-box--md');
+                box.classList.add('modal-box--sm');
+                document.getElementById('modal-confirm').onclick = null;
+                document.getElementById('modal-cancel').onclick  = null;
+                resolve(result);
+            }
+
+            // Click on a texture thumbnail
+            document.querySelectorAll('.tex-pick-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    cleanup({
+                        diffuse:  item.dataset.diff,
+                        bump:     item.dataset.bump,
+                        specular: item.dataset.spec,
+                    });
+                });
+                item.addEventListener('mouseenter', () => item.style.borderColor = 'var(--accent-color)');
+                item.addEventListener('mouseleave', () => item.style.borderColor = 'var(--gray-700)');
+            });
+
+            document.getElementById('modal-cancel').onclick  = () => cleanup(null);
+            document.getElementById('modal-confirm').onclick = () => cleanup(null);
+        });
+    }
+
+    async function browseTexture(target) {
+        const result = await openTexturePicker(target);
+        if (!result) return;
+        if (target === 'diffuse' || target === 'both') {
+            els['ps-tex-diffuse'].value = result.diffuse;
+        }
+        if (target === 'bump' || target === 'both') {
+            els['ps-tex-bump'].value = result.bump;
+        }
+        // Auto-apply
+        applyRenderEdit();
+    }
+
     function hexToInt(hex) {
         return parseInt((hex || '#888888').replace('#', ''), 16);
     }
@@ -577,6 +667,7 @@ const PlanetaryStudio = (() => {
         els['ps-save-body'].addEventListener('click', saveBody);
         els['ps-delete-body'].addEventListener('click', deleteBody);
         els['ps-render-apply'].addEventListener('click', applyRenderEdit);
+        if (document.getElementById('ps-tex-browse'))  document.getElementById('ps-tex-browse').addEventListener('click',  () => browseTexture('both'));
         els['ps-add-poi'].addEventListener('click', addPOI);
         els['ps-poi-apply'].addEventListener('click', applyPOIEdit);
         els['ps-poi-delete'].addEventListener('click', deletePOI);
@@ -595,7 +686,11 @@ const PlanetaryStudio = (() => {
                 document.getElementById('ps-sphere-hint').textContent = 'Click on the sphere to pin a POI';
                 if (renderer?.domElement) renderer.domElement.style.cursor = 'grab';
             }
-            if ((e.key === 'Delete' || e.key === 'Backspace') && selectedPOI !== null) deletePOI();
+            if ((e.key === 'Delete' || e.key === 'Backspace') && selectedPOI !== null) {
+                const tag = e.target.tagName;
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target.isContentEditable) return;
+                deletePOI();
+            }
             if (e.key === 's' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); saveBody(); }
         });
     }

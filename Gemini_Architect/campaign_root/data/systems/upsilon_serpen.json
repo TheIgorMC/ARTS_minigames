@@ -1,0 +1,119 @@
+{
+  "id": "upsilon_serpen",
+  "name": "Upsilon Serpen",
+  "star": {
+    "name": "Upsilon Serpen",
+    "spectral_class": "M2V",
+    "radius_km": 390426,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3931",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.53,
+      "texture": "assets/textures/gas/saturnian_01_diffuse.png",
+      "file": "data/bodies/planet_01_3931.json",
+      "children": [
+        {
+          "id": "moon_0_418",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_1_638",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4249",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.72,
+      "texture": "assets/textures/gas/saturnian_02_diffuse.png",
+      "file": "data/bodies/planet_02_4249.json",
+      "children": [
+        {
+          "id": "moon_0_537",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7032",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.29,
+      "texture": "assets/textures/gas/toxic_11_diffuse.png",
+      "file": "data/bodies/planet_03_7032.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_8918",
+      "name": "Remnant",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.33,
+      "texture": "assets/textures/rocky/barren_20_diffuse.png",
+      "file": "data/bodies/planet_04_8918.json",
+      "children": [
+        {
+          "id": "moon_0_954",
+          "name": "Remnant I",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7588",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 3.76,
+      "texture": "assets/textures/gas/saturnian_06_diffuse.png",
+      "file": "data/bodies/planet_05_7588.json",
+      "children": [
+        {
+          "id": "moon_0_214",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_06_5631",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.2,
+      "texture": "assets/textures/gas/toxic_19_diffuse.png",
+      "file": "data/bodies/planet_06_5631.json",
+      "children": [
+        {
+          "id": "moon_0_490",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        }
+      ]
+    }
+  ]
+}

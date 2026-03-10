@@ -1,0 +1,93 @@
+{
+  "id": "rg_270",
+  "name": "RG-270",
+  "star": {
+    "name": "RG-270",
+    "spectral_class": "M2V",
+    "radius_km": 289282,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7620",
+      "name": "Hollowrock",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.28,
+      "texture": "assets/textures/rocky/mercurian_18_diffuse.png",
+      "file": "data/bodies/planet_01_7620.json",
+      "children": [
+        {
+          "id": "outpost_8324",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.59,
+          "orbit_distance": 0.0081,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7349",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.78,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_02_7349.json",
+      "children": [
+        {
+          "id": "moon_0_975",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_1_235",
+          "name": "Frostholme II",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_2_545",
+          "name": "Frostholme III",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_3_271",
+          "name": "Frostholme IV",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7539",
+      "name": "Errata",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 3.77,
+      "texture": "assets/textures/rocky/martian_09_diffuse.png",
+      "file": "data/bodies/planet_03_7539.json",
+      "children": [
+        {
+          "id": "moon_0_979",
+          "name": "Errata I",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        },
+        {
+          "id": "moon_1_410",
+          "name": "Errata II",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    }
+  ]
+}

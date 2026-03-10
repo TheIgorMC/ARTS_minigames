@@ -358,8 +358,8 @@ const OrreryBuilder = (() => {
             if (ev.button !== 0) return;
             drag.on   = true; drag.moved = false;
             drag.sx   = ev.clientX; drag.sy  = ev.clientY;
-            // Snap target to current visual position so drag starts from where the view actually is
-            cam.tx = cam.x; cam.ty = cam.y;
+            // Snap target to current lerped position so drag starts from where the view actually is
+            cam.tx = cam.x; cam.ty = cam.y; cam.ts = cam.s;
             drag.cx0  = cam.x;      drag.cy0 = cam.y;
             canvas.style.cursor = 'grabbing';
         });
@@ -555,6 +555,10 @@ const OrreryBuilder = (() => {
         if (!systemData || !activeFile) { notify('No system loaded.', 'warning'); return; }
         try {
             await API.saveFile(activeFile, systemData);
+            // Sync name and star color back to galaxy plotter's sector cache
+            if (typeof GalaxyPlotter !== 'undefined' && GalaxyPlotter.syncSystemFromFile) {
+                GalaxyPlotter.syncSystemFromFile(activeFile, systemData);
+            }
             notify('System saved.', 'success');
             setStatus(`Saved: ${activeFile}`);
         } catch (e) {
@@ -581,9 +585,22 @@ const OrreryBuilder = (() => {
         }
     }
 
-    function addOrbital() {
+    async function addOrbital() {
         const newIdx = (systemData.orbitals.length + 1);
-        const id = `body_${Date.now()}`;
+        const id = `planet_${String(newIdx).padStart(2,'0')}_${Math.floor(Math.random()*9000+1000)}`;
+        const filePath = `data/bodies/${id}.json`;
+        const bodyData = {
+            id,
+            render_data: {
+                texture_diffuse:  '',
+                texture_bump:     '',
+                texture_specular: '',
+                atmosphere_color: '#88aaff',
+                rotation_speed:   0.005,
+            },
+            pois: [],
+        };
+        try { await API.saveFile(filePath, bodyData); } catch (_) {}
         systemData.orbitals.push({
             id,
             name:         'New Body',
@@ -591,7 +608,7 @@ const OrreryBuilder = (() => {
             orbit_index:  newIdx,
             orbit_radius: null,
             children:     [],
-            file:         `data/bodies/${id}.json`,
+            file:         filePath,
         });
         selectedOrbIdx = systemData.orbitals.length - 1;
         renderTree();
@@ -614,6 +631,7 @@ const OrreryBuilder = (() => {
         if (!orb.locked) delete orb.locked;
         orb.file        = els['ob-orb-file'].value.trim()   || orb.file;
         if (!orb.children) orb.children = [];
+        preloadTextures();
         renderTree();
         notify('Orbital updated.', 'success');
     }
@@ -627,14 +645,19 @@ const OrreryBuilder = (() => {
         notify('Orbital removed.', 'warning');
     }
 
-    function applyStarEdit() {
+    async function applyStarEdit() {
         if (!systemData) return;
-        systemData.star.name           = els['ob-star-name'].value.trim() || systemData.star.name;
+        const newName = els['ob-star-name'].value.trim() || systemData.star.name;
+        systemData.star.name           = newName;
         systemData.star.spectral_class = els['ob-star-class'].value.trim() || systemData.star.spectral_class;
         systemData.star.color_hex      = els['ob-star-color'].value.trim() || systemData.star.color_hex;
+
+        // System name always matches star name
+        systemData.name = newName;
+
         els['ob-star-editor'].style.display = 'none';
         renderTree();
-        notify('Star updated.', 'success');
+        await saveSystem();
     }
 
     // ── Event wiring ───────────────────────────────────────────────────────────

@@ -1,0 +1,78 @@
+{
+  "id": "zeta_serpen",
+  "name": "Zeta Serpen",
+  "star": {
+    "name": "Zeta Serpen",
+    "spectral_class": "M2V",
+    "radius_km": 131651,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1383",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.99,
+      "texture": "assets/textures/gas/saturnian_15_diffuse.png",
+      "file": "data/bodies/planet_01_1383.json",
+      "children": [
+        {
+          "id": "moon_0_461",
+          "name": "Leviathan I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "refinery_4060",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.81,
+          "orbit_distance": 0.0047,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3775",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 4.47,
+      "texture": "assets/textures/gas/uranian_19_diffuse.png",
+      "file": "data/bodies/planet_02_3775.json",
+      "children": [
+        {
+          "id": "moon_0_299",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9862",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 6.17,
+      "texture": "assets/textures/gas/jovian_02_diffuse.png",
+      "file": "data/bodies/planet_03_9862.json",
+      "children": [
+        {
+          "id": "refinery_6443",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 1,
+          "orbit_distance": 0.0061,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

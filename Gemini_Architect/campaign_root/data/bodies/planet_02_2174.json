@@ -1,0 +1,11 @@
+{
+  "id": "planet_02_2174",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/toxic_14_diffuse.png",
+    "texture_bump": "assets/textures/gas/toxic_14_bump.png",
+    "texture_specular": "assets/textures/gas/toxic_14_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0054
+  },
+  "pois": []
+}

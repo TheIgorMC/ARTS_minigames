@@ -1,0 +1,89 @@
+{
+  "id": "rg_836",
+  "name": "RG-836",
+  "star": {
+    "name": "RG-836",
+    "spectral_class": "M2V",
+    "radius_km": 216325,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7270",
+      "name": "Rubble",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.22,
+      "texture": "assets/textures/rocky/barren_04_diffuse.png",
+      "file": "data/bodies/planet_01_7270.json",
+      "children": [
+        {
+          "id": "moon_0_920",
+          "name": "Rubble I",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_1_449",
+          "name": "Rubble II",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_2_788",
+          "name": "Rubble III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1069",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.06,
+      "texture": "assets/textures/gas/neptunian_20_diffuse.png",
+      "file": "data/bodies/planet_02_1069.json",
+      "children": [
+        {
+          "id": "moon_0_901",
+          "name": "Frostia I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_696",
+          "name": "Frostia II",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_2_668",
+          "name": "Frostia III",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_3_161",
+          "name": "Frostia IV",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5037",
+      "name": "Ashen",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 4,
+      "texture": "assets/textures/rocky/martian_03_diffuse.png",
+      "file": "data/bodies/planet_03_5037.json",
+      "children": []
+    }
+  ]
+}

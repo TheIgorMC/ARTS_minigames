@@ -1,0 +1,197 @@
+{
+  "id": "draar_dwarf",
+  "name": "Draar Dwarf",
+  "star": {
+    "name": "Draar Dwarf",
+    "spectral_class": "M2V",
+    "radius_km": 190094,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1376",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.04,
+      "texture": "assets/textures/gas/uranian_09_diffuse.png",
+      "file": "data/bodies/planet_01_1376.json",
+      "children": [
+        {
+          "id": "moon_0_330",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        },
+        {
+          "id": "moon_1_790",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_2_454",
+          "name": "Rimfall III",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_3_622",
+          "name": "Rimfall IV",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2993",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.72,
+      "texture": "assets/textures/gas/uranian_02_diffuse.png",
+      "file": "data/bodies/planet_02_2993.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_6189",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.51,
+      "texture": "assets/textures/gas/saturnian_10_diffuse.png",
+      "file": "data/bodies/planet_03_6189.json",
+      "children": [
+        {
+          "id": "moon_0_954",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_750",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5126",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.66,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_04_5126.json",
+      "children": [
+        {
+          "id": "moon_0_915",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        },
+        {
+          "id": "moon_1_178",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_2_931",
+          "name": "Goliath III",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_3_246",
+          "name": "Goliath IV",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    },
+    {
+      "id": "planet_05_9884",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.19,
+      "texture": "assets/textures/gas/neptunian_20_diffuse.png",
+      "file": "data/bodies/planet_05_9884.json",
+      "children": [
+        {
+          "id": "moon_0_504",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_1_568",
+          "name": "Winteris II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_558",
+          "name": "Winteris III",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1289",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.3,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_06_1289.json",
+      "children": [
+        {
+          "id": "moon_0_105",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        }
+      ]
+    },
+    {
+      "id": "belt_8750",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.38,
+      "width": 0.37,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_172",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.98,
+          "orbit_distance": 0.0026,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_684",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.72,
+          "orbit_distance": 0.0034,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

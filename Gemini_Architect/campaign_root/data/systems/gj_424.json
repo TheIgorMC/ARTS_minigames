@@ -1,0 +1,90 @@
+{
+  "id": "gj_424",
+  "name": "GJ-424",
+  "star": {
+    "name": "GJ-424",
+    "spectral_class": "G2V",
+    "radius_km": 822623,
+    "color_hex": "#ffe0a0"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4920",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 19.47,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_01_4920.json",
+      "children": [
+        {
+          "id": "moon_0_654",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_1_703",
+          "name": "Arcturus II",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        },
+        {
+          "id": "moon_2_183",
+          "name": "Arcturus III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_3_865",
+          "name": "Arcturus IV",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2357",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 35.32,
+      "texture": "assets/textures/gas/uranian_01_diffuse.png",
+      "file": "data/bodies/planet_02_2357.json",
+      "children": [
+        {
+          "id": "moon_0_465",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_1_195",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8092",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 43.95,
+      "texture": "assets/textures/gas/uranian_09_diffuse.png",
+      "file": "data/bodies/planet_03_8092.json",
+      "children": [
+        {
+          "id": "moon_0_883",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        }
+      ]
+    }
+  ]
+}

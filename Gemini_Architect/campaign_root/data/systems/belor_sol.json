@@ -1,0 +1,237 @@
+{
+  "id": "belor_sol",
+  "name": "Belor Sol",
+  "star": {
+    "name": "Belor Sol",
+    "spectral_class": "G2V",
+    "radius_km": 780393,
+    "color_hex": "#ffcc00"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5873",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 9.03,
+      "texture": "assets/textures/gas/jovian_18_diffuse.png",
+      "file": "data/bodies/planet_01_5873.json",
+      "children": [
+        {
+          "id": "moon_0_651",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "moon_1_821",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        },
+        {
+          "id": "moon_2_560",
+          "name": "Goliath III",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        },
+        {
+          "id": "moon_3_739",
+          "name": "Goliath IV",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4362",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 13.64,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_02_4362.json",
+      "children": [
+        {
+          "id": "moon_0_140",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "refinery_933",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 1.01,
+          "orbit_distance": 0.0033,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5726",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 21.08,
+      "texture": "assets/textures/gas/uranian_15_diffuse.png",
+      "file": "data/bodies/planet_03_5726.json",
+      "children": [
+        {
+          "id": "moon_0_791",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_1_777",
+          "name": "Winteris II",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_2_773",
+          "name": "Winteris III",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_04_1419",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 25.65,
+      "texture": "assets/textures/gas/jovian_02_diffuse.png",
+      "file": "data/bodies/planet_04_1419.json",
+      "children": [
+        {
+          "id": "moon_0_456",
+          "name": "Galedon I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_437",
+          "name": "Galedon II",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_2_156",
+          "name": "Galedon III",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6771",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 35.61,
+      "texture": "assets/textures/gas/uranian_05_diffuse.png",
+      "file": "data/bodies/planet_05_6771.json",
+      "children": [
+        {
+          "id": "moon_0_642",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        },
+        {
+          "id": "moon_1_747",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_2_695",
+          "name": "Tundris III",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_3_765",
+          "name": "Tundris IV",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_06_2292",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 43.44,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_06_2292.json",
+      "children": [
+        {
+          "id": "moon_0_654",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_1_330",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_335",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_3_519",
+          "name": "Iceval IV",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    },
+    {
+      "id": "belt_9493",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 13.48,
+      "width": 0.11,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_863",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.97,
+          "orbit_distance": 0.0028,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_181",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.91,
+          "orbit_distance": 0.0032,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

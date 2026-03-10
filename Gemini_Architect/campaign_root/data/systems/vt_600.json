@@ -1,0 +1,77 @@
+{
+  "id": "vt_600",
+  "name": "VT-600",
+  "star": {
+    "name": "VT-600",
+    "spectral_class": "K2V",
+    "radius_km": 490767,
+    "color_hex": "#ff9944"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1275",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.9,
+      "texture": "assets/textures/gas/uranian_02_diffuse.png",
+      "file": "data/bodies/planet_01_1275.json",
+      "children": [
+        {
+          "id": "moon_0_933",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_827",
+          "name": "Frostholme II",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_2_689",
+          "name": "Frostholme III",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8817",
+      "name": "Frostia",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 13.81,
+      "texture": "assets/textures/gas/neptunian_04_diffuse.png",
+      "file": "data/bodies/planet_02_8817.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_5142",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 19.4,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_03_5142.json",
+      "children": [
+        {
+          "id": "moon_0_936",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_880",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        }
+      ]
+    }
+  ]
+}

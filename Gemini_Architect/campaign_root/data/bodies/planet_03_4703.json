@@ -1,0 +1,11 @@
+{
+  "id": "planet_03_4703",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/neptunian_17_diffuse.png",
+    "texture_bump": "assets/textures/gas/neptunian_17_bump.png",
+    "texture_specular": "assets/textures/gas/neptunian_17_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0082
+  },
+  "pois": []
+}

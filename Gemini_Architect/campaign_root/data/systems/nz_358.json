@@ -1,0 +1,130 @@
+{
+  "id": "nz_358",
+  "name": "NZ-358",
+  "star": {
+    "name": "NZ-358",
+    "spectral_class": "M2V",
+    "radius_km": 365002,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2859",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.02,
+      "texture": "assets/textures/gas/uranian_08_diffuse.png",
+      "file": "data/bodies/planet_01_2859.json",
+      "children": [
+        {
+          "id": "moon_0_271",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7411",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.16,
+      "texture": "assets/textures/gas/crimson_17_diffuse.png",
+      "file": "data/bodies/planet_02_7411.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_2289",
+      "name": "Remnant",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 3.12,
+      "texture": "assets/textures/rocky/barren_19_diffuse.png",
+      "file": "data/bodies/planet_03_2289.json",
+      "children": [
+        {
+          "id": "moon_0_162",
+          "name": "Remnant I",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5911",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.64,
+      "texture": "assets/textures/gas/saturnian_04_diffuse.png",
+      "file": "data/bodies/planet_04_5911.json",
+      "children": [
+        {
+          "id": "moon_0_763",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        },
+        {
+          "id": "moon_1_560",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        },
+        {
+          "id": "moon_2_985",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        }
+      ]
+    },
+    {
+      "id": "planet_05_5053",
+      "name": "Ashen",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 5,
+      "orbit_radius": 4.71,
+      "texture": "assets/textures/rocky/martian_20_diffuse.png",
+      "file": "data/bodies/planet_05_5053.json",
+      "children": []
+    },
+    {
+      "id": "planet_06_1318",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.36,
+      "texture": "assets/textures/gas/toxic_04_diffuse.png",
+      "file": "data/bodies/planet_06_1318.json",
+      "children": [
+        {
+          "id": "moon_0_545",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_1_731",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_2_509",
+          "name": "Aether III",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "id": "doren_ember",
+  "name": "Doren Ember",
+  "star": {
+    "name": "Doren Ember",
+    "spectral_class": "M2V",
+    "radius_km": 179114,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1269",
+      "name": "Graymere",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.1,
+      "texture": "assets/textures/rocky/martian_15_diffuse.png",
+      "file": "data/bodies/planet_01_1269.json",
+      "children": [
+        {
+          "id": "moon_0_151",
+          "name": "Graymere I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4037",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.06,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_02_4037.json",
+      "children": [
+        {
+          "id": "moon_0_576",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_119",
+          "name": "Aurorax II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_690",
+          "name": "Aurorax III",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        },
+        {
+          "id": "moon_3_445",
+          "name": "Aurorax IV",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8897",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.29,
+      "texture": "assets/textures/gas/crimson_09_diffuse.png",
+      "file": "data/bodies/planet_03_8897.json",
+      "children": [
+        {
+          "id": "moon_0_451",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "refinery_3346",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.74,
+          "orbit_distance": 0.0098,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4395",
+      "name": "Arcturus",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.2,
+      "texture": "assets/textures/gas/uranian_14_diffuse.png",
+      "file": "data/bodies/planet_04_4395.json",
+      "children": [
+        {
+          "id": "moon_0_409",
+          "name": "Arcturus I",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_1_512",
+          "name": "Arcturus II",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        },
+        {
+          "id": "moon_2_180",
+          "name": "Arcturus III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_3_965",
+          "name": "Arcturus IV",
+          "type": "Moon",
+          "orbit_distance": 0.092
+        }
+      ]
+    },
+    {
+      "id": "belt_7366",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.06,
+      "width": 0.11,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_859",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.82,
+          "orbit_distance": 0.0058,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_755",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.81,
+          "orbit_distance": 0.007,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

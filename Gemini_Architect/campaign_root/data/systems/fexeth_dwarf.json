@@ -1,0 +1,189 @@
+{
+  "id": "fexeth_dwarf",
+  "name": "Fexeth Dwarf",
+  "star": {
+    "name": "Fexeth Dwarf",
+    "spectral_class": "M2V",
+    "radius_km": 341898,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7810",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.96,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_01_7810.json",
+      "children": [
+        {
+          "id": "moon_0_743",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_1_287",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_2_430",
+          "name": "Glacian III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9601",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.73,
+      "texture": "assets/textures/gas/crimson_03_diffuse.png",
+      "file": "data/bodies/planet_02_9601.json",
+      "children": [
+        {
+          "id": "moon_0_910",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_1_450",
+          "name": "Gravitus II",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_2_829",
+          "name": "Gravitus III",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4569",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.44,
+      "texture": "assets/textures/gas/jovian_11_diffuse.png",
+      "file": "data/bodies/planet_03_4569.json",
+      "children": [
+        {
+          "id": "moon_0_555",
+          "name": "Stratum I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_727",
+          "name": "Stratum II",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        }
+      ]
+    },
+    {
+      "id": "planet_04_8249",
+      "name": "Wither",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.52,
+      "texture": "assets/textures/rocky/barren_11_diffuse.png",
+      "file": "data/bodies/planet_04_8249.json",
+      "children": [
+        {
+          "id": "moon_0_779",
+          "name": "Wither I",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ]
+    },
+    {
+      "id": "planet_05_1708",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.54,
+      "texture": "assets/textures/gas/neptunian_09_diffuse.png",
+      "file": "data/bodies/planet_05_1708.json",
+      "children": [
+        {
+          "id": "moon_0_819",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_1_157",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        },
+        {
+          "id": "moon_2_338",
+          "name": "Glacian III",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_3_291",
+          "name": "Glacian IV",
+          "type": "Moon",
+          "orbit_distance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "planet_06_4585",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.4,
+      "texture": "assets/textures/gas/neptunian_13_diffuse.png",
+      "file": "data/bodies/planet_06_4585.json",
+      "children": [
+        {
+          "id": "moon_0_400",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        }
+      ]
+    },
+    {
+      "id": "belt_1452",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.7,
+      "width": 0.34,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_174",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.85,
+          "orbit_distance": 0.0052,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

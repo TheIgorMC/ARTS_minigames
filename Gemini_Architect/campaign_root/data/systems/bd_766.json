@@ -1,0 +1,216 @@
+{
+  "id": "bd_766",
+  "name": "BD-766",
+  "star": {
+    "name": "BD-766",
+    "spectral_class": "M2V",
+    "radius_km": 332656,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1464",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.12,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_01_1464.json",
+      "children": [
+        {
+          "id": "moon_0_302",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5006",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.24,
+      "texture": "assets/textures/gas/uranian_09_diffuse.png",
+      "file": "data/bodies/planet_02_5006.json",
+      "children": [
+        {
+          "id": "moon_0_984",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_1_171",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        },
+        {
+          "id": "moon_2_705",
+          "name": "Crystallis III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_3_670",
+          "name": "Crystallis IV",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3661",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.23,
+      "texture": "assets/textures/gas/saturnian_11_diffuse.png",
+      "file": "data/bodies/planet_03_3661.json",
+      "children": [
+        {
+          "id": "moon_0_212",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_1_916",
+          "name": "Nebular II",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_2_747",
+          "name": "Nebular III",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        },
+        {
+          "id": "moon_3_947",
+          "name": "Nebular IV",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        },
+        {
+          "id": "refinery_3794",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.78,
+          "orbit_distance": 0.0084,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_9903",
+      "name": "Shivren",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.4,
+      "texture": "assets/textures/gas/neptunian_12_diffuse.png",
+      "file": "data/bodies/planet_04_9903.json",
+      "children": [
+        {
+          "id": "moon_0_198",
+          "name": "Shivren I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        }
+      ]
+    },
+    {
+      "id": "planet_05_5050",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 5.08,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_05_5050.json",
+      "children": [
+        {
+          "id": "moon_0_545",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        },
+        {
+          "id": "refinery_9903",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.79,
+          "orbit_distance": 0.0042,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_06_2727",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.7,
+      "texture": "assets/textures/gas/neptunian_10_diffuse.png",
+      "file": "data/bodies/planet_06_2727.json",
+      "children": [
+        {
+          "id": "moon_0_477",
+          "name": "Frostholme I",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_1_759",
+          "name": "Frostholme II",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_2_991",
+          "name": "Frostholme III",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ]
+    },
+    {
+      "id": "belt_4194",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.26,
+      "width": 0.33,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_313",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.73,
+          "orbit_distance": 0.0062,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_736",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.89,
+          "orbit_distance": 0.0034,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

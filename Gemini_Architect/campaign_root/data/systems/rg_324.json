@@ -1,0 +1,194 @@
+{
+  "id": "rg_324",
+  "name": "RG-324",
+  "star": {
+    "name": "RG-324",
+    "spectral_class": "M2V",
+    "radius_km": 77076,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4364",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.14,
+      "texture": "assets/textures/gas/toxic_07_diffuse.png",
+      "file": "data/bodies/planet_01_4364.json",
+      "children": [
+        {
+          "id": "moon_0_486",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_1_922",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_2_927",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3655",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.21,
+      "texture": "assets/textures/gas/uranian_14_diffuse.png",
+      "file": "data/bodies/planet_02_3655.json",
+      "children": [
+        {
+          "id": "moon_0_588",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        },
+        {
+          "id": "moon_1_197",
+          "name": "Sleetmaw II",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_2_293",
+          "name": "Sleetmaw III",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_3_624",
+          "name": "Sleetmaw IV",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5768",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.66,
+      "texture": "assets/textures/gas/toxic_07_diffuse.png",
+      "file": "data/bodies/planet_03_5768.json",
+      "children": [
+        {
+          "id": "moon_0_863",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        },
+        {
+          "id": "moon_1_219",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_2_474",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2042",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.79,
+      "texture": "assets/textures/gas/uranian_11_diffuse.png",
+      "file": "data/bodies/planet_04_2042.json",
+      "children": [
+        {
+          "id": "moon_0_415",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        },
+        {
+          "id": "moon_1_658",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_2_107",
+          "name": "Rimfall III",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_3_548",
+          "name": "Rimfall IV",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_05_9069",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.37,
+      "texture": "assets/textures/gas/neptunian_12_diffuse.png",
+      "file": "data/bodies/planet_05_9069.json",
+      "children": [
+        {
+          "id": "moon_0_867",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        }
+      ]
+    },
+    {
+      "id": "planet_06_4224",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.38,
+      "texture": "assets/textures/gas/jovian_02_diffuse.png",
+      "file": "data/bodies/planet_06_4224.json",
+      "children": []
+    },
+    {
+      "id": "belt_6244",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 0.93,
+      "width": 0.27,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_572",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.71,
+          "orbit_distance": 0.0069,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

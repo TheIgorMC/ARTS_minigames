@@ -1,0 +1,93 @@
+{
+  "id": "draus_ember",
+  "name": "Draus Ember",
+  "star": {
+    "name": "Draus Ember",
+    "spectral_class": "K2V",
+    "radius_km": 524782,
+    "color_hex": "#ff9944"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1561",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 8.24,
+      "texture": "assets/textures/gas/neptunian_13_diffuse.png",
+      "file": "data/bodies/planet_01_1561.json",
+      "children": [
+        {
+          "id": "moon_0_353",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5400",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 18.19,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_02_5400.json",
+      "children": [
+        {
+          "id": "moon_0_561",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_1_549",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1409",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 22.44,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_03_1409.json",
+      "children": [
+        {
+          "id": "moon_0_779",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        }
+      ]
+    },
+    {
+      "id": "belt_9723",
+      "name": "The Debris Field",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 3.59,
+      "width": 0.34,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_736",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.8,
+          "orbit_distance": 0.0062,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

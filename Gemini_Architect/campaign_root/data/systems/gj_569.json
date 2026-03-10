@@ -1,0 +1,96 @@
+{
+  "id": "gj_569",
+  "name": "GJ-569",
+  "star": {
+    "name": "GJ-569",
+    "spectral_class": "K2V",
+    "radius_km": 479757,
+    "color_hex": "#ff9944"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7223",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.35,
+      "texture": "assets/textures/gas/crimson_17_diffuse.png",
+      "file": "data/bodies/planet_01_7223.json",
+      "children": [
+        {
+          "id": "moon_0_833",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_1_801",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_2_618",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4218",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 10.42,
+      "texture": "assets/textures/gas/crimson_08_diffuse.png",
+      "file": "data/bodies/planet_02_4218.json",
+      "children": [
+        {
+          "id": "moon_0_640",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "moon_1_738",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_2_903",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9320",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 17.42,
+      "texture": "assets/textures/gas/jovian_03_diffuse.png",
+      "file": "data/bodies/planet_03_9320.json",
+      "children": [
+        {
+          "id": "moon_0_683",
+          "name": "Leviathan I",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        },
+        {
+          "id": "moon_1_994",
+          "name": "Leviathan II",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    }
+  ]
+}

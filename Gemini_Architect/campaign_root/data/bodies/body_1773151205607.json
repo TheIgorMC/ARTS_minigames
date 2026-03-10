@@ -1,0 +1,15 @@
+{
+  "id": "body_1773151205607",
+  "name": "New Body",
+  "type": "Planet",
+  "planet_type": "Rocky",
+  "radius_km": 6371,
+  "mass_earth": 1,
+  "gravity_g": 1,
+  "atmosphere": "Thin",
+  "temperature_k": 288,
+  "biome": "Barren",
+  "texture": "",
+  "rings": false,
+  "description": ""
+}

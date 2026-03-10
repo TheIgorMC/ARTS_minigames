@@ -1,0 +1,213 @@
+{
+  "id": "beta_tylath",
+  "name": "Beta Tylath",
+  "star": {
+    "name": "Beta Tylath",
+    "spectral_class": "M2V",
+    "radius_km": 397416,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2155",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.13,
+      "texture": "assets/textures/gas/saturnian_18_diffuse.png",
+      "file": "data/bodies/planet_01_2155.json",
+      "children": [
+        {
+          "id": "moon_0_983",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_1_840",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_326",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_3_159",
+          "name": "Cumulus IV",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1385",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.08,
+      "texture": "assets/textures/gas/jovian_18_diffuse.png",
+      "file": "data/bodies/planet_02_1385.json",
+      "children": [
+        {
+          "id": "moon_0_476",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        },
+        {
+          "id": "moon_1_847",
+          "name": "Vortania II",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        },
+        {
+          "id": "moon_2_890",
+          "name": "Vortania III",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1606",
+      "name": "Desolus",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 2.67,
+      "texture": "assets/textures/rocky/mercurian_17_diffuse.png",
+      "file": "data/bodies/planet_03_1606.json",
+      "children": [
+        {
+          "id": "moon_0_656",
+          "name": "Desolus I",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        },
+        {
+          "id": "moon_1_416",
+          "name": "Desolus II",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "outpost_6239",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.61,
+          "orbit_distance": 0.01,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_8885",
+      "name": "Cinder",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.64,
+      "texture": "assets/textures/rocky/barren_15_diffuse.png",
+      "file": "data/bodies/planet_04_8885.json",
+      "children": [
+        {
+          "id": "moon_0_872",
+          "name": "Cinder I",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_1_283",
+          "name": "Cinder II",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_2_749",
+          "name": "Cinder III",
+          "type": "Moon",
+          "orbit_distance": 0.098
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6962",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.86,
+      "texture": "assets/textures/gas/toxic_07_diffuse.png",
+      "file": "data/bodies/planet_05_6962.json",
+      "children": [
+        {
+          "id": "moon_0_887",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_1_275",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_2_175",
+          "name": "Goliath III",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_3_144",
+          "name": "Goliath IV",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        }
+      ]
+    },
+    {
+      "id": "planet_06_8595",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.8,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_06_8595.json",
+      "children": [
+        {
+          "id": "moon_0_158",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        },
+        {
+          "id": "moon_1_167",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        },
+        {
+          "id": "moon_2_655",
+          "name": "Gelida III",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_3_140",
+          "name": "Gelida IV",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        }
+      ]
+    }
+  ]
+}

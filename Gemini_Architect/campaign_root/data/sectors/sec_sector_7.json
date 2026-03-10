@@ -1,14 +1,427 @@
-﻿{
-    "id":  "sec_sector_7",
-    "name":  "Sector 7",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_7",
+  "name": "Sector 7",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773150734695_0",
+      "name": "GJ-216",
+      "coordinates": {
+        "x": 804,
+        "y": 536
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gj_216.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_2_1773150734695_1",
+      "name": "HX-740",
+      "coordinates": {
+        "x": 769,
+        "y": 642
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hx_740.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_3_1773150734695_2",
+      "name": "Beta Draven",
+      "coordinates": {
+        "x": 780,
+        "y": 456
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/beta_draven.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_4_1773150734695_3",
+      "name": "GJ-682",
+      "coordinates": {
+        "x": 856,
+        "y": 725
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gj_682.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_5_1773150734695_4",
+      "name": "Alpha Tylath",
+      "coordinates": {
+        "x": 766,
+        "y": 551
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/alpha_tylath.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_6_1773150734695_5",
+      "name": "TYC-141",
+      "coordinates": {
+        "x": 853,
+        "y": 674
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_141.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_7_1773150734695_6",
+      "name": "Cassux Red",
+      "coordinates": {
+        "x": 791,
+        "y": 592
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/cassux_red.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_8_1773150734695_7",
+      "name": "Chi Serpen",
+      "coordinates": {
+        "x": 790,
+        "y": 473
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/chi_serpen.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_9_1773150734695_8",
+      "name": "Fexix Ember",
+      "coordinates": {
+        "x": 752,
+        "y": 611
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/fexix_ember.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_10_1773150734695_9",
+      "name": "Anxar Ember",
+      "coordinates": {
+        "x": 794,
+        "y": 561
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/anxar_ember.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_11_1773150734695_10",
+      "name": "Vorel Dim",
+      "coordinates": {
+        "x": 927,
+        "y": 710
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/vorel_dim.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_12_1773150734695_11",
+      "name": "XR-139",
+      "coordinates": {
+        "x": 798,
+        "y": 509
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/xr_139.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_13_1773150734695_12",
+      "name": "TYC-749",
+      "coordinates": {
+        "x": 784,
+        "y": 725
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_749.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_14_1773150734695_13",
+      "name": "KIC-813",
+      "coordinates": {
+        "x": 815,
+        "y": 607
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_813.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_15_1773150734695_14",
+      "name": "Rho Tharux",
+      "coordinates": {
+        "x": 750,
+        "y": 574
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rho_tharux.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_16_1773150734695_15",
+      "name": "Kappa Nexar",
+      "coordinates": {
+        "x": 854,
+        "y": 597
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kappa_nexar.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_17_1773150734695_16",
+      "name": "XR-395",
+      "coordinates": {
+        "x": 775,
+        "y": 528
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/xr_395.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_18_1773150734695_17",
+      "name": "Dorix Ember",
+      "coordinates": {
+        "x": 836,
+        "y": 632
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/dorix_ember.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_19_1773150734695_18",
+      "name": "KIC-299",
+      "coordinates": {
+        "x": 780,
+        "y": 675
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_299.json",
+      "main": false,
+      "star_color": "#ff6600"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_11_1773150734695_10",
+      "to": "sys_2_1773150717766_1",
+      "type": "Stable",
+      "distance": 5.6
+    },
+    {
+      "from": "sys_18_1773150734695_17",
+      "to": "sys_16_1773150734695_15",
+      "type": "Stable",
+      "distance": 3.94
+    },
+    {
+      "from": "sys_11_1773150734695_10",
+      "to": "sys_4_1773150734695_3",
+      "type": "Stable",
+      "distance": 7.26
+    },
+    {
+      "from": "sys_4_1773150734695_3",
+      "to": "sys_6_1773150734695_5",
+      "type": "Stable",
+      "distance": 5.11
+    },
+    {
+      "from": "sys_6_1773150734695_5",
+      "to": "sys_18_1773150734695_17",
+      "type": "Stable",
+      "distance": 4.53
+    },
+    {
+      "from": "sys_13_1773150734695_12",
+      "to": "sys_19_1773150734695_18",
+      "type": "Stable",
+      "distance": 5.02
+    },
+    {
+      "from": "sys_19_1773150734695_18",
+      "to": "sys_6_1773150734695_5",
+      "type": "Stable",
+      "distance": 7.3
+    },
+    {
+      "from": "sys_19_1773150734695_18",
+      "to": "sys_2_1773150734695_1",
+      "type": "Stable",
+      "distance": 3.48
+    },
+    {
+      "from": "sys_2_1773150734695_1",
+      "to": "sys_9_1773150734695_8",
+      "type": "Stable",
+      "distance": 3.54
+    },
+    {
+      "from": "sys_9_1773150734695_8",
+      "to": "sys_15_1773150734695_14",
+      "type": "Stable",
+      "distance": 3.71
+    },
+    {
+      "from": "sys_15_1773150734695_14",
+      "to": "sys_13_1773150763271_12",
+      "type": "Stable",
+      "distance": 4.55
+    },
+    {
+      "from": "sys_19_1773150734695_18",
+      "to": "sys_11_1773150763271_10",
+      "type": "Stable",
+      "distance": 7.65
+    },
+    {
+      "from": "sys_17_1773150734695_16",
+      "to": "sys_1_1773150734695_0",
+      "type": "Stable",
+      "distance": 3.01
+    },
+    {
+      "from": "sys_1_1773150734695_0",
+      "to": "sys_10_1773150734695_9",
+      "type": "Stable",
+      "distance": 2.69
+    },
+    {
+      "from": "sys_1_1773150734695_0",
+      "to": "sys_16_1773150734695_15",
+      "type": "Stable",
+      "distance": 7.89
+    },
+    {
+      "from": "sys_10_1773150734695_9",
+      "to": "sys_7_1773150734695_6",
+      "type": "Stable",
+      "distance": 3.11
+    },
+    {
+      "from": "sys_15_1773150734695_14",
+      "to": "sys_5_1773150734695_4",
+      "type": "Stable",
+      "distance": 2.8
+    },
+    {
+      "from": "sys_5_1773150734695_4",
+      "to": "sys_17_1773150734695_16",
+      "type": "Stable",
+      "distance": 2.47
+    },
+    {
+      "from": "sys_7_1773150734695_6",
+      "to": "sys_2_1773150734695_1",
+      "type": "Stable",
+      "distance": 5.46
+    },
+    {
+      "from": "sys_14_1773150734695_13",
+      "to": "sys_18_1773150734695_17",
+      "type": "Stable",
+      "distance": 3.26
+    },
+    {
+      "from": "sys_14_1773150734695_13",
+      "to": "sys_7_1773150734695_6",
+      "type": "Stable",
+      "distance": 2.83
+    },
+    {
+      "from": "sys_17_1773150734695_16",
+      "to": "sys_8_1773150734695_7",
+      "type": "Stable",
+      "distance": 4.55
+    },
+    {
+      "from": "sys_8_1773150734695_7",
+      "to": "sys_12_1773150734695_11",
+      "type": "Stable",
+      "distance": 3.05
+    },
+    {
+      "from": "sys_12_1773150734695_11",
+      "to": "sys_1_1773150734695_0",
+      "type": "Stable",
+      "distance": 2.77
+    },
+    {
+      "from": "sys_8_1773150734695_7",
+      "to": "sys_3_1773150734695_2",
+      "type": "Stable",
+      "distance": 2.71
+    },
+    {
+      "from": "sys_12_1773150734695_11",
+      "to": "sys_14_1773150717766_13",
+      "type": "Stable",
+      "distance": 4.97
+    },
+    {
+      "from": "sys_3_1773150734695_2",
+      "to": "sys_10_1773150763271_9",
+      "type": "Stable",
+      "distance": 4.42
+    },
+    {
+      "from": "sys_8_1773150734695_7",
+      "to": "sys_13_1773135988318_12",
+      "type": "Stable",
+      "distance": 8.07
+    }
+  ]
 }

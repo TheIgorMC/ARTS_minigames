@@ -1,0 +1,11 @@
+{
+  "id": "planet_06_3462",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/uranian_11_diffuse.png",
+    "texture_bump": "assets/textures/gas/uranian_11_bump.png",
+    "texture_specular": "assets/textures/gas/uranian_11_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0054
+  },
+  "pois": []
+}

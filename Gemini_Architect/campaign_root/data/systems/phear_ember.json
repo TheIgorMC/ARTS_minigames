@@ -1,0 +1,213 @@
+{
+  "id": "phear_ember",
+  "name": "Phear Ember",
+  "star": {
+    "name": "Phear Ember",
+    "spectral_class": "M2V",
+    "radius_km": 107078,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5059",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.6,
+      "texture": "assets/textures/gas/uranian_17_diffuse.png",
+      "file": "data/bodies/planet_01_5059.json",
+      "children": [
+        {
+          "id": "moon_0_804",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_1_913",
+          "name": "Boreas II",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_2_144",
+          "name": "Boreas III",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_3_670",
+          "name": "Boreas IV",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9750",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.25,
+      "texture": "assets/textures/gas/toxic_18_diffuse.png",
+      "file": "data/bodies/planet_02_9750.json",
+      "children": [
+        {
+          "id": "moon_0_190",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_1_103",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.031
+        },
+        {
+          "id": "moon_2_910",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        },
+        {
+          "id": "moon_3_908",
+          "name": "Titanis IV",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5585",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 1.97,
+      "texture": "assets/textures/gas/uranian_09_diffuse.png",
+      "file": "data/bodies/planet_03_5585.json",
+      "children": [
+        {
+          "id": "moon_0_227",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_1_691",
+          "name": "Hailmark II",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_2_728",
+          "name": "Hailmark III",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        }
+      ]
+    },
+    {
+      "id": "planet_04_9040",
+      "name": "Shardfield",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.11,
+      "texture": "assets/textures/rocky/barren_05_diffuse.png",
+      "file": "data/bodies/planet_04_9040.json",
+      "children": [
+        {
+          "id": "moon_0_660",
+          "name": "Shardfield I",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_1_113",
+          "name": "Shardfield II",
+          "type": "Moon",
+          "orbit_distance": 0.02
+        },
+        {
+          "id": "moon_2_201",
+          "name": "Shardfield III",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_3_170",
+          "name": "Shardfield IV",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_05_8201",
+      "name": "Scabland",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 5,
+      "orbit_radius": 3.93,
+      "texture": "assets/textures/rocky/martian_18_diffuse.png",
+      "file": "data/bodies/planet_05_8201.json",
+      "children": [
+        {
+          "id": "moon_0_101",
+          "name": "Scabland I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_256",
+          "name": "Scabland II",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_2_979",
+          "name": "Scabland III",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_3_467",
+          "name": "Scabland IV",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        }
+      ]
+    },
+    {
+      "id": "planet_06_8589",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.03,
+      "texture": "assets/textures/gas/toxic_12_diffuse.png",
+      "file": "data/bodies/planet_06_8589.json",
+      "children": [
+        {
+          "id": "moon_0_431",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "refinery_4939",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.73,
+          "orbit_distance": 0.0041,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

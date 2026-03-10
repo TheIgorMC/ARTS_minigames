@@ -1,0 +1,147 @@
+{
+  "id": "lambda_ixelon",
+  "name": "Lambda Ixelon",
+  "star": {
+    "name": "Lambda Ixelon",
+    "spectral_class": "M2V",
+    "radius_km": 211106,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_7207",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.73,
+      "texture": "assets/textures/gas/jovian_20_diffuse.png",
+      "file": "data/bodies/planet_01_7207.json",
+      "children": [
+        {
+          "id": "moon_0_561",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_1_207",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        },
+        {
+          "id": "moon_2_960",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7066",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.03,
+      "texture": "assets/textures/gas/neptunian_17_diffuse.png",
+      "file": "data/bodies/planet_02_7066.json",
+      "children": [
+        {
+          "id": "moon_0_575",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6136",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.86,
+      "texture": "assets/textures/gas/saturnian_09_diffuse.png",
+      "file": "data/bodies/planet_03_6136.json",
+      "children": [
+        {
+          "id": "moon_0_712",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_1_185",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        },
+        {
+          "id": "moon_2_691",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.059
+        },
+        {
+          "id": "moon_3_883",
+          "name": "Titanis IV",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        }
+      ]
+    },
+    {
+      "id": "planet_04_4824",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.17,
+      "texture": "assets/textures/gas/jovian_20_diffuse.png",
+      "file": "data/bodies/planet_04_4824.json",
+      "children": [
+        {
+          "id": "refinery_1614",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.82,
+          "orbit_distance": 0.0052,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "belt_9922",
+      "name": "Shattered Mantle",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 0.76,
+      "width": 0.2,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_800",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.74,
+          "orbit_distance": 0.0038,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_779",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.92,
+          "orbit_distance": 0.0021,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

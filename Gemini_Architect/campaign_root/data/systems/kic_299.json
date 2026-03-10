@@ -1,0 +1,204 @@
+{
+  "id": "kic_299",
+  "name": "KIC-299",
+  "star": {
+    "name": "KIC-299",
+    "spectral_class": "M2V",
+    "radius_km": 358229,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3772",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.64,
+      "texture": "assets/textures/gas/jovian_20_diffuse.png",
+      "file": "data/bodies/planet_01_3772.json",
+      "children": [
+        {
+          "id": "moon_0_663",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2809",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.73,
+      "texture": "assets/textures/gas/crimson_20_diffuse.png",
+      "file": "data/bodies/planet_02_2809.json",
+      "children": [
+        {
+          "id": "moon_0_506",
+          "name": "Galedon I",
+          "type": "Moon",
+          "orbit_distance": 0.044
+        },
+        {
+          "id": "moon_1_870",
+          "name": "Galedon II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_2_100",
+          "name": "Galedon III",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        }
+      ]
+    },
+    {
+      "id": "planet_03_5307",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.52,
+      "texture": "assets/textures/gas/saturnian_08_diffuse.png",
+      "file": "data/bodies/planet_03_5307.json",
+      "children": [
+        {
+          "id": "moon_0_892",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        },
+        {
+          "id": "moon_1_229",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_2_779",
+          "name": "Aether III",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "refinery_9550",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.84,
+          "orbit_distance": 0.0093,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_6925",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.19,
+      "texture": "assets/textures/gas/jovian_18_diffuse.png",
+      "file": "data/bodies/planet_04_6925.json",
+      "children": [
+        {
+          "id": "moon_0_537",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_1_294",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_2_703",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.077
+        },
+        {
+          "id": "moon_3_306",
+          "name": "Cyclonis IV",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        }
+      ]
+    },
+    {
+      "id": "planet_05_1505",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.42,
+      "texture": "assets/textures/gas/saturnian_17_diffuse.png",
+      "file": "data/bodies/planet_05_1505.json",
+      "children": [
+        {
+          "id": "moon_0_166",
+          "name": "Leviathan I",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        },
+        {
+          "id": "moon_1_511",
+          "name": "Leviathan II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_2_680",
+          "name": "Leviathan III",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_3_941",
+          "name": "Leviathan IV",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1473",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.91,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_06_1473.json",
+      "children": [
+        {
+          "id": "moon_0_388",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        },
+        {
+          "id": "moon_1_920",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "outpost_9802",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.73,
+          "orbit_distance": 0.0038,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

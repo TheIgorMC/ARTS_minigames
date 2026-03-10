@@ -1,0 +1,180 @@
+{
+  "id": "kic_218",
+  "name": "KIC-218",
+  "star": {
+    "name": "KIC-218",
+    "spectral_class": "M2V",
+    "radius_km": 115453,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5912",
+      "name": "Verdun",
+      "type": "Planet",
+      "planet_type": "Terran",
+      "orbit_index": 1,
+      "orbit_radius": 0.49,
+      "texture": "assets/textures/planets/terran_20_diffuse.png",
+      "file": "data/bodies/planet_01_5912.json",
+      "children": [
+        {
+          "id": "moon_0_171",
+          "name": "Verdun I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_1_442",
+          "name": "Verdun II",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_02_8042",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.48,
+      "texture": "assets/textures/gas/neptunian_13_diffuse.png",
+      "file": "data/bodies/planet_02_8042.json",
+      "children": [
+        {
+          "id": "moon_0_967",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_1_795",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7178",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.58,
+      "texture": "assets/textures/gas/toxic_03_diffuse.png",
+      "file": "data/bodies/planet_03_7178.json",
+      "children": [
+        {
+          "id": "moon_0_982",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        },
+        {
+          "id": "moon_1_846",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_2_343",
+          "name": "Jotunheim III",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5299",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.67,
+      "texture": "assets/textures/gas/jovian_14_diffuse.png",
+      "file": "data/bodies/planet_04_5299.json",
+      "children": [
+        {
+          "id": "moon_0_145",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.07
+        },
+        {
+          "id": "moon_1_494",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_2_793",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_3_661",
+          "name": "Cyclonis IV",
+          "type": "Moon",
+          "orbit_distance": 0.032
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3040",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.68,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_05_3040.json",
+      "children": [
+        {
+          "id": "moon_0_628",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_1_814",
+          "name": "Winteris II",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "planet_06_4859",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.86,
+      "texture": "assets/textures/gas/uranian_02_diffuse.png",
+      "file": "data/bodies/planet_06_4859.json",
+      "children": [
+        {
+          "id": "moon_0_741",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_1_583",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_2_982",
+          "name": "Cryox III",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        }
+      ]
+    }
+  ]
+}

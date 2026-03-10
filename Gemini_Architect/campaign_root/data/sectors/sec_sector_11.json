@@ -1,14 +1,403 @@
-﻿{
-    "id":  "sec_sector_11",
-    "name":  "Sector 11",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_11",
+  "name": "Sector 11",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773158337655_0",
+      "name": "Dorex Dwarf",
+      "coordinates": {
+        "x": 624,
+        "y": 296
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/dorex_dwarf.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_2_1773158337655_1",
+      "name": "KIC-800",
+      "coordinates": {
+        "x": 494,
+        "y": 191
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_800.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_3_1773158337655_2",
+      "name": "Oriux Dwarf",
+      "coordinates": {
+        "x": 427,
+        "y": 216
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/oriux_dwarf.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_4_1773158337655_3",
+      "name": "Pheex Ember",
+      "coordinates": {
+        "x": 413,
+        "y": 255
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/pheex_ember.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_5_1773158337655_4",
+      "name": "Nu Nexar",
+      "coordinates": {
+        "x": 390,
+        "y": 226
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/nu_nexar.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_6_1773158337655_5",
+      "name": "Cassen Ember",
+      "coordinates": {
+        "x": 560,
+        "y": 229
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/cassen_ember.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_7_1773158337655_6",
+      "name": "RG-836",
+      "coordinates": {
+        "x": 564,
+        "y": 265
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rg_836.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_8_1773158337655_7",
+      "name": "KIC-459",
+      "coordinates": {
+        "x": 481,
+        "y": 228
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/kic_459.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_9_1773158337655_8",
+      "name": "Lambda Serpen",
+      "coordinates": {
+        "x": 535,
+        "y": 289
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/lambda_serpen.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_10_1773158337655_9",
+      "name": "Wurath Ember",
+      "coordinates": {
+        "x": 666,
+        "y": 294
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/wurath_ember.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_11_1773158337655_10",
+      "name": "Lyrix Red",
+      "coordinates": {
+        "x": 458,
+        "y": 192
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/lyrix_red.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_12_1773158337655_11",
+      "name": "Rho Hypar",
+      "coordinates": {
+        "x": 530,
+        "y": 219
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rho_hypar.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_13_1773158337655_12",
+      "name": "Nexan Ember",
+      "coordinates": {
+        "x": 506,
+        "y": 260
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/nexan_ember.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_14_1773158337655_13",
+      "name": "Cyrar Ember",
+      "coordinates": {
+        "x": 655,
+        "y": 316
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/cyrar_ember.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_15_1773158337655_14",
+      "name": "Omega Zimon",
+      "coordinates": {
+        "x": 472,
+        "y": 140
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/omega_zimon.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_16_1773158337655_15",
+      "name": "Ethor Dwarf",
+      "coordinates": {
+        "x": 359,
+        "y": 270
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/ethor_dwarf.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_17_1773158337655_16",
+      "name": "Theta Ixelon",
+      "coordinates": {
+        "x": 384,
+        "y": 265
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/theta_ixelon.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_18_1773158337655_17",
+      "name": "RG-867",
+      "coordinates": {
+        "x": 514,
+        "y": 167
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rg_867.json",
+      "main": false,
+      "star_color": "#ff9944"
+    },
+    {
+      "id": "sys_19_1773158337655_18",
+      "name": "Phi Ixelon",
+      "coordinates": {
+        "x": 598,
+        "y": 270
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/phi_ixelon.json",
+      "main": false,
+      "star_color": "#ff9944"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_18_1773158337655_17",
+      "to": "sys_2_1773158337655_1",
+      "type": "Stable",
+      "distance": 3.12
+    },
+    {
+      "from": "sys_15_1773158337655_14",
+      "to": "sys_11_1773158337655_10",
+      "type": "Stable",
+      "distance": 5.39
+    },
+    {
+      "from": "sys_2_1773158337655_1",
+      "to": "sys_11_1773158337655_10",
+      "type": "Stable",
+      "distance": 3.6
+    },
+    {
+      "from": "sys_2_1773158337655_1",
+      "to": "sys_12_1773158337655_11",
+      "type": "Stable",
+      "distance": 4.56
+    },
+    {
+      "from": "sys_13_1773158337655_12",
+      "to": "sys_8_1773158337655_7",
+      "type": "Stable",
+      "distance": 4.06
+    },
+    {
+      "from": "sys_8_1773158337655_7",
+      "to": "sys_3_1773158337655_2",
+      "type": "Stable",
+      "distance": 5.53
+    },
+    {
+      "from": "sys_4_1773158337655_3",
+      "to": "sys_13_1773158337655_12",
+      "type": "Stable",
+      "distance": 9.31
+    },
+    {
+      "from": "sys_17_1773158337655_16",
+      "to": "sys_4_1773158337655_3",
+      "type": "Stable",
+      "distance": 3.07
+    },
+    {
+      "from": "sys_4_1773158337655_3",
+      "to": "sys_5_1773158337655_4",
+      "type": "Stable",
+      "distance": 3.7
+    },
+    {
+      "from": "sys_17_1773158337655_16",
+      "to": "sys_16_1773158337655_15",
+      "type": "Stable",
+      "distance": 2.55
+    },
+    {
+      "from": "sys_8_1773158337655_7",
+      "to": "sys_11_1773158337655_10",
+      "type": "Stable",
+      "distance": 4.27
+    },
+    {
+      "from": "sys_12_1773158337655_11",
+      "to": "sys_6_1773158337655_5",
+      "type": "Stable",
+      "distance": 3.08
+    },
+    {
+      "from": "sys_13_1773158337655_12",
+      "to": "sys_7_1773158337655_6",
+      "type": "Stable",
+      "distance": 5.82
+    },
+    {
+      "from": "sys_9_1773158337655_8",
+      "to": "sys_7_1773158337655_6",
+      "type": "Stable",
+      "distance": 3.26
+    },
+    {
+      "from": "sys_6_1773158337655_5",
+      "to": "sys_7_1773158337655_6",
+      "type": "Stable",
+      "distance": 2.94
+    },
+    {
+      "from": "sys_7_1773158337655_6",
+      "to": "sys_19_1773158337655_18",
+      "type": "Stable",
+      "distance": 3.2
+    },
+    {
+      "from": "sys_9_1773158337655_8",
+      "to": "sys_1_1773158337655_0",
+      "type": "Stable",
+      "distance": 9.04
+    },
+    {
+      "from": "sys_19_1773158337655_18",
+      "to": "sys_1_1773158337655_0",
+      "type": "Stable",
+      "distance": 3.61
+    },
+    {
+      "from": "sys_1_1773158337655_0",
+      "to": "sys_10_1773158337655_9",
+      "type": "Stable",
+      "distance": 4.2
+    },
+    {
+      "from": "sys_14_1773158337655_13",
+      "to": "sys_1_1773158337655_0",
+      "type": "Stable",
+      "distance": 3.69
+    },
+    {
+      "from": "sys_10_1773158337655_9",
+      "to": "sys_15_1773135988318_14",
+      "type": "Stable",
+      "distance": 5.97
+    },
+    {
+      "from": "sys_14_1773158337655_13",
+      "to": "sys_5_1773135988318_4",
+      "type": "Stable",
+      "distance": 4.48
+    },
+    {
+      "from": "sys_9_1773158337655_8",
+      "to": "sys_15_1773158319351_14",
+      "type": "Stable",
+      "distance": 8.77
+    },
+    {
+      "from": "sys_17_1773158337655_16",
+      "to": "sys_2_1773158319351_1",
+      "type": "Stable",
+      "distance": 7.61
+    }
+  ]
 }

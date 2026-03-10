@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_8383",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/toxic_10_diffuse.png",
+    "texture_bump": "assets/textures/gas/toxic_10_bump.png",
+    "texture_specular": "assets/textures/gas/toxic_10_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0094
+  },
+  "pois": []
+}

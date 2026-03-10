@@ -1,0 +1,129 @@
+{
+  "id": "chi_serpen",
+  "name": "Chi Serpen",
+  "star": {
+    "name": "Chi Serpen",
+    "spectral_class": "M2V",
+    "radius_km": 273255,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8242",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.04,
+      "texture": "assets/textures/gas/uranian_01_diffuse.png",
+      "file": "data/bodies/planet_01_8242.json",
+      "children": [
+        {
+          "id": "moon_0_742",
+          "name": "Rimfall I",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_1_495",
+          "name": "Rimfall II",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_2_150",
+          "name": "Rimfall III",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        },
+        {
+          "id": "moon_3_270",
+          "name": "Rimfall IV",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5631",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.83,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_02_5631.json",
+      "children": [
+        {
+          "id": "moon_0_538",
+          "name": "Winteris I",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_1_176",
+          "name": "Winteris II",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6485",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.22,
+      "texture": "assets/textures/gas/uranian_20_diffuse.png",
+      "file": "data/bodies/planet_03_6485.json",
+      "children": [
+        {
+          "id": "moon_0_498",
+          "name": "Polaris I",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        }
+      ]
+    },
+    {
+      "id": "planet_04_9538",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.31,
+      "texture": "assets/textures/gas/saturnian_08_diffuse.png",
+      "file": "data/bodies/planet_04_9538.json",
+      "children": [
+        {
+          "id": "moon_0_253",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.074
+        }
+      ]
+    },
+    {
+      "id": "belt_6503",
+      "name": "The Debris Field",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 0.97,
+      "width": 0.24,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_696",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.84,
+          "orbit_distance": 0.0057,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

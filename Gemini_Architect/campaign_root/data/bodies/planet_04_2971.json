@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_2971",
+  "render_data": {
+    "texture_diffuse": "assets/textures/rocky/barren_10_diffuse.png",
+    "texture_bump": "assets/textures/rocky/barren_10_bump.png",
+    "texture_specular": "assets/textures/rocky/barren_10_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.0013
+  },
+  "pois": []
+}

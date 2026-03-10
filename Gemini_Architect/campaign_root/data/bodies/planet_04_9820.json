@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_9820",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/uranian_15_diffuse.png",
+    "texture_bump": "assets/textures/gas/uranian_15_bump.png",
+    "texture_specular": "assets/textures/gas/uranian_15_specular.png",
+    "atmosphere_color": "#aaccff",
+    "rotation_speed": 0.0097
+  },
+  "pois": []
+}

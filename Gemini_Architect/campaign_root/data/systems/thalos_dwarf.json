@@ -1,0 +1,117 @@
+{
+  "id": "thalos_dwarf",
+  "name": "Thalos Dwarf",
+  "star": {
+    "name": "Thalos Dwarf",
+    "spectral_class": "M2V",
+    "radius_km": 277646,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9848",
+      "name": "Galedon",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.85,
+      "texture": "assets/textures/gas/crimson_13_diffuse.png",
+      "file": "data/bodies/planet_01_9848.json",
+      "children": [
+        {
+          "id": "moon_0_468",
+          "name": "Galedon I",
+          "type": "Moon",
+          "orbit_distance": 0.026
+        },
+        {
+          "id": "moon_1_752",
+          "name": "Galedon II",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_2_287",
+          "name": "Galedon III",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_3_760",
+          "name": "Galedon IV",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        }
+      ]
+    },
+    {
+      "id": "planet_02_7510",
+      "name": "Jovara",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.51,
+      "texture": "assets/textures/gas/jovian_09_diffuse.png",
+      "file": "data/bodies/planet_02_7510.json",
+      "children": [
+        {
+          "id": "refinery_5202",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 1.03,
+          "orbit_distance": 0.0063,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3364",
+      "name": "Vortania",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.23,
+      "texture": "assets/textures/gas/crimson_07_diffuse.png",
+      "file": "data/bodies/planet_03_3364.json",
+      "children": [
+        {
+          "id": "moon_0_240",
+          "name": "Vortania I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_1_938",
+          "name": "Vortania II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_2_577",
+          "name": "Vortania III",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        }
+      ]
+    },
+    {
+      "id": "planet_04_9863",
+      "name": "Forsaken",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.37,
+      "texture": "assets/textures/rocky/barren_09_diffuse.png",
+      "file": "data/bodies/planet_04_9863.json",
+      "children": [
+        {
+          "id": "moon_0_656",
+          "name": "Forsaken I",
+          "type": "Moon",
+          "orbit_distance": 0.072
+        }
+      ]
+    }
+  ]
+}

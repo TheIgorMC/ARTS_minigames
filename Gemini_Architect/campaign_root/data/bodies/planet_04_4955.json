@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_4955",
+  "render_data": {
+    "texture_diffuse": "assets/textures/rocky/martian_16_diffuse.png",
+    "texture_bump": "assets/textures/rocky/martian_16_bump.png",
+    "texture_specular": "assets/textures/rocky/martian_16_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.006
+  },
+  "pois": []
+}

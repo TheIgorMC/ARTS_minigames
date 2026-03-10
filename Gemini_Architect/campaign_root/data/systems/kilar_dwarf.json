@@ -1,0 +1,118 @@
+{
+  "id": "kilar_dwarf",
+  "name": "Kilar Dwarf",
+  "star": {
+    "name": "Kilar Dwarf",
+    "spectral_class": "M2V",
+    "radius_km": 287778,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1878",
+      "name": "Shivren",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.13,
+      "texture": "assets/textures/gas/uranian_19_diffuse.png",
+      "file": "data/bodies/planet_01_1878.json",
+      "children": [
+        {
+          "id": "moon_0_377",
+          "name": "Shivren I",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4073",
+      "name": "Polaris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.97,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_02_4073.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_6599",
+      "name": "Frostholme",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.22,
+      "texture": "assets/textures/gas/uranian_17_diffuse.png",
+      "file": "data/bodies/planet_03_6599.json",
+      "children": []
+    },
+    {
+      "id": "planet_04_7842",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.93,
+      "texture": "assets/textures/gas/saturnian_10_diffuse.png",
+      "file": "data/bodies/planet_04_7842.json",
+      "children": [
+        {
+          "id": "moon_0_292",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_1_582",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_2_643",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        }
+      ]
+    },
+    {
+      "id": "planet_05_7556",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.77,
+      "texture": "assets/textures/gas/saturnian_15_diffuse.png",
+      "file": "data/bodies/planet_05_7556.json",
+      "children": [
+        {
+          "id": "moon_0_802",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        },
+        {
+          "id": "moon_1_876",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_2_273",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_3_233",
+          "name": "Galex IV",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        }
+      ]
+    }
+  ]
+}

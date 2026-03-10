@@ -1,0 +1,90 @@
+{
+  "id": "tau_hypar",
+  "name": "Tau Hypar",
+  "star": {
+    "name": "Tau Hypar",
+    "spectral_class": "M2V",
+    "radius_km": 129268,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9697",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.49,
+      "texture": "assets/textures/gas/jovian_12_diffuse.png",
+      "file": "data/bodies/planet_01_9697.json",
+      "children": [
+        {
+          "id": "moon_0_549",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_1_866",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_2_369",
+          "name": "Jotunheim III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_3_697",
+          "name": "Jotunheim IV",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1736",
+      "name": "Magnax",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.82,
+      "texture": "assets/textures/gas/crimson_15_diffuse.png",
+      "file": "data/bodies/planet_02_1736.json",
+      "children": [
+        {
+          "id": "moon_0_386",
+          "name": "Magnax I",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4127",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.31,
+      "texture": "assets/textures/gas/neptunian_16_diffuse.png",
+      "file": "data/bodies/planet_03_4127.json",
+      "children": [
+        {
+          "id": "moon_0_846",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.093
+        },
+        {
+          "id": "moon_1_605",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "alpha_draven",
+  "name": "Alpha Draven",
+  "star": {
+    "name": "Alpha Draven",
+    "spectral_class": "K2V",
+    "radius_km": 610380,
+    "color_hex": "#ffae66"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8489",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 5.25,
+      "texture": "assets/textures/gas/toxic_05_diffuse.png",
+      "file": "data/bodies/planet_01_8489.json",
+      "children": [
+        {
+          "id": "moon_0_149",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_1_946",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_2_860",
+          "name": "Galex III",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9375",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 14.05,
+      "texture": "assets/textures/gas/uranian_11_diffuse.png",
+      "file": "data/bodies/planet_02_9375.json",
+      "children": [
+        {
+          "id": "moon_0_768",
+          "name": "Boreas I",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_1_625",
+          "name": "Boreas II",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        },
+        {
+          "id": "moon_2_369",
+          "name": "Boreas III",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_3_387",
+          "name": "Boreas IV",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        }
+      ]
+    },
+    {
+      "id": "planet_03_2624",
+      "name": "Cinder",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 3,
+      "orbit_radius": 20.13,
+      "texture": "assets/textures/rocky/barren_11_diffuse.png",
+      "file": "data/bodies/planet_03_2624.json",
+      "children": [
+        {
+          "id": "moon_0_702",
+          "name": "Cinder I",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "moon_1_496",
+          "name": "Cinder II",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        },
+        {
+          "id": "moon_2_166",
+          "name": "Cinder III",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        }
+      ]
+    }
+  ]
+}

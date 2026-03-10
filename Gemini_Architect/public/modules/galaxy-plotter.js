@@ -50,6 +50,14 @@ const GalaxyPlotter = (() => {
     let scatterPainting = false;
     let scatterErasing  = false;
 
+    // Factions list (persisted in universe.json as universe.factions)
+    let factions = [];
+
+    // Status stamp mode
+    let stampStatus = null;   // null = off, or one of 'Colonized','Frontier',…
+    // Faction stamp mode
+    let factionStamp = null;  // null = off, or a faction name string
+
     // ── LOD thresholds ─────────────────────────────────────────────────────────
     const LOD_MAIN_LBL = 0.5;   // main system name labels
     const LOD_LANES    = 0.8;   // jump lanes become visible
@@ -83,6 +91,7 @@ const GalaxyPlotter = (() => {
             // BG reference
             'gp-ref-file','gp-ref-load','gp-ref-controls',
             'gp-ref-opacity','gp-ref-opacity-val','gp-ref-toggle','gp-ref-clear',
+            'gp-ref-scale','gp-ref-scale-val','gp-ref-pos-x','gp-ref-pos-y','gp-ref-pos-apply',
             // Sector props
             'gp-sector-props','gp-sec-name','gp-sec-color','gp-sec-color-picker',
             'gp-sec-vert-count','gp-sec-apply','gp-sec-forge',
@@ -95,6 +104,12 @@ const GalaxyPlotter = (() => {
             // Lane props
             'gp-lane-editor','gp-lane-endpoints','gp-lane-dist',
             'gp-lane-type','gp-lane-apply','gp-lane-delete',
+            // Factions
+            'gp-factions-panel','gp-faction-list','gp-faction-new','gp-faction-add',
+            // Status stamp
+            'gp-stamp-panel','gp-stamp-active','gp-stamp-label','gp-stamp-cancel',
+            // Faction stamp
+            'gp-fstamp-active','gp-fstamp-label','gp-fstamp-cancel',
             // Scatter
             'gp-scatter-panel',
             'gp-scat-size','gp-scat-size-val',
@@ -214,6 +229,8 @@ const GalaxyPlotter = (() => {
             }
             if ((ev.ctrlKey || ev.metaKey) && ev.key === 's') { ev.preventDefault(); saveAll(); }
             if (ev.key === 'Delete' || ev.key === 'Backspace') {
+                const tag = ev.target.tagName;
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || ev.target.isContentEditable) return;
                 if (selectedNode) deleteSystem(selectedNode.id);
                 else if (selectedLane) deleteLane(selectedLane.from, selectedLane.to, selectedLane.sectorId);
                 else if (selectedSectorId && !selectedNode && !selectedLane) deleteGalaxySectorById(selectedSectorId);
@@ -291,6 +308,7 @@ const GalaxyPlotter = (() => {
         }));
 
         renderAll();
+        loadFactions();
         setBreadcrumb([{ label: 'Galaxy' }]);
         setStatus('Galaxy — ' + sectors.length + ' sectors, ' + totalSystemCount() + ' systems');
         const hint = el['gp-canvas-hint'];
@@ -324,8 +342,8 @@ const GalaxyPlotter = (() => {
         for (const [secId, sd] of sectorCache) {
             const grp = new Konva.Group({ id: 'lg_' + secId });
             (sd.jump_lanes ?? []).forEach(lane => {
-                const f = sd.systems?.find(s => s.id === lane.from);
-                const t = sd.systems?.find(s => s.id === lane.to);
+                const f = findSystemById(lane.from) || sd.systems?.find(s => s.id === lane.from);
+                const t = findSystemById(lane.to)   || sd.systems?.find(s => s.id === lane.to);
                 if (f && t) createLaneShape(lane, f, t, secId, grp);
             });
             grp.visible(scale >= LOD_LANES);
@@ -510,31 +528,33 @@ const GalaxyPlotter = (() => {
     // ── Lane shape ─────────────────────────────────────────────────────────────
     function createLaneShape(lane, fromSys, toSys, sectorId, parentGroup) {
         const color = LANE_COLORS[lane.type] || '#444';
+        const DASH_MAP = {
+            Stable:     [10, 6],
+            Unstable:   [6, 6],
+            Drift:      [4, 8],
+            Restricted: [14, 4, 4, 4],
+        };
         const line = new Konva.Line({
             points: [fromSys.coordinates.x, fromSys.coordinates.y,
                      toSys.coordinates.x,   toSys.coordinates.y],
             stroke: color, strokeWidth: 1.5, opacity: 0.6,
-            dash: lane.type === 'Drift' ? [8, 4] : undefined,
-        });
-        const mx = (fromSys.coordinates.x + toSys.coordinates.x) / 2;
-        const my = (fromSys.coordinates.y + toSys.coordinates.y) / 2;
-        const dLabel = new Konva.Text({
-            x: mx, y: my - 10,
-            text: (lane.distance || 0).toFixed(1) + ' ly',
-            fontSize: 9, fontFamily: 'Share Tech Mono,monospace',
-            fill: color, opacity: 0.7, listening: false,
+            dash: DASH_MAP[lane.type] || [10, 6],
         });
         line.on('click', ev => {
             ev.cancelBubble = true;
             if (activeTool === 'delete') { deleteLane(lane.from, lane.to, sectorId); return; }
             selectLane(lane, sectorId, line);
         });
-        line.on('mouseenter', () => { line.strokeWidth(3); line.opacity(1); });
+        line.on('mouseenter', () => {
+            line.strokeWidth(3); line.opacity(1);
+            stage.container().title = `${fromSys.name || lane.from} ↔ ${toSys.name || lane.to}  —  ${(lane.distance || 0).toFixed(1)} ly  [${lane.type}]`;
+        });
         line.on('mouseleave', () => {
             line.strokeWidth(1.5);
             line.opacity(selectedLane?.from === lane.from && selectedLane?.to === lane.to ? 1 : 0.6);
+            stage.container().title = '';
         });
-        parentGroup.add(line, dLabel);
+        parentGroup.add(line);
     }
 
     /** Redraw only lanes for one sector (e.g. after a system drag). */
@@ -546,8 +566,8 @@ const GalaxyPlotter = (() => {
         if (!sd) return;
         const grp = new Konva.Group({ id: 'lg_' + sectorId });
         (sd.jump_lanes ?? []).forEach(lane => {
-            const f = sd.systems?.find(s => s.id === lane.from);
-            const t = sd.systems?.find(s => s.id === lane.to);
+            const f = findSystemById(lane.from) || sd.systems?.find(s => s.id === lane.from);
+            const t = findSystemById(lane.to)   || sd.systems?.find(s => s.id === lane.to);
             if (f && t) createLaneShape(lane, f, t, sectorId, grp);
         });
         grp.visible(nodeLayer.scaleX() >= LOD_LANES);
@@ -624,6 +644,15 @@ const GalaxyPlotter = (() => {
         for (const [secId, sd] of sectorCache) {
             const sys = sd.systems?.find(s => s.id === sysId);
             if (sys) return { sys, sectorId: secId, sd };
+        }
+        return null;
+    }
+
+    /** Quick lookup returning just the system object (cross-sector). */
+    function findSystemById(sysId) {
+        for (const sd of sectorCache.values()) {
+            const sys = sd.systems?.find(s => s.id === sysId);
+            if (sys) return sys;
         }
         return null;
     }
@@ -850,6 +879,10 @@ const GalaxyPlotter = (() => {
 
     function handleNodeClick(sysId, sectorId, group) {
         if (activeTool === 'delete') { deleteSystem(sysId); return; }
+        // Status stamp mode — apply stamp and return
+        if (stampStatus) { applyStampToSystem(sysId, sectorId); return; }
+        // Faction stamp mode
+        if (factionStamp) { applyFactionStampToSystem(sysId, sectorId); return; }
         if (activeTool === 'lane') {
             if (!laneSource) {
                 laneSource = { sysId, sectorId };
@@ -857,14 +890,9 @@ const GalaxyPlotter = (() => {
                 if (c) { c.stroke('#ffd700'); c.strokeWidth(3); }
                 setStatus('Lane: click target system…');
             } else {
-                if (laneSource.sectorId !== sectorId) {
-                    notify('Cannot create lanes across different sectors.', 'warning');
-                    laneSource = null;
-                    setTool('lane');
-                    return;
-                }
                 if (laneSource.sysId !== sysId) {
-                    addLane(laneSource.sysId, sysId, sectorId);
+                    // Store lane in the source system's sector
+                    addLane(laneSource.sysId, sysId, laneSource.sectorId);
                 }
                 // Reset source highlight
                 const srcGrp = nodeLayer.findOne('#' + laneSource.sysId);
@@ -872,8 +900,8 @@ const GalaxyPlotter = (() => {
                     const f = findSystem(laneSource.sysId);
                     const c = srcGrp.findOne('.circle');
                     if (c && f) {
-                        c.stroke(STATUS_COLORS[f.sys.status] || '#00d2ff');
-                        c.strokeWidth(srcGrp.hasName('sys-main') ? 2.5 : 1.5);
+                        c.stroke(f.sys.star_color || STATUS_COLORS[f.sys.status] || '#00d2ff');
+                        c.strokeWidth(srcGrp.hasName('sys-main') ? 1.5 : 1);
                     }
                 }
                 laneSource = null;
@@ -887,20 +915,49 @@ const GalaxyPlotter = (() => {
     // ═══════════════════════════════════════════════════════════════════════════
     //  CRUD
     // ═══════════════════════════════════════════════════════════════════════════
-    function addSystemAtPoint(x, y) {
+    async function addSystemAtPoint(x, y) {
         const entry = findSectorForPoint(x, y);
         if (!entry) { notify('Click inside a sector polygon to place a system.', 'warning'); return; }
         const sd = sectorCache.get(entry.id);
         if (!sd) { notify('Sector data not loaded.', 'error'); return; }
 
-        const id  = 'sys_' + Date.now();
+        // Offer choice: new or link existing system file
+        const choice = await pickSystemOrigin();
+        if (!choice) return;
+
+        let id, name, rel;
+        if (choice.mode === 'existing') {
+            // Link existing system JSON
+            rel = choice.file;
+            try {
+                const sysData = await API.getFile(rel);
+                name = sysData.name || sysData.star?.name || rel.split('/').pop().replace('.json','');
+                id = sysData.id || rel.split('/').pop().replace('.json','');
+            } catch (e) {
+                notify('Could not read system file: ' + e.message, 'error');
+                return;
+            }
+        } else {
+            name = choice.name;
+            id   = 'sys_' + name.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/__+/g, '_') + '_' + Date.now().toString(36);
+            rel  = 'data/systems/' + id + '.json';
+            const systemData = {
+                id, name,
+                star: { name, spectral_class: 'G2V', radius_km: 696000, color_hex: '#ffcc00' },
+                orbitals: [],
+            };
+            try { await API.saveFile(rel, systemData); }
+            catch (e) { notify('Could not create system file: ' + e.message, 'error'); }
+        }
+
         const sys = {
-            id, name: 'New System',
+            id, name,
             coordinates: { x: Math.round(x), y: Math.round(y) },
             political_alignment: '', status: 'Unknown',
-            file: 'data/systems/' + id + '.json',
+            file: rel,
             main: false,
         };
+
         if (!sd.systems) sd.systems = [];
         sd.systems.push(sys);
         dirtySectors.add(entry.id);
@@ -910,7 +967,70 @@ const GalaxyPlotter = (() => {
         updateCounts();
         const grp = nodeLayer.findOne('#' + id);
         if (grp) selectNode(id, entry.id, grp);
-        notify('System added to ' + (entry.name || entry.id) + '.', 'info');
+        notify('System "' + name + '" added to ' + (entry.name || entry.id) + '.', 'info');
+    }
+
+    /** Modal: let user choose between creating a new system or linking an existing .json file */
+    async function pickSystemOrigin() {
+        let files = [];
+        try {
+            const list = await API.listDir('data/systems');
+            files = list.filter(f => !f.isDir && f.name.endsWith('.json'));
+        } catch (_) {}
+
+        // Check which files are already placed in any sector
+        const usedFiles = new Set();
+        for (const sd of sectorCache.values()) {
+            for (const s of (sd.systems || [])) if (s.file) usedFiles.add(s.file);
+        }
+        const unlinked = files.filter(f => !usedFiles.has('data/systems/' + f.name));
+
+        return new Promise(resolve => {
+            let html = '<div style="display:flex;flex-direction:column;gap:10px">';
+            html += '<label class="form-label" style="margin-bottom:0">CREATE NEW</label>';
+            html += '<input class="form-input" id="modal-sys-name" placeholder="Star / system name" value="New Star" />';
+            if (unlinked.length) {
+                html += '<hr style="border-color:var(--gray-700);margin:4px 0">';
+                html += '<label class="form-label" style="margin-bottom:0">OR LINK EXISTING FILE</label>';
+                html += '<select class="form-select" id="modal-sys-file"><option value="">— choose —</option>';
+                unlinked.forEach(f => {
+                    html += `<option value="data/systems/${f.name}">${f.name.replace('.json','')}</option>`;
+                });
+                html += '</select>';
+            }
+            html += '</div>';
+
+            document.getElementById('modal-title').textContent = 'Add System';
+            document.getElementById('modal-body').innerHTML = html;
+            const overlay = document.getElementById('modal-overlay');
+            overlay.style.display = 'flex';
+
+            const nameInp = document.getElementById('modal-sys-name');
+            const fileSel = document.getElementById('modal-sys-file');
+            nameInp?.focus();
+            nameInp?.select();
+
+            function cleanup(result) {
+                overlay.style.display = 'none';
+                document.getElementById('modal-confirm').onclick = null;
+                document.getElementById('modal-cancel').onclick  = null;
+                resolve(result);
+            }
+
+            document.getElementById('modal-confirm').onclick = () => {
+                if (fileSel?.value) {
+                    cleanup({ mode: 'existing', file: fileSel.value });
+                } else {
+                    const n = nameInp?.value.trim();
+                    cleanup(n ? { mode: 'new', name: n } : null);
+                }
+            };
+            document.getElementById('modal-cancel').onclick = () => cleanup(null);
+            nameInp?.addEventListener('keydown', e => {
+                if (e.key === 'Enter') document.getElementById('modal-confirm').click();
+                if (e.key === 'Escape') cleanup(null);
+            });
+        });
     }
 
     function deleteSystem(sysId) {
@@ -935,8 +1055,8 @@ const GalaxyPlotter = (() => {
         const exists = sd.jump_lanes.find(l =>
             (l.from === fromId && l.to === toId) || (l.from === toId && l.to === fromId));
         if (exists) { notify('Lane already exists.', 'warning'); return; }
-        const f = sd.systems.find(s => s.id === fromId);
-        const t = sd.systems.find(s => s.id === toId);
+        const f = findSystemById(fromId);
+        const t = findSystemById(toId);
         if (!f || !t) return;
         const dist = calcDistance(f.coordinates, t.coordinates);
         sd.jump_lanes.push({ from: fromId, to: toId, type: 'Stable', distance: +dist.toFixed(2) });
@@ -958,17 +1078,28 @@ const GalaxyPlotter = (() => {
         notify('Lane removed.', 'warning');
     }
 
-    function applyNodeEdit() {
+    async function applyNodeEdit() {
         if (!selectedNode) return;
         const sd  = sectorCache.get(selectedNode.sectorId);
         const sys = sd?.systems?.find(s => s.id === selectedNode.id);
         if (!sys) return;
-        sys.name                = (el['gp-node-name']?.value.trim())  || sys.name;
+        const newName           = (el['gp-node-name']?.value.trim())  || sys.name;
+        sys.name                = newName;
         sys.political_alignment = el['gp-node-align']?.value.trim()   || '';
         sys.status              = el['gp-node-status']?.value         || sys.status;
         sys.file                = (el['gp-node-file']?.value.trim())  || sys.file;
         sys.main                = el['gp-node-main']?.checked === true;
         dirtySectors.add(selectedNode.sectorId);
+
+        // Propagate name to the system JSON file (star name = system name)
+        if (sys.file) {
+            try {
+                const sysData = await API.getFile(sys.file);
+                sysData.name = newName;
+                if (sysData.star) sysData.star.name = newName;
+                await API.saveFile(sys.file, sysData);
+            } catch (_) {}
+        }
 
         // Rebuild the Konva node
         const oldGrp = nodeLayer.findOne('#' + sys.id);
@@ -1120,6 +1251,7 @@ const GalaxyPlotter = (() => {
     // ═══════════════════════════════════════════════════════════════════════════
     async function saveAll() {
         try {
+            saveFactions();   // persist factions into universe object
             await API.saveUniverse(universe);
             for (const secId of dirtySectors) {
                 const entry = universe.sectors_index.find(s => s.id === secId);
@@ -1561,11 +1693,22 @@ const GalaxyPlotter = (() => {
                 image: img, x: 0, y: 0,
                 width: img.naturalWidth, height: img.naturalHeight,
                 opacity: parseFloat(el['gp-ref-opacity']?.value ?? 35) / 100,
-                listening: false,
+                draggable: true,
+                listening: true,
             });
             refLayer.add(refImageNode);
             if (el['gp-ref-controls']) el['gp-ref-controls'].style.display = '';
             if (el['gp-ref-toggle'])   el['gp-ref-toggle'].textContent     = '👁 HIDE';
+            // sync scale UI
+            if (el['gp-ref-scale'])     el['gp-ref-scale'].value = 100;
+            if (el['gp-ref-scale-val']) el['gp-ref-scale-val'].textContent = '100%';
+            if (el['gp-ref-pos-x'])     el['gp-ref-pos-x'].value = 0;
+            if (el['gp-ref-pos-y'])     el['gp-ref-pos-y'].value = 0;
+            // Update position fields when dragged
+            refImageNode.on('dragend', () => {
+                if (el['gp-ref-pos-x']) el['gp-ref-pos-x'].value = Math.round(refImageNode.x());
+                if (el['gp-ref-pos-y']) el['gp-ref-pos-y'].value = Math.round(refImageNode.y());
+            });
             notify('Reference loaded (' + img.naturalWidth + '×' + img.naturalHeight + ')', 'info');
         };
         img.src = src;
@@ -1587,6 +1730,136 @@ const GalaxyPlotter = (() => {
         let lanes = 0;
         for (const sd of sectorCache.values()) lanes += (sd.jump_lanes?.length ?? 0);
         if (el['gp-count-lanes']) el['gp-count-lanes'].textContent = lanes;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  FACTIONS
+    // ═══════════════════════════════════════════════════════════════════════════
+    function loadFactions() {
+        factions = universe?.factions || [];
+        renderFactionList();
+        refreshAlignDropdown();
+    }
+
+    function saveFactions() {
+        if (universe) universe.factions = factions;
+    }
+
+    function renderFactionList() {
+        const container = el['gp-faction-list'];
+        if (!container) return;
+        container.innerHTML = '';
+        factions.forEach((f, i) => {
+            const row = document.createElement('div');
+            row.style.cssText = 'display:flex;align-items:center;gap:4px;';
+            const span = document.createElement('span');
+            span.style.cssText = 'flex:1;font-size:0.75rem;color:#ccc';
+            span.textContent = f;
+            const stampBtn = document.createElement('button');
+            stampBtn.className = 'btn btn-sm';
+            stampBtn.title = 'Stamp: ' + f;
+            stampBtn.style.cssText = 'padding:0 4px;font-size:0.65rem;' + (factionStamp === f ? 'background:#ffd700;color:#000' : '');
+            stampBtn.textContent = '\u{1F3AF}';
+            stampBtn.addEventListener('click', () => setFactionStamp(factionStamp === f ? null : f));
+            const delBtn = document.createElement('button');
+            delBtn.className = 'btn btn-sm btn-danger';
+            delBtn.title = 'Remove';
+            delBtn.style.cssText = 'padding:0 4px;font-size:0.65rem';
+            delBtn.textContent = '\u2715';
+            delBtn.addEventListener('click', () => {
+                if (factionStamp === f) setFactionStamp(null);
+                factions.splice(i, 1);
+                saveFactions();
+                renderFactionList();
+                refreshAlignDropdown();
+            });
+            row.appendChild(span);
+            row.appendChild(stampBtn);
+            row.appendChild(delBtn);
+            container.appendChild(row);
+        });
+    }
+
+    function addFaction() {
+        const inp = el['gp-faction-new'];
+        if (!inp) return;
+        const name = inp.value.trim();
+        if (!name || factions.includes(name)) return;
+        factions.push(name);
+        inp.value = '';
+        saveFactions();
+        renderFactionList();
+        refreshAlignDropdown();
+    }
+
+    function refreshAlignDropdown() {
+        const sel = el['gp-node-align'];
+        if (!sel) return;
+        const current = sel.value;
+        sel.innerHTML = '<option value="">— none —</option>';
+        factions.forEach(f => {
+            const opt = document.createElement('option');
+            opt.value = f;
+            opt.textContent = f;
+            sel.appendChild(opt);
+        });
+        sel.value = current;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  STATUS STAMP MODE
+    // ═══════════════════════════════════════════════════════════════════════════
+    function setStamp(status) {
+        stampStatus = status || null;
+        if (stampStatus && factionStamp) setFactionStamp(null);
+        document.querySelectorAll('.gp-stamp-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.stamp === stampStatus);
+        });
+        if (el['gp-stamp-active']) el['gp-stamp-active'].style.display = stampStatus ? '' : 'none';
+        if (el['gp-stamp-label'])  el['gp-stamp-label'].textContent = stampStatus || '';
+        if (stampStatus) {
+            setStatus('Stamp mode: click systems to set ' + stampStatus);
+        }
+    }
+
+    function applyStampToSystem(sysId, sectorId) {
+        if (!stampStatus) return;
+        const sd  = sectorCache.get(sectorId);
+        const sys = sd?.systems?.find(s => s.id === sysId);
+        if (!sys) return;
+        sys.status = stampStatus;
+        dirtySectors.add(sectorId);
+        // Rebuild node
+        const oldGrp = nodeLayer.findOne('#' + sysId);
+        if (oldGrp) oldGrp.destroy();
+        const entry = universe.sectors_index.find(s => s.id === sectorId);
+        createSystemNode(sys, sectorId, entry?.color || '#00d2ff');
+        updateLOD(nodeLayer.scaleX());
+        notify(sys.name + ' → ' + stampStatus, 'info', 1500);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  FACTION STAMP MODE
+    // ═══════════════════════════════════════════════════════════════════════════
+    function setFactionStamp(f) {
+        factionStamp = f || null;
+        if (factionStamp && stampStatus) setStamp(null);
+        renderFactionList();
+        if (el['gp-fstamp-active']) el['gp-fstamp-active'].style.display = factionStamp ? '' : 'none';
+        if (el['gp-fstamp-label'])  el['gp-fstamp-label'].textContent = factionStamp || '';
+        if (factionStamp) {
+            setStatus('Faction stamp: click systems to assign ' + factionStamp);
+        }
+    }
+
+    function applyFactionStampToSystem(sysId, sectorId) {
+        if (!factionStamp) return;
+        const sd  = sectorCache.get(sectorId);
+        const sys = sd?.systems?.find(s => s.id === sysId);
+        if (!sys) return;
+        sys.political_alignment = factionStamp;
+        dirtySectors.add(sectorId);
+        notify(sys.name + ' → ' + factionStamp, 'info', 1500);
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -1646,6 +1919,21 @@ const GalaxyPlotter = (() => {
             if (selectedLane) deleteLane(selectedLane.from, selectedLane.to, selectedLane.sectorId);
         });
 
+        // ── Factions ──────────────────────────────────────────────────────────
+        el['gp-faction-add']?.addEventListener('click', addFaction);
+        el['gp-faction-new']?.addEventListener('keydown', e => { if (e.key === 'Enter') addFaction(); });
+
+        // ── Status stamp ──────────────────────────────────────────────────────
+        document.querySelectorAll('.gp-stamp-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setStamp(btn.dataset.stamp === stampStatus ? null : btn.dataset.stamp);
+            });
+        });
+        el['gp-stamp-cancel']?.addEventListener('click', () => setStamp(null));
+
+        // ── Faction stamp ─────────────────────────────────────────────────────
+        el['gp-fstamp-cancel']?.addEventListener('click', () => setFactionStamp(null));
+
         // ── Scatter ───────────────────────────────────────────────────────────
         el['gp-scat-size']?.addEventListener('input', () => {
             if (el['gp-scat-size-val']) el['gp-scat-size-val'].textContent = el['gp-scat-size'].value;
@@ -1682,6 +1970,20 @@ const GalaxyPlotter = (() => {
             el['gp-ref-toggle'].textContent = vis ? '👁 SHOW' : '👁 HIDE';
         });
         el['gp-ref-clear']?.addEventListener('click', clearRefImage);
+        el['gp-ref-scale']?.addEventListener('input', () => {
+            const pct = parseFloat(el['gp-ref-scale'].value) || 100;
+            if (el['gp-ref-scale-val']) el['gp-ref-scale-val'].textContent = pct + '%';
+            if (refImageNode) {
+                const s = pct / 100;
+                refImageNode.scaleX(s);
+                refImageNode.scaleY(s);
+            }
+        });
+        el['gp-ref-pos-apply']?.addEventListener('click', () => {
+            if (!refImageNode) return;
+            refImageNode.x(parseFloat(el['gp-ref-pos-x']?.value) || 0);
+            refImageNode.y(parseFloat(el['gp-ref-pos-y']?.value) || 0);
+        });
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -1695,6 +1997,24 @@ const GalaxyPlotter = (() => {
             loadGalaxy().catch(err => notify('Galaxy Plotter: ' + err.message, 'error'));
         },
         reload: loadGalaxy,
+        /** Called by Orrery when a system is saved — syncs name/star_color in sector cache. */
+        syncSystemFromFile(filePath, systemData) {
+            for (const [secId, sd] of sectorCache) {
+                const sys = sd.systems?.find(s => s.file === filePath);
+                if (sys) {
+                    sys.name       = systemData.name || systemData.star?.name || sys.name;
+                    sys.star_color = systemData.star?.color_hex || sys.star_color;
+                    dirtySectors.add(secId);
+                    // Rebuild the Konva node
+                    const oldGrp = nodeLayer.findOne('#' + sys.id);
+                    if (oldGrp) oldGrp.destroy();
+                    const entry = universe.sectors_index.find(s => s.id === secId);
+                    createSystemNode(sys, secId, entry?.color || '#00d2ff');
+                    updateLOD(nodeLayer.scaleX());
+                    return;
+                }
+            }
+        },
     };
 
 })();

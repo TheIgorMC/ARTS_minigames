@@ -1,0 +1,134 @@
+{
+  "id": "ethel_red",
+  "name": "Ethel Red",
+  "star": {
+    "name": "Ethel Red",
+    "spectral_class": "M2V",
+    "radius_km": 159590,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4696",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.74,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_01_4696.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_7783",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.56,
+      "texture": "assets/textures/gas/uranian_01_diffuse.png",
+      "file": "data/bodies/planet_02_7783.json",
+      "children": [
+        {
+          "id": "moon_0_567",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        },
+        {
+          "id": "moon_1_844",
+          "name": "Aurorax II",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9187",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.69,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_03_9187.json",
+      "children": [
+        {
+          "id": "moon_0_515",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.091
+        },
+        {
+          "id": "moon_1_554",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.08
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5597",
+      "name": "Gelida",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.63,
+      "texture": "assets/textures/gas/uranian_07_diffuse.png",
+      "file": "data/bodies/planet_04_5597.json",
+      "children": [
+        {
+          "id": "moon_0_730",
+          "name": "Gelida I",
+          "type": "Moon",
+          "orbit_distance": 0.024
+        },
+        {
+          "id": "moon_1_634",
+          "name": "Gelida II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_05_4677",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.56,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_05_4677.json",
+      "children": [
+        {
+          "id": "moon_0_743",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        }
+      ]
+    },
+    {
+      "id": "belt_6853",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 6,
+      "orbit_radius": 0.89,
+      "width": 0.12,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_483",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.76,
+          "orbit_distance": 0.0021,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

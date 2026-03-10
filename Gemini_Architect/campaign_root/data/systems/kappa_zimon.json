@@ -1,0 +1,132 @@
+{
+  "id": "kappa_zimon",
+  "name": "Kappa Zimon",
+  "star": {
+    "name": "Kappa Zimon",
+    "spectral_class": "M2V",
+    "radius_km": 404384,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6224",
+      "name": "Titanis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.44,
+      "texture": "assets/textures/gas/saturnian_12_diffuse.png",
+      "file": "data/bodies/planet_01_6224.json",
+      "children": [
+        {
+          "id": "moon_0_479",
+          "name": "Titanis I",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        },
+        {
+          "id": "moon_1_904",
+          "name": "Titanis II",
+          "type": "Moon",
+          "orbit_distance": 0.029
+        },
+        {
+          "id": "moon_2_662",
+          "name": "Titanis III",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1587",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.68,
+      "texture": "assets/textures/gas/neptunian_20_diffuse.png",
+      "file": "data/bodies/planet_02_1587.json",
+      "children": [
+        {
+          "id": "moon_0_552",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.064
+        },
+        {
+          "id": "moon_1_129",
+          "name": "Permafrost II",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_2_324",
+          "name": "Permafrost III",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8641",
+      "name": "Sleetmaw",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.96,
+      "texture": "assets/textures/gas/neptunian_19_diffuse.png",
+      "file": "data/bodies/planet_03_8641.json",
+      "children": [
+        {
+          "id": "moon_0_559",
+          "name": "Sleetmaw I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_1_883",
+          "name": "Sleetmaw II",
+          "type": "Moon",
+          "orbit_distance": 0.057
+        },
+        {
+          "id": "moon_2_365",
+          "name": "Sleetmaw III",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        }
+      ]
+    },
+    {
+      "id": "belt_7396",
+      "name": "The Debris Field",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.18,
+      "width": 0.39,
+      "density": "Low",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_511",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.95,
+          "orbit_distance": 0.0057,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_502",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.76,
+          "orbit_distance": 0.006,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

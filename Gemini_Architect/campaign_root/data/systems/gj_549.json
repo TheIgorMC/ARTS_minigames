@@ -1,0 +1,83 @@
+{
+  "id": "gj_549",
+  "name": "GJ-549",
+  "star": {
+    "name": "GJ-549",
+    "spectral_class": "M2V",
+    "radius_km": 380225,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_4008",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.46,
+      "texture": "assets/textures/gas/saturnian_05_diffuse.png",
+      "file": "data/bodies/planet_01_4008.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_6195",
+      "name": "Brine",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.47,
+      "texture": "assets/textures/gas/neptunian_15_diffuse.png",
+      "file": "data/bodies/planet_02_6195.json",
+      "children": [
+        {
+          "id": "moon_0_983",
+          "name": "Brine I",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_1_750",
+          "name": "Brine II",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        },
+        {
+          "id": "moon_2_819",
+          "name": "Brine III",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        },
+        {
+          "id": "moon_3_132",
+          "name": "Brine IV",
+          "type": "Moon",
+          "orbit_distance": 0.084
+        }
+      ]
+    },
+    {
+      "id": "planet_03_3960",
+      "name": "Stratum",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.66,
+      "texture": "assets/textures/gas/crimson_14_diffuse.png",
+      "file": "data/bodies/planet_03_3960.json",
+      "children": [
+        {
+          "id": "moon_0_605",
+          "name": "Stratum I",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        },
+        {
+          "id": "moon_1_929",
+          "name": "Stratum II",
+          "type": "Moon",
+          "orbit_distance": 0.071
+        }
+      ]
+    }
+  ]
+}

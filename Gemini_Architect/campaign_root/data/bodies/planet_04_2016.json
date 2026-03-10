@@ -1,0 +1,11 @@
+{
+  "id": "planet_04_2016",
+  "render_data": {
+    "texture_diffuse": "assets/textures/rocky/mercurian_01_diffuse.png",
+    "texture_bump": "assets/textures/rocky/mercurian_01_bump.png",
+    "texture_specular": "assets/textures/rocky/mercurian_01_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.0046
+  },
+  "pois": []
+}

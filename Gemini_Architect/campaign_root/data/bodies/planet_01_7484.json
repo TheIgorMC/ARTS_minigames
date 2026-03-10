@@ -1,11 +1,11 @@
 {
   "id": "planet_01_7484",
   "render_data": {
-    "texture_diffuse": "assets/textures/gas/neptunian_09_diffuse.png",
-    "texture_bump": "assets/textures/gas/neptunian_09_bump.png",
-    "texture_specular": "assets/textures/gas/neptunian_09_specular.png",
-    "atmosphere_color": "#aaccff",
-    "rotation_speed": 0.0062
+    "texture_diffuse": "assets/textures/rocky/martian_13_diffuse.png",
+    "texture_bump": "assets/textures/rocky/martian_13_bump.png",
+    "texture_specular": "assets/textures/rocky/martian_13_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.009
   },
   "pois": []
 }

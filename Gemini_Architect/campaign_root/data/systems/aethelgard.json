@@ -1,0 +1,23 @@
+{
+  "id": "aethelgard",
+  "star": {
+    "name": "Aethelgard",
+    "spectral_class": "G2V",
+    "radius_km": 696000,
+    "color_hex": "#ffcc00"
+  },
+  "orbitals": [
+    {
+      "id": "lysithea",
+      "name": "Lysithea",
+      "type": "Planet",
+      "orbit_index": 1,
+      "orbit_radius": 11.5,
+      "children": [],
+      "file": "data/bodies/planet_01_1427.json",
+      "scale": 1,
+      "locked": true
+    }
+  ],
+  "name": "Aethelgard"
+}

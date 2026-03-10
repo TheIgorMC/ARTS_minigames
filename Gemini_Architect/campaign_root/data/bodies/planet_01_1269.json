@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_1269",
+  "render_data": {
+    "texture_diffuse": "assets/textures/rocky/mercurian_07_diffuse.png",
+    "texture_bump": "assets/textures/rocky/mercurian_07_bump.png",
+    "texture_specular": "assets/textures/rocky/mercurian_07_specular.png",
+    "atmosphere_color": "#888888",
+    "rotation_speed": 0.0061
+  },
+  "pois": []
+}

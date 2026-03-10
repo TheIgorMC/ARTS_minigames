@@ -1,0 +1,198 @@
+{
+  "id": "draex_sol",
+  "name": "Draex Sol",
+  "star": {
+    "name": "Draex Sol",
+    "spectral_class": "G2V",
+    "radius_km": 832748,
+    "color_hex": "#ffcc00"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_1863",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 8.38,
+      "texture": "assets/textures/gas/saturnian_19_diffuse.png",
+      "file": "data/bodies/planet_01_1863.json",
+      "children": [
+        {
+          "id": "moon_0_219",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_661",
+          "name": "Expansia II",
+          "type": "Moon",
+          "orbit_distance": 0.086
+        },
+        {
+          "id": "moon_2_823",
+          "name": "Expansia III",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_3_345",
+          "name": "Expansia IV",
+          "type": "Moon",
+          "orbit_distance": 0.082
+        }
+      ]
+    },
+    {
+      "id": "planet_02_6986",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 15.57,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_02_6986.json",
+      "children": [
+        {
+          "id": "moon_0_263",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        },
+        {
+          "id": "moon_1_954",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.087
+        }
+      ]
+    },
+    {
+      "id": "planet_03_4845",
+      "name": "Aether",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 24.58,
+      "texture": "assets/textures/gas/jovian_12_diffuse.png",
+      "file": "data/bodies/planet_03_4845.json",
+      "children": [
+        {
+          "id": "moon_0_692",
+          "name": "Aether I",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        },
+        {
+          "id": "moon_1_628",
+          "name": "Aether II",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "refinery_3728",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.9,
+          "orbit_distance": 0.0076,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_04_7584",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 30.97,
+      "texture": "assets/textures/gas/toxic_09_diffuse.png",
+      "file": "data/bodies/planet_04_7584.json",
+      "children": [
+        {
+          "id": "moon_0_899",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.066
+        }
+      ]
+    },
+    {
+      "id": "planet_05_3070",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 41.57,
+      "texture": "assets/textures/gas/uranian_19_diffuse.png",
+      "file": "data/bodies/planet_05_3070.json",
+      "children": [
+        {
+          "id": "moon_0_562",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_1_734",
+          "name": "Aurorax II",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_2_533",
+          "name": "Aurorax III",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1937",
+      "name": "Errata",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 6,
+      "orbit_radius": 49.99,
+      "texture": "assets/textures/rocky/mercurian_03_diffuse.png",
+      "file": "data/bodies/planet_06_1937.json",
+      "children": [
+        {
+          "id": "moon_0_242",
+          "name": "Errata I",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_1_182",
+          "name": "Errata II",
+          "type": "Moon",
+          "orbit_distance": 0.069
+        }
+      ]
+    },
+    {
+      "id": "belt_4770",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 15.91,
+      "width": 0.15,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_465",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.9,
+          "orbit_distance": 0.0032,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

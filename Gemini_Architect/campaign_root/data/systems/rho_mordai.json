@@ -1,0 +1,181 @@
+{
+  "id": "rho_mordai",
+  "name": "Rho Mordai",
+  "star": {
+    "name": "Rho Mordai",
+    "spectral_class": "M2V",
+    "radius_km": 384995,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8859",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.94,
+      "texture": "assets/textures/gas/crimson_20_diffuse.png",
+      "file": "data/bodies/planet_01_8859.json",
+      "children": [
+        {
+          "id": "moon_0_782",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.079
+        },
+        {
+          "id": "moon_1_425",
+          "name": "Gravitus II",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_2_652",
+          "name": "Gravitus III",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        },
+        {
+          "id": "moon_3_711",
+          "name": "Gravitus IV",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        }
+      ]
+    },
+    {
+      "id": "planet_02_1859",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.84,
+      "texture": "assets/textures/gas/crimson_10_diffuse.png",
+      "file": "data/bodies/planet_02_1859.json",
+      "children": [
+        {
+          "id": "moon_0_893",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_832",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        },
+        {
+          "id": "moon_2_872",
+          "name": "Jotunheim III",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_3_397",
+          "name": "Jotunheim IV",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        }
+      ]
+    },
+    {
+      "id": "planet_03_9668",
+      "name": "Aurorax",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.98,
+      "texture": "assets/textures/gas/neptunian_02_diffuse.png",
+      "file": "data/bodies/planet_03_9668.json",
+      "children": [
+        {
+          "id": "moon_0_826",
+          "name": "Aurorax I",
+          "type": "Moon",
+          "orbit_distance": 0.034
+        },
+        {
+          "id": "moon_1_717",
+          "name": "Aurorax II",
+          "type": "Moon",
+          "orbit_distance": 0.09
+        },
+        {
+          "id": "moon_2_235",
+          "name": "Aurorax III",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5476",
+      "name": "Scabland",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 4,
+      "orbit_radius": 3.96,
+      "texture": "assets/textures/rocky/mercurian_20_diffuse.png",
+      "file": "data/bodies/planet_04_5476.json",
+      "children": []
+    },
+    {
+      "id": "planet_05_1111",
+      "name": "Pebrix",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 5,
+      "orbit_radius": 5.08,
+      "texture": "assets/textures/rocky/barren_18_diffuse.png",
+      "file": "data/bodies/planet_05_1111.json",
+      "children": [
+        {
+          "id": "moon_0_463",
+          "name": "Pebrix I",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_1_826",
+          "name": "Pebrix II",
+          "type": "Moon",
+          "orbit_distance": 0.058
+        }
+      ]
+    },
+    {
+      "id": "planet_06_1867",
+      "name": "Ashen",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 6,
+      "orbit_radius": 6.19,
+      "texture": "assets/textures/rocky/barren_11_diffuse.png",
+      "file": "data/bodies/planet_06_1867.json",
+      "children": []
+    },
+    {
+      "id": "belt_7096",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 7,
+      "orbit_radius": 1.26,
+      "width": 0.22,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_138",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.74,
+          "orbit_distance": 0.0028,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "id": "ixarel_red",
+  "name": "Ixarel Red",
+  "star": {
+    "name": "Ixarel Red",
+    "spectral_class": "M2V",
+    "radius_km": 285602,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_2978",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.17,
+      "texture": "assets/textures/gas/neptunian_04_diffuse.png",
+      "file": "data/bodies/planet_01_2978.json",
+      "children": [
+        {
+          "id": "moon_0_545",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_1_151",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.035
+        }
+      ]
+    },
+    {
+      "id": "planet_02_3532",
+      "name": "Crystallis",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.21,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_02_3532.json",
+      "children": [
+        {
+          "id": "moon_0_901",
+          "name": "Crystallis I",
+          "type": "Moon",
+          "orbit_distance": 0.028
+        },
+        {
+          "id": "moon_1_782",
+          "name": "Crystallis II",
+          "type": "Moon",
+          "orbit_distance": 0.078
+        },
+        {
+          "id": "moon_2_160",
+          "name": "Crystallis III",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_3_254",
+          "name": "Crystallis IV",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8598",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3,
+      "texture": "assets/textures/gas/toxic_06_diffuse.png",
+      "file": "data/bodies/planet_03_8598.json",
+      "children": [
+        {
+          "id": "moon_0_452",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.081
+        },
+        {
+          "id": "moon_1_969",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        }
+      ]
+    },
+    {
+      "id": "planet_04_2546",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 3.86,
+      "texture": "assets/textures/gas/saturnian_13_diffuse.png",
+      "file": "data/bodies/planet_04_2546.json",
+      "children": [
+        {
+          "id": "moon_0_921",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_1_547",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.042
+        },
+        {
+          "id": "moon_2_379",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "moon_3_860",
+          "name": "Bellows IV",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "planet_05_2978",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 5,
+      "orbit_radius": 4.95,
+      "texture": "assets/textures/gas/toxic_02_diffuse.png",
+      "file": "data/bodies/planet_05_2978.json",
+      "children": [
+        {
+          "id": "moon_0_534",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        }
+      ]
+    },
+    {
+      "id": "planet_06_7286",
+      "name": "Expansia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 5.45,
+      "texture": "assets/textures/gas/crimson_10_diffuse.png",
+      "file": "data/bodies/planet_06_7286.json",
+      "children": [
+        {
+          "id": "moon_0_770",
+          "name": "Expansia I",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "refinery_1067",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.93,
+          "orbit_distance": 0.0049,
+          "faction": "Corporate"
+        }
+      ]
+    }
+  ]
+}

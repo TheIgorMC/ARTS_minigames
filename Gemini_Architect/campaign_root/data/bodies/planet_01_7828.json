@@ -1,0 +1,11 @@
+{
+  "id": "planet_01_7828",
+  "render_data": {
+    "texture_diffuse": "assets/textures/gas/crimson_14_diffuse.png",
+    "texture_bump": "assets/textures/gas/crimson_14_bump.png",
+    "texture_specular": "assets/textures/gas/crimson_14_specular.png",
+    "atmosphere_color": "#cc8866",
+    "rotation_speed": 0.0064
+  },
+  "pois": []
+}

@@ -1,14 +1,263 @@
-﻿{
-    "id":  "sec_sector_12",
-    "name":  "Sector 12",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_12",
+  "name": "Sector 12",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773158354935_0",
+      "name": "TYC-895",
+      "coordinates": {
+        "x": 517,
+        "y": 125
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_895.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "sys_2_1773158354935_1",
+      "name": "Rho Prael",
+      "coordinates": {
+        "x": 661,
+        "y": 256
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rho_prael.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_3_1773158354935_2",
+      "name": "Sigma Hypar",
+      "coordinates": {
+        "x": 545,
+        "y": 138
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/sigma_hypar.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_4_1773158354935_3",
+      "name": "Pi Velpho",
+      "coordinates": {
+        "x": 684,
+        "y": 149
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/pi_velpho.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_5_1773158354935_4",
+      "name": "HX-984",
+      "coordinates": {
+        "x": 650,
+        "y": 189
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hx_984.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_6_1773158354935_5",
+      "name": "Palan Glow",
+      "coordinates": {
+        "x": 496,
+        "y": 105
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/palan_glow.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_7_1773158354935_6",
+      "name": "GJ-569",
+      "coordinates": {
+        "x": 539,
+        "y": 106
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gj_569.json",
+      "main": false,
+      "star_color": "#ff9944"
+    },
+    {
+      "id": "sys_8_1773158354935_7",
+      "name": "Zeta Velar",
+      "coordinates": {
+        "x": 690,
+        "y": 200
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/zeta_velar.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_9_1773158354935_8",
+      "name": "HD-771",
+      "coordinates": {
+        "x": 691,
+        "y": 235
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hd_771.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_10_1773158354935_9",
+      "name": "Morion Glow",
+      "coordinates": {
+        "x": 659,
+        "y": 225
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/morion_glow.json",
+      "main": false,
+      "star_color": "#ff9944"
+    },
+    {
+      "id": "sys_11_1773158354935_10",
+      "name": "HD-871",
+      "coordinates": {
+        "x": 651,
+        "y": 86
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hd_871.json",
+      "main": false,
+      "star_color": "#cc2200"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_11_1773158354935_10",
+      "to": "sys_4_1773158354935_3",
+      "type": "Stable",
+      "distance": 7.11
+    },
+    {
+      "from": "sys_4_1773158354935_3",
+      "to": "sys_5_1773158354935_4",
+      "type": "Stable",
+      "distance": 5.25
+    },
+    {
+      "from": "sys_5_1773158354935_4",
+      "to": "sys_3_1773158354935_2",
+      "type": "Stable",
+      "distance": 11.67
+    },
+    {
+      "from": "sys_3_1773158354935_2",
+      "to": "sys_1_1773158354935_0",
+      "type": "Stable",
+      "distance": 3.09
+    },
+    {
+      "from": "sys_1_1773158354935_0",
+      "to": "sys_6_1773158354935_5",
+      "type": "Stable",
+      "distance": 2.9
+    },
+    {
+      "from": "sys_7_1773158354935_6",
+      "to": "sys_3_1773158354935_2",
+      "type": "Stable",
+      "distance": 3.26
+    },
+    {
+      "from": "sys_1_1773158354935_0",
+      "to": "sys_18_1773158337655_17",
+      "type": "Stable",
+      "distance": 4.21
+    },
+    {
+      "from": "sys_3_1773158354935_2",
+      "to": "sys_18_1773158337655_17",
+      "type": "Stable",
+      "distance": 4.24
+    },
+    {
+      "from": "sys_6_1773158354935_5",
+      "to": "sys_15_1773158337655_14",
+      "type": "Stable",
+      "distance": 4.24
+    },
+    {
+      "from": "sys_10_1773158354935_9",
+      "to": "sys_5_1773158354935_4",
+      "type": "Stable",
+      "distance": 3.71
+    },
+    {
+      "from": "sys_8_1773158354935_7",
+      "to": "sys_5_1773158354935_4",
+      "type": "Stable",
+      "distance": 4.15
+    },
+    {
+      "from": "sys_8_1773158354935_7",
+      "to": "sys_4_1773131294094_3",
+      "type": "Stable",
+      "distance": 4.65
+    },
+    {
+      "from": "sys_9_1773158354935_8",
+      "to": "sys_8_1773158354935_7",
+      "type": "Stable",
+      "distance": 3.5
+    },
+    {
+      "from": "sys_10_1773158354935_9",
+      "to": "sys_9_1773158354935_8",
+      "type": "Stable",
+      "distance": 3.35
+    },
+    {
+      "from": "sys_9_1773158354935_8",
+      "to": "sys_13_1773131294094_12",
+      "type": "Stable",
+      "distance": 5.81
+    },
+    {
+      "from": "sys_9_1773158354935_8",
+      "to": "sys_15_1773135988318_14",
+      "type": "Stable",
+      "distance": 7.6
+    },
+    {
+      "from": "sys_2_1773158354935_1",
+      "to": "sys_10_1773158354935_9",
+      "type": "Stable",
+      "distance": 3.11
+    },
+    {
+      "from": "sys_2_1773158354935_1",
+      "to": "sys_1_1773158337655_0",
+      "type": "Stable",
+      "distance": 5.45
+    }
+  ]
 }

@@ -1,0 +1,77 @@
+{
+  "id": "palor_dwarf",
+  "name": "Palor Dwarf",
+  "star": {
+    "name": "Palor Dwarf",
+    "spectral_class": "M2V",
+    "radius_km": 310400,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8745",
+      "name": "Goliath",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.08,
+      "texture": "assets/textures/gas/crimson_06_diffuse.png",
+      "file": "data/bodies/planet_01_8745.json",
+      "children": [
+        {
+          "id": "moon_0_570",
+          "name": "Goliath I",
+          "type": "Moon",
+          "orbit_distance": 0.022
+        },
+        {
+          "id": "moon_1_973",
+          "name": "Goliath II",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4129",
+      "name": "Rimfall",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.98,
+      "texture": "assets/textures/gas/uranian_03_diffuse.png",
+      "file": "data/bodies/planet_02_4129.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_2209",
+      "name": "Permafrost",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.07,
+      "texture": "assets/textures/gas/uranian_17_diffuse.png",
+      "file": "data/bodies/planet_03_2209.json",
+      "children": [
+        {
+          "id": "moon_0_838",
+          "name": "Permafrost I",
+          "type": "Moon",
+          "orbit_distance": 0.073
+        },
+        {
+          "id": "moon_1_672",
+          "name": "Permafrost II",
+          "type": "Moon",
+          "orbit_distance": 0.065
+        },
+        {
+          "id": "moon_2_776",
+          "name": "Permafrost III",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        }
+      ]
+    }
+  ]
+}

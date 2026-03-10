@@ -1,0 +1,147 @@
+{
+  "id": "beta_draven",
+  "name": "Beta Draven",
+  "star": {
+    "name": "Beta Draven",
+    "spectral_class": "M2V",
+    "radius_km": 82466,
+    "color_hex": "#cc2200"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8420",
+      "name": "Tundris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.98,
+      "texture": "assets/textures/gas/neptunian_18_diffuse.png",
+      "file": "data/bodies/planet_01_8420.json",
+      "children": [
+        {
+          "id": "moon_0_650",
+          "name": "Tundris I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_656",
+          "name": "Tundris II",
+          "type": "Moon",
+          "orbit_distance": 0.052
+        }
+      ]
+    },
+    {
+      "id": "planet_02_9229",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.01,
+      "texture": "assets/textures/gas/uranian_15_diffuse.png",
+      "file": "data/bodies/planet_02_9229.json",
+      "children": [
+        {
+          "id": "moon_0_341",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.038
+        },
+        {
+          "id": "moon_1_909",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_2_777",
+          "name": "Icebreak III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        },
+        {
+          "id": "moon_3_602",
+          "name": "Icebreak IV",
+          "type": "Moon",
+          "orbit_distance": 0.095
+        }
+      ]
+    },
+    {
+      "id": "planet_03_2148",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 3.63,
+      "texture": "assets/textures/gas/crimson_04_diffuse.png",
+      "file": "data/bodies/planet_03_2148.json",
+      "children": [
+        {
+          "id": "moon_0_150",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.096
+        },
+        {
+          "id": "moon_1_409",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_2_879",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.048
+        },
+        {
+          "id": "moon_3_484",
+          "name": "Cumulus IV",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        }
+      ]
+    },
+    {
+      "id": "planet_04_5696",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 4.43,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_04_5696.json",
+      "children": [
+        {
+          "id": "moon_0_156",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "belt_5115",
+      "name": "The Dust Belt",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.04,
+      "width": 0.39,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_485",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.85,
+          "orbit_distance": 0.0036,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

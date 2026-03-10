@@ -1,14 +1,409 @@
-﻿{
-    "id":  "sec_sector_10",
-    "name":  "Sector 10",
-    "dimensions":  {
-                       "width":  1000,
-                       "height":  1000
-                   },
-    "systems":  [
-
-                ],
-    "jump_lanes":  [
-
-                   ]
+{
+  "id": "sec_sector_10",
+  "name": "Sector 10",
+  "dimensions": {
+    "width": 1000,
+    "height": 1000
+  },
+  "systems": [
+    {
+      "id": "sys_1_1773158319351_0",
+      "name": "TYC-416",
+      "coordinates": {
+        "x": 555,
+        "y": 418
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_416.json",
+      "main": false,
+      "star_color": "#ddeeff"
+    },
+    {
+      "id": "sys_2_1773158319351_1",
+      "name": "Wureth Sun",
+      "coordinates": {
+        "x": 380,
+        "y": 341
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/wureth_sun.json",
+      "main": false,
+      "star_color": "#fff4ea"
+    },
+    {
+      "id": "sys_3_1773158319351_2",
+      "name": "Chi Caelux",
+      "coordinates": {
+        "x": 382,
+        "y": 411
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/chi_caelux.json",
+      "main": false,
+      "star_color": "#ff9944"
+    },
+    {
+      "id": "sys_4_1773158319351_3",
+      "name": "Rynus Dwarf",
+      "coordinates": {
+        "x": 664,
+        "y": 357
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rynus_dwarf.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_5_1773158319351_4",
+      "name": "Mu Kethis",
+      "coordinates": {
+        "x": 491,
+        "y": 380
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/mu_kethis.json",
+      "main": false,
+      "star_color": "#ffe0a0"
+    },
+    {
+      "id": "sys_6_1773158319351_5",
+      "name": "Beta Nexar",
+      "coordinates": {
+        "x": 441,
+        "y": 382
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/beta_nexar.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_7_1773158319351_6",
+      "name": "Pi Ixelon",
+      "coordinates": {
+        "x": 438,
+        "y": 337
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/pi_ixelon.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_8_1773158319351_7",
+      "name": "Epsilon Nexar",
+      "coordinates": {
+        "x": 333,
+        "y": 382
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/epsilon_nexar.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_9_1773158319351_8",
+      "name": "Chi Tylath",
+      "coordinates": {
+        "x": 576,
+        "y": 379
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/chi_tylath.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_10_1773158319351_9",
+      "name": "Anxis Ember",
+      "coordinates": {
+        "x": 649,
+        "y": 382
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/anxis_ember.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_11_1773158319351_10",
+      "name": "HX-104",
+      "coordinates": {
+        "x": 630,
+        "y": 361
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/hx_104.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_12_1773158319351_11",
+      "name": "GJ-406",
+      "coordinates": {
+        "x": 334,
+        "y": 336
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/gj_406.json",
+      "main": false,
+      "star_color": "#ff4400"
+    },
+    {
+      "id": "sys_13_1773158319351_12",
+      "name": "Nu Corvat",
+      "coordinates": {
+        "x": 609,
+        "y": 391
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/nu_corvat.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_14_1773158319351_13",
+      "name": "Tau Mordai",
+      "coordinates": {
+        "x": 331,
+        "y": 422
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tau_mordai.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_15_1773158319351_14",
+      "name": "RG-226",
+      "coordinates": {
+        "x": 474,
+        "y": 352
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/rg_226.json",
+      "main": false,
+      "star_color": "#ffae66"
+    },
+    {
+      "id": "sys_16_1773158319351_15",
+      "name": "TYC-933",
+      "coordinates": {
+        "x": 510,
+        "y": 344
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/tyc_933.json",
+      "main": false,
+      "star_color": "#ff6600"
+    },
+    {
+      "id": "sys_17_1773158319351_16",
+      "name": "Iota Tylath",
+      "coordinates": {
+        "x": 512,
+        "y": 398
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/iota_tylath.json",
+      "main": false,
+      "star_color": "#cc2200"
+    },
+    {
+      "id": "sys_18_1773158319351_17",
+      "name": "Theta Solvar",
+      "coordinates": {
+        "x": 552,
+        "y": 363
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/theta_solvar.json",
+      "main": false,
+      "star_color": "#fff4ea"
+    },
+    {
+      "id": "sys_19_1773158319351_18",
+      "name": "Lambda Kethis",
+      "coordinates": {
+        "x": 416,
+        "y": 357
+      },
+      "political_alignment": "",
+      "status": "Unknown",
+      "file": "data/systems/lambda_kethis.json",
+      "main": false,
+      "star_color": "#ff4400"
+    }
+  ],
+  "jump_lanes": [
+    {
+      "from": "sys_4_1773158319351_3",
+      "to": "sys_11_1773158319351_10",
+      "type": "Stable",
+      "distance": 3.42
+    },
+    {
+      "from": "sys_4_1773158319351_3",
+      "to": "sys_10_1773158319351_9",
+      "type": "Stable",
+      "distance": 2.92
+    },
+    {
+      "from": "sys_10_1773158319351_9",
+      "to": "sys_13_1773158319351_12",
+      "type": "Stable",
+      "distance": 4.1
+    },
+    {
+      "from": "sys_11_1773158319351_10",
+      "to": "sys_18_1773158319351_17",
+      "type": "Stable",
+      "distance": 7.8
+    },
+    {
+      "from": "sys_9_1773158319351_8",
+      "to": "sys_13_1773158319351_12",
+      "type": "Stable",
+      "distance": 3.51
+    },
+    {
+      "from": "sys_9_1773158319351_8",
+      "to": "sys_18_1773158319351_17",
+      "type": "Stable",
+      "distance": 2.88
+    },
+    {
+      "from": "sys_9_1773158319351_8",
+      "to": "sys_1_1773158319351_0",
+      "type": "Stable",
+      "distance": 4.43
+    },
+    {
+      "from": "sys_13_1773158319351_12",
+      "to": "sys_11_1773158297503_10",
+      "type": "Stable",
+      "distance": 7.12
+    },
+    {
+      "from": "sys_1_1773158319351_0",
+      "to": "sys_3_1773158319351_2",
+      "type": "Stable",
+      "distance": 17.31
+    },
+    {
+      "from": "sys_1_1773158319351_0",
+      "to": "sys_17_1773158319351_16",
+      "type": "Stable",
+      "distance": 4.74
+    },
+    {
+      "from": "sys_1_1773158319351_0",
+      "to": "sys_17_1773158297503_16",
+      "type": "Stable",
+      "distance": 9.5
+    },
+    {
+      "from": "sys_3_1773158319351_2",
+      "to": "sys_7_1773158297503_6",
+      "type": "Stable",
+      "distance": 11.05
+    },
+    {
+      "from": "sys_17_1773158319351_16",
+      "to": "sys_5_1773158319351_4",
+      "type": "Stable",
+      "distance": 2.77
+    },
+    {
+      "from": "sys_5_1773158319351_4",
+      "to": "sys_6_1773158319351_5",
+      "type": "Stable",
+      "distance": 5
+    },
+    {
+      "from": "sys_6_1773158319351_5",
+      "to": "sys_3_1773158319351_2",
+      "type": "Stable",
+      "distance": 6.57
+    },
+    {
+      "from": "sys_6_1773158319351_5",
+      "to": "sys_19_1773158319351_18",
+      "type": "Stable",
+      "distance": 3.54
+    },
+    {
+      "from": "sys_19_1773158319351_18",
+      "to": "sys_2_1773158319351_1",
+      "type": "Stable",
+      "distance": 3.94
+    },
+    {
+      "from": "sys_7_1773158319351_6",
+      "to": "sys_19_1773158319351_18",
+      "type": "Stable",
+      "distance": 2.97
+    },
+    {
+      "from": "sys_15_1773158319351_14",
+      "to": "sys_5_1773158319351_4",
+      "type": "Stable",
+      "distance": 3.28
+    },
+    {
+      "from": "sys_16_1773158319351_15",
+      "to": "sys_18_1773158319351_17",
+      "type": "Stable",
+      "distance": 4.61
+    },
+    {
+      "from": "sys_9_1773158319351_8",
+      "to": "sys_5_1773158319351_4",
+      "type": "Stable",
+      "distance": 8.5
+    },
+    {
+      "from": "sys_12_1773158319351_11",
+      "to": "sys_2_1773158319351_1",
+      "type": "Stable",
+      "distance": 4.63
+    },
+    {
+      "from": "sys_8_1773158319351_7",
+      "to": "sys_19_1773158319351_18",
+      "type": "Stable",
+      "distance": 8.67
+    },
+    {
+      "from": "sys_3_1773158319351_2",
+      "to": "sys_8_1773158319351_7",
+      "type": "Stable",
+      "distance": 5.69
+    },
+    {
+      "from": "sys_14_1773158319351_13",
+      "to": "sys_3_1773158319351_2",
+      "type": "Stable",
+      "distance": 5.22
+    }
+  ]
 }

@@ -10,11 +10,11 @@
       "id": "sys_1_1773135988318_0",
       "name": "NZ-391",
       "coordinates": {
-        "x": 743,
-        "y": 402
+        "x": 735,
+        "y": 416
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/nz_391.json",
       "main": false,
       "star_color": "#ff6600"
@@ -23,11 +23,11 @@
       "id": "sys_2_1773135988318_1",
       "name": "Epsilon Nexar",
       "coordinates": {
-        "x": 788,
-        "y": 290
+        "x": 792,
+        "y": 284
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/epsilon_nexar.json",
       "main": false,
       "star_color": "#ffae66"
@@ -36,11 +36,11 @@
       "id": "sys_3_1773135988318_2",
       "name": "Palux Red",
       "coordinates": {
-        "x": 827,
-        "y": 345
+        "x": 834,
+        "y": 338
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Faret Corporation",
+      "status": "Colonized",
       "file": "data/systems/palux_red.json",
       "main": false,
       "star_color": "#ff6600"
@@ -49,11 +49,11 @@
       "id": "sys_4_1773135988318_3",
       "name": "Cassox Dwarf",
       "coordinates": {
-        "x": 787,
-        "y": 358
+        "x": 770,
+        "y": 372
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/cassox_dwarf.json",
       "main": false,
       "star_color": "#cc2200"
@@ -66,7 +66,7 @@
         "y": 338
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/tarath_ember.json",
       "main": false,
       "star_color": "#ff4400"
@@ -75,11 +75,11 @@
       "id": "sys_6_1773135988318_5",
       "name": "Tevux Ember",
       "coordinates": {
-        "x": 758,
-        "y": 279
+        "x": 751,
+        "y": 286
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/tevux_ember.json",
       "main": false,
       "star_color": "#cc2200"
@@ -88,11 +88,11 @@
       "id": "sys_7_1773135988318_6",
       "name": "GJ-649",
       "coordinates": {
-        "x": 772,
-        "y": 395
+        "x": 779,
+        "y": 409
       },
       "political_alignment": "",
-      "status": "Contested",
+      "status": "Colonized",
       "file": "data/systems/gj_649.json",
       "main": false,
       "star_color": "#cc2200"
@@ -105,7 +105,7 @@
         "y": 357
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/omega_tylath.json",
       "main": false,
       "star_color": "#ff4400"
@@ -114,11 +114,11 @@
       "id": "sys_9_1773135988318_8",
       "name": "RG-188",
       "coordinates": {
-        "x": 816,
-        "y": 368
+        "x": 830,
+        "y": 369
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/rg_188.json",
       "main": false,
       "star_color": "#ff4400"
@@ -127,11 +127,11 @@
       "id": "sys_10_1773135988318_9",
       "name": "Mu Draven",
       "coordinates": {
-        "x": 820,
-        "y": 292
+        "x": 822,
+        "y": 282
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/mu_draven.json",
       "main": false,
       "star_color": "#ff4400"
@@ -140,11 +140,11 @@
       "id": "sys_11_1773135988318_10",
       "name": "TYC-432",
       "coordinates": {
-        "x": 765,
-        "y": 308
+        "x": 760,
+        "y": 317
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/tyc_432.json",
       "main": false,
       "star_color": "#ff6600"
@@ -157,7 +157,7 @@
         "y": 329
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/bd_595.json",
       "main": false,
       "star_color": "#ff6600"
@@ -182,8 +182,8 @@
         "x": 846,
         "y": 304
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Faret Corporation",
+      "status": "Colonized",
       "file": "data/systems/bd_380.json",
       "main": false,
       "star_color": "#cc2200"
@@ -192,11 +192,11 @@
       "id": "sys_15_1773135988318_14",
       "name": "Phi Draven",
       "coordinates": {
-        "x": 727,
-        "y": 315
+        "x": 725,
+        "y": 303
       },
       "political_alignment": "",
-      "status": "Unknown",
+      "status": "Colonized",
       "file": "data/systems/phi_draven.json",
       "main": false,
       "star_color": "#ff4400"
@@ -208,8 +208,8 @@
         "x": 886,
         "y": 373
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Faret Corporation",
+      "status": "Colonized",
       "file": "data/systems/hd_349.json",
       "main": false,
       "star_color": "#ff6600"
@@ -218,11 +218,11 @@
       "id": "sys_17_1773135988318_16",
       "name": "Wuran Dwarf",
       "coordinates": {
-        "x": 894,
-        "y": 333
+        "x": 884,
+        "y": 332
       },
-      "political_alignment": "",
-      "status": "Unknown",
+      "political_alignment": "Faret Corporation",
+      "status": "Colonized",
       "file": "data/systems/wuran_dwarf.json",
       "main": false,
       "star_color": "#ff6600"
@@ -231,14 +231,40 @@
       "id": "sys_18_1773135988318_17",
       "name": "XR-571",
       "coordinates": {
-        "x": 713,
-        "y": 383
+        "x": 708,
+        "y": 390
       },
       "political_alignment": "",
       "status": "Colonized",
       "file": "data/systems/xr_571.json",
       "main": false,
       "star_color": "#cc2200"
+    },
+    {
+      "id": "zyrnova",
+      "name": "Zyrnova",
+      "coordinates": {
+        "x": 856,
+        "y": 394
+      },
+      "political_alignment": "",
+      "status": "Colonized",
+      "file": "data/systems/zyrnova.json",
+      "main": false,
+      "star_color": "#ffcc00"
+    },
+    {
+      "id": "aethelgard",
+      "name": "Aethelgard",
+      "coordinates": {
+        "x": 732,
+        "y": 381
+      },
+      "political_alignment": "",
+      "status": "Colonized",
+      "file": "data/systems/aethelgard.json",
+      "main": false,
+      "star_color": "#ffcc00"
     }
   ],
   "jump_lanes": [
@@ -247,12 +273,6 @@
       "to": "sys_12_1773135988318_11",
       "type": "Stable",
       "distance": 6.04
-    },
-    {
-      "from": "sys_14_1773135988318_13",
-      "to": "sys_10_1773135988318_9",
-      "type": "Stable",
-      "distance": 2.86
     },
     {
       "from": "sys_10_1773135988318_9",
@@ -355,6 +375,102 @@
       "to": "sys_16_1773135988318_15",
       "type": "Stable",
       "distance": 7.02
+    },
+    {
+      "from": "sys_10_1773135988318_9",
+      "to": "sys_14_1773135988318_13",
+      "type": "Stable",
+      "distance": 2.86
+    },
+    {
+      "from": "sys_17_1773135988318_16",
+      "to": "sys_4_1773149002879_3",
+      "type": "Stable",
+      "distance": 4.62
+    },
+    {
+      "from": "sys_17_1773135988318_16",
+      "to": "sys_5_1773149002879_4",
+      "type": "Stable",
+      "distance": 3.7
+    },
+    {
+      "from": "sys_16_1773135988318_15",
+      "to": "sys_14_1773149002879_13",
+      "type": "Stable",
+      "distance": 7.47
+    },
+    {
+      "from": "zyrnova",
+      "to": "sys_9_1773135988318_8",
+      "type": "Stable",
+      "distance": 3.61
+    },
+    {
+      "from": "zyrnova",
+      "to": "sys_13_1773135988318_12",
+      "type": "Stable",
+      "distance": 3.55
+    },
+    {
+      "from": "zyrnova",
+      "to": "sys_13_1773150684903_12",
+      "type": "Stable",
+      "distance": 5.25
+    },
+    {
+      "from": "zyrnova",
+      "to": "sys_16_1773135988318_15",
+      "type": "Stable",
+      "distance": 3.66
+    },
+    {
+      "from": "sys_16_1773135988318_15",
+      "to": "sys_1_1773150684903_0",
+      "type": "Stable",
+      "distance": 6.45
+    },
+    {
+      "from": "sys_13_1773135988318_12",
+      "to": "sys_13_1773150684903_12",
+      "type": "Stable",
+      "distance": 5.91
+    },
+    {
+      "from": "sys_18_1773135988318_17",
+      "to": "sys_1_1773150763271_0",
+      "type": "Stable",
+      "distance": 9.31
+    },
+    {
+      "from": "sys_1_1773135988318_0",
+      "to": "sys_17_1773150763271_16",
+      "type": "Stable",
+      "distance": 4.16
+    },
+    {
+      "from": "sys_7_1773135988318_6",
+      "to": "sys_3_1773150734695_2",
+      "type": "Stable",
+      "distance": 4.7
+    },
+    {
+      "from": "sys_18_1773135988318_17",
+      "to": "sys_4_1773158319351_3",
+      "type": "Stable",
+      "distance": 5.5
+    },
+    {
+      "from": "aethelgard",
+      "to": "sys_8_1773135988318_7",
+      "type": "Stable",
+      "distance": 2.42
+    },
+    {
+      "from": "aethelgard",
+      "to": "sys_18_1773135988318_17",
+      "type": "Stable",
+      "distance": 2.56
     }
   ]
 }

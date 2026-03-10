@@ -1,0 +1,111 @@
+{
+  "id": "rho_hypar",
+  "name": "Rho Hypar",
+  "star": {
+    "name": "Rho Hypar",
+    "spectral_class": "M2V",
+    "radius_km": 400431,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_8505",
+      "name": "Gravitus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.73,
+      "texture": "assets/textures/gas/crimson_19_diffuse.png",
+      "file": "data/bodies/planet_01_8505.json",
+      "children": [
+        {
+          "id": "moon_0_179",
+          "name": "Gravitus I",
+          "type": "Moon",
+          "orbit_distance": 0.051
+        }
+      ]
+    },
+    {
+      "id": "planet_02_5529",
+      "name": "Nebular",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.9,
+      "texture": "assets/textures/gas/crimson_19_diffuse.png",
+      "file": "data/bodies/planet_02_5529.json",
+      "children": [
+        {
+          "id": "moon_0_652",
+          "name": "Nebular I",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_1_791",
+          "name": "Nebular II",
+          "type": "Moon",
+          "orbit_distance": 0.089
+        }
+      ]
+    },
+    {
+      "id": "planet_03_6906",
+      "name": "Hailmark",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.3,
+      "texture": "assets/textures/gas/uranian_16_diffuse.png",
+      "file": "data/bodies/planet_03_6906.json",
+      "children": [
+        {
+          "id": "moon_0_700",
+          "name": "Hailmark I",
+          "type": "Moon",
+          "orbit_distance": 0.1
+        },
+        {
+          "id": "moon_1_618",
+          "name": "Hailmark II",
+          "type": "Moon",
+          "orbit_distance": 0.097
+        },
+        {
+          "id": "moon_2_463",
+          "name": "Hailmark III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        },
+        {
+          "id": "moon_3_709",
+          "name": "Hailmark IV",
+          "type": "Moon",
+          "orbit_distance": 0.083
+        }
+      ]
+    },
+    {
+      "id": "belt_9690",
+      "name": "Outer Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.46,
+      "width": 0.34,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_982",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.82,
+          "orbit_distance": 0.0064,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

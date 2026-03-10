@@ -1,0 +1,83 @@
+{
+  "id": "lyrix_red",
+  "name": "Lyrix Red",
+  "star": {
+    "name": "Lyrix Red",
+    "spectral_class": "M2V",
+    "radius_km": 385736,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_6510",
+      "name": "Bleachbone",
+      "type": "Planet",
+      "planet_type": "Barren",
+      "orbit_index": 1,
+      "orbit_radius": 1.71,
+      "texture": "assets/textures/rocky/barren_09_diffuse.png",
+      "file": "data/bodies/planet_01_6510.json",
+      "children": [
+        {
+          "id": "moon_0_173",
+          "name": "Bleachbone I",
+          "type": "Moon",
+          "orbit_distance": 0.03
+        },
+        {
+          "id": "moon_1_541",
+          "name": "Bleachbone II",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_2_657",
+          "name": "Bleachbone III",
+          "type": "Moon",
+          "orbit_distance": 0.04
+        },
+        {
+          "id": "moon_3_347",
+          "name": "Bleachbone IV",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4809",
+      "name": "Galex",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.82,
+      "texture": "assets/textures/gas/crimson_01_diffuse.png",
+      "file": "data/bodies/planet_02_4809.json",
+      "children": [
+        {
+          "id": "moon_0_696",
+          "name": "Galex I",
+          "type": "Moon",
+          "orbit_distance": 0.037
+        },
+        {
+          "id": "moon_1_409",
+          "name": "Galex II",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7920",
+      "name": "Winteris",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 5.99,
+      "texture": "assets/textures/gas/uranian_10_diffuse.png",
+      "file": "data/bodies/planet_03_7920.json",
+      "children": []
+    }
+  ]
+}

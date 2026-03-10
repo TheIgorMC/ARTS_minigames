@@ -1,0 +1,198 @@
+{
+  "id": "tau_kethis",
+  "name": "Tau Kethis",
+  "star": {
+    "name": "Tau Kethis",
+    "spectral_class": "M2V",
+    "radius_km": 161439,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5039",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.88,
+      "texture": "assets/textures/gas/saturnian_06_diffuse.png",
+      "file": "data/bodies/planet_01_5039.json",
+      "children": [
+        {
+          "id": "moon_0_471",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        },
+        {
+          "id": "moon_1_684",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.053
+        },
+        {
+          "id": "moon_2_912",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.054
+        },
+        {
+          "id": "moon_3_438",
+          "name": "Bellows IV",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        },
+        {
+          "id": "refinery_5491",
+          "name": "Refinery Station",
+          "type": "Station",
+          "model_3d": "assets/models/refinery_01.glb",
+          "scale": 0.86,
+          "orbit_distance": 0.0101,
+          "faction": "Corporate"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4278",
+      "name": "Glacian",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 2.73,
+      "texture": "assets/textures/gas/uranian_19_diffuse.png",
+      "file": "data/bodies/planet_02_4278.json",
+      "children": [
+        {
+          "id": "moon_0_954",
+          "name": "Glacian I",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        },
+        {
+          "id": "moon_1_264",
+          "name": "Glacian II",
+          "type": "Moon",
+          "orbit_distance": 0.036
+        },
+        {
+          "id": "moon_2_378",
+          "name": "Glacian III",
+          "type": "Moon",
+          "orbit_distance": 0.049
+        },
+        {
+          "id": "moon_3_281",
+          "name": "Glacian IV",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "outpost_8827",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.76,
+          "orbit_distance": 0.0085,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_03_8614",
+      "name": "Bellows",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.25,
+      "texture": "assets/textures/gas/saturnian_16_diffuse.png",
+      "file": "data/bodies/planet_03_8614.json",
+      "children": [
+        {
+          "id": "moon_0_374",
+          "name": "Bellows I",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        },
+        {
+          "id": "moon_1_924",
+          "name": "Bellows II",
+          "type": "Moon",
+          "orbit_distance": 0.033
+        },
+        {
+          "id": "moon_2_564",
+          "name": "Bellows III",
+          "type": "Moon",
+          "orbit_distance": 0.047
+        }
+      ]
+    },
+    {
+      "id": "planet_04_7030",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 4,
+      "orbit_radius": 5.34,
+      "texture": "assets/textures/gas/neptunian_14_diffuse.png",
+      "file": "data/bodies/planet_04_7030.json",
+      "children": [
+        {
+          "id": "moon_0_202",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.055
+        },
+        {
+          "id": "moon_1_974",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_2_394",
+          "name": "Icebreak III",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        },
+        {
+          "id": "moon_3_732",
+          "name": "Icebreak IV",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        }
+      ]
+    },
+    {
+      "id": "belt_3177",
+      "name": "Shattered Mantle",
+      "type": "Asteroid Belt",
+      "orbit_index": 5,
+      "orbit_radius": 1.28,
+      "width": 0.23,
+      "density": "High",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_486",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.73,
+          "orbit_distance": 0.0028,
+          "faction": "Independent"
+        },
+        {
+          "id": "mining_1_548",
+          "name": "Deep Dig 02",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.76,
+          "orbit_distance": 0.0067,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

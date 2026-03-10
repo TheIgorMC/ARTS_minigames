@@ -1,0 +1,159 @@
+{
+  "id": "kilax_red",
+  "name": "Kilax Red",
+  "star": {
+    "name": "Kilax Red",
+    "spectral_class": "M2V",
+    "radius_km": 65019,
+    "color_hex": "#ff4400"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_5623",
+      "name": "Boreas",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 0.71,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_01_5623.json",
+      "children": [
+        {
+          "id": "outpost_4746",
+          "name": "Outpost Alpha",
+          "type": "Station",
+          "model_3d": "assets/models/station_outpost_01.glb",
+          "scale": 0.79,
+          "orbit_distance": 0.0037,
+          "faction": "Independent"
+        }
+      ]
+    },
+    {
+      "id": "planet_02_2146",
+      "name": "Leviathan",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 1.33,
+      "texture": "assets/textures/gas/crimson_13_diffuse.png",
+      "file": "data/bodies/planet_02_2146.json",
+      "children": [
+        {
+          "id": "moon_0_892",
+          "name": "Leviathan I",
+          "type": "Moon",
+          "orbit_distance": 0.039
+        }
+      ]
+    },
+    {
+      "id": "planet_03_7092",
+      "name": "Shivren",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 2.21,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_03_7092.json",
+      "children": [
+        {
+          "id": "moon_0_736",
+          "name": "Shivren I",
+          "type": "Moon",
+          "orbit_distance": 0.041
+        }
+      ]
+    },
+    {
+      "id": "planet_04_7099",
+      "name": "Tempestia",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 4,
+      "orbit_radius": 2.64,
+      "texture": "assets/textures/gas/crimson_03_diffuse.png",
+      "file": "data/bodies/planet_04_7099.json",
+      "children": [
+        {
+          "id": "moon_0_149",
+          "name": "Tempestia I",
+          "type": "Moon",
+          "orbit_distance": 0.075
+        },
+        {
+          "id": "moon_1_315",
+          "name": "Tempestia II",
+          "type": "Moon",
+          "orbit_distance": 0.046
+        },
+        {
+          "id": "moon_2_599",
+          "name": "Tempestia III",
+          "type": "Moon",
+          "orbit_distance": 0.085
+        },
+        {
+          "id": "moon_3_175",
+          "name": "Tempestia IV",
+          "type": "Moon",
+          "orbit_distance": 0.06
+        }
+      ]
+    },
+    {
+      "id": "planet_05_6045",
+      "name": "Cryox",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 5,
+      "orbit_radius": 3.8,
+      "texture": "assets/textures/gas/uranian_18_diffuse.png",
+      "file": "data/bodies/planet_05_6045.json",
+      "children": [
+        {
+          "id": "moon_0_568",
+          "name": "Cryox I",
+          "type": "Moon",
+          "orbit_distance": 0.025
+        },
+        {
+          "id": "moon_1_327",
+          "name": "Cryox II",
+          "type": "Moon",
+          "orbit_distance": 0.061
+        }
+      ]
+    },
+    {
+      "id": "planet_06_9936",
+      "name": "Cyclonis",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 6,
+      "orbit_radius": 4.44,
+      "texture": "assets/textures/gas/jovian_16_diffuse.png",
+      "file": "data/bodies/planet_06_9936.json",
+      "children": [
+        {
+          "id": "moon_0_397",
+          "name": "Cyclonis I",
+          "type": "Moon",
+          "orbit_distance": 0.021
+        },
+        {
+          "id": "moon_1_254",
+          "name": "Cyclonis II",
+          "type": "Moon",
+          "orbit_distance": 0.099
+        },
+        {
+          "id": "moon_2_938",
+          "name": "Cyclonis III",
+          "type": "Moon",
+          "orbit_distance": 0.043
+        }
+      ]
+    }
+  ]
+}

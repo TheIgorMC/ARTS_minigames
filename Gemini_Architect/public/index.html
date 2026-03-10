@@ -97,6 +97,19 @@
                                    min="0" max="100" value="35" style="flex:1" />
                             <span id="gp-ref-opacity-val" style="min-width:32px;color:var(--accent-color);font-size:0.75rem">35%</span>
                         </div>
+                        <label class="form-label" style="margin-top:6px">SCALE</label>
+                        <div class="input-row" style="align-items:center;gap:6px">
+                            <input type="range" class="scatter-slider" id="gp-ref-scale"
+                                   min="5" max="500" value="100" style="flex:1" />
+                            <span id="gp-ref-scale-val" style="min-width:32px;color:var(--accent-color);font-size:0.75rem">100%</span>
+                        </div>
+                        <label class="form-label" style="margin-top:6px">POSITION (galaxy coords)</label>
+                        <div class="input-row" style="gap:4px">
+                            <input class="form-input" id="gp-ref-pos-x" type="number" placeholder="X" value="0" style="width:70px" />
+                            <input class="form-input" id="gp-ref-pos-y" type="number" placeholder="Y" value="0" style="width:70px" />
+                            <button class="btn btn-sm" id="gp-ref-pos-apply" title="Set position">✓</button>
+                        </div>
+                        <div style="font-size:0.65rem;color:#666;margin-top:2px">Drag the image directly on the canvas to reposition.</div>
                         <div class="btn-row" style="margin-top:6px">
                             <button class="btn" id="gp-ref-toggle">👁 HIDE</button>
                             <button class="btn btn-danger" id="gp-ref-clear">✕ CLEAR</button>
@@ -137,7 +150,9 @@
                     <label class="form-label">NAME</label>
                     <input class="form-input" id="gp-node-name" placeholder="Kilter System" />
                     <label class="form-label">POLITICAL ALIGNMENT</label>
-                    <input class="form-input" id="gp-node-align" placeholder="Lower_Sympathizer" />
+                    <select class="form-select" id="gp-node-align">
+                        <option value="">— none —</option>
+                    </select>
                     <label class="form-label">STATUS</label>
                     <select class="form-select" id="gp-node-status">
                         <option>Colonized</option>
@@ -181,6 +196,38 @@
                     </select>
                     <button class="btn" id="gp-lane-apply" style="margin-top:8px">✓ APPLY</button>
                     <button class="btn btn-danger" id="gp-lane-delete" style="margin-top:4px">✕ REMOVE LANE</button>
+                </div>
+
+                <!-- Factions / Political Parties -->
+                <div class="sidebar-section" id="gp-factions-panel">
+                    <div class="sidebar-header">FACTIONS</div>
+                    <div id="gp-faction-list" style="display:flex;flex-direction:column;gap:2px;max-height:140px;overflow-y:auto;margin-bottom:6px"></div>
+                    <div class="input-row">
+                        <input class="form-input flex-1" id="gp-faction-new" placeholder="New faction…" />
+                        <button class="btn btn-sm" id="gp-faction-add" title="Add faction">+</button>
+                    </div>
+                    <div style="font-size:0.7rem;color:#888;margin-top:4px">Click 🎯 to stamp-assign a faction to systems.</div>
+                    <div id="gp-fstamp-active" style="margin-top:6px;font-size:0.75rem;color:#ffd700;display:none">
+                        Stamping: <span id="gp-fstamp-label"></span>
+                        <button class="btn btn-sm" id="gp-fstamp-cancel" style="margin-left:6px">✕ Stop</button>
+                    </div>
+                </div>
+
+                <!-- Status Stamp Mode -->
+                <div class="sidebar-section" id="gp-stamp-panel">
+                    <div class="sidebar-header">STATUS STAMP</div>
+                    <div style="font-size:0.7rem;color:#888;margin-bottom:6px">Select a status, then click systems to assign it.</div>
+                    <div id="gp-stamp-buttons" style="display:flex;flex-wrap:wrap;gap:4px">
+                        <button class="btn btn-sm gp-stamp-btn" data-stamp="Colonized" style="border-color:#00cc44;color:#00cc44">Colonized</button>
+                        <button class="btn btn-sm gp-stamp-btn" data-stamp="Frontier" style="border-color:#00d2ff;color:#00d2ff">Frontier</button>
+                        <button class="btn btn-sm gp-stamp-btn" data-stamp="Contested" style="border-color:#ffaa00;color:#ffaa00">Contested</button>
+                        <button class="btn btn-sm gp-stamp-btn" data-stamp="Abandoned" style="border-color:#555;color:#888">Abandoned</button>
+                        <button class="btn btn-sm gp-stamp-btn" data-stamp="Unknown" style="border-color:#444;color:#666">Unknown</button>
+                    </div>
+                    <div id="gp-stamp-active" style="margin-top:6px;font-size:0.75rem;color:#ffd700;display:none">
+                        Stamping: <span id="gp-stamp-label"></span>
+                        <button class="btn btn-sm" id="gp-stamp-cancel" style="margin-left:6px">✕ Stop</button>
+                    </div>
                 </div>
 
                 <!-- Scatter Panel -->
@@ -377,6 +424,7 @@
                     <input class="form-input" id="ps-tex-diffuse" placeholder="assets/textures/tirra_diff.webp" />
                     <label class="form-label">BUMP TEXTURE</label>
                     <input class="form-input" id="ps-tex-bump" placeholder="assets/textures/tirra_bump.webp" />
+                    <button class="btn btn-sm" id="ps-tex-browse" style="margin-top:4px;width:100%">🖼️ BROWSE TEXTURES</button>
                     <label class="form-label">ATMOSPHERE COLOR</label>
                     <div class="input-row">
                         <input class="form-input flex-1" id="ps-atmo-color" placeholder="#88aaff" />

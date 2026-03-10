@@ -1,0 +1,91 @@
+{
+  "id": "zeta_suneth",
+  "name": "Zeta Suneth",
+  "star": {
+    "name": "Zeta Suneth",
+    "spectral_class": "M2V",
+    "radius_km": 236344,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_9007",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 1,
+      "orbit_radius": 1.15,
+      "texture": "assets/textures/gas/crimson_17_diffuse.png",
+      "file": "data/bodies/planet_01_9007.json",
+      "children": []
+    },
+    {
+      "id": "planet_02_4225",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 2,
+      "orbit_radius": 3.09,
+      "texture": "assets/textures/gas/uranian_06_diffuse.png",
+      "file": "data/bodies/planet_02_4225.json",
+      "children": []
+    },
+    {
+      "id": "planet_03_3612",
+      "name": "Iceval",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 3,
+      "orbit_radius": 4.67,
+      "texture": "assets/textures/gas/uranian_13_diffuse.png",
+      "file": "data/bodies/planet_03_3612.json",
+      "children": [
+        {
+          "id": "moon_0_455",
+          "name": "Iceval I",
+          "type": "Moon",
+          "orbit_distance": 0.027
+        },
+        {
+          "id": "moon_1_685",
+          "name": "Iceval II",
+          "type": "Moon",
+          "orbit_distance": 0.068
+        },
+        {
+          "id": "moon_2_614",
+          "name": "Iceval III",
+          "type": "Moon",
+          "orbit_distance": 0.023
+        },
+        {
+          "id": "moon_3_718",
+          "name": "Iceval IV",
+          "type": "Moon",
+          "orbit_distance": 0.076
+        }
+      ]
+    },
+    {
+      "id": "belt_1038",
+      "name": "The Iron Ring",
+      "type": "Asteroid Belt",
+      "orbit_index": 4,
+      "orbit_radius": 1.28,
+      "width": 0.17,
+      "density": "Medium",
+      "texture": "assets/textures/belts/rocky_ring.png",
+      "children": [
+        {
+          "id": "mining_0_420",
+          "name": "Deep Dig 01",
+          "type": "Station",
+          "model_3d": "assets/models/mining_rig_small.glb",
+          "scale": 0.81,
+          "orbit_distance": 0.0053,
+          "faction": "Independent"
+        }
+      ]
+    }
+  ]
+}

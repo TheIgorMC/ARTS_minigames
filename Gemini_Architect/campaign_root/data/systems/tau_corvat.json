@@ -1,0 +1,96 @@
+{
+  "id": "tau_corvat",
+  "name": "Tau Corvat",
+  "star": {
+    "name": "Tau Corvat",
+    "spectral_class": "M2V",
+    "radius_km": 116504,
+    "color_hex": "#ff6600"
+  },
+  "orbitals": [
+    {
+      "id": "planet_01_3259",
+      "name": "Icebreak",
+      "type": "Ice Giant",
+      "planet_type": "Ice Giant",
+      "orbit_index": 1,
+      "orbit_radius": 2.44,
+      "texture": "assets/textures/gas/neptunian_03_diffuse.png",
+      "file": "data/bodies/planet_01_3259.json",
+      "children": [
+        {
+          "id": "moon_0_134",
+          "name": "Icebreak I",
+          "type": "Moon",
+          "orbit_distance": 0.05
+        },
+        {
+          "id": "moon_1_680",
+          "name": "Icebreak II",
+          "type": "Moon",
+          "orbit_distance": 0.067
+        },
+        {
+          "id": "moon_2_185",
+          "name": "Icebreak III",
+          "type": "Moon",
+          "orbit_distance": 0.088
+        }
+      ]
+    },
+    {
+      "id": "planet_02_4394",
+      "name": "Jotunheim",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 2,
+      "orbit_radius": 4.8,
+      "texture": "assets/textures/gas/crimson_09_diffuse.png",
+      "file": "data/bodies/planet_02_4394.json",
+      "children": [
+        {
+          "id": "moon_0_876",
+          "name": "Jotunheim I",
+          "type": "Moon",
+          "orbit_distance": 0.063
+        },
+        {
+          "id": "moon_1_573",
+          "name": "Jotunheim II",
+          "type": "Moon",
+          "orbit_distance": 0.056
+        }
+      ]
+    },
+    {
+      "id": "planet_03_1546",
+      "name": "Cumulus",
+      "type": "Gas Giant",
+      "planet_type": "Gas Giant",
+      "orbit_index": 3,
+      "orbit_radius": 6.68,
+      "texture": "assets/textures/gas/jovian_12_diffuse.png",
+      "file": "data/bodies/planet_03_1546.json",
+      "children": [
+        {
+          "id": "moon_0_551",
+          "name": "Cumulus I",
+          "type": "Moon",
+          "orbit_distance": 0.062
+        },
+        {
+          "id": "moon_1_336",
+          "name": "Cumulus II",
+          "type": "Moon",
+          "orbit_distance": 0.045
+        },
+        {
+          "id": "moon_2_895",
+          "name": "Cumulus III",
+          "type": "Moon",
+          "orbit_distance": 0.094
+        }
+      ]
+    }
+  ]
+}
