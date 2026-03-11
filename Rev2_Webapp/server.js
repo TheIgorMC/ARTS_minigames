@@ -118,7 +118,7 @@ let shops = []; // { id, name, location, description, categories[], stock: [{ite
 let campaignSettings = {
     allowedSources: [] // Empty = all sources allowed. Array of codes like ['CRB','AR','COM']
 };
-let levelupPending = new Set(); // Character IDs that are allowed to level up
+let levelupPending = new Map(); // Character ID -> remaining level-up steps allowed
 let shopSessions = {}; // { charId: shopId } - maps which shop a player has open
 
 // ─── BATTLEMAP STATE ──────────────────────────────────────────────────────────
@@ -529,6 +529,52 @@ function autosaveCurrentScene() {
     saveSceneData(currentSceneId, sceneData);
 }
 
+function serializeLevelupPending() {
+    return Object.fromEntries(levelupPending);
+}
+
+function clearInvalidLevelupPending() {
+    const validIds = new Set((characters || []).map(c => c.id));
+    let changed = false;
+    Array.from(levelupPending.keys()).forEach((charId) => {
+        if (!validIds.has(charId)) {
+            levelupPending.delete(charId);
+            changed = true;
+        }
+    });
+    return changed;
+}
+
+function disconnectInvalidPlayerSessions() {
+    const validPlayerById = new Map();
+    const validUsernames = new Set();
+
+    (characters || []).forEach((c) => {
+        if (!c || c.isNPC) return;
+        if (c.id) validPlayerById.set(c.id, c);
+        if (c.username) validUsernames.add(c.username);
+    });
+
+    io.of('/').sockets.forEach((clientSocket) => {
+        const loggedCharId = clientSocket.data?.loggedCharId;
+        const loggedUsername = clientSocket.data?.loggedUsername;
+        if (!loggedCharId && !loggedUsername) return;
+
+        const byId = loggedCharId ? validPlayerById.get(loggedCharId) : null;
+        const validByUsername = loggedUsername ? validUsernames.has(loggedUsername) : false;
+        const stillValid = !!byId && (!loggedUsername || byId.username === loggedUsername) && validByUsername;
+
+        if (!stillValid) {
+            clientSocket.emit('login_error', 'Character deleted or no longer valid');
+            clientSocket.emit('force_logout', 'Character deleted or no longer valid');
+            clientSocket.leave('player');
+            if (loggedCharId) clientSocket.leave('player_' + loggedCharId);
+            clientSocket.data.loggedCharId = null;
+            clientSocket.data.loggedUsername = null;
+        }
+    });
+}
+
 // ─── PER-SCENE BATTLEMAP PERSISTENCE ───────────────────────────────────────
 function bmGetJsonPath(mapUrl) {
     if (!mapUrl) return null;
@@ -656,7 +702,7 @@ io.on('connection', (socket) => {
             // Send spell database
             socket.emit('spells_update', spells);
             // Send level-up pending status and shops to GM
-            socket.emit('admin_levelup_status', Array.from(levelupPending));
+            socket.emit('admin_levelup_status', serializeLevelupPending());
             socket.emit('admin_shops_update', shops);
             socket.emit('campaign_settings_update', campaignSettings);
             socket.emit('battlemap_state', battlemapState);
@@ -743,11 +789,22 @@ io.on('connection', (socket) => {
 
     // --- LOGIN PLAYER ---
     socket.on('player_login', (credentials) => {
-        const user = characters.find(c => c.username === credentials.username && c.password === credentials.password);
+        if (!credentials || !credentials.username || !credentials.password) {
+            socket.emit('login_error', 'Credenziali non valide');
+            return;
+        }
+
+        const user = characters.find(c =>
+            !c.isNPC &&
+            c.username === credentials.username &&
+            c.password === credentials.password
+        );
         if (user) {
             console.log(`Login successo per: ${user.name}`);
             socket.join('player'); // Unisciti al canale generico player
             socket.join('player_' + user.id); // Canale privato per questo player
+            socket.data.loggedCharId = user.id;
+            socket.data.loggedUsername = user.username;
             socket.emit('login_success', user);
             
             // Send items DB + spells DB so player can resolve inventory and spells
@@ -1022,6 +1079,10 @@ io.on('connection', (socket) => {
         if (data.type === 'characters') characters = data.content;
         if (data.type === 'items') items = data.content;
         if (data.type === 'quests') quests = data.content;
+        if (data.type === 'characters') {
+            clearInvalidLevelupPending();
+            disconnectInvalidPlayerSessions();
+        }
         saveData();
         // Notifica il GM che il salvataggio è avvenuto
         socket.emit('admin_data_update', { objects, characters, scenes, items, quests });
@@ -1070,21 +1131,29 @@ io.on('connection', (socket) => {
     });
 
     // --- LEVEL-UP SYSTEM ---
-    socket.on('gm_allow_levelup', (charId) => {
+    socket.on('gm_allow_levelup', (payload) => {
+        const charId = typeof payload === 'string' ? payload : payload?.charId;
+        const requestedLevels = typeof payload === 'object' ? parseInt(payload.levels, 10) : 1;
         if (!charId) return;
         const char = characters.find(c => c.id === charId);
         if (!char || !char.vitals) return;
-        levelupPending.add(charId);
-        console.log(`Level-up allowed for: ${char.name} (currently level ${char.vitals.level})`);
+
+        const currentLevel = char.vitals.level || 1;
+        const maxGrantable = Math.max(0, 20 - currentLevel);
+        if (maxGrantable <= 0) return;
+
+        const levels = Math.min(Math.max(1, Number.isFinite(requestedLevels) ? requestedLevels : 1), maxGrantable);
+        levelupPending.set(charId, levels);
+        console.log(`Level-up allowed for: ${char.name} (currently level ${currentLevel}, steps ${levels})`);
         // Notify GM
-        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        io.to('gm').emit('admin_levelup_status', serializeLevelupPending());
         // Notify player
         io.to('player_' + charId).emit('levelup_available', true);
     });
 
     socket.on('gm_revoke_levelup', (charId) => {
         levelupPending.delete(charId);
-        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        io.to('gm').emit('admin_levelup_status', serializeLevelupPending());
         io.to('player_' + charId).emit('levelup_available', false);
     });
 
@@ -1166,7 +1235,8 @@ io.on('connection', (socket) => {
             currentSkillRanks: char.skills || {},
             feats: (ruleset.feats || []).map(f => ({ id: f.id, name: f.name, category: f.category, isCombat: f.isCombat, requirements: f.requirements, description: f.description, source: f.source })),
             availableSpells: isCaster ? spells : [],
-            knownSpellIds
+            knownSpellIds,
+            pendingLevelsRemaining: levelupPending.get(charId) || 1
         });
     });
 
@@ -1263,14 +1333,15 @@ io.on('connection', (socket) => {
             });
         }
 
-        // Remove from pending
-        levelupPending.delete(data.charId);
+        const remaining = (levelupPending.get(data.charId) || 1) - 1;
+        if (remaining > 0) levelupPending.set(data.charId, remaining);
+        else levelupPending.delete(data.charId);
 
         // Save & notify
         saveData();
         socket.emit('levelup_complete', char);
-        socket.emit('levelup_available', false);
-        io.to('gm').emit('admin_levelup_status', Array.from(levelupPending));
+        socket.emit('levelup_available', levelupPending.has(data.charId));
+        io.to('gm').emit('admin_levelup_status', serializeLevelupPending());
         io.to('gm').emit('admin_data_update', { objects, characters, scenes, items, quests, spells });
         // Send updated char to player
         io.to('player_' + data.charId).emit('player_char_update', char);

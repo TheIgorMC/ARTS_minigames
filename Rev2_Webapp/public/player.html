@@ -943,6 +943,18 @@
             document.getElementById('login-msg').innerText = msg;
         });
 
+        socket.on('force_logout', (msg) => {
+            myCharacter = null;
+            localStorage.removeItem('player_u');
+            localStorage.removeItem('player_p');
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('login-msg').innerText = msg || 'Session ended';
+            const banner = document.getElementById('levelup-banner');
+            if (banner) banner.classList.remove('visible');
+            const modal = document.getElementById('levelup-modal');
+            if (modal) modal.classList.remove('active');
+        });
+
         function updateStats(char) {
             // Vitals (HUD)
             const sp = char.vitals?.sp || 0;

@@ -432,7 +432,13 @@
             border-color: #0a0;
             color: #0a0;
         }
-        .wizard-panel { min-height: 200px; }
+        .wizard-panel { min-height: 0; }
+        .wizard-modal-body {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
         .wizard-item {
             padding: 10px 15px;
             border-bottom: 1px solid #222;
@@ -1577,7 +1583,7 @@
 
     <!-- NEW CHARACTER MODAL (now a multi-step wizard) -->
     <div id="new-char-modal" class="modal-overlay">
-        <div class="modal-box" style="width: 900px;">
+        <div class="modal-box" style="width: min(900px, 95vw); overflow: hidden;">
             <div class="modal-header">
                 <h3>CHARACTER CREATION WIZARD</h3>
                 <button class="btn-icon btn-icon--close" onclick="closeNewCharModal()">&times;</button>
@@ -1594,6 +1600,7 @@
             </div>
 
             <!-- Source Filter (persistent across steps) -->
+            <div class="wizard-modal-body">
             <div id="wizard-source-filter" style="background: #0a0a12; padding: 8px 12px; border: 1px solid #333; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <span style="color: #888; font-size: 0.8rem; white-space: nowrap;">SOURCE FILTER:</span>
                 <select id="wizard-source-select" onchange="wizardApplySourceFilter()" style="padding: 5px; background: #111; color: #fff; border: 1px solid #444; font-size: 0.85rem; max-width: 250px;">
@@ -1632,12 +1639,12 @@
             <div id="wizard-panel-1" class="wizard-panel" style="display: none;">
                 <h4 style="color: var(--accent-color); margin-top: 0;">Choose Race</h4>
                 <input type="text" id="wizard-race-search" placeholder="Search races..." oninput="wizardFilterRaces()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
-                <div id="wizard-race-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
-                    <!-- Populated by JS -->
-                </div>
-                <div id="wizard-race-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                <div id="wizard-race-detail" style="margin-bottom: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
                     <h5 id="wizard-race-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
                     <div id="wizard-race-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+                <div id="wizard-race-list" style="max-height: min(35vh, 280px); overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
@@ -1645,12 +1652,12 @@
             <div id="wizard-panel-2" class="wizard-panel" style="display: none;">
                 <h4 style="color: var(--accent-color); margin-top: 0;">Choose Class</h4>
                 <input type="text" id="wizard-class-search" placeholder="Search classes..." oninput="wizardFilterClasses()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
-                <div id="wizard-class-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
-                    <!-- Populated by JS -->
-                </div>
-                <div id="wizard-class-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                <div id="wizard-class-detail" style="margin-bottom: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
                     <h5 id="wizard-class-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
                     <div id="wizard-class-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+                <div id="wizard-class-list" style="max-height: min(35vh, 280px); overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
@@ -1658,12 +1665,12 @@
             <div id="wizard-panel-3" class="wizard-panel" style="display: none;">
                 <h4 style="color: var(--accent-color); margin-top: 0;">Choose Theme</h4>
                 <input type="text" id="wizard-theme-search" placeholder="Search themes..." oninput="wizardFilterThemes()" style="width: 100%; padding: 8px; background: #000; color: #fff; border: 1px solid #333; margin-bottom: 10px;">
-                <div id="wizard-theme-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #333; background: #000;">
-                    <!-- Populated by JS -->
-                </div>
-                <div id="wizard-theme-detail" style="margin-top: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
+                <div id="wizard-theme-detail" style="margin-bottom: 10px; padding: 10px; background: #0a0a12; border: 1px solid #333; display: none;">
                     <h5 id="wizard-theme-detail-name" style="margin: 0 0 5px 0; color: var(--accent-color);"></h5>
                     <div id="wizard-theme-detail-info" style="color: #aaa; font-size: 0.85rem;"></div>
+                </div>
+                <div id="wizard-theme-list" style="max-height: min(35vh, 280px); overflow-y: auto; border: 1px solid #333; background: #000;">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
@@ -1719,6 +1726,7 @@
                 <div id="wizard-review-content" style="background: #000; padding: 15px; border: 1px solid #333; font-size: 0.9rem; line-height: 1.6;">
                     <!-- Populated by JS -->
                 </div>
+            </div>
             </div>
 
             <!-- Navigation Buttons -->
@@ -2331,9 +2339,15 @@
         });
 
         // --- LEVEL-UP SYSTEM ---
-        let pendingLevelups = new Set();
-        socket.on('admin_levelup_status', (ids) => {
-            pendingLevelups = new Set(ids || []);
+        let pendingLevelups = new Map();
+        socket.on('admin_levelup_status', (payload) => {
+            if (Array.isArray(payload)) {
+                pendingLevelups = new Map(payload.map(id => [id, 1]));
+            } else if (payload && typeof payload === 'object') {
+                pendingLevelups = new Map(Object.entries(payload).map(([id, count]) => [id, parseInt(count, 10) || 1]));
+            } else {
+                pendingLevelups = new Map();
+            }
             renderCharactersCards();
         });
 
@@ -2346,7 +2360,9 @@
                     alert('Character is already at max level (20).');
                     return;
                 }
-                socket.emit('gm_allow_levelup', charId);
+                const levelCountInput = document.getElementById('levelup-count-' + charId);
+                const levels = Math.max(1, parseInt(levelCountInput?.value, 10) || 1);
+                socket.emit('gm_allow_levelup', { charId, levels });
             }
         }
 
@@ -3172,8 +3188,12 @@
                 </div>
                 <button class="action-btn" style="width: 100%; margin-top: 5px;" onclick="projectCharacter(${index})">${isRPOnly ? 'PROJECT TO MOOD' : 'PROJECT TO TABLE'}</button>
                 ${!isNPC && !isRPOnly ? `
+                <div style="display:flex; gap:6px; margin-top:3px; align-items:center;">
+                    <label style="color:#888; font-size:0.72rem; white-space:nowrap;">Levels</label>
+                    <input id="levelup-count-${char.id}" type="number" min="1" max="20" value="1" class="no-spin" style="width:60px; background:#000; color:#ffd700; border:1px solid #555; padding:4px; font-size:0.8rem; text-align:center;">
+                </div>
                 <button class="action-btn" id="levelup-btn-${char.id}" style="width: 100%; margin-top: 3px; background: ${pendingLevelups.has(char.id) ? '#553300' : '#1a1a2e'}; color: ${pendingLevelups.has(char.id) ? '#ffd700' : '#00d2ff'}; border: 1px solid ${pendingLevelups.has(char.id) ? '#ffd700' : '#00d2ff'};" onclick="toggleLevelUp('${char.id}')">
-                    ${pendingLevelups.has(char.id) ? '⏳ LEVEL UP PENDING...' : '⬆ ALLOW LEVEL UP'}
+                    ${pendingLevelups.has(char.id) ? `⏳ LEVEL UP PENDING (${pendingLevelups.get(char.id)} LEFT)` : '⬆ ALLOW LEVEL UP'}
                 </button>` : ''}
             `;
             return card;
@@ -3271,24 +3291,64 @@
             const sel = document.getElementById('wizard-source-select');
             // Keep first two options (All, Core)
             while (sel.options.length > 2) sel.remove(2);
-            if (rulesetData && rulesetData.sources) {
-                // Group: real book sources (those with longer names)
-                const books = rulesetData.sources.filter(s => s.name.length > 4 || ['CRB','COM','ARM','GEM','DC'].includes(s.code));
-                books.sort((a, b) => a.name.localeCompare(b.name));
-                books.forEach(src => {
-                    const opt = document.createElement('option');
-                    opt.value = src.code;
-                    opt.innerText = `${src.name} (${src.code})`;
-                    sel.appendChild(opt);
+            if (!rulesetData) return;
+
+            // Build options from actually used race/class/theme sources only.
+            const availableCodes = new Set();
+            const buckets = [rulesetData.races || [], rulesetData.classes || [], rulesetData.themes || []];
+            buckets.forEach(items => {
+                items.forEach(item => {
+                    const code = wizardGetRulesetSourceCode(item);
+                    if (code) availableCodes.add(code);
                 });
+            });
+
+            const knownCodes = Object.keys(SOURCE_BOOK_MAP)
+                .filter(code => availableCodes.has(code))
+                .filter(code => isSourceAllowed(code))
+                .sort((a, b) => SOURCE_BOOK_MAP[a].localeCompare(SOURCE_BOOK_MAP[b]));
+
+            knownCodes.forEach(code => {
+                const opt = document.createElement('option');
+                opt.value = code;
+                opt.innerText = `${SOURCE_BOOK_MAP[code]} (${code})`;
+                sel.appendChild(opt);
+            });
+        }
+
+        function wizardGetRulesetSourceCode(item) {
+            const src = item?.source;
+            if (!src) return '';
+            if (typeof src === 'string') {
+                const mapped = getItemSourceAbbr(src);
+                return mapped || src;
             }
+            if (src.code) return src.code;
+            if (src.raw) return getItemSourceAbbr(src.raw) || src.raw;
+            if (src.name) return getItemSourceAbbr(src.name) || src.name;
+            return '';
+        }
+
+        function wizardIsPcValidRace(race) {
+            const srcCode = wizardGetRulesetSourceCode(race);
+            if (['AP', 'SA', 'SFS', 'AotD'].includes(srcCode)) return false;
+            return true;
         }
 
         function wizardGetFilteredItems(items) {
             const filterVal = document.getElementById('wizard-source-select').value;
-            if (filterVal === '__all__') return items;
-            if (filterVal === '__core__') return items.filter(i => i.source && CORE_SOURCES.includes(i.source.code));
-            return items.filter(i => i.source && i.source.code === filterVal);
+            let filtered = items || [];
+
+            // Respect global campaign source ownership first.
+            filtered = filtered.filter(i => isSourceAllowed(wizardGetRulesetSourceCode(i)));
+
+            if (filterVal === '__core__') {
+                filtered = filtered.filter(i => CORE_SOURCES.includes(wizardGetRulesetSourceCode(i)));
+            } else if (filterVal !== '__all__') {
+                filtered = filtered.filter(i => wizardGetRulesetSourceCode(i) === filterVal);
+            }
+
+            return filtered;
         }
 
         function wizardApplySourceFilter() {
@@ -3424,6 +3484,9 @@
             
             const search = (document.getElementById('wizard-race-search').value || '').toLowerCase();
             let races = wizardGetFilteredItems(rulesetData.races);
+            if (selectedCharType === 'pc') {
+                races = races.filter(wizardIsPcValidRace);
+            }
             if (search) races = races.filter(r => r.name.toLowerCase().includes(search));
             races.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -3765,6 +3828,15 @@
             const theme = wizardState.theme;
             const abs = wizardState.abilities;
 
+            if (!isNPC && race) {
+                const raceSource = wizardGetRulesetSourceCode(race);
+                if (!isSourceAllowed(raceSource) || !wizardIsPcValidRace(race)) {
+                    alert('Selected race is not valid for PCs with current source filters. Please pick another race.');
+                    wizardShowStep(1);
+                    return;
+                }
+            }
+
             // Compute derived stats
             const level = 1;
             const raceHp = race ? race.hp : 0;
@@ -3878,6 +3950,7 @@
             if (confirm('Delete character?')) {
                 cachedData.characters.splice(index, 1);
                 renderCharactersCards();
+                saveCharactersCards();
             }
         }
 

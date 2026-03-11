@@ -2498,13 +2498,13 @@
     "money": 0,
     "xp": 0,
     "vitals": {
-      "level": 3,
-      "sp": 18,
-      "max_sp": 18,
-      "hp": 22,
-      "max_hp": 22,
-      "rp": 1,
-      "max_rp": 1
+      "level": 4,
+      "sp": 24,
+      "max_sp": 24,
+      "hp": 28,
+      "max_hp": 28,
+      "rp": 2,
+      "max_rp": 2
     },
     "stats": {
       "STR": 14,
@@ -2515,15 +2515,15 @@
       "CHA": 10
     },
     "combat": {
-      "bab": 2,
+      "bab": 3,
       "melee_misc": 0,
       "ranged_misc": 0,
       "thrown_misc": 0
     },
     "saves": {
-      "fort_base": 3,
+      "fort_base": 4,
       "fort_misc": 0,
-      "ref_base": 3,
+      "ref_base": 4,
       "ref_misc": 0,
       "will_base": 1,
       "will_misc": 0
@@ -2534,15 +2534,15 @@
         "misc": 0
       },
       "ath": {
-        "ranks": 2,
+        "ranks": 3,
         "misc": 0
       },
       "blu": {
-        "ranks": 2,
+        "ranks": 4,
         "misc": 0
       },
       "com": {
-        "ranks": 2,
+        "ranks": 3,
         "misc": 0
       },
       "cul": {
