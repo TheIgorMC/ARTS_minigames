@@ -2478,5 +2478,173 @@
     "senses": "Blindsense 30 ft., Limited Telepathy 30 ft.",
     "backstory": "",
     "companions": []
+  },
+  {
+    "id": "mmm8r9sgksr8",
+    "name": "Joe",
+    "isNPC": false,
+    "class": "Mechanic",
+    "image": "",
+    "tokenImage": "",
+    "description": "",
+    "race": "Human",
+    "raceId": "AMBcyDZDtJ1OOzh3",
+    "theme": "Scholar",
+    "themeId": "17sO1sZcTu5bZPSF",
+    "group": "",
+    "roles": [],
+    "username": "joe",
+    "password": "123",
+    "money": 0,
+    "xp": 0,
+    "vitals": {
+      "level": 3,
+      "sp": 18,
+      "max_sp": 18,
+      "hp": 22,
+      "max_hp": 22,
+      "rp": 1,
+      "max_rp": 1
+    },
+    "stats": {
+      "STR": 14,
+      "DEX": 16,
+      "CON": 10,
+      "INT": 11,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "combat": {
+      "bab": 2,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 3,
+      "fort_misc": 0,
+      "ref_base": 3,
+      "ref_misc": 0,
+      "will_base": 1,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "cul": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "int": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "lif": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "per": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "pro": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 0,
+        "misc": 0
+      },
+      "sur": {
+        "ranks": 0,
+        "misc": 0
+      }
+    },
+    "feats": [
+      "Accelerated Recovery"
+    ],
+    "inventory": [],
+    "backstory": "",
+    "spells": [],
+    "spellSlots": {
+      "known": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "perDay": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "used": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "companions": []
   }
 ]

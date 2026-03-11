@@ -12,7 +12,19 @@
   "texture": "",
   "rings": false,
   "description": "",
-  "pois": [],
+  "pois": [
+    {
+      "id": "loc_1773221276255",
+      "name": "Verces",
+      "type": "Settlement",
+      "coordinates_3d": {
+        "lat": 33.85,
+        "lon": 86.3
+      },
+      "description": "",
+      "link_to_map": "data/locations/loc_1773221276255.json"
+    }
+  ],
   "render_data": {
     "texture_diffuse": "assets/textures/rocky/martian_17_diffuse.png",
     "texture_bump": "assets/textures/rocky/martian_17_bump.png",

@@ -229,7 +229,12 @@ const PlanetaryStudio = (() => {
     function setupOrbitControl(el) {
         let dragDist = 0;
         el.addEventListener('mousedown', e => {
-            if (isAddingPOI) return; // POI placement mode
+            if (isAddingPOI) {
+                // In POI placement mode we don't orbit, but we still reset drag
+                // state so click-to-place is never blocked by a previous drag.
+                dragDist = 0;
+                return;
+            }
             orbDrag = true;
             dragDist = 0;
             orbPrev = { x: e.clientX, y: e.clientY };
@@ -256,7 +261,7 @@ const PlanetaryStudio = (() => {
 
         // Click for POI placement / selection (only if not a drag)
         el.addEventListener('click', e => {
-            if (dragDist > 5) return; // was a drag, not a click
+            if (!isAddingPOI && dragDist > 5) return; // was a drag, not a click
             handle3DClick(e);
         });
     }
@@ -301,6 +306,12 @@ const PlanetaryStudio = (() => {
     }
 
     function placePOIAt(lat, lon) {
+        if (!bodyData) {
+            notify('Load a body before adding POIs.', 'warning');
+            isAddingPOI = false;
+            if (renderer?.domElement) renderer.domElement.style.cursor = 'grab';
+            return;
+        }
         const id = `loc_${Date.now()}`;
         bodyData.pois.push({
             id,

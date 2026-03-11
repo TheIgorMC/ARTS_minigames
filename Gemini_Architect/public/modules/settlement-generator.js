@@ -1,618 +1,698 @@
 // =============================================================================
-//  GEMINI ARCHITECT — Module: Settlement Generator
-//  Procedural city/settlement generation with multi-floor support
-//  Outputs GeoJSON-compliant settlement data with buildings, roads, and floors
+//  GEMINI ARCHITECT — Settlement Generator v3
+//  Graph-based connected road network, road-aligned buildings, density maps
 // =============================================================================
 
 const SettlementGenerator = (() => {
 
-    // ── Data Structure ──────────────────────────────────────────────────────────
-    /**
-     * Settlement schema (GeoJSON-like):
-     * {
-     *   id: "settlement_ID",
-     *   name: "Settlement Name",
-     *   type: "city" | "outpost" | "spaceport" | "colony" | etc.
-     *   size: "tiny" | "small" | "medium" | "large" | "metropolis",
-     *   population: 0-∞,
-     *   boundingBox: { minX, minY, maxX, maxY },  // in map units
-     *   bounds: Polygon,  // GeoJSON polygon of settlement extent
-     *   
-     *   // Generation metadata
-     *   generated: true,
-     *   generationMethod: "auto" | "guided",
-     *   expansionLevel: 0-5,  // how developed/spread out
-     *   densityVariation: { center: 0-1, outer: 0-1 },
-     *   
-     *   // Floor system
-     *   floors: [
-     *     {
-     *       floor: -2 to N (negative = underground, 0 = ground, positive = elevated/ship levels),
-     *       name: "Lower Caverns" or "Ground" or "Deck 2",
-     *       type: "underground" | "ground" | "elevated" | "ship_deck",
-     *       features: [ ... geom features for this floor ... ]
-     *     }
-     *   ],
-     *   
-     *   // For multi-floor navigation
-     *   connectors: [
-     *     { type: "elevator" | "stairs" | "ramp", position: [x,y], from: floor1, to: floor2, name?: "East Elevator" }
-     *   ],
-     *   
-     *   // GeoJSON FeatureCollection for all geometry
-     *   features: [
-     *     {
-     *       type: "Feature",
-     *       geometry: { type: "LineString", coordinates: [[x1,y1],[x2,y2],...] },  // roads
-     *       properties: {
-     *         type: "road",
-     *         hierarchy: "primary" | "secondary" | "tertiary" | "local",
-     *         width: 20-100,
-     *         floor: -2...0...N,
-     *         name?: "Main Street"
-     *       }
-     *     },
-     *     {
-     *       type: "Feature",
-     *       geometry: { type: "Polygon", coordinates: [[[x,y],...]] },  // buildings
-     *       properties: {
-     *         type: "building",
-     *         category: "residential" | "commercial" | "industrial" | "civic" | "transport",
-     *         name?: "Town Hall",
-     *         floor: -2...0...N,
-     *         height: 5-50,  // meters
-     *         population?: 50
-     *       }
-     *     },
-     *     {
-     *       type: "Feature",
-     *       geometry: { type: "Polygon", ... },  // parks, plazas
-     *       properties: {
-     *         type: "park",
-     *         floor: 0,
-     *         name?: "Central Plaza"
-     *       }
-     *     }
-     *   ]
-     * }
-     */
-
-    // ── Utility: Random with seed ───────────────────────────────────────────────
-    function seededRandom(seed) {
-        const x = Math.sin(seed++) * 10000;
-        return x - Math.floor(x);
-    }
-
-    class SeededRNG {
+    // ── Seeded RNG ──────────────────────────────────────────────────────────
+    class RNG {
         constructor(seed) {
-            this.seed = seed || Date.now();
-        }
-        next() {
-            this.seed = (this.seed * 9301 + 49297) % 233280;
-            return this.seed / 233280;
-        }
-        range(min, max) {
-            return Math.floor(this.next() * (max - min + 1)) + min;
-        }
-        choice(arr) {
-            return arr[Math.floor(this.next() * arr.length)];
-        }
-    }
-
-    // ── Utility: Geometry helpers ───────────────────────────────────────────────
-    function distance(p1, p2) {
-        return Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
-    }
-
-    function midpoint(p1, p2) {
-        return [(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2];
-    }
-
-    function lineIntersection(p1, p2, p3, p4) {
-        // Does segment p1-p2 intersect segment p3-p4? (2D)
-        const ccw = (A, B, C) => {
-            return (C[1] - A[1]) * (B[0] - A[0]) > (B[1] - A[1]) * (C[0] - A[0]);
-        };
-        return ccw(p1, p3, p4) !== ccw(p2, p3, p4) && ccw(p1, p2, p3) !== ccw(p1, p2, p4);
-    }
-
-    function pointInPolygon(point, polygon) {
-        // Ray casting algorithm for point-in-polygon
-        const [x, y] = point;
-        let inside = false;
-        for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-            const [xi, yi] = polygon[i];
-            const [xj, yj] = polygon[j];
-            if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
-                inside = !inside;
+            if (typeof seed === 'string') {
+                let h = 0;
+                for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+                this.s = Math.abs(h) || 1;
+            } else {
+                this.s = Math.abs(Math.floor(seed * 100000)) || 1;
             }
+        }
+        next() { this.s = (this.s * 9301 + 49297) % 233280; return this.s / 233280; }
+        range(a, b) { return Math.floor(this.next() * (b - a + 1)) + a; }
+        float(a, b) { return a + this.next() * (b - a); }
+        choice(arr) { return arr[Math.floor(this.next() * arr.length)]; }
+    }
+
+    // ── Geometry ────────────────────────────────────────────────────────────
+    function dist(a, b) { return Math.hypot(b[0] - a[0], b[1] - a[1]); }
+
+    function distToSeg(px, py, ax, ay, bx, by) {
+        const dx = bx - ax, dy = by - ay, lenSq = dx * dx + dy * dy;
+        if (lenSq < 0.001) return Math.hypot(px - ax, py - ay);
+        const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / lenSq));
+        return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+    }
+
+    function pointInPoly(pt, poly) {
+        const [x, y] = pt; let inside = false;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            const [xi, yi] = poly[i], [xj, yj] = poly[j];
+            if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
         }
         return inside;
     }
 
-    // ── Procedural Road Network ─────────────────────────────────────────────────
-    /**
-     * Generate road network:
-     * 1. Guided: User provides main roads/sketch → fill secondary roads
-     * 2. Auto: Create hierarchical grid with organic variation
-     */
-    function generateRoadNetwork(bounds, options = {}) {
-        const {
-            mainRoads = [],  // User-drawn main roads [GeoJSON LineStrings]
-            rng = new SeededRNG(),
-            density = 0.6,  // 0-1, affects road spacing
-            hierarchyDepth = 3,  // primary, secondary, tertiary
-            floor = 0
-        } = options;
-
-        const roads = [];
-        const { minX, minY, maxX, maxY } = bounds;
-        const width = maxX - minX;
-        const height = maxY - minY;
-
-        // Primary roads (user-drawn or generated)
-        if (mainRoads.length > 0) {
-            mainRoads.forEach(road => {
-                roads.push({
-                    type: "Feature",
-                    geometry: road,
-                    properties: {
-                        type: "road",
-                        hierarchy: "primary",
-                        width: 60 + rng.range(-10, 10),
-                        floor,
-                        name: road.properties?.name || null
-                    }
-                });
-            });
-        } else {
-            // Auto-generate primary roads (loose grid with variation)
-            const spacing = Math.max(100, 300 / density);
-            for (let x = minX; x < maxX; x += spacing) {
-                const wiggle = rng.range(-spacing * 0.2, spacing * 0.2);
-                roads.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "LineString",
-                        coordinates: [
-                            [x + wiggle, minY],
-                            [x + wiggle + rng.range(-spacing * 0.1, spacing * 0.1), maxY]
-                        ]
-                    },
-                    properties: {
-                        type: "road",
-                        hierarchy: "primary",
-                        width: 60,
-                        floor
-                    }
-                });
-            }
-            for (let y = minY; y < maxY; y += spacing) {
-                const wiggle = rng.range(-spacing * 0.2, spacing * 0.2);
-                roads.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "LineString",
-                        coordinates: [
-                            [minX, y + wiggle],
-                            [maxX, y + wiggle + rng.range(-spacing * 0.1, spacing * 0.1)]
-                        ]
-                    },
-                    properties: {
-                        type: "road",
-                        hierarchy: "primary",
-                        width: 60,
-                        floor
-                    }
-                });
-            }
-        }
-
-        // Secondary roads: perpendicular subdivisions
-        const secondarySpacing = (maxX - minX) / (4 + rng.range(-2, 3));
-        for (let x = minX; x < maxX; x += secondarySpacing) {
-            roads.push({
-                type: "Feature",
-                geometry: {
-                    type: "LineString",
-                    coordinates: [
-                        [x + rng.range(-20, 20), minY],
-                        [x + rng.range(-20, 20), maxY]
-                    ]
-                },
-                properties: {
-                    type: "road",
-                    hierarchy: "secondary",
-                    width: 40,
-                    floor
-                }
-            });
-        }
-        for (let y = minY; y < maxY; y += secondarySpacing) {
-            roads.push({
-                type: "Feature",
-                geometry: {
-                    type: "LineString",
-                    coordinates: [
-                        [minX, y + rng.range(-20, 20)],
-                        [maxX, y + rng.range(-20, 20)]
-                    ]
-                },
-                properties: {
-                    type: "road",
-                    hierarchy: "secondary",
-                    width: 40,
-                    floor
-                }
-            });
-        }
-
-        // Tertiary roads: finer local streets (sparse in outer areas)
-        const tertiaryDensity = density * 0.7;
-        const numTertiary = Math.floor((width / 50) * (height / 50) * tertiaryDensity);
-        for (let i = 0; i < numTertiary; i++) {
-            const isVertical = rng.next() > 0.5;
-            if (isVertical) {
-                const x = minX + rng.next() * width;
-                const y1 = minY + rng.next() * height;
-                const len = rng.range(40, 150);
-                roads.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "LineString",
-                        coordinates: [[x, Math.max(minY, y1 - len / 2)], [x, Math.min(maxY, y1 + len / 2)]]
-                    },
-                    properties: {
-                        type: "road",
-                        hierarchy: "tertiary",
-                        width: 25,
-                        floor
-                    }
-                });
-            } else {
-                const y = minY + rng.next() * height;
-                const x1 = minX + rng.next() * width;
-                const len = rng.range(40, 150);
-                roads.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "LineString",
-                        coordinates: [[Math.max(minX, x1 - len / 2), y], [Math.min(maxX, x1 + len / 2), y]]
-                    },
-                    properties: {
-                        type: "road",
-                        hierarchy: "tertiary",
-                        width: 25,
-                        floor
-                    }
-                });
-            }
-        }
-
-        return roads;
+    function rotRect(cx, cy, w, h, angle) {
+        const c = Math.cos(angle), s = Math.sin(angle), hw = w / 2, hh = h / 2;
+        return [
+            [cx - c * hw + s * hh, cy - s * hw - c * hh],
+            [cx + c * hw + s * hh, cy + s * hw - c * hh],
+            [cx + c * hw - s * hh, cy + s * hw + c * hh],
+            [cx - c * hw - s * hh, cy - s * hw + c * hh],
+            [cx - c * hw + s * hh, cy - s * hw - c * hh]
+        ];
     }
 
-    // ── Procedural Building Placement ───────────────────────────────────────────
-    function generateBuildings(bounds, roads, options = {}) {
-        const {
-            rng = new SeededRNG(),
-            density = 0.6,  // 0-1
-            centerDensity = 0.8,  // higher density near center
-            categories = ["residential", "commercial", "industrial", "civic"],
-            floor = 0,
-            populationPerBuilding = 50
-        } = options;
+    // ── Size configs ────────────────────────────────────────────────────────
+    const CFG = {
+        tiny:       { radius: 300,   primary: 3,  rings: 1, secProb: 0.55, tertProb: 0.35, maxBldg: 400,   parks: 1  },
+        small:      { radius: 700,   primary: 4,  rings: 2, secProb: 0.60, tertProb: 0.40, maxBldg: 1500,  parks: 2  },
+        medium:     { radius: 1500,  primary: 6,  rings: 3, secProb: 0.65, tertProb: 0.45, maxBldg: 5000,  parks: 4  },
+        large:      { radius: 3000,  primary: 8,  rings: 4, secProb: 0.70, tertProb: 0.50, maxBldg: 14000, parks: 7  },
+        metropolis: { radius: 7000,  primary: 12, rings: 6, secProb: 0.75, tertProb: 0.55, maxBldg: 40000, parks: 12 }
+    };
 
-        const buildings = [];
-        const { minX, minY, maxX, maxY } = bounds;
-        const centerX = (minX + maxX) / 2;
-        const centerY = (minY + maxY) / 2;
-        const radius = Math.min(maxX - minX, maxY - minY) / 2;
-
-        // Generate candidate positions in a grid, then cull based on density
-        const cellSize = 40;
-        const targetCount = Math.floor((maxX - minX) / cellSize * (maxY - minY) / cellSize * density);
-
-        for (let i = 0; i < targetCount; i++) {
-            const x = minX + rng.next() * (maxX - minX);
-            const y = minY + rng.next() * (maxY - minY);
-
-            // Distance-based density falloff from center
-            const dist = Math.hypot(x - centerX, y - centerY);
-            const distFactor = Math.max(0.1, 1 - (dist / radius) * 0.5);
-            const localDensity = density * (0.5 + centerDensity * 0.5) * distFactor;
-
-            if (rng.next() > localDensity) continue;
-
-            // Building size (smaller = more buildings)
-            const bw = rng.range(30, 80);
-            const bh = rng.range(30, 80);
-            const bx = x - bw / 2;
-            const by = y - bh / 2;
-
-            // Check overlap with roads (buildings should NOT be on roads)
-            let overlapsRoad = false;
-            for (const road of roads) {
-                if (road.geometry.type === "LineString") {
-                    const coords = road.geometry.coordinates;
-                    for (let j = 0; j < coords.length - 1; j++) {
-                        const [rx1, ry1] = coords[j];
-                        const [rx2, ry2] = coords[j + 1];
-                        const roadWidth = road.properties.width;
-                        // Simple check: is building rect close to road line?
-                        if (distanceToLineSegment([bx + bw / 2, by + bh / 2], [rx1, ry1], [rx2, ry2]) < roadWidth / 2 + 50) {
-                            overlapsRoad = true;
-                            break;
-                        }
+    // ── Boundary shapes ─────────────────────────────────────────────────────
+    function generateBoundary(shape, cx, cy, radius, rng) {
+        const pts = [], N = 36;
+        switch (shape) {
+            case 'rectangle': {
+                const hw = radius * rng.float(0.85, 1.2), hh = radius * rng.float(0.6, 0.95);
+                const c = [[-hw,-hh],[hw,-hh],[hw,hh],[-hw,hh]];
+                for (let i = 0; i < 4; i++) {
+                    const [ax, ay] = c[i], [bx, by] = c[(i+1)%4];
+                    for (let j = 0; j < 9; j++) {
+                        const t = j / 9;
+                        pts.push([cx + ax + (bx-ax)*t + rng.float(-radius*0.02,radius*0.02),
+                                  cy + ay + (by-ay)*t + rng.float(-radius*0.02,radius*0.02)]);
                     }
                 }
-                if (overlapsRoad) break;
+                break;
             }
-            if (overlapsRoad) continue;
-
-            // Choose category (avoid industrial in dense center)
-            let category = rng.choice(categories);
-            if (distFactor > 0.8 && category === "industrial") {
-                category = "residential";
-            }
-
-            buildings.push({
-                type: "Feature",
-                geometry: {
-                    type: "Polygon",
-                    coordinates: [[[bx, by], [bx + bw, by], [bx + bw, by + bh], [bx, by + bh], [bx, by]]]
-                },
-                properties: {
-                    type: "building",
-                    category,
-                    floor,
-                    height: rng.range(10, 50),
-                    population: rng.range(populationPerBuilding * 0.5, populationPerBuilding * 2)
+            case 'oval': {
+                const rx = radius * rng.float(1.2, 1.5), ry = radius * rng.float(0.55, 0.8);
+                for (let i = 0; i < N; i++) {
+                    const a = (Math.PI * 2 / N) * i;
+                    pts.push([cx + Math.cos(a) * rx * rng.float(0.96, 1.04),
+                              cy + Math.sin(a) * ry * rng.float(0.96, 1.04)]);
                 }
-            });
+                break;
+            }
+            case 'star': {
+                const arms = rng.range(5, 8);
+                for (let i = 0; i < arms * 6; i++) {
+                    const a = (Math.PI * 2 / (arms * 6)) * i;
+                    const peak = (i % 6) < 3;
+                    const r = peak ? radius * rng.float(0.95, 1.15) : radius * rng.float(0.5, 0.65);
+                    pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
+                }
+                break;
+            }
+            case 'linear': {
+                const len = radius * 2.5, w = radius * 0.35;
+                const c = [[-len/2,-w],[len/2,-w],[len/2,w],[-len/2,w]];
+                for (let i = 0; i < 4; i++) {
+                    const [ax, ay] = c[i], [bx, by] = c[(i+1)%4];
+                    const steps = i % 2 === 0 ? 16 : 4;
+                    for (let j = 0; j < steps; j++) {
+                        const t = j / steps;
+                        pts.push([cx + ax + (bx-ax)*t + rng.float(-w*0.06,w*0.06),
+                                  cy + ay + (by-ay)*t + rng.float(-w*0.06,w*0.06)]);
+                    }
+                }
+                break;
+            }
+            default: // circle
+                for (let i = 0; i < N; i++) {
+                    const a = (Math.PI * 2 / N) * i;
+                    pts.push([cx + Math.cos(a) * radius * rng.float(0.82, 1.15),
+                              cy + Math.sin(a) * radius * rng.float(0.82, 1.15)]);
+                }
+        }
+        pts.push(pts[0].slice());
+        return pts;
+    }
+
+    function computeBounds(poly) {
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        for (const [x, y] of poly) {
+            minX = Math.min(minX, x); minY = Math.min(minY, y);
+            maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
+        }
+        return { minX, minY, maxX, maxY };
+    }
+
+    // ── Density map ─────────────────────────────────────────────────────────
+    function createDefaultDensity(bounds, cx, cy, centers) {
+        const cell = 30;
+        const cols = Math.ceil((bounds.maxX - bounds.minX) / cell);
+        const rows = Math.ceil((bounds.maxY - bounds.minY) / cell);
+        const cells = new Float32Array(cols * rows);
+        const maxD = Math.hypot(bounds.maxX - bounds.minX, bounds.maxY - bounds.minY) / 2;
+        const cList = centers && centers.length > 0 ? centers : [[cx, cy]];
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const x = bounds.minX + (c + 0.5) * cell;
+                const y = bounds.minY + (r + 0.5) * cell;
+                let minD = Infinity;
+                for (const [px, py] of cList) { const d = Math.hypot(x - px, y - py); if (d < minD) minD = d; }
+                cells[r * cols + c] = Math.max(0.05, 1 - minD / maxD * 1.2);
+            }
+        }
+        return { cellSize: cell, originX: bounds.minX, originY: bounds.minY, cols, rows, cells };
+    }
+
+    function sampleDensity(x, y, dm) {
+        if (!dm) return 0.5;
+        const c = Math.floor((x - dm.originX) / dm.cellSize);
+        const r = Math.floor((y - dm.originY) / dm.cellSize);
+        if (c < 0 || c >= dm.cols || r < 0 || r >= dm.rows) return 0;
+        return dm.cells[r * dm.cols + c];
+    }
+
+    // ── Road graph ──────────────────────────────────────────────────────────
+    // Nodes: [{x, y}]  Edges: [{from, to, hierarchy, width, userDrawn}]
+    // All generated roads START from existing nodes → connected by construction
+
+    function buildRoadNetwork(cx, cy, radius, boundary, userRoads, densityMap, rng, cfg, expMul, centers) {
+        const step = Math.max(35, radius / Math.max(8, Math.floor(radius / 55)));
+        const SNAP = Math.min(step * 0.4, 25);
+        const nodes = [];
+        const edges = [];
+        const edgeSet = new Set();
+        const nHash = new Map();
+        const CELL = Math.max(20, SNAP * 1.5);
+
+        function addNode(x, y) {
+            const gx = Math.floor(x / CELL), gy = Math.floor(y / CELL);
+            for (let dx = -1; dx <= 1; dx++) {
+                for (let dy = -1; dy <= 1; dy++) {
+                    for (const i of (nHash.get(`${gx+dx},${gy+dy}`) || [])) {
+                        if (dist([x, y], [nodes[i].x, nodes[i].y]) < SNAP) return i;
+                    }
+                }
+            }
+            const i = nodes.length;
+            nodes.push({ x, y });
+            const k = `${gx},${gy}`;
+            if (!nHash.has(k)) nHash.set(k, []);
+            nHash.get(k).push(i);
+            return i;
         }
 
+        function edgeKey(a, b) { return a < b ? `${a},${b}` : `${b},${a}`; }
+        function edgeExists(a, b) { return edgeSet.has(edgeKey(a, b)); }
+        function addEdge(from, to, hierarchy, width, userDrawn) {
+            const k = edgeKey(from, to);
+            if (edgeSet.has(k)) return;
+            edgeSet.add(k);
+            edges.push({ from, to, hierarchy, width, userDrawn: userDrawn || false });
+        }
+
+        // Nearest-center distance helper (for multi-nuclei cities)
+        function nearestCenterDist(x, y) {
+            let min = Infinity;
+            for (const [px, py] of centers) { const d = Math.hypot(x - px, y - py); if (d < min) min = d; }
+            return min;
+        }
+
+        // Center nodes + inter-center boulevard roads
+        const centerIndices = centers.map(([x, y]) => addNode(x, y));
+        for (let ci = 1; ci < centerIndices.length; ci++) {
+            const fc = centers[ci - 1], tc = centers[ci];
+            const blvdDist = dist(fc, tc);
+            const blvdSteps = Math.max(2, Math.floor(blvdDist / step));
+            let prev = centerIndices[ci - 1];
+            for (let s = 1; s <= blvdSteps; s++) {
+                const t = s / blvdSteps;
+                const nx = fc[0] + (tc[0] - fc[0]) * t + rng.float(-2, 2);
+                const ny = fc[1] + (tc[1] - fc[1]) * t + rng.float(-2, 2);
+                const idx = s === blvdSteps ? centerIndices[ci] : addNode(nx, ny);
+                if (idx !== prev) addEdge(prev, idx, 'primary', 16);
+                prev = idx;
+            }
+        }
+
+        // ── User roads ──────────────────────────────────────────────────
+        for (const road of userRoads) {
+            const pts = road.geometry?.coordinates;
+            if (!pts || pts.length < 2) continue;
+            let prev = addNode(pts[0][0], pts[0][1]);
+            for (let i = 1; i < pts.length; i++) {
+                const next = addNode(pts[i][0], pts[i][1]);
+                if (next !== prev) {
+                    addEdge(prev, next, road.properties?.hierarchy || 'primary', road.properties?.width || 14, true);
+                    prev = next;
+                }
+            }
+        }
+
+        // ── Primary radial roads (from each center nucleus) ────────────
+        const stepsN = Math.floor(radius * 1.05 / step);
+        const userAngles = userRoads.map(r => {
+            const p = r.geometry?.coordinates;
+            return p && p.length >= 2 ? Math.atan2(p[p.length-1][1] - p[0][1], p[p.length-1][0] - p[0][0]) : null;
+        }).filter(a => a !== null);
+
+        const primaryNodes = new Set();
+        for (const ci of centerIndices) primaryNodes.add(ci);
+        const primaryPerCenter = Math.max(3, Math.ceil(cfg.primary / centers.length));
+
+        for (let ci = 0; ci < centers.length; ci++) {
+            const [ccx, ccy] = centers[ci];
+            const cIdx = centerIndices[ci];
+            for (let i = 0; i < primaryPerCenter; i++) {
+                const baseA = (Math.PI * 2 / primaryPerCenter) * i + rng.float(-0.12, 0.12);
+                if (userAngles.some(ua => { let d = Math.abs(baseA - ua) % (Math.PI*2); if (d > Math.PI) d = Math.PI*2 - d; return d < Math.PI/(primaryPerCenter*1.5); })) continue;
+
+                let prev = cIdx;
+                for (let s = 1; s <= stepsN; s++) {
+                    const d = s * step;
+                    const nx = ccx + Math.cos(baseA) * d + rng.float(-2, 2);
+                    const ny = ccy + Math.sin(baseA) * d + rng.float(-2, 2);
+                    if (!pointInPoly([nx, ny], boundary)) break;
+                    const idx = addNode(nx, ny);
+                    if (idx !== prev) {
+                        addEdge(prev, idx, 'primary', 14);
+                        primaryNodes.add(idx);
+                        prev = idx;
+                    }
+                }
+            }
+        }
+
+        // ── Ring roads ──────────────────────────────────────────────────
+        for (let ri = 1; ri <= cfg.rings; ri++) {
+            const ringR = (radius / (cfg.rings + 1)) * ri;
+            // Find nodes near this ring distance
+            const candidates = [];
+            for (let ni = 0; ni < nodes.length; ni++) {
+                const nd = nearestCenterDist(nodes[ni].x, nodes[ni].y);
+                if (Math.abs(nd - ringR) < step * 0.9) candidates.push(ni);
+            }
+            if (candidates.length < 2) continue;
+            candidates.sort((a, b) => Math.atan2(nodes[a].y - cy, nodes[a].x - cx) - Math.atan2(nodes[b].y - cy, nodes[b].x - cx));
+
+            for (let i = 0; i < candidates.length; i++) {
+                const fIdx = candidates[i], tIdx = candidates[(i + 1) % candidates.length];
+                const fa = Math.atan2(nodes[fIdx].y - cy, nodes[fIdx].x - cx);
+                let ta = Math.atan2(nodes[tIdx].y - cy, nodes[tIdx].x - cx);
+                if (ta < fa) ta += Math.PI * 2;
+                const arcLen = (ta - fa) * ringR;
+                const arcSteps = Math.max(2, Math.floor(arcLen / 55));
+                let prev = fIdx;
+                for (let s = 1; s <= arcSteps; s++) {
+                    const t = s / arcSteps;
+                    const a = fa + (ta - fa) * t;
+                    const r = ringR + rng.float(-6, 6);
+                    const nx = cx + Math.cos(a) * r, ny = cy + Math.sin(a) * r;
+                    if (!pointInPoly([nx, ny], boundary)) break;
+                    const idx = s === arcSteps ? tIdx : addNode(nx, ny);
+                    if (idx !== prev) {
+                        addEdge(prev, idx, ri <= 2 ? 'secondary' : 'tertiary', ri <= 2 ? 9 : 5);
+                        prev = idx;
+                    }
+                }
+            }
+        }
+
+        // ── Branch helper ───────────────────────────────────────────────
+        function growBranch(startIdx, dir, hier, width, maxLen, stepLen) {
+            let prev = startIdx;
+            let x = nodes[prev].x, y = nodes[prev].y, len = 0;
+            while (len < maxLen) {
+                x += Math.cos(dir) * stepLen + rng.float(-1.5, 1.5);
+                y += Math.sin(dir) * stepLen + rng.float(-1.5, 1.5);
+                len += stepLen;
+                if (!pointInPoly([x, y], boundary)) break;
+                const pre = nodes.length;
+                const idx = addNode(x, y);
+                if (idx !== prev) {
+                    addEdge(prev, idx, hier, width);
+                }
+                if (idx !== prev && nodes.length === pre) return idx; // snapped → connected
+                if (idx === prev) break;
+                prev = idx;
+            }
+            return prev;
+        }
+
+        // ── Secondary branches (90° from primary/ring) ─────────────────
+        const branched = new Set();
+        const secStart = edges.length;
+        for (let ei = 0; ei < secStart; ei++) {
+            const e = edges[ei];
+            if (e.userDrawn) continue;
+            const fn = nodes[e.from], tn = nodes[e.to];
+            const dir = Math.atan2(tn.y - fn.y, tn.x - fn.x);
+            for (const ni of [e.from, e.to]) {
+                if (branched.has(ni) || rng.next() > cfg.secProb) continue;
+                branched.add(ni);
+                for (const sign of [1, -1]) {
+                    if (rng.next() > 0.6) continue;
+                    const bDir = dir + sign * Math.PI / 2;
+                    const maxL = step * rng.float(2, 6);
+                    growBranch(ni, bDir, 'secondary', 9, maxL, step * 0.85);
+                }
+            }
+        }
+
+        // ── Tertiary branches (90° or 45° from secondary) ──────────────
+        const secEnd = edges.length;
+        const tertBranched = new Set();
+        for (let ei = secStart; ei < secEnd; ei++) {
+            const e = edges[ei];
+            if (e.userDrawn) continue;
+            const fn = nodes[e.from], tn = nodes[e.to];
+            const dir = Math.atan2(tn.y - fn.y, tn.x - fn.x);
+            for (const ni of [e.from, e.to]) {
+                if (tertBranched.has(ni) || rng.next() > cfg.tertProb) continue;
+                tertBranched.add(ni);
+                for (const sign of [1, -1]) {
+                    if (rng.next() > 0.5) continue;
+                    const angle = dir + sign * (rng.next() > 0.7 ? Math.PI / 4 : Math.PI / 2);
+                    growBranch(ni, angle, 'tertiary', 4, step * rng.float(1, 3), step * 0.7);
+                }
+            }
+        }
+
+        // ── Connect dead-ends (spatial hash accelerated) ────────────────
+        const edgeCounts = new Uint16Array(nodes.length);
+        for (const e of edges) { edgeCounts[e.from]++; edgeCounts[e.to]++; }
+        const DEADEND_R = 80;
+        for (let ni = 0; ni < nodes.length; ni++) {
+            if (edgeCounts[ni] !== 1) continue;
+            const nx = nodes[ni].x, ny = nodes[ni].y;
+            let bestI = -1, bestD = DEADEND_R;
+            const gx0 = Math.floor((nx - DEADEND_R) / CELL) - 1;
+            const gy0 = Math.floor((ny - DEADEND_R) / CELL) - 1;
+            const gx1 = Math.floor((nx + DEADEND_R) / CELL) + 1;
+            const gy1 = Math.floor((ny + DEADEND_R) / CELL) + 1;
+            for (let gy = gy0; gy <= gy1; gy++) {
+                for (let gx = gx0; gx <= gx1; gx++) {
+                    const bucket = nHash.get(gx + ',' + gy);
+                    if (!bucket) continue;
+                    for (const oi of bucket) {
+                        if (oi === ni) continue;
+                        const d = dist([nx, ny], [nodes[oi].x, nodes[oi].y]);
+                        if (d < bestD && d > SNAP && !edgeExists(ni, oi)) { bestD = d; bestI = oi; }
+                    }
+                }
+            }
+            if (bestI >= 0) addEdge(ni, bestI, 'tertiary', 4);
+        }
+
+        return { nodes, edges };
+    }
+
+    // ── Buildings along roads ───────────────────────────────────────────────
+    function placeBuildings(nodes, edges, boundary, densityMap, rng, maxCount, cx, cy, radius) {
+        const buildings = [];
+        const bounds = computeBounds(boundary);
+
+        // ── Occupancy grid: prevents building–road and building–building overlap
+        const GCELL = Math.max(3, Math.ceil(radius / 1500));
+        const gw = Math.ceil((bounds.maxX - bounds.minX) / GCELL) + 4;
+        const gh = Math.ceil((bounds.maxY - bounds.minY) / GCELL) + 4;
+        const grid = new Uint8Array(gw * gh);
+        const gox = bounds.minX - GCELL * 2;
+        const goy = bounds.minY - GCELL * 2;
+
+        // Mark all road segments (with width + margin) on the grid
+        for (const edge of edges) {
+            const fn = nodes[edge.from], tn = nodes[edge.to];
+            const hw = ((edge.width || 6) / 2) + 0.5;
+            const minC = Math.max(0, Math.floor((Math.min(fn.x, tn.x) - hw - gox) / GCELL));
+            const maxC = Math.min(gw - 1, Math.floor((Math.max(fn.x, tn.x) + hw - gox) / GCELL));
+            const minR = Math.max(0, Math.floor((Math.min(fn.y, tn.y) - hw - goy) / GCELL));
+            const maxR = Math.min(gh - 1, Math.floor((Math.max(fn.y, tn.y) + hw - goy) / GCELL));
+            for (let r = minR; r <= maxR; r++) {
+                for (let c = minC; c <= maxC; c++) {
+                    const px = gox + (c + 0.5) * GCELL;
+                    const py = goy + (r + 0.5) * GCELL;
+                    if (distToSeg(px, py, fn.x, fn.y, tn.x, tn.y) <= hw) {
+                        grid[r * gw + c] = 1;
+                    }
+                }
+            }
+        }
+
+        // Precise rotated-rect grid test (local coordinate transform)
+        function checkFootprint(bcx, bcy, hw, hh, cos, sin) {
+            const ext = Math.max(hw, hh) + GCELL;
+            const c0 = Math.max(0, Math.floor((bcx - ext - gox) / GCELL));
+            const c1 = Math.min(gw - 1, Math.floor((bcx + ext - gox) / GCELL));
+            const r0 = Math.max(0, Math.floor((bcy - ext - goy) / GCELL));
+            const r1 = Math.min(gh - 1, Math.floor((bcy + ext - goy) / GCELL));
+            for (let r = r0; r <= r1; r++) {
+                for (let c = c0; c <= c1; c++) {
+                    if (!grid[r * gw + c]) continue;
+                    const px = gox + (c + 0.5) * GCELL - bcx;
+                    const py = goy + (r + 0.5) * GCELL - bcy;
+                    if (Math.abs(px * cos + py * sin) <= hw && Math.abs(-px * sin + py * cos) <= hh) return true;
+                }
+            }
+            return false;
+        }
+
+        function markFootprint(bcx, bcy, hw, hh, cos, sin) {
+            const ext = Math.max(hw, hh) + GCELL;
+            const c0 = Math.max(0, Math.floor((bcx - ext - gox) / GCELL));
+            const c1 = Math.min(gw - 1, Math.floor((bcx + ext - gox) / GCELL));
+            const r0 = Math.max(0, Math.floor((bcy - ext - goy) / GCELL));
+            const r1 = Math.min(gh - 1, Math.floor((bcy + ext - goy) / GCELL));
+            for (let r = r0; r <= r1; r++) {
+                for (let c = c0; c <= c1; c++) {
+                    const px = gox + (c + 0.5) * GCELL - bcx;
+                    const py = goy + (r + 0.5) * GCELL - bcy;
+                    if (Math.abs(px * cos + py * sin) <= hw && Math.abs(-px * sin + py * cos) <= hh) {
+                        grid[r * gw + c] = 1;
+                    }
+                }
+            }
+        }
+
+        // Intersection visual clearance
+        const eCounts = new Uint16Array(nodes.length);
+        for (const e of edges) { eCounts[e.from]++; eCounts[e.to]++; }
+        const intHash = new Map();
+        for (let i = 0; i < nodes.length; i++) {
+            if (eCounts[i] < 3) continue;
+            const k = `${Math.floor(nodes[i].x / 40)},${Math.floor(nodes[i].y / 40)}`;
+            if (!intHash.has(k)) intHash.set(k, []);
+            intHash.get(k).push([nodes[i].x, nodes[i].y]);
+        }
+        function nearIntersection(px, py, minD) {
+            const gx = Math.floor(px / 40), gy = Math.floor(py / 40);
+            for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+                for (const [ix, iy] of (intHash.get(`${gx + dx},${gy + dy}`) || [])) {
+                    if (dist([px, py], [ix, iy]) < minD) return true;
+                }
+            }
+            return false;
+        }
+
+        // Walk each road edge, place buildings on both sides
+        for (const edge of edges) {
+            if (buildings.length >= maxCount) break;
+            const fn = nodes[edge.from], tn = nodes[edge.to];
+            const eLen = dist([fn.x, fn.y], [tn.x, tn.y]);
+            if (eLen < 15) continue;
+
+            const dir = Math.atan2(tn.y - fn.y, tn.x - fn.x);
+            const cosD = Math.cos(dir), sinD = Math.sin(dir);
+            const perpX = -sinD, perpY = cosD;
+            const roadHW = (edge.width || 6) / 2;
+            const bStep = rng.float(14, 22);
+
+            for (let t = bStep; t < eLen - bStep * 0.4; t += bStep) {
+                if (buildings.length >= maxCount) break;
+                const frac = t / eLen;
+                const px = fn.x + (tn.x - fn.x) * frac;
+                const py = fn.y + (tn.y - fn.y) * frac;
+
+                if (nearIntersection(px, py, 14)) continue;
+                const den = sampleDensity(px, py, densityMap);
+
+                for (const side of [1, -1]) {
+                    if (buildings.length >= maxCount) break;
+                    if (rng.next() > den * 0.85) continue;
+
+                    const bw = rng.float(bStep * 0.55, bStep - 2);
+                    const bd = rng.float(8, 18);
+                    const gap = rng.float(1, 2.5);
+                    const off = roadHW + gap + bd / 2;
+                    const bcx = px + perpX * off * side;
+                    const bcy = py + perpY * off * side;
+
+                    if (!pointInPoly([bcx, bcy], boundary)) continue;
+
+                    const hw = bw / 2 + 1, hh = bd / 2 + 1; // +1 margin
+                    if (checkFootprint(bcx, bcy, hw, hh, cosD, sinD)) continue;
+
+                    const corners = rotRect(bcx, bcy, bw, bd, dir);
+                    const dRatio = dist([bcx, bcy], [cx, cy]) / radius;
+                    let cat;
+                    if (dRatio < 0.15) cat = rng.choice(['commercial', 'civic', 'commercial']);
+                    else if (dRatio < 0.4) cat = rng.choice(['commercial', 'residential', 'residential']);
+                    else if (dRatio < 0.7) cat = rng.choice(['residential', 'residential', 'residential', 'industrial']);
+                    else cat = rng.choice(['residential', 'industrial']);
+
+                    buildings.push({
+                        type: "Feature",
+                        geometry: { type: "Polygon", coordinates: [corners] },
+                        properties: { type: "building", category: cat, floor: 0, height: rng.range(5, den > 0.6 ? 35 : 15) }
+                    });
+                    markFootprint(bcx, bcy, bw / 2, bd / 2, cosD, sinD);
+                }
+            }
+        }
         return buildings;
     }
 
-    function distanceToLineSegment(point, p1, p2) {
-        const [px, py] = point;
-        const [x1, y1] = p1;
-        const [x2, y2] = p2;
-        const A = px - x1;
-        const B = py - y1;
-        const C = x2 - x1;
-        const D = y2 - y1;
-        const dot = A * C + B * D;
-        const lenSq = C * C + D * D;
-        let param = -1;
-        if (lenSq !== 0) param = dot / lenSq;
-        let xx, yy;
-        if (param < 0) {
-            xx = x1;
-            yy = y1;
-        } else if (param > 1) {
-            xx = x2;
-            yy = y2;
-        } else {
-            xx = x1 + param * C;
-            yy = y1 + param * D;
+    // ── Parks ────────────────────────────────────────────────────────────────
+    function genParks(boundary, rng, count, cx, cy, radius) {
+        const parks = [];
+        const names = ["Central Park","Memorial Gardens","City Plaza","Green Zone","Rec Area","Botanical Gardens","Liberation Square","Haven Park","Founders Garden","Riverside Walk"];
+        for (let i = 0; i < count * 2 && parks.length < count; i++) {
+            const a = rng.next() * Math.PI * 2;
+            const d = rng.float(0.05, 0.6) * radius;
+            const px = cx + Math.cos(a) * d, py = cy + Math.sin(a) * d;
+            if (!pointInPoly([px, py], boundary)) continue;
+            const verts = rng.range(5, 9), pR = rng.float(20, Math.min(80, radius * 0.06));
+            const pts = [];
+            for (let j = 0; j < verts; j++) {
+                const va = (Math.PI * 2 / verts) * j;
+                pts.push([px + Math.cos(va) * pR * rng.float(0.6, 1), py + Math.sin(va) * pR * rng.float(0.6, 1)]);
+            }
+            pts.push(pts[0].slice());
+            parks.push({ type: "Feature", geometry: { type: "Polygon", coordinates: [pts] },
+                properties: { type: "park", floor: 0, name: rng.choice(names) } });
         }
-        return Math.hypot(px - xx, py - yy);
+        return parks;
     }
 
-    // ── Main Settlement Generation ──────────────────────────────────────────────
+    // ── Main generation ─────────────────────────────────────────────────────
     function generateSettlement(options = {}) {
         const {
             id = `settlement_${Date.now()}`,
             name = "New Settlement",
             type = "city",
-            size = "medium",  // tiny, small, medium, large, metropolis
+            size = "medium",
             population = 10000,
-            boundingBox = { minX: 0, minY: 0, maxX: 1000, maxY: 1000 },
-            generationMethod = "auto",  // "auto" | "guided"
-            guidedSketch = null,  // { mainRoads: [...], parks: [...] }
-            expansionLevel = 3,  // 0-5
-            seed = Math.random()
+            shape = "circle",
+            expansionLevel = 3,
+            seed = Date.now(),
+            density: userDensity,
+            centerDensity: userCenterDensity,
+            userRoads = [],
+            userParks = [],
+            customBoundary = null,
+            densityMap: userDensityMap = null
         } = options;
 
-        const rng = new SeededRNG(seed);
+        const rng = new RNG(seed);
+        const cfg = CFG[size] || CFG.medium;
+        const expMul = 0.6 + (expansionLevel / 5) * 0.8;
+        const radius = cfg.radius * expMul;
+        const cx = 0, cy = 0;
 
-        // Size-to-density mapping
-        const sizeDensityMap = {
-            tiny: 0.3,
-            small: 0.45,
-            medium: 0.6,
-            large: 0.75,
-            metropolis: 0.9
-        };
-        const baseDensity = sizeDensityMap[size] || 0.6;
-        const density = baseDensity * (0.5 + expansionLevel / 10);
-
-        const bounds = boundingBox;
-        const features = [];
-
-        // Floor 0 (ground level) - main settlement
-        const mainFloor = {
-            floor: 0,
-            name: "Ground Level",
-            type: "ground",
-            features: []
-        };
-
-        // Roads
-        const roadOptions = {
-            mainRoads: generationMethod === "guided" && guidedSketch?.mainRoads ? guidedSketch.mainRoads : [],
-            rng,
-            density,
-            floor: 0
-        };
-        const roads = generateRoadNetwork(bounds, roadOptions);
-        mainFloor.features.push(...roads);
-        features.push(...roads);
-
-        // Buildings
-        const buildingOptions = {
-            rng,
-            density,
-            centerDensity: 0.8,
-            floor: 0,
-            populationPerBuilding: population / 100
-        };
-        const buildings = generateBuildings(bounds, roads, buildingOptions);
-        mainFloor.features.push(...buildings);
-        features.push(...buildings);
-
-        // Parks (if guided sketch provided, or randomly placed)
-        const parks = [];
-        if (generationMethod === "guided" && guidedSketch?.parks) {
-            parks.push(...guidedSketch.parks);
+        // Generate nuclei for multi-center cities
+        const numCenters = { tiny: 1, small: 1, medium: rng.range(1, 2), large: rng.range(2, 3), metropolis: rng.range(3, 5) }[size] || 1;
+        const centers = [];
+        if (numCenters <= 1) {
+            centers.push([cx, cy]);
         } else {
-            const numParks = Math.max(1, Math.floor(density * 3));
-            for (let i = 0; i < numParks; i++) {
-                const pw = rng.range(150, 350);
-                const ph = rng.range(150, 350);
-                const px = bounds.minX + rng.next() * (bounds.maxX - bounds.minX);
-                const py = bounds.minY + rng.next() * (bounds.maxY - bounds.minY);
-                parks.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "Polygon",
-                        coordinates: [[[px - pw / 2, py - ph / 2], [px + pw / 2, py - ph / 2], [px + pw / 2, py + ph / 2], [px - pw / 2, py + ph / 2], [px - pw / 2, py - ph / 2]]]
-                    },
-                    properties: {
-                        type: "park",
-                        floor: 0,
-                        name: rng.choice(["Central Park", "Memorial Gardens", "City Plaza", "Recreation Area", "Green Space"])
-                    }
-                });
+            const axisAngle = rng.float(0, Math.PI);
+            const spread = radius * rng.float(0.25, 0.45);
+            for (let i = 0; i < numCenters; i++) {
+                const t = (i / (numCenters - 1)) - 0.5;
+                const perp = rng.float(-spread * 0.12, spread * 0.12);
+                centers.push([
+                    cx + Math.cos(axisAngle) * t * spread * 2 + Math.cos(axisAngle + Math.PI / 2) * perp,
+                    cy + Math.sin(axisAngle) * t * spread * 2 + Math.sin(axisAngle + Math.PI / 2) * perp
+                ]);
             }
         }
-        mainFloor.features.push(...parks);
+
+        // Boundary
+        const boundary = customBoundary && customBoundary.length >= 3
+            ? (customBoundary[customBoundary.length-1][0] !== customBoundary[0][0] ? [...customBoundary, customBoundary[0].slice()] : customBoundary)
+            : generateBoundary(shape, cx, cy, radius, rng);
+        const bounds = computeBounds(boundary);
+
+        // Density map
+        const densityMap = userDensityMap || createDefaultDensity(bounds, cx, cy, centers);
+
+        // Roads
+        const { nodes, edges } = buildRoadNetwork(cx, cy, radius, boundary, userRoads, densityMap, rng, cfg, expMul, centers);
+
+        // Convert edges to road features
+        const features = [];
+        for (const e of edges) {
+            features.push({
+                type: "Feature",
+                geometry: { type: "LineString", coordinates: [[nodes[e.from].x, nodes[e.from].y], [nodes[e.to].x, nodes[e.to].y]] },
+                properties: { type: "road", hierarchy: e.hierarchy, width: e.width, floor: 0, userDrawn: e.userDrawn || false }
+            });
+        }
+
+        // Parks (user + generated)
+        const parks = [...userParks, ...genParks(boundary, rng, cfg.parks, cx, cy, radius)];
         features.push(...parks);
 
-        // Multi-floor support: add underground levels if specified
+        // Buildings
+        const buildings = placeBuildings(nodes, edges, boundary, densityMap, rng, Math.floor(cfg.maxBldg * expMul), cx, cy, radius);
+        features.push(...buildings);
+
+        // Floors
+        const mainFloor = { floor: 0, name: "Ground Level", type: "ground", features: features.slice() };
         const floors = [mainFloor];
         const connectors = [];
 
-        // Optional: add underground level for large settlements
-        if (size === "large" || size === "metropolis") {
-            const undergroundFloor = {
-                floor: -1,
-                name: "Underground Level",
-                type: "underground",
-                features: []
-            };
-            // Underground passages, transport hubs, storage
-            const undergroundRoads = generateRoadNetwork(bounds, { ...roadOptions, floor: -1, density: density * 0.5 });
-            undergroundFloor.features.push(...undergroundRoads);
-            features.push(...undergroundRoads);
-
-            floors.push(undergroundFloor);
-
-            // Add elevators/stairs connecting levels
-            const numConnectors = rng.range(3, 8);
-            for (let i = 0; i < numConnectors; i++) {
-                const cx = bounds.minX + rng.next() * (bounds.maxX - bounds.minX);
-                const cy = bounds.minY + rng.next() * (bounds.maxY - bounds.minY);
-                connectors.push({
-                    type: rng.choice(["elevator", "stairs", "ramp"]),
-                    position: [cx, cy],
-                    from: -1,
-                    to: 0,
-                    name: rng.choice(["North Elevator", "Central Lift", "East Stairs", "West Passage"]) + ` #${i + 1}`
+        // Underground for large+
+        if (size === 'large' || size === 'metropolis') {
+            const ugEdges = [];
+            for (let ei = 0; ei < Math.min(edges.length, Math.floor(edges.length * 0.3)); ei++) {
+                const e = edges[ei];
+                ugEdges.push({
+                    type: "Feature",
+                    geometry: { type: "LineString", coordinates: [[nodes[e.from].x, nodes[e.from].y], [nodes[e.to].x, nodes[e.to].y]] },
+                    properties: { type: "road", hierarchy: e.hierarchy, width: e.width, floor: -1 }
                 });
+            }
+            features.push(...ugEdges);
+            floors.push({ floor: -1, name: "Underground", type: "underground", features: ugEdges });
+            const nc = rng.range(3, 8);
+            for (let i = 0; i < nc; i++) {
+                const ca = rng.next() * Math.PI * 2, cd = rng.float(0.15, 0.55) * radius;
+                connectors.push({ type: rng.choice(["elevator","stairs","ramp"]),
+                    position: [cx + Math.cos(ca) * cd, cy + Math.sin(ca) * cd], from: -1, to: 0,
+                    name: `${rng.choice(["N","S","E","W","Central"])} ${rng.choice(["Elevator","Lift","Stairs"])} #${i+1}` });
             }
         }
 
-        // Build settlement object
-        const settlement = {
-            type: "FeatureCollection",
-            id,
-            name,
-            settlement_type: type,
-            size,
-            population,
-            bounds: {
-                type: "Polygon",
-                coordinates: [[
-                    [bounds.minX, bounds.minY],
-                    [bounds.maxX, bounds.minY],
-                    [bounds.maxX, bounds.maxY],
-                    [bounds.minX, bounds.maxY],
-                    [bounds.minX, bounds.minY]
-                ]]
-            },
-            generationMethod,
+        return {
+            type: "FeatureCollection", id, name, settlement_type: type,
+            size, population, boundary, bounds, densityMap,
+            generationMethod: userRoads.length > 0 ? 'guided' : 'auto',
             generatedAt: new Date().toISOString(),
-            expansionLevel,
-            floors,
-            connectors,
-            features
+            expansionLevel, shape, floors, connectors, features
         };
-
-        return settlement;
     }
 
-    // ── Public API ──────────────────────────────────────────────────────────────
+    // ── Public API ──────────────────────────────────────────────────────────
     return {
-        // Generate a complete settlement
-        generate(options) {
-            return generateSettlement(options);
+        generate(options) { return generateSettlement(options); },
+        createDensityMap: createDefaultDensity,
+        sampleDensity,
+        toGeoJSON(s) {
+            return { type: "FeatureCollection",
+                properties: { id: s.id, name: s.name, type: s.settlement_type, size: s.size, population: s.population,
+                    generationMethod: s.generationMethod, expansionLevel: s.expansionLevel, shape: s.shape },
+                boundary: s.boundary, densityMap: s.densityMap,
+                floors: s.floors, connectors: s.connectors, features: s.features };
         },
-
-        // Generate just roads for a region
-        roads(bounds, options) {
-            return generateRoadNetwork(bounds, options);
-        },
-
-        // Generate just buildings for a region
-        buildings(bounds, roads, options) {
-            return generateBuildings(bounds, roads, options);
-        },
-
-        // Export settlement as GeoJSON (for file storage)
-        toGeoJSON(settlement) {
-            return {
-                type: "FeatureCollection",
-                properties: {
-                    id: settlement.id,
-                    name: settlement.name,
-                    type: settlement.settlement_type,
-                    size: settlement.size,
-                    population: settlement.population,
-                    generationMethod: settlement.generationMethod,
-                    expansionLevel: settlement.expansionLevel,
-                    generatedAt: settlement.generatedAt
-                },
-                floors: settlement.floors,
-                connectors: settlement.connectors,
-                features: settlement.features
-            };
-        },
-
-        // Import settlement from stored GeoJSON
-        fromGeoJSON(geojson) {
-            return {
-                type: "FeatureCollection",
-                id: geojson.properties?.id || geojson.id,
-                name: geojson.properties?.name || "Settlement",
-                settlement_type: geojson.properties?.type || "city",
-                size: geojson.properties?.size || "medium",
-                population: geojson.properties?.population || 0,
-                bounds: geojson.properties?.bounds || null,
-                generationMethod: geojson.properties?.generationMethod || "auto",
-                generatedAt: geojson.properties?.generatedAt,
-                expansionLevel: geojson.properties?.expansionLevel || 3,
-                floors: geojson.floors || [],
-                connectors: geojson.connectors || [],
-                features: geojson.features || []
-            };
+        fromGeoJSON(gj) {
+            return { type: "FeatureCollection", id: gj.properties?.id, name: gj.properties?.name || "Settlement",
+                settlement_type: gj.properties?.type || "city", size: gj.properties?.size || "medium",
+                population: gj.properties?.population || 0, boundary: gj.boundary || [],
+                bounds: computeBounds(gj.boundary || [[-500,-500],[500,-500],[500,500],[-500,500]]),
+                densityMap: gj.densityMap, shape: gj.properties?.shape || 'circle',
+                generationMethod: gj.properties?.generationMethod || 'auto',
+                expansionLevel: gj.properties?.expansionLevel || 3,
+                floors: gj.floors || [], connectors: gj.connectors || [], features: gj.features || [] };
         }
     };
 })();
 
-// Expose for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = SettlementGenerator;
-}
+if (typeof module !== 'undefined' && module.exports) module.exports = SettlementGenerator;
