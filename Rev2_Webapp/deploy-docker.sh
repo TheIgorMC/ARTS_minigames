@@ -24,9 +24,8 @@
 #        cp /opt/stacks/sit/.env.example /opt/stacks/sit/.env
 #        nano /opt/stacks/sit/.env   # fill in CAMPAIGN_PATH etc.
 #
-#   4. Create campaign dir on SSD and seed defaults (first run only):
-#        mkdir -p /mnt/ssd/sit-campaign
-#        cp -rn /opt/stacks/sit/Rev2_Webapp/defaults/. /mnt/ssd/sit-campaign/
+#   4. Campaign data: the deploy script auto-seeds /mnt/ssd/sit-campaign
+#      from Rev2_Webapp/campaign/ on first run. No manual copy needed.
 #
 #   5. Run this script:
 #        chmod +x /opt/stacks/sit/Rev2_Webapp/deploy-docker.sh
@@ -75,11 +74,17 @@ echo "  ✓ Code up to date"
 
 # ── Ensure campaign dir exists on SSD ─────────────────────────────────────────
 echo "  → Checking campaign directory at $CAMPAIGN_PATH ..."
-if [ ! -d "$CAMPAIGN_PATH" ]; then
-    echo "  ℹ Campaign dir not found, creating and seeding defaults..."
+if [ ! -d "$CAMPAIGN_PATH/data" ]; then
+    echo "  ℹ Campaign data not found — seeding from repo campaign/ folder..."
     mkdir -p "$CAMPAIGN_PATH"
-    cp -rn "$SCRIPT_DIR/defaults/." "$CAMPAIGN_PATH/"
-    echo "  ✓ Seeded from defaults/"
+    # Prefer the full campaign/ (tracked in git) over bare defaults/
+    if [ -d "$SCRIPT_DIR/campaign" ]; then
+        cp -rn "$SCRIPT_DIR/campaign/." "$CAMPAIGN_PATH/"
+        echo "  ✓ Seeded from campaign/ (full data)"
+    else
+        cp -rn "$SCRIPT_DIR/defaults/." "$CAMPAIGN_PATH/"
+        echo "  ✓ Seeded from defaults/ (skeleton only)"
+    fi
 else
     echo "  ✓ Campaign directory exists (data preserved)"
 fi
