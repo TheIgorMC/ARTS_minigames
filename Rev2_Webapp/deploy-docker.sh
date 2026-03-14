@@ -68,7 +68,9 @@ fi
 
 # ── Pull latest code from private repo ────────────────────────────────────────
 echo "  → Pulling latest code (requires deploy key / SSH agent)..."
-git -C "$REPO_ROOT" pull --ff-only
+# --autostash: stash any trivial local changes (e.g. file-mode diffs),
+# pull, then re-apply them — so the pull never fails on a dirty tree.
+git -C "$REPO_ROOT" pull --rebase --autostash
 echo "  ✓ Code up to date"
 
 # ── Ensure campaign dir exists on SSD ─────────────────────────────────────────
