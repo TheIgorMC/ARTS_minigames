@@ -28,6 +28,10 @@ services:
       - SIT_PORT=3000
       - SIT_LOG_LEVEL=${SIT_LOG_LEVEL:-normal}
 
+    # Container starts as root; entrypoint.sh fixes volume permissions
+    # then drops to the 'sit' user (UID 1000) before running Node.
+    # This is safe — Node never runs as root.
+
     # Optional: uncomment to limit resource usage on the OrangePi
     # deploy:
     #   resources:

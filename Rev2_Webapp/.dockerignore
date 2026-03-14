@@ -25,3 +25,4 @@ update.ps1
 setup-rpi.sh
 setup-rpi-display.sh
 deploy-docker.sh
+# NOTE: entrypoint.sh is intentionally NOT excluded — it's needed in the image

@@ -2480,97 +2480,664 @@
     "companions": []
   },
   {
-    "id": "mmm8r9sgksr8",
-    "name": "Joe",
+    "id": "mmqq38kckln5",
+    "name": "Spark Reborn",
     "isNPC": false,
-    "class": "Mechanic",
+    "class": "Technomancer",
+    "race": "Ysoki",
+    "theme": "Mercenary",
+    "description": "",
     "image": "",
     "tokenImage": "",
-    "description": "",
-    "race": "Human",
-    "raceId": "AMBcyDZDtJ1OOzh3",
-    "theme": "Scholar",
-    "themeId": "17sO1sZcTu5bZPSF",
     "group": "",
     "roles": [],
-    "username": "joe",
+    "username": "sparkreborn",
     "password": "123",
-    "money": 0,
+    "money": 11350,
     "xp": 0,
     "vitals": {
-      "level": 4,
-      "sp": 24,
-      "max_sp": 24,
-      "hp": 28,
-      "max_hp": 28,
-      "rp": 2,
-      "max_rp": 2
+      "level": 7,
+      "sp": 40,
+      "max_sp": 56,
+      "hp": 37,
+      "max_hp": 37,
+      "rp": 6,
+      "max_rp": 7
     },
     "stats": {
-      "STR": 14,
+      "STR": 9,
       "DEX": 16,
-      "CON": 10,
-      "INT": 11,
-      "WIS": 10,
+      "CON": 14,
+      "INT": 18,
+      "WIS": 14,
       "CHA": 10
     },
     "combat": {
-      "bab": 3,
+      "bab": 5,
       "melee_misc": 0,
       "ranged_misc": 0,
       "thrown_misc": 0
     },
     "saves": {
-      "fort_base": 4,
+      "fort_base": 2,
       "fort_misc": 0,
-      "ref_base": 4,
+      "ref_base": 2,
       "ref_misc": 0,
-      "will_base": 1,
+      "will_base": 5,
       "will_misc": 0
     },
     "skills": {
       "acr": {
-        "ranks": 1,
+        "ranks": 2,
         "misc": 0
       },
       "ath": {
-        "ranks": 3,
-        "misc": 0
+        "ranks": 1,
+        "misc": 2
       },
       "blu": {
-        "ranks": 4,
+        "ranks": 3,
         "misc": 0
       },
       "com": {
-        "ranks": 3,
-        "misc": 0
+        "ranks": 0,
+        "misc": 2
       },
       "cul": {
-        "ranks": 1,
+        "ranks": 2,
         "misc": 0
       },
       "dip": {
-        "ranks": 0,
+        "ranks": 1,
         "misc": 0
       },
       "dis": {
-        "ranks": 0,
+        "ranks": 4,
         "misc": 0
       },
       "eng": {
-        "ranks": 0,
+        "ranks": 4,
+        "misc": 2
+      },
+      "int": {
+        "ranks": 5,
         "misc": 0
+      },
+      "lif": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "med": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "mys": {
+        "ranks": 4,
+        "misc": 5
+      },
+      "per": {
+        "ranks": 6,
+        "misc": 0
+      },
+      "phy": {
+        "ranks": 3,
+        "misc": 0
+      },
+      "pil": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "sen": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "sle": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "pro": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "ste": {
+        "ranks": 5,
+        "misc": 2
+      },
+      "sur": {
+        "ranks": 4,
+        "misc": 2
+      }
+    },
+    "feats": [
+      {
+        "name": "Weapon Specialization",
+        "option": "Small Arms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Basic Melee"
+      },
+      "Spell Focus",
+      {
+        "name": "Skill Synergy",
+        "option": "Athletics"
+      },
+      {
+        "name": "Skill Synergy",
+        "option": "Stealth"
+      },
+      "Toughness",
+      "Deadly Aim",
+      {
+        "name": "Skill Focus",
+        "option": "Mysticism"
+      }
+    ],
+    "inventory": [
+      {
+        "itemId": "SyP17Mci1t570LI6",
+        "quantity": 2
+      },
+      {
+        "itemId": "l6pRqKmaLOrNJUDn",
+        "quantity": 1
+      },
+      {
+        "itemId": "Rb1wAWFquudLKIx7",
+        "quantity": 1
+      },
+      {
+        "itemId": "cUon85lUsWQlOsha",
+        "quantity": 1
+      },
+      {
+        "itemId": "VcdpH3GNyErkml58",
+        "quantity": 1
+      },
+      {
+        "itemId": "AWo4DU0s18agsFtJ",
+        "quantity": 1
+      },
+      {
+        "itemId": "i8iGLklstIX9GxNd",
+        "quantity": 1
+      }
+    ],
+    "spells": [
+      {
+        "id": "jTBvCOkJO6LYU6Rk",
+        "name": "Arcing Surge",
+        "level": 3,
+        "school": "Evocation",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "",
+        "duration": "Instantaneous",
+        "save": "Reflex (half)",
+        "sr": true,
+        "damage": "10d6 electricity",
+        "target": "",
+        "area": "120 ft.",
+        "description": "<p>You cause an electrical device in your possession to surge in power and unleash a line of electricity from the massive oversurge. This deals 10d6 electricity damage to all creatures and objects in the area.</p>",
+        "source": "CRB pg. 340"
+      },
+      {
+        "id": "kzOemsOWuqgbbGZw",
+        "name": "Baleful Polymorph",
+        "level": 1,
+        "school": "Transmutation",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 full",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "@details.cl.value minute",
+        "save": "Will (negate)",
+        "sr": true,
+        "damage": "",
+        "target": "one creature",
+        "area": "",
+        "description": "<p>You change a target’s shape to that of a smaller, weaker creature.</p>\n<p><strong>1st</strong>: The target shrinks slightly (though it retains its size category) and gains a few cosmetic bestial features of an animal you choose. The target takes a –1 penalty to AC, attack rolls, melee damage rolls, Reflex saving throws, and Strength and Dexterity-based ability checks and skill checks. <em>Lesser remove condition</em> and similar spells can end this effect.</p>\n<p><strong>2nd</strong>: As per the 1st-level version, but the target takes a –2 penalty and must attempt an additional saving throw each round until it fails or the spell’s duration ends. If the target fails this second saving throw, its appearance becomes more bestial and the penalty increases to –3. <em>Break enchantment</em>, <em>remove affliction</em>, or <em>remove condition</em> can end the spell’s effect.</p>\n<p><strong>3rd</strong>: As per the 2nd-level version, but you can make the target one size category smaller (its equipment resizes to remain functional, though it may lose reach with its new size; see Size on page 143). The target must attempt a saving throw every round, with the penalty to AC, attack rolls, melee damage rolls, Reflex saving throws, and Strength- and Dexterity-based ability checks and skill checks worsening by 1 each time the target fails one of these saving throws, to a maximum penalty of –4. If the target succeeds at this saving throw after the penalty has reached its maximum, it is no longer required to attempt saving throws. If the target fails this saving throw after the penalty has reached its maximum, you can change the duration to permanent (D). If an object leaves the creature’s possession for 1 round or more, it reverts to normal.</p>\n<p><strong>4th</strong>: As per the 3rd-level version, but the penalty begins at –3, and the target must attempt a saving throw every round, with the penalty worsening by 1 each time the target fails one of these saving throws (to a maximum penalty of –5). If the target succeeds at this saving throw after the penalty has reached its maximum, it is no longer required to attempt saving throws. If the target fails this saving throw after the penalty has reached its maximum, you can change the duration to permanent (D). If an object leaves the creature’s possession for 1 round or more, it reverts to normal.</p>\n<p><strong>5th</strong>: As per the 4th-level version, except if the target fails its saving throw after the penalty has reached –5, instead of making the duration permanent (D), for the remainder of the duration you can turn the target into a Small animal or similar beast that has EAC 10 and KAC 12, can’t make attacks or cast spells or spell-like abilities, and can’t use extraordinary or supernatural abilities. The target retains its Intelligence, Wisdom, and Charisma scores in animal form, but it can’t speak or use any abilities of its normal form. Equipment the target is wearing is absorbed into this form, and the target still benefits from any Environmental protections on its armor, but the target drops gear it’s holding or carrying but not wearing.</p>\n<p><strong>6th</strong>: As per the 5th-level version, except if the target fails its saving throw after the penalty has reached –5, you can both make the duration permanent (D) and turn the target into a Small animal or similar beast.</p>",
+        "source": "AA2 pg. 147"
+      },
+      {
+        "id": "zxecXzHipD4MEoFc",
+        "name": "Comprehend Languages",
+        "level": 1,
+        "school": "Divination",
+        "classes": [
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "Personal",
+        "duration": "@details.cl.value*10 minute",
+        "save": "Will (negate)",
+        "sr": false,
+        "damage": "",
+        "target": "you",
+        "area": "",
+        "description": "<p>You can understand the spoken or signed words of creatures or read otherwise incomprehensible written or tactile messages. The ability to read does not necessarily impart insight into the material, merely its literal meaning. The spell enables you to understand or read an unknown language, not speak or write it. You can’t use this spell to read magic writing or encoded messages (though it does reveal if a message is magic or encoded), but you can use it to read raw computer code or foreign programming languages, allowing you to understand enough to attempt Computers checks on those materials without penalties.</p>",
+        "source": "CRB pg. 344"
+      },
+      {
+        "id": "gEPdddzbgRAAa6j3",
+        "name": "Detect Affliction",
+        "level": 0,
+        "school": "Divination",
+        "classes": [
+          "Mystic",
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "Instantaneous",
+        "save": "Will (negate)",
+        "sr": true,
+        "damage": "",
+        "target": "one creature or object",
+        "area": "",
+        "description": "<p>You determine whether a creature or object has been poisoned, is diseased, is cursed, or is suffering a similar affliction. If the target is poisoned or diseased, you automatically detect that fact and can determine the exact type of Poison or Disease with a successful DC 20 Intelligence or Wisdom check. If you are trained in Life Science or Medicine (depending on the nature of the Poison or Disease), you can attempt a DC 20 check of that skill if you fail your Wisdom or Intelligence check. If the target is cursed or suffering from a similar affliction, you must succeed at a DC 20 Intelligence or Wisdom check to determine that fact. You can then determine the exact nature of the curse with a successful DC 25 Mysticism check.</p>",
+        "source": "CRB pg. 348"
+      },
+      {
+        "id": "kxx5x0JAgFuEQJAm",
+        "name": "Detect Magic",
+        "level": 0,
+        "school": "Divination",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "",
+        "duration": "concentration, up to 1 minute/level Instantaneous",
+        "save": "Will (negate)",
+        "sr": false,
+        "damage": "",
+        "target": "",
+        "area": "60 ft.",
+        "description": "<p>You detect all magic spells, effects, items, and objects (including those on or affecting creatures you can see), as well as hybrid items, in the area. You can’t detect magical traps in this way, as they are created with additional magic that wards them from this common spell. Each round you concentrate on the same area, you can determine if one magic source you detect is from a spell, magic item, or other effect, and the caster level (or item level) of the effect. You can’t determine if there are magic sources in areas you can’t see, or if there was a magic source in an area at one time but that has since expired.</p>",
+        "source": "CRB pg. 348"
+      },
+      {
+        "id": "HGg3fIQGDzUwueVa",
+        "name": "Disguise Self",
+        "level": 1,
+        "school": "Illusion",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "Personal",
+        "duration": "@details.cl.value*10 minute",
+        "save": "Will (negate)",
+        "sr": false,
+        "damage": "",
+        "target": "",
+        "area": "",
+        "description": "<p>You make yourself—and any clothing, armor, weapons, and equipment on you—look different. You can seem up to 1 foot shorter or taller, thin, fat, or in between. You can’t change your creature type (although you can appear as another subtype). Otherwise, the extent of the apparent change is up to you. You could merely add or obscure a minor feature, or you could look like an entirely different person or gender.</p>\n<p>The spell does not provide the abilities or mannerisms of the chosen form nor does it alter the perceived tactile (touch) or audible (sound) properties of you or your equipment. If you use this spell to create a disguise, you gain a +10 circumstance bonus to the Disguise check (since it counts as altering your form). A creature that interacts with you directly can attempt a Will saving throw to recognize your appearance as an illusion.</p>",
+        "source": "CRB pg. 350"
+      },
+      {
+        "id": "J1k3B5PmIc4SUC9L",
+        "name": "Ghost Sound",
+        "level": 0,
+        "school": "Illusion",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "@details.cl.value round",
+        "save": "Will (disbelieve)",
+        "sr": false,
+        "damage": "",
+        "target": "",
+        "area": "",
+        "description": "<p>You create a volume of sound that rises, falls, recedes, approaches, or remains fixed. You choose what type of sound this spell creates when casting it and cannot thereafter change the sound’s basic character.</p>\n<p>The volume of sound created can produce as much noise as 20 normal humans. Thus, you can create shouting, singing, talking, marching, running, or walking sounds, as well as sounds of battle or small explosions. You can make noises that sound like machines, the general chatter of distant conversation, or the roar of an alien predator, but you can’t make specific sounds such as intelligible speech or the exact hum of a particular starship’s engines.</p>",
+        "source": "CRB pg. 356"
+      },
+      {
+        "id": "azohU9n6WU7L9ado",
+        "name": "Hoverdisk",
+        "level": 2,
+        "school": "Evocation",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "@details.cl.value hour",
+        "save": "",
+        "sr": false,
+        "damage": "",
+        "target": "",
+        "area": "",
+        "description": "<p>You create a thin, circular plane of force 3 feet in diameter and able to hover up to 3 feet above the ground. When you cast this spell, you can give the disk general instructions, such as “Take me across this field of lava,” or “Take the rescued Shirren back to town.” You can tell the disk to go to any location you are familiar with, and it follows these instructions without error, even traveling beyond the spell’s range. If you give the disk no instructions, it follows 5 feet behind you. The disk can carry up to 20 bulk for each caster level you have, has a fly speed of 60 feet (no higher than 3 feet), and can move beyond the spell’s range. It moves at your command or the command of a creature you designate, as a move action, and it raises and lowers itself on similar command, so getting on or off the disk can be done as part of the move action to move into the disk’s space. As a standard action, you can give the disk new general instructions.</p>\n<p>If the spell ends before the disk completes its task, the disk completes as much as it can before disappearing. When the disk disappears, whatever it was carrying falls to the surface beneath it.</p>",
+        "source": "COM pg. 136"
+      },
+      {
+        "id": "3yVTzdZy7GIxtk4h",
+        "name": "Incompetence",
+        "level": 1,
+        "school": "Enchantment",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "@details.cl.value round",
+        "save": "Will (negate)",
+        "sr": false,
+        "damage": "",
+        "target": "one creature/level",
+        "area": "",
+        "description": "<p>You cause all targets of this spell to lose proficiency with one class of weapons of your choice (basic or advanced melee weapons, small arms, longarms, heavy weapons, grenades, or natural weapons) and suffer the normal penalties for attacks made with weapons they are not proficient with.</p>",
+        "source": "AR pg. 157"
+      },
+      {
+        "id": "rxkxVP2lYJep5lV9",
+        "name": "Inject Nanobots",
+        "level": 2,
+        "school": "Necromancy",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Touch",
+        "duration": "instantaneous and 1 round/level; see text Instantaneous",
+        "save": "Fortitude (partial)",
+        "sr": true,
+        "damage": "4d8",
+        "target": "one living creature or construct",
+        "area": "",
+        "description": "<p>You concentrate key particles in your blood into tiny biological nanobots that you can inject into a foe with a touch, disrupting and damaging its natural processes. Make a melee attack against the target’s EAC; if you hit, the nanobots deal 4d8 damage and swarm through the target’s biological or mechanical systems, causing the creature to be Confused, as per Confusion, for 1 round per your caster level. If the target succeeds at a Fortitude save, it takes only half damage and negates the Confusion effect. A Confused target can attempt a Will saving throw at the beginning of its turn each round to end the confusion effect.</p>\n<p>Casting this spell doesn’t provoke attacks of opportunity.</p>",
+        "source": "CRB pg. 361"
+      },
+      {
+        "id": "8PaUEWogypdwP2aO",
+        "name": "Instant Upgrade",
+        "level": 2,
+        "school": "Conjuration",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Touch",
+        "duration": "@details.cl.value*10 minute",
+        "save": "",
+        "sr": false,
+        "damage": "",
+        "target": "one willing creature",
+        "area": "",
+        "description": "<p>You conjure bits of technology infused with magic to create one functional, temporary cybernetic augmentation with a level equal to or lower than your caster level. You decide which cybernetic augmentation to create when you cast this spell. The target must have the chosen system available for augmentation. If the target’s chosen system already has its maximum number of augmentations, this spell has no effect. The augmentation appears without harm and functions for the spell’s duration, dissipating harmlessly into nothing when the spell ends.</p>",
+        "source": "COM pg. 137"
+      },
+      {
+        "id": "a2zXJ84rzkD8SIBe",
+        "name": "Overheat",
+        "level": 1,
+        "school": "Evocation",
+        "classes": [
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "",
+        "duration": "Instantaneous",
+        "save": "Reflex (half)",
+        "sr": true,
+        "damage": "2d8 fire",
+        "target": "",
+        "area": "15 ft.",
+        "description": "<p>You collect the heat generated by nearby bodies and devices and vent it outward in a thermal wave, dealing 2d8 fire damage to creatures and objects in the area.</p>",
+        "source": "CRB pg. 367"
+      },
+      {
+        "id": "byAI5MUa3DgiiXc9",
+        "name": "Psychokinetic Hand",
+        "level": 0,
+        "school": "Transmutation",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "concentration Instantaneous",
+        "save": "",
+        "sr": false,
+        "damage": "",
+        "target": "one unattended object of no more than 10 lbs. or 1 bulk",
+        "area": "",
+        "description": "<p>You point your finger at the target object, gaining the ability to lift it and move it at will from a distance. As a move action, you can propel the object as far as 15 feet in any direction, though the spell ends if the distance between you and the object ever exceeds the spell’s range. You can’t perform complex operations, such as firing a gun or using a computer, but you can shut a mechanical door or lid and work simple buttons to open or close automated doors or trigger an alarm.</p>",
+        "source": "CRB pg. 370"
+      },
+      {
+        "id": "4prroV3z26u1cy5y",
+        "name": "Slow",
+        "level": 3,
+        "school": "Transmutation",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "Close (25 ft. + 5 ft./2 levels)",
+        "duration": "@details.cl.value round",
+        "save": "Will (negate)",
+        "sr": true,
+        "damage": "",
+        "target": "up to one creature/level, no two of which can be more than 30 ft. apart",
+        "area": "",
+        "description": "<p>An affected creature moves and attacks at a drastically slowed rate. Creatures affected by this spell are Staggered (see page 277) and can take only a single move action or standard action each turn, but not both, and it can’t take full actions. A slowed creature moves at half its normal speed (round down to the next 5-foot increment). Multiple slow effects don’t stack.&nbsp;Slow&nbsp;counters and negates&nbsp;haste.</p>",
+        "source": "CRB pg. 377"
+      },
+      {
+        "id": "VfGkPlxHZoxJDjX7",
+        "name": "Supercharge Weapon",
+        "level": 1,
+        "school": "Evocation",
+        "classes": [
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Touch",
+        "duration": "see text Instantaneous",
+        "save": "",
+        "sr": false,
+        "damage": "",
+        "target": "one weapon",
+        "area": "",
+        "description": "<p>You supercharge the target weapon. If the weapon’s next attack hits (provided it is made before the end of the next round), the attack deals 4d6 additional damage if the weapon is a single target attack or 2d6 additional damage if the weapon attacks all creatures in an area. This bonus damage is of the same type as the weapon’s normal damage.</p>",
+        "source": "CRB pg. 379"
+      },
+      {
+        "id": "R6MvvYVPDf21fE8Y",
+        "name": "Telepathic Message",
+        "level": 0,
+        "school": "Divination",
+        "classes": [
+          "Mystic",
+          "Precog",
+          "Technomancer"
+        ],
+        "castingTime": "1 action",
+        "range": "Medium (100 ft. + 10 ft./level)",
+        "duration": "@details.cl.value*10 minute",
+        "save": "",
+        "sr": false,
+        "damage": "",
+        "target": "up to one creature/level",
+        "area": "",
+        "description": "<p>You can send a short telepathic message and hear simple telepathic replies. Any living creature within 10 feet of you or an intended recipient also receives your telepathic message if it succeeds at a DC 25 Perception check. You must be able to see or hear each recipient. The creatures that receive the message can reply telepathically, but no more than a single message can be sent each round, and each message cannot exceed 10 words. A technomancer casting this spell can also use it to send a message to a computer or a construct with the technological subtype if the receiving target is designed to receive messages.</p>",
+        "source": "CRB pg. 381"
+      },
+      {
+        "id": "kNURbWD9d5768exU",
+        "name": "Token Spell",
+        "level": 0,
+        "school": "Transmutation",
+        "classes": [
+          "Mystic",
+          "Technomancer",
+          "Witchwarper"
+        ],
+        "castingTime": "1 action",
+        "range": "10 ft.",
+        "duration": "1 Hour Instantaneous",
+        "save": "",
+        "sr": true,
+        "damage": "",
+        "target": "Targets, Effect, or Area see text",
+        "area": "",
+        "description": "<p>Token spells are often some of the first minor changes that spellcasters produce when they begin experimenting with magic. Once cast, token spell enables you to perform simple magical effects for 1 hour. The effects are minor and have severe limitations. You can slowly lift one item of light bulk. You can alter items in a 1-foot cube each round, coloring, cleaning, soiling, cooling, warming, or flavoring them. You can create small objects, but they look artificial and are extremely fragile (they can’t be used as tools or weapons). You can illuminate an object to shed dim light in a 30-foot radius.</p>\n<p>Token spell&nbsp;lacks the power to duplicate any other spell effects. Any actual change to an object (beyond moving, cleaning, or soiling it) persists for only 1 hour.</p>",
+        "source": "CRB pg. 382"
+      }
+    ],
+    "spellSlots": {
+      "known": [
+        6,
+        5,
+        4,
+        2,
+        0,
+        0,
+        0
+      ],
+      "perDay": [
+        -1,
+        5,
+        4,
+        3,
+        0,
+        0,
+        0
+      ],
+      "used": [
+        0,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "importSource": "hephaistos",
+    "homeworld": "Y",
+    "gender": "Male",
+    "speed": 40,
+    "languages": ", , ",
+    "ac": {
+      "eac": 20,
+      "kac": 20
+    },
+    "initiative_misc": 0,
+    "senses": "Darkvision 60 ft."
+  },
+  {
+    "id": "mmqq3oguo62y",
+    "name": "Joe",
+    "isNPC": false,
+    "class": "Mechanic",
+    "race": "Human",
+    "theme": "Scholar",
+    "description": "",
+    "image": "",
+    "tokenImage": "",
+    "group": "",
+    "roles": [],
+    "username": "joe",
+    "password": "123",
+    "money": 12389,
+    "xp": 0,
+    "vitals": {
+      "level": 7,
+      "sp": 50,
+      "max_sp": 56,
+      "hp": 46,
+      "max_hp": 46,
+      "rp": 9,
+      "max_rp": 9
+    },
+    "stats": {
+      "STR": 12,
+      "DEX": 12,
+      "CON": 13,
+      "INT": 18,
+      "WIS": 12,
+      "CHA": 14
+    },
+    "combat": {
+      "bab": 5,
+      "melee_misc": 0,
+      "ranged_misc": 0,
+      "thrown_misc": 0
+    },
+    "saves": {
+      "fort_base": 5,
+      "fort_misc": 0,
+      "ref_base": 5,
+      "ref_misc": 0,
+      "will_base": 2,
+      "will_misc": 0
+    },
+    "skills": {
+      "acr": {
+        "ranks": 4,
+        "misc": 0
+      },
+      "ath": {
+        "ranks": 6,
+        "misc": 0
+      },
+      "blu": {
+        "ranks": 1,
+        "misc": 0
+      },
+      "com": {
+        "ranks": 6,
+        "misc": 2
+      },
+      "cul": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dip": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "dis": {
+        "ranks": 2,
+        "misc": 0
+      },
+      "eng": {
+        "ranks": 6,
+        "misc": 2
       },
       "int": {
         "ranks": 0,
         "misc": 0
       },
       "lif": {
-        "ranks": 0,
+        "ranks": 3,
         "misc": 0
       },
       "med": {
-        "ranks": 0,
+        "ranks": 3,
         "misc": 0
       },
       "mys": {
@@ -2578,43 +3145,186 @@
         "misc": 0
       },
       "per": {
-        "ranks": 0,
-        "misc": 0
+        "ranks": 5,
+        "misc": 2
       },
       "phy": {
-        "ranks": 0,
+        "ranks": 5,
         "misc": 0
       },
       "pil": {
-        "ranks": 0,
+        "ranks": 7,
         "misc": 0
       },
       "sen": {
-        "ranks": 0,
+        "ranks": 1,
         "misc": 0
       },
       "sle": {
-        "ranks": 0,
-        "misc": 0
+        "ranks": 2,
+        "misc": 3
       },
       "pro": {
-        "ranks": 0,
+        "ranks": 2,
         "misc": 0
       },
       "ste": {
-        "ranks": 0,
+        "ranks": 2,
         "misc": 0
       },
       "sur": {
-        "ranks": 0,
+        "ranks": 4,
         "misc": 0
       }
     },
     "feats": [
-      "Accelerated Recovery"
+      "Toughness",
+      {
+        "name": "Skill Focus",
+        "option": "Sleight of Hand"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Longarms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Small Arms"
+      },
+      {
+        "name": "Weapon Specialization",
+        "option": "Basic Melee"
+      },
+      "Longarm Proficiency",
+      "Heavy Armor Proficiency",
+      "Shield Proficiency",
+      "Grenade Proficiency",
+      "Barricade",
+      "Extra Resolve",
+      "Improved Initiative"
     ],
-    "inventory": [],
-    "backstory": "",
+    "inventory": [
+      {
+        "itemId": "7ZkTZj58lPFE8bZ7",
+        "quantity": 1
+      },
+      {
+        "itemId": null,
+        "quantity": 1,
+        "_inline": {
+          "name": "Battery, Standard",
+          "category": "Ammunition",
+          "description": "Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons tha",
+          "level": 1,
+          "price": 60,
+          "bulk": 0
+        }
+      },
+      {
+        "itemId": null,
+        "quantity": 3,
+        "_inline": {
+          "name": "Battery, Standard",
+          "category": "Ammunition",
+          "description": "Batteries charge powered weapons, but they can also be used to power an array of items, including powered armor and technological items. Batteries have a standardized size and weight, and items that take batteries all have a slot into which they fit, regardless of the item’s actual size. Weapons tha",
+          "level": 1,
+          "price": 60,
+          "bulk": 0
+        }
+      },
+      {
+        "itemId": "k4uhCOLBmuO1nxQy",
+        "quantity": 1
+      },
+      {
+        "itemId": null,
+        "quantity": 1,
+        "_inline": {
+          "name": "Computer (Tier 3)",
+          "category": "Item",
+          "description": "",
+          "level": 6,
+          "price": 1500,
+          "bulk": 1
+        }
+      },
+      {
+        "itemId": "ss2eEOuouZklgDbk",
+        "quantity": 1
+      },
+      {
+        "itemId": "73Q4p64z7ezNHwtf",
+        "quantity": 1
+      },
+      {
+        "itemId": "V2u7uYaFlbms42D9",
+        "quantity": 1
+      },
+      {
+        "itemId": "hdUNyuKciEdJ8LYm",
+        "quantity": 3
+      },
+      {
+        "itemId": "z5kz9TDrS3pu6sDw",
+        "quantity": 1
+      },
+      {
+        "itemId": "Gty66lbfFbvp00A1",
+        "quantity": 1
+      },
+      {
+        "itemId": "dldJbi8rEyeEtKIr",
+        "quantity": 1
+      },
+      {
+        "itemId": "21udB0pEmkZhe9gk",
+        "quantity": 1
+      },
+      {
+        "itemId": "4ANV2gtgo6zRffs3",
+        "quantity": 1
+      },
+      {
+        "itemId": "6jNXUNrgJwjzHz5O",
+        "quantity": 2
+      },
+      {
+        "itemId": "cNlQXXhIAlZmjObX",
+        "quantity": 1
+      },
+      {
+        "itemId": "cNlQXXhIAlZmjObX",
+        "quantity": 1
+      },
+      {
+        "itemId": "33PnCqADTRKrAyA6",
+        "quantity": 1
+      },
+      {
+        "itemId": "VcdpH3GNyErkml58",
+        "quantity": 4
+      },
+      {
+        "itemId": "9zAxjLCJAxWuPMgw",
+        "quantity": 2
+      },
+      {
+        "itemId": null,
+        "quantity": 1,
+        "_inline": {
+          "name": "Tool Kit (Engineering Kit)",
+          "category": "Item",
+          "description": "A engineering kit is required for Engineering checks. Checks without one take a –2 penalty.",
+          "level": 1,
+          "price": 20,
+          "bulk": 0.1
+        }
+      },
+      {
+        "itemId": "AWo4DU0s18agsFtJ",
+        "quantity": 1
+      }
+    ],
     "spells": [],
     "spellSlots": {
       "known": [
@@ -2645,6 +3355,16 @@
         0
       ]
     },
-    "companions": []
+    "importSource": "hephaistos",
+    "homeworld": "Yassin",
+    "gender": "Male",
+    "speed": 40,
+    "languages": "",
+    "ac": {
+      "eac": 17,
+      "kac": 19
+    },
+    "initiative_misc": 4,
+    "senses": "Darkvision 60 ft., Low-Light Vision"
   }
 ]

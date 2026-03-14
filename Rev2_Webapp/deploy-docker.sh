@@ -82,6 +82,12 @@ else
     echo "  ✓ Campaign directory exists (data preserved)"
 fi
 
+# ── Fix ownership so the container's 'sit' user (UID 1000) can read/write ────
+echo "  → Setting permissions on $CAMPAIGN_PATH (UID 1000:1000) ..."
+sudo chown -R 1000:1000 "$CAMPAIGN_PATH"
+sudo chmod -R u+rwX "$CAMPAIGN_PATH"
+echo "  ✓ Permissions set"
+
 # ── Build & restart container ─────────────────────────────────────────────────
 echo "  → Building Docker image..."
 docker compose -f "$REPO_ROOT/compose.yaml" --env-file "$REPO_ROOT/.env" build --no-cache
