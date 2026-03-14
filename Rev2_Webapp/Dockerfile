@@ -12,8 +12,12 @@ WORKDIR /app
 # su-exec is a lightweight gosu alternative for Alpine (drops root → sit)
 RUN apk add --no-cache su-exec
 
-# Create app user with a FIXED UID/GID so host-side permissions are predictable
-RUN addgroup -g 1000 -S sit && adduser -u 1000 -S sit -G sit
+# node:20-alpine ships with a 'node' user at UID/GID 1000.
+# Remove it so we can create our own 'sit' user at the same IDs.
+RUN deluser --remove-home node \
+    && delgroup node || true \
+    && addgroup -g 1000 -S sit \
+    && adduser -u 1000 -S sit -G sit
 
 # Copy production node_modules from deps stage
 COPY --from=deps /app/node_modules ./node_modules
