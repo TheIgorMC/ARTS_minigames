@@ -1139,6 +1139,7 @@
                 <button class="sub-tab-btn" onclick="bmInitNext()" title="Next">▶</button>
                 <button class="sub-tab-btn" onclick="bmStartInitiative()" style="font-size:0.72rem;" title="Sort by initiative and start">START</button>
                 <button class="sub-tab-btn" onclick="bmClearInitiative()" style="font-size:0.72rem; color:#888;" title="Clear initiative">CLR</button>
+                <button class="sub-tab-btn" onclick="bmClearCombat()" style="font-size:0.72rem; color:#f88;" title="Remove all tokens and clear initiative">CLEAR COMBAT</button>
             </div>
 
             <!-- MAIN LAYOUT -->
@@ -1249,6 +1250,7 @@
                             <button class="btn" onclick="bmInitPrev()" style="flex:1; font-size:0.72rem; padding:4px;">&#9664; PREV</button>
                             <button class="btn" onclick="bmInitNext()" style="flex:1; font-size:0.72rem; padding:4px; border-color:#ffd700; color:#ffd700;">END TURN &#9654;</button>
                         </div>
+                        <button class="btn red" onclick="bmClearCombat()" style="width:100%; font-size:0.72rem; padding:4px; margin:0 0 8px 0;">CLEAR COMBAT</button>
                         <!-- damage / heal quick bar -->
                         <div class="form-label-sm">QUICK DAMAGE / HEAL</div>
                         <div style="display:flex; gap:4px; align-items:center; margin-bottom:4px;">
@@ -8616,6 +8618,21 @@
         }
         function bmClearInitiative() {
             socket.emit('admin_battlemap_initiative', { order: [], current: -1 });
+        }
+        function bmClearCombat() {
+            if (!confirm('Clear combat? This removes all battlemap tokens and resets initiative.')) return;
+
+            socket.emit('admin_battlemap_initiative', { order: [], current: -1 });
+            (bmState.tokens || []).forEach(tok => {
+                socket.emit('admin_battlemap_token_remove', { id: tok.id });
+            });
+            socket.emit('admin_battlemap_config', { active: false });
+
+            bmSelectedTokenId = null;
+            bmRenderCombatPanel();
+            bmRenderInitPanel();
+            bmRenderTokenList();
+            bmScheduleRender();
         }
 
         // ── Combat panel ──────────────────────────────────────────────────

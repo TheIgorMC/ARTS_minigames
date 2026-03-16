@@ -345,13 +345,18 @@
             background: rgba(10, 10, 18, 0.95);
             border-top: 1px solid var(--primary-color);
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
             align-items: center;
             z-index: 50;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
         }
         
         /* Add padding to screens so content isn't hidden behind nav */
@@ -377,6 +382,7 @@
             text-transform: uppercase;
             padding: 10px 20px;
             transition: color 0.3s;
+            flex: 0 0 auto;
         }
         .nav-btn.active {
             color: var(--primary-color);
@@ -580,6 +586,7 @@
         .shop-item-btn.info-btn { border-color: #888; color: #888; padding: 6px 8px; font-size: 0.7rem; }
         .shop-item-btn.info-btn:active { background: #888; color: #000; }
         .shop-item-row.above-level { opacity: 0.35; }
+        .shop-item-row.unavailable { opacity: 0.45; filter: grayscale(0.6); }
         .shop-owned-badge { display: inline-block; background: #1a2a1a; color: #6f6; border: 1px solid #3a3; padding: 0 5px; font-size: 0.65rem; margin-left: 6px; vertical-align: middle; }
         .shop-filter-bar { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; align-items: center; }
         .shop-filter-bar select, .shop-filter-bar label { font-family: inherit; font-size: 0.75rem; }
@@ -717,6 +724,8 @@
             <div class="stat-row"><span class="stat-label">CHA</span><span class="stat-val" id="val-cha">10</span></div>
 
             <div class="section-title">COMBAT</div>
+            <div class="stat-row"><span class="stat-label">INITIATIVE</span><span class="stat-val" id="val-initiative">+0</span></div>
+            <div class="stat-row"><span class="stat-label">SPEED</span><span class="stat-val" id="val-speed">30 ft</span></div>
             <div class="stat-row"><span class="stat-label">BAB</span><span class="stat-val" id="val-bab">+0</span></div>
             <div class="stat-row"><span class="stat-label">MELEE</span><span class="stat-val" id="val-melee">+0</span></div>
             <div class="stat-row"><span class="stat-label">RANGED</span><span class="stat-val" id="val-ranged">+0</span></div>
@@ -737,6 +746,7 @@
         <div id="screen-equipment" class="screen" style="overflow-y: auto; padding: 20px;">
             <div class="section-title">ASSETS</div>
             <div class="stat-row"><span class="stat-label">CREDITS</span><span class="stat-val" id="val-credits">0</span></div>
+            <div class="stat-row"><span class="stat-label">CARRIED BULK</span><span class="stat-val" id="val-bulk">0</span></div>
             
             <div class="section-title">INVENTORY</div>
             <div id="inventory-list" style="display: flex; flex-direction: column; gap: 4px;">
@@ -830,6 +840,7 @@
                     <option value="Goods">Goods</option>
                 </select>
                 <label><input type="checkbox" id="shop-level-filter" onchange="renderShopItems()"> My level only</label>
+                <label><input type="checkbox" id="shop-show-unavailable" onchange="renderShopItems()"> Show unavailable items</label>
             </div>
             <div id="shop-items-list" style="max-height:50vh; overflow-y:auto;">
                 <!-- Populated by JS -->
@@ -1093,6 +1104,32 @@
             return typeof entry.quantity === 'number' ? entry.quantity : (typeof entry.qty === 'number' ? entry.qty : 1);
         }
 
+        function parseBulkForTotals(rawBulk) {
+            if (rawBulk == null) return { numeric: 0, low: false };
+            if (typeof rawBulk === 'number' && Number.isFinite(rawBulk)) {
+                return { numeric: Math.max(0, rawBulk), low: false };
+            }
+            const txt = String(rawBulk).trim();
+            if (!txt) return { numeric: 0, low: false };
+            if (/^(l|low)$/i.test(txt)) return { numeric: 0, low: true };
+            const m = txt.match(/-?\d+(\.\d+)?/);
+            if (!m) return { numeric: 0, low: false };
+            const n = parseFloat(m[0]);
+            if (!Number.isFinite(n)) return { numeric: 0, low: false };
+            return { numeric: Math.max(0, n), low: false };
+        }
+
+        function formatBulkTotal(totalBulk) {
+            const rounded = Math.round(totalBulk * 10) / 10;
+            return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+        }
+
+        function updateCarriedBulkDisplay(totalBulk) {
+            const el = document.getElementById('val-bulk');
+            if (!el) return;
+            el.innerText = formatBulkTotal(totalBulk);
+        }
+
         socket.on('campaign_settings_update', (settings) => {
             campaignAllowedSources = settings.allowedSources || [];
         });
@@ -1118,6 +1155,7 @@
             if (!container) return;
             const inv = char.inventory || [];
             if (inv.length === 0) {
+                updateCarriedBulkDisplay(0);
                 container.innerHTML = '<div style="color:#888;font-style:italic;">No items loaded.</div>';
                 return;
             }
@@ -1126,6 +1164,8 @@
             playerItemsDb.forEach(i => itemMap.set(i.id, i));
 
             let html = '';
+            let numericBulk = 0;
+            let lowBulkItemCount = 0;
             inv.forEach(entry => {
                 let name, category, level, itemId;
                 let itemRef = null;
@@ -1147,6 +1187,12 @@
                     itemId = null;
                 }
                 const qty = entry.quantity || 1;
+
+                const bulkRaw = itemRef?.details?.bulk ?? itemRef?.bulk ?? entry._inline?.details?.bulk ?? entry._inline?.bulk;
+                const parsedBulk = parseBulkForTotals(bulkRaw);
+                numericBulk += parsedBulk.numeric * qty;
+                if (parsedBulk.low) lowBulkItemCount += qty;
+
                 const clickable = itemId ? `style="cursor:pointer;" onclick="showInventoryItemDetail('${itemId}')"` : '';
                 html += `<div class="inv-item" ${clickable}>
                     <div>
@@ -1156,6 +1202,9 @@
                     <span class="inv-item-qty">x${qty}</span>
                 </div>`;
             });
+
+            const totalBulk = numericBulk + Math.floor(lowBulkItemCount / 10);
+            updateCarriedBulkDisplay(totalBulk);
             container.innerHTML = html;
         }
 
@@ -1337,7 +1386,7 @@
                         <div style="display:flex; gap:16px; margin-bottom:8px; flex-wrap:wrap;">
                             <div><span style="color:#666; font-size:11px;">EAC</span> <span style="color:#fff; font-weight:bold;">${c.eac}</span></div>
                             <div><span style="color:#666; font-size:11px;">KAC</span> <span style="color:#fff; font-weight:bold;">${c.kac}</span></div>
-                            <div><span style="color:#666; font-size:11px;">Speed</span> <span style="color:#fff;">${c.speed} ft</span></div>
+                            <div><span style="color:#666; font-size:11px;">Speed</span> <span style="color:#fff;">${c.speed ?? 30} ft</span></div>
                         </div>
                         <div style="display:flex; gap:4px; margin-bottom:10px; justify-content:space-around;">${statsRow}</div>
                         ${attacksHtml ? `<div style="margin-bottom:8px;">
@@ -1373,6 +1422,8 @@
             const wisMod = getAttrMod(stats.WIS || 10);
 
             const bab = combat.bab || 0;
+            const initiative = dexMod + (char.initiative_misc ?? combat.initiative_misc ?? combat.initiative ?? 0);
+            const speed = char.speed || char.movement?.land || combat.speed || combat.landSpeed || 30;
             
             // Attacks
             const melee = bab + strMod + (combat.melee_misc || 0);
@@ -1380,6 +1431,8 @@
             const thrown = bab + strMod + (combat.thrown_misc || 0);
 
             document.getElementById('val-bab').innerText = (bab >= 0 ? '+' : '') + bab;
+            document.getElementById('val-initiative').innerText = (initiative >= 0 ? '+' : '') + initiative;
+            document.getElementById('val-speed').innerText = `${speed} ft`;
             document.getElementById('val-melee').innerText = (melee >= 0 ? '+' : '') + melee;
             document.getElementById('val-ranged').innerText = (ranged >= 0 ? '+' : '') + ranged;
             document.getElementById('val-thrown').innerText = (thrown >= 0 ? '+' : '') + thrown;
@@ -1532,6 +1585,61 @@
         // --- GM CHECK REQUEST LOGIC ---
         let currentCheckRequest = null;
 
+        function computeRequestedCheckBonus(char, req) {
+            if (!char || !req) return 0;
+
+            if (req.type === 'skill') {
+                const skillId = mapSkillId(req.stat);
+                const def = SKILL_DEFINITIONS.find(s => s.id === skillId);
+                if (!def) return 0;
+
+                const stats = char.stats || {};
+                const skills = char.skills || {};
+                const sData = skills[def.id] || { ranks: 0, misc: 0 };
+                const ranks = sData.ranks || 0;
+                const attrMod = getAttrMod(stats[def.attr] || 10);
+                const misc = sData.misc || 0;
+
+                const charClass = char.class || '';
+                const classSkills = CLASS_SKILLS[charClass] || [];
+                const classBonus = (ranks > 0 && classSkills.includes(def.id)) ? 3 : 0;
+
+                let featBonus = 0;
+                (char.feats || []).forEach(f => {
+                    if (f.name === 'Skill Focus' && f.option === def.name) featBonus += 3;
+                    if (f.name === 'Skill Synergy' && f.option === def.name) featBonus += 2;
+                });
+                if (charClass === 'Operative') {
+                    const lvl = char.vitals?.level || char.level || 1;
+                    featBonus += 1 + Math.floor((lvl - 1) / 4);
+                }
+
+                return ranks + attrMod + classBonus + featBonus + misc;
+            }
+
+            if (req.type === 'ability') {
+                return getAttrMod((char.stats || {})[req.stat] || 10);
+            }
+
+            if (req.type === 'save') {
+                const saves = char.saves || {};
+                const stats = char.stats || {};
+                const key = String(req.stat || '').toLowerCase();
+
+                if (key === 'fortitude' || key === 'fort') {
+                    return (saves.fort_base || 0) + getAttrMod(stats.CON || 10) + (saves.fort_misc || 0);
+                }
+                if (key === 'reflex' || key === 'ref') {
+                    return (saves.ref_base || 0) + getAttrMod(stats.DEX || 10) + (saves.ref_misc || 0);
+                }
+                if (key === 'will') {
+                    return (saves.will_base || 0) + getAttrMod(stats.WIS || 10) + (saves.will_misc || 0);
+                }
+            }
+
+            return 0;
+        }
+
         socket.on('gm_request_check', (req) => {
             // Check if it's for me
             if (!myCharacter) return;
@@ -1543,50 +1651,8 @@
             const details = document.getElementById('check-req-details');
             const bonusDisplay = document.getElementById('check-req-bonus');
             
-            details.innerText = req.statName.toUpperCase();
-            
-            // Calculate Bonus
-            let bonus = 0;
-            if (req.type === 'skill') {
-                const def = SKILL_DEFINITIONS.find(s => s.id === req.stat);
-                if (def) {
-                    const stats = myCharacter.stats || {};
-                    const skills = myCharacter.skills || {};
-                    const sData = skills[def.id] || { ranks: 0, misc: 0 };
-                    const attrMod = getAttrMod(stats[def.attr] || 10);
-                    
-                    let classBonus = 0;
-                    const charClass = myCharacter.class || '';
-                    const classSkills = CLASS_SKILLS[charClass] || [];
-                    if (sData.ranks > 0 && classSkills.includes(def.id)) classBonus = 3;
-                    
-                    // Feats (Simplified check)
-                    let featBonus = 0;
-                    (myCharacter.feats || []).forEach(f => {
-                        if (f.name === 'Skill Focus' && f.option === def.name) featBonus += 3;
-                        if (f.name === 'Skill Synergy' && f.option === def.name) featBonus += 2;
-                    });
-
-                    bonus = sData.ranks + attrMod + classBonus + featBonus + sData.misc;
-                }
-            } else if (req.type === 'ability') {
-                const stats = myCharacter.stats || {};
-                bonus = getAttrMod(stats[req.stat] || 10);
-            } else if (req.type === 'save') {
-                const saves = myCharacter.saves || {};
-                const stats = myCharacter.stats || {};
-                const attrMap = { 'fortitude': 'CON', 'reflex': 'DEX', 'will': 'WIS' };
-                const attr = attrMap[req.stat];
-                const attrMod = getAttrMod(stats[attr] || 10);
-                
-                let base = 0;
-                let misc = 0;
-                if (req.stat === 'fortitude') { base = saves.fort_base || 0; misc = saves.fort_misc || 0; }
-                if (req.stat === 'reflex') { base = saves.ref_base || 0; misc = saves.ref_misc || 0; }
-                if (req.stat === 'will') { base = saves.will_base || 0; misc = saves.will_misc || 0; }
-                
-                bonus = base + attrMod + misc;
-            }
+            details.innerText = req.dc ? `${req.statName.toUpperCase()} (DC ${req.dc})` : req.statName.toUpperCase();
+            const bonus = computeRequestedCheckBonus(myCharacter, req);
 
             currentCheckRequest.calculatedBonus = bonus;
             bonusDisplay.innerText = `BONUS: ${bonus >= 0 ? '+' : ''}${bonus}`;
@@ -2911,41 +2977,81 @@
             const search = (document.getElementById('shop-search')?.value || '').toLowerCase();
             const catFilter = document.getElementById('shop-cat-filter')?.value || '';
             const levelOnly = document.getElementById('shop-level-filter')?.checked || false;
-            const playerLevel = myCharacter?.level || 1;
+            const showUnavailable = document.getElementById('shop-show-unavailable')?.checked || false;
+            const playerLevel = myCharacter?.vitals?.level || myCharacter?.level || 1;
+
+            function itemPassesFilters(item) {
+                if (!item) return false;
+                if (search && !item.name.toLowerCase().includes(search)) return false;
+                if (catFilter && item.category !== catFilter) return false;
+                if (item.source && !isSourceAllowed(item.source)) return false;
+                if (levelOnly && (item.level || 0) > playerLevel) return false;
+                return true;
+            }
 
             if (shopTab === 'buy') {
                 if (!currentShop || !currentShop.stock) { container.innerHTML = '<div style="color:#888; padding:10px;">No items available.</div>'; return; }
-                const items = currentShop.stock.filter(s => {
-                    if (s.qty === 0) return false;
-                    const item = s.item;
-                    if (!item) return false;
-                    if (search && !item.name.toLowerCase().includes(search)) return false;
-                    if (catFilter && item.category !== catFilter) return false;
-                    if (item.source && !isSourceAllowed(item.source)) return false;
-                    if (levelOnly && (item.level || 0) > playerLevel) return false;
-                    return true;
+                const stockMap = new Map();
+                currentShop.stock.forEach(s => {
+                    if (s.item?.id) stockMap.set(s.item.id, s);
                 });
-                container.innerHTML = items.map(s => {
+
+                const rows = [];
+
+                currentShop.stock.forEach(s => {
                     const item = s.item;
+                    if (!itemPassesFilters(item)) return;
+                    const unavailable = s.qty === 0;
+                    if (unavailable && !showUnavailable) return;
+
                     const price = s.priceOverride || item.price || 0;
-                    const qtyText = s.qty === -1 ? '∞' : s.qty;
+                    const qtyText = unavailable ? '0' : (s.qty === -1 ? '∞' : s.qty);
                     const canAfford = (myCharacter?.money || 0) >= price;
                     const isExpanded = expandedShopItemId === item.id;
                     const aboveLevel = (item.level || 0) > playerLevel;
                     const ownedQty = getOwnedQty(item.id);
                     const ownedBadge = ownedQty > 0 ? `<span class="shop-owned-badge">Owned: ${ownedQty}</span>` : '';
-                    return `<div>
-                        <div class="shop-item-row${aboveLevel ? ' above-level' : ''}" style="cursor:pointer;" onclick="toggleShopItemDetail('${item.id}')">
+                    const disabled = unavailable || aboveLevel || !canAfford;
+
+                    rows.push(`<div>
+                        <div class="shop-item-row${aboveLevel ? ' above-level' : ''}${unavailable ? ' unavailable' : ''}" style="cursor:pointer;" onclick="toggleShopItemDetail('${item.id}')">
                             <div style="flex:1; min-width:0;">
                                 <div class="shop-item-name">${item.name}${ownedBadge}</div>
-                                <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Stock: ${qtyText}</div>
+                                <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Stock: ${qtyText}${unavailable ? ' | Unavailable' : ''}</div>
                             </div>
                             <span class="shop-item-price">${price} CR</span>
-                            <button class="shop-item-btn" ${!canAfford ? 'disabled style="opacity:0.3;"' : ''} onclick="event.stopPropagation(); buyItem('${item.id}')">BUY</button>
+                            <button class="shop-item-btn" ${disabled ? 'disabled style="opacity:0.3;"' : ''} onclick="event.stopPropagation(); buyItem('${item.id}')">BUY</button>
                         </div>
                         ${isExpanded ? buildItemDetailPanel(item) : ''}
-                    </div>`;
-                }).join('') || '<div style="color:#888; padding:10px;">No items match.</div>';
+                    </div>`);
+                });
+
+                if (showUnavailable) {
+                    playerItemsDb.forEach(item => {
+                        if (!item?.id || stockMap.has(item.id)) return;
+                        if (!itemPassesFilters(item)) return;
+
+                        const price = item.price || 0;
+                        const isExpanded = expandedShopItemId === item.id;
+                        const aboveLevel = (item.level || 0) > playerLevel;
+                        const ownedQty = getOwnedQty(item.id);
+                        const ownedBadge = ownedQty > 0 ? `<span class="shop-owned-badge">Owned: ${ownedQty}</span>` : '';
+
+                        rows.push(`<div>
+                            <div class="shop-item-row${aboveLevel ? ' above-level' : ''} unavailable" style="cursor:pointer;" onclick="toggleShopItemDetail('${item.id}')">
+                                <div style="flex:1; min-width:0;">
+                                    <div class="shop-item-name">${item.name}${ownedBadge}</div>
+                                    <div style="color:#666; font-size:0.7rem;">Lv${item.level || '?'} | ${item.category || ''} | Not stocked</div>
+                                </div>
+                                <span class="shop-item-price">${price} CR</span>
+                                <button class="shop-item-btn" disabled style="opacity:0.3;" onclick="event.stopPropagation();">BUY</button>
+                            </div>
+                            ${isExpanded ? buildItemDetailPanel(item) : ''}
+                        </div>`);
+                    });
+                }
+
+                container.innerHTML = rows.join('') || '<div style="color:#888; padding:10px;">No items match.</div>';
             } else {
                 // Sell tab — show player inventory, cross-reference with item DB
                 const inv = myCharacter?.inventory || [];
