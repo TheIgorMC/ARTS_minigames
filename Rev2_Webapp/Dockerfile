@@ -46,7 +46,7 @@ EXPOSE 3000
 # Start as root — entrypoint fixes volume permissions then drops to 'sit'
 ENTRYPOINT ["entrypoint.sh"]
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD wget -qO- http://localhost:3000/ || exit 1
 
 CMD ["node", "server.js"]
